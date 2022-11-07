@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="dark light" name="color-scheme">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Title</title>
+    <link rel="stylesheet" href="uikit.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="uk-container">
+    <br>
+    <div>
+        <h3>With an insulin pen.</h3>
+        <ul class="uk-list uk-list-bullet">
+            <li>Giving an Insulin Injection Using a Pen-<span><a
+                    href="https://www.youtube.com/watch?v=RlHUyiK4R0I">YouTube- Demo Video.</a></span>
+            </li>
+        </ul>
+        <div class="uk-position-relative">
+            <iframe  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                     src="https://www.youtube.com/embed/RlHUyiK4R0I"
+                     height="300"
+                     class="uk-width-1-1">
+            </iframe>
+            <div class="uk-position-absolute uk-position-center" id="loader-top" uk-spinner="ratio:1.5"></div>
+        </div>
+        <ul>
+            <li>ALWAYS prime the pen (2 units air shot) with each injection, not just the first time you use the pen.</li>
+            <li> ALWAYS hold injection in for 10 seconds after you have injected the full dose.</li>
+        </ul>
+    </div>
+    <div>
+        <h3>With a syringe and vial.</h3>
+        <ul class="uk-list uk-list-bullet">
+            <li> How to Draw Up an Insulin Syringe | Cincinnati Children's - <span><a
+                    href="https://www.youtube.com/watch?v=4s5KO1n97GU">YouTube- Demo Video.</a></span>
+            </li>
+        </ul>
+        <div class="uk-position-relative">
+            <iframe id="i-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    src="https://www.youtube.com/embed/4s5KO1n97GU"
+                    height="300"
+                    class="uk-width-1-1">
+            </iframe>
+            <div class="uk-position-absolute uk-position-center" id="loader" uk-spinner="ratio:1.5"></div>
+        </div>
+        <ul>
+            <li> Make sure air bubbles are not present- they are not harmful, but necessary to remove to ensure
+                receiving full dose of insulin.
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h3>Site rotation.</h3>
+        <ul class="uk-list uk-list-bullet">
+            <li>Sites to use abdomen, buttocks, arms, thighs. See page 18 of green book!.</li>
+            <li>Importance of site rotation- improve insulin action, decreases scar tissue.</li>
+            <li>Rotate the site where you give shots each time. If not, your body might make scar tissue under the skin and insulin may not be absorbed as well as it should and your blood sugar may remain elevated!</li>
+        </ul>
+        <img alt="glucose"
+             class="uk-responsive-width uk-margin-small"
+             src="insulin.png">
+    </div>
+    <div>
+<!--        Spacing for the done button-->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+</div>
+</body>
+<script>
+    window.onload = function () {
+        document.getElementById('loader-top').style.display = "none";
+        document.getElementById('loader').style.display = "none";
+    }
+</script>
+</html>

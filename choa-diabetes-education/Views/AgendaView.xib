@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AgendaView" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-ZY-uZX">
+                    <rect key="frame" x="20" y="44" width="8" height="24"/>
+                    <color key="backgroundColor" red="1" green="0.54117647058823526" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="6KG-jb-QYA"/>
+                        <constraint firstAttribute="width" constant="8" id="tuc-R3-wup"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RS6-AP-8TW">
+                    <rect key="frame" x="36" y="44" width="106.5" height="24"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                    <color key="textColor" name="headingGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="agendaFirstDay" translatesAutoresizingMaskIntoConstraints="NO" id="IUa-Bd-deI">
+                    <rect key="frame" x="20" y="76" width="374" height="490"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="490" id="nIP-JQ-2Fg"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="agendaSecondDay" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-tp-JMg">
+                    <rect key="frame" x="20" y="630" width="374" height="280"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="280" id="mSK-tw-zpj"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77c-6s-CXn">
+                    <rect key="frame" x="20" y="598" width="8" height="24"/>
+                    <color key="backgroundColor" red="1" green="0.54117647059999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="1rU-CT-Mgp"/>
+                        <constraint firstAttribute="width" constant="8" id="hm1-mz-p8W"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mn-C8-FVN">
+                    <rect key="frame" x="36" y="598" width="142" height="24"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                    <color key="textColor" name="headingGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="RS6-AP-8TW" firstAttribute="centerY" secondItem="SZO-ZY-uZX" secondAttribute="centerY" id="AGr-7v-eig"/>
+                <constraint firstItem="JvU-tp-JMg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="KsM-nH-0Xc"/>
+                <constraint firstItem="6Mn-C8-FVN" firstAttribute="centerY" secondItem="77c-6s-CXn" secondAttribute="centerY" id="L29-7h-dVa"/>
+                <constraint firstItem="IUa-Bd-deI" firstAttribute="top" secondItem="SZO-ZY-uZX" secondAttribute="bottom" constant="8" id="OIo-i3-nkm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JvU-tp-JMg" secondAttribute="trailing" constant="20" id="T6B-rZ-Qai"/>
+                <constraint firstItem="77c-6s-CXn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="anY-e5-XNL"/>
+                <constraint firstItem="6Mn-C8-FVN" firstAttribute="top" secondItem="IUa-Bd-deI" secondAttribute="bottom" constant="32" id="bGI-7q-LO9"/>
+                <constraint firstItem="RS6-AP-8TW" firstAttribute="leading" secondItem="SZO-ZY-uZX" secondAttribute="trailing" constant="8" id="ct2-wn-Y4z"/>
+                <constraint firstItem="JvU-tp-JMg" firstAttribute="top" secondItem="6Mn-C8-FVN" secondAttribute="bottom" constant="8" id="dXc-Ds-LT6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Mn-C8-FVN" secondAttribute="trailing" constant="20" id="dqW-tq-BUV"/>
+                <constraint firstItem="6Mn-C8-FVN" firstAttribute="leading" secondItem="77c-6s-CXn" secondAttribute="trailing" constant="8" id="gvu-Hd-i3o"/>
+                <constraint firstItem="SZO-ZY-uZX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="hbe-dp-bat"/>
+                <constraint firstItem="SZO-ZY-uZX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="l7d-Fs-xyH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IUa-Bd-deI" secondAttribute="trailing" constant="20" id="pZd-uY-Niq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RS6-AP-8TW" secondAttribute="trailing" constant="20" id="r7d-iL-OUJ"/>
+                <constraint firstItem="IUa-Bd-deI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zc5-5X-BZg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="agendaFirstDay" width="327" height="429"/>
+        <image name="agendaSecondDay" width="327" height="245"/>
+        <namedColor name="headingGreenColor">
+            <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

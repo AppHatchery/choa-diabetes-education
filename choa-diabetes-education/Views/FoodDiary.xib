@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FoodDiary" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="443"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-He-b35">
+                    <rect key="frame" x="20" y="44" width="414" height="24"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                    <color key="textColor" name="headingGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pT-Er-BiU">
+                    <rect key="frame" x="20" y="73" width="374" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="vqu-Dx-92S"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="low-carb" imagePadding="16">
+                        <backgroundConfiguration key="background" cornerRadius="5">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </backgroundConfiguration>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Low Carb Snack Combinations">
+                                <attributes>
+                                    <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <attributedString key="attributedSubtitle">
+                            <fragment content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. ">
+                                <attributes>
+                                    <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="12" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="nextButtonPressed:" destination="-1" eventType="touchUpInside" id="li6-Ds-XYY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-vB-1KJ">
+                    <rect key="frame" x="20" y="163" width="374" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="hEz-lL-m3t"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="know-your-carbs" imagePadding="16">
+                        <backgroundConfiguration key="background" cornerRadius="5">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </backgroundConfiguration>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Know your carbs">
+                                <attributes>
+                                    <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <attributedString key="attributedSubtitle">
+                            <fragment content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. ">
+                                <attributes>
+                                    <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="12" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="nextButtonPressed:" destination="-1" eventType="touchUpInside" id="q0J-i4-owZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URw-uU-7S1">
+                    <rect key="frame" x="20" y="253" width="374" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="eHv-Jj-4fh"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="foods-raise-blood-sugar" imagePadding="16">
+                        <backgroundConfiguration key="background" cornerRadius="5">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </backgroundConfiguration>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Foods that raise Blood Sugar">
+                                <attributes>
+                                    <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <attributedString key="attributedSubtitle">
+                            <fragment content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. ">
+                                <attributes>
+                                    <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="12" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="nextButtonPressed:" destination="-1" eventType="touchUpInside" id="rxM-nD-9fB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25C-P9-VnO">
+                    <rect key="frame" x="20" y="343" width="374" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="6LQ-sH-hDn"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="foods-dont-raise-blood-sugar" imagePadding="16">
+                        <backgroundConfiguration key="background" cornerRadius="5">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </backgroundConfiguration>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Foods that don't raise Blood Sugar">
+                                <attributes>
+                                    <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <attributedString key="attributedSubtitle">
+                            <fragment content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. ">
+                                <attributes>
+                                    <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="12" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="nextButtonPressed:" destination="-1" eventType="touchUpInside" id="jSy-Zs-5LU"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="backgroundColor"/>
+            <constraints>
+                <constraint firstItem="bRP-vB-1KJ" firstAttribute="top" secondItem="1pT-Er-BiU" secondAttribute="bottom" constant="10" id="DQN-Nw-jwk"/>
+                <constraint firstItem="URw-uU-7S1" firstAttribute="leading" secondItem="1pT-Er-BiU" secondAttribute="leading" id="Efh-Tq-mzF"/>
+                <constraint firstItem="4Xy-He-b35" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="20" id="FHU-iI-RYM"/>
+                <constraint firstItem="25C-P9-VnO" firstAttribute="top" secondItem="URw-uU-7S1" secondAttribute="bottom" constant="10" id="GDd-ig-Sek"/>
+                <constraint firstItem="25C-P9-VnO" firstAttribute="leading" secondItem="1pT-Er-BiU" secondAttribute="leading" id="H1Y-5V-4IS"/>
+                <constraint firstItem="4Xy-He-b35" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="HU1-kM-Py6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1pT-Er-BiU" secondAttribute="trailing" constant="20" id="KrM-2O-qIO"/>
+                <constraint firstItem="25C-P9-VnO" firstAttribute="trailing" secondItem="1pT-Er-BiU" secondAttribute="trailing" id="Kz3-Ju-k0g"/>
+                <constraint firstItem="1pT-Er-BiU" firstAttribute="top" secondItem="4Xy-He-b35" secondAttribute="bottom" constant="5" id="MMw-RY-rlu"/>
+                <constraint firstItem="1pT-Er-BiU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="N4Z-IM-kWI"/>
+                <constraint firstItem="bRP-vB-1KJ" firstAttribute="trailing" secondItem="1pT-Er-BiU" secondAttribute="trailing" id="O3R-Rx-g28"/>
+                <constraint firstItem="URw-uU-7S1" firstAttribute="top" secondItem="bRP-vB-1KJ" secondAttribute="bottom" constant="10" id="RVq-lV-Yra"/>
+                <constraint firstItem="bRP-vB-1KJ" firstAttribute="leading" secondItem="1pT-Er-BiU" secondAttribute="leading" id="hx9-ix-Fkv"/>
+                <constraint firstItem="4Xy-He-b35" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="nJl-ws-orv"/>
+                <constraint firstItem="URw-uU-7S1" firstAttribute="trailing" secondItem="1pT-Er-BiU" secondAttribute="trailing" id="w67-I0-A0w"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-53.90625"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="foods-dont-raise-blood-sugar" width="56" height="52"/>
+        <image name="foods-raise-blood-sugar" width="56" height="52"/>
+        <image name="know-your-carbs" width="56" height="52"/>
+        <image name="low-carb" width="56" height="52"/>
+        <namedColor name="backgroundColor">
+            <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="headingGreenColor">
+            <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

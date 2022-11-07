@@ -1,0 +1,28 @@
+@font-face {
+    font-family: GothamRoundedBook;
+    src: url("gotham-rounded/GothamRoundedBook.ttf");
+
+}
+
+* {
+    font-family: GothamRoundedBook, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+
+h1,
+.uk-h1,
+h2,
+.uk-h2,
+h3,
+.uk-h3,
+h4,
+.uk-h4,
+h5,
+.uk-h5,
+h6,
+.uk-h6 {
+    color: #084E06;
+}

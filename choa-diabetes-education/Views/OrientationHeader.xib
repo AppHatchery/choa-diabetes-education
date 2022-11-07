@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrientationHeader" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="subtitleLabel" destination="a9Z-oB-17d" id="FPl-so-Fjm"/>
+                <outlet property="titleLabel" destination="RYS-yM-N1I" id="YKv-So-36K"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orientation" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYS-yM-N1I">
+                    <rect key="frame" x="90" y="44" width="304" height="32"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="32"/>
+                    <color key="textColor" name="headingGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education of diabetes management" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9Z-oB-17d">
+                    <rect key="frame" x="90" y="76" width="304" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientationImage" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-qb-Ru0">
+                    <rect key="frame" x="20" y="132" width="374" height="172"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="xyb-qb-Ru0" secondAttribute="height" multiplier="187:86" id="JT4-ck-apX"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ja7-NA-FPn">
+                    <rect key="frame" x="20" y="44" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="8jP-8a-6nx"/>
+                        <constraint firstAttribute="height" constant="60" id="JBi-Rw-uX2"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="RYS-yM-N1I" firstAttribute="top" secondItem="ja7-NA-FPn" secondAttribute="top" id="E4o-uP-Ngr"/>
+                <constraint firstItem="a9Z-oB-17d" firstAttribute="leading" secondItem="RYS-yM-N1I" secondAttribute="leading" id="KhY-Id-eBW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a9Z-oB-17d" secondAttribute="trailing" constant="20" id="OEy-Yt-jCh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RYS-yM-N1I" secondAttribute="trailing" constant="20" id="Ohs-ej-u1e"/>
+                <constraint firstItem="xyb-qb-Ru0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QAP-XV-rbv"/>
+                <constraint firstItem="xyb-qb-Ru0" firstAttribute="top" secondItem="ja7-NA-FPn" secondAttribute="bottom" constant="28" id="Tep-dF-xRv"/>
+                <constraint firstItem="a9Z-oB-17d" firstAttribute="top" secondItem="RYS-yM-N1I" secondAttribute="bottom" id="UXC-lj-p7d"/>
+                <constraint firstItem="ja7-NA-FPn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Uw3-t8-T4g"/>
+                <constraint firstItem="ja7-NA-FPn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gGC-Th-UP9"/>
+                <constraint firstItem="RYS-yM-N1I" firstAttribute="leading" secondItem="ja7-NA-FPn" secondAttribute="trailing" constant="10" id="l2A-Rd-Eek"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xyb-qb-Ru0" secondAttribute="trailing" constant="20" id="pes-WT-VLS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-106.80803571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="orientationIcon" width="50" height="50"/>
+        <image name="orientationImage" width="327" height="150"/>
+        <namedColor name="headingGreenColor">
+            <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

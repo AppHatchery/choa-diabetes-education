@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Communities" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="526" height="871"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Communities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSj-fN-XCY">
+                    <rect key="frame" x="20" y="44" width="486" height="24"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                    <color key="textColor" name="headingGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="strong4life-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-Lt-bnO">
+                    <rect key="frame" x="20" y="73" width="486" height="165"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="165" id="bQW-dG-Eo5"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7o-vK-WDN">
+                    <rect key="frame" x="20" y="243" width="486" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-kl-1eh">
+                    <rect key="frame" x="8" y="281" width="123" height="30.5"/>
+                    <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="View in browser">
+                                <attributes>
+                                    <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="loadWebpage:" destination="-1" eventType="touchUpInside" id="iLf-hj-Ezc"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jdrf-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-We-mJD">
+                    <rect key="frame" x="20" y="331.5" width="486" height="165"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="165" id="bFs-go-X5t"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqn-5c-QQf">
+                    <rect key="frame" x="20" y="501.5" width="486" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fp-pYW">
+                    <rect key="frame" x="8" y="539.5" width="123" height="30.5"/>
+                    <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="View in browser">
+                                <attributes>
+                                    <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="loadWebpage:" destination="-1" eventType="touchUpInside" id="z4w-gi-Sql"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camp-kudzu-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kIq-9R-oLA">
+                    <rect key="frame" x="20" y="590" width="486" height="165"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="165" id="wFR-B8-F9R"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11A-MY-I8b">
+                    <rect key="frame" x="20" y="760" width="486" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-yE-OsZ">
+                    <rect key="frame" x="8" y="798" width="123" height="30.5"/>
+                    <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <attributedString key="attributedTitle">
+                            <fragment content="View in browser">
+                                <attributes>
+                                    <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="loadWebpage:" destination="-1" eventType="touchUpInside" id="wh1-bW-UqF"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="backgroundColor"/>
+            <constraints>
+                <constraint firstItem="W7o-vK-WDN" firstAttribute="leading" secondItem="Ap7-Lt-bnO" secondAttribute="leading" id="1Kj-hR-P6G"/>
+                <constraint firstItem="W7o-vK-WDN" firstAttribute="trailing" secondItem="Ap7-Lt-bnO" secondAttribute="trailing" id="2Pg-tQ-otv"/>
+                <constraint firstItem="kIq-9R-oLA" firstAttribute="top" secondItem="eh0-fp-pYW" secondAttribute="bottom" constant="20" id="4ba-oN-qBO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kIq-9R-oLA" secondAttribute="trailing" constant="20" id="5dn-fz-Fhs"/>
+                <constraint firstItem="e0G-kl-1eh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="8ek-MS-2wo"/>
+                <constraint firstItem="eh0-fp-pYW" firstAttribute="top" secondItem="Jqn-5c-QQf" secondAttribute="bottom" constant="-3" id="8kh-3t-ZVY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="e0G-kl-1eh" secondAttribute="trailing" constant="20" id="8rU-34-ncT"/>
+                <constraint firstItem="Hoq-We-mJD" firstAttribute="top" secondItem="e0G-kl-1eh" secondAttribute="bottom" constant="20" id="Ab7-kl-kZQ"/>
+                <constraint firstItem="11A-MY-I8b" firstAttribute="top" secondItem="kIq-9R-oLA" secondAttribute="bottom" constant="5" id="FUn-wn-OxO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hoq-We-mJD" secondAttribute="trailing" constant="20" id="GaB-iG-Tpp"/>
+                <constraint firstItem="W7o-vK-WDN" firstAttribute="top" secondItem="Ap7-Lt-bnO" secondAttribute="bottom" constant="5" id="HUz-t0-GEU"/>
+                <constraint firstItem="Hoq-We-mJD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="MSK-C5-yf9"/>
+                <constraint firstItem="kIq-9R-oLA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="NZt-Zo-jXI"/>
+                <constraint firstItem="Ap7-Lt-bnO" firstAttribute="top" secondItem="aSj-fN-XCY" secondAttribute="bottom" constant="5" id="PlX-LE-3wg"/>
+                <constraint firstItem="Ap7-Lt-bnO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QPn-NX-82P"/>
+                <constraint firstItem="aSj-fN-XCY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RoQ-w6-tUn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ap7-Lt-bnO" secondAttribute="trailing" constant="20" id="Ubh-8y-qfp"/>
+                <constraint firstItem="Jqn-5c-QQf" firstAttribute="top" secondItem="Hoq-We-mJD" secondAttribute="bottom" constant="5" id="Xwt-yL-qsT"/>
+                <constraint firstItem="aSj-fN-XCY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gMV-CW-NOe"/>
+                <constraint firstItem="Jqn-5c-QQf" firstAttribute="trailing" secondItem="Hoq-We-mJD" secondAttribute="trailing" id="kD3-tV-gve"/>
+                <constraint firstItem="e0G-kl-1eh" firstAttribute="top" secondItem="W7o-vK-WDN" secondAttribute="bottom" constant="-3" id="nF3-5D-Gmi"/>
+                <constraint firstItem="11A-MY-I8b" firstAttribute="leading" secondItem="kIq-9R-oLA" secondAttribute="leading" id="oaL-kz-qKI"/>
+                <constraint firstItem="11A-MY-I8b" firstAttribute="trailing" secondItem="kIq-9R-oLA" secondAttribute="trailing" id="puE-JQ-wz9"/>
+                <constraint firstItem="1lb-yE-OsZ" firstAttribute="top" secondItem="11A-MY-I8b" secondAttribute="bottom" constant="-3" id="rgp-kE-RHE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aSj-fN-XCY" secondAttribute="trailing" constant="20" id="vvT-r2-6m2"/>
+                <constraint firstItem="Jqn-5c-QQf" firstAttribute="leading" secondItem="Hoq-We-mJD" secondAttribute="leading" id="yMB-6a-qfK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="213.04347826086959" y="89.397321428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="camp-kudzu-icon" width="326" height="101"/>
+        <image name="jdrf-icon" width="327" height="101"/>
+        <image name="strong4life-icon" width="327" height="109"/>
+        <namedColor name="backgroundColor">
+            <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="headingGreenColor">
+            <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizAnswerTableViewCell" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" rowHeight="60" id="KGk-i7-Jjw" customClass="QuizAnswerTableViewCell" customModule="choa_diabetes_education" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOW-Qw-XjO">
+                        <rect key="frame" x="0.0" y="11" width="320" height="48"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A. Body poduces too much glucose abnswer asnwer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db8-hK-ldM">
+                                <rect key="frame" x="16" y="0.0" width="300" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="BKZ-ll-DL9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="db8-hK-ldM" firstAttribute="leading" secondItem="LOW-Qw-XjO" secondAttribute="leading" constant="16" id="Fkf-rH-kHl"/>
+                            <constraint firstAttribute="trailing" secondItem="db8-hK-ldM" secondAttribute="trailing" constant="4" id="bl7-eB-gGt"/>
+                            <constraint firstItem="db8-hK-ldM" firstAttribute="centerY" secondItem="LOW-Qw-XjO" secondAttribute="centerY" id="dTn-Bc-TEv"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LOW-Qw-XjO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="JhJ-uw-NcH"/>
+                    <constraint firstItem="LOW-Qw-XjO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PHe-rG-zln"/>
+                    <constraint firstAttribute="trailing" secondItem="LOW-Qw-XjO" secondAttribute="trailing" id="mMN-Gg-hmF"/>
+                    <constraint firstAttribute="bottom" secondItem="LOW-Qw-XjO" secondAttribute="bottom" constant="11" id="oSW-IF-JW1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="answerBackground" destination="LOW-Qw-XjO" id="wGu-HP-yKi"/>
+                <outlet property="answerLabel" destination="db8-hK-ldM" id="JSR-sP-WP9"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="101.45089285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
