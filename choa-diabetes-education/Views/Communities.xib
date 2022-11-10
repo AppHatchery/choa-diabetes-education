@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
+        <array key="GothamRoundedBold.ttf">
             <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
@@ -32,13 +32,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7o-vK-WDN">
-                    <rect key="frame" x="20" y="243" width="486" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="20" y="243" width="486" height="38.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0G-kl-1eh">
-                    <rect key="frame" x="8" y="281" width="123" height="30.5"/>
+                    <rect key="frame" x="8" y="278.5" width="123.5" height="33.5"/>
                     <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
@@ -46,7 +46,8 @@
                             <fragment content="View in browser">
                                 <attributes>
                                     <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                    <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -56,19 +57,19 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jdrf-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-We-mJD">
-                    <rect key="frame" x="20" y="331.5" width="486" height="165"/>
+                    <rect key="frame" x="20" y="332" width="486" height="165"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="165" id="bFs-go-X5t"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqn-5c-QQf">
-                    <rect key="frame" x="20" y="501.5" width="486" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="20" y="502" width="486" height="38.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fp-pYW">
-                    <rect key="frame" x="8" y="539.5" width="123" height="30.5"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fp-pYW">
+                    <rect key="frame" x="8" y="537.5" width="123.5" height="33.5"/>
                     <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
@@ -76,7 +77,7 @@
                             <fragment content="View in browser">
                                 <attributes>
                                     <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                    <font key="NSFont" size="14" name="Avenir-Roman"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -86,19 +87,19 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camp-kudzu-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kIq-9R-oLA">
-                    <rect key="frame" x="20" y="590" width="486" height="165"/>
+                    <rect key="frame" x="20" y="591" width="486" height="165"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="165" id="wFR-B8-F9R"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit organization serving children and teens living with type 1 diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11A-MY-I8b">
-                    <rect key="frame" x="20" y="760" width="486" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="20" y="761" width="486" height="38.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-yE-OsZ">
-                    <rect key="frame" x="8" y="798" width="123" height="30.5"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-yE-OsZ">
+                    <rect key="frame" x="8" y="796.5" width="123.5" height="33.5"/>
                     <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
@@ -106,7 +107,7 @@
                             <fragment content="View in browser">
                                 <attributes>
                                     <color key="NSColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="Helvetica"/>
+                                    <font key="NSFont" size="14" name="Avenir-Roman"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -135,15 +136,19 @@
                 <constraint firstItem="Ap7-Lt-bnO" firstAttribute="top" secondItem="aSj-fN-XCY" secondAttribute="bottom" constant="5" id="PlX-LE-3wg"/>
                 <constraint firstItem="Ap7-Lt-bnO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QPn-NX-82P"/>
                 <constraint firstItem="aSj-fN-XCY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RoQ-w6-tUn"/>
+                <constraint firstItem="1lb-yE-OsZ" firstAttribute="leading" secondItem="e0G-kl-1eh" secondAttribute="leading" id="UPW-NN-pyd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ap7-Lt-bnO" secondAttribute="trailing" constant="20" id="Ubh-8y-qfp"/>
                 <constraint firstItem="Jqn-5c-QQf" firstAttribute="top" secondItem="Hoq-We-mJD" secondAttribute="bottom" constant="5" id="Xwt-yL-qsT"/>
                 <constraint firstItem="aSj-fN-XCY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gMV-CW-NOe"/>
+                <constraint firstItem="1lb-yE-OsZ" firstAttribute="trailing" secondItem="e0G-kl-1eh" secondAttribute="trailing" id="ju2-vK-0ml"/>
                 <constraint firstItem="Jqn-5c-QQf" firstAttribute="trailing" secondItem="Hoq-We-mJD" secondAttribute="trailing" id="kD3-tV-gve"/>
+                <constraint firstItem="eh0-fp-pYW" firstAttribute="trailing" secondItem="e0G-kl-1eh" secondAttribute="trailing" id="l3a-az-oUX"/>
                 <constraint firstItem="e0G-kl-1eh" firstAttribute="top" secondItem="W7o-vK-WDN" secondAttribute="bottom" constant="-3" id="nF3-5D-Gmi"/>
                 <constraint firstItem="11A-MY-I8b" firstAttribute="leading" secondItem="kIq-9R-oLA" secondAttribute="leading" id="oaL-kz-qKI"/>
                 <constraint firstItem="11A-MY-I8b" firstAttribute="trailing" secondItem="kIq-9R-oLA" secondAttribute="trailing" id="puE-JQ-wz9"/>
                 <constraint firstItem="1lb-yE-OsZ" firstAttribute="top" secondItem="11A-MY-I8b" secondAttribute="bottom" constant="-3" id="rgp-kE-RHE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aSj-fN-XCY" secondAttribute="trailing" constant="20" id="vvT-r2-6m2"/>
+                <constraint firstItem="eh0-fp-pYW" firstAttribute="leading" secondItem="e0G-kl-1eh" secondAttribute="leading" id="y13-qD-rWa"/>
                 <constraint firstItem="Jqn-5c-QQf" firstAttribute="leading" secondItem="Hoq-We-mJD" secondAttribute="leading" id="yMB-6a-qfK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

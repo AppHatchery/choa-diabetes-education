@@ -31,5 +31,13 @@ extension UIView {
         layer.shadowRadius = 15.0
         layer.shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0).cgColor
     }
+    
+    func detailedDropShadow(color: CGColor, blur: CGFloat,offset: Int,opacity: Float){
+        layer.shadowOffset = CGSize(width: 0, height: offset)
+        layer.shadowOpacity = opacity
+        layer.shadowRadius = blur // Defines the blur of the shadow
+        layer.shadowColor = color
+        layer.masksToBounds = false
+    }
 }
 

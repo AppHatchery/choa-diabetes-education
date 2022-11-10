@@ -21,6 +21,8 @@ class ChapterEndViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nextChapterButton.detailedDropShadow(color: UIColor(red: 232/255, green: 248/255, blue: 239/255, alpha: 1).cgColor, blur: 16, offset: 8,opacity: 1)
+        
         switch contentIndex {
         case 0:
             if let chapterEndTitleIndex = ContentChapter().sectionOne.firstIndex(where: {$0.contentTitle == chapterEndTitle}){

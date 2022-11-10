@@ -42,17 +42,15 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
     
         var y = 32
         
-        let recommendedAppsView = AppsView(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 295))
+        let recommendedAppsView = AppsView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 295))
         scrollView.addSubview(recommendedAppsView)
         y += 295
         
         y += 30
         
-        let foodDiaryView = FoodDiary(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 450), delegate: self)
+        let foodDiaryView = FoodDiary(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 420), delegate: self)
         scrollView.addSubview(foodDiaryView)
-        y += 450
-        
-        y += 30
+        y += 420
         
         let communitiesView = Communities(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 870))
         scrollView.addSubview(communitiesView)
