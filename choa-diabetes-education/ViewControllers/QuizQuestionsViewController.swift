@@ -124,20 +124,26 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         let orderedArray = userAnswerArray.sorted()
         
         if answerButton.titleLabel?.text == "Submit" {
-            var answerString = ""
-            orderedArray.forEach { answerString += "\($0), "}
-            answerString.removeLast(2)
-            
-            if orderedArray == correctAnswer {
-                answerFeedback.isHidden = false
+            // Check to ensure user has selected an answer in the quiz and avoid a crash
+            if userAnswerArray.count > 0 {
+                var answerString = ""
+                orderedArray.forEach { answerString += "\($0), "}
+                answerString.removeLast(2)
                 
-                answerTitle.text = "Answer \(answerString)"
-                answerIcon.image = UIImage(named: "correctIcon")
-                answerButton.setTitle("Done", for: .normal)
-            } else {
-                answerFeedback.isHidden = true
-                answerIcon.image = UIImage(named: "incorrectIcon")
-                answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                if orderedArray == correctAnswer {
+                    answerFeedback.isHidden = false
+                    
+                    answerTitle.text = "Answer \(answerString)"
+                    answerIcon.image = UIImage(named: "correctIcon")
+                    answerButton.setTitle("Done", for: .normal)
+                } else {
+                    answerFeedback.isHidden = true
+                    answerIcon.image = UIImage(named: "incorrectIcon")
+                    answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                }
+                
+                answerTitle.isHidden = false
+                answerIcon.isHidden = false
             }
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -149,9 +155,6 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
 
             navigationController?.pushViewController(vc, animated: true)
         }
-        
-        answerTitle.isHidden = false
-        answerIcon.isHidden = false
     }
     
     @IBAction func nextQuestion(_ sender: UIButton){
