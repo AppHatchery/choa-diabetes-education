@@ -16,6 +16,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var answerIcon: UIImageView!
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var multipleAnswerLabel: UILabel!
+    @IBOutlet weak var quizWindowHeight: NSLayoutConstraint!
     
     var answerArray = [String]()
     var questionName = ""
@@ -64,6 +65,15 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if correctAnswer.count > 1 {
             multipleAnswerLabel.isHidden = false
+            tableView.allowsMultipleSelection = true
+        } else {
+            tableView.allowsMultipleSelection = false
+        }
+        
+        // If there are more than 4 answers you have to increase the view size
+        if answerArray.count > 4 {
+            quizWindowHeight.constant += 60
+            tableView.isScrollEnabled = true
         }
         
 //        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
@@ -127,7 +137,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             // Check to ensure user has selected an answer in the quiz and avoid a crash
             if userAnswerArray.count > 0 {
                 var answerString = ""
-                orderedArray.forEach { answerString += "\($0), "}
+                orderedArray.forEach { answerString += "\($0+1), "}
                 answerString.removeLast(2)
                 
                 if orderedArray == correctAnswer {
