@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,14 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="443"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-He-b35">
-                    <rect key="frame" x="20" y="44" width="414" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What can I eat?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-He-b35">
+                    <rect key="frame" x="20" y="48" width="414" height="24"/>
                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                     <color key="textColor" name="headingGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pT-Er-BiU">
-                    <rect key="frame" x="20" y="73" width="374" height="80"/>
+                    <rect key="frame" x="20" y="77" width="374" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="vqu-Dx-92S"/>
                     </constraints>
@@ -57,7 +58,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-vB-1KJ">
-                    <rect key="frame" x="20" y="163" width="374" height="80"/>
+                    <rect key="frame" x="20" y="167" width="374" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="hEz-lL-m3t"/>
                     </constraints>
@@ -89,7 +90,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URw-uU-7S1">
-                    <rect key="frame" x="20" y="253" width="374" height="80"/>
+                    <rect key="frame" x="20" y="257" width="374" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="eHv-Jj-4fh"/>
                     </constraints>
@@ -121,7 +122,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25C-P9-VnO">
-                    <rect key="frame" x="20" y="343" width="374" height="80"/>
+                    <rect key="frame" x="20" y="347" width="374" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="6LQ-sH-hDn"/>
                     </constraints>

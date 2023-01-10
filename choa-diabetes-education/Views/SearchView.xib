@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,15 +29,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
                     <subviews>
                         <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-FN-2Xj">
-                            <rect key="frame" x="20" y="30" width="292" height="51"/>
+                            <rect key="frame" x="20" y="30" width="292" height="56"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             <scopeButtonTitles>
                                 <string>Title</string>
                                 <string>Title</string>
                             </scopeButtonTitles>
                         </searchBar>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CST-LH-ws6">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="33"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="ffc-Ib-bEH" appends="YES" id="GP8-Zx-fuO"/>
+                            </connections>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-KH-2sA">
-                            <rect key="frame" x="324" y="37.5" width="80" height="36"/>
+                            <rect key="frame" x="324" y="40" width="80" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="J7Q-L1-iln"/>
                             </constraints>
@@ -50,14 +59,14 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GW7-Fz-pO5">
-                            <rect key="frame" x="30" y="81" width="354" height="89"/>
+                            <rect key="frame" x="30" y="86" width="354" height="84"/>
                             <color key="backgroundColor" name="backgroundColor"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="Jfd-6G-vip"/>
                                 <outlet property="delegate" destination="-1" id="NgE-V3-RiH"/>
                             </connections>
                         </tableView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-gZ-IfY">
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub9-gZ-IfY">
                             <rect key="frame" x="194" y="8" width="26" height="1"/>
                             <color key="backgroundColor" name="contentBlackColor"/>
                             <constraints>
@@ -65,22 +74,23 @@
                                 <constraint firstAttribute="width" constant="26" id="meV-mc-Uvu"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnn-Bh-DDq">
-                            <rect key="frame" x="194" y="12" width="26" height="1"/>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnn-Bh-DDq">
+                            <rect key="frame" x="194" y="15" width="26" height="1"/>
                             <color key="backgroundColor" name="contentBlackColor"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="OHa-pv-ydk"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKN-xR-wpw">
-                            <rect key="frame" x="194" y="16" width="26" height="1"/>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKN-xR-wpw">
+                            <rect key="frame" x="194" y="22" width="26" height="1"/>
                             <color key="backgroundColor" name="contentBlackColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="uOC-ID-7kS"/>
                             </constraints>
                         </view>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4m-LP-Gvf">
-                            <rect key="frame" x="20" y="91" width="374" height="38.5"/>
+                            <rect key="frame" x="20" y="96" width="374" height="38.5"/>
                             <attributedString key="attributedText">
                                 <fragment>
                                     <string key="content">Sorry! No results found :(
@@ -108,15 +118,19 @@
                         <constraint firstItem="GW7-Fz-pO5" firstAttribute="leading" secondItem="wiw-Co-LY1" secondAttribute="leading" constant="30" id="01T-vD-BbE"/>
                         <constraint firstAttribute="bottom" secondItem="GW7-Fz-pO5" secondAttribute="bottom" constant="60" id="1ea-27-9x4"/>
                         <constraint firstItem="cnn-Bh-DDq" firstAttribute="width" secondItem="ub9-gZ-IfY" secondAttribute="width" id="6qw-qs-ntV"/>
+                        <constraint firstItem="CST-LH-ws6" firstAttribute="leading" secondItem="wiw-Co-LY1" secondAttribute="leading" id="Ab3-C4-xFg"/>
                         <constraint firstItem="ub9-gZ-IfY" firstAttribute="top" secondItem="wiw-Co-LY1" secondAttribute="top" constant="8" id="FzA-KI-aZe"/>
                         <constraint firstAttribute="trailing" secondItem="i4m-LP-Gvf" secondAttribute="trailing" constant="20" id="HHU-3W-BIv"/>
                         <constraint firstItem="i4m-LP-Gvf" firstAttribute="top" secondItem="CzS-FN-2Xj" secondAttribute="bottom" constant="10" id="HJ3-mB-HkF"/>
                         <constraint firstItem="cnn-Bh-DDq" firstAttribute="centerX" secondItem="ub9-gZ-IfY" secondAttribute="centerX" id="Tfq-dX-QWh"/>
                         <constraint firstItem="ub9-gZ-IfY" firstAttribute="centerX" secondItem="wiw-Co-LY1" secondAttribute="centerX" id="Ugk-6p-gmT"/>
                         <constraint firstAttribute="trailing" secondItem="GW7-Fz-pO5" secondAttribute="trailing" constant="30" id="WpI-uz-CmW"/>
+                        <constraint firstItem="CST-LH-ws6" firstAttribute="top" secondItem="wiw-Co-LY1" secondAttribute="top" id="Xeo-Xp-PS7"/>
                         <constraint firstItem="CzS-FN-2Xj" firstAttribute="top" secondItem="wiw-Co-LY1" secondAttribute="top" constant="30" id="cbT-8J-0Nv"/>
-                        <constraint firstItem="eKN-xR-wpw" firstAttribute="top" secondItem="cnn-Bh-DDq" secondAttribute="bottom" constant="3" id="dSw-QB-tLY"/>
+                        <constraint firstItem="eKN-xR-wpw" firstAttribute="top" secondItem="cnn-Bh-DDq" secondAttribute="bottom" constant="6" id="dSw-QB-tLY"/>
                         <constraint firstItem="eKN-xR-wpw" firstAttribute="width" secondItem="ub9-gZ-IfY" secondAttribute="width" id="eBD-pg-OVs"/>
+                        <constraint firstAttribute="trailing" secondItem="CST-LH-ws6" secondAttribute="trailing" id="iVf-5P-zLC"/>
+                        <constraint firstItem="eKN-xR-wpw" firstAttribute="bottom" secondItem="CST-LH-ws6" secondAttribute="bottom" constant="-10" id="jVw-dg-bCW"/>
                         <constraint firstItem="GW7-Fz-pO5" firstAttribute="top" secondItem="CzS-FN-2Xj" secondAttribute="bottom" id="ktK-EY-sbL"/>
                         <constraint firstItem="Obc-KH-2sA" firstAttribute="centerY" secondItem="CzS-FN-2Xj" secondAttribute="centerY" id="lDA-bO-fDC"/>
                         <constraint firstItem="i4m-LP-Gvf" firstAttribute="leading" secondItem="wiw-Co-LY1" secondAttribute="leading" constant="20" id="luy-N1-pbE"/>
@@ -124,14 +138,11 @@
                         <constraint firstItem="CzS-FN-2Xj" firstAttribute="leading" secondItem="wiw-Co-LY1" secondAttribute="leading" constant="20" id="pJF-VP-Iif"/>
                         <constraint firstItem="eKN-xR-wpw" firstAttribute="centerX" secondItem="cnn-Bh-DDq" secondAttribute="centerX" id="t7s-HT-ZUO"/>
                         <constraint firstAttribute="trailing" secondItem="Obc-KH-2sA" secondAttribute="trailing" constant="10" id="uZd-Nw-PZr"/>
-                        <constraint firstItem="cnn-Bh-DDq" firstAttribute="top" secondItem="ub9-gZ-IfY" secondAttribute="bottom" constant="3" id="xSM-Dj-WLb"/>
+                        <constraint firstItem="cnn-Bh-DDq" firstAttribute="top" secondItem="ub9-gZ-IfY" secondAttribute="bottom" constant="6" id="xSM-Dj-WLb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="fL9-rJ-MxL" appends="YES" id="PcT-Je-eEQ"/>
-                    </connections>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -145,11 +156,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="258.48214285714283"/>
         </view>
-        <swipeGestureRecognizer cancelsTouchesInView="NO" direction="down" id="fL9-rJ-MxL">
+        <panGestureRecognizer minimumNumberOfTouches="1" id="ffc-Ib-bEH">
+            <scrollTypes key="allowedScrollTypesMask" continuous="YES"/>
             <connections>
-                <action selector="dragDown:" destination="-1" id="BdK-14-Y7t"/>
+                <action selector="moveSearchView:" destination="-1" id="GhR-FY-Z9U"/>
             </connections>
-        </swipeGestureRecognizer>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <namedColor name="backgroundColor">

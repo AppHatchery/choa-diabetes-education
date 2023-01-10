@@ -231,13 +231,15 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     func closeSearch(){
         if searchView != nil {
-            UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
-                self.searchView.contentView.transform = CGAffineTransform(translationX: 0, y: self.searchView.bounds.height)
-                
-            }, completion: { (value: Bool) in
-                self.searchView.removeFromSuperview()
-                self.searchView = nil
-            })
+//            UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
+////                self.searchView.contentView.transform = CGAffineTransform(translationX: 0, y: self.searchView.bounds.height)
+//                
+//            }, completion: { (value: Bool) in
+////                self.searchView.removeFromSuperview()
+////                self.searchView = nil
+//            })
+            self.searchView.removeFromSuperview()
+            self.searchView = nil
         }
     }
     
@@ -247,9 +249,11 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     func moveSearchView(expansion: CGFloat) {
         print(expansion)
-        // Make sure the size of the search field is less than the heigh of the webview
+        // Make sure the size of the search field is less than the height of the webview
         var newPosition: CGFloat!
-        if expansion < (self.view.frame.height - webView.frame.origin.y) && expansion > 0 {
+        if expansion < (self.view.frame.height - contentView.frame.origin.y - 100) && expansion > 0 {
+            print(self.view.frame.height)
+            print(contentView.frame.origin.y)
             // Need to adjust the code here so it displays all results in first click, otherwise have to wait for second search query
             searchView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y, width: searchView.frame.width, height: searchView.frame.height + (expansion-searchView.tableView.frame.height))
             newPosition = self.view.frame.height - searchView.frame.height
@@ -257,8 +261,19 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             searchView.frame = CGRect(x: 0, y: searchView.frame.origin.y, width: searchView.frame.width, height: 180)
             newPosition = self.view.frame.height - searchView.frame.height
         } else {
-            searchView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y, width: searchView.frame.width, height: webView.frame.origin.y)
-            newPosition = webView.frame.origin.y
+            searchView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y, width: searchView.frame.width, height: searchView.frame.height)
+            // Place the searchView a little bit lower
+            newPosition = self.view.frame.height - 300
+            
+            // Animate up and down to show that the search queries have reached a limit
+            UIView.animate( withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions(), animations: {
+                self.searchView.frame.origin.y = self.searchView.frame.origin.y-50
+            }, completion: { _ in
+                // Animate Down to return to normal state
+                UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
+                    self.searchView.frame.origin.y = self.searchView.frame.origin.y+50
+                }, completion: { _ in })
+            })
         }
         UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
             self.searchView.frame.origin.y = newPosition
@@ -278,7 +293,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
                 
             return
         }
-        searchView.frame.origin.y = (self.view.frame.height - keyboardSize.height) - searchView.frame.height+40
+        
+        // Display search field for typing - YAGO REVISE FOR BUGS AND BETTER CODING
+        if searchView.frame.height > 180 {
+            searchView.frame.origin.y = (self.view.frame.height - keyboardSize.height) - 220
+        } else {
+            searchView.frame.origin.y = (self.view.frame.height - keyboardSize.height) - searchView.frame.height+40
+        }
     }
     
     //--------------------------------------------------------------------------------------------------
@@ -295,7 +316,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             //
         })
     }
-    
+        
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        //
+        print("dismiised")
+        //
+    }
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chapterEndViewController = segue.destination as? ChapterEndViewController
         {
@@ -303,10 +330,10 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             chapterEndViewController.chapterEndTitle = titleURL
         }
     }
-
     
     @objc func keyboardWillHide(notification: NSNotification) {
       // move back the root view origin to zero
+        print("hid")
         self.view.frame.origin.y = 0
     }
 

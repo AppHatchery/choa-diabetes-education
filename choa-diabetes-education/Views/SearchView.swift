@@ -11,6 +11,7 @@ protocol SearchViewDelegate {
     func closeSearch()
     func closeKeyboard()
     func moveSearchView(expansion: CGFloat)
+    func moveSearchToBottom()
 }
 
 class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -67,7 +68,6 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         tableView.register(UINib(nibName: "SearchResultTableViewCell", bundle: nil), forCellReuseIdentifier: "searchCell")
         tableView.estimatedRowHeight = 100
         tableView.estimatedRowHeight = UITableView.automaticDimension
-    
         
         let path = Bundle.main.path(forResource: searchPage, ofType: "html")!
         // This converts a multiline string into a single file, the .whitespacesandnewlines doesn't work to do that job
@@ -80,6 +80,21 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
     // Search field and GestureRecognizer not currently working properly, field does not display text and Gesture doesn't trigger anything
     @IBAction func dragDown(_ sender: UIGestureRecognizer){
         delegate.closeSearch()
+    }
+    
+    @IBAction func moveSearchView(_ sender: UIPanGestureRecognizer){
+        if let screenheight = self.superview?.frame.height {
+            
+            let fingerPosition = sender.location(in: self.superview).y
+            
+            if fingerPosition > screenheight - 100 {
+                delegate.closeSearch()
+            } else if fingerPosition < 250 {
+                delegate.moveSearchView(expansion: screenheight - 300)
+            } else {
+                delegate.moveSearchView(expansion: screenheight - fingerPosition - 50)
+            }
+        }        
     }
     
     // Connect to the search button
@@ -122,6 +137,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
             print(searchResults)
         } else {
             isFiltering = false
+            tableView.reloadData()
         }
             
             /*
@@ -173,6 +189,10 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
              */
     }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        delegate.moveSearchToBottom()
+    }
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             print(searchResults.count)
@@ -201,6 +221,4 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         cell.backgroundColor = UIColor.backgroundColor
         return cell
     }
-    
-
 }

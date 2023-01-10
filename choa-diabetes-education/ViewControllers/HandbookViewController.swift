@@ -61,10 +61,13 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
             // In progress, when toggling there is a bug where some segments disappear, something to do with the indexpath
             if chapterName == ContentChapter().sectionTitles[0]{
                 cell.cardTitle.text = ContentChapter().sectionOne[indexPath.row].contentTitle
+                cell.cardSubtitle.text = ContentChapter().sectionOne[indexPath.row].contentSubheader
             } else if chapterName == ContentChapter().sectionTitles[1]{
                 cell.cardTitle.text = ContentChapter().sectionTwo[indexPath.row].contentTitle
+                cell.cardSubtitle.text = ContentChapter().sectionTwo[indexPath.row].contentSubheader
             } else if chapterName == ContentChapter().sectionTitles[2]{
                 cell.cardTitle.text = ContentChapter().sectionThree[indexPath.row].contentTitle
+                cell.cardSubtitle.text = ContentChapter().sectionThree[indexPath.row].contentSubheader
             }
             
             if indexPath.row == 0 {

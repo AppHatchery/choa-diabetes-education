@@ -49,7 +49,7 @@ class QuotesViewController: UIViewController,QuotesFooterDelegate {
         orientationHeaderView.titleLabel.text = "You are not alone!"
         orientationHeaderView.subtitleLabel.text = "Voices from other diabetes paitients"
         
-        // The height should be dynamic so the square adapts to the text size
+        // YAGO TO DO: The height should be dynamic so the square adapts to the text size
         let quotesViewOne = QuotesView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 164), quoteContent: "“The hospital did great trying to prepare us for diabetes management. My child has not been overwhelmed with all the new things that have been introduced.”", quoteName: "- Child age 15")
         scrollView.addSubview(quotesViewOne)
         y += 184
@@ -59,7 +59,7 @@ class QuotesViewController: UIViewController,QuotesFooterDelegate {
         let quotesViewThree = QuotesView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 164), quoteContent: "“I feel everything has been covered. I am very grateful to all the insight and the support. It feels great to know we have childrens’ healthcare of Atlanta and their staffs to help up along the way. ”", quoteName: "- Child age 4")
         scrollView.addSubview(quotesViewThree)
         y += 184
-        let quotesViewFour = QuotesView(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 164), quoteContent: "“While it is all overwhelming and a lot of information it is all very helpful. We feel like we have been given the tools to successfully manage diabetes for your child.”", quoteName: "- Child age 10")
+        let quotesViewFour = QuotesView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 164), quoteContent: "“While it is all overwhelming and a lot of information it is all very helpful. We feel like we have been given the tools to successfully manage diabetes for your child.”", quoteName: "- Child age 10")
         scrollView.addSubview(quotesViewFour)
         y += 184
         

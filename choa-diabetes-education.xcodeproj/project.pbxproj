@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
+		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
+		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
+		D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */; };
 		D450EC0D28C1158A0015D823 /* blood_sugar_monitoring.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */; };
 		D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */; };
 		D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0028C115880015D823 /* how_to_count_carbs.html */; };
@@ -122,6 +126,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
+		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
+		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
+		D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorHomeViewController.swift; sourceTree = "<group>"; };
 		D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blood_sugar_monitoring.html; sourceTree = "<group>"; };
 		D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = when_to_call_diabetes_doctor.html; sourceTree = "<group>"; };
 		D450EC0028C115880015D823 /* how_to_count_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_count_carbs.html; sourceTree = "<group>"; };
@@ -375,7 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				D48167A428ABE6E5003B14A3 /* AgendaViewController.swift */,
-				D48D8925289C215C001A61E2 /* CalculatorViewController.swift */,
 				D48167C728AD0396003B14A3 /* ChapterViewController.swift */,
 				D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */,
 				D48D8923289C214F001A61E2 /* HandbookViewController.swift */,
@@ -387,6 +394,11 @@
 				D4C39B3428B7E1F3003CCA14 /* QuizQuestionsViewController.swift */,
 				D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */,
 				D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */,
+				D48D8925289C215C001A61E2 /* CalculatorViewController.swift */,
+				D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */,
+				D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */,
+				D42A53792964DC990031D395 /* CalculatorBViewController.swift */,
+				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -639,14 +651,18 @@
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
 				D48167BE28ABFE24003B14A3 /* ChapterListTableViewCell.swift in Sources */,
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
+				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
+				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
+				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
 				D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */,
 				D48D88FB289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld in Sources */,
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
+				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
@@ -807,7 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -815,8 +831,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -827,6 +843,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -840,7 +859,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -848,8 +867,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -860,6 +879,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -74,6 +74,8 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         if answerArray.count > 4 {
             quizWindowHeight.constant += 60
             tableView.isScrollEnabled = true
+        } else if answerArray.count < 4 {
+            quizWindowHeight.constant -= 60
         }
         
 //        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
@@ -108,6 +110,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             userAnswerArray.append(indexPath.row)
         }
         
+        answerButton.setTitle("Submit", for: .normal)
         print(userAnswerArray)
     }
     
@@ -121,7 +124,9 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         // This should only fire one time
         if let answerValue = userAnswerArray.firstIndex(of: indexPath.row){
             userAnswerArray.remove(at: answerValue)
-        }        
+        }
+        
+        answerButton.setTitle("Submit", for: .normal)
     }
     
     private func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -141,13 +146,13 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                 answerString.removeLast(2)
                 
                 if orderedArray == correctAnswer {
-                    answerFeedback.isHidden = false
+//                    answerFeedback.isHidden = false
                     
                     answerTitle.text = "Answer \(answerString)"
                     answerIcon.image = UIImage(named: "correctIcon")
                     answerButton.setTitle("Done", for: .normal)
                 } else {
-                    answerFeedback.isHidden = true
+//                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
                     answerTitle.text = "Answer \(answerString) is not right. Please choose again"
                 }
