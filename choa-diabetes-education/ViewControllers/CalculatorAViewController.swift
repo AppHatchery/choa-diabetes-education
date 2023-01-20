@@ -10,10 +10,15 @@ import UIKit
 class CalculatorAViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var totalCarbsField: UITextField!
+    @IBOutlet weak var carbLine: UIView!
+    @IBOutlet weak var carbLabel: UILabel!
     @IBOutlet weak var carbRatioField: UITextField!
+    @IBOutlet weak var carbRatioLine: UIView!
+    @IBOutlet weak var carbRatioLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var errorMessage: UILabel!
     
     var totalCarbs: Float = 0
     var carbRatio: Float = 0
@@ -58,21 +63,31 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         case 0:
             totalCarbs = Float(textField.text ?? "0") ?? 0
             print(totalCarbs)
+            toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
+            carbLine.tintColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
         case 1:
             carbRatio = Float(textField.text ?? "0") ?? 0
             print(carbRatio)
+            toggleError(state: false, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "")
         default:
             print("none of these")
         }
         
-        toggleNextButton()
+        errorMessage.isHidden = true
+//        toggleNextButton()
     }
     
-    func toggleNextButton(){
-        if (totalCarbs > 0 && carbRatio > 0) {
-            nextButton.isEnabled = true
+    func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
+        if state {
+            errorLine.backgroundColor = UIColor.red
+            errorMessage.text = errorMessageText
+            fieldLabel.textColor = UIColor.red
+            errorMessage.isHidden = false
         } else {
-            nextButton.isEnabled = false
+            errorLine.backgroundColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            errorMessage.text = errorMessageText
+            fieldLabel.textColor = UIColor.contentBlackColor
+            errorMessage.isHidden = true
         }
     }
     
@@ -104,10 +119,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
-        if insulinForHighBloodSugarBoolean {
-            performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
+        if (totalCarbs > 0 && carbRatio > 0){
+            if insulinForHighBloodSugarBoolean {
+                performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
+            } else {
+                performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+            }
+        } else if (totalCarbs > 0){
+            // CarbRatio is not there
+            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Please enter a Carb Ratio")
         } else {
-            performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+            // Carbs are not there
+            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Please enter the number of carbs")
         }
     }
     
