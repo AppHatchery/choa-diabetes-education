@@ -11,6 +11,8 @@
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
 		D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */; };
+		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
+		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
 		D450EC0D28C1158A0015D823 /* blood_sugar_monitoring.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */; };
 		D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */; };
 		D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0028C115880015D823 /* how_to_count_carbs.html */; };
@@ -130,6 +132,8 @@
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
 		D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorHomeViewController.swift; sourceTree = "<group>"; };
+		D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMultipleAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizMultipleAnswer.xib; sourceTree = "<group>"; };
 		D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blood_sugar_monitoring.html; sourceTree = "<group>"; };
 		D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = when_to_call_diabetes_doctor.html; sourceTree = "<group>"; };
 		D450EC0028C115880015D823 /* how_to_count_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_count_carbs.html; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 				D492A89128F8E2A900B98CA3 /* SearchView.xib */,
 				D492A8952901D67900B98CA3 /* SearchResultTableViewCell.swift */,
 				D492A8962901D67900B98CA3 /* SearchResultTableViewCell.xib */,
+				D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */,
+				D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				D48167B528ABF606003B14A3 /* QuotesFooter.xib in Resources */,
 				D492A89C29088CA700B98CA3 /* Acme in Resources */,
 				D450EC0D28C1158A0015D823 /* blood_sugar_monitoring.html in Resources */,
+				D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */,
 				D48167AD28ABEF71003B14A3 /* MedicalTeam.xib in Resources */,
 				D4684AB3290B0B6600E7311B /* know_your_carbs.png in Resources */,
 				D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */,
@@ -640,6 +647,7 @@
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				D4D48E8B28D10FA200820FD4 /* FoodDiary.swift in Sources */,
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
+				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D88F5289C0043001A61E2 /* ViewController.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
 				D4C39B3328B7E1D0003CCA14 /* QuizIntroViewController.swift in Sources */,

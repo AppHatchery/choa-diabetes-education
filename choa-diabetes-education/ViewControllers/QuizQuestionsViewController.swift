@@ -34,7 +34,8 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "QuizAnswerTableViewCell", bundle: nil), forCellReuseIdentifier: "answerCell")
-        tableView.estimatedRowHeight = 120
+        tableView.register(UINib(nibName: "QuizMultipleAnswer", bundle: nil), forCellReuseIdentifier: "multipleChoiceCell")
+        tableView.estimatedRowHeight = 140
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.selectionFollowsFocus = false
         
@@ -72,10 +73,10 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         
         // If there are more than 4 answers you have to increase the view size
         if answerArray.count > 4 {
-            quizWindowHeight.constant += 60
+            quizWindowHeight.constant += 30
             tableView.isScrollEnabled = true
         } else if answerArray.count < 4 {
-            quizWindowHeight.constant -= 60
+            quizWindowHeight.constant -= 80
         }
         
 //        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
@@ -91,19 +92,40 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
-                    
-        cell.layer.cornerRadius = 10
-        cell.answerLabel.text = answerArray[indexPath.row]
         
-        return cell
+        if correctAnswer.count > 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "multipleChoiceCell", for: indexPath) as! QuizMultipleAnswerTableViewCell
+            
+            cell.layer.cornerRadius = 10
+            cell.answerLabel.text = answerArray[indexPath.row]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
+            
+            cell.layer.cornerRadius = 10
+            cell.answerLabel.text = answerArray[indexPath.row]
+            
+            return cell
+        }
+//        var cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
+                            
+//        cell.layer.cornerRadius = 10
+//        cell.answerLabel.text = answerArray[indexPath.row]
+        
+//        return cell
     }
     
     // This will likely change to be button actionable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
-        
-        cell.setSelected(true, animated: true)
+        if correctAnswer.count > 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! QuizMultipleAnswerTableViewCell
+            
+            cell.setSelected(true, animated: true)
+        } else {
+            let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
+            
+            cell.setSelected(true, animated: true)
+        }
         
         // Do we need to check if clicked multiple times?
         if !userAnswerArray.contains(indexPath.row){
@@ -116,10 +138,17 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
-        
-        // This won't be useful because we want all rows selected
-        cell.setSelected(false, animated: true)
+        if correctAnswer.count > 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! QuizMultipleAnswerTableViewCell
+            
+            // This won't be useful because we want all rows selected
+            cell.setSelected(false, animated: true)
+        } else {
+            let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
+            
+            // This won't be useful because we want all rows selected
+            cell.setSelected(false, animated: true)
+        }
         
         // This should only fire one time
         if let answerValue = userAnswerArray.firstIndex(of: indexPath.row){
@@ -152,9 +181,23 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                     answerIcon.image = UIImage(named: "correctIcon")
                     answerButton.setTitle("Done", for: .normal)
                 } else {
-//                    answerFeedback.isHidden = true
+                    //                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
                     answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                    
+                    // Logic for answers that are wrong
+                    if correctAnswer.count > 1 {
+                    // Step 1: Check users answers
+                        let wrongAnswers = orderedArray.filter{!correctAnswer.contains($0)}
+                    // Step 2: Mark as wrong the users ansswers that are wrong
+                        for wrongAnswer in wrongAnswers {
+                            let cell = tableView.cellForRow(at: IndexPath(row: wrongAnswer, section: 0)) as! QuizMultipleAnswerTableViewCell
+                            cell.answerCheckbox.backgroundColor = UIColor.systemRed
+                            cell.answerCheckbox.layer.borderColor = UIColor.systemRed.cgColor
+                            cell.answerBackground.backgroundColor = UIColor.init(red: 255/255, green: 232/255, blue: 225/255, alpha: 1.0)
+                            cell.answerBackground.layer.borderColor = UIColor.systemRed.cgColor
+                        }
+                    }
                 }
                 
                 answerTitle.isHidden = false

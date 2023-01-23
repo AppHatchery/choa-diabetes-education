@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuizMultipleAnswerTableViewCell" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="multipleChoiceCell" rowHeight="70" id="53t-Ai-joC" customClass="QuizMultipleAnswerTableViewCell" customModule="choa_diabetes_education" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="53t-Ai-joC" id="k3H-p1-mBL">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z85-hf-vSJ">
+                        <rect key="frame" x="0.0" y="11" width="320" height="48"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A. Body produces too much glucose" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axj-Lc-pu1">
+                                <rect key="frame" x="52" y="14.333333333333334" width="264" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="multipleChoiceSelected" translatesAutoresizingMaskIntoConstraints="NO" id="B4t-aB-Z2s">
+                                <rect key="frame" x="16" y="14" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="eIB-bG-FA5"/>
+                                    <constraint firstAttribute="height" constant="20" id="fg7-82-Bu7"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="axj-Lc-pu1" secondAttribute="trailing" constant="4" id="BfK-fx-6t6"/>
+                            <constraint firstItem="B4t-aB-Z2s" firstAttribute="leading" secondItem="Z85-hf-vSJ" secondAttribute="leading" constant="16" id="Ey0-ms-3ej"/>
+                            <constraint firstItem="axj-Lc-pu1" firstAttribute="leading" secondItem="B4t-aB-Z2s" secondAttribute="trailing" constant="16" id="FeX-V4-XWD"/>
+                            <constraint firstItem="axj-Lc-pu1" firstAttribute="centerY" secondItem="Z85-hf-vSJ" secondAttribute="centerY" id="jiH-yL-41Z"/>
+                            <constraint firstItem="B4t-aB-Z2s" firstAttribute="centerY" secondItem="Z85-hf-vSJ" secondAttribute="centerY" id="wKp-Ud-IV7"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Z85-hf-vSJ" firstAttribute="leading" secondItem="k3H-p1-mBL" secondAttribute="leading" id="AXS-eH-4BE"/>
+                    <constraint firstAttribute="bottom" secondItem="Z85-hf-vSJ" secondAttribute="bottom" constant="11" id="kSi-qa-5Vx"/>
+                    <constraint firstItem="Z85-hf-vSJ" firstAttribute="top" secondItem="k3H-p1-mBL" secondAttribute="top" constant="11" id="nw6-Lx-kMW"/>
+                    <constraint firstAttribute="trailing" secondItem="Z85-hf-vSJ" secondAttribute="trailing" id="tGb-z5-Tma"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="FAX-JI-i7w"/>
+            <connections>
+                <outlet property="answerBackground" destination="Z85-hf-vSJ" id="v4U-lM-VBG"/>
+                <outlet property="answerCheckbox" destination="B4t-aB-Z2s" id="gbF-r0-BOL"/>
+                <outlet property="answerLabel" destination="axj-Lc-pu1" id="lZy-j9-dd6"/>
+            </connections>
+            <point key="canvasLocation" x="137.40458015267174" y="101.40845070422536"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="multipleChoiceSelected" width="12" height="12"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

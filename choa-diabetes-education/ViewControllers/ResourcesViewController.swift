@@ -40,7 +40,7 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
         contentView.addSubview(scrollView)
     
     
-        var y = 32
+        var y = 0
         
         let recommendedAppsView = AppsView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 295))
         scrollView.addSubview(recommendedAppsView)
@@ -74,27 +74,46 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
     
     func loadLowCarbsButton(){
         contentURL = "low_carb_snack_combinations"
-        contentTitle = "Food Diary"
+        contentTitle = "What can I eat?"
         loadResource()
     }
     func loadKnowYourCarbsButton(){
         contentURL = "know_your_carbs"
-        contentTitle = "Food Diary"
+        contentTitle = "What can I eat?"
         loadResource()
     }
     func loadFoodsRaiseBloodSugarButton(){
         contentURL = "foods_that_raise_blood_sugar"
-        contentTitle = "Food Diary"
+        contentTitle = "What can I eat?"
         loadResource()
     }
     func loadFoodsDontRaiseBloodSugarButton(){
         contentURL = "foods_that_don't_raise_blood_sugar"
-        contentTitle = "Food Diary"
+        contentTitle = "What can I eat?"
         loadResource()
     }
     func loadAppsList(){
         contentURL = "apps-list"
         contentTitle = "Food Diary"
         loadResource()
+    }
+    
+    @IBAction func openapps(_ sender: UIButton){
+        var appURL:URL!
+        switch sender.tag {
+        case 0:
+            //
+            appURL = URL(string: "https://apps.apple.com/us/app/mysugr-diabetes-tracker-log/id516509211")
+        case 1:
+            //
+            appURL = URL(string: "https://apps.apple.com/us/app/calorieking-food-search/id454930992")
+        case 2:
+            //
+            appURL = URL(string: "https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718")
+        default:
+        // Error
+            print("there was an error loading the url")
+        }
+        UIApplication.shared.open(appURL!)
     }
 }
