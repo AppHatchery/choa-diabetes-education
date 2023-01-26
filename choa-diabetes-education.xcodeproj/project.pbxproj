@@ -105,6 +105,8 @@
 		D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
 		D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
 		D4A511632982F55D0049A8D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4A511622982F55D0049A8D8 /* GoogleService-Info.plist */; };
+		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
+		D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
 		D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2928B7D9D7003CCA14 /* styles.css */; };
 		D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */; };
@@ -261,7 +263,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
 				D432FDD02981CFF8003D2657 /* Pendo in Frameworks */,
+				D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +364,7 @@
 			children = (
 				D48D88EF289C0043001A61E2 /* choa-diabetes-education */,
 				D48D88EE289C0043001A61E2 /* Products */,
+				D4A511692982F8C00049A8D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -509,6 +514,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D4A511692982F8C00049A8D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -527,6 +539,8 @@
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
 				D432FDCF2981CFF8003D2657 /* Pendo */,
+				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
+				D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */,
 			);
 			productName = "choa-diabetes-education";
 			productReference = D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */;
@@ -558,6 +572,7 @@
 			mainGroup = D48D88E4289C0043001A61E2;
 			packageReferences = (
 				D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
+				D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D48D88EE289C0043001A61E2 /* Products */;
 			projectDirPath = "";
@@ -948,6 +963,14 @@
 				kind = branch;
 			};
 		};
+		D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -955,6 +978,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
 			productName = Pendo;
+		};
+		D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 /* End XCSwiftPackageProductDependency section */
 
