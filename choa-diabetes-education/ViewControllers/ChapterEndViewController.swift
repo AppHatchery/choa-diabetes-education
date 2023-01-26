@@ -11,6 +11,8 @@ class ChapterEndViewController: UIViewController {
     
     @IBOutlet weak var nextChapterLabel: UILabel!
     @IBOutlet weak var nextChapterButton: UIButton!
+    @IBOutlet weak var quizLabel: UILabel!
+    @IBOutlet weak var quizButton: UIView!
     
     var contentIndex = 0
     var chapterEndTitle = ""
@@ -39,6 +41,12 @@ class ChapterEndViewController: UIViewController {
                 nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                //
+                print(chapterEndTitleIndex)
+                if chapterEndTitleIndex != 0 {
+                    quizLabel.isHidden = true
+                    quizButton.isHidden = true
+                }
             }
         case 2:
             if let chapterEndTitleIndex = ContentChapter().sectionThree.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
@@ -51,6 +59,9 @@ class ChapterEndViewController: UIViewController {
         default:
             print("error where index doesn't match")
         }
+        
+        // If there is no quiz assigned for this chapter hide the quiz related section
+        
         // Do any additional setup after loading the view.
     }
     

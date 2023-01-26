@@ -46,12 +46,11 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         // TEST: Probably could set up unit tests to make sure the content loads properly
         webView.load( URLRequest( url: Bundle.main.url(forResource: contentURL, withExtension: "html")! ))
-        webView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
         
         webView.scrollView.delegate = self
         progressBar.setProgress(Float(0), animated: false)
         headerTitle.text = titleURL
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
     }
@@ -104,6 +103,8 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+//        webView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
+        
         // WARNING: If the webview hasn't finished loading by the time the button gets added it will be added to the top of the view. It'd be better to put it under a function that detects scrolling
 //        let chapterContentHeight = webView.scrollView.contentSize.height
 //        let nextButton = UIButton()
@@ -117,10 +118,6 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
     
     //--------------------------------------------------------------------------------------------------
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-
-        // Handle connection to resources pages, etc
-    }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // Need to use Drag because scrollView fires by itself on viewcontroller load
@@ -129,7 +126,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         print(webView.scrollView.contentSize.height)
         // If a Done button has already been added or the user is in the resources section, do not include the button
-        addNextButton()
+//        addNextButton()
     }
     
     func addNextButton(){
@@ -162,6 +159,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     //--------------------------------------------------------------------------------------------------
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
+        if let url = navigationAction.request.url {
+            print(url.absoluteString)
+            if url.absoluteString.localizedStandardContains("next"){
+                print("contains next button")
+                goForward()
+            }
+        }
         preferences.preferredContentMode = .mobile
         decisionHandler(.allow,preferences)
     }

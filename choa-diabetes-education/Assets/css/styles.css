@@ -26,3 +26,38 @@ h6,
 .uk-h6 {
     color: #084E06;
 }
+
+a{
+    color: #3FBCFF;
+}
+
+.uk-button {
+    text-transform: none !important;
+    width: 147px;
+    padding-vertical: 20px;
+    background-color: #00A94F;
+    color: #ffffff;
+    border-radius: 52px;
+}
+
+.uk-button:hover {
+    color: #ffffff;
+}
+
+
+tr > td:nth-last-child(2){
+    border-right: 1px solid #DAE3D0;
+}
+
+
+.border-box{
+    border: 1px solid #DAE3D0;
+    border-radius: 10px;
+    padding-bottom: 0;
+}
+
+.li-bottom-border{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DAE3D0;
+}

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Pendo
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -48,6 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+      if let url = URLContexts.first?.url, url.scheme?.range(of: "pendo") !=
+    nil {
+        PendoManager.shared().initWith(url)
+      }
+      // your code here…
     }
 
 
