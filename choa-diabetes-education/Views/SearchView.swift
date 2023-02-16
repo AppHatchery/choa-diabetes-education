@@ -73,7 +73,13 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         // This converts a multiline string into a single file, the .whitespacesandnewlines doesn't work to do that job
         // Edit for Diabetes specific code: converting characters like EOFs to | so that the search engine can work properly in identifying the breakpoints between sentences
         var htmlString = try! String(contentsOfFile: path).replacingOccurrences(of: "[\\s\n]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespacesAndNewlines)
+        print(htmlString)
+        // This will remove the h3 headers from the search feature **IF THE HEADER CHANGES WE HAVE TO
+//        ADJUST THE CODE
+        htmlString = htmlString.replacingOccurrences(of: "<h3>.*?</h3>", with: "", options: .regularExpression, range: nil)
+        print(htmlString)
         htmlString = htmlString.replacingOccurrences(of: "<.*?>", with: ". ", options: .regularExpression, range: nil)
+        print(htmlString)
         searchContent = htmlString
     }
     

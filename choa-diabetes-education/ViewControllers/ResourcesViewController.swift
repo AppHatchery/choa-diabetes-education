@@ -92,11 +92,6 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
         contentTitle = "What can I eat?"
         loadResource()
     }
-    func loadAppsList(){
-        contentURL = "apps-list"
-        contentTitle = "Food Diary"
-        loadResource()
-    }
     
     @IBAction func openapps(_ sender: UIButton){
         var appURL:URL!

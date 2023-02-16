@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedBold.ttf">
+        <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
@@ -22,38 +22,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Must-Have Apps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2p-xE-bWc">
-                    <rect key="frame" x="20" y="17" width="374" height="24"/>
+                    <rect key="frame" x="20" y="17" width="198" height="24"/>
                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                     <color key="textColor" name="headingGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Apps by CHOA experts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2T-vK-WvE">
-                    <rect key="frame" x="20" y="45" width="374" height="19.5"/>
+                    <rect key="frame" x="20" y="45" width="234.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hh-pm-M2p">
-                    <rect key="frame" x="333" y="16" width="66" height="26"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="See All">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <color key="baseForegroundColor" name="choaGreenColor"/>
-                    </buttonConfiguration>
-                </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-recommendation-1" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-KM-sIH">
-                    <rect key="frame" x="20" y="80.5" width="55" height="55"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="55" id="Anl-PG-ycr"/>
-                        <constraint firstAttribute="width" constant="55" id="Mvz-IH-nUs"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-3O-MRd">
                     <rect key="frame" x="83" y="80.5" width="66" height="14.5"/>
                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
@@ -80,7 +59,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find nutrition facts for your favorite brands and fast-food restaurants." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R73-rQ-aCz">
-                    <rect key="frame" x="83" y="167" width="311" height="36"/>
+                    <rect key="frame" x="83" y="167" width="299" height="36"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -99,7 +78,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track progress toward your nutrition, water, fitness, and weight loss goals " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjC-8K-Dof">
-                    <rect key="frame" x="83" y="234" width="311" height="36"/>
+                    <rect key="frame" x="83" y="234" width="295.5" height="36"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -147,43 +126,37 @@
                 <constraint firstItem="WqR-sz-3DB" firstAttribute="leading" secondItem="tcf-3O-MRd" secondAttribute="leading" id="1Ce-Jo-Oe6"/>
                 <constraint firstItem="WV2-Dg-9e9" firstAttribute="top" secondItem="0CX-Pz-d2C" secondAttribute="top" id="2fw-PJ-qf1"/>
                 <constraint firstItem="XjP-LQ-s1Y" firstAttribute="leading" secondItem="Jgt-dE-YOW" secondAttribute="leading" id="3Te-NM-YX1"/>
-                <constraint firstAttribute="trailing" secondItem="WqR-sz-3DB" secondAttribute="trailing" constant="20" id="4RZ-et-NmM"/>
-                <constraint firstItem="3uE-Xy-5l1" firstAttribute="top" secondItem="gP6-KM-sIH" secondAttribute="bottom" constant="6" id="6iU-ZQ-gRf"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WqR-sz-3DB" secondAttribute="trailing" constant="20" id="4RZ-et-NmM"/>
                 <constraint firstItem="u2T-vK-WvE" firstAttribute="top" secondItem="i2p-xE-bWc" secondAttribute="bottom" constant="4" id="82R-M9-TSM"/>
                 <constraint firstItem="tcf-3O-MRd" firstAttribute="leading" secondItem="Jgt-dE-YOW" secondAttribute="trailing" constant="8" id="A0p-XZ-UIN"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="u2T-vK-WvE" secondAttribute="trailing" constant="20" id="Ae6-ek-0kh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="u2T-vK-WvE" secondAttribute="trailing" constant="20" id="Ae6-ek-0kh"/>
                 <constraint firstItem="Yxh-aS-LY9" firstAttribute="leading" secondItem="3uE-Xy-5l1" secondAttribute="leading" id="C8P-bm-l1s"/>
                 <constraint firstItem="3uE-Xy-5l1" firstAttribute="top" secondItem="XjP-LQ-s1Y" secondAttribute="top" constant="-6" id="FqF-MO-yYH"/>
-                <constraint firstItem="3uE-Xy-5l1" firstAttribute="leading" secondItem="gP6-KM-sIH" secondAttribute="trailing" id="G4I-Vg-ZWn"/>
                 <constraint firstItem="3uE-Xy-5l1" firstAttribute="top" secondItem="WqR-sz-3DB" secondAttribute="bottom" constant="5.5" id="GIQ-Hs-D5R"/>
                 <constraint firstItem="aeG-F1-wZ2" firstAttribute="leading" secondItem="XjP-LQ-s1Y" secondAttribute="trailing" constant="8" id="I7Q-qb-11I"/>
-                <constraint firstItem="gP6-KM-sIH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="IZr-kq-ihh"/>
                 <constraint firstItem="i2p-xE-bWc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="J44-gc-yJ4"/>
                 <constraint firstItem="Jgt-dE-YOW" firstAttribute="leading" secondItem="i2p-xE-bWc" secondAttribute="leading" id="Jvl-7J-2eU"/>
-                <constraint firstItem="gP6-KM-sIH" firstAttribute="top" secondItem="u2T-vK-WvE" secondAttribute="bottom" constant="16" id="Kh3-6V-1Ua"/>
                 <constraint firstItem="Jgt-dE-YOW" firstAttribute="top" secondItem="u2T-vK-WvE" secondAttribute="bottom" constant="16" id="KzY-NC-RT0"/>
-                <constraint firstAttribute="trailing" secondItem="R73-rQ-aCz" secondAttribute="trailing" constant="20" id="Lac-mF-7fg"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R73-rQ-aCz" secondAttribute="trailing" constant="20" id="Lac-mF-7fg"/>
                 <constraint firstItem="YjC-8K-Dof" firstAttribute="top" secondItem="WV2-Dg-9e9" secondAttribute="bottom" constant="5" id="Mzc-3z-bv4"/>
-                <constraint firstItem="tcf-3O-MRd" firstAttribute="top" secondItem="gP6-KM-sIH" secondAttribute="top" id="QuM-Oa-czd"/>
                 <constraint firstItem="R73-rQ-aCz" firstAttribute="top" secondItem="aeG-F1-wZ2" secondAttribute="bottom" constant="5" id="Rdl-id-Wz4"/>
-                <constraint firstAttribute="trailing" secondItem="YjC-8K-Dof" secondAttribute="trailing" constant="20" id="Ty1-ag-VHn"/>
-                <constraint firstItem="tcf-3O-MRd" firstAttribute="leading" secondItem="gP6-KM-sIH" secondAttribute="trailing" constant="8" id="TzS-wZ-Q0O"/>
-                <constraint firstAttribute="trailing" secondItem="6hh-pm-M2p" secondAttribute="trailing" constant="15" id="WLD-YP-Kn6"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YjC-8K-Dof" secondAttribute="trailing" constant="20" id="Ty1-ag-VHn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tcf-3O-MRd" secondAttribute="trailing" constant="20" id="WtA-JA-KPR"/>
+                <constraint firstAttribute="trailing" secondItem="Yxh-aS-LY9" secondAttribute="trailing" constant="20" id="YpA-d5-5r1"/>
+                <constraint firstAttribute="trailing" secondItem="3uE-Xy-5l1" secondAttribute="trailing" constant="20" id="Zet-6p-hoi"/>
                 <constraint firstItem="0CX-Pz-d2C" firstAttribute="leading" secondItem="Jgt-dE-YOW" secondAttribute="leading" id="bPZ-77-oCB"/>
                 <constraint firstItem="YjC-8K-Dof" firstAttribute="leading" secondItem="WV2-Dg-9e9" secondAttribute="leading" id="f09-oo-EKf"/>
                 <constraint firstItem="WV2-Dg-9e9" firstAttribute="leading" secondItem="0CX-Pz-d2C" secondAttribute="trailing" constant="8" id="fgm-L5-5vD"/>
                 <constraint firstItem="Yxh-aS-LY9" firstAttribute="top" secondItem="0CX-Pz-d2C" secondAttribute="top" constant="-6" id="gMv-2L-zbC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aeG-F1-wZ2" secondAttribute="trailing" constant="20" id="gxI-MQ-FWG"/>
                 <constraint firstItem="tcf-3O-MRd" firstAttribute="top" secondItem="Jgt-dE-YOW" secondAttribute="top" id="h3t-b1-YIM"/>
                 <constraint firstItem="aeG-F1-wZ2" firstAttribute="top" secondItem="XjP-LQ-s1Y" secondAttribute="top" id="lF1-2b-bVT"/>
                 <constraint firstItem="R73-rQ-aCz" firstAttribute="leading" secondItem="aeG-F1-wZ2" secondAttribute="leading" id="m5V-jA-4kV"/>
-                <constraint firstItem="Yxh-aS-LY9" firstAttribute="trailing" secondItem="3uE-Xy-5l1" secondAttribute="trailing" id="o1J-kb-gk5"/>
                 <constraint firstItem="u2T-vK-WvE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="pvA-Yg-5FI"/>
                 <constraint firstItem="WqR-sz-3DB" firstAttribute="top" secondItem="tcf-3O-MRd" secondAttribute="bottom" constant="5" id="q87-VE-kNV"/>
                 <constraint firstItem="Yxh-aS-LY9" firstAttribute="top" secondItem="R73-rQ-aCz" secondAttribute="bottom" constant="5.5" id="reb-XH-KPO"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="i2p-xE-bWc" secondAttribute="trailing" constant="20" id="sZR-6P-39G"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3uE-Xy-5l1" secondAttribute="trailing" constant="20" id="uPF-Un-Ij8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i2p-xE-bWc" secondAttribute="trailing" constant="20" id="sZR-6P-39G"/>
                 <constraint firstItem="3uE-Xy-5l1" firstAttribute="leading" secondItem="XjP-LQ-s1Y" secondAttribute="leading" constant="55" id="xdP-a4-fF9"/>
-                <constraint firstItem="6hh-pm-M2p" firstAttribute="centerY" secondItem="i2p-xE-bWc" secondAttribute="centerY" id="xrZ-H5-Hv6"/>
                 <constraint firstItem="i2p-xE-bWc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zg9-eB-lCX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -192,12 +165,6 @@
                     <integer key="value" value="10"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="6hh-pm-M2p"/>
-                    <exclude reference="gP6-KM-sIH"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="98.550724637681171" y="-82.700892857142847"/>
         </view>
     </objects>
@@ -205,9 +172,6 @@
         <image name="app-recommendation-1" width="55" height="55"/>
         <image name="app-recommendation-2" width="55" height="55"/>
         <image name="app-recommendation-3" width="55" height="55"/>
-        <namedColor name="choaGreenColor">
-            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="headingGreenColor">
             <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

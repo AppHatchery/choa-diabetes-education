@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutApp" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-qv-5WC">
+                    <rect key="frame" x="24" y="83" width="345" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="qoz-1I-oqL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Diabetes Association" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npK-xl-Mm7">
+                    <rect key="frame" x="24" y="383.66666666666669" width="345" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgD-xb-aNi">
+                    <rect key="frame" x="24" y="122.99999999999999" width="345" height="240.66666666666663"/>
+                    <string key="text">The content in the TypeU App has been created in conjunction with the Diabetes Education Team at Children’s Healthcare of Atlanta based off the Diabetes Education sessions for new onset patients. The educational content is informed by the 2023 Standards of Care in Diabetes that is regularly published by the American Diabetes Association.
+
+For more about the standards of care, click below.</string>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-kL-dRQ">
+                    <rect key="frame" x="24" y="415.66666666666669" width="345" height="131.00000000000006"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="sNT-kL-dRQ" secondAttribute="height" multiplier="345:131" id="cOE-Z4-Xvy"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="AmericanDiabetesIcon"/>
+                    <connections>
+                        <action selector="searchForResources:" destination="-1" eventType="touchUpInside" id="hvf-V9-f1m"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="nK5-qv-5WC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="2jL-d4-jcI"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="leading" secondItem="nK5-qv-5WC" secondAttribute="leading" id="AxH-2t-1K5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" constant="24" id="KlR-Tm-KLG"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="top" secondItem="npK-xl-Mm7" secondAttribute="bottom" constant="10" id="NkP-Wi-rLF"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="PyA-5u-wME"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="azz-Nx-hX1"/>
+                <constraint firstItem="npK-xl-Mm7" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="gK8-VR-U0B"/>
+                <constraint firstItem="npK-xl-Mm7" firstAttribute="top" secondItem="fgD-xb-aNi" secondAttribute="bottom" constant="20" id="qBT-a6-chQ"/>
+                <constraint firstItem="nK5-qv-5WC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="s4h-Jl-Vmp"/>
+                <constraint firstItem="npK-xl-Mm7" firstAttribute="leading" secondItem="nK5-qv-5WC" secondAttribute="leading" id="vwk-IW-hxN"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="leading" secondItem="nK5-qv-5WC" secondAttribute="leading" id="xJP-Vc-doy"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="top" secondItem="nK5-qv-5WC" secondAttribute="bottom" constant="6" id="xVP-qk-OL0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="38.931297709923662" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AmericanDiabetesIcon" width="327" height="117"/>
+        <namedColor name="contentBlackColor">
+            <color red="0.34099999070167542" green="0.3449999988079071" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

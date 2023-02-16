@@ -17,6 +17,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var multipleAnswerLabel: UILabel!
     @IBOutlet weak var quizWindowHeight: NSLayoutConstraint!
+    @IBOutlet weak var multipleAnswersErrorLabel: UILabel!
     
     var answerArray = [String]()
     var questionName = ""
@@ -132,7 +133,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             userAnswerArray.append(indexPath.row)
         }
         
-        answerButton.setTitle("Submit", for: .normal)
+        resetUIelements()
         print(userAnswerArray)
     }
     
@@ -155,7 +156,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             userAnswerArray.remove(at: answerValue)
         }
         
-        answerButton.setTitle("Submit", for: .normal)
+        resetUIelements()
     }
     
     private func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -180,6 +181,8 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                     answerTitle.text = "Answer \(answerString)"
                     answerIcon.image = UIImage(named: "correctIcon")
                     answerButton.setTitle("Done", for: .normal)
+                    
+                    showAnswer()
                 } else {
                     //                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
@@ -189,7 +192,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                     if correctAnswer.count > 1 {
                     // Step 1: Check users answers
                         let wrongAnswers = orderedArray.filter{!correctAnswer.contains($0)}
-                    // Step 2: Mark as wrong the users ansswers that are wrong
+                    // Step 2: Mark as wrong the users answers that are wrong
                         for wrongAnswer in wrongAnswers {
                             let cell = tableView.cellForRow(at: IndexPath(row: wrongAnswer, section: 0)) as! QuizMultipleAnswerTableViewCell
                             cell.answerCheckbox.backgroundColor = UIColor.systemRed
@@ -197,11 +200,14 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                             cell.answerBackground.backgroundColor = UIColor.init(red: 255/255, green: 232/255, blue: 225/255, alpha: 1.0)
                             cell.answerBackground.layer.borderColor = UIColor.systemRed.cgColor
                         }
+                    // Step 3: tell the user there are more answers if they selected correct answers but they are missing some
+                        if wrongAnswers.count == 0 {
+                            multipleAnswersErrorLabel.isHidden = false
+                        } else {
+                            showAnswer()
+                        }
                     }
                 }
-                
-                answerTitle.isHidden = false
-                answerIcon.isHidden = false
             }
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -213,6 +219,18 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
 
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func showAnswer(){
+        answerTitle.isHidden = false
+        answerIcon.isHidden = false
+    }
+    
+    func resetUIelements(){
+        answerIcon.isHidden = true
+        answerTitle.isHidden = true
+        multipleAnswersErrorLabel.isHidden = true
+        answerButton.setTitle("Submit", for: .normal)
     }
     
     @IBAction func nextQuestion(_ sender: UIButton){

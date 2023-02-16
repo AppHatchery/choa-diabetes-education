@@ -15,13 +15,13 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
-        <array key="GothamRoundedBold.ttf">
+        <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRoundedLight.ttf">
+        <array key="Gotham Rounded Light.otf">
             <string>GothamRounded-Light</string>
         </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
@@ -1371,11 +1371,11 @@
             <objects>
                 <viewController storyboardIdentifier="quizSplash" id="qTj-Ax-wBy" customClass="QuizIntroViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dxM-DC-RSd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erX-ET-2GE">
-                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="765"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
@@ -1520,6 +1520,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose all answers that apply" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbu-6p-bAQ">
+                                <rect key="frame" x="20" y="548" width="374" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="incorrectIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Xfy-jp-Caz">
                                 <rect key="frame" x="20" y="554" width="36" height="36"/>
                                 <constraints>
@@ -1573,6 +1579,7 @@
                             <constraint firstItem="tlv-XU-Kax" firstAttribute="leading" secondItem="Xfy-jp-Caz" secondAttribute="trailing" constant="14" id="EsC-aH-gIX"/>
                             <constraint firstItem="oLd-Ht-UsI" firstAttribute="centerX" secondItem="Vf8-ao-zNa" secondAttribute="centerX" id="Gzu-nS-yON"/>
                             <constraint firstItem="MHi-2b-psj" firstAttribute="trailing" secondItem="2gl-0s-pFl" secondAttribute="trailing" id="NGe-h0-BJ8"/>
+                            <constraint firstItem="Cbu-6p-bAQ" firstAttribute="leading" secondItem="2gl-0s-pFl" secondAttribute="leading" constant="20" id="d7G-Vq-GZn"/>
                             <constraint firstItem="2gl-0s-pFl" firstAttribute="bottom" secondItem="cPD-sq-Q2x" secondAttribute="bottom" constant="40" id="dwW-hB-oPv"/>
                             <constraint firstAttribute="bottom" secondItem="MHi-2b-psj" secondAttribute="bottom" id="fRG-rs-y50"/>
                             <constraint firstItem="Xfy-jp-Caz" firstAttribute="leading" secondItem="2gl-0s-pFl" secondAttribute="leading" constant="20" id="fVD-Y0-cZF"/>
@@ -1585,6 +1592,8 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="tlv-XU-Kax" secondAttribute="trailing" constant="20" id="uGK-S8-Nsm"/>
                             <constraint firstItem="BIz-VT-jsH" firstAttribute="top" secondItem="2gl-0s-pFl" secondAttribute="top" constant="36" id="vH2-TQ-TQ0"/>
                             <constraint firstItem="2gl-0s-pFl" firstAttribute="trailing" secondItem="BIz-VT-jsH" secondAttribute="trailing" constant="24" id="vNO-Hn-Z1G"/>
+                            <constraint firstItem="Cbu-6p-bAQ" firstAttribute="top" secondItem="BIz-VT-jsH" secondAttribute="bottom" constant="18" id="wqN-Pa-1aZ"/>
+                            <constraint firstItem="2gl-0s-pFl" firstAttribute="trailing" secondItem="Cbu-6p-bAQ" secondAttribute="trailing" constant="20" id="xl7-yH-pIR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Quiz" id="zlp-8r-hgB">
@@ -1597,6 +1606,7 @@
                         <outlet property="answerIcon" destination="Xfy-jp-Caz" id="EFn-ZH-3V9"/>
                         <outlet property="answerTitle" destination="tlv-XU-Kax" id="GKu-dR-iU6"/>
                         <outlet property="multipleAnswerLabel" destination="pSn-nV-nc6" id="Yc4-fd-gjo"/>
+                        <outlet property="multipleAnswersErrorLabel" destination="Cbu-6p-bAQ" id="Fq8-ts-5bt"/>
                         <outlet property="questionTitle" destination="9sU-kF-DEv" id="Qkb-Eb-Omh"/>
                         <outlet property="quizWindowHeight" destination="f8E-Lx-Xq9" id="g0H-Bx-XoZ"/>
                         <outlet property="tableView" destination="bMJ-hu-lXO" id="ii1-Fp-TFf"/>
@@ -1671,6 +1681,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSv-3o-GuY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7136" y="202"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="0Wo-3w-l2Q">
+            <objects>
+                <viewController id="grA-36-m0Y" customClass="AboutViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AEa-6G-dZG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-g9-i9q">
+                                <rect key="frame" x="24" y="72" width="75.5" height="24"/>
+                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                                <color key="textColor" name="headingGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a8F-CO-kRR">
+                                <rect key="frame" x="24" y="120" width="366" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="pxV-FQ-eDg"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Content"/>
+                                    <segment title="Team"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="choaGreenColor"/>
+                                <connections>
+                                    <action selector="contentChange:" destination="r9r-Zx-0xw" eventType="touchDown" id="Hbs-gO-9nU"/>
+                                    <action selector="toggleListView:" destination="r9r-Zx-0xw" eventType="valueChanged" id="TOE-ND-fsW"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6X-Wt-jw2">
+                                <rect key="frame" x="0.0" y="116" width="414" height="698"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uf6-or-Tqg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="i6X-Wt-jw2" secondAttribute="trailing" id="B52-Xm-1DE"/>
+                            <constraint firstItem="a8F-CO-kRR" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="FkA-Qo-2Fz"/>
+                            <constraint firstItem="GT4-g9-i9q" firstAttribute="top" secondItem="Uf6-or-Tqg" secondAttribute="top" constant="24" id="GYh-0s-mfU"/>
+                            <constraint firstItem="GT4-g9-i9q" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="Gvc-Q9-wXz"/>
+                            <constraint firstItem="a8F-CO-kRR" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="24" id="Mbn-YL-mCs"/>
+                            <constraint firstItem="Uf6-or-Tqg" firstAttribute="bottom" secondItem="i6X-Wt-jw2" secondAttribute="bottom" constant="24" id="Opw-q6-wj4"/>
+                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="20" id="TOa-Ow-jVN"/>
+                            <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="a8F-CO-kRR" secondAttribute="trailing" constant="24" id="U6Q-Dh-zK4"/>
+                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="a8F-CO-kRR" secondAttribute="bottom" constant="32" id="Uqn-aO-Lb6"/>
+                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" id="Vht-wY-lQO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="a8F-CO-kRR"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="i6X-Wt-jw2" id="txd-rs-NaP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5R-qk-Sru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4305.7971014492759" y="-2034.375"/>
         </scene>
         <!--Orientation-->
         <scene sceneID="lUa-vE-59J">
@@ -2114,6 +2186,19 @@
                                     <constraint firstAttribute="width" constant="52" id="G5n-3i-7n9"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-6Y-6BF">
+                                <rect key="frame" x="366" y="60" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="CAI-qV-eTx"/>
+                                    <constraint firstAttribute="height" constant="24" id="qBY-2K-KL8"/>
+                                </constraints>
+                                <color key="tintColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
+                                <connections>
+                                    <segue destination="grA-36-m0Y" kind="presentation" id="IWv-NP-T7d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ag6-Q0-teH"/>
                         <color key="backgroundColor" name="backgroundColor"/>
@@ -2138,8 +2223,10 @@
                             <constraint firstItem="Qyt-Lu-Qpi" firstAttribute="top" secondItem="8fj-zS-FSR" secondAttribute="bottom" constant="32" id="hcU-Nh-Hzh"/>
                             <constraint firstItem="xCR-TQ-3ML" firstAttribute="leading" secondItem="2Kf-qh-Mmq" secondAttribute="leading" constant="16" id="kS6-lB-Oz2"/>
                             <constraint firstItem="xCR-TQ-3ML" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" constant="16" id="knu-94-6LP"/>
+                            <constraint firstItem="WQD-6Y-6BF" firstAttribute="trailing" secondItem="ag6-Q0-teH" secondAttribute="trailing" constant="-24" id="lVx-bF-DX2"/>
                             <constraint firstItem="2Kf-qh-Mmq" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="mgf-Cd-Ut4"/>
                             <constraint firstItem="2T1-2S-EST" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" id="nUg-dm-e22"/>
+                            <constraint firstItem="WQD-6Y-6BF" firstAttribute="centerY" secondItem="f3a-tW-1Bj" secondAttribute="centerY" id="oeh-zZ-no5"/>
                             <constraint firstItem="f3a-tW-1Bj" firstAttribute="top" secondItem="ag6-Q0-teH" secondAttribute="top" constant="12" id="pfq-Rz-wzp"/>
                             <constraint firstItem="8fj-zS-FSR" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="yxj-Bn-9QV"/>
                             <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="Eex-DI-0Ox" secondAttribute="trailing" constant="24" id="zEH-lc-5Uq"/>
@@ -2812,11 +2899,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aTD-Ou-0iR"/>
-        <segue reference="Cz3-ME-WhP"/>
+        <segue reference="Ipa-CJ-Loq"/>
+        <segue reference="v97-e6-biO"/>
         <segue reference="k5Z-lk-q64"/>
-        <segue reference="Y7U-dD-p04"/>
-        <segue reference="crK-tC-FpQ"/>
+        <segue reference="L1W-07-Vpb"/>
+        <segue reference="CS3-6i-fi4"/>
         <segue reference="zcz-Bb-P6O"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2842,6 +2929,7 @@
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="orientationIcon" width="50" height="50"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="quizEnd" width="326" height="187"/>
         <image name="quizStart" width="326" height="187"/>
         <image name="quizTableIcon" width="46" height="46"/>
