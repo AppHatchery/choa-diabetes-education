@@ -30,18 +30,20 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     var fontSize = 100
     
     var searchView: SearchView!
+    
+    var flagiframe = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Create WebView Content
         let config = WKWebViewConfiguration()
-        
+
         webView = WKWebView(frame: .zero, configuration: config)
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         setupUI()
         
         // TEST: Probably could set up unit tests to make sure the content loads properly
@@ -89,10 +91,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(js, completionHandler: nil)
             webView.evaluateJavaScript(js2, completionHandler: nil)
             
+            // There is a warning from loading iframes as part of the main thread that can't seem to clear out. Potentially loading the iframes asynchrnously or on a user action may be possible, but unsure about how to do this yet
+            
+            
             // Will be needed for font adjustment feature
             let javascript = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(fontSize)%'"
             webView.evaluateJavaScript(javascript) { (response, error) in
-                print("changed the font size to \(self.fontSize)")
+//                print("changed the font size to \(self.fontSize)")
             }
             
         } else {
@@ -124,7 +129,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         // Add a flag so that the first scroll does not fire and causes a crash
         
-        print(webView.scrollView.contentSize.height)
+//        print(webView.scrollView.contentSize.height)
         // If a Done button has already been added or the user is in the resources section, do not include the button
 //        addNextButton()
     }
@@ -160,9 +165,9 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
         if let url = navigationAction.request.url {
-            print(url.absoluteString)
+//            print(url.absoluteString)
             if url.absoluteString.localizedStandardContains("next"){
-                print("contains next button")
+//                print("contains next button")
                 goForward()
             }
         }
@@ -221,16 +226,10 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             }
         }
         
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
-
-        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
-        doneButton.setTitle( "Dismiss", for: .normal )
-        doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
-        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
-        doneButton.addTarget(self, action: #selector(self.moveSearchToBottom), for: .touchUpInside)
-        customView.addSubview( doneButton )
-        searchView.searchField.inputAccessoryView = customView
+        // Tapping on screen gesture recognizer to close the search field
+        let tapSearchGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapSearchGesture.addTarget(self, action: #selector(moveSearchToBottom))
+        searchView.addGestureRecognizer(tapSearchGesture)
     }
     
     func closeSearch(){
@@ -289,7 +288,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
         
     @objc func keyboardWillShow(notification: NSNotification) {
-        print("in Show")
+//        print("in Show")
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             else {
             // if keyboard size is not available for some reason, dont do anything
@@ -323,7 +322,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         //
-        print("dismiised")
+//        print("dismiised")
         //
     }
         
@@ -337,7 +336,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     @objc func keyboardWillHide(notification: NSNotification) {
       // move back the root view origin to zero
-        print("hid")
+//        print("hid")
         self.view.frame.origin.y = 0
     }
 

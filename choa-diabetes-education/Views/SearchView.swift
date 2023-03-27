@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Pendo
 
 protocol SearchViewDelegate {
     func closeSearch()
@@ -103,32 +104,35 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         }        
     }
     
-    // Connect to the search button
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // something something
+    func displaySearchResults(){
         delegate.closeKeyboard()
         tableView.reloadData()
         // Logic for showing the noResultsLabel
         checkForEmptyResults()
         // Load the new height and pass it to the VC
         delegate.moveSearchView(expansion: tableView.contentSize.height)
+        // Pendo track what word was searched for
+        PendoManager.shared().track("searchQuery", properties: ["searchTerm":searchTerm])
+    }
+    
+    // Connect to the search button
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        displaySearchResults()
     }
     
     @IBAction func searchChapter(_ sender: UIButton){
         print("should display data")
         
-        tableView.reloadData()
-        // Logic for showing the noResultsLabel
-        checkForEmptyResults()
-        delegate.closeKeyboard()
-        delegate.moveSearchView(expansion: tableView.contentSize.height)
-        // Expand view upwards to fit content
+        displaySearchResults()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // When there is no text, filteredData is the same as the original data
         // When user has entered text into the search box
         // Use the filter method to iterate over all items in the data array
+        // Change the value of the variable when text changes
+        searchTerm = searchText
         // For each item, return true if the item should be included and false if the
         if searchText != ""{
             isFiltering = true
@@ -222,7 +226,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchResultTableViewCell
-        cell.resultContent.text = String(searchResults[indexPath.row])+"\n"
+        cell.resultContent.text = String(searchResults[indexPath.row]).dropFirst()+"\n"
         cell.resultContent.textColor = UIColor.contentBlackColor
         cell.backgroundColor = UIColor.backgroundColor
         return cell

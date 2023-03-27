@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Pendo
 
 class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
@@ -37,25 +38,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Keyboard dismiss state
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
-        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
-        doneButton.setTitle( "Close", for: .normal )
-        doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
-        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
-        customView.addSubview( doneButton )
-        // Do any additional setup after loading the view.
-        
-        
         for txtField in textFieldCollection {
-            txtField.inputAccessoryView = customView
             txtField.delegate = self
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -70,7 +61,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         case 0:
             bloodSugar = Float(textField.text ?? "0") ?? 0
             print(bloodSugar)
-            if bloodSugar < 150 {
+            if bloodSugar < 150 && bloodSugar != 0 {
                 bloodSugarAlertIcon.isHidden = false
                 bloodSugarAlert.isHidden = false
                 bloodSugarField.textColor = UIColor.init(red: 250/255, green: 153/255, blue: 0, alpha: 1.0)
@@ -117,6 +108,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
         if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
+            PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
             // Go to next page
             performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
         }
@@ -129,6 +121,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         } else if (targetBloodSugar != 0 && correctionFactor != 0){
             // BG is not there
             toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Please enter your blood sugar")
+            bloodSugarAlertIcon.isHidden = true
         } else {
             errorMessage.text = "Please enter the missing information"
             errorMessage.isHidden = false
@@ -136,25 +129,55 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        print("in Show")
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            else {
-            // if keyboard size is not available for some reason, dont do anything
-                print("in else")
-                
-            return
+        guard let userInfo = notification.userInfo else { return }
+        
+        
+        // In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.
+        guard let screen = notification.object as? UIScreen,
+              // Get the keyboard’s frame at the end of its animation.
+              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        
+        // Use that screen to get the coordinate space to convert from.
+        let fromCoordinateSpace = screen.coordinateSpace
+        
+        
+        // Get your view's coordinate space.
+        let toCoordinateSpace: UICoordinateSpace = view
+        
+        
+        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
+        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
+        
+        // Get the safe area insets when the keyboard is offscreen.
+        var bottomOffset = view.safeAreaInsets.bottom
+        
+        // Get the intersection between the keyboard's frame and the view's bounds to work with the
+        // part of the keyboard that overlaps your view.
+        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
+        
+        // Check whether the keyboard intersects your view before adjusting your offset.
+        if !viewIntersection.isEmpty {
+            
+            // Adjust the offset by the difference between the view's height and the height of the
+            // intersection rectangle.
+            bottomOffset = view.bounds.maxY - viewIntersection.minY
         }
         
-        if contentView.frame.origin.y == 0 {
-            contentView.frame.origin.y -= keyboardSize.height
-        }
         
+        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
+        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
+        // your view, changing a scroll inset, and so on. This example uses the new offset to update
+        // the value of an existing Auto Layout constraint on the view.
+        if view.frame.origin.y == 0 {
+            view.frame.origin.y -= bottomOffset
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
       // move back the root view origin to zero
         print("hide")
-        contentView.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

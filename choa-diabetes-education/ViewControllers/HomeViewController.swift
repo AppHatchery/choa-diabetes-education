@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
             // since we now know the contentView frame, pass it down so that the next controller will know it before viewDidAppear
             orientationViewController.contentFrame =
             self.view.bounds
-            print(self.view.safeAreaInsets)
+//            print(self.view.safeAreaInsets)
         }
         if let handbookViewController = segue.destination as? HandbookViewController
         {

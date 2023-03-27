@@ -26,6 +26,8 @@
             <li>When sick</li>
         </ul>
     </div>
+    <img alt="When to check blood sugar" class="uk-responsive-width" src="check-blood-sugar.png">
+    <br><br><br><br>
     <div>
         <h3>Steps to test blood sugar</h3>
         <ul class="uk-list uk-list-decimal">
@@ -42,17 +44,16 @@
             <li>Apply blood to the strip according to meter directions.</li>
             <li>Look at blood sugar result on meter and record result.</li>
             <li>If hyperglycemia, see “giving insulin to bring down high blood sugars” in how to calculate insulin dosing” section</li>
-            <li>Demo
-                <br>
-                <a href="https://www.youtube.com/watch?v=eOjCUI6OXlM">TRUE METRIX Self
-                    Monitoring Blood Glucose Meter - YouTube</a>
-            </li>
         </ul>
-        <div class="uk-position-relative">
-            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen
+        <img alt="Steps to check blood sugar" class="uk-responsive-width" src="test-blood-sugar.png">
+        <h3>Demo</h3>
+        <a href="https://www.youtube.com/watch?v=eOjCUI6OXlM">TRUE METRIX Self
+                Monitoring Blood Glucose Meter - YouTube</a>
+        <div class="uk-position-relative" id="video-container">
+            <iframe id="loader" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen
                     src="https://www.youtube.com/embed/cHuyxbYG26g"
                     height="300" class="uk-width-1-1"></iframe>
-            <div class="uk-position-absolute uk-position-center" id="loader" uk-spinner="ratio:1.5"></div>
+            <div class="uk-position-absolute uk-position-center" uk-spinner="ratio:1.5"></div>
         </div>
     </div>
     <div class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom">
@@ -60,11 +61,11 @@
         </div>
 </div>
 </body>
-<script>
-    window.onload = function () {
-        document.getElementById('loader').style.display = "none";
-    }
-</script>
+<!--<script>-->
+<!--    window.onload = function () {-->
+<!--        document.getElementById('loader').style.display = "none";-->
+<!--    }-->
+<!--</script>-->
 <script src="uikit.js"></script>
 <script src="uikit-icons.js"></script>
 </html>

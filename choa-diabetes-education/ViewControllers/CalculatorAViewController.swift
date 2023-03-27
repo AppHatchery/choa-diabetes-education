@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Pendo
 
 class CalculatorAViewController: UIViewController, UITextFieldDelegate {
 
@@ -27,31 +28,28 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Keyboard dismiss state
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
-        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
-        doneButton.setTitle( "Close", for: .normal )
-        doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
-        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
-        customView.addSubview( doneButton )
-        // Do any additional setup after loading the view.
         
         for txtField in textFieldCollection {
-            txtField.inputAccessoryView = customView
             txtField.delegate = self
         }
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("should begin tediting")
         textField.text = ""
     }
+    
     
     // Yago to add
     // The next button should not require the user to dismiss the keyboard, rather it should change by itself once the field is no longer empty. Alternatively test if tapping on the screen to dismiss the keyboard works like in the search feature, and make this end editing
@@ -92,25 +90,58 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        print("in Show")
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            else {
-            // if keyboard size is not available for some reason, dont do anything
-                print("in else")
+//        print("in Show")
+        guard let userInfo = notification.userInfo else { return }
+
+
+        // In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.
+        guard let screen = notification.object as? UIScreen,
+              // Get the keyboard’s frame at the end of its animation.
+              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+
+        // Use that screen to get the coordinate space to convert from.
+        let fromCoordinateSpace = screen.coordinateSpace
+
+
+        // Get your view's coordinate space.
+        let toCoordinateSpace: UICoordinateSpace = view
+
+
+        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
+        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
+        
+        // Get the safe area insets when the keyboard is offscreen.
+        var bottomOffset = view.safeAreaInsets.bottom
+            
+        // Get the intersection between the keyboard's frame and the view's bounds to work with the
+        // part of the keyboard that overlaps your view.
+        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
+            
+        // Check whether the keyboard intersects your view before adjusting your offset.
+        if !viewIntersection.isEmpty {
                 
-            return
+            // Adjust the offset by the difference between the view's height and the height of the
+            // intersection rectangle.
+            bottomOffset = view.bounds.maxY - viewIntersection.minY
         }
-        // Display search field for typing - If statement prevents double movement when click another text field. Keyboard notification show function can get called without the Hide in between
-        if contentView.frame.origin.y == 0 {
-            contentView.frame.origin.y -= keyboardSize.height
-        }        
+
+
+        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
+        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
+        // your view, changing a scroll inset, and so on. This example uses the new offset to update
+        // the value of an existing Auto Layout constraint on the view.
+        if view.frame.origin.y == 0 {
+            view.frame.origin.y -= bottomOffset
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
       // move back the root view origin to zero
         print("hide")
-        contentView.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
+    
     
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
@@ -120,6 +151,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
         if (totalCarbs > 0 && carbRatio > 0){
+            PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs":totalCarbs,"ratio":carbRatio])
             if insulinForHighBloodSugarBoolean {
                 performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
             } else {
@@ -128,9 +160,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         } else if (totalCarbs > 0){
             // CarbRatio is not there
             toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Please enter a Carb Ratio")
-        } else {
+        } else if (carbRatio > 0){
             // Carbs are not there
             toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Please enter the number of carbs")
+        } else {
+            // Nothing is there
+            errorMessage.text = "Please enter the missing information"
+            errorMessage.isHidden = false
         }
     }
     

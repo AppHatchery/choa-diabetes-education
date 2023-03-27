@@ -42,7 +42,7 @@ class ChapterEndViewController: UIViewController {
                 }
                 quizIndex = chapterEndTitleIndex
                 //
-                print(chapterEndTitleIndex)
+//                print(chapterEndTitleIndex)
                 if chapterEndTitleIndex != 0 {
                     quizLabel.isHidden = true
                     quizButton.isHidden = true
