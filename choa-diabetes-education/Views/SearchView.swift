@@ -112,7 +112,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         // Load the new height and pass it to the VC
         delegate.moveSearchView(expansion: tableView.contentSize.height)
         // Pendo track what word was searched for
-        PendoManager.shared().track("searchQuery", properties: ["searchTerm":searchTerm])
+        PendoManager.shared().track("searchQuery", properties: ["searchTerm":searchTerm, "page":searchPage])
     }
     
     // Connect to the search button

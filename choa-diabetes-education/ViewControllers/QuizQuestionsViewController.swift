@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Pendo
 
 class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -182,11 +183,15 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                     answerIcon.image = UIImage(named: "correctIcon")
                     answerButton.setTitle("Done", for: .normal)
                     
+                    PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"correct"])
+                    
                     showAnswer()
                 } else {
                     //                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
                     answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                    
+                    PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"incorrect","selected-answers":orderedArray])
                     
                     // Logic for answers that are wrong
                     if correctAnswer.count > 1 {

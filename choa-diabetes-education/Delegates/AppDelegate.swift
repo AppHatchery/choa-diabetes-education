@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm"
 
-        let visitorId = "Tester-Mar-\(UUID())" // Could use Cohorts in the future to track patients
+        let visitorId = "Tester-Apr-\(UUID())" // Could use Cohorts in the future to track patients
         let accountId = "TypeU-Beta" // TypeU-Test TypeU-Beta for testing
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
