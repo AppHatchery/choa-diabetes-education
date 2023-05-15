@@ -6,41 +6,55 @@
     <meta content="dark light" name="color-scheme">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Title</title>
-    <link rel="stylesheet" href="uikit.css">
-    <link rel="stylesheet" href="styles.css">
+    <link href="uikit.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <div class="uk-container">
     <br>
     <div>
-        <h3>With an insulin pen.</h3>
+        <h3>With an insulin pen</h3>
         <ul class="uk-list uk-list-bullet">
             <li>Giving an Insulin Injection Using a Pen-<span><a
                     href="https://www.youtube.com/watch?v=RlHUyiK4R0I">YouTube- Demo Video.</a></span>
             </li>
         </ul>
         <div class="uk-position-relative">
-            <iframe  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                     src="https://www.youtube.com/embed/RlHUyiK4R0I"
-                     height="300"
-                     class="uk-width-1-1">
+            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    src="https://www.youtube.com/embed/RlHUyiK4R0I"
+                    height="300"
+                    class="uk-width-1-1">
             </iframe>
             <div class="uk-position-absolute uk-position-center" id="loader-top" uk-spinner="ratio:1.5"></div>
         </div>
+        <ul class="uk-list uk-list-decimal">
+            <li>Wash your hands with soap and water</li>
+            <li>Identify site</li>
+            <li>Clean site and top of insulin pen with an alcohol swab</li>
+            <li>Open pen needle and twist on to top of insulin pen until you meet resistance</li>
+            <li>Dial pen to 2 units to prime the pen</li>
+            <li>Dial pen to appropriate insulin dose</li>
+            <li>Pinch up skin and hold pen straight up and down at a 90 degree angle</li>
+            <li>Inject pen into your skin and hold for 10 seconds</li>
+            <li>Place outer needle cover on needle and turn counter clockwise to remove</li>
+            <li>Discard needle in appropriate sharps container</li>
+        </ul>
         <ul>
-            <li>ALWAYS prime the pen (2 units air shot) with each injection, not just the first time you use the pen.</li>
+            <li>ALWAYS prime the pen (2 units air shot) with each injection, not just the first time you use the pen.
+            </li>
             <li> ALWAYS hold injection in for 10 seconds after you have injected the full dose.</li>
         </ul>
     </div>
     <div>
-        <h3>With a syringe and vial.</h3>
+        <h3>With a syringe and vial</h3>
         <ul class="uk-list uk-list-bullet">
             <li> How to Draw Up an Insulin Syringe | Cincinnati Children's - <span><a
                     href="https://www.youtube.com/watch?v=4s5KO1n97GU">YouTube- Demo Video.</a></span>
             </li>
         </ul>
         <div class="uk-position-relative">
-            <iframe id="i-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            <iframe id="i-frame"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     src="https://www.youtube.com/embed/4s5KO1n97GU"
                     height="300"
                     class="uk-width-1-1">
@@ -54,21 +68,21 @@
         </ul>
     </div>
     <div>
-        <h3>Site rotation.</h3>
+        <h3>Site rotation</h3>
         <ul class="uk-list uk-list-bullet">
-            <li>Sites to use abdomen, buttocks, arms, thighs. See page 18 of green book!.</li>
+            <li>Sites to give insulin include abdomen, buttocks, arms, and thighs.</li>
             <li>Importance of site rotation- improve insulin action, decreases scar tissue.</li>
-            <li>Rotate the site where you give shots each time. If not, your body might make scar tissue under the skin and insulin may not be absorbed as well as it should and your blood sugar may remain elevated!</li>
+            <li>Rotate the site where you give shots each time. If not, your body might make scar tissue under the skin
+                and insulin may not be absorbed as well as it should and your blood sugar may remain elevated!
+            </li>
         </ul>
         <img alt="glucose"
              class="uk-responsive-width uk-margin-small"
              src="insulin.png">
     </div>
     <div class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom">
-            <a class="uk-button" href="next">Next</a>
-        </div>
-    <div>
-
+        <a class="uk-button" href="next">Next</a>
+    </div>
 </div>
 </body>
 <script>
@@ -77,4 +91,5 @@
         document.getElementById('loader').style.display = "none";
     }
 </script>
+<script src="uikit.js"></script>
 </html>

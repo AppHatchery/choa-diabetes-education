@@ -49,13 +49,13 @@ class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
         orientationHeaderView.titleLabel.text = "Medical Team"
         orientationHeaderView.subtitleLabel.text = "You are not alone!"
         
-        let agendaHeaderView = MedicalTeam(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 440))
-        scrollView.addSubview(agendaHeaderView)
-        y += 440
+        let medicalTeamView = MedicalTeam(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 480))
+        scrollView.addSubview(medicalTeamView)
+        y += 480
         
-        let orientationFooterView = OrientationFooter(frame: CGRect(x: 0, y: Int(contentFrame.height)-200, width: Int(contentFrame.width), height: 100), delegate: self)
+        let orientationFooterView = OrientationFooter(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 100), delegate: self)
         scrollView.addSubview(orientationFooterView)
-        y += 100
+        y += 200
         
         scrollView.contentSize = CGSize(width: Int(scrollView.frame.width), height: y)
     }

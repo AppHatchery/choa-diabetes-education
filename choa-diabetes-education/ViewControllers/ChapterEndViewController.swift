@@ -29,21 +29,22 @@ class ChapterEndViewController: UIViewController {
         case 0:
             if let chapterEndTitleIndex = ContentChapter().sectionOne.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
                 if chapterEndTitleIndex < ContentChapter().sectionOne.count-1 {
-                nextChapter = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentTitle
-                nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentHTML
+                    nextChapter = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentTitle
+                    nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
             }
         case 1:
             if let chapterEndTitleIndex = ContentChapter().sectionTwo.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
                 if chapterEndTitleIndex < ContentChapter().sectionTwo.count-1 {
-                nextChapter = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentTitle
-                nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentHTML
+                    nextChapter = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentTitle
+                    nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
                 //
-//                print(chapterEndTitleIndex)
-                if chapterEndTitleIndex != 0 {
+                //                print(chapterEndTitleIndex)
+                // Extra logic for section 2 with chapters that don't contain a quiz
+                if chapterEndTitleIndex == 1 || chapterEndTitleIndex == 3 {
                     quizLabel.isHidden = true
                     quizButton.isHidden = true
                 }

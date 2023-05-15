@@ -7,8 +7,8 @@
     <meta content="dark light" name="color-scheme">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Title</title>
-    <link rel="stylesheet" href="uikit.css">
-    <link rel="stylesheet" href="styles.css">
+    <link href="uikit.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <div class="uk-container">
@@ -20,71 +20,81 @@
     </div>
     <div>
         <h3>Rapid-acting insulin</h3>
-        <p>Rapid acting insulin (Humalog/Novolog/Ademelog/Fiasp)- needs to be calculated whenever your child eats and
-            when blood sugar is elevated at meal time and bedtime.</p>
-        <p>We need rapid acting insulin for two reasons for food and to correct a high blood sugar.</p>
+        <ul class="uk-list uk-list-bullet">
+            <li>Rapid acting insulin (Humalog/Novolog/Ademelog/Fiasp)- needs to be calculated whenever your child eats
+                carbohydrates and when blood sugar is elevated at meal time.
+            </li>
+            <li>We need rapid acting insulin for two reasons, carbohydrates and to correct a high blood sugar.</li>
+        </ul>
     </div>
     <div>
-        <h4>Insulin for food - carbohydrate coverage</h3>
-        <p>Foods with carbohydrates raise blood sugar and need insulin.There are two ways we can calculate insulin
-            needed for food, using a carb ratio or a set insulin dose. Your diabetes doctor will tell you which method
-            you’ll use to understand your insulin dose for food.</P>
+        <h5>Insulin for food</h5>
+        <p>Foods with carbohydrates raise blood sugar and need insulin.
+            There are two ways we can calculate insulin needed for food, using a carb ratio or a set insulin dose.
+            Your diabetes doctor will tell you which method you’ll use to understand your insulin dose for food.</P>
         <ul class="uk-list uk-list-decimal">
-            <li>Insulin to carbohydrate ratio:
+            <li><h5>Insulin to carbohydrate ratio</h5>
                 <ul class="uk-list uk-list-bullet">
                     <li>Knowledge of carb counting needed to accurately calculate dose.</li>
-                    <li>Gives increased flexibility and accuracy to give insulin based on child’s normal meal pattern.
+                    <li>Gives increased flexibility and accuracy to give insulin based on child’s normal meal pattern
                     </li>
                     <li>Your diabetes doctor will give you the ratio to use:
                         <ul class="uk-list uk-list-decimal">
-                            <li>unit of insulin for every ___ grams of carbohydrate in the meal/snack.</li>
-                            <li>Calculate carbs in meal and divide by ratio, see example below.</li>
-                            <li>Example: Insulin to carbohydrate ratio is 1 unit for every 10 grams of carbohydrate.
-                                Child is eating 30 grams of carbohydrate.
-                                1.1 unit for every 10 grams of carbohydrate for this meal=3 units of rapid acting
-                                insulin.
+                            <li>1 unit is given for every ___ grams of carbohydrate in the meal/snack</li>
+                            <li>Calculate carbs in meal and divide by ratio, see example below</li>
+                            <li>1 unit for every 10 grams of carbohydrate for this meal= 3 units of rapid acting
+                                insulin. For example, if a child is eating 30 grams of carbohydrate, you will take
+                                30/10= 3 units of rapid acting insulin.
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li>Set insulin dose for meals
-                <p>Some children take set doses of insulin for meals</p>
+            <li><h5>Set insulin dose for meals</h5>
+                <p>Some children take set doses of insulin for meals.</p>
                 <ul class="uk-list uk-list-bullet">
-                    <li>Your diabetes doctor will let you know how many units of insulin to take with each meal.</li>
+                    <li>Your diabetes doctor will let you know how many units of insulin to take with each meal</li>
                     <li>Sometimes the amount depends on size of meal (small meal, medium meal, etc.)</li>
-                    <li> The set dose is the same each time you eat that particular size meal</li>
-                    <li>Example: if set dose is 6 units for medium meal, you always give 6 units each time you eat that size meal.</li>
+                    <li>The set dose is the same each time you eat that particular size meal</li>
+                    <li>Example: if set dose is 6 units for medium meal, you always give 6 units each time you eat that
+                        size meal
+                    </li>
                 </ul>
             </li>
         </ul>
     </div>
     <div>
-        <h4>Insulin for blood sugar</h3>
-        <p>There are two ways insulin can be given to correct for high blood sugar -- correction factor/insulin
-            sensitivity and sliding scale. Your diabetes doctor will tell you which way is best for your family.</p>
+        <h5>Insulin for blood sugar</h5>
+        <p>There are two ways insulin can be calculated to correct for high blood sugar—correction factor/insulin
+            sensitivity and sliding scale.
+            Your diabetes doctor will tell you which way is best for your family.</p>
         <ul class="uk-list uk-list-decimal">
-            <li>Calculating correction dose based on correction formula and insulin sensitivity factor:
+            <li><h5>Calculating correction dose based on correction formula and insulin sensitivity factor:</h5>
                 <ul class="uk-list uk-list-bullet">
-                    <li>Gives most precise dosing for high blood sugars.</li>
-                    <li>Use for high blood sugars. Child’s diabetes doctor will set the blood sugar level where correction dosing needs to be given.</li>
-                    <li>If pre-meal blood sugar(BS) is over 150,take the BS reading and subtract 100. Then Divide whatis left by the correction factor, the result is the insulin needed to correct high BS</li>
-                    <br> <img src="correctionFormulaBox.png" alt="blood sugar correction formula"><br>
+                    <li>Gives most precise dosing for high blood sugars</li>
+                    <li>Use for high blood sugars. Child’s diabetes doctor will set the blood sugar level where
+                        correction dosing needs to be given
+                    </li>
+                    <li>If pre-meal blood sugar(BS) is over 150, take the BS reading and subtract target blood sugar of 100. Next, divide what is left by the correction factor. This calculation will give the units of insulin needed to correct high blood sugar
+                        <br> <br>
+                        <img src="correctionFormulaBox.png" alt="blood sugar">
+                        <br> <br>
+                    </li>
                     <li>Example: for blood sugar over 150, use formula (BG-100)/50
                         <ul class="uk-list uk-list-decimal">
-                            <li>Blood sugar is 300.</li>
-                            <li>(300-100) =200.</li>
+                            <li>Blood sugar is 300</li>
+                            <li>(300-100) =200</li>
                             <li>200/50= 4 units. Child is to take 4 units IN ADDITION to meal dose for high blood sugar
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li>Sliding scale dosing:
+            <li><h5>Sliding scale dosing</h5>
                 <ul class="uk-list uk-list-bullet">
-                    <li>Use for high blood sugars.</li>
+                    <li>Use for high blood sugars</li>
                     <li>Your diabetes doctor will tell you how much insulin to take for specific blood sugar ranges
-                        above target.
+                        above target
                     </li>
                     <li>Example:</li>
                 </ul>
@@ -95,10 +105,10 @@
              class="uk-responsive-width uk-margin-small"
              src="blood_units.png">
     </div>
+
     <div class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom">
-            <a class="uk-button" href="next">Next</a>
-        </div>
-    <div>
+        <a class="uk-button" href="next">Next</a>
+    </div>
 
 </div>
 

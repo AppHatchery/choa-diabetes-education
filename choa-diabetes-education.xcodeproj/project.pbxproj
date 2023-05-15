@@ -113,7 +113,6 @@
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
 		D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
 		D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
-		D4A511632982F55D0049A8D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4A511622982F55D0049A8D8 /* GoogleService-Info.plist */; };
 		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
 		D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
@@ -131,8 +130,9 @@
 		D4D48E9128D1123700820FD4 /* Communities.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48E9028D1123700820FD4 /* Communities.xib */; };
 		D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */; };
 		D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */; };
-		D4E4954A29B78D720016552D /* check-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954829B78D720016552D /* check-blood-sugar.png */; };
-		D4E4954B29B78D720016552D /* test-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954929B78D720016552D /* test-blood-sugar.png */; };
+		D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */; };
+		D4E4954B29B78D720016552D /* steps_to_test_blood_sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */; };
+		D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */; };
 		D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC906E28BFB9ED00CD2831 /* AppsView.swift */; };
 		D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EC907028BFB9F800CD2831 /* AppsView.xib */; };
 		D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */; };
@@ -251,7 +251,6 @@
 		D492A89B29088CA700B98CA3 /* Acme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Acme; sourceTree = "<group>"; };
 		D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Acme-Regular.ttf"; sourceTree = "<group>"; };
 		D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
-		D4A511622982F55D0049A8D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4C39B2828B7D9D7003CCA14 /* uikit.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = uikit.css; sourceTree = "<group>"; };
 		D4C39B2928B7D9D7003CCA14 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uikit-icons.js"; sourceTree = "<group>"; };
@@ -267,8 +266,9 @@
 		D4D48E9028D1123700820FD4 /* Communities.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Communities.xib; sourceTree = "<group>"; };
 		D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
-		D4E4954829B78D720016552D /* check-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-blood-sugar.png"; sourceTree = "<group>"; };
-		D4E4954929B78D720016552D /* test-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-blood-sugar.png"; sourceTree = "<group>"; };
+		D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = when_to_check_blood_sugar.png; sourceTree = "<group>"; };
+		D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps_to_test_blood_sugar.png; sourceTree = "<group>"; };
+		D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4EC906E28BFB9ED00CD2831 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		D4EC907028BFB9F800CD2831 /* AppsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsView.xib; sourceTree = "<group>"; };
 		D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterEndViewController.swift; sourceTree = "<group>"; };
@@ -318,8 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				D42E16C529CA15C6002D623E /* storage-of-insulin.png */,
-				D4E4954829B78D720016552D /* check-blood-sugar.png */,
-				D4E4954929B78D720016552D /* test-blood-sugar.png */,
+				D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */,
+				D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */,
 				D41D468E2984172300825100 /* additional_foods.png */,
 				D41D46892984172300825100 /* blood_units.png */,
 				D41D468F2984172300825100 /* correctionFormulaBox.png */,
@@ -511,7 +511,7 @@
 		D48D890B289C0095001A61E2 /* plists */ = {
 			isa = PBXGroup;
 			children = (
-				D4A511622982F55D0049A8D8 /* GoogleService-Info.plist */,
+				D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */,
 			);
 			path = plists;
 			sourceTree = "<group>";
@@ -620,7 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */,
-				D4E4954B29B78D720016552D /* test-blood-sugar.png in Resources */,
+				D4E4954B29B78D720016552D /* steps_to_test_blood_sugar.png in Resources */,
 				D42FA8FF29916B81009C51C3 /* AboutApp.xib in Resources */,
 				D4684AB4290B0B6600E7311B /* cheese_and_eggs.png in Resources */,
 				D48D891E289C1A30001A61E2 /* Gotham Rounded Bold.otf in Resources */,
@@ -653,7 +653,6 @@
 				D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */,
 				D42E16C629CA15C6002D623E /* storage-of-insulin.png in Resources */,
 				D48D8922289C1A30001A61E2 /* Gotham Rounded Medium.otf in Resources */,
-				D4A511632982F55D0049A8D8 /* GoogleService-Info.plist in Resources */,
 				D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */,
 				D4C39B3128B7DA22003CCA14 /* whatisdiabetes.html in Resources */,
 				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
@@ -696,8 +695,9 @@
 				D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */,
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
-				D4E4954A29B78D720016552D /* check-blood-sugar.png in Resources */,
+				D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
+				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
 				D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */,
 				D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */,
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
@@ -944,7 +944,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -981,7 +981,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

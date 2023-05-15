@@ -101,17 +101,32 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
             case 0:
                 contentURL = ContentChapter().sectionOne[indexPath.row].contentHTML
                 contentTitleURL = ContentChapter().sectionOne[indexPath.row].contentTitle
+                quizURL = indexPath.row
             case 1:
-                contentURL = ContentChapter().sectionTwo[indexPath.row].contentHTML
-                contentTitleURL = ContentChapter().sectionTwo[indexPath.row].contentTitle
+                // This extra logic only pertains to the second section because the two of the quizzes are empty
+                if segmentedControl.selectedSegmentIndex == 0 {
+                    contentURL = ContentChapter().sectionTwo[indexPath.row].contentHTML
+                    contentTitleURL = ContentChapter().sectionTwo[indexPath.row].contentTitle
+                    quizURL = indexPath.row
+                } else {
+                    contentURL = ContentChapter().sectionTwo.filter({$0.quizQuestions != [""] })[indexPath.row].contentHTML
+                    contentTitleURL = ContentChapter().sectionTwo.filter({$0.quizQuestions != [""] })[indexPath.row].contentTitle
+                    // Hacky way to get this working for the missing quizzes, to be refactored in after release
+                    if indexPath.row > 0 {
+                        quizURL = 2
+                    } else {
+                        quizURL = 0
+                    }
+                }
             case 2:
                 contentURL = ContentChapter().sectionThree[indexPath.row].contentHTML
                 contentTitleURL = ContentChapter().sectionThree[indexPath.row].contentTitle
+                quizURL = indexPath.row
             default:
                 print("ChapterIndex doesn't exist")
             }
         }
-        quizURL = indexPath.row
+//        quizURL = indexPath.row
         
         if segmentedControl.selectedSegmentIndex == 0 {
             performSegue(withIdentifier: "SegueToContentViewController", sender: nil )

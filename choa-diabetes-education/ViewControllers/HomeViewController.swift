@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
             quizContent = ContentChapter().sectionOne.count
         case 1:
             chapterContent = ContentChapter().sectionTwo.count
-            quizContent = 1 // Commenting this out and fixing it at 1 because this section only has 1 chapter ContentChapter().sectionTwo.count
+            quizContent = 2 // Commenting this out and fixing it at 1 because this section only has 1 chapter ContentChapter().sectionTwo.count
         case 2:
             chapterContent = ContentChapter().sectionThree.count
             quizContent = ContentChapter().sectionThree.count
