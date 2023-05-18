@@ -46,7 +46,7 @@ class QuotesView: UIView {
         nibView.bottomAnchor.constraint( equalTo: self.bottomAnchor ).isActive = true
         
         self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor(red: 163/255, green: 218/255, blue: 195/255, alpha: 1).cgColor
+        self.layer.borderColor = UIColor.quotesViewBorderColor.cgColor
         self.layer.cornerRadius = 15
         
         quoteContent.text = quoteContentLabel

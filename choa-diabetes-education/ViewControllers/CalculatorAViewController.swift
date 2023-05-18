@@ -62,7 +62,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             totalCarbs = Float(textField.text ?? "0") ?? 0
             print(totalCarbs)
             toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
-            carbLine.tintColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            carbLine.tintColor = UIColor.errorRedColor
         case 1:
             carbRatio = Float(textField.text ?? "0") ?? 0
             print(carbRatio)
@@ -82,7 +82,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             fieldLabel.textColor = UIColor.red
             errorMessage.isHidden = false
         } else {
-            errorLine.backgroundColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.contentBlackColor
             errorMessage.isHidden = true

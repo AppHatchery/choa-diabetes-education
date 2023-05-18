@@ -64,11 +64,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             if bloodSugar < 150 && bloodSugar != 0 {
                 bloodSugarAlertIcon.isHidden = false
                 bloodSugarAlert.isHidden = false
-                bloodSugarField.textColor = UIColor.init(red: 250/255, green: 153/255, blue: 0, alpha: 1.0)
+                bloodSugarField.textColor = UIColor.orangeTextColor
             } else {
                 bloodSugarAlertIcon.isHidden = true
                 bloodSugarAlert.isHidden = true
-                bloodSugarField.textColor = UIColor.calculatorGreenColor
+                bloodSugarField.textColor = UIColor.choaGreenColor
             }
             toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
         case 1:
@@ -98,7 +98,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             fieldLabel.textColor = UIColor.red
             errorMessage.isHidden = false
         } else {
-            errorLine.backgroundColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.contentBlackColor
             errorMessage.isHidden = true

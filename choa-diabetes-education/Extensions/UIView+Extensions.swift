@@ -29,7 +29,7 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0, height: 12)
         layer.shadowOpacity = 1.0
         layer.shadowRadius = 15.0
-        layer.shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0).cgColor
+        layer.shadowColor = UIColor.shadowColor.cgColor
     }
     
     func detailedDropShadow(color: CGColor, blur: CGFloat,offset: Int,opacity: Float){

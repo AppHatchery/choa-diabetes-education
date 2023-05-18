@@ -26,11 +26,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        diabetesBasicsButton.detailedDropShadow(color: UIColor(red: 1, green: 241/255, blue: 221/255, alpha: 1).cgColor, blur: 24.0,offset: 12,opacity: 1)
-        nutritionButton.detailedDropShadow(color: UIColor(red: 227/255, green: 253/255, blue: 242/255, alpha: 1).cgColor, blur: 24.0,offset: 12,opacity: 1)
-        managementButton.detailedDropShadow(color: UIColor(red: 1, green: 229/255, blue: 242/255, alpha: 1).cgColor, blur: 24.0,offset: 12,opacity: 1)
-        orientationView.detailedDropShadow(color: UIColor(red: 215/255, green: 240/255, blue: 223/255, alpha: 1.0).cgColor,blur: 12.0,offset: 8,opacity: 0.62)
-        orientationButton.detailedDropShadow(color: UIColor(red: 214/255, green: 243/255, blue: 227/255, alpha: 1).cgColor, blur: 12, offset: 6,opacity: 0.59)
+        diabetesBasicsButton.detailedDropShadow(color: UIColor.diabetesBasicsDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
+        nutritionButton.detailedDropShadow(color: UIColor.nutritionDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
+        managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
+        orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor,blur: 12.0,offset: 8,opacity: 0.62)
+        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6,opacity: 0.59)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

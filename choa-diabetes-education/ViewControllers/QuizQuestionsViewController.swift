@@ -202,7 +202,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                             let cell = tableView.cellForRow(at: IndexPath(row: wrongAnswer, section: 0)) as! QuizMultipleAnswerTableViewCell
                             cell.answerCheckbox.backgroundColor = UIColor.systemRed
                             cell.answerCheckbox.layer.borderColor = UIColor.systemRed.cgColor
-                            cell.answerBackground.backgroundColor = UIColor.init(red: 255/255, green: 232/255, blue: 225/255, alpha: 1.0)
+                            cell.answerBackground.backgroundColor = UIColor.lightPinkColor
                             cell.answerBackground.layer.borderColor = UIColor.systemRed.cgColor
                         }
                     // Step 3: tell the user there are more answers if they selected correct answers but they are missing some

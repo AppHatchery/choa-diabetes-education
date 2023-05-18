@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-qv-5WC">
-                    <rect key="frame" x="24" y="83" width="345" height="34"/>
+                    <rect key="frame" x="24" y="72" width="345" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="qoz-1I-oqL"/>
                     </constraints>
@@ -26,19 +26,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American Diabetes Association" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npK-xl-Mm7">
-                    <rect key="frame" x="24" y="383.66666666666669" width="345" height="22"/>
+                    <rect key="frame" x="24" y="372.5" width="345" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                     <color key="textColor" name="contentBlackColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBg-KZ-C08">
-                    <rect key="frame" x="24" y="566.66666666666663" width="345" height="22"/>
+                    <rect key="frame" x="24" y="541.5" width="345" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                     <color key="textColor" name="contentBlackColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgD-xb-aNi">
-                    <rect key="frame" x="24" y="122.99999999999999" width="345" height="240.66666666666663"/>
+                    <rect key="frame" x="24" y="112" width="345" height="240.5"/>
                     <string key="text">The content in the TypeU App has been created in conjunction with the Diabetes Education Team at Children’s Healthcare of Atlanta based off the Diabetes Education sessions for new onset patients. The educational content is informed by the 2023 Standards of Care in Diabetes that is regularly published by the American Diabetes Association.
 
 For more about the standards of care, click below.</string>
@@ -46,10 +46,10 @@ For more about the standards of care, click below.</string>
                     <color key="textColor" name="contentBlackColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-kL-dRQ">
-                    <rect key="frame" x="24" y="415.66666666666669" width="345" height="131.00000000000006"/>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-kL-dRQ">
+                    <rect key="frame" x="24" y="404.5" width="345" height="117"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="sNT-kL-dRQ" secondAttribute="height" multiplier="345:131" id="cOE-Z4-Xvy"/>
+                        <constraint firstAttribute="height" constant="117" id="RnI-PJ-3D6"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="AmericanDiabetesIcon"/>
@@ -58,13 +58,13 @@ For more about the standards of care, click below.</string>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79k-TZ-h6m">
-                    <rect key="frame" x="184" y="762" width="25" height="19.333333333333371"/>
+                    <rect key="frame" x="184" y="737" width="25" height="19.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.3411764706" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6av-R0-n8N">
-                    <rect key="frame" x="19" y="594.66666666666663" width="350" height="147.33333333333337"/>
+                    <rect key="frame" x="19" y="569.5" width="350" height="147.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <string key="text">For general inquiries about the TypeU App please email support@apphatchery.org. If you have Diabetes specific questions as a Children's Healthcare of Atlanta patient, please contact Anna Albritton at Anna.Albritton@choa.org</string>
                     <color key="textColor" name="contentBlackColor"/>
@@ -82,10 +82,10 @@ For more about the standards of care, click below.</string>
                 <constraint firstItem="79k-TZ-h6m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DdA-V2-LsS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" constant="24" id="KlR-Tm-KLG"/>
                 <constraint firstItem="sNT-kL-dRQ" firstAttribute="top" secondItem="npK-xl-Mm7" secondAttribute="bottom" constant="10" id="NkP-Wi-rLF"/>
+                <constraint firstItem="PBg-KZ-C08" firstAttribute="top" secondItem="sNT-kL-dRQ" secondAttribute="bottom" constant="20" id="Pb9-n7-oFK"/>
                 <constraint firstItem="sNT-kL-dRQ" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="PyA-5u-wME"/>
                 <constraint firstItem="79k-TZ-h6m" firstAttribute="top" secondItem="6av-R0-n8N" secondAttribute="bottom" constant="20" id="USO-Pf-Srq"/>
                 <constraint firstItem="fgD-xb-aNi" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="azz-Nx-hX1"/>
-                <constraint firstItem="PBg-KZ-C08" firstAttribute="top" secondItem="sNT-kL-dRQ" secondAttribute="bottom" constant="20" id="g1d-tU-gzH"/>
                 <constraint firstItem="npK-xl-Mm7" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="gK8-VR-U0B"/>
                 <constraint firstItem="PBg-KZ-C08" firstAttribute="leading" secondItem="fgD-xb-aNi" secondAttribute="leading" id="phq-oI-jky"/>
                 <constraint firstItem="npK-xl-Mm7" firstAttribute="top" secondItem="fgD-xb-aNi" secondAttribute="bottom" constant="20" id="qBT-a6-chQ"/>

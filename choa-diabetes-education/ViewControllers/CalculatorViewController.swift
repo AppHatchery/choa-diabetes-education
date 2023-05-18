@@ -39,7 +39,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         
         // Keyboard dismiss state
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+        customView.backgroundColor = UIColor.grayColor
         let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
         doneButton.setTitle( "Close", for: .normal )
         doneButton.setTitleColor( UIColor.systemBlue, for: .normal)

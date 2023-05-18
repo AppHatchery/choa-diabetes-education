@@ -24,9 +24,9 @@ class QuizAnswerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         if selected {
-            answerBackground.backgroundColor = UIColor(named: "answerSelectionColor")
+            answerBackground.backgroundColor = UIColor.answerSelectionColor
             answerBackground.layer.borderWidth = 2.0
-            answerBackground.layer.borderColor = UIColor(named: "choaGreenColor")?.cgColor
+            answerBackground.layer.borderColor = UIColor.choaGreenColor.cgColor
         } else {
             answerBackground.backgroundColor = UIColor.white
             answerBackground.layer.borderWidth = 0
