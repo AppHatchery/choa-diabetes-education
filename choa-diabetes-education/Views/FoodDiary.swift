@@ -24,28 +24,25 @@ class FoodDiary: UIView {
     @IBOutlet weak var foodsDontRaiseBloodSugarButton: UIButton!
     
     var delegate: FoodDiaryDelegate!
-
+    
     //------------------------------------------------------------------------------
-    init( frame: CGRect, delegate: FoodDiaryDelegate )
-    {
+    init( frame: CGRect, delegate: FoodDiaryDelegate ) {
         super.init( frame : frame )
         
         self.delegate = delegate
-    
+        
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
         
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    func customInit()
-    {
+    func customInit() {
         let nibView = Bundle.main.loadNibNamed( "FoodDiary", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         

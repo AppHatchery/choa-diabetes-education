@@ -11,10 +11,10 @@ class CalculatorHomeViewController: UIViewController {
     
     var insulinForHighBloodSugar = false
     var insulinForFood = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -34,26 +34,24 @@ class CalculatorHomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let calculatorAViewController = segue.destination as? CalculatorAViewController
-        {
+        if let calculatorAViewController = segue.destination as? CalculatorAViewController {
             calculatorAViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
             calculatorAViewController.insulinForFoodBoolean = insulinForFood
         }
-        if let calculatorBViewController = segue.destination as? CalculatorBViewController
-        {
+        if let calculatorBViewController = segue.destination as? CalculatorBViewController {
             calculatorBViewController.insulinForFoodBoolean = insulinForFood
             calculatorBViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

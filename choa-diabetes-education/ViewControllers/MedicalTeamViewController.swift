@@ -8,17 +8,17 @@
 import UIKit
 
 class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
-
+    
     @IBOutlet weak var contentView: UIView!
     
     var contentFrame: CGRect!
     var scrollView: UIScrollView!
     
     var sectionTitle: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -28,8 +28,7 @@ class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
         updateView()
     }
     
-    func updateView()
-    {
+    func updateView() {
         if scrollView != nil {
             scrollView.removeFromSuperview()
         }
@@ -38,16 +37,16 @@ class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
         
         scrollView = UIScrollView(frame: contentFrame)
         contentView.addSubview(scrollView)
-    
-    
+        
+        
         var y = 32
         
         let orientationHeaderView = OrientationHeader(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 260))
         scrollView.addSubview(orientationHeaderView)
         y += 260
         
-        orientationHeaderView.titleLabel.text = "Medical Team"
-        orientationHeaderView.subtitleLabel.text = "You are not alone!"
+        orientationHeaderView.titleLabel.text = "MedicalTeam.Title".localized()
+        orientationHeaderView.subtitleLabel.text = "MedicalTeam.subtitle".localized()
         
         let medicalTeamView = MedicalTeam(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 480))
         scrollView.addSubview(medicalTeamView)
@@ -59,7 +58,7 @@ class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
         
         scrollView.contentSize = CGSize(width: Int(scrollView.frame.width), height: y)
     }
-
+    
     func nextButton() {
         performSegue(withIdentifier: "SegueToQuotesViewController", sender: nil )
         

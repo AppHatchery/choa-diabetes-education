@@ -11,18 +11,16 @@ import UIKit
 class AppsView: UIView {
     
     @IBOutlet weak var seeAll: UIButton!
-
-    //------------------------------------------------------------------------------
-    override init( frame: CGRect )
-    {
-        super.init( frame : frame )
     
+    //------------------------------------------------------------------------------
+    override init( frame: CGRect ) {
+        super.init( frame : frame )
+        
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
         
         customInit()

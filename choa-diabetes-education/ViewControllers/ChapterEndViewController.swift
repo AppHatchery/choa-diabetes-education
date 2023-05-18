@@ -14,16 +14,20 @@ class ChapterEndViewController: UIViewController {
     @IBOutlet weak var quizLabel: UILabel!
     @IBOutlet weak var quizButton: UIView!
     
+    @IBOutlet weak var congratsLabel: UILabel!
+    @IBOutlet weak var congratsMessage: UILabel!
+    
     var contentIndex = 0
     var chapterEndTitle = ""
     var nextChapter = ""
     var nextChapterURL = ""
     var quizIndex = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nextChapterButton.detailedDropShadow(color: UIColor(red: 232/255, green: 248/255, blue: 239/255, alpha: 1).cgColor, blur: 16, offset: 8,opacity: 1)
+        congratsLabel.text = "Congrats".localized()
+        congratsMessage.text = "Result.Chapter.End".localized()
+        nextChapterButton.detailedDropShadow(color: UIColor.errorRedColor.cgColor, blur: 16, offset: 8, opacity: 1)
         
         switch contentIndex {
         case 0:
@@ -52,8 +56,8 @@ class ChapterEndViewController: UIViewController {
         case 2:
             if let chapterEndTitleIndex = ContentChapter().sectionThree.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
                 if chapterEndTitleIndex < ContentChapter().sectionThree.count-1 {
-                nextChapter = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentTitle
-                nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentHTML
+                    nextChapter = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentTitle
+                    nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
             }
@@ -81,7 +85,7 @@ class ChapterEndViewController: UIViewController {
     @IBAction func nextChapter(_ sender: UIButton){
         performSegue(withIdentifier: "SegueToChapterViewController", sender: nil)
     }
-
+    
     @IBAction func launchQuiz(_ sender: UIButton){
         performSegue(withIdentifier: "SegueToQuizIntroViewController", sender: nil)
     }
@@ -98,14 +102,12 @@ class ChapterEndViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let chapterViewController = segue.destination as? ChapterViewController
-        {
+        if let chapterViewController = segue.destination as? ChapterViewController {
             chapterViewController.contentIndex = contentIndex
             chapterViewController.contentURL = nextChapterURL
             chapterViewController.titleURL = nextChapter
         }
-        if let quizViewController = segue.destination as? QuizIntroViewController
-        {
+        if let quizViewController = segue.destination as? QuizIntroViewController {
             quizViewController.quizSubchapter = quizIndex
             quizViewController.quizChapter = contentIndex
             quizViewController.quizTitle = chapterEndTitle

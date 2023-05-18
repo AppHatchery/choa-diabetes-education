@@ -34,10 +34,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         for txtField in textFieldCollection {
             txtField.delegate = self
         }
@@ -55,7 +55,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-
+        
         print("text field ended editing")
         switch textField.tag {
         case 0:
@@ -64,11 +64,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             if bloodSugar < 150 && bloodSugar != 0 {
                 bloodSugarAlertIcon.isHidden = false
                 bloodSugarAlert.isHidden = false
-                bloodSugarField.textColor = UIColor.init(red: 250/255, green: 153/255, blue: 0, alpha: 1.0)
+                bloodSugarField.textColor = UIColor.orangeTextColor
             } else {
                 bloodSugarAlertIcon.isHidden = true
                 bloodSugarAlert.isHidden = true
-                bloodSugarField.textColor = UIColor.calculatorGreenColor
+                bloodSugarField.textColor = UIColor.choaGreenColor
             }
             toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
         case 1:
@@ -84,11 +84,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         }
         
         errorMessage.isHidden = true
-//        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
-//            nextButton.isEnabled = true
-//        } else {
-//            nextButton.isEnabled = false
-//        }
+        //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
+        //            nextButton.isEnabled = true
+        //        } else {
+        //            nextButton.isEnabled = false
+        //        }
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -98,7 +98,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             fieldLabel.textColor = UIColor.red
             errorMessage.isHidden = false
         } else {
-            errorLine.backgroundColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.contentBlackColor
             errorMessage.isHidden = true
@@ -112,18 +112,18 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             // Go to next page
             performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
         }
-        else if (bloodSugar != 0 && targetBloodSugar != 0 ){
+        else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
             // CarbRatio is not there
-            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Please enter a Correction Factor")
-        } else if (bloodSugar != 0 && correctionFactor != 0){
+            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+        } else if (bloodSugar != 0 && correctionFactor != 0) {
             // Target BG is not there
-            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Please enter your target blood sugar (it may be 100 during the day and 150 at night)")
-        } else if (targetBloodSugar != 0 && correctionFactor != 0){
+            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+        } else if (targetBloodSugar != 0 && correctionFactor != 0) {
             // BG is not there
-            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Please enter your blood sugar")
+            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
             bloodSugarAlertIcon.isHidden = true
         } else {
-            errorMessage.text = "Please enter the missing information"
+            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
             errorMessage.isHidden = false
         }
     }
@@ -175,7 +175,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
+        // move back the root view origin to zero
         print("hide")
         view.frame.origin.y = 0
     }
@@ -200,15 +200,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

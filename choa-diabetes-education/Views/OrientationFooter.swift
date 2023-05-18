@@ -17,28 +17,22 @@ class OrientationFooter: UIView {
     var delegate: OrientationFooterDelegate!
     
     @IBOutlet weak var nextButton: UIButton!
-
+    
     //------------------------------------------------------------------------------
-    init( frame: CGRect,delegate: OrientationFooterDelegate )
-    {
+    init( frame: CGRect,delegate: OrientationFooterDelegate ) {
         super.init( frame : frame )
-        
         self.delegate = delegate
-    
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
-        
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    func customInit()
-    {
+    func customInit() {
         let nibView = Bundle.main.loadNibNamed( "OrientationFooter", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         
@@ -51,7 +45,7 @@ class OrientationFooter: UIView {
         
         nextButton.dropShadow()
     }
-
+    
     @IBAction func nextButtonPressed(_ sender: Any){
         delegate.nextButton()
     }

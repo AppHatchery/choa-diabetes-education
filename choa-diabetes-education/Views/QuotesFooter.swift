@@ -13,32 +13,29 @@ protocol QuotesFooterDelegate
 }
 
 class QuotesFooter: UIView {
-
+    
     var delegate: QuotesFooterDelegate!
     
     @IBOutlet weak var doneButton: UIButton!
-
+    
     //------------------------------------------------------------------------------
-    init( frame: CGRect,delegate: QuotesFooterDelegate )
-    {
+    init( frame: CGRect,delegate: QuotesFooterDelegate ) {
         super.init( frame : frame )
         
         self.delegate = delegate
-    
+        
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
         
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    func customInit()
-    {
+    func customInit() {
         let nibView = Bundle.main.loadNibNamed( "QuotesFooter", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         
@@ -52,7 +49,7 @@ class QuotesFooter: UIView {
         doneButton.dropShadow()
         
     }
-
+    
     @IBAction func doneButtonPressed(_ sender: Any){
         delegate.doneButton()
     }

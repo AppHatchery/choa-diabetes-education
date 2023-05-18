@@ -29,7 +29,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     var quizSubchapter = 0
     
     var userAnswerArray = [Int]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,10 +81,10 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             quizWindowHeight.constant -= 80
         }
         
-//        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
-//            nextButton.setTitle("Done", for: .normal)
-//        }
-
+        //        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
+        //            nextButton.setTitle("Done", for: .normal)
+        //        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -97,35 +97,31 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if correctAnswer.count > 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "multipleChoiceCell", for: indexPath) as! QuizMultipleAnswerTableViewCell
-            
             cell.layer.cornerRadius = 10
             cell.answerLabel.text = answerArray[indexPath.row]
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
-            
             cell.layer.cornerRadius = 10
             cell.answerLabel.text = answerArray[indexPath.row]
             
             return cell
         }
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
-                            
-//        cell.layer.cornerRadius = 10
-//        cell.answerLabel.text = answerArray[indexPath.row]
+        //        var cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
         
-//        return cell
+        //        cell.layer.cornerRadius = 10
+        //        cell.answerLabel.text = answerArray[indexPath.row]
+        
+        //        return cell
     }
     
     // This will likely change to be button actionable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if correctAnswer.count > 1 {
             let cell = tableView.cellForRow(at: indexPath) as! QuizMultipleAnswerTableViewCell
-            
             cell.setSelected(true, animated: true)
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
-            
             cell.setSelected(true, animated: true)
         }
         
@@ -177,35 +173,34 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                 answerString.removeLast(2)
                 
                 if orderedArray == correctAnswer {
-//                    answerFeedback.isHidden = false
+                    //                    answerFeedback.isHidden = false
                     
-                    answerTitle.text = "Answer \(answerString)"
+                    answerTitle.text = "Answer".localized() + " \(answerString)"
                     answerIcon.image = UIImage(named: "correctIcon")
-                    answerButton.setTitle("Done", for: .normal)
+                    answerButton.setTitle("Done".localized(), for: .normal)
                     
                     PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"correct"])
-                    
                     showAnswer()
                 } else {
                     //                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
-                    answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                    answerTitle.text = String(format: "Result.Quiz.IncorrectAnswers".localized(), answerString)
                     
                     PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"incorrect","selected-answers":orderedArray])
                     
                     // Logic for answers that are wrong
                     if correctAnswer.count > 1 {
-                    // Step 1: Check users answers
+                        // Step 1: Check users answers
                         let wrongAnswers = orderedArray.filter{!correctAnswer.contains($0)}
-                    // Step 2: Mark as wrong the users answers that are wrong
+                        // Step 2: Mark as wrong the users answers that are wrong
                         for wrongAnswer in wrongAnswers {
                             let cell = tableView.cellForRow(at: IndexPath(row: wrongAnswer, section: 0)) as! QuizMultipleAnswerTableViewCell
                             cell.answerCheckbox.backgroundColor = UIColor.systemRed
                             cell.answerCheckbox.layer.borderColor = UIColor.systemRed.cgColor
-                            cell.answerBackground.backgroundColor = UIColor.init(red: 255/255, green: 232/255, blue: 225/255, alpha: 1.0)
+                            cell.answerBackground.backgroundColor = UIColor.lightPinkColor
                             cell.answerBackground.layer.borderColor = UIColor.systemRed.cgColor
                         }
-                    // Step 3: tell the user there are more answers if they selected correct answers but they are missing some
+                        // Step 3: tell the user there are more answers if they selected correct answers but they are missing some
                         if wrongAnswers.count == 0 {
                             multipleAnswersErrorLabel.isHidden = false
                         } else {
@@ -219,23 +214,21 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-
             let navigationController = self.navigationController
-
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    func showAnswer(){
+    func showAnswer() {
         answerTitle.isHidden = false
         answerIcon.isHidden = false
     }
     
-    func resetUIelements(){
+    func resetUIelements() {
         answerIcon.isHidden = true
         answerTitle.isHidden = true
         multipleAnswersErrorLabel.isHidden = true
-        answerButton.setTitle("Submit", for: .normal)
+        answerButton.setTitle("Submit".localized(), for: .normal)
     }
     
     @IBAction func nextQuestion(_ sender: UIButton){
@@ -247,18 +240,14 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-
             let navigationController = self.navigationController
-
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "quiz") as! QuizQuestionsViewController
             
             vc.quizNumber += 1
-
             let navigationController = self.navigationController
-
             navigationController?.pushViewController(vc, animated: true)
         }
     }

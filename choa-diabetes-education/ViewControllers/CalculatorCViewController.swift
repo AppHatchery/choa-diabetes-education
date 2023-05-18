@@ -9,7 +9,7 @@ import UIKit
 import Pendo
 
 class CalculatorCViewController: UIViewController {
-
+    
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var insulinForBloodSugar: UILabel!
     @IBOutlet weak var totalInsulin: UILabel!
@@ -25,7 +25,7 @@ class CalculatorCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         calculateInsulin()
         // Do any additional setup after loading the view.
     }
@@ -56,7 +56,7 @@ class CalculatorCViewController: UIViewController {
         print("calculate insulin")
         PendoManager.shared().track("Calculator_results", properties: ["total":totalInsulin.text ?? "-","for_food":insulinForFood.text ?? "-","for_hbs":insulinForBloodSugar.text ?? "-"])
     }
-
+    
     func roundToOneDecimal(value: Float)-> Float {
         return (round(value*10)/10.0)
     }
@@ -69,5 +69,4 @@ class CalculatorCViewController: UIViewController {
             }
         }
     }
-
 }
