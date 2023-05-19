@@ -8,7 +8,7 @@
 import UIKit
 
 class AboutApp: UIView {
-    
+
     @IBOutlet weak var aboutTitle: UILabel!
     @IBOutlet weak var americanDiabetesTitle: UILabel!
     @IBOutlet weak var supportTitle: UILabel!
