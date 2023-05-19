@@ -8,7 +8,7 @@
 import UIKit
 
 class AboutViewController: UIViewController {
-
+    
     @IBOutlet weak var contentView: UIView!
     
     var scrollView: UIScrollView!
@@ -20,8 +20,7 @@ class AboutViewController: UIViewController {
         updateView()
     }
     
-    func updateView()
-    {
+    func updateView() {
         if scrollView != nil {
             scrollView.removeFromSuperview()
         }

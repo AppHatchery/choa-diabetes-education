@@ -16,10 +16,10 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
     var webViewTopConstraint: NSLayoutConstraint!
     
     var contentURL = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Create WebView Content
         let config = WKWebViewConfiguration()
         
@@ -53,7 +53,7 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
     
     //--------------------------------------------------------------------------------------------------
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-                
+        
         if let urlHeader = webView.url?.absoluteString, urlHeader.hasPrefix("file:///"){
             
             // Could potentially replace this with just the link to the file rather than having to convert it to string, save some computational power
@@ -74,5 +74,5 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
         preferences.preferredContentMode = .mobile
         decisionHandler(.allow,preferences)
     }
-
+    
 }

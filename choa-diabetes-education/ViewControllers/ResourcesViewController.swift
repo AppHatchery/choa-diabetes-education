@@ -15,10 +15,10 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
     var contentFrame: CGRect!
     var contentURL = ""
     var contentTitle = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -38,8 +38,8 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
         
         scrollView = UIScrollView(frame: contentFrame)
         contentView.addSubview(scrollView)
-    
-    
+        
+        
         var y = 0
         
         let recommendedAppsView = AppsView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 295))
@@ -106,7 +106,7 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
             //
             appURL = URL(string: "https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718")
         default:
-        // Error
+            // Error
             print("there was an error loading the url")
         }
         UIApplication.shared.open(appURL!)

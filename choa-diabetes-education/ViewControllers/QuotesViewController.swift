@@ -15,10 +15,10 @@ class QuotesViewController: UIViewController,QuotesFooterDelegate {
     var scrollView: UIScrollView!
     
     var sectionTitle: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -28,8 +28,7 @@ class QuotesViewController: UIViewController,QuotesFooterDelegate {
         updateView()
     }
     
-    func updateView()
-    {
+    func updateView() {
         if scrollView != nil {
             scrollView.removeFromSuperview()
         }
@@ -38,8 +37,7 @@ class QuotesViewController: UIViewController,QuotesFooterDelegate {
         
         scrollView = UIScrollView(frame: contentFrame)
         contentView.addSubview(scrollView)
-    
-    
+        
         var y = 32
         
         let orientationHeaderView = OrientationHeader(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 280))

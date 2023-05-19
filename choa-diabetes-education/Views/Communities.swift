@@ -9,17 +9,17 @@ import UIKit
 
 class Communities: UIView {
     
-//    @IBOutlet weak var strong4lifeButton: UIButton!
-//    @IBOutlet weak var jdrfButton: UIButton!
-//    @IBOutlet weak var campkudzeButton: UIButton!
+    //    @IBOutlet weak var strong4lifeButton: UIButton!
+    //    @IBOutlet weak var jdrfButton: UIButton!
+    //    @IBOutlet weak var campkudzeButton: UIButton!
     
     var url: URL!
-
+    
     //------------------------------------------------------------------------------
     override init( frame: CGRect )
     {
         super.init( frame : frame )
-    
+        
         customInit()
     }
     
@@ -62,5 +62,5 @@ class Communities: UIView {
         }
         UIApplication.shared.open(url!)
     }
-
+    
 }

@@ -22,10 +22,10 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
     var contentTitleURL = ""
     var quizURL = 0
     var quizChapter = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ChapterListTableViewCell", bundle: nil), forCellReuseIdentifier: "chapterCell")
@@ -39,7 +39,7 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
     }
     
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentedControl.selectedSegmentIndex == 0 {
             // it's a chapter list
@@ -57,15 +57,15 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if segmentedControl.selectedSegmentIndex == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "chapterCell", for: indexPath) as! ChapterListTableViewCell
-                        
+            
             // In progress, when toggling there is a bug where some segments disappear, something to do with the indexpath
-            if chapterName == ContentChapter().sectionTitles[0]{
+            if chapterName == ContentChapter().sectionTitles[0] {
                 cell.cardTitle.text = ContentChapter().sectionOne[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionOne[indexPath.row].contentSubheader
-            } else if chapterName == ContentChapter().sectionTitles[1]{
+            } else if chapterName == ContentChapter().sectionTitles[1] {
                 cell.cardTitle.text = ContentChapter().sectionTwo[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionTwo[indexPath.row].contentSubheader
-            } else if chapterName == ContentChapter().sectionTitles[2]{
+            } else if chapterName == ContentChapter().sectionTitles[2] {
                 cell.cardTitle.text = ContentChapter().sectionThree[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionThree[indexPath.row].contentSubheader
             }
@@ -126,7 +126,7 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
                 print("ChapterIndex doesn't exist")
             }
         }
-//        quizURL = indexPath.row
+        //        quizURL = indexPath.row
         
         if segmentedControl.selectedSegmentIndex == 0 {
             performSegue(withIdentifier: "SegueToContentViewController", sender: nil )
@@ -139,22 +139,18 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func toggleListView(_ sender: UISegmentedControl) {
         tableView.reloadData()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let chapterViewController = segue.destination as? ChapterViewController
-        {
+        if let chapterViewController = segue.destination as? ChapterViewController {
             chapterViewController.contentURL = contentURL
             chapterViewController.titleURL = contentTitleURL
             chapterViewController.contentIndex = quizChapter
         }
-        if let quizViewController = segue.destination as? QuizIntroViewController
-        {
+        if let quizViewController = segue.destination as? QuizIntroViewController {
             quizViewController.quizSubchapter = quizURL
             quizViewController.quizChapter = quizChapter
             quizViewController.quizTitle = contentTitleURL
         }
     }
-
 }

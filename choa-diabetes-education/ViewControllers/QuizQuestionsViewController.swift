@@ -29,7 +29,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     var quizSubchapter = 0
     
     var userAnswerArray = [Int]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,10 +81,10 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             quizWindowHeight.constant -= 80
         }
         
-//        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
-//            nextButton.setTitle("Done", for: .normal)
-//        }
-
+        //        if (quizNumber == ContentChapter().sectionOne[0].quizQuestions.count-1){
+        //            nextButton.setTitle("Done", for: .normal)
+        //        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -109,12 +109,12 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
         }
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
-                            
-//        cell.layer.cornerRadius = 10
-//        cell.answerLabel.text = answerArray[indexPath.row]
+        //        var cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
         
-//        return cell
+        //        cell.layer.cornerRadius = 10
+        //        cell.answerLabel.text = answerArray[indexPath.row]
+        
+        //        return cell
     }
     
     // This will likely change to be button actionable
@@ -177,7 +177,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                 answerString.removeLast(2)
                 
                 if orderedArray == correctAnswer {
-//                    answerFeedback.isHidden = false
+                    //                    answerFeedback.isHidden = false
                     
                     answerTitle.text = "Answer \(answerString)"
                     answerIcon.image = UIImage(named: "correctIcon")
@@ -195,9 +195,9 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                     
                     // Logic for answers that are wrong
                     if correctAnswer.count > 1 {
-                    // Step 1: Check users answers
+                        // Step 1: Check users answers
                         let wrongAnswers = orderedArray.filter{!correctAnswer.contains($0)}
-                    // Step 2: Mark as wrong the users answers that are wrong
+                        // Step 2: Mark as wrong the users answers that are wrong
                         for wrongAnswer in wrongAnswers {
                             let cell = tableView.cellForRow(at: IndexPath(row: wrongAnswer, section: 0)) as! QuizMultipleAnswerTableViewCell
                             cell.answerCheckbox.backgroundColor = UIColor.systemRed
@@ -205,7 +205,7 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                             cell.answerBackground.backgroundColor = UIColor.lightPinkColor
                             cell.answerBackground.layer.borderColor = UIColor.systemRed.cgColor
                         }
-                    // Step 3: tell the user there are more answers if they selected correct answers but they are missing some
+                        // Step 3: tell the user there are more answers if they selected correct answers but they are missing some
                         if wrongAnswers.count == 0 {
                             multipleAnswersErrorLabel.isHidden = false
                         } else {
@@ -219,9 +219,9 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-
+            
             let navigationController = self.navigationController
-
+            
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -247,18 +247,18 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-
+            
             let navigationController = self.navigationController
-
+            
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "quiz") as! QuizQuestionsViewController
             
             vc.quizNumber += 1
-
+            
             let navigationController = self.navigationController
-
+            
             navigationController?.pushViewController(vc, animated: true)
         }
     }

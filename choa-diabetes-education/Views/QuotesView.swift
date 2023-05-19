@@ -14,27 +14,24 @@ class QuotesView: UIView {
     
     var quoteContentLabel = ""
     var quoteNameLabel = ""
-
-    init( frame: CGRect, quoteContent: String, quoteName: String )
-    {
-        super.init( frame : frame )
     
+    init( frame: CGRect, quoteContent: String, quoteName: String ) {
+        super.init( frame : frame )
+        
         quoteContentLabel = quoteContent
         quoteNameLabel = quoteName
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
         
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    func customInit()
-    {
+    func customInit() {
         let nibView = Bundle.main.loadNibNamed( "QuotesView", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         
@@ -50,7 +47,6 @@ class QuotesView: UIView {
         self.layer.cornerRadius = 15
         
         quoteContent.text = quoteContentLabel
-        quoteName.text = quoteNameLabel        
+        quoteName.text = quoteNameLabel
     }
-
 }

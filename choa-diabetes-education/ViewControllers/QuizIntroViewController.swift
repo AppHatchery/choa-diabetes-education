@@ -22,10 +22,10 @@ class QuizIntroViewController: UIViewController {
     var quizTitle = ""
     var quizQuestions = ""
     var beginQuiz = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         if !beginQuiz {
             splashTitle.text = "Congrats!"
@@ -56,12 +56,10 @@ class QuizIntroViewController: UIViewController {
             vc.quizSubchapter = quizSubchapter
             vc.quizChapter = quizChapter
             let navigationController = self.navigationController
-
             navigationController?.pushViewController(vc, animated: true)
-            
         } else {
             if let viewController = navigationController?.viewControllers.first(where: {$0 is HandbookViewController}) {
-                  navigationController?.popToViewController(viewController, animated: true)
+                navigationController?.popToViewController(viewController, animated: true)
             }
         }
     }

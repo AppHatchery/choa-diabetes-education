@@ -34,10 +34,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         for txtField in textFieldCollection {
             txtField.delegate = self
         }
@@ -55,7 +55,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-
+        
         print("text field ended editing")
         switch textField.tag {
         case 0:
@@ -84,11 +84,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         }
         
         errorMessage.isHidden = true
-//        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
-//            nextButton.isEnabled = true
-//        } else {
-//            nextButton.isEnabled = false
-//        }
+        //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
+        //            nextButton.isEnabled = true
+        //        } else {
+        //            nextButton.isEnabled = false
+        //        }
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -175,7 +175,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
+        // move back the root view origin to zero
         print("hide")
         view.frame.origin.y = 0
     }
@@ -200,15 +200,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

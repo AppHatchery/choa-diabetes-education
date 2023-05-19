@@ -76,7 +76,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         var htmlString = try! String(contentsOfFile: path).replacingOccurrences(of: "[\\s\n]+", with: " ", options: .regularExpression).trimmingCharacters(in: .whitespacesAndNewlines)
         print(htmlString)
         // This will remove the h3 headers from the search feature **IF THE HEADER CHANGES WE HAVE TO
-//        ADJUST THE CODE
+        //        ADJUST THE CODE
         htmlString = htmlString.replacingOccurrences(of: "<h3>.*?</h3>", with: "", options: .regularExpression, range: nil)
         print(htmlString)
         htmlString = htmlString.replacingOccurrences(of: "<.*?>", with: ". ", options: .regularExpression, range: nil)
@@ -101,7 +101,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
             } else {
                 delegate.moveSearchView(expansion: screenheight - fingerPosition - 50)
             }
-        }        
+        }
     }
     
     func displaySearchResults(){
@@ -149,60 +149,60 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
             isFiltering = false
             tableView.reloadData()
         }
-            
-            /*
-            // Method A: TB Reference Guide Style
-            // Step 1: Discover how many instances of the term
-            let contentArrayed = searchContent.split(separator: " ")
-            let contentArrayed2 = searchContent.split(separator: ".")
-            print(contentArrayed2)
-            let resultsCount = contentArrayed.filter({$0.lowercased() == "insulin"}).count
-            print(resultsCount)
-            
-            // Step 2: Get indexes of the term
-            var searchIndexes = [Int]()
-            var firstIndex = 0
-            for _ in 0...resultsCount-1 {
-                if let termIndex = contentArrayed[firstIndex...contentArrayed.count-1].firstIndex(where: { $0.lowercased() == "insulin"}) {
-                    searchIndexes.append(termIndex)
-                    firstIndex = termIndex+1
-                }
-            }
-            print(searchIndexes)
-            
-            // Step 3: Get indexes of EOFs surrounding the search term
-            let eofsCount = contentArrayed.filter({$0.lowercased().contains(".")}).count
-            var eofsIndexes = [Int]()
-            var eofsSurroundingSearchIndex = [[Int]]()
-            firstIndex = 0
-            var firstSearchIndex = 0
-            for _ in 0...eofsCount-1 {
-                if let termIndex = contentArrayed[firstIndex...contentArrayed.count-1].firstIndex(where: { $0.lowercased().contains(".")}) {
-                    eofsIndexes.append(termIndex)
-                    firstIndex = termIndex+1
-                    if termIndex > searchIndexes[firstSearchIndex] {
-                        eofsSurroundingSearchIndex.append([eofsIndexes[eofsIndexes.count-2]+1,termIndex])
-                        firstSearchIndex += 1
-                    }
-                }
-            }
-            print(eofsIndexes)
-            print(eofsSurroundingSearchIndex)
-            
-            // Step 4: Get each sentence containig the search term
-            for i in 0...searchIndexes.count-1 {
-                print(contentArrayed[eofsSurroundingSearchIndex[i][0]...eofsSurroundingSearchIndex[i][1]].joined(separator: " "))
-            }
-            
-            
-            // Step 4: Assign each to an entry in a TableView
-             */
+        
+        /*
+         // Method A: TB Reference Guide Style
+         // Step 1: Discover how many instances of the term
+         let contentArrayed = searchContent.split(separator: " ")
+         let contentArrayed2 = searchContent.split(separator: ".")
+         print(contentArrayed2)
+         let resultsCount = contentArrayed.filter({$0.lowercased() == "insulin"}).count
+         print(resultsCount)
+         
+         // Step 2: Get indexes of the term
+         var searchIndexes = [Int]()
+         var firstIndex = 0
+         for _ in 0...resultsCount-1 {
+         if let termIndex = contentArrayed[firstIndex...contentArrayed.count-1].firstIndex(where: { $0.lowercased() == "insulin"}) {
+         searchIndexes.append(termIndex)
+         firstIndex = termIndex+1
+         }
+         }
+         print(searchIndexes)
+         
+         // Step 3: Get indexes of EOFs surrounding the search term
+         let eofsCount = contentArrayed.filter({$0.lowercased().contains(".")}).count
+         var eofsIndexes = [Int]()
+         var eofsSurroundingSearchIndex = [[Int]]()
+         firstIndex = 0
+         var firstSearchIndex = 0
+         for _ in 0...eofsCount-1 {
+         if let termIndex = contentArrayed[firstIndex...contentArrayed.count-1].firstIndex(where: { $0.lowercased().contains(".")}) {
+         eofsIndexes.append(termIndex)
+         firstIndex = termIndex+1
+         if termIndex > searchIndexes[firstSearchIndex] {
+         eofsSurroundingSearchIndex.append([eofsIndexes[eofsIndexes.count-2]+1,termIndex])
+         firstSearchIndex += 1
+         }
+         }
+         }
+         print(eofsIndexes)
+         print(eofsSurroundingSearchIndex)
+         
+         // Step 4: Get each sentence containig the search term
+         for i in 0...searchIndexes.count-1 {
+         print(contentArrayed[eofsSurroundingSearchIndex[i][0]...eofsSurroundingSearchIndex[i][1]].joined(separator: " "))
+         }
+         
+         
+         // Step 4: Assign each to an entry in a TableView
+         */
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         delegate.moveSearchToBottom()
     }
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             print(searchResults.count)
@@ -212,7 +212,7 @@ class SearchView: UIView, UISearchBarDelegate, UITableViewDelegate, UITableViewD
         }
     }
     
-    func checkForEmptyResults(){
+    func checkForEmptyResults() {
         if searchResults.count == 0 {
             noResultsLabel.isHidden = false
         } else {

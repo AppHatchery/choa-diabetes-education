@@ -8,26 +8,21 @@
 import UIKit
 
 class AgendaView: UIView {
-
+    
     //------------------------------------------------------------------------------
-    override init( frame: CGRect )
-    {
+    override init( frame: CGRect ) {
         super.init( frame : frame )
-    
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    required init?( coder aDecoder: NSCoder )
-    {
+    required init?( coder aDecoder: NSCoder ) {
         super.init( coder : aDecoder )
-        
         customInit()
     }
     
     //------------------------------------------------------------------------------
-    func customInit()
-    {
+    func customInit() {
         let nibView = Bundle.main.loadNibNamed( "AgendaView", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         

@@ -22,10 +22,10 @@ class HomeViewController: UIViewController {
     var chapterSubName = ""
     
     let halloweenMessage = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         diabetesBasicsButton.detailedDropShadow(color: UIColor.diabetesBasicsDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
         nutritionButton.detailedDropShadow(color: UIColor.nutritionDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
         managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
@@ -34,15 +34,13 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let orientationViewController = segue.destination as? OrientationViewController
-        {
+        if let orientationViewController = segue.destination as? OrientationViewController {
             // since we now know the contentView frame, pass it down so that the next controller will know it before viewDidAppear
             orientationViewController.contentFrame =
             self.view.bounds
-//            print(self.view.safeAreaInsets)
+            //            print(self.view.safeAreaInsets)
         }
-        if let handbookViewController = segue.destination as? HandbookViewController
-        {
+        if let handbookViewController = segue.destination as? HandbookViewController {
             handbookViewController.chapterName = chapterName
             handbookViewController.chapterSubName = chapterSubName
             handbookViewController.chapterContent = chapterContent
@@ -81,6 +79,6 @@ class HomeViewController: UIViewController {
             performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
         }
         
-//        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
+        //        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
     }
 }

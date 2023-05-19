@@ -15,18 +15,17 @@ class ChapterListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardTitle: UILabel!
     @IBOutlet weak var cardSubtitle: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.selectionStyle = .none
         self.backgroundColor = .clear
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    
 }
