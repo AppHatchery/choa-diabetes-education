@@ -33,8 +33,8 @@ class HomeViewController: UIViewController {
         orientationTitleLabel.text = "Home.Orientation.Title".localized()
         orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
         
-        let subtitleFont =  UIFont.gothamRoundedBold
-        let titleFont =  UIFont.avenirLight
+        let subtitleFont =  UIFont.gothamRoundedBold16
+        let titleFont =  UIFont.avenirLight14
         
         let diabetesBasicsButtonTitle = NSAttributedString(string: "Home.SectionOne.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
         let nutritionButtonTitle = NSAttributedString(string: "Home.SectionTwo.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
@@ -68,8 +68,7 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let orientationViewController = segue.destination as? OrientationViewController {
             // since we now know the contentView frame, pass it down so that the next controller will know it before viewDidAppear
-            orientationViewController.contentFrame =
-            self.view.bounds
+            orientationViewController.contentFrame = self.view.bounds
             //            print(self.view.safeAreaInsets)
         }
         if let handbookViewController = segue.destination as? HandbookViewController {

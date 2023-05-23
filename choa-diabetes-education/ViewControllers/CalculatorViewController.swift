@@ -42,7 +42,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         customView.backgroundColor = UIColor.grayColor
         let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
         doneButton.setTitle("Close".localized(), for: .normal )
-        doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
+        doneButton.setTitleColor(UIColor.systemBlue, for: .normal)
         doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
         customView.addSubview( doneButton )
         

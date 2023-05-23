@@ -206,6 +206,8 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                         } else {
                             showAnswer()
                         }
+                    } else {
+                        showAnswer()
                     }
                 }
             }

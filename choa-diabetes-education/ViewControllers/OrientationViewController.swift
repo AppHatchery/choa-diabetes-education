@@ -46,7 +46,7 @@ class OrientationViewController: UIViewController,OrientationFooterDelegate {
         orientationHeaderView.subtitleLabel.text = "Orientation.Subtitle".localized()
         
         let label = UILabel( frame: CGRect( x: 20, y: y, width: Int(contentFrame.width-40), height: 0 ) )
-        label.font = UIFont.avenir
+        label.font = UIFont.avenir17
         label.numberOfLines = 100
         label.text = "Orientation.ParagraphText".localized()
         label.textColor = UIColor.darkGray
