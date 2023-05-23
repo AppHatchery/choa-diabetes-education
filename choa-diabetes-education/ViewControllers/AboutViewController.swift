@@ -23,14 +23,14 @@ class AboutViewController: UIViewController {
     
     func updateView() {
         if scrollView != nil {
-            scrollView.removeFromSuperview()
+            return
         }
         
         contentFrame = contentView.bounds
         scrollView = UIScrollView(frame: contentFrame)
         contentView.addSubview(scrollView)
         
-        var y = 0
+        let y = 0
         let aboutApp = AboutApp(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: Int(contentFrame.height)))
         scrollView.addSubview(aboutApp)
         scrollView.contentSize = CGSize(width: Int(scrollView.frame.width), height: Int(contentFrame.height))
