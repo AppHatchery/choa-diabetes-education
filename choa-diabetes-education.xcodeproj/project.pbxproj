@@ -140,6 +140,7 @@
 		D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */; };
 		FD99F3962A194839009F3C30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD99F3952A194839009F3C30 /* Localizable.strings */; };
 		FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */; };
+		FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3992A1D0D43009F3C30 /* URLs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +277,7 @@
 		D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diabetes-type-1.png"; sourceTree = "<group>"; };
 		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
+		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +506,7 @@
 				D481679C28ABE1F4003B14A3 /* UILabel+Extensions.swift */,
 				D48167B628ABF711003B14A3 /* UIView+Extensions.swift */,
 				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
+				FD99F3992A1D0D43009F3C30 /* URLs.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
+				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
 				D492A8972901D67900B98CA3 /* SearchResultTableViewCell.swift in Sources */,
