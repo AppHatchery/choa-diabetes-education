@@ -138,6 +138,8 @@
 		D4EEB6A629142EAE001E05A2 /* carbs_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A529142EAE001E05A2 /* carbs_image.png */; };
 		D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A729142EF2001E05A2 /* diabetes-type-2.png */; };
 		D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */; };
+		FD99F3962A194839009F3C30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD99F3952A194839009F3C30 /* Localizable.strings */; };
+		FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -272,6 +274,8 @@
 		D4EEB6A529142EAE001E05A2 /* carbs_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carbs_image.png; sourceTree = "<group>"; };
 		D4EEB6A729142EF2001E05A2 /* diabetes-type-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diabetes-type-2.png"; sourceTree = "<group>"; };
 		D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diabetes-type-1.png"; sourceTree = "<group>"; };
+		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +407,7 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
+				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
 				D48D890B289C0095001A61E2 /* plists */,
 				D48D890A289C007D001A61E2 /* Extensions */,
@@ -498,6 +503,7 @@
 				D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */,
 				D481679C28ABE1F4003B14A3 /* UILabel+Extensions.swift */,
 				D48167B628ABF711003B14A3 /* UIView+Extensions.swift */,
+				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
 				D450EC1B28C1158A0015D823 /* how_to_give_insulin_shot.html in Resources */,
 				D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */,
+				FD99F3962A194839009F3C30 /* Localizable.strings in Resources */,
 				D450EC1128C1158A0015D823 /* types_of_food.html in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
@@ -750,6 +757,7 @@
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
 				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,
+				FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,

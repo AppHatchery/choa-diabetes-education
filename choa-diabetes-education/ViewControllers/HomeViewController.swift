@@ -15,6 +15,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var managementButton: UIButton!
     @IBOutlet weak var orientationView: UIView!
     @IBOutlet weak var orientationButton: UIButton!
+    @IBOutlet weak var orientationTitleLabel: UILabel!
+    @IBOutlet weak var orientationSubTitleLabel: UILabel!
+    
+    @IBOutlet weak var firstDayLabel: UILabel!
+    @IBOutlet weak var secondDayLabel: UILabel!
     
     var chapterContent = 0
     var quizContent = 0
@@ -25,12 +30,39 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        orientationTitleLabel.text = "Home.Orientation.Title".localized()
+        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
         
-        diabetesBasicsButton.detailedDropShadow(color: UIColor.diabetesBasicsDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
-        nutritionButton.detailedDropShadow(color: UIColor.nutritionDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
-        managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0,offset: 12,opacity: 1)
-        orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor,blur: 12.0,offset: 8,opacity: 0.62)
-        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6,opacity: 0.59)
+        let subtitleFont =  UIFont(name: "GothamRounded-Bold", size: 16.0)
+        let titleFont =  UIFont(name: "Avenir-Light", size: 14.0)
+        
+        let diabetesBasicsButtonTitle = NSAttributedString(string: "Home.SectionOne.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
+        let nutritionButtonTitle = NSAttributedString(string: "Home.SectionTwo.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
+        let managementButtonTitle = NSAttributedString(string: "Home.SectionThree.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
+        
+        diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
+        nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
+        managementButton.setAttributedTitle(managementButtonTitle, for: .normal)
+        
+        var resultSectionOne = AttributedString("Home.SectionOne.Subtitle".localized())
+        resultSectionOne.font = subtitleFont
+        diabetesBasicsButton.configuration?.attributedSubtitle = resultSectionOne
+        
+        var resultSectionTwo = AttributedString("Home.SectionTwo.Subtitle".localized())
+        resultSectionTwo.font = subtitleFont
+        nutritionButton.configuration?.attributedSubtitle = resultSectionTwo
+        
+        var resultSectionThree = AttributedString("Home.SectionThree.Subtitle".localized())
+        resultSectionThree.font = subtitleFont
+        managementButton.configuration?.attributedSubtitle = resultSectionThree
+        
+        diabetesBasicsButton.detailedDropShadow(color: UIColor.diabetesBasicsDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
+        nutritionButton.detailedDropShadow(color: UIColor.nutritionDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
+        managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
+        orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor, blur: 12.0, offset: 8, opacity: 0.62)
+        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6, opacity: 0.59)
+        firstDayLabel.text = "Home.FirstDay.Title".localized();
+        secondDayLabel.text = "Home.SecondDay.Title".localized();
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

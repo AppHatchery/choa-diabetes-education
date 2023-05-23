@@ -28,11 +28,12 @@ class QuizIntroViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         if !beginQuiz {
-            splashTitle.text = "Congrats!"
+            splashTitle.text = "Congrats".localized()
             congratsMessage.isHidden = false
+            congratsMessage.text = "Result.Quiz.End".localized()
             splashChapter.isHidden = true
             quizDuration.isHidden = true
-            nextButton.setTitle("Done", for: .normal)
+            nextButton.setTitle("Done".localized(), for: .normal)
             splashImage.image = UIImage(named: "quizEnd")
         } else {
             splashChapter.text = ContentChapter().sectionTitles[quizChapter]

@@ -45,8 +45,8 @@ class MedicalTeamViewController: UIViewController,OrientationFooterDelegate {
         scrollView.addSubview(orientationHeaderView)
         y += 260
         
-        orientationHeaderView.titleLabel.text = "Medical Team"
-        orientationHeaderView.subtitleLabel.text = "You are not alone!"
+        orientationHeaderView.titleLabel.text = "MedicalTeam.Title".localized()
+        orientationHeaderView.subtitleLabel.text = "MedicalTeam.subtitle".localized()
         
         let medicalTeamView = MedicalTeam(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 480))
         scrollView.addSubview(medicalTeamView)

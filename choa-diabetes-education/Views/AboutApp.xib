@@ -10,7 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutApp" customModule="choa_diabetes_education" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutApp" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutDescriptionLabel" destination="fgD-xb-aNi" id="9el-3d-Ymx"/>
+                <outlet property="aboutTitle" destination="nK5-qv-5WC" id="cLO-cE-Ppj"/>
+                <outlet property="americanDiabetesTitle" destination="npK-xl-Mm7" id="Q3X-hw-795"/>
+                <outlet property="supportTextView" destination="6av-R0-n8N" id="57y-WC-ln9"/>
+                <outlet property="supportTitle" destination="PBg-KZ-C08" id="vOA-LY-Z3D"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>

@@ -112,18 +112,18 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             // Go to next page
             performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
         }
-        else if (bloodSugar != 0 && targetBloodSugar != 0 ){
+        else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
             // CarbRatio is not there
-            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Please enter a Correction Factor")
-        } else if (bloodSugar != 0 && correctionFactor != 0){
+            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+        } else if (bloodSugar != 0 && correctionFactor != 0) {
             // Target BG is not there
-            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Please enter your target blood sugar (it may be 100 during the day and 150 at night)")
-        } else if (targetBloodSugar != 0 && correctionFactor != 0){
+            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+        } else if (targetBloodSugar != 0 && correctionFactor != 0) {
             // BG is not there
-            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Please enter your blood sugar")
+            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
             bloodSugarAlertIcon.isHidden = true
         } else {
-            errorMessage.text = "Please enter the missing information"
+            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
             errorMessage.isHidden = false
         }
     }

@@ -159,13 +159,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             }
         } else if (totalCarbs > 0){
             // CarbRatio is not there
-            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Please enter a Carb Ratio")
+            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
         } else if (carbRatio > 0){
             // Carbs are not there
-            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Please enter the number of carbs")
+            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
         } else {
             // Nothing is there
-            errorMessage.text = "Please enter the missing information"
+            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
             errorMessage.isHidden = false
         }
     }

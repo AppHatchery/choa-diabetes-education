@@ -19,11 +19,13 @@ struct Content {
 
 class ContentChapter {
     // Populate with all the content
-    let sectionTitles = ["Diabetes Basics","Nutrition and Diabetes","Diabetes Self-Management"]
-    let sectionSubtitles = ["Diabetes and checking blood sugar, all about insulin.","Importance of a healthy diet, counting carbs, and giving insulin for food.","Hyperglycemia and hypoglycemia symptoms and treatment, sick day management and when to call doctor"]
+    let sectionTitles = ["Home.SectionOne.Subtitle".localized(),
+                         "Home.SectionTwo.Subtitle".localized(),
+                         "Home.SectionThree.Subtitle".localized()]
+    let sectionSubtitles = ["Diabetes.Description".localized(), "NutritionAndCarbsCounting.Description".localized(), "DiabetesSelfManagement.Description".localized()]
     
     let sectionOne = [
-        Content(contentTitle: "What is Diabetes?", contentParent: "Diabetes Basics", contentHTML: "whatisdiabetes", contentSubheader: "Types of diabetes, signs and symptoms, and treatment", quizQuestions:["Diabetes is best described as:"], quizAnswers: [["The body’s lack of ability to produce insulin","Eating too much sugar","The body’s inability to regulate blood glucose with insulin resulting in high blood sugars"]],quizCorrectAnswer: [[0,2]]),
+        Content(contentTitle: "What is Diabetes?", contentParent: "Diabetes Basics", contentHTML: "whatisdiabetes", contentSubheader: "Types of diabetes, signs and symptoms, and treatment", quizQuestions:["Diabetes is best described as:"], quizAnswers: [["The body’s lack of ability to produce insulin","Eating too much sugar","The body’s inability to regulate blood glucose with insulin resulting in high blood sugars"]], quizCorrectAnswer: [[0,2]]),
         Content(contentTitle: "Blood sugar monitoring", contentParent: "Diabetes Basics", contentHTML: "blood_sugar_monitoring",contentSubheader: "When and how to check blood sugar", quizQuestions:["How often should BG be checked in Type 1 Diabetes?"], quizAnswers: [["Hourly","Every 5 minutes","Before meals, before bed, and before exercise","Fasting and 2 hours after largest meal"]],quizCorrectAnswer: [[2]]),
         Content(contentTitle: "Types of insulin", contentParent: "Diabetes Basics", contentHTML: "insulin", contentSubheader: "Types of insulin, storage, and where to give an injection", quizQuestions:["Long-acting insulin should be given:"], quizAnswers: [["Once a day","With every meal"," Weekly","Only at bedtime"]],quizCorrectAnswer: [[0]]),
         Content(contentTitle: "Insulin Administration", contentParent: "Diabetes Basics", contentHTML: "how_to_give_insulin_shot", contentSubheader: "Insulin injection technique and importance of site rotation", quizQuestions:["Insulin may be administered in each of the following areas: (check all that apply)"], quizAnswers: [["Stomach","Buttocks","Fingers","Legs"]],quizCorrectAnswer: [[0,1,3]]),

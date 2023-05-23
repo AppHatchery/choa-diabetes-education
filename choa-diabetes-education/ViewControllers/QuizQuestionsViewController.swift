@@ -97,13 +97,11 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if correctAnswer.count > 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "multipleChoiceCell", for: indexPath) as! QuizMultipleAnswerTableViewCell
-            
             cell.layer.cornerRadius = 10
             cell.answerLabel.text = answerArray[indexPath.row]
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath) as! QuizAnswerTableViewCell
-            
             cell.layer.cornerRadius = 10
             cell.answerLabel.text = answerArray[indexPath.row]
             
@@ -121,11 +119,9 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if correctAnswer.count > 1 {
             let cell = tableView.cellForRow(at: indexPath) as! QuizMultipleAnswerTableViewCell
-            
             cell.setSelected(true, animated: true)
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! QuizAnswerTableViewCell
-            
             cell.setSelected(true, animated: true)
         }
         
@@ -179,17 +175,16 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
                 if orderedArray == correctAnswer {
                     //                    answerFeedback.isHidden = false
                     
-                    answerTitle.text = "Answer \(answerString)"
+                    answerTitle.text = "Answer".localized() + " \(answerString)"
                     answerIcon.image = UIImage(named: "correctIcon")
-                    answerButton.setTitle("Done", for: .normal)
+                    answerButton.setTitle("Done".localized(), for: .normal)
                     
                     PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"correct"])
-                    
                     showAnswer()
                 } else {
                     //                    answerFeedback.isHidden = true
                     answerIcon.image = UIImage(named: "incorrectIcon")
-                    answerTitle.text = "Answer \(answerString) is not right. Please choose again"
+                    answerTitle.text = String(format: "Result.Quiz.IncorrectAnswers".localized(), answerString)
                     
                     PendoManager.shared().track("Quiz", properties: ["title":questionName,"answer":"incorrect","selected-answers":orderedArray])
                     
@@ -219,23 +214,21 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-            
             let navigationController = self.navigationController
-            
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    func showAnswer(){
+    func showAnswer() {
         answerTitle.isHidden = false
         answerIcon.isHidden = false
     }
     
-    func resetUIelements(){
+    func resetUIelements() {
         answerIcon.isHidden = true
         answerTitle.isHidden = true
         multipleAnswersErrorLabel.isHidden = true
-        answerButton.setTitle("Submit", for: .normal)
+        answerButton.setTitle("Submit".localized(), for: .normal)
     }
     
     @IBAction func nextQuestion(_ sender: UIButton){
@@ -247,18 +240,14 @@ class QuizQuestionsViewController: UIViewController, UITableViewDelegate, UITabl
             let vc = storyBoard.instantiateViewController(withIdentifier: "quizSplash") as! QuizIntroViewController
             
             vc.beginQuiz = false
-            
             let navigationController = self.navigationController
-            
             navigationController?.pushViewController(vc, animated: true)
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "quiz") as! QuizQuestionsViewController
             
             vc.quizNumber += 1
-            
             let navigationController = self.navigationController
-            
             navigationController?.pushViewController(vc, animated: true)
         }
     }

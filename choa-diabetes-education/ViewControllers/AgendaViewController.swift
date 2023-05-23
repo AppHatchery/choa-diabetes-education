@@ -45,7 +45,7 @@ class AgendaViewController: UIViewController,OrientationFooterDelegate {
         scrollView.addSubview(orientationHeaderView)
         y += 280
         
-        orientationHeaderView.titleLabel.text = "Agenda"
+        orientationHeaderView.titleLabel.text = "Agenda".localized()
         
         // The height should be dynamic so the square adapts to the text size
         let agendaHeaderView = AgendaView(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 950))

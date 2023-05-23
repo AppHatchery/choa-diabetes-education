@@ -14,6 +14,9 @@ class ChapterEndViewController: UIViewController {
     @IBOutlet weak var quizLabel: UILabel!
     @IBOutlet weak var quizButton: UIView!
     
+    @IBOutlet weak var congratsLabel: UILabel!
+    @IBOutlet weak var congratsMessage: UILabel!
+    
     var contentIndex = 0
     var chapterEndTitle = ""
     var nextChapter = ""
@@ -22,7 +25,8 @@ class ChapterEndViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        congratsLabel.text = "Congrats".localized()
+        congratsMessage.text = "Result.Chapter.End".localized()
         nextChapterButton.detailedDropShadow(color: UIColor.errorRedColor.cgColor, blur: 16, offset: 8, opacity: 1)
         
         switch contentIndex {

@@ -41,7 +41,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
         customView.backgroundColor = UIColor.grayColor
         let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
-        doneButton.setTitle( "Close", for: .normal )
+        doneButton.setTitle("Close".localized(), for: .normal )
         doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
         doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
         customView.addSubview( doneButton )
@@ -138,7 +138,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
             foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
             insulinForFood.text = String(roundToOneDecimal(value: (totalCarbs / carbRatio)))
         } else {
-            insulinForFood.text = "N/A"
+            insulinForFood.text = "N/A".localized()
         }
         
         // Insulin for blood sugar
@@ -146,7 +146,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
             bloodInsulin = roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor)
             insulinForBloodSugar.text = String(roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor))
         } else {
-            insulinForBloodSugar.text = "N/A"
+            insulinForBloodSugar.text = "N/A".localized()
         }
         
         // Total insulin
