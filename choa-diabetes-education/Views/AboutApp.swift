@@ -16,6 +16,13 @@ class AboutApp: UIView {
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
     @IBOutlet weak var supportTextView: UITextView!
     
+    @IBOutlet weak var aboutTitle: UILabel!
+    @IBOutlet weak var americanDiabetesTitle: UILabel!
+    @IBOutlet weak var supportTitle: UILabel!
+    
+    @IBOutlet weak var aboutDescriptionLabel: UILabel!
+    @IBOutlet weak var supportTextView: UITextView!
+    
     //------------------------------------------------------------------------------
     override init( frame: CGRect ) {
         super.init( frame : frame )
