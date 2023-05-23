@@ -48,10 +48,7 @@ class AboutApp: UIView {
     }
     
     @IBAction func searchForResources(_ sender: UIButton) {
-        if let url = URL(string:"https://diabetes.org/newsroom/press-releases/2022/american-diabetes-association-2023-standards-care-diabetes-guide-for-prevention-diagnosis-treatment-people-living-with-diabetes"){
-            UIApplication.shared.open(url)
-            
-        }
+        guard let url = URLs.aboutAppAmericalDiabetes else { return }
+        UIApplication.shared.open(url)
     }
-    
 }

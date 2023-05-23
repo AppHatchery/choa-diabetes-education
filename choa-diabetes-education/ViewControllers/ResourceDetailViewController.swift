@@ -74,5 +74,4 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
         preferences.preferredContentMode = .mobile
         decisionHandler(.allow,preferences)
     }
-    
 }

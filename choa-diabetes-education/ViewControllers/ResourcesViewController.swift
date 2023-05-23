@@ -90,14 +90,11 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
         var appURL: URL?
         switch sender.tag {
         case 0:
-            //
-            appURL = URL(string: "https://apps.apple.com/us/app/mysugr-diabetes-tracker-log/id516509211")
+            appURL = URLs.mySugarDiabetesApp
         case 1:
-            //
-            appURL = URL(string: "https://apps.apple.com/us/app/calorieking-food-search/id454930992")
+            appURL = URLs.colorieKingApp
         case 2:
-            //
-            appURL = URL(string: "https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718")
+            appURL = URLs.myFitnessPalApp
         default:
             // Error
             print("there was an error loading the url")
