@@ -53,7 +53,6 @@ class CalculatorCViewController: UIViewController {
         
         // Total insulin
         totalInsulin.text = String(roundToOneDecimal(value:foodInsulin + bloodInsulin))
-        print("calculate insulin")
         PendoManager.shared().track("Calculator_results", properties: ["total":totalInsulin.text ?? "-","for_food":insulinForFood.text ?? "-","for_hbs":insulinForBloodSugar.text ?? "-"])
     }
     

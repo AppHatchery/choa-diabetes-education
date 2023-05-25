@@ -141,6 +141,8 @@
 		FD99F3962A194839009F3C30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD99F3952A194839009F3C30 /* Localizable.strings */; };
 		FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */; };
 		FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3992A1D0D43009F3C30 /* URLs.swift */; };
+		FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */; };
+		FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,6 +280,8 @@
 		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		FDC8E51F2A1FAC59006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Calculator.storyboard"; sourceTree = "<group>"; };
+		FDC8E5222A1FAE87006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Orientation.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +422,8 @@
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
+				FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */,
+				FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */,
 				D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */,
 				D48D8901289C0045001A61E2 /* Info.plist */,
 			);
@@ -643,6 +649,7 @@
 				D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */,
 				D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */,
 				D4684ABB290B0B7B00E7311B /* low_carb_snack_combinations.html in Resources */,
+				FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */,
 				D41D46902984172300825100 /* blood_units.png in Resources */,
 				D48167F828AD394C003B14A3 /* glucose.png in Resources */,
 				D48167C328AC00C8003B14A3 /* QuizTableViewCell.xib in Resources */,
@@ -706,6 +713,7 @@
 				D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */,
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
+				FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
@@ -805,6 +813,22 @@
 				D48D88FF289C0045001A61E2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDC8E51F2A1FAC59006FDFF0 /* Base */,
+			);
+			name = Calculator.storyboard;
+			sourceTree = "<group>";
+		};
+		FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDC8E5222A1FAE87006FDFF0 /* Base */,
+			);
+			name = Orientation.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -100,7 +100,6 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        print("text field ended editing")
         switch textField.tag {
         case 0:
             totalCarbs = Float(textField.text ?? "0") ?? 0
@@ -151,7 +150,6 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         
         // Total insulin
         totalInsulin.text = String(foodInsulin + bloodInsulin)
-        print("calculate insulin")
         
         self.view.endEditing(true)
     }

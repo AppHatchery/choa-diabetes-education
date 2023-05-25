@@ -56,7 +56,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        print("text field ended editing")
         switch textField.tag {
         case 0:
             totalCarbs = Float(textField.text ?? "0") ?? 0
@@ -138,7 +137,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         // move back the root view origin to zero
-        print("hide")
         view.frame.origin.y = 0
     }
     
