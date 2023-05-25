@@ -91,9 +91,7 @@
 		D48167F828AD394C003B14A3 /* glucose.png in Resources */ = {isa = PBXBuildFile; fileRef = D48167F728AD394C003B14A3 /* glucose.png */; };
 		D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F0289C0043001A61E2 /* AppDelegate.swift */; };
 		D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F2289C0043001A61E2 /* SceneDelegate.swift */; };
-		D48D88F5289C0043001A61E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F4289C0043001A61E2 /* ViewController.swift */; };
 		D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88F6289C0043001A61E2 /* Main.storyboard */; };
-		D48D88FB289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F9289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld */; };
 		D48D88FD289C0045001A61E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48D88FC289C0045001A61E2 /* Assets.xcassets */; };
 		D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */; };
 		D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */; };
@@ -140,6 +138,8 @@
 		D4EEB6A629142EAE001E05A2 /* carbs_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A529142EAE001E05A2 /* carbs_image.png */; };
 		D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A729142EF2001E05A2 /* diabetes-type-2.png */; };
 		D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */; };
+		FD99F3962A194839009F3C30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD99F3952A194839009F3C30 /* Localizable.strings */; };
+		FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,9 +228,7 @@
 		D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "choa-diabetes-education.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48D88F0289C0043001A61E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48D88F2289C0043001A61E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D48D88F4289C0043001A61E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D48D88F7289C0043001A61E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D48D88FA289C0043001A61E2 /* choa_diabetes_education.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = choa_diabetes_education.xcdatamodel; sourceTree = "<group>"; };
 		D48D88FC289C0045001A61E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D88FF289C0045001A61E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48D8901289C0045001A61E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,6 +274,8 @@
 		D4EEB6A529142EAE001E05A2 /* carbs_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carbs_image.png; sourceTree = "<group>"; };
 		D4EEB6A729142EF2001E05A2 /* diabetes-type-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diabetes-type-2.png"; sourceTree = "<group>"; };
 		D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diabetes-type-1.png"; sourceTree = "<group>"; };
+		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +407,7 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
+				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
 				D48D890B289C0095001A61E2 /* plists */,
 				D48D890A289C007D001A61E2 /* Extensions */,
@@ -414,11 +415,9 @@
 				D48D8914289C02E3001A61E2 /* Models */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
-				D48D88F4289C0043001A61E2 /* ViewController.swift */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
 				D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */,
 				D48D8901289C0045001A61E2 /* Info.plist */,
-				D48D88F9289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld */,
 			);
 			path = "choa-diabetes-education";
 			sourceTree = "<group>";
@@ -504,6 +503,7 @@
 				D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */,
 				D481679C28ABE1F4003B14A3 /* UILabel+Extensions.swift */,
 				D48167B628ABF711003B14A3 /* UIView+Extensions.swift */,
+				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -632,6 +632,7 @@
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
 				D450EC1B28C1158A0015D823 /* how_to_give_insulin_shot.html in Resources */,
 				D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */,
+				FD99F3962A194839009F3C30 /* Localizable.strings in Resources */,
 				D450EC1128C1158A0015D823 /* types_of_food.html in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
@@ -743,7 +744,6 @@
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
-				D48D88F5289C0043001A61E2 /* ViewController.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
 				D4C39B3328B7E1D0003CCA14 /* QuizIntroViewController.swift in Sources */,
 				D48167AB28ABEF68003B14A3 /* MedicalTeam.swift in Sources */,
@@ -757,12 +757,12 @@
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
 				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,
+				FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
 				D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */,
-				D48D88FB289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld in Sources */,
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
@@ -1054,19 +1054,6 @@
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		D48D88F9289C0043001A61E2 /* choa_diabetes_education.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D48D88FA289C0043001A61E2 /* choa_diabetes_education.xcdatamodel */,
-			);
-			currentVersion = D48D88FA289C0043001A61E2 /* choa_diabetes_education.xcdatamodel */;
-			path = choa_diabetes_education.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D48D88E5289C0043001A61E2 /* Project object */;
 }

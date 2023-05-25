@@ -15,37 +15,31 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
     var contentFrame: CGRect!
     var contentURL = ""
     var contentTitle = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         updateView()
     }
     
-    func updateView()
-    {
+    func updateView() {
         if scrollView != nil {
             scrollView.removeFromSuperview()
         }
         
         contentFrame = self.view.bounds
-        
         scrollView = UIScrollView(frame: contentFrame)
         contentView.addSubview(scrollView)
-    
-    
-        var y = 0
         
+        var y = 0
         let recommendedAppsView = AppsView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 295))
         scrollView.addSubview(recommendedAppsView)
         y += 295
-        
         y += 30
         
         let foodDiaryView = FoodDiary(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 420), delegate: self)
@@ -60,8 +54,7 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let resourceDetailViewController = segue.destination as? ChapterViewController
-        {
+        if let resourceDetailViewController = segue.destination as? ChapterViewController {
             resourceDetailViewController.contentURL = contentURL
             resourceDetailViewController.titleURL = contentTitle
         }
@@ -93,8 +86,8 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
         loadResource()
     }
     
-    @IBAction func openapps(_ sender: UIButton){
-        var appURL:URL!
+    @IBAction func openapps(_ sender: UIButton) {
+        var appURL: URL?
         switch sender.tag {
         case 0:
             //
@@ -106,9 +99,10 @@ class ResourcesViewController: UIViewController, FoodDiaryDelegate {
             //
             appURL = URL(string: "https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718")
         default:
-        // Error
+            // Error
             print("there was an error loading the url")
         }
-        UIApplication.shared.open(appURL!)
+        guard let url = appURL else { return }
+        UIApplication.shared.open(url)
     }
 }

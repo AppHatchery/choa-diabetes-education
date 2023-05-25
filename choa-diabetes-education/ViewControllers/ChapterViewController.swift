@@ -32,18 +32,18 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     var searchView: SearchView!
     
     var flagiframe = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Create WebView Content
         let config = WKWebViewConfiguration()
-
+        
         webView = WKWebView(frame: .zero, configuration: config)
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         setupUI()
         
         // TEST: Probably could set up unit tests to make sure the content loads properly
@@ -52,7 +52,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         webView.scrollView.delegate = self
         progressBar.setProgress(Float(0), animated: false)
         headerTitle.text = titleURL
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
     }
@@ -80,7 +80,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     //--------------------------------------------------------------------------------------------------
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-                
+        
         if let urlHeader = webView.url?.absoluteString, urlHeader.hasPrefix("file:///"){
             
             // Could potentially replace this with just the link to the file rather than having to convert it to string, save some computational power
@@ -97,41 +97,41 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             // Will be needed for font adjustment feature
             let javascript = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '\(fontSize)%'"
             webView.evaluateJavaScript(javascript) { (response, error) in
-//                print("changed the font size to \(self.fontSize)")
+                //                print("changed the font size to \(self.fontSize)")
             }
             
         } else {
             print("outside the app, don't apply styling")
         }
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-//        webView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
+        //        webView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
         
         // WARNING: If the webview hasn't finished loading by the time the button gets added it will be added to the top of the view. It'd be better to put it under a function that detects scrolling
-//        let chapterContentHeight = webView.scrollView.contentSize.height
-//        let nextButton = UIButton()
-//        nextButton.frame = CGRect(x: self.view.frame.width/2-70, y: chapterContentHeight-90, width: 140, height: 60)
-//        nextButton.backgroundColor = UIColor.choaGreenColor
-//        nextButton.layer.cornerRadius = nextButton.frame.height/2
-//        nextButton.setTitle("Done", for: .normal)
-//        nextButton.setTitleColor(UIColor.white, for: .normal)
-//        nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)
-//        webView.scrollView.addSubview(nextButton)
+        //        let chapterContentHeight = webView.scrollView.contentSize.height
+        //        let nextButton = UIButton()
+        //        nextButton.frame = CGRect(x: self.view.frame.width/2-70, y: chapterContentHeight-90, width: 140, height: 60)
+        //        nextButton.backgroundColor = UIColor.choaGreenColor
+        //        nextButton.layer.cornerRadius = nextButton.frame.height/2
+        //        nextButton.setTitle("Done", for: .normal)
+        //        nextButton.setTitleColor(UIColor.white, for: .normal)
+        //        nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)
+        //        webView.scrollView.addSubview(nextButton)
     }
     
     //--------------------------------------------------------------------------------------------------
-
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // Need to use Drag because scrollView fires by itself on viewcontroller load
         
         // Add a flag so that the first scroll does not fire and causes a crash
         
-//        print(webView.scrollView.contentSize.height)
+        //        print(webView.scrollView.contentSize.height)
         // If a Done button has already been added or the user is in the resources section, do not include the button
-//        addNextButton()
+        //        addNextButton()
     }
     
     func addNextButton(){
@@ -151,7 +151,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Connect scroll view to progress bar
         let offset = webView.scrollView.contentOffset
-                
+        
         let percentageOfFullHeight = offset.y / (webView.scrollView.contentSize.height - scrollView.frame.height)
         
         if (percentageOfFullHeight >= 0 && percentageOfFullHeight <= 1){
@@ -165,16 +165,16 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
         if let url = navigationAction.request.url {
-//            print(url.absoluteString)
+            //            print(url.absoluteString)
             if url.absoluteString.localizedStandardContains("next"){
-//                print("contains next button")
+                //                print("contains next button")
                 goForward()
             }
         }
         preferences.preferredContentMode = .mobile
         decisionHandler(.allow,preferences)
     }
-        
+    
     
     @IBAction func sliderControl(_ sender: UIButton){
         if fontSize == 100 {
@@ -201,7 +201,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         {
             if searchView == nil {
                 searchView = SearchView( frame: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 180), delegate: self, searchPage: contentURL)
-
+                
                 window.addSubview( searchView )
                 
                 // Issue is that because the view is not on view when it gets added something on the delegate must not get assigned properly which leads to nothing on the view being responsive
@@ -234,13 +234,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     func closeSearch(){
         if searchView != nil {
-//            UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
-////                self.searchView.contentView.transform = CGAffineTransform(translationX: 0, y: self.searchView.bounds.height)
-//                
-//            }, completion: { (value: Bool) in
-////                self.searchView.removeFromSuperview()
-////                self.searchView = nil
-//            })
+            //            UIView.animate( withDuration: 0.25, delay: 0.0, options: UIView.AnimationOptions(), animations: {
+            ////                self.searchView.contentView.transform = CGAffineTransform(translationX: 0, y: self.searchView.bounds.height)
+            //
+            //            }, completion: { (value: Bool) in
+            ////                self.searchView.removeFromSuperview()
+            ////                self.searchView = nil
+            //            })
             self.searchView.removeFromSuperview()
             self.searchView = nil
         }
@@ -286,14 +286,14 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         })
     }
     
-        
+    
     @objc func keyboardWillShow(notification: NSNotification) {
-//        print("in Show")
+        //        print("in Show")
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            else {
+        else {
             // if keyboard size is not available for some reason, dont do anything
-                print("in else")
-                
+            print("in else")
+            
             return
         }
         
@@ -319,25 +319,24 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             //
         })
     }
-        
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         //
-//        print("dismiised")
+        //        print("dismiised")
         //
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let chapterEndViewController = segue.destination as? ChapterEndViewController
-        {
+        if let chapterEndViewController = segue.destination as? ChapterEndViewController {
             chapterEndViewController.contentIndex = contentIndex
             chapterEndViewController.chapterEndTitle = titleURL
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
-//        print("hid")
+        // move back the root view origin to zero
+        //        print("hid")
         self.view.frame.origin.y = 0
     }
-
+    
 }

@@ -24,14 +24,14 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var insulinForBloodSugar: UILabel!
     @IBOutlet weak var totalInsulin: UILabel!
     
-//    var insulinForFood = 0
-//    var insulinForBloodSugar = 0
+    //    var insulinForFood = 0
+    //    var insulinForBloodSugar = 0
     var totalCarbs: Float = 0
     var bloodSugar: Float = 0
     var targetBloodSugar: Float = 0
     var carbRatio: Float = 15
     var correctionFactor: Float = 2
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +39,9 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         
         // Keyboard dismiss state
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+        customView.backgroundColor = UIColor.grayColor
         let doneButton = UIButton( frame: CGRect( x: view.frame.width - 70 - 10, y: 0, width: 70, height: 44 ))
-        doneButton.setTitle( "Close", for: .normal )
+        doneButton.setTitle("Close".localized(), for: .normal )
         doneButton.setTitleColor( UIColor.systemBlue, for: .normal)
         doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
         customView.addSubview( doneButton )
@@ -57,35 +57,35 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
         carbRatio = 15
         
         
-//        let carbAction = { (action: UIAction) in
-//            //
-//            self.carbRatio = Float(action.title) ?? 0
-//        }
-//
-//        carbRatioButton.menu = UIMenu(children:[
-//            UIAction(title: "5",handler: carbAction),
-//            UIAction(title: "10",handler: carbAction),
-//            UIAction(title: "15", state: .on, handler: carbAction),
-//            UIAction(title: "20",handler: carbAction),
-//        ])
-//
-//        carbRatioButton.showsMenuAsPrimaryAction = true
-//        carbRatioButton.changesSelectionAsPrimaryAction = true
-//
-//        let correctionAction = { (action: UIAction) in
-//            //
-//            self.correctionFactor = Float(action.title) ?? 0
-//        }
-//
-//        correctionFactorButton.menu = UIMenu(children:[
-//            UIAction(title: "1",handler: correctionAction),
-//            UIAction(title: "2", state: .on, handler: correctionAction),
-//            UIAction(title: "3",handler: correctionAction),
-//            UIAction(title: "4",handler: correctionAction),
-//        ])
-//
-//        correctionFactorButton.showsMenuAsPrimaryAction = true
-//        correctionFactorButton.changesSelectionAsPrimaryAction = true
+        //        let carbAction = { (action: UIAction) in
+        //            //
+        //            self.carbRatio = Float(action.title) ?? 0
+        //        }
+        //
+        //        carbRatioButton.menu = UIMenu(children:[
+        //            UIAction(title: "5",handler: carbAction),
+        //            UIAction(title: "10",handler: carbAction),
+        //            UIAction(title: "15", state: .on, handler: carbAction),
+        //            UIAction(title: "20",handler: carbAction),
+        //        ])
+        //
+        //        carbRatioButton.showsMenuAsPrimaryAction = true
+        //        carbRatioButton.changesSelectionAsPrimaryAction = true
+        //
+        //        let correctionAction = { (action: UIAction) in
+        //            //
+        //            self.correctionFactor = Float(action.title) ?? 0
+        //        }
+        //
+        //        correctionFactorButton.menu = UIMenu(children:[
+        //            UIAction(title: "1",handler: correctionAction),
+        //            UIAction(title: "2", state: .on, handler: correctionAction),
+        //            UIAction(title: "3",handler: correctionAction),
+        //            UIAction(title: "4",handler: correctionAction),
+        //        ])
+        //
+        //        correctionFactorButton.showsMenuAsPrimaryAction = true
+        //        correctionFactorButton.changesSelectionAsPrimaryAction = true
         // Do any additional setup after loading the view.
     }
     
@@ -97,9 +97,9 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
             textField.text = ""
         }
     }
-        
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-
+        
         print("text field ended editing")
         switch textField.tag {
         case 0:
@@ -138,7 +138,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
             foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
             insulinForFood.text = String(roundToOneDecimal(value: (totalCarbs / carbRatio)))
         } else {
-            insulinForFood.text = "N/A"
+            insulinForFood.text = "N/A".localized()
         }
         
         // Insulin for blood sugar
@@ -146,7 +146,7 @@ class CalculatorViewController: UIViewController, UITextFieldDelegate {
             bloodInsulin = roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor)
             insulinForBloodSugar.text = String(roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor))
         } else {
-            insulinForBloodSugar.text = "N/A"
+            insulinForBloodSugar.text = "N/A".localized()
         }
         
         // Total insulin

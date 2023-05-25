@@ -9,7 +9,7 @@ import UIKit
 import Pendo
 
 class CalculatorAViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var totalCarbsField: UITextField!
     @IBOutlet weak var carbLine: UIView!
     @IBOutlet weak var carbLabel: UILabel!
@@ -32,7 +32,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         for txtField in textFieldCollection {
             txtField.delegate = self
         }
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -55,14 +55,14 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     // The next button should not require the user to dismiss the keyboard, rather it should change by itself once the field is no longer empty. Alternatively test if tapping on the screen to dismiss the keyboard works like in the search feature, and make this end editing
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-
+        
         print("text field ended editing")
         switch textField.tag {
         case 0:
             totalCarbs = Float(textField.text ?? "0") ?? 0
             print(totalCarbs)
             toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
-            carbLine.tintColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            carbLine.tintColor = UIColor.errorRedColor
         case 1:
             carbRatio = Float(textField.text ?? "0") ?? 0
             print(carbRatio)
@@ -72,7 +72,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         }
         
         errorMessage.isHidden = true
-//        toggleNextButton()
+        //        toggleNextButton()
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -82,7 +82,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             fieldLabel.textColor = UIColor.red
             errorMessage.isHidden = false
         } else {
-            errorLine.backgroundColor = UIColor.init(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)
+            errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.contentBlackColor
             errorMessage.isHidden = true
@@ -90,43 +90,43 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-//        print("in Show")
+        //        print("in Show")
         guard let userInfo = notification.userInfo else { return }
-
-
+        
+        
         // In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.
         guard let screen = notification.object as? UIScreen,
               // Get the keyboard’s frame at the end of its animation.
               let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-
-
+        
+        
         // Use that screen to get the coordinate space to convert from.
         let fromCoordinateSpace = screen.coordinateSpace
-
-
+        
+        
         // Get your view's coordinate space.
         let toCoordinateSpace: UICoordinateSpace = view
-
-
+        
+        
         // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
         let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
         
         // Get the safe area insets when the keyboard is offscreen.
         var bottomOffset = view.safeAreaInsets.bottom
-            
+        
         // Get the intersection between the keyboard's frame and the view's bounds to work with the
         // part of the keyboard that overlaps your view.
         let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
-            
+        
         // Check whether the keyboard intersects your view before adjusting your offset.
         if !viewIntersection.isEmpty {
-                
+            
             // Adjust the offset by the difference between the view's height and the height of the
             // intersection rectangle.
             bottomOffset = view.bounds.maxY - viewIntersection.minY
         }
-
-
+        
+        
         // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
         // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
         // your view, changing a scroll inset, and so on. This example uses the new offset to update
@@ -137,7 +137,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-      // move back the root view origin to zero
+        // move back the root view origin to zero
         print("hide")
         view.frame.origin.y = 0
     }
@@ -159,13 +159,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             }
         } else if (totalCarbs > 0){
             // CarbRatio is not there
-            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Please enter a Carb Ratio")
+            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
         } else if (carbRatio > 0){
             // Carbs are not there
-            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Please enter the number of carbs")
+            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
         } else {
             // Nothing is there
-            errorMessage.text = "Please enter the missing information"
+            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
             errorMessage.isHidden = false
         }
     }
@@ -187,15 +187,15 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

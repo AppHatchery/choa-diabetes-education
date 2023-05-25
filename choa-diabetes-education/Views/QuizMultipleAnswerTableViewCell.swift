@@ -8,11 +8,11 @@
 import UIKit
 
 class QuizMultipleAnswerTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var answerBackground: UIView!
     @IBOutlet weak var answerCheckbox: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,15 +20,15 @@ class QuizMultipleAnswerTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
         self.answerCheckbox.layer.borderColor = UIColor.choaGreenColor.cgColor
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
         if selected {
-            answerBackground.backgroundColor = UIColor(named: "answerSelectionColor")
+            answerBackground.backgroundColor = UIColor.answerSelectionColor
             answerBackground.layer.borderWidth = 2.0
-            answerBackground.layer.borderColor = UIColor(named: "choaGreenColor")?.cgColor
+            answerBackground.layer.borderColor = UIColor.choaGreenColor.cgColor
             answerCheckbox.layer.borderColor = UIColor.choaGreenColor.cgColor
             answerCheckbox.backgroundColor = UIColor.choaGreenColor
         } else {

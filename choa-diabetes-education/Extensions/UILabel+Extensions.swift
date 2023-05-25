@@ -9,8 +9,7 @@ import UIKit
 
 extension UILabel
 {
-    public var requiredHeight: CGFloat
-    {
+    public var requiredHeight: CGFloat {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: CGFloat.greatestFiniteMagnitude))
         
         label.numberOfLines = 0
