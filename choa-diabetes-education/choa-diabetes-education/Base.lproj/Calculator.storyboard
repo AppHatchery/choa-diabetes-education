@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
-        </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
+        </array>
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
     <scenes>
@@ -57,77 +57,25 @@
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPN-WQ-i2k">
-                                <rect key="frame" x="32" y="407.33333333333331" width="329" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="c2D-zJ-bj8"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="calculator-button1" title="Insulin for Food" imagePadding="20">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="60"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" name="backgroundColor"/>
-                                </buttonConfiguration>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrN-5l-EX6">
+                                <rect key="frame" x="0.0" y="366" width="393" height="452"/>
                                 <connections>
-                                    <action selector="calculateInsulinForFood:" destination="oZv-U8-baV" eventType="touchUpInside" id="e7M-z8-cR8"/>
-                                    <segue destination="I75-tA-DYU" kind="show" id="HVs-IP-Ss1"/>
+                                    <segue destination="y7t-4d-cVf" kind="embed" id="HtQ-uW-Xzf"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-2c-0ct">
-                                <rect key="frame" x="32" y="639.33333333333337" width="329" height="75"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for Food and High Blood Sugar" imagePadding="20">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" name="backgroundColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="calculateBoth:" destination="oZv-U8-baV" eventType="touchUpInside" id="q1E-y7-vE0"/>
-                                    <segue destination="I75-tA-DYU" kind="show" id="zcz-Bb-P6O"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vms-7v-Ehz">
-                                <rect key="frame" x="32" y="523.33333333333337" width="329" height="75"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="calculator-button2" title="Insulin for High Blood Sugar" imagePadding="20">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" name="backgroundColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="calculateInsulinForHighBloodSugar:" destination="oZv-U8-baV" eventType="touchUpInside" id="5fA-1M-pzq"/>
-                                    <segue destination="l7g-rs-uOg" kind="show" id="Cz3-ME-WhP"/>
-                                </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wol-0H-cwc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="top" secondItem="QPN-WQ-i2k" secondAttribute="bottom" constant="41" id="2s5-zv-r82"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="top" secondItem="vms-7v-Ehz" secondAttribute="bottom" constant="41" id="30u-JD-SS4"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" constant="32" id="5Vi-jo-tVp"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="trailing" secondItem="QPN-WQ-i2k" secondAttribute="trailing" id="DE8-gM-L1Q"/>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="trailing" secondItem="QPN-WQ-i2k" secondAttribute="trailing" id="GYx-PD-mLZ"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="leading" secondItem="QPN-WQ-i2k" secondAttribute="leading" id="Iff-UF-GmU"/>
-                            <constraint firstItem="Wol-0H-cwc" firstAttribute="trailing" secondItem="vaW-2c-0ct" secondAttribute="trailing" constant="32" id="Q2q-Zb-mzM"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="Qc5-wQ-B0g"/>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="leading" secondItem="QPN-WQ-i2k" secondAttribute="leading" id="ReY-uD-PzM"/>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="height" secondItem="QPN-WQ-i2k" secondAttribute="height" id="Wl1-tF-UqF"/>
+                            <constraint firstItem="Wol-0H-cwc" firstAttribute="trailing" secondItem="KrN-5l-EX6" secondAttribute="trailing" id="6TZ-I4-YZh"/>
+                            <constraint firstItem="Wol-0H-cwc" firstAttribute="bottom" secondItem="KrN-5l-EX6" secondAttribute="bottom" id="GJe-49-kgI"/>
                             <constraint firstItem="Wol-0H-cwc" firstAttribute="trailing" secondItem="lIX-m2-VCh" secondAttribute="trailing" id="a3k-AB-DcB"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="height" secondItem="QPN-WQ-i2k" secondAttribute="height" id="cVw-kN-y2a"/>
                             <constraint firstItem="1uw-I9-vFF" firstAttribute="top" secondItem="Wol-0H-cwc" secondAttribute="top" id="dT7-GT-FeT"/>
                             <constraint firstItem="1uw-I9-vFF" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" constant="24" id="e80-hs-CbS"/>
                             <constraint firstItem="lIX-m2-VCh" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" id="kOp-sR-79f"/>
-                            <constraint firstItem="QPN-WQ-i2k" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="sJN-V5-jCg"/>
+                            <constraint firstItem="KrN-5l-EX6" firstAttribute="top" secondItem="lIX-m2-VCh" secondAttribute="bottom" id="sfM-vl-SRi"/>
                             <constraint firstItem="lIX-m2-VCh" firstAttribute="top" secondItem="LOP-QT-WbL" secondAttribute="top" id="tSx-8P-lju"/>
-                            <constraint firstItem="QPN-WQ-i2k" firstAttribute="top" secondItem="lIX-m2-VCh" secondAttribute="bottom" constant="41" id="taA-jX-PvH"/>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="v8c-H6-y3E"/>
+                            <constraint firstItem="KrN-5l-EX6" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" id="xEe-GZ-aGU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calculator" image="calculator" id="eFa-cH-vmW"/>
@@ -141,16 +89,140 @@
             </objects>
             <point key="canvasLocation" x="3374" y="1024"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="6XR-IT-J3t">
+            <objects>
+                <tableViewController id="y7t-4d-cVf" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="XhX-6p-fa5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="452"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" name="backgroundColor"/>
+                        <sections>
+                            <tableViewSection id="0GU-QJ-fpB">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="0Zc-Gk-I3v">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Zc-Gk-I3v" id="iqE-JJ-jd5">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPN-WQ-i2k">
+                                                    <rect key="frame" x="32" y="12.666666666666664" width="329" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="c2D-zJ-bj8"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" image="calculator-button1" title="Insulin for Food" imagePadding="20">
+                                                        <backgroundConfiguration key="background" cornerRadius="15"/>
+                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="60"/>
+                                                        <color key="baseForegroundColor" name="headingGreenColor"/>
+                                                        <color key="baseBackgroundColor" name="backgroundColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="calculateInsulinForFood:" destination="oZv-U8-baV" eventType="touchUpInside" id="e7M-z8-cR8"/>
+                                                        <segue destination="I75-tA-DYU" kind="show" id="HVs-IP-Ss1"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QPN-WQ-i2k" firstAttribute="centerX" secondItem="iqE-JJ-jd5" secondAttribute="centerX" id="BvQ-kq-uWD"/>
+                                                <constraint firstItem="QPN-WQ-i2k" firstAttribute="centerY" secondItem="iqE-JJ-jd5" secondAttribute="centerY" id="C6i-t9-oNJ"/>
+                                                <constraint firstItem="QPN-WQ-i2k" firstAttribute="leading" secondItem="iqE-JJ-jd5" secondAttribute="leading" constant="32" id="Scg-yz-gkn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="5Aj-kq-38S">
+                                        <rect key="frame" x="0.0" y="150" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Aj-kq-38S" id="sbk-7f-3Jy">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vms-7v-Ehz">
+                                                    <rect key="frame" x="32" y="12.666666666666664" width="329" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="snR-z4-5kl"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" image="calculator-button2" title="Insulin for High Blood Sugar" imagePadding="20">
+                                                        <backgroundConfiguration key="background" cornerRadius="15"/>
+                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
+                                                        <color key="baseForegroundColor" name="headingGreenColor"/>
+                                                        <color key="baseBackgroundColor" name="backgroundColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="calculateInsulinForHighBloodSugar:" destination="oZv-U8-baV" eventType="touchUpInside" id="5fA-1M-pzq"/>
+                                                        <segue destination="l7g-rs-uOg" kind="show" id="Cz3-ME-WhP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vms-7v-Ehz" firstAttribute="centerY" secondItem="sbk-7f-3Jy" secondAttribute="centerY" id="3R4-0M-Anq"/>
+                                                <constraint firstItem="vms-7v-Ehz" firstAttribute="centerX" secondItem="sbk-7f-3Jy" secondAttribute="centerX" id="XZ6-qr-YkI"/>
+                                                <constraint firstItem="vms-7v-Ehz" firstAttribute="leading" secondItem="sbk-7f-3Jy" secondAttribute="leading" constant="32" id="jzY-RK-3HZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="GJY-SN-zsT">
+                                        <rect key="frame" x="0.0" y="250" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GJY-SN-zsT" id="YDS-QQ-Yr7">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-2c-0ct">
+                                                    <rect key="frame" x="32" y="12.666666666666664" width="329" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="9dq-HI-LYB"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for Food and High Blood Sugar" imagePadding="20">
+                                                        <backgroundConfiguration key="background" cornerRadius="15"/>
+                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
+                                                        <color key="baseForegroundColor" name="headingGreenColor"/>
+                                                        <color key="baseBackgroundColor" name="backgroundColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="calculateBoth:" destination="oZv-U8-baV" eventType="touchUpInside" id="q1E-y7-vE0"/>
+                                                        <segue destination="I75-tA-DYU" kind="show" id="zcz-Bb-P6O"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vaW-2c-0ct" firstAttribute="centerX" secondItem="YDS-QQ-Yr7" secondAttribute="centerX" id="0Ir-JM-iq0"/>
+                                                <constraint firstItem="vaW-2c-0ct" firstAttribute="centerY" secondItem="YDS-QQ-Yr7" secondAttribute="centerY" id="mdc-Cm-A0k"/>
+                                                <constraint firstItem="vaW-2c-0ct" firstAttribute="leading" secondItem="YDS-QQ-Yr7" secondAttribute="leading" constant="32" id="o0b-cM-zqy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="y7t-4d-cVf" id="7o6-ia-b7b"/>
+                            <outlet property="delegate" destination="y7t-4d-cVf" id="QGP-X4-n78"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NbV-6I-XrS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3371.7557251908397" y="1710.5633802816901"/>
+        </scene>
         <!--CalculatorA View Controller-->
         <scene sceneID="h9K-qo-GA2">
             <objects>
                 <viewController id="I75-tA-DYU" customClass="CalculatorAViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sSo-1s-L0l">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUX-3L-Ife">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-if" translatesAutoresizingMaskIntoConstraints="NO" id="Nf2-ig-L1W">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="366.33333333333331"/>
@@ -299,6 +371,8 @@
                             <color key="tintColor" name="choaGreenColor"/>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="carbLabel" destination="rdn-jQ-VZ4" id="Qj0-9T-wgq"/>
                         <outlet property="carbLine" destination="aLl-fr-CoT" id="OZO-xv-JGx"/>
@@ -324,11 +398,11 @@
             <objects>
                 <viewController id="l7g-rs-uOg" customClass="CalculatorBViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lDB-uu-4uf">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAy-nL-hOb">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-hbs" translatesAutoresizingMaskIntoConstraints="NO" id="Beo-cP-KDA">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="366.33333333333331"/>
@@ -577,23 +651,23 @@
             <objects>
                 <viewController id="Ion-bU-PKM" customClass="CalculatorCViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bfw-iL-WB1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-results" translatesAutoresizingMaskIntoConstraints="NO" id="h6E-8z-ucs">
-                                <rect key="frame" x="0.0" y="127.00000000000001" width="393" height="161.33333333333337"/>
+                                <rect key="frame" x="0.0" y="80.000000000000014" width="393" height="161.33333333333337"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="h6E-8z-ucs" secondAttribute="height" multiplier="207:85" id="m3M-uZ-3gE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmf-fz-TfI">
-                                <rect key="frame" x="23.999999999999986" y="103" width="211.66666666666663" height="24"/>
+                                <rect key="frame" x="23.999999999999986" y="56" width="211.66666666666663" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcB-Gw-1ua">
-                                <rect key="frame" x="201.66666666666663" y="468.33333333333326" width="167.33333333333337" height="152"/>
+                                <rect key="frame" x="201.66666666666663" y="421.33333333333331" width="167.33333333333337" height="151.99999999999994"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for high blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-RP-swS">
                                         <rect key="frame" x="18" y="18" width="144.33333333333334" height="44"/>
@@ -602,7 +676,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="xX3-88-LkR">
-                                        <rect key="frame" x="6" y="80.000000000000057" width="145.33333333333334" height="64"/>
+                                        <rect key="frame" x="6" y="80" width="145.33333333333334" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="Z6Q-Bs-4Bd"/>
                                         </constraints>
@@ -627,10 +701,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4q-u7-cNn">
-                                <rect key="frame" x="24" y="298.33333333333331" width="345" height="152"/>
+                                <rect key="frame" x="24" y="251.33333333333337" width="345" height="152"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilf-f1-2OR">
-                                        <rect key="frame" x="18" y="18" width="322" height="22"/>
+                                        <rect key="frame" x="18" y="17.999999999999972" width="322" height="22"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
@@ -641,7 +715,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="beY-zM-Pis">
-                                        <rect key="frame" x="24" y="96" width="305" height="48"/>
+                                        <rect key="frame" x="24" y="95.999999999999972" width="305" height="48"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="48"/>
                                         <color key="textColor" name="calculatorGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -664,7 +738,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWH-7z-3N3">
-                                <rect key="frame" x="24" y="468.33333333333326" width="167.66666666666666" height="152"/>
+                                <rect key="frame" x="24" y="421.33333333333331" width="167.66666666666666" height="151.99999999999994"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-DF-RzK">
                                         <rect key="frame" x="18" y="18" width="144.66666666666666" height="22"/>
@@ -673,7 +747,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="LDR-LU-f9x">
-                                        <rect key="frame" x="6" y="80.000000000000057" width="145.66666666666666" height="64"/>
+                                        <rect key="frame" x="6" y="80" width="145.66666666666666" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="60h-bm-Alh"/>
                                         </constraints>
@@ -699,7 +773,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8e-CV-EKi">
-                                <rect key="frame" x="24" y="670.33333333333337" width="345" height="48"/>
+                                <rect key="frame" x="24" y="623.33333333333337" width="345" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="dSG-LC-DP9"/>
                                 </constraints>
@@ -823,7 +897,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfJ-7F-QHd">
-                                <rect key="frame" x="244.99999999999997" y="283" width="120.66666666666666" height="17"/>
+                                <rect key="frame" x="245" y="283" width="120.66666666666663" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1135,8 +1209,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aTD-Ou-0iR"/>
-        <segue reference="Cz3-ME-WhP"/>
+        <segue reference="Ipa-CJ-Loq"/>
+        <segue reference="v97-e6-biO"/>
         <segue reference="zcz-Bb-P6O"/>
     </inferredMetricsTieBreakers>
     <resources>
