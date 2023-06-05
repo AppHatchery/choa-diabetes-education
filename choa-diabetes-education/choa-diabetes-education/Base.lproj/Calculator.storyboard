@@ -15,7 +15,7 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-2c-0ct">
-                                <rect key="frame" x="32" y="639.33333333333337" width="329" height="75"/>
+                                <rect key="frame" x="32" y="597.33333333333337" width="329" height="75"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for Food and High Blood Sugar" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vms-7v-Ehz">
-                                <rect key="frame" x="32" y="523.33333333333337" width="329" height="75"/>
+                                <rect key="frame" x="32" y="502.33333333333326" width="329" height="75"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button2" title="Insulin for High Blood Sugar" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
@@ -105,28 +105,47 @@
                                     <segue destination="l7g-rs-uOg" kind="show" id="Cz3-ME-WhP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRO-PY-8Rw">
+                                <rect key="frame" x="32" y="692.33333333333337" width="329" height="75"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for High Blood Sugar with symptoms" imagePadding="20">
+                                    <backgroundConfiguration key="background" cornerRadius="15"/>
+                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
+                                    <color key="baseForegroundColor" name="headingGreenColor"/>
+                                    <color key="baseBackgroundColor" name="backgroundColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="calculateBloodSugarWithSymptoms:" destination="oZv-U8-baV" eventType="touchUpInside" id="9eZ-7r-bys"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wol-0H-cwc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vms-7v-Ehz" firstAttribute="top" secondItem="QPN-WQ-i2k" secondAttribute="bottom" constant="41" id="2s5-zv-r82"/>
-                            <constraint firstItem="vaW-2c-0ct" firstAttribute="top" secondItem="vms-7v-Ehz" secondAttribute="bottom" constant="41" id="30u-JD-SS4"/>
+                            <constraint firstItem="vms-7v-Ehz" firstAttribute="top" secondItem="QPN-WQ-i2k" secondAttribute="bottom" constant="20" id="2s5-zv-r82"/>
+                            <constraint firstItem="vaW-2c-0ct" firstAttribute="top" secondItem="vms-7v-Ehz" secondAttribute="bottom" constant="20" id="30u-JD-SS4"/>
                             <constraint firstItem="vaW-2c-0ct" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" constant="32" id="5Vi-jo-tVp"/>
                             <constraint firstItem="vaW-2c-0ct" firstAttribute="trailing" secondItem="QPN-WQ-i2k" secondAttribute="trailing" id="DE8-gM-L1Q"/>
+                            <constraint firstItem="rRO-PY-8Rw" firstAttribute="width" secondItem="vms-7v-Ehz" secondAttribute="width" id="DXe-HW-PEA"/>
                             <constraint firstItem="vms-7v-Ehz" firstAttribute="trailing" secondItem="QPN-WQ-i2k" secondAttribute="trailing" id="GYx-PD-mLZ"/>
                             <constraint firstItem="vaW-2c-0ct" firstAttribute="leading" secondItem="QPN-WQ-i2k" secondAttribute="leading" id="Iff-UF-GmU"/>
+                            <constraint firstItem="rRO-PY-8Rw" firstAttribute="top" secondItem="vaW-2c-0ct" secondAttribute="bottom" constant="20" id="JvN-uz-wSW"/>
                             <constraint firstItem="Wol-0H-cwc" firstAttribute="trailing" secondItem="vaW-2c-0ct" secondAttribute="trailing" constant="32" id="Q2q-Zb-mzM"/>
                             <constraint firstItem="vaW-2c-0ct" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="Qc5-wQ-B0g"/>
                             <constraint firstItem="vms-7v-Ehz" firstAttribute="leading" secondItem="QPN-WQ-i2k" secondAttribute="leading" id="ReY-uD-PzM"/>
                             <constraint firstItem="vms-7v-Ehz" firstAttribute="height" secondItem="QPN-WQ-i2k" secondAttribute="height" id="Wl1-tF-UqF"/>
                             <constraint firstItem="Wol-0H-cwc" firstAttribute="trailing" secondItem="lIX-m2-VCh" secondAttribute="trailing" id="a3k-AB-DcB"/>
                             <constraint firstItem="vaW-2c-0ct" firstAttribute="height" secondItem="QPN-WQ-i2k" secondAttribute="height" id="cVw-kN-y2a"/>
+                            <constraint firstItem="rRO-PY-8Rw" firstAttribute="height" secondItem="vms-7v-Ehz" secondAttribute="height" multiplier="0.666667" constant="25" id="cxV-yb-T7K"/>
                             <constraint firstItem="1uw-I9-vFF" firstAttribute="top" secondItem="Wol-0H-cwc" secondAttribute="top" id="dT7-GT-FeT"/>
                             <constraint firstItem="1uw-I9-vFF" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" constant="24" id="e80-hs-CbS"/>
                             <constraint firstItem="lIX-m2-VCh" firstAttribute="leading" secondItem="Wol-0H-cwc" secondAttribute="leading" id="kOp-sR-79f"/>
+                            <constraint firstItem="rRO-PY-8Rw" firstAttribute="trailing" secondItem="vms-7v-Ehz" secondAttribute="trailing" id="r5w-Fh-Ibg"/>
                             <constraint firstItem="QPN-WQ-i2k" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="sJN-V5-jCg"/>
                             <constraint firstItem="lIX-m2-VCh" firstAttribute="top" secondItem="LOP-QT-WbL" secondAttribute="top" id="tSx-8P-lju"/>
                             <constraint firstItem="QPN-WQ-i2k" firstAttribute="top" secondItem="lIX-m2-VCh" secondAttribute="bottom" constant="41" id="taA-jX-PvH"/>
+                            <constraint firstItem="rRO-PY-8Rw" firstAttribute="leading" secondItem="vms-7v-Ehz" secondAttribute="leading" id="unG-nr-qcL"/>
                             <constraint firstItem="vms-7v-Ehz" firstAttribute="centerX" secondItem="LOP-QT-WbL" secondAttribute="centerX" id="v8c-H6-y3E"/>
                         </constraints>
                     </view>
@@ -317,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeT-89-INA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4180" y="1023"/>
+            <point key="canvasLocation" x="4135" y="755"/>
         </scene>
         <!--CalculatorB View Controller-->
         <scene sceneID="dDD-Y0-FYK">
@@ -570,7 +589,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tix-R3-wyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4980" y="1023"/>
+            <point key="canvasLocation" x="4462" y="1489"/>
         </scene>
         <!--CalculatorC View Controller-->
         <scene sceneID="xI1-Nd-Lan">
@@ -749,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kt-83-i3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5767" y="1023"/>
+            <point key="canvasLocation" x="5706" y="1077"/>
         </scene>
         <!--Calculator-->
         <scene sceneID="9RL-pR-5Ri">
@@ -1137,7 +1156,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="aTD-Ou-0iR"/>
         <segue reference="Cz3-ME-WhP"/>
-        <segue reference="zcz-Bb-P6O"/>
+        <segue reference="HVs-IP-Ss1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>

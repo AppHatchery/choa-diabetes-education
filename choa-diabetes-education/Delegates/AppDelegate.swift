@@ -31,14 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
-        PendoManager.shared().startSession(
-             visitorId,
-             accountId: accountId,
-             visitorData: [:],
-             accountData: [:]
-         )
-        
-        FirebaseApp.configure()
+//        PendoManager.shared().startSession(
+//             visitorId,
+//             accountId: accountId,
+//             visitorData: [:],
+//             accountData: [:]
+//         )
+//
+//        FirebaseApp.configure()
 
         return true
     }
