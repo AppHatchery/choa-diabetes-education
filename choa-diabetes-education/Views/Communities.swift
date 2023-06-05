@@ -45,22 +45,22 @@ class Communities: UIView {
         nibView.bottomAnchor.constraint( equalTo: self.bottomAnchor ).isActive = true
     }
     
-    @IBAction func loadWebpage(_ sender: UIButton){
+    @IBAction func loadWebpage(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            url = URL(string: "https://www.strong4life.com/en")
             // Load strong4life
+            url = URLs.strong4life
         case 1:
-            url = URL(string: "https://www.jdrf.org/georgiasouthcarolina/")
             // Load jdrf
+            url = URLs.jdrf
         case 2:
             // Load campkudze
-            url = URL(string: "https://www.campkudzu.org/newly-diagnosed-resource-page/")
+            url = URLs.campkudzu
         default:
             // Error
             print("there was an error loading the url")
         }
-        UIApplication.shared.open(url!)
+        guard let url = url else { return }
+        UIApplication.shared.open(url)
     }
-    
 }

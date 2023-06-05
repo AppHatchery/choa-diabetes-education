@@ -56,7 +56,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        print("text field ended editing")
         switch textField.tag {
         case 0:
             totalCarbs = Float(textField.text ?? "0") ?? 0
@@ -138,7 +137,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         // move back the root view origin to zero
-        print("hide")
         view.frame.origin.y = 0
     }
     
@@ -171,31 +169,17 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let calculatorBViewController = segue.destination as? CalculatorBViewController
-        {
+        if let calculatorBViewController = segue.destination as? CalculatorBViewController {
             calculatorBViewController.insulinForFoodBoolean = insulinForFoodBoolean
             calculatorBViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
             calculatorBViewController.totalCarbs = totalCarbs
             calculatorBViewController.carbRatio = carbRatio
         }
-        if let calculatorCViewController = segue.destination as? CalculatorCViewController
-        {
+        if let calculatorCViewController = segue.destination as? CalculatorCViewController {
             calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
             calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
             calculatorCViewController.totalCarbs = totalCarbs
             calculatorCViewController.carbRatio = carbRatio
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

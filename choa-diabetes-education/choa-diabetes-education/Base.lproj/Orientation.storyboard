@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Snv-bU-yhT">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Orientation-->
+        <scene sceneID="lUa-vE-59J">
+            <objects>
+                <viewController title="Orientation" hidesBottomBarWhenPushed="YES" id="Snv-bU-yhT" customClass="OrientationViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WZH-xI-RfD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwH-bB-rxS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bBk-Tx-TSr"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qwH-bB-rxS" firstAttribute="leading" secondItem="bBk-Tx-TSr" secondAttribute="leading" id="CUv-E2-EwV"/>
+                            <constraint firstAttribute="bottom" secondItem="qwH-bB-rxS" secondAttribute="bottom" id="KNO-lE-Dq5"/>
+                            <constraint firstItem="qwH-bB-rxS" firstAttribute="top" secondItem="bBk-Tx-TSr" secondAttribute="top" id="eeW-ug-nGt"/>
+                            <constraint firstItem="bBk-Tx-TSr" firstAttribute="trailing" secondItem="qwH-bB-rxS" secondAttribute="trailing" id="lvY-x8-A3u"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Orientation (1/4)" id="xFJ-eu-Vbl">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ce8-I4-3Wz">
+                            <color key="tintColor" name="choaGreenColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="NMF-Vu-DGz">
+                            <color key="tintColor" name="choaGreenColor"/>
+                            <connections>
+                                <segue destination="sg5-4K-nby" kind="show" identifier="SegueToAgendaViewController" id="6YL-6r-mCA"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="NMF-Vu-DGz" id="7va-4M-yDj"/>
+                        </connections>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="qwH-bB-rxS" id="3hO-8s-AZ9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iR1-eK-M5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4306" y="-1352"/>
+        </scene>
+        <!--Orientation (2/4)-->
+        <scene sceneID="DGB-Aq-xsE">
+            <objects>
+                <viewController id="sg5-4K-nby" customClass="AgendaViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vXT-7c-iZF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEI-G4-TAw">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dck-A1-rnn"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sEI-G4-TAw" firstAttribute="leading" secondItem="Dck-A1-rnn" secondAttribute="leading" id="BND-vQ-Vlz"/>
+                            <constraint firstItem="Dck-A1-rnn" firstAttribute="trailing" secondItem="sEI-G4-TAw" secondAttribute="trailing" id="G0u-QK-Mwo"/>
+                            <constraint firstAttribute="bottom" secondItem="sEI-G4-TAw" secondAttribute="bottom" id="Gmv-5V-TNe"/>
+                            <constraint firstItem="sEI-G4-TAw" firstAttribute="top" secondItem="Dck-A1-rnn" secondAttribute="top" id="RDN-Ul-yM3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Orientation (2/4)" id="fIL-wo-0FX">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Wgn-RY-FZY">
+                            <color key="tintColor" name="choaGreenColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="utE-1X-qfw">
+                            <color key="tintColor" name="choaGreenColor"/>
+                            <connections>
+                                <segue destination="z2n-NH-755" kind="show" identifier="SegueToMedicalTeamViewController" id="vK0-aT-V9W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="sEI-G4-TAw" id="aBI-4X-JmQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="swL-1a-R8X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5193" y="-1353"/>
+        </scene>
+        <!--Orientation (3/4)-->
+        <scene sceneID="Q3i-LY-dQp">
+            <objects>
+                <viewController id="z2n-NH-755" customClass="MedicalTeamViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="peI-rZ-WcB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOO-Kx-bKS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Szh-cf-TEr"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Szh-cf-TEr" firstAttribute="trailing" secondItem="oOO-Kx-bKS" secondAttribute="trailing" id="L5h-Eh-8EO"/>
+                            <constraint firstItem="oOO-Kx-bKS" firstAttribute="leading" secondItem="Szh-cf-TEr" secondAttribute="leading" id="Pik-yO-eaD"/>
+                            <constraint firstAttribute="bottom" secondItem="oOO-Kx-bKS" secondAttribute="bottom" id="jbL-Pl-t0C"/>
+                            <constraint firstItem="oOO-Kx-bKS" firstAttribute="top" secondItem="Szh-cf-TEr" secondAttribute="top" id="unr-XI-Xli"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Orientation (3/4)" id="zHP-V8-onE">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="1Fb-C9-tJk">
+                            <color key="tintColor" name="choaGreenColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="1IN-8s-SVf">
+                            <color key="tintColor" name="choaGreenColor"/>
+                            <connections>
+                                <segue destination="j0Y-8j-97Y" kind="show" identifier="SegueToQuotesViewController" id="5Jq-Yw-pVG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="oOO-Kx-bKS" id="SoG-yp-tdk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1D-zw-IPK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6072" y="-1353"/>
+        </scene>
+        <!--Orientation (4/4)-->
+        <scene sceneID="vSi-hU-RRB">
+            <objects>
+                <viewController id="j0Y-8j-97Y" customClass="QuotesViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q3n-KA-keQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3s-qf-OIg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AzW-Jf-A7Z"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q3s-qf-OIg" firstAttribute="leading" secondItem="AzW-Jf-A7Z" secondAttribute="leading" id="Amo-Ga-LxH"/>
+                            <constraint firstItem="q3s-qf-OIg" firstAttribute="top" secondItem="AzW-Jf-A7Z" secondAttribute="top" id="Xnh-ch-NCh"/>
+                            <constraint firstItem="AzW-Jf-A7Z" firstAttribute="trailing" secondItem="q3s-qf-OIg" secondAttribute="trailing" id="bmW-Pr-V3h"/>
+                            <constraint firstAttribute="bottom" secondItem="q3s-qf-OIg" secondAttribute="bottom" id="yv7-xk-Edr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Orientation (4/4)" id="R2v-Oq-deT">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aW6-PR-CkS">
+                            <color key="tintColor" name="choaGreenColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="asq-2D-e2y">
+                            <color key="tintColor" name="choaGreenColor"/>
+                            <connections>
+                                <action selector="goToHome:" destination="j0Y-8j-97Y" id="F8T-sb-YtX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="q3s-qf-OIg" id="Blq-iI-IPR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8sE-b1-zYQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6922" y="-1353"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backgroundColor">
+            <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="choaGreenColor">
+            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -33,12 +33,12 @@ class HomeViewController: UIViewController {
         orientationTitleLabel.text = "Home.Orientation.Title".localized()
         orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
         
-        let subtitleFont =  UIFont(name: "GothamRounded-Bold", size: 16.0)
-        let titleFont =  UIFont(name: "Avenir-Light", size: 14.0)
+        let subtitleFont =  UIFont.gothamRoundedBold16
+        let titleFont =  UIFont.avenirLight14
         
-        let diabetesBasicsButtonTitle = NSAttributedString(string: "Home.SectionOne.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
-        let nutritionButtonTitle = NSAttributedString(string: "Home.SectionTwo.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
-        let managementButtonTitle = NSAttributedString(string: "Home.SectionThree.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont!])
+        let diabetesBasicsButtonTitle = NSAttributedString(string: "Home.SectionOne.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
+        let nutritionButtonTitle = NSAttributedString(string: "Home.SectionTwo.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
+        let managementButtonTitle = NSAttributedString(string: "Home.SectionThree.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
         
         diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
         nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
@@ -61,15 +61,14 @@ class HomeViewController: UIViewController {
         managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
         orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor, blur: 12.0, offset: 8, opacity: 0.62)
         orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6, opacity: 0.59)
-        firstDayLabel.text = "Home.FirstDay.Title".localized();
-        secondDayLabel.text = "Home.SecondDay.Title".localized();
+        firstDayLabel.text = "Home.FirstDay.Title".localized()
+        secondDayLabel.text = "Home.SecondDay.Title".localized()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let orientationViewController = segue.destination as? OrientationViewController {
             // since we now know the contentView frame, pass it down so that the next controller will know it before viewDidAppear
-            orientationViewController.contentFrame =
-            self.view.bounds
+            orientationViewController.contentFrame = self.view.bounds
             //            print(self.view.safeAreaInsets)
         }
         if let handbookViewController = segue.destination as? HandbookViewController {

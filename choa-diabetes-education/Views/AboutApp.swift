@@ -8,13 +8,14 @@
 import UIKit
 
 class AboutApp: UIView {
-    
+
     @IBOutlet weak var aboutTitle: UILabel!
     @IBOutlet weak var americanDiabetesTitle: UILabel!
     @IBOutlet weak var supportTitle: UILabel!
     
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
     @IBOutlet weak var supportTextView: UITextView!
+    
     
     //------------------------------------------------------------------------------
     override init( frame: CGRect ) {
@@ -48,10 +49,7 @@ class AboutApp: UIView {
     }
     
     @IBAction func searchForResources(_ sender: UIButton) {
-        if let url = URL(string:"https://diabetes.org/newsroom/press-releases/2022/american-diabetes-association-2023-standards-care-diabetes-guide-for-prevention-diagnosis-treatment-people-living-with-diabetes"){
-            UIApplication.shared.open(url)
-            
-        }
+        guard let url = URLs.aboutAppAmericalDiabetes else { return }
+        UIApplication.shared.open(url)
     }
-    
 }

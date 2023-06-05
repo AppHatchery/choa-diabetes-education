@@ -56,7 +56,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        print("text field ended editing")
         switch textField.tag {
         case 0:
             bloodSugar = Float(textField.text ?? "0") ?? 0
@@ -111,8 +110,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
             // Go to next page
             performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
-        }
-        else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
+        } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
             // CarbRatio is not there
             toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
         } else if (bloodSugar != 0 && correctionFactor != 0) {
@@ -176,23 +174,19 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         // move back the root view origin to zero
-        print("hide")
         view.frame.origin.y = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let calculatorCViewController = segue.destination as? CalculatorCViewController else { return }
+        calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
+        calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
         
-        if let calculatorCViewController = segue.destination as? CalculatorCViewController
-        {
-            calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
-            calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
-            
-            calculatorCViewController.totalCarbs = totalCarbs
-            calculatorCViewController.carbRatio = carbRatio
-            calculatorCViewController.bloodSugar = bloodSugar
-            calculatorCViewController.targetBloodSugar = targetBloodSugar
-            calculatorCViewController.correctionFactor = correctionFactor
-        }
+        calculatorCViewController.totalCarbs = totalCarbs
+        calculatorCViewController.carbRatio = carbRatio
+        calculatorCViewController.bloodSugar = bloodSugar
+        calculatorCViewController.targetBloodSugar = targetBloodSugar
+        calculatorCViewController.correctionFactor = correctionFactor
     }
     
     @objc func dismissKeyboard() {
