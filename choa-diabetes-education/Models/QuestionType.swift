@@ -42,11 +42,14 @@ enum YesOrNoQuestionId {
 
 enum TwoOptionsQuestionId {
     case testType
+    case ketonesMeasure
     
     var id: Int {
         switch self {
         case .testType:
             return 1
+        case .ketonesMeasure:
+            return 2
         }
     }
     
@@ -54,6 +57,8 @@ enum TwoOptionsQuestionId {
         switch id {
         case 1:
             self = .testType
+        case 2:
+            self = .ketonesMeasure
         default:
             self = .testType
         }
@@ -182,6 +187,20 @@ enum KetonesType {
             return "Calculator.Que4.Ketones.option2" .localized()
         case .none:
             return "Calculator.Que4.Ketones.option3".localized()
+        }
+    }
+}
+
+enum KetonesMeasuringType {
+    case zeroToSmall
+    case moderateToLarge
+    
+    var description: String {
+        switch self {
+        case .zeroToSmall:
+            return "Calculator.Que7.KetonesMeasuring.option1".localized()
+        case .moderateToLarge:
+            return "Calculator.Que7.KetonesMeasuring.option2".localized()
         }
     }
 }

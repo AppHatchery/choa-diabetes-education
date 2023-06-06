@@ -7,7 +7,8 @@ import Foundation
 import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: TestType)
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType)
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: KetonesMeasuringType)
 }
 
 class TwoOptionsView: UIView {
@@ -51,8 +52,8 @@ class TwoOptionsView: UIView {
         questionLabel.textAlignment = .left
         
         if let answerOptions = currentQuestion.answerOptions {
-            firstButton.setTitle(answerOptions[0].localized(), for: .normal)
-            secondButton.setTitle(answerOptions[1].localized(), for: .normal)
+            firstButton.setTitle(answerOptions[0], for: .normal)
+            secondButton.setTitle(answerOptions[1], for: .normal)
         }
         
         guard let description = currentQuestion.description, description != "" else {
@@ -82,10 +83,24 @@ class TwoOptionsView: UIView {
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        if firstButton.isSelected {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .pump)
-        } else {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .insulinShots)
+        switch currentQuestion.questionType {
+        case .twoOptions(let id):
+            switch id {
+            case .testType:
+                if firstButton.isSelected {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedTestType: .pump)
+                } else {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedTestType: .insulinShots)
+                }
+            case .ketonesMeasure:
+                if firstButton.isSelected {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedMeasuringType: .zeroToSmall)
+                } else {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedMeasuringType: .moderateToLarge)
+                }
+            }
+        default:
+            break
         }
     }
 }

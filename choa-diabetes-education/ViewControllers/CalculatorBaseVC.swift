@@ -100,9 +100,13 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         }
     }
     
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: TestType) {
-        self.questionnaireManager.saveTestType(userSelectedType)
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType) {
+        self.questionnaireManager.saveTestType(userSelectedTestType)
         self.questionnaireManager.confirmBloodSugarFlow()
+    }
+    
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: KetonesMeasuringType) {
+        // TODO
     }
     
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {
