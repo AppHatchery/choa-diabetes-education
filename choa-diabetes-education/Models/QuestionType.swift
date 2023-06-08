@@ -18,6 +18,7 @@ enum QuestionType {
 enum YesOrNoQuestionId {
     case severeDistress
     case ketonesInNext30Mins
+    case insulinThreeHours
     
     var id: Int {
         switch self {
@@ -25,6 +26,9 @@ enum YesOrNoQuestionId {
             return 1
         case .ketonesInNext30Mins:
             return 2
+        case .insulinThreeHours:
+            return 3
+            
         }
     }
     
@@ -34,6 +38,8 @@ enum YesOrNoQuestionId {
             self = .severeDistress
         case 2:
             self = .ketonesInNext30Mins
+        case 3:
+            self = .insulinThreeHours
         default:
             self = .severeDistress
         }
@@ -43,6 +49,8 @@ enum YesOrNoQuestionId {
 enum TwoOptionsQuestionId {
     case testType
     case ketonesMeasure
+    case lastDose
+    
     
     var id: Int {
         switch self {
@@ -50,6 +58,8 @@ enum TwoOptionsQuestionId {
             return 1
         case .ketonesMeasure:
             return 2
+        case .lastDose:
+            return 3
         }
     }
     
@@ -59,6 +69,8 @@ enum TwoOptionsQuestionId {
             self = .testType
         case 2:
             self = .ketonesMeasure
+        case 3:
+            self = .lastDose
         default:
             self = .testType
         }
@@ -199,6 +211,53 @@ enum TestType {
     }
 }
 
+enum PumpLastDose {
+    case lessThan30
+    case halfHourToTwoHours
+    
+    var description: String {
+        switch self {
+        case .lessThan30:
+            return "Calculator.Que11.PumpLastDose.option1".localized()
+        case .halfHourToTwoHours:
+            return "Calculator.Que11.PumpLastDose.option2".localized()
+        }
+    }
+}
+
+enum ShotLastDose {
+    case lessThanHour
+    case oneToThreeHours
+    
+    var description: String {
+        switch self {
+        case .lessThanHour:
+            return "Calculator.Que10.ShotLastDose.option1" .localized()
+        case .oneToThreeHours:
+            return "Calculator.Que10.ShotLastDose.option2".localized()
+        }
+    }
+}
+
+// MARK: Two Option
+
+enum UrineKetonesMeasurements {
+    case zeroToSmall
+    case moderateToLarge
+    
+    var description: String {
+        switch self {
+        case .zeroToSmall:
+            return "Calculator.Que7.KetonesMeasuring.option1".localized()
+        case .moderateToLarge:
+            return "Calculator.Que7.KetonesMeasuring.option2".localized()
+        }
+    }
+}
+
+
+
+// MARK: Multiple Options Answer
 
 enum MultipleOptionsAnswer: Equatable {
     case KetonesType(KetonesType)
@@ -293,16 +352,3 @@ enum BloodKetonesMeasurements {
 
 
 
-enum UrineKetonesMeasurements {
-    case zeroToSmall
-    case moderateToLarge
-    
-    var description: String {
-        switch self {
-        case .zeroToSmall:
-            return "Calculator.Que7.KetonesMeasuring.option1".localized()
-        case .moderateToLarge:
-            return "Calculator.Que7.KetonesMeasuring.option2".localized()
-        }
-    }
-}

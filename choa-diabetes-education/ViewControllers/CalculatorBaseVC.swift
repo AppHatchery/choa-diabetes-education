@@ -77,9 +77,9 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         // TODO
         switch userSelectedMeasuringType {
         case .zeroToSmall:
-            return
+            self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
         case .moderateToLarge:
-            return
+            self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
         }
     }
     
@@ -102,9 +102,9 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         case .BloodKetonesMeasurements(let bloodKetonesMeasurements):
             switch bloodKetonesMeasurements {
             case .lessThanOne:
-                return
+                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .oneToThree:
-                return
+                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .greaterThanThree:
                 self.questionnaireManager.triggerEmergencyActionFlow(currentQuestion)
             }
@@ -113,21 +113,10 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     }
     
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo) {
-        switch currentQuestion.questionId {
-        case YesOrNoQuestionId.severeDistress.id:
-            if userSelectedType == .yes {
-                self.questionnaireManager.triggerYesActionFlow(currentQuestion)
-            } else {
-                self.questionnaireManager.triggerNoActionFlow(currentQuestion)
-            }
-        case YesOrNoQuestionId.ketonesInNext30Mins.id:
-            if userSelectedType == .yes {
-                self.questionnaireManager.triggerYesActionFlow(currentQuestion)
-            } else {
-                self.questionnaireManager.triggerYesActionFlow(currentQuestion)
-            }
-        default:
-            break
+        if userSelectedType == .yes {
+            self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+        } else {
+            self.questionnaireManager.triggerNoActionFlow(currentQuestion)
         }
     }
     

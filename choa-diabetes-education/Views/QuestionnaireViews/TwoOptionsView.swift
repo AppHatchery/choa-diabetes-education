@@ -101,6 +101,11 @@ class TwoOptionsView: UIView {
                 } else {
                     delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedMeasuringType: .moderateToLarge)
                 }
+            // TODO: Change to VC paradigm
+            case .lastDose:
+                if firstButton.isSelected {
+                    return
+                }
             }
         default:
             break

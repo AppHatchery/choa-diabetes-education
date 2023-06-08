@@ -17,6 +17,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerBloodKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerEmergencyActionFlow(_ currentQuestion: Questionnaire)
+    func triggerKetonesResponseActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
     func saveBloodSugarAndCF(_ bloodSugar: Int, _ CF: Int)
     func confirmBloodSugarFlow()
@@ -36,20 +37,43 @@ extension QuestionnaireManager {
     
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
         switch currentQuestion.questionId {
+            
         case YesOrNoQuestionId.severeDistress.id:
             showFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, calculation: nil)
         case YesOrNoQuestionId.ketonesInNext30Mins.id:
-            showFinalStage(questionId: FinalQuestionId.endocrinologistScreen.stepId, calculation: nil)
-        default:
-            break
+            let createQue = createYesOrNoQuestion(questionId: .insulinThreeHours, question: "Calculator.Que9.RapidInsulin.title".localized(), description: "Calculator.Que9.RapidInsulin.description" .localized(), showDescriptionAtBottom: false)
+            actionsDelegate?.showNextQuestion(createQue)
+        case YesOrNoQuestionId.insulinThreeHours.id:
+            if currentTestType == .pump {
+                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que11.PumpLastDose.title".localized(), description: nil, answerOptions: [PumpLastDose.lessThan30.description, PumpLastDose.halfHourToTwoHours.description])
+                actionsDelegate?.showNextQuestion(createTimeQue)
+            } else if currentTestType == .insulinShots {
+                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que10.ShotLastDose.title".localized(), description: nil, answerOptions: [ShotLastDose.lessThanHour.description, ShotLastDose.oneToThreeHours.description])
+                actionsDelegate?.showNextQuestion(createTimeQue)
+            }
             
+        default:
+            return
         }
+        
         
     }
     
     func triggerNoActionFlow(_ currentQuestion: Questionnaire) {
-        let createTestTypeQue = createTwoCustomOptionsQuestion(questionId: .testType, question: "Calculator.Que2.TestType.title".localized(), description: nil, answerOptions: [TestType.pump.description, TestType.insulinShots.description])
-        actionsDelegate?.showNextQuestion(createTestTypeQue)
+        
+        switch currentQuestion.questionId {
+            
+        case YesOrNoQuestionId.severeDistress.id:
+            let createTestTypeQue = createTwoCustomOptionsQuestion(questionId: .testType, question: "Calculator.Que2.TestType.title".localized(), description: nil, answerOptions: [TestType.pump.description, TestType.insulinShots.description])
+            actionsDelegate?.showNextQuestion(createTestTypeQue)
+        case YesOrNoQuestionId.ketonesInNext30Mins.id:
+            showFinalStage(questionId: FinalQuestionId.endocrinologistScreen.stepId, calculation: nil)
+        case YesOrNoQuestionId.insulinThreeHours.id:
+            return
+        default:
+            return
+        }
+        
     }
     
     func saveTestType(_ testType: TestType) {
@@ -87,6 +111,11 @@ extension QuestionnaireManager {
     }
     
     
+    func triggerKetonesResponseActionFlow(_ currentQuestion: Questionnaire) {
+        let createQue = createYesOrNoQuestion(questionId: .insulinThreeHours, question: "Calculator.Que9.RapidInsulin.title".localized(), description: "Calculator.Que9.RapidInsulin.description" .localized(), showDescriptionAtBottom: false)
+        actionsDelegate?.showNextQuestion(createQue)
+    }
+    
     // TODO: Is the Final Question ID necessary?
     
     func triggerEmergencyActionFlow(_ currentQuestion: Questionnaire) {
@@ -100,6 +129,7 @@ extension QuestionnaireManager {
         }
         
     }
+    
 }
 
 extension QuestionnaireManager {
