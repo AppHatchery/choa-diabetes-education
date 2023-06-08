@@ -139,10 +139,12 @@ enum TwoOptionsDescriptionAtBottomId {
 }
 
 
+// TODO: Discuss use-case 
 
 enum FinalQuestionId {
     case firstEmergencyScreen
     case endocrinologistScreen
+    case emergencyBloodKetoneScreen
     
     var stepId: Int {
         switch self {
@@ -150,7 +152,10 @@ enum FinalQuestionId {
             return 1
         case .endocrinologistScreen:
             return 6
+        case .emergencyBloodKetoneScreen:
+            return 8
         }
+        
     }
     
     init(id: Int) {
@@ -204,7 +209,7 @@ enum MultipleOptionsAnswer: Equatable {
 enum KetonesType {
     case urineKetones
     case bloodKetones
-    case none
+    case noAccess
     
     var description: String {
         switch self {
@@ -212,7 +217,7 @@ enum KetonesType {
             return "Calculator.Que4.Ketones.option1".localized()
         case .bloodKetones:
             return "Calculator.Que4.Ketones.option2" .localized()
-        case .none:
+        case .noAccess:
             return "Calculator.Que4.Ketones.option3".localized()
         }
     }
@@ -223,7 +228,7 @@ enum KetonesType {
             return 1
         case .bloodKetones:
             return 2
-        case .none:
+        case .noAccess:
             return 3
         }
     }
@@ -235,9 +240,9 @@ enum KetonesType {
         case 2:
             self = .bloodKetones
         case 3:
-            self = .none
+            self = .noAccess
         default:
-            self = .none
+            self = .noAccess
         }
     }
     

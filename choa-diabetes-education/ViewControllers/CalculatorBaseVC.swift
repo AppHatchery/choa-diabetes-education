@@ -75,6 +75,12 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: UrineKetonesMeasurements) {
         // TODO
+        switch userSelectedMeasuringType {
+        case .zeroToSmall:
+            return
+        case .moderateToLarge:
+            return
+        }
     }
     
     
@@ -88,7 +94,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
                 self.questionnaireManager.triggerUrineKetonesActionFlow(currentQuestion)
             case .bloodKetones:
                 self.questionnaireManager.triggerBloodKetonesActionFlow(currentQuestion)
-            case .none:
+            case .noAccess:
                 self.questionnaireManager.triggerNoKetonesActionFlow(currentQuestion)
             }
             
@@ -100,7 +106,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
             case .oneToThree:
                 return
             case .greaterThanThree:
-                return
+                self.questionnaireManager.triggerEmergencyActionFlow(currentQuestion)
             }
         }
 

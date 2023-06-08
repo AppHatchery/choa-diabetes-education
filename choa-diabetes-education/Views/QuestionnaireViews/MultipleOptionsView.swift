@@ -87,7 +87,7 @@ class MultipleOptionsView: UIView {
     
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        
+        if selected == 0 { return }
         switch currentQuestion.questionId {
             case MultipleOptionsDescriptionAtBottomQueId.ketonesChecked.id:
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: MultipleOptionsAnswer.KetonesType(KetonesType(id: selected)))

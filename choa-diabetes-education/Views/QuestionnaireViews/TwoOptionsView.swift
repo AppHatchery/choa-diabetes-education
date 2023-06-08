@@ -83,8 +83,9 @@ class TwoOptionsView: UIView {
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        // TODO: In this case, you already are in the "TwoOptionsView", so do not need to switch case
-        // TODO: Discuss architecture 
+        
+        // TODO: Architecture Discussion -> Switch case in controller instead of view
+        
         switch currentQuestion.questionType {
         case .twoOptions(let id):
             switch id {
