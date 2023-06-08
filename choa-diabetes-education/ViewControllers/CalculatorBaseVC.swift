@@ -71,14 +71,39 @@ class CalculatorBaseVC: UIViewController {
 }
 
 extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: KetonesType) {
-        if userSelectedType == .urineKetones {
-            self.questionnaireManager.triggerUrineKetonesActionFlow(currentQuestion)
-        } else if userSelectedType == .bloodKetones {
-            self.questionnaireManager.triggerBloodKetonesActionFlow(currentQuestion)
-        } else {
-            self.questionnaireManager.triggerNoKetonesActionFlow(currentQuestion)
+    
+    
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: UrineKetonesMeasurements) {
+        // TODO
+    }
+    
+    
+    
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: MultipleOptionsAnswer) {
+        
+        switch userSelectedType {
+        case .KetonesType(let ketonesType):
+            switch ketonesType {
+            case .urineKetones:
+                self.questionnaireManager.triggerUrineKetonesActionFlow(currentQuestion)
+            case .bloodKetones:
+                self.questionnaireManager.triggerBloodKetonesActionFlow(currentQuestion)
+            case .none:
+                self.questionnaireManager.triggerNoKetonesActionFlow(currentQuestion)
+            }
+            
+        // TODO
+        case .BloodKetonesMeasurements(let bloodKetonesMeasurements):
+            switch bloodKetonesMeasurements {
+            case .lessThanOne:
+                return
+            case .oneToThree:
+                return
+            case .greaterThanThree:
+                return
+            }
         }
+
     }
     
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo) {
@@ -91,9 +116,9 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
             }
         case YesOrNoQuestionId.ketonesInNext30Mins.id:
             if userSelectedType == .yes {
-                // TODO
+                self.questionnaireManager.triggerYesActionFlow(currentQuestion)
             } else {
-                // TODO
+                self.questionnaireManager.triggerYesActionFlow(currentQuestion)
             }
         default:
             break
@@ -103,10 +128,6 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType) {
         self.questionnaireManager.saveTestType(userSelectedTestType)
         self.questionnaireManager.confirmBloodSugarFlow()
-    }
-    
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: KetonesMeasuringType) {
-        // TODO
     }
     
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {

@@ -32,9 +32,18 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
+    
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
-        let finalStepObj = createFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, title: "Calculator.Que1.FinalStep.title".localized(), description: "Calculator.Que1.FinalStep.description".localized())
-        actionsDelegate?.showNextQuestion(finalStepObj)
+        switch currentQuestion.questionId {
+        case YesOrNoQuestionId.severeDistress.id:
+            showFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId)
+        case YesOrNoQuestionId.ketonesInNext30Mins.id:
+            showFinalStage(questionId: FinalQuestionId.endocrinologistScreen.stepId)
+        default:
+            break
+            
+        }
+        
     }
     
     func triggerNoActionFlow(_ currentQuestion: Questionnaire) {
@@ -57,16 +66,18 @@ extension QuestionnaireManager {
     }
     
     func confirmForKetones() {
-        let createKetonesQue = createMultipleCustomOptionsQuestion(questionId: .ketones, question: "Calculator.Que4.Ketones.title".localized(), description: "Calculator.Que4.Ketones.description".localized(), answerOptions: [KetonesType.urineKetones.description, KetonesType.bloodKetones.description, KetonesType.none.description])
+        let createKetonesQue = createMultipleCustomOptionsQuestion(questionId: .ketonesChecked, question: "Calculator.Que4.Ketones.title".localized(), description: "Calculator.Que4.Ketones.description".localized(), answerOptions: [KetonesType.urineKetones.description, KetonesType.bloodKetones.description, KetonesType.none.description])
         actionsDelegate?.showNextQuestion(createKetonesQue)
     }
     
     func triggerUrineKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        
+        let createQue = createTwoCustomOptionsQuestion(questionId: TwoOptionsQuestionId.ketonesMeasure, question: "Calculator.Que.KetonesMeasuring.title".localized(), description: "Calculator.Que.KetonesMeasuring.description".localized(), answerOptions: ["Calculator.Que7.UrineKetonesMeasuring.option1".localized(), "Calculator.Que7.UrineKetonesMeasuring.option2".localized()])
+        actionsDelegate?.showNextQuestion(createQue)
     }
     
     func triggerBloodKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        
+        let createQue = createMultipleCustomOptionsQuestion(questionId: MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements, question: "Calculator.Que.KetonesMeasuring.title".localized(), description: "Calculator.Que.KetonesMeasuring.description".localized(), answerOptions: ["Calculator.Que8.BloodKetonesMeasuring.option1".localized(), "Calculator.Que8.BloodKetonesMeasuring.option2".localized(), "Calculator.Que8.BloodKetonesMeasuring.option3".localized()])
+        actionsDelegate?.showNextQuestion(createQue)
     }
     
     func triggerNoKetonesActionFlow(_ currentQuestion: Questionnaire) {
@@ -86,6 +97,11 @@ extension QuestionnaireManager {
         quesObj.questionType = .finalStep(FinalQuestionId(id: questionId))
         quesObj.finalStep = finalStepObj
         return quesObj
+    }
+    
+    func showFinalStage(questionId: Int) {
+        let finalStepObj = createFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, title: "Calculator.Que\(questionId).FinalStep.title".localized(), description: "Calculator.Que\(questionId).FinalStep.description".localized())
+        actionsDelegate?.showNextQuestion(finalStepObj)
     }
     
     func createYesOrNoQuestion(questionId: YesOrNoQuestionId, question: String, description: String?, showDescriptionAtBottom: Bool) -> Questionnaire {

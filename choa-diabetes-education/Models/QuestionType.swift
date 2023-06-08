@@ -86,32 +86,43 @@ enum OpenEndedWithMultipleInputQuestionId {
 }
 
 enum MultipleOptionsDescriptionAtBottomQueId {
-    case ketones
+    case ketonesChecked
+    case bloodKetoneMeasurements
+    
     
     var id: Int {
         switch self {
-        case .ketones:
+        case .ketonesChecked:
             return 1
+        case .bloodKetoneMeasurements:
+            return 8
         }
     }
+    
+    
     
     init(id: Int) {
         switch id {
         case 1:
-            self = .ketones
+            self = .ketonesChecked
+        case 8:
+            self = .bloodKetoneMeasurements
         default:
-            self = .ketones
+            self = .ketonesChecked
         }
     }
 }
 
 enum TwoOptionsDescriptionAtBottomId {
     case ketonesInNext30Mins
+    case urineKetoneMeasurements
     
     var id: Int {
         switch self {
         case .ketonesInNext30Mins:
             return 1
+        case .urineKetoneMeasurements:
+            return 7
         }
     }
     
@@ -119,19 +130,26 @@ enum TwoOptionsDescriptionAtBottomId {
         switch id {
         case 1:
             self = .ketonesInNext30Mins
+        case 7:
+            self = .urineKetoneMeasurements
         default:
             self = .ketonesInNext30Mins
         }
     }
 }
 
+
+
 enum FinalQuestionId {
     case firstEmergencyScreen
+    case endocrinologistScreen
     
     var stepId: Int {
         switch self {
         case .firstEmergencyScreen:
             return 1
+        case .endocrinologistScreen:
+            return 6
         }
     }
     
@@ -139,6 +157,8 @@ enum FinalQuestionId {
         switch id {
         case 1:
             self = .firstEmergencyScreen
+        case 6:
+            self = .endocrinologistScreen
         default:
             self = .firstEmergencyScreen
         }
@@ -174,6 +194,13 @@ enum TestType {
     }
 }
 
+
+enum MultipleOptionsAnswer: Equatable {
+    case KetonesType(KetonesType)
+    case BloodKetonesMeasurements(BloodKetonesMeasurements)
+    
+}
+
 enum KetonesType {
     case urineKetones
     case bloodKetones
@@ -189,9 +216,79 @@ enum KetonesType {
             return "Calculator.Que4.Ketones.option3".localized()
         }
     }
+    
+    var id: Int {
+        switch self {
+        case .urineKetones:
+            return 1
+        case .bloodKetones:
+            return 2
+        case .none:
+            return 3
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .urineKetones
+        case 2:
+            self = .bloodKetones
+        case 3:
+            self = .none
+        default:
+            self = .none
+        }
+    }
+    
 }
 
-enum KetonesMeasuringType {
+enum BloodKetonesMeasurements {
+    case lessThanOne
+    case oneToThree
+    case greaterThanThree
+    
+    var description: String {
+        switch self {
+        case .lessThanOne:
+            return "Calculator.Que8.BloodKetonesMeasuring.option1".localized()
+        case .oneToThree:
+            return "Calculator.Que8.BloodKetonesMeasuring.option2".localized()
+        case .greaterThanThree:
+            return "Calculator.Que8.BloodKetonesMeasuring.option3".localized()
+            
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .lessThanOne:
+            return 1
+        case .oneToThree:
+            return 2
+        case .greaterThanThree:
+            return 3
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lessThanOne
+        case 2:
+            self = .oneToThree
+        case 3:
+            self = .greaterThanThree
+        default:
+            self = .lessThanOne
+        }
+    }
+}
+
+
+
+
+enum UrineKetonesMeasurements {
     case zeroToSmall
     case moderateToLarge
     

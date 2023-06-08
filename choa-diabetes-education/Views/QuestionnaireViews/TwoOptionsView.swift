@@ -8,7 +8,7 @@ import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType)
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: KetonesMeasuringType)
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: UrineKetonesMeasurements)
 }
 
 class TwoOptionsView: UIView {
@@ -83,6 +83,8 @@ class TwoOptionsView: UIView {
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
+        // TODO: In this case, you already are in the "TwoOptionsView", so do not need to switch case
+        // TODO: Discuss architecture 
         switch currentQuestion.questionType {
         case .twoOptions(let id):
             switch id {

@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 protocol MultipleOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: KetonesType)
+    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: MultipleOptionsAnswer)
 }
 
 class MultipleOptionsView: UIView {
@@ -23,6 +23,8 @@ class MultipleOptionsView: UIView {
     
     private var currentQuestion: Questionnaire!
     weak var delegate: MultipleOptionsViewProtocol?
+    
+    private var selected = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,30 +65,39 @@ class MultipleOptionsView: UIView {
     }
     
     @IBAction func didFirstButtonTap(_ sender: UIButton) {
+        selected = 1
         firstButton.updateButtonForSelection()
         secondButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
+        selected = 2
         secondButton.updateButtonForSelection()
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
     }
     
     @IBAction func didThirdButtonTap(_ sender: UIButton) {
+        selected = 3
         thirdButton.updateButtonForSelection()
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForDeselection()
     }
     
+    
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        if firstButton.isSelected {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .urineKetones)
-        } else if secondButton.isSelected {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .bloodKetones)
-        } else {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .none)
+        
+        switch currentQuestion.questionId {
+            case MultipleOptionsDescriptionAtBottomQueId.ketonesChecked.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: MultipleOptionsAnswer.KetonesType(KetonesType(id: selected)))
+            case MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements.id:
+            
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: MultipleOptionsAnswer.BloodKetonesMeasurements( BloodKetonesMeasurements(id: selected)))
+            
+            default:
+                break
+            
         }
     }
 }
