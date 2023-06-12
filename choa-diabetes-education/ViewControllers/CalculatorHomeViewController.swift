@@ -12,10 +12,10 @@ class CalculatorHomeViewController: UIViewController {
     var insulinForHighBloodSugar = false
     var insulinForFood = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func calculateInsulinForFood(_ sender: UIButton){
@@ -33,6 +33,13 @@ class CalculatorHomeViewController: UIViewController {
         insulinForHighBloodSugar = true
     }
     
+    @IBAction func calculateBloodSugarWithSymptoms(_ sender: UIButton) {
+        let manager = QuestionnaireManager.instance
+        let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
+        let calculatorBaseVC = CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues)
+        self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorAViewController = segue.destination as? CalculatorAViewController {
             calculatorAViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
@@ -42,6 +49,12 @@ class CalculatorHomeViewController: UIViewController {
             calculatorBViewController.insulinForFoodBoolean = insulinForFood
             calculatorBViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
         }
+        
+//        if let calculatorBaseVC = segue.destination as? CalculatorBaseVC {
+//            let manager = QuestionnaireManager.instance
+//            let firstQues = manager.createQuestion(questionId: 1, questionType: .yesOrNoWithDescription, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), answerOptions: ["Yes", "No"])
+//            calculatorBaseVC.questionObj = firstQues
+//        }
     }
     
     /*

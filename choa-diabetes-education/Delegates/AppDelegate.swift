@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              visitorData: [:],
              accountData: [:]
          )
-        
+
         FirebaseApp.configure()
 
         return true

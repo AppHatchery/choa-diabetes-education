@@ -39,5 +39,22 @@ extension UIView {
         layer.shadowColor = color
         layer.masksToBounds = false
     }
+    
+    // MARK: - load from nibs
+    class func instantiateFromNib<T: UIView>(viewType: T.Type, owner: AnyObject!) -> T? {
+        if let url = NSURL(string: NSStringFromClass(viewType)) {
+            return Bundle(for: T.self).loadNibNamed((url.pathExtension)!, owner: owner, options: nil)!.first as? T
+        } else {
+            return nil
+        }
+    }
+
+    class func instantiateFromNib() -> Self {
+        return instantiateFromNib(viewType: self, owner: nil)!
+    }
+
+    class func instantiateFromNibWithOwner(owner: AnyObject!) -> Self {
+        return instantiateFromNib(viewType: self, owner: owner)!
+    }
 }
 

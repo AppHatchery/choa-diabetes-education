@@ -24,4 +24,6 @@ extension UIColor {
     public static let managementDropShadowColor = UIColor(red: 1, green: 229/255, blue: 242/255, alpha: 1)
     public static let orientationViewDropShadowColor = UIColor(red: 215/255, green: 240/255, blue: 223/255, alpha: 1.0)
     public static let orientationButtonDropShadowColor = UIColor(red: 214/255, green: 243/255, blue: 227/255, alpha: 1)
+    public static let lightGreenColor = UIColor(red: 234/255, green: 243/255, blue: 241/255, alpha: 1.0)
+    public static let primaryGreenColor = UIColor(red: 0/255, green: 169/255, blue: 79/255, alpha: 1.0)
 }

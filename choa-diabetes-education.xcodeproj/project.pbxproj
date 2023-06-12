@@ -143,6 +143,23 @@
 		FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3992A1D0D43009F3C30 /* URLs.swift */; };
 		FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */; };
 		FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */; };
+		FDC8E5262A1FD9E4006FDFF0 /* CalculatorBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */; };
+		FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */; };
+		FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */; };
+		FDC8E52B2A204974006FDFF0 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */; };
+		FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */; };
+		FDC8E52F2A2699CE006FDFF0 /* YesOrNoQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E52E2A2699CE006FDFF0 /* YesOrNoQueView.xib */; };
+		FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5302A2699D9006FDFF0 /* YesOrNoQueView.swift */; };
+		FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5322A27B735006FDFF0 /* RoundedButton.swift */; };
+		FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5352A27C12E006FDFF0 /* PrimaryButton.swift */; };
+		FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5372A281D95006FDFF0 /* FinalStepView.xib */; };
+		FDC8E53A2A281DC5006FDFF0 /* FinalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5392A281DC5006FDFF0 /* FinalStepView.swift */; };
+		FDC8E53C2A292F64006FDFF0 /* TwoOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E53B2A292F64006FDFF0 /* TwoOptionsView.xib */; };
+		FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E53D2A292F70006FDFF0 /* TwoOptionsView.swift */; };
+		FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5402A29413D006FDFF0 /* OpenEndedQueView.swift */; };
+		FDC8E5432A294147006FDFF0 /* OpenEndedQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5422A294147006FDFF0 /* OpenEndedQueView.xib */; };
+		FDC8E5452A2A7717006FDFF0 /* MultipleOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5442A2A7717006FDFF0 /* MultipleOptionsView.swift */; };
+		FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -282,6 +299,23 @@
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		FDC8E51F2A1FAC59006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Calculator.storyboard"; sourceTree = "<group>"; };
 		FDC8E5222A1FAE87006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Orientation.storyboard"; sourceTree = "<group>"; };
+		FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBaseVC.swift; sourceTree = "<group>"; };
+		FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculatorBaseVC.xib; sourceTree = "<group>"; };
+		FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
+		FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireManager.swift; sourceTree = "<group>"; };
+		FDC8E52E2A2699CE006FDFF0 /* YesOrNoQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoQueView.xib; sourceTree = "<group>"; };
+		FDC8E5302A2699D9006FDFF0 /* YesOrNoQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoQueView.swift; sourceTree = "<group>"; };
+		FDC8E5322A27B735006FDFF0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		FDC8E5352A27C12E006FDFF0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		FDC8E5372A281D95006FDFF0 /* FinalStepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepView.xib; sourceTree = "<group>"; };
+		FDC8E5392A281DC5006FDFF0 /* FinalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepView.swift; sourceTree = "<group>"; };
+		FDC8E53B2A292F64006FDFF0 /* TwoOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsView.xib; sourceTree = "<group>"; };
+		FDC8E53D2A292F70006FDFF0 /* TwoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsView.swift; sourceTree = "<group>"; };
+		FDC8E5402A29413D006FDFF0 /* OpenEndedQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenEndedQueView.swift; sourceTree = "<group>"; };
+		FDC8E5422A294147006FDFF0 /* OpenEndedQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenEndedQueView.xib; sourceTree = "<group>"; };
+		FDC8E5442A2A7717006FDFF0 /* MultipleOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleOptionsView.swift; sourceTree = "<group>"; };
+		FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleOptionsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +447,7 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
+				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
 				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
 				D48D890B289C0095001A61E2 /* plists */,
@@ -451,6 +486,8 @@
 				D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */,
 				D42A53792964DC990031D395 /* CalculatorBViewController.swift */,
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
+				FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */,
+				FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -458,6 +495,7 @@
 		D48D8908289C006D001A61E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FDC8E53F2A293809006FDFF0 /* QuestionnaireViews */,
 				D481679628ABBCCC003B14A3 /* OrientationHeader.swift */,
 				D481679828ABBCDE003B14A3 /* OrientationHeader.xib */,
 				D481679E28ABE251003B14A3 /* OrientationFooter.swift */,
@@ -549,6 +587,9 @@
 			isa = PBXGroup;
 			children = (
 				D48167C428ACFB40003B14A3 /* Content.swift */,
+				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
+				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
+				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -558,6 +599,32 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDC8E5342A27BC49006FDFF0 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				FDC8E5322A27B735006FDFF0 /* RoundedButton.swift */,
+				FDC8E5352A27C12E006FDFF0 /* PrimaryButton.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		FDC8E53F2A293809006FDFF0 /* QuestionnaireViews */ = {
+			isa = PBXGroup;
+			children = (
+				FDC8E52E2A2699CE006FDFF0 /* YesOrNoQueView.xib */,
+				FDC8E5302A2699D9006FDFF0 /* YesOrNoQueView.swift */,
+				FDC8E5372A281D95006FDFF0 /* FinalStepView.xib */,
+				FDC8E5392A281DC5006FDFF0 /* FinalStepView.swift */,
+				FDC8E53B2A292F64006FDFF0 /* TwoOptionsView.xib */,
+				FDC8E53D2A292F70006FDFF0 /* TwoOptionsView.swift */,
+				FDC8E5402A29413D006FDFF0 /* OpenEndedQueView.swift */,
+				FDC8E5422A294147006FDFF0 /* OpenEndedQueView.xib */,
+				FDC8E5442A2A7717006FDFF0 /* MultipleOptionsView.swift */,
+				FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */,
+			);
+			path = QuestionnaireViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,6 +701,7 @@
 				D4684AB4290B0B6600E7311B /* cheese_and_eggs.png in Resources */,
 				D48D891E289C1A30001A61E2 /* Gotham Rounded Bold.otf in Resources */,
 				D450EC1428C1158A0015D823 /* insulin.html in Resources */,
+				FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */,
 				D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */,
 				D4684AB0290B0B6600E7311B /* burger.png in Resources */,
 				D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */,
@@ -643,6 +711,7 @@
 				D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */,
 				FD99F3962A194839009F3C30 /* Localizable.strings in Resources */,
 				D450EC1128C1158A0015D823 /* types_of_food.html in Resources */,
+				FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
 				D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */,
@@ -674,6 +743,7 @@
 				D4684AB5290B0B6600E7311B /* cereal.png in Resources */,
 				D41D46912984172300825100 /* dairy_2.png in Resources */,
 				D4684AAF290B0B6600E7311B /* bread.png in Resources */,
+				FDC8E53C2A292F64006FDFF0 /* TwoOptionsView.xib in Resources */,
 				D450EC1628C1158A0015D823 /* blood_sugar.png in Resources */,
 				D4D48E9128D1123700820FD4 /* Communities.xib in Resources */,
 				D4684AAA290B0B6600E7311B /* taco.png in Resources */,
@@ -702,7 +772,9 @@
 				D450EC1A28C1158A0015D823 /* nutrition_facts.png in Resources */,
 				D4684AAE290B0B6600E7311B /* pizza.png in Resources */,
 				D48D88FD289C0045001A61E2 /* Assets.xcassets in Resources */,
+				FDC8E5432A294147006FDFF0 /* OpenEndedQueView.xib in Resources */,
 				D4684AA7290B0B6600E7311B /* maffin.png in Resources */,
+				FDC8E52F2A2699CE006FDFF0 /* YesOrNoQueView.xib in Resources */,
 				D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */,
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
@@ -714,6 +786,7 @@
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
 				FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */,
+				FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
@@ -754,16 +827,21 @@
 				D4D48E8B28D10FA200820FD4 /* FoodDiary.swift in Sources */,
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
+				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
+				FDC8E53A2A281DC5006FDFF0 /* FinalStepView.swift in Sources */,
 				D4C39B3328B7E1D0003CCA14 /* QuizIntroViewController.swift in Sources */,
 				D48167AB28ABEF68003B14A3 /* MedicalTeam.swift in Sources */,
 				D481679D28ABE1F4003B14A3 /* UILabel+Extensions.swift in Sources */,
 				D48167C228AC00C8003B14A3 /* QuizTableViewCell.swift in Sources */,
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
+				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
 				D48167BE28ABFE24003B14A3 /* ChapterListTableViewCell.swift in Sources */,
+				FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */,
+				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
@@ -777,20 +855,26 @@
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
+				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
+				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
+				FDC8E5452A2A7717006FDFF0 /* MultipleOptionsView.swift in Sources */,
 				D492A8972901D67900B98CA3 /* SearchResultTableViewCell.swift in Sources */,
 				D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */,
+				FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */,
 				D4D48E8F28D1122F00820FD4 /* Communities.swift in Sources */,
 				D48167A728ABE73E003B14A3 /* AgendaView.swift in Sources */,
 				D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */,
 				D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */,
 				D48167A328ABE4B2003B14A3 /* HomeViewController.swift in Sources */,
+				FDC8E5262A1FD9E4006FDFF0 /* CalculatorBaseVC.swift in Sources */,
 				D48167A528ABE6E5003B14A3 /* AgendaViewController.swift in Sources */,
 				D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */,
+				FDC8E52B2A204974006FDFF0 /* Questionnaire.swift in Sources */,
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
 			);
