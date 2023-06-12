@@ -73,21 +73,43 @@ class CalculatorBaseVC: UIViewController {
 extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
     
     
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: UrineKetonesMeasurements) {
-        // TODO
-        switch userSelectedMeasuringType {
-        case .zeroToSmall:
-            self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-        case .moderateToLarge:
-            self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
+        
+        switch selectedAnswer {
+        case .TestType(let testType):
+            self.questionnaireManager.saveTestType(testType)
+            self.questionnaireManager.confirmBloodSugarFlow()
+        case .UrineKetonesMeasurements(let urineKetonesMeasurements):
+            switch urineKetonesMeasurements {
+            case .zeroToSmall:
+                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
+            case .moderateToLarge:
+                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
+            }
+        case .PumpLastDose(let pumpLastDose):
+            switch pumpLastDose {
+            case .lessThan30:
+                return
+            case .halfHourToTwoHours:
+                return
+            }
+        case .ShotLastDose(let shotLastDose):
+            switch shotLastDose {
+            case .lessThanHour:
+                return
+            case .oneToThreeHours:
+                return
+            }
         }
+        
     }
     
     
     
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: MultipleOptionsAnswer) {
+    
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer) {
         
-        switch userSelectedType {
+        switch selectedAnswer {
         case .KetonesType(let ketonesType):
             switch ketonesType {
             case .urineKetones:
@@ -98,7 +120,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
                 self.questionnaireManager.triggerNoKetonesActionFlow(currentQuestion)
             }
             
-        // TODO
+        
         case .BloodKetonesMeasurements(let bloodKetonesMeasurements):
             switch bloodKetonesMeasurements {
             case .lessThanOne:
@@ -120,10 +142,6 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         }
     }
     
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType) {
-        self.questionnaireManager.saveTestType(userSelectedTestType)
-        self.questionnaireManager.confirmBloodSugarFlow()
-    }
     
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {
         self.questionnaireManager.saveBloodSugarAndCF(bloodSugar, cf)

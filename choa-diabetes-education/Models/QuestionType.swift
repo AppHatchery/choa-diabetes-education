@@ -197,6 +197,21 @@ enum YesOrNo {
 }
 
 
+
+
+
+
+// MARK: Two Options
+
+
+enum TwoOptionsAnswer: Equatable {
+    case TestType(TestType)
+    case UrineKetonesMeasurements(UrineKetonesMeasurements)
+    case PumpLastDose(PumpLastDose)
+    case ShotLastDose(ShotLastDose)
+    
+}
+
 enum TestType {
     case pump
     case insulinShots
@@ -207,6 +222,44 @@ enum TestType {
             return "Calculator.Que2.TestType.option1".localized()
         case .insulinShots:
             return "Calculator.Que2.TestType.option2".localized()
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .pump
+        case 2:
+            self = .insulinShots
+        default:
+            self = .pump
+        }
+    }
+}
+
+
+
+enum UrineKetonesMeasurements {
+    case zeroToSmall
+    case moderateToLarge
+    
+    var description: String {
+        switch self {
+        case .zeroToSmall:
+            return "Calculator.Que7.KetonesMeasuring.option1".localized()
+        case .moderateToLarge:
+            return "Calculator.Que7.KetonesMeasuring.option2".localized()
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .zeroToSmall
+        case 2:
+            self = .moderateToLarge
+        default:
+            self = .zeroToSmall
         }
     }
 }
@@ -223,6 +276,17 @@ enum PumpLastDose {
             return "Calculator.Que11.PumpLastDose.option2".localized()
         }
     }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lessThan30
+        case 2:
+            self = .halfHourToTwoHours
+        default:
+            self = .lessThan30
+        }
+    }
 }
 
 enum ShotLastDose {
@@ -237,27 +301,22 @@ enum ShotLastDose {
             return "Calculator.Que10.ShotLastDose.option2".localized()
         }
     }
-}
-
-// MARK: Two Option
-
-enum UrineKetonesMeasurements {
-    case zeroToSmall
-    case moderateToLarge
     
-    var description: String {
-        switch self {
-        case .zeroToSmall:
-            return "Calculator.Que7.KetonesMeasuring.option1".localized()
-        case .moderateToLarge:
-            return "Calculator.Que7.KetonesMeasuring.option2".localized()
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lessThanHour
+        case 2:
+            self = .oneToThreeHours
+        default:
+            self = .lessThanHour
         }
     }
 }
 
 
 
-// MARK: Multiple Options Answer
+// MARK: Multiple Options
 
 enum MultipleOptionsAnswer: Equatable {
     case KetonesType(KetonesType)

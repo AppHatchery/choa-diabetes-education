@@ -37,7 +37,6 @@ extension QuestionnaireManager {
     
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
         switch currentQuestion.questionId {
-            
         case YesOrNoQuestionId.severeDistress.id:
             showFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, calculation: nil)
         case YesOrNoQuestionId.ketonesInNext30Mins.id:

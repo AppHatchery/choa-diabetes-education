@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        let appKey = "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiIyZWU3M2U5OGZhZWU0YmE2ZjIzZDllNzZmNTFiYzllMTRiZGZmYTFhNjIwNjcwZmUwNzJlMjkzNWFhNTQ5YzgxNTU2NTE5N2UwOWVmNTU0MzA0ZWY5NmYxZWNiNDkyYzg0ZWNjNDM0ZjVkMDE2NGE1ZTMxZDk4YmQ5ZDVjZjExNi4wNzFjODA5YzhkYTc2OThiZTU0OWU1YjRkOGNmZTBkOS4wYzE2MjA1NjFkODMyOTExNmIwYjJkNmIwNDIwOGE1Zjk3ZmIwOWJlZTYyYjZiNWYyZTUzNTQxOTg5NDIzNGRjIn0.UKO49xBA1FKCsxv3TKrxqGTG2CjF3NbjEZBcIxOK0zE9bNWNPIuQr2aBpUKoUMS-rhbZyFxAUlmG4kkPPgKK1jaY5iooUbLW9_PE6EV4jCrnWjffsC3b1v9TrN5cSLlb8UE_Gf2hZZh3HH11AY5gfMgedKyG0B-MWFWmEAw9kcw"
-//        PendoManager.shared().setup(appKey)
+        let appKey = "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiIyZWU3M2U5OGZhZWU0YmE2ZjIzZDllNzZmNTFiYzllMTRiZGZmYTFhNjIwNjcwZmUwNzJlMjkzNWFhNTQ5YzgxNTU2NTE5N2UwOWVmNTU0MzA0ZWY5NmYxZWNiNDkyYzg0ZWNjNDM0ZjVkMDE2NGE1ZTMxZDk4YmQ5ZDVjZjExNi4wNzFjODA5YzhkYTc2OThiZTU0OWU1YjRkOGNmZTBkOS4wYzE2MjA1NjFkODMyOTExNmIwYjJkNmIwNDIwOGE1Zjk3ZmIwOWJlZTYyYjZiNWYyZTUzNTQxOTg5NDIzNGRjIn0.UKO49xBA1FKCsxv3TKrxqGTG2CjF3NbjEZBcIxOK0zE9bNWNPIuQr2aBpUKoUMS-rhbZyFxAUlmG4kkPPgKK1jaY5iooUbLW9_PE6EV4jCrnWjffsC3b1v9TrN5cSLlb8UE_Gf2hZZh3HH11AY5gfMgedKyG0B-MWFWmEAw9kcw"
+        PendoManager.shared().setup(appKey)
 
         // Set up Pendo
         // TODO: Add firebase installation
@@ -31,14 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
-//        PendoManager.shared().startSession(
-//             visitorId,
-//             accountId: accountId,
-//             visitorData: [:],
-//             accountData: [:]
-//         )
-//
-//        FirebaseApp.configure()
+        PendoManager.shared().startSession(
+             visitorId,
+             accountId: accountId,
+             visitorData: [:],
+             accountData: [:]
+         )
+
+        FirebaseApp.configure()
 
         return true
     }

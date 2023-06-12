@@ -7,8 +7,7 @@ import Foundation
 import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedTestType: TestType)
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedMeasuringType: UrineKetonesMeasurements)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer)
 }
 
 class TwoOptionsView: UIView {
@@ -25,6 +24,8 @@ class TwoOptionsView: UIView {
     @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
     private var currentQuestion: Questionnaire!
     weak var delegate: TwoOptionsViewProtocol?
+    
+    private var selected = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,42 +74,39 @@ class TwoOptionsView: UIView {
     }
     
     @IBAction func didFirstButtonTap(_ sender: UIButton) {
+        selected = 1
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForSelection()
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
+        selected = 2
         secondButton.updateButtonForSelection()
         firstButton.updateButtonForDeselection()
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         
-        // TODO: Architecture Discussion -> Switch case in controller instead of view
+        // TODO: Architecture Discussion -> Switch Logic to VC
         
-        switch currentQuestion.questionType {
-        case .twoOptions(let id):
-            switch id {
-            case .testType:
-                if firstButton.isSelected {
-                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedTestType: .pump)
-                } else {
-                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedTestType: .insulinShots)
-                }
-            case .ketonesMeasure:
-                if firstButton.isSelected {
-                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedMeasuringType: .zeroToSmall)
-                } else {
-                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedMeasuringType: .moderateToLarge)
-                }
-            // TODO: Change to VC paradigm
-            case .lastDose:
-                if firstButton.isSelected {
-                    return
-                }
+        if selected == 0 { return }
+        
+        switch currentQuestion.questionId {
+        case TwoOptionsQuestionId.testType.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)))
+        case TwoOptionsQuestionId.ketonesMeasure.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .UrineKetonesMeasurements(UrineKetonesMeasurements(id: selected)))
+        case TwoOptionsQuestionId.lastDose.id:
+            if QuestionnaireManager.instance.currentTestType == .pump {
+                delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .PumpLastDose(PumpLastDose(id: selected)))
+            } else if QuestionnaireManager.instance.currentTestType == .insulinShots {
+                delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .ShotLastDose(ShotLastDose(id: selected)))
             }
+        
         default:
             break
+        
         }
+        
     }
 }

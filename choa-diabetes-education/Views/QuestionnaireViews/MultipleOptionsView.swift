@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 protocol MultipleOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: MultipleOptionsAnswer)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer)
 }
 
 class MultipleOptionsView: UIView {
@@ -90,10 +90,10 @@ class MultipleOptionsView: UIView {
         if selected == 0 { return }
         switch currentQuestion.questionId {
             case MultipleOptionsDescriptionAtBottomQueId.ketonesChecked.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: MultipleOptionsAnswer.KetonesType(KetonesType(id: selected)))
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: MultipleOptionsAnswer.KetonesType(KetonesType(id: selected)))
             case MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements.id:
             
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: MultipleOptionsAnswer.BloodKetonesMeasurements( BloodKetonesMeasurements(id: selected)))
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: MultipleOptionsAnswer.BloodKetonesMeasurements( BloodKetonesMeasurements(id: selected)))
             
             default:
                 break
