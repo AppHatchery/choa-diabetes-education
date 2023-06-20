@@ -120,7 +120,7 @@ extension QuestionnaireManager {
     func triggerEmergencyActionFlow(_ currentQuestion: Questionnaire) {
         switch currentQuestion.questionId {
         case MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements.id:
-            let calculation = ((bloodSugar - 100)/correctionFactor)
+            let calculation = ((Double(bloodSugar) - 100.0)/Double(correctionFactor))
             showFinalStage(questionId: FinalQuestionId.emergencyBloodKetoneScreen.stepId, calculation: calculation)
         default:
             return
@@ -144,10 +144,12 @@ extension QuestionnaireManager {
         return quesObj
     }
     
-    func showFinalStage(questionId: Int, calculation: Int?) {
+    func showFinalStage(questionId: Int, calculation: Double?) {
         var str = ""
         if let calculation = calculation {
-            str = "\n\n  And consider a dose of \(calculation) units of rapid-acting insulin."
+            let s = "Calculator.Que8.FinalStep.calculation".localized()
+            str = String(format: s, [round(calculation)])
+            
         }
         let finalStepObj = createFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, title: "Calculator.Que\(questionId).FinalStep.title".localized(), description: "Calculator.Que\(questionId).FinalStep.description".localized() + str)
         actionsDelegate?.showNextQuestion(finalStepObj)
