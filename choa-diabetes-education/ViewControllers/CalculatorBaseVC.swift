@@ -48,11 +48,14 @@ class CalculatorBaseVC: UIViewController {
             multipleOptionsView.isHidden = false
             multipleOptionsView.delegate = self
             multipleOptionsView.setupView(currentQuestion: questionObj)
-        case .openEndedWithSingleInput: break
+        case .openEndedWithSingleInput:
+            openEndedQueView.isHidden = false
+            openEndedQueView.delegate = self
+            openEndedQueView.setupView(currentQuestion: questionObj, multiple: false)
         case .openEndedWithMultipleInput:
             openEndedQueView.isHidden = false
             openEndedQueView.delegate = self
-            openEndedQueView.setupView(currentQuestion: questionObj)
+            openEndedQueView.setupView(currentQuestion: questionObj, multiple: true)
         case .finalStep:
             finalStepView.isHidden = false
             finalStepView.delegate = self
@@ -71,10 +74,11 @@ class CalculatorBaseVC: UIViewController {
 }
 
 extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
+
+    
     
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
-        
         switch selectedAnswer {
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
@@ -89,16 +93,19 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         case .PumpLastDose(let pumpLastDose):
             switch pumpLastDose {
             case .lessThan30:
-                return
+                self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .halfHourToTwoHours:
-                return
+                self.questionnaireManager.saveInsulin(0)
+                self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
+                
             }
         case .ShotLastDose(let shotLastDose):
             switch shotLastDose {
             case .lessThanHour:
-                return
+                self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .oneToThreeHours:
-                return
+                self.questionnaireManager.saveInsulin(0)
+                self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
             }
         }
         
@@ -146,6 +153,11 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {
         self.questionnaireManager.saveBloodSugarAndCF(bloodSugar, cf)
         self.questionnaireManager.confirmForKetones()
+    }
+    
+    func didSelectNextAction(currentQuestion: Questionnaire, lastDose: Int) {
+        self.questionnaireManager.saveInsulin(lastDose)
+        self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
     }
 }
 

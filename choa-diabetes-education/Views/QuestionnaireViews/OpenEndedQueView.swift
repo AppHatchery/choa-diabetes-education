@@ -8,6 +8,7 @@ import UIKit
 
 protocol OpenEndedQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int)
+    func didSelectNextAction(currentQuestion: Questionnaire, lastDose: Int)
 }
 
 class OpenEndedQueView: UIView {
@@ -48,7 +49,12 @@ class OpenEndedQueView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
-    func setupView(currentQuestion: Questionnaire) {
+    func setupView(currentQuestion: Questionnaire, multiple: Bool) {
+        
+        if !multiple {
+            secondQueContentView.isHidden = true
+        }
+        
         self.currentQuestion = currentQuestion
         questionLabel.font = .gothamRoundedBold16
         questionLabel.numberOfLines = 0
@@ -66,12 +72,36 @@ class OpenEndedQueView: UIView {
         unitLabel.textColor = .headingGreenColor
         unitLabel.text = currentQuestion.inputUnit
         unitLabel.textAlignment = .left
+        
+
+        
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        guard let bloodSugar = Int(firstInputField.text ?? ""), let cf = Int(secondInputField.text ?? "") else {
+        
+        // TODO: Move logic to VC
+ 
+        switch self.currentQuestion.questionType {
+        case .openEndedWithMultipleInput(let id):
+            switch  id {
+            case .bloodSugar:
+                guard let bloodSugar = Int(firstInputField.text ?? ""), let cf = Int(secondInputField.text ?? "") else { return }
+                delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, cf: cf)
+            }
+        case .openEndedWithSingleInput(let id):
+            switch id {
+            case .lastDoseInsulin:
+                guard let insulin = Int(firstInputField.text ?? "") else { return }
+                delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, lastDose: insulin)
+            }
+        default:
             return
+
         }
-        delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, cf: cf)
+        
+        
+        
     }
 }
+
+

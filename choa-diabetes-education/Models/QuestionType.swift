@@ -5,12 +5,12 @@
 
 import Foundation
 
-enum QuestionType {
+enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
     case multipleOptions
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
-    case openEndedWithSingleInput
+    case openEndedWithSingleInput(OpenEndedWithSingleInputQuestionId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
 }
@@ -19,6 +19,7 @@ enum YesOrNoQuestionId {
     case severeDistress
     case ketonesInNext30Mins
     case insulinThreeHours
+    case bedtime
     
     var id: Int {
         switch self {
@@ -28,6 +29,8 @@ enum YesOrNoQuestionId {
             return 2
         case .insulinThreeHours:
             return 3
+        case .bedtime:
+            return 4
             
         }
     }
@@ -40,6 +43,8 @@ enum YesOrNoQuestionId {
             self = .ketonesInNext30Mins
         case 3:
             self = .insulinThreeHours
+        case 4:
+            self = .bedtime
         default:
             self = .severeDistress
         }
@@ -73,6 +78,26 @@ enum TwoOptionsQuestionId {
             self = .lastDose
         default:
             self = .testType
+        }
+    }
+}
+
+enum OpenEndedWithSingleInputQuestionId {
+    case lastDoseInsulin
+    
+    var id: Int {
+        switch self {
+        case .lastDoseInsulin:
+            return 1
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lastDoseInsulin
+        default:
+            self = .lastDoseInsulin
         }
     }
 }
