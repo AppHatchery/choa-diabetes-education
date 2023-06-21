@@ -16,6 +16,8 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerUrineKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerBloodKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoKetonesActionFlow(_ currentQuestion: Questionnaire)
+    func triggerEmergencyActionFlow(_ currentQuestion: Questionnaire)
+    func triggerKetonesResponseActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
     func saveBloodSugarAndCF(_ bloodSugar: Int, _ CF: Int)
     func confirmBloodSugarFlow()
@@ -32,14 +34,45 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
+    
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
-        let finalStepObj = createFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, title: "Calculator.Que1.FinalStep.title".localized(), description: "Calculator.Que1.FinalStep.description".localized())
-        actionsDelegate?.showNextQuestion(finalStepObj)
+        switch currentQuestion.questionId {
+        case YesOrNoQuestionId.severeDistress.id:
+            showFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, calculation: nil)
+        case YesOrNoQuestionId.ketonesInNext30Mins.id:
+            let createQue = createYesOrNoQuestion(questionId: .insulinThreeHours, question: "Calculator.Que9.RapidInsulin.title".localized(), description: "Calculator.Que9.RapidInsulin.description" .localized(), showDescriptionAtBottom: false)
+            actionsDelegate?.showNextQuestion(createQue)
+        case YesOrNoQuestionId.insulinThreeHours.id:
+            if currentTestType == .pump {
+                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que11.PumpLastDose.title".localized(), description: nil, answerOptions: [PumpLastDose.lessThan30.description, PumpLastDose.halfHourToTwoHours.description])
+                actionsDelegate?.showNextQuestion(createTimeQue)
+            } else if currentTestType == .insulinShots {
+                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que10.ShotLastDose.title".localized(), description: nil, answerOptions: [ShotLastDose.lessThanHour.description, ShotLastDose.oneToThreeHours.description])
+                actionsDelegate?.showNextQuestion(createTimeQue)
+            }
+            
+        default:
+            return
+        }
+        
+        
     }
     
     func triggerNoActionFlow(_ currentQuestion: Questionnaire) {
-        let createTestTypeQue = createTwoCustomOptionsQuestion(questionId: .testType, question: "Calculator.Que2.TestType.title".localized(), description: nil, answerOptions: [TestType.pump.description, TestType.insulinShots.description])
-        actionsDelegate?.showNextQuestion(createTestTypeQue)
+        
+        switch currentQuestion.questionId {
+            
+        case YesOrNoQuestionId.severeDistress.id:
+            let createTestTypeQue = createTwoCustomOptionsQuestion(questionId: .testType, question: "Calculator.Que2.TestType.title".localized(), description: nil, answerOptions: [TestType.pump.description, TestType.insulinShots.description])
+            actionsDelegate?.showNextQuestion(createTestTypeQue)
+        case YesOrNoQuestionId.ketonesInNext30Mins.id:
+            showFinalStage(questionId: FinalQuestionId.endocrinologistScreen.stepId, calculation: nil)
+        case YesOrNoQuestionId.insulinThreeHours.id:
+            return
+        default:
+            return
+        }
+        
     }
     
     func saveTestType(_ testType: TestType) {
@@ -57,22 +90,45 @@ extension QuestionnaireManager {
     }
     
     func confirmForKetones() {
-        let createKetonesQue = createMultipleCustomOptionsQuestion(questionId: .ketones, question: "Calculator.Que4.Ketones.title".localized(), description: "Calculator.Que4.Ketones.description".localized(), answerOptions: [KetonesType.urineKetones.description, KetonesType.bloodKetones.description, KetonesType.none.description])
+        let createKetonesQue = createMultipleCustomOptionsQuestion(questionId: .ketonesChecked, question: "Calculator.Que4.Ketones.title".localized(), description: "Calculator.Que4.Ketones.description".localized(), answerOptions: [KetonesType.urineKetones.description, KetonesType.bloodKetones.description, KetonesType.noAccess.description])
         actionsDelegate?.showNextQuestion(createKetonesQue)
     }
     
     func triggerUrineKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        
+        let createQue = createTwoCustomOptionsQuestion(questionId: TwoOptionsQuestionId.ketonesMeasure, question: "Calculator.Que.KetonesMeasuring.title".localized(), description: "Calculator.Que.KetonesMeasuring.description".localized(), answerOptions: ["Calculator.Que7.UrineKetonesMeasuring.option1".localized(), "Calculator.Que7.UrineKetonesMeasuring.option2".localized()])
+        actionsDelegate?.showNextQuestion(createQue)
     }
     
     func triggerBloodKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        
+        let createQue = createMultipleCustomOptionsQuestion(questionId: MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements, question: "Calculator.Que.KetonesMeasuring.title".localized(), description: "Calculator.Que.KetonesMeasuring.description".localized(), answerOptions: ["Calculator.Que8.BloodKetonesMeasuring.option1".localized(), "Calculator.Que8.BloodKetonesMeasuring.option2".localized(), "Calculator.Que8.BloodKetonesMeasuring.option3".localized()])
+        actionsDelegate?.showNextQuestion(createQue)
     }
     
     func triggerNoKetonesActionFlow(_ currentQuestion: Questionnaire) {
         let createQue = createYesOrNoQuestion(questionId: .ketonesInNext30Mins, question: "Calculator.Que5.KetonesInNext30Mins.title".localized(), description: "Calculator.Que5.KetonesInNext30Mins.description" .localized(), showDescriptionAtBottom: true)
         actionsDelegate?.showNextQuestion(createQue)
     }
+    
+    
+    func triggerKetonesResponseActionFlow(_ currentQuestion: Questionnaire) {
+        let createQue = createYesOrNoQuestion(questionId: .insulinThreeHours, question: "Calculator.Que9.RapidInsulin.title".localized(), description: "Calculator.Que9.RapidInsulin.description" .localized(), showDescriptionAtBottom: false)
+        actionsDelegate?.showNextQuestion(createQue)
+    }
+    
+    // TODO: Is the Final Question ID necessary?
+    
+    func triggerEmergencyActionFlow(_ currentQuestion: Questionnaire) {
+        switch currentQuestion.questionId {
+        case MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements.id:
+            let calculation = ((Double(bloodSugar) - 100.0)/Double(correctionFactor))
+            showFinalStage(questionId: FinalQuestionId.emergencyBloodKetoneScreen.stepId, calculation: calculation)
+        default:
+            return
+            
+        }
+        
+    }
+    
 }
 
 extension QuestionnaireManager {
@@ -86,6 +142,17 @@ extension QuestionnaireManager {
         quesObj.questionType = .finalStep(FinalQuestionId(id: questionId))
         quesObj.finalStep = finalStepObj
         return quesObj
+    }
+    
+    func showFinalStage(questionId: Int, calculation: Double?) {
+        var str = ""
+        if let calculation = calculation {
+            let s = "Calculator.Que8.FinalStep.calculation".localized()
+            str = String(format: s, [round(calculation)])
+            
+        }
+        let finalStepObj = createFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, title: "Calculator.Que\(questionId).FinalStep.title".localized(), description: "Calculator.Que\(questionId).FinalStep.description".localized() + str)
+        actionsDelegate?.showNextQuestion(finalStepObj)
     }
     
     func createYesOrNoQuestion(questionId: YesOrNoQuestionId, question: String, description: String?, showDescriptionAtBottom: Bool) -> Questionnaire {
