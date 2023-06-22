@@ -64,8 +64,8 @@
 "Calculator.Que.SevereDistress.title" = "· Is your child/teen under severe distress?";
 "Calculator.Que.SevereDistress.description" = "(for example: not responsive, weakly responsive with stimulation, confused, dizzy to the point of not being able to stand, blue color to the skin, and very labored breathing)";
 
-"Calculator.Que1.FinalStep.title" = "Call 911 or proceed to the nearest ED";
-"Calculator.Que1.FinalStep.description" = "Whichever you believe is safest, drive carefully if you choose to drive, consider a dose of rapid-acting insulin if ketones and BG are elevated.\n\n If you feel comfortable going to the Child/teenren's ED we advise you do so.";
+"Calculator.First.FinalStep.title" = "Call 911 or proceed to the nearest ED";
+"Calculator.First.FinalStep.description" = "Whichever you believe is safest, drive carefully if you choose to drive, consider a dose of rapid-acting insulin if ketones and BG are elevated.\n\n If you feel comfortable going to the Child/teen's ED we advise you do so.";
 
 "Calculator.Que2.TestType.title" = "· Are you using a pump or insulin shots below the skin?";
 "Calculator.Que2.TestType.option1" = "Pump";
@@ -84,7 +84,7 @@
 "Calculator.Que5.KetonesInNext30Mins.title" = "· Can you determine ketones in the next 30 mins?";
 "Calculator.Que5.KetonesInNext30Mins.description"  = "If you can determine ketones in the next 30 mins, we will assume they are low and when you have your measurement go through this flow again";
 
-"Calculator.Que6.FinalStep.title" = "Call the Endocrinologist";
+"Calculator.Endo.FinalStep.title" = "Call the Endocrinologist";
 "Calculator.Que6.FinalStep.description" = "";
 
 "Calculator.Que.KetonesMeasuring.title" = "What are your ketones measuring?";
@@ -97,9 +97,9 @@
 "Calculator.Que8.BloodKetonesMeasuring.option2" = "1 - 3";
 "Calculator.Que8.BloodKetonesMeasuring.option3" = "> 3";
 
-"Calculator.Que8.FinalStep.title" = "Proceed to the nearest ED";
-"Calculator.Que8.FinalStep.description" = "If you feel comfortable going to the Child/teen's ED we advise you do so. Drive carefully if you choose to drive.";
-"Calculator.Que8.FinalStep.calculation" = "\n\n  And consider a dose of %@ units of rapid-acting insulin.";
+"Calculator.General.FinalStep.title" = "Proceed to the nearest ED";
+"Calculator.General.FinalStep.description" = "If you feel comfortable going to the Child/teen's ED we advise you do so. Drive carefully if you choose to drive.";
+"Calculator.General.FinalStep.calculation" = "\n\n  And consider a dose of %@ units of rapid-acting insulin.";
 
 "Calculator.Que9.RapidInsulin.title" = "· Have you given a rapid-acting insulin in the last 3 hours?";
 "Calculator.Que9.RapidInsulin.description" = "";
@@ -117,4 +117,21 @@
 
 "Calculator.Que13.Bedtime.title" = "· Are you near bedtime?";
 "Calculator.Que13.Bedtime.description" = "";
+
+"Calculator.Que14.Dehydration.title" = "Is your kid dehydrated?";
+"Calculator.Que14.Dehydration.description" = "Very thirsty, dry mouth, lost weight, weak";
+
+"Calculator.Que15.AbdominalPain.title" = "· Is your child/teen having abdominal pain?";
+"Calculator.Que15.AbdominalPain.description" = "";
+
+"Calculator.Que16.Breathing.title" = "· Is your child/teen breathing heavily or deeply?";
+"Calculator.Que16.Breathing.description" = "";
+
+"Calculator.Que17.Vomiting.title" = "· Has your child/teen been vomiting?";
+"Calculator.Que17.Vomiting.description" = "";
+
+"Calculator.Que18.AnyFollowing.title" = "· Do any of the following apply:";
+"Calculator.Que18.AnyFollowing.description" = "· Vomiting\n· Recent hospitalization or ER visit\n· Taking steroids\n· Third episode of hyperglycemia in 24 hours or second episode associated with either mod/large urine ketones";
+
+
 

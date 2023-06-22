@@ -20,6 +20,12 @@ enum YesOrNoQuestionId {
     case ketonesInNext30Mins
     case insulinThreeHours
     case bedtime
+    case dehydrated
+    case abdominal
+    case breathing
+    case vomiting
+    case anyFollowing
+    
     
     var id: Int {
         switch self {
@@ -31,6 +37,16 @@ enum YesOrNoQuestionId {
             return 3
         case .bedtime:
             return 4
+        case .dehydrated:
+            return 5
+        case .abdominal:
+            return 6
+        case .breathing:
+            return 7
+        case .vomiting:
+            return 8
+        case .anyFollowing:
+            return 9
             
         }
     }
@@ -45,6 +61,16 @@ enum YesOrNoQuestionId {
             self = .insulinThreeHours
         case 4:
             self = .bedtime
+        case 5:
+            self = .dehydrated
+        case 6:
+            self = .abdominal
+        case 7:
+            self = .breathing
+        case 8:
+            self = .vomiting
+        case 9:
+            self = .anyFollowing
         default:
             self = .severeDistress
         }
@@ -181,7 +207,7 @@ enum TwoOptionsDescriptionAtBottomId {
 enum FinalQuestionId {
     case firstEmergencyScreen
     case endocrinologistScreen
-    case emergencyBloodKetoneScreen
+    case generalEmergencyScreen
     
     var stepId: Int {
         switch self {
@@ -189,7 +215,7 @@ enum FinalQuestionId {
             return 1
         case .endocrinologistScreen:
             return 6
-        case .emergencyBloodKetoneScreen:
+        case .generalEmergencyScreen:
             return 8
         }
         
@@ -201,6 +227,8 @@ enum FinalQuestionId {
             self = .firstEmergencyScreen
         case 6:
             self = .endocrinologistScreen
+        case 8:
+            self = .generalEmergencyScreen
         default:
             self = .firstEmergencyScreen
         }

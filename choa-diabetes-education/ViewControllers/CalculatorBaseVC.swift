@@ -86,6 +86,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         case .UrineKetonesMeasurements(let urineKetonesMeasurements):
             switch urineKetonesMeasurements {
             case .zeroToSmall:
+                self.questionnaireManager.saveKetones(1.0)
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .moderateToLarge:
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
@@ -95,7 +96,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
             case .lessThan30:
                 self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .halfHourToTwoHours:
-                self.questionnaireManager.saveInsulin(0)
+                self.questionnaireManager.saveDose(0)
                 self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
                 
             }
@@ -104,7 +105,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
             case .lessThanHour:
                 self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .oneToThreeHours:
-                self.questionnaireManager.saveInsulin(0)
+                self.questionnaireManager.saveDose(0)
                 self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
             }
         }
@@ -131,11 +132,13 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         case .BloodKetonesMeasurements(let bloodKetonesMeasurements):
             switch bloodKetonesMeasurements {
             case .lessThanOne:
+                self.questionnaireManager.saveKetones(1.0)
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .oneToThree:
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .greaterThanThree:
-                self.questionnaireManager.triggerEmergencyActionFlow(currentQuestion)
+                self.questionnaireManager.saveKetones(1.5)
+                self.questionnaireManager.triggerEmergencyActionFlow()
             }
         }
 
@@ -156,7 +159,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     }
     
     func didSelectNextAction(currentQuestion: Questionnaire, lastDose: Int) {
-        self.questionnaireManager.saveInsulin(lastDose)
+        self.questionnaireManager.saveDose(lastDose)
         self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
     }
 }
