@@ -6,6 +6,8 @@
 import UIKit
 
 class CalculatorBaseVC: UIViewController {
+
+    
     
     static let nibName = "CalculatorBaseVC"
     
@@ -14,6 +16,7 @@ class CalculatorBaseVC: UIViewController {
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
+    @IBOutlet weak var fourOptionsView: FourOptionsView!
     
     private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
@@ -60,6 +63,12 @@ class CalculatorBaseVC: UIViewController {
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
+        case .fourOptions:
+            print("unhid the view")
+            fourOptionsView.isHidden = false
+            fourOptionsView.delegate = self
+            fourOptionsView.setupView(currentQuestion: questionObj)
+            
         case .none: break
         }
     }
@@ -70,10 +79,11 @@ class CalculatorBaseVC: UIViewController {
         twoOptionsView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
+        fourOptionsView.isHidden = true
     }
 }
 
-extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
+extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol, FourOptionsViewProtocol {
 
     
     
@@ -112,7 +122,21 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         
     }
     
-    
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
+        switch selectedAnswer {
+        case .ScheduledTime(let scheduledTime):
+            switch scheduledTime {
+            case .yes:
+                self.questionnaireManager.triggerEndingStage()
+            case .fourHoursLate:
+                self.questionnaireManager.triggerEndingStage()
+            case .moreThanFourHours:
+                self.questionnaireManager.triggerEndoNoDoseActionFlow()
+            case .notGiven:
+                self.questionnaireManager.triggerNotGivenFlow(currentQuestion)
+            }
+        }
+    }
     
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer) {

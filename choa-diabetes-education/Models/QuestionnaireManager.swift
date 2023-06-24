@@ -25,6 +25,10 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerBreathingFlow(_ currentQuestion: Questionnaire)
     func triggerVomitingFlow(_ currentQuestion: Questionnaire)
     func triggerAnyFollowingFlow(_ currentQuestion: Questionnaire)
+    func triggerLastScheduledFlow(_ currentQuestion: Questionnaire)
+    func triggerNotGivenFlow(_ currentQuestion: Questionnaire)
+    func triggerEndoNoDoseActionFlow()
+    func triggerEndingStage()
     func saveTestType(_ testType: TestType)
     func saveBloodSugarAndCF(_ bloodSugar: Int, _ CF: Int)
     func confirmBloodSugarFlow()
@@ -99,6 +103,8 @@ extension QuestionnaireManager {
             triggerEmergencyActionFlow()
         case YesOrNoQuestionId.anyFollowing.id:
             triggerEndoActionFlow()
+        case YesOrNoQuestionId.moreThanFourHours.id:
+            triggerEndoNoDoseActionFlow()
         default:
             return
         }
@@ -137,7 +143,15 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.vomiting.id:
             triggerEndoActionFlow()
         case YesOrNoQuestionId.anyFollowing.id:
-            return
+            switch currentTestType {
+            case .insulinShots:
+                print("Flow Triggered!")
+                triggerLastScheduledFlow(currentQuestion)
+            case .pump:
+                triggerEndingStage()
+            }
+        case YesOrNoQuestionId.moreThanFourHours.id:
+            triggerEndingStage()
         default:
             return
         }
@@ -237,6 +251,19 @@ extension QuestionnaireManager {
         
     }
     
+    func triggerLastScheduledFlow(_ currentQuestion: Questionnaire) {
+        let createQue = createFourOptionsQuestion(questionId: .lastBasalInjection, question: "Calculator.Que19.ShotOnTime.title".localized(), description: nil, answerOptions: [ScheduledTime.yes.description, ScheduledTime.fourHoursLate.description, ScheduledTime.moreThanFourHours.description, ScheduledTime.notGiven.description])
+        print("Showed Question: \(createQue.question)")
+        actionsDelegate?.showNextQuestion(createQue)
+        
+        
+    }
+    
+    func triggerNotGivenFlow(_ currentQuestion: Questionnaire) {
+        let createQue = createYesOrNoQuestion(questionId: .moreThanFourHours, question: "Calculator.Que20.MoreThanFourHours.title".localized(), description: nil, showDescriptionAtBottom: false)
+        actionsDelegate?.showNextQuestion(createQue)
+    }
+    
     
     func triggerEmergencyActionFlow() {
         showFinalStage(questionId: FinalQuestionId.generalEmergencyScreen.stepId, calculation: calculation)
@@ -244,6 +271,14 @@ extension QuestionnaireManager {
     
     func triggerEndoActionFlow() {
         showFinalStage(questionId: FinalQuestionId.endocrinologistScreen.stepId, calculation: calculation)
+    }
+    
+    func triggerEndoNoDoseActionFlow() {
+        showFinalStage(questionId: FinalQuestionId.endocrinologistNoDoseScreen.stepId, calculation: nil)
+    }
+    
+    func triggerEndingStage() {
+        showFinalStage(questionId: FinalQuestionId.endingScreen.stepId, calculation: calculation)
     }
     
 }
@@ -277,6 +312,9 @@ extension QuestionnaireManager {
             }
             let finalStepObj = createFinalStage(questionId: questionId, title: "Calculator.Endo.FinalStep.title".localized(), description: str)
             actionsDelegate?.showNextQuestion(finalStepObj)
+        case .endocrinologistNoDoseScreen:
+            let finalStepObj = createFinalStage(questionId: questionId, title: "Calculator.EndoNoDose.FinalStep.title".localized(), description: nil)
+            actionsDelegate?.showNextQuestion(finalStepObj)
         case .generalEmergencyScreen:
             var str = ""
             if let calculation = calculation {
@@ -284,6 +322,10 @@ extension QuestionnaireManager {
                 str = String(format: s, String(round(calculation)))
             }
             let finalStepObj = createFinalStage(questionId: questionId, title: "Calculator.General.FinalStep.title".localized(), description: "Calculator.General.FinalStep.description".localized() + str)
+            actionsDelegate?.showNextQuestion(finalStepObj)
+        case .endingScreen:
+            let title = String(format: "Calculator.Ending.FinalStep.title".localized(), String(round(calculation ?? 0)))
+            let finalStepObj = createFinalStage(questionId: questionId, title: title, description: "Calculator.Ending.FinalStep.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         }
         
@@ -334,6 +376,16 @@ extension QuestionnaireManager {
         let quesObj = Questionnaire()
         quesObj.questionId = questionId.id
         quesObj.questionType = .multipleOptionsDescriptionAtBottom(questionId)
+        quesObj.question = question
+        quesObj.description = description
+        quesObj.answerOptions = answerOptions
+        return quesObj
+    }
+    
+    func createFourOptionsQuestion(questionId: FourOptionsQueID, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
+        let quesObj = Questionnaire()
+        quesObj.questionId = questionId.id
+        quesObj.questionType = .fourOptions(questionId)
         quesObj.question = question
         quesObj.description = description
         quesObj.answerOptions = answerOptions

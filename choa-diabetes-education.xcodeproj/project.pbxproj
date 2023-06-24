@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
+		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -163,6 +165,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
+		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -623,6 +627,8 @@
 				FDC8E5422A294147006FDFF0 /* OpenEndedQueView.xib */,
 				FDC8E5442A2A7717006FDFF0 /* MultipleOptionsView.swift */,
 				FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */,
+				8EAF82C22A467EBC0035919B /* FourOptionsView.swift */,
+				8EAF82C02A467EAE0035919B /* FourOptionsView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				D450EC1428C1158A0015D823 /* insulin.html in Resources */,
 				FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */,
 				D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */,
+				8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */,
 				D4684AB0290B0B6600E7311B /* burger.png in Resources */,
 				D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */,
 				D4684AA9290B0B6600E7311B /* non-starchy_veggetables.png in Resources */,
@@ -843,6 +850,7 @@
 				FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */,
 				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
+				8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
 				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,

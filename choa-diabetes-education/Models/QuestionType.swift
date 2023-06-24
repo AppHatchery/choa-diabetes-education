@@ -9,6 +9,7 @@ enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
     case multipleOptions
+    case fourOptions(FourOptionsQueID)
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
     case openEndedWithSingleInput(OpenEndedWithSingleInputQuestionId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
@@ -25,6 +26,7 @@ enum YesOrNoQuestionId {
     case breathing
     case vomiting
     case anyFollowing
+    case moreThanFourHours
     
     
     var id: Int {
@@ -47,6 +49,8 @@ enum YesOrNoQuestionId {
             return 8
         case .anyFollowing:
             return 9
+        case .moreThanFourHours:
+            return 10
             
         }
     }
@@ -71,6 +75,8 @@ enum YesOrNoQuestionId {
             self = .vomiting
         case 9:
             self = .anyFollowing
+        case 10:
+            self = .moreThanFourHours
         default:
             self = .severeDistress
         }
@@ -176,6 +182,24 @@ enum MultipleOptionsDescriptionAtBottomQueId {
     }
 }
 
+enum FourOptionsQueID {
+    case lastBasalInjection
+    var id: Int {
+        switch self {
+        case .lastBasalInjection:
+            return 1
+        }
+    }
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lastBasalInjection
+        default:
+            self = .lastBasalInjection
+        }
+    }
+}
+
 enum TwoOptionsDescriptionAtBottomId {
     case ketonesInNext30Mins
     case urineKetoneMeasurements
@@ -202,21 +226,27 @@ enum TwoOptionsDescriptionAtBottomId {
 }
 
 
-// TODO: Discuss use-case 
+
 
 enum FinalQuestionId {
     case firstEmergencyScreen
     case endocrinologistScreen
+    case endocrinologistNoDoseScreen
     case generalEmergencyScreen
+    case endingScreen
     
     var stepId: Int {
         switch self {
         case .firstEmergencyScreen:
             return 1
         case .endocrinologistScreen:
-            return 6
+            return 2
+        case .endocrinologistNoDoseScreen:
+            return 3
         case .generalEmergencyScreen:
-            return 8
+            return 4
+        case .endingScreen:
+            return 5
         }
         
     }
@@ -225,10 +255,14 @@ enum FinalQuestionId {
         switch id {
         case 1:
             self = .firstEmergencyScreen
-        case 6:
+        case 2:
             self = .endocrinologistScreen
-        case 8:
+        case 3:
+            self = .endocrinologistNoDoseScreen
+        case 4:
             self = .generalEmergencyScreen
+        case 5:
+            self = .endingScreen
         default:
             self = .firstEmergencyScreen
         }
@@ -367,9 +401,63 @@ enum ShotLastDose {
     }
 }
 
+// MARK: Four Options
+
+enum FourOptionsAnswer: Equatable {
+    case ScheduledTime(ScheduledTime)
+}
+enum ScheduledTime {
+    case yes
+    case fourHoursLate
+    case moreThanFourHours
+    case notGiven
+    
+    var description: String {
+        switch self {
+        case .yes:
+            return "Calculator.Que19.ShotOnTime.option1".localized()
+        case .fourHoursLate:
+            return "Calculator.Que19.ShotOnTime.option2".localized()
+        case .moreThanFourHours:
+            return "Calculator.Que19.ShotOnTime.option3".localized()
+        case .notGiven:
+           return  "Calculator.Que19.ShotOnTime.option4".localized()
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .yes:
+            return 1
+        case .fourHoursLate:
+            return 2
+        case .moreThanFourHours:
+            return 3
+        case .notGiven:
+            return 4
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .yes
+        case 2:
+            self = .fourHoursLate
+        case 3:
+            self = .moreThanFourHours
+        case 4:
+            self = .notGiven
+        default:
+            self = .yes
+        }
+    }
+    
+}
 
 
-// MARK: Multiple Options
+
+// MARK: Multiple (3) Options
 
 enum MultipleOptionsAnswer: Equatable {
     case KetonesType(KetonesType)
