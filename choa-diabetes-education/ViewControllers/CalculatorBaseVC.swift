@@ -27,6 +27,10 @@ class CalculatorBaseVC: UIViewController {
         self.navVC = navVC
         super.init(nibName: CalculatorBaseVC.nibName, bundle: nil)
     }
+    
+    
+
+ 
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,7 +40,11 @@ class CalculatorBaseVC: UIViewController {
         super.viewDidLoad()
         self.navVC.navigationBar.tintColor = UIColor.choaGreenColor
         self.questionnaireManager.actionsDelegate = self
+        let searchBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
+        
+        self.navigationItem.rightBarButtonItem  = searchBarButtonItem
         hideAllViews()
+        
         switch questionObj.questionType {
         case .yesOrNo:
             yesOrNoQueView.isHidden = false
@@ -80,6 +88,10 @@ class CalculatorBaseVC: UIViewController {
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
+    }
+    
+    @objc func closeTapped(_ sender: Any){
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

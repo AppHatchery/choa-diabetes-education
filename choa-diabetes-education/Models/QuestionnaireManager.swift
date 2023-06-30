@@ -145,7 +145,6 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.anyFollowing.id:
             switch currentTestType {
             case .insulinShots:
-                print("Flow Triggered!")
                 triggerLastScheduledFlow(currentQuestion)
             case .pump:
                 triggerEndingStage()
@@ -253,7 +252,6 @@ extension QuestionnaireManager {
     
     func triggerLastScheduledFlow(_ currentQuestion: Questionnaire) {
         let createQue = createFourOptionsQuestion(questionId: .lastBasalInjection, question: "Calculator.Que19.ShotOnTime.title".localized(), description: nil, answerOptions: [ScheduledTime.yes.description, ScheduledTime.fourHoursLate.description, ScheduledTime.moreThanFourHours.description, ScheduledTime.notGiven.description])
-        print("Showed Question: \(createQue.question)")
         actionsDelegate?.showNextQuestion(createQue)
         
         
@@ -324,7 +322,8 @@ extension QuestionnaireManager {
             let finalStepObj = createFinalStage(questionId: questionId, title: "Calculator.General.FinalStep.title".localized(), description: "Calculator.General.FinalStep.description".localized() + str)
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .endingScreen:
-            let title = String(format: "Calculator.Ending.FinalStep.title".localized(), String(round(calculation ?? 0)))
+            let res = Int(self.calculation)
+            let title = String(format: "Calculator.Ending.FinalStep.title".localized(), "\(res)")
             let finalStepObj = createFinalStage(questionId: questionId, title: title, description: "Calculator.Ending.FinalStep.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         }

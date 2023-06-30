@@ -52,7 +52,6 @@ class FourOptionsView: UIView {
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
         
-        print("setup the view!")
         if let answerOptions = currentQuestion.answerOptions {
             firstButton.setTitle(answerOptions[0].localized(), for: .normal)
             secondButton.setTitle(answerOptions[1].localized(), for: .normal)
@@ -95,7 +94,9 @@ class FourOptionsView: UIView {
     @IBAction func didFourthButtonTap(_ sender: UIButton) {
         selected = 4
         fourthButton.updateButtonForSelection()
-        
+        firstButton.updateButtonForDeselection()
+        thirdButton.updateButtonForDeselection()
+        secondButton.updateButtonForDeselection()
         
     }
     
