@@ -317,12 +317,12 @@ extension QuestionnaireManager {
             var str = ""
             if let calculation = calculation {
                 let s = "Calculator.General.FinalStep.calculation".localized()
-                str = String(format: s, String(round(calculation)))
+                str = String(format: s, String(calculation))
             }
             let finalStepObj = createFinalStage(questionId: questionId, title: "Calculator.General.FinalStep.title".localized(), description: "Calculator.General.FinalStep.description".localized() + str)
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .endingScreen:
-            let res = Int(self.calculation)
+            let res = self.calculation
             let title = String(format: "Calculator.Ending.FinalStep.title".localized(), "\(res)")
             let finalStepObj = createFinalStage(questionId: questionId, title: title, description: "Calculator.Ending.FinalStep.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)

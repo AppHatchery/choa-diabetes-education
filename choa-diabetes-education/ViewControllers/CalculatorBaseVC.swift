@@ -111,6 +111,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
                 self.questionnaireManager.saveKetones(1.0)
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .moderateToLarge:
+                self.questionnaireManager.saveKetones(1.5)
                 self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             }
         case .PumpLastDose(let pumpLastDose):
