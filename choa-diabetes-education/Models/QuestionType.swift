@@ -466,12 +466,15 @@ enum MultipleOptionsAnswer: Equatable {
 }
 
 enum KetonesType {
+    case none
     case urineKetones
     case bloodKetones
     case noAccess
     
     var description: String {
         switch self {
+        case .none:
+            return ""
         case .urineKetones:
             return "Calculator.Que4.Ketones.option1".localized()
         case .bloodKetones:
@@ -483,6 +486,8 @@ enum KetonesType {
     
     var id: Int {
         switch self {
+        case .none:
+            return 0
         case .urineKetones:
             return 1
         case .bloodKetones:
@@ -494,6 +499,8 @@ enum KetonesType {
     
     init(id: Int) {
         switch id {
+        case 0:
+            self = .none
         case 1:
             self = .urineKetones
         case 2:

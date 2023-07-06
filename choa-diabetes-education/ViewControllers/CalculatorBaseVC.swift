@@ -157,6 +157,9 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         switch selectedAnswer {
         case .KetonesType(let ketonesType):
             switch ketonesType {
+            case .none:
+                self.questionnaireManager.saveKetones(1.0)
+                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
             case .urineKetones:
                 self.questionnaireManager.triggerUrineKetonesActionFlow(currentQuestion)
             case .bloodKetones:

@@ -67,8 +67,8 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.severeDistress.id:
             showFinalStage(questionId: FinalQuestionId.firstEmergencyScreen.stepId, calculation: nil)
         case YesOrNoQuestionId.ketonesInNext30Mins.id:
-            let createQue = createYesOrNoQuestion(questionId: .insulinThreeHours, question: "Calculator.Que9.RapidInsulin.title".localized(), description: "Calculator.Que9.RapidInsulin.description" .localized(), showDescriptionAtBottom: false)
-            actionsDelegate?.showNextQuestion(createQue)
+            saveKetones(1.0)
+            triggerKetonesResponseActionFlow(currentQuestion)
         case YesOrNoQuestionId.insulinThreeHours.id:
             if currentTestType == .pump {
                 let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que11.PumpLastDose.title".localized(), description: nil, answerOptions: [PumpLastDose.lessThan30.description, PumpLastDose.halfHourToTwoHours.description])
