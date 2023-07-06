@@ -49,7 +49,12 @@ class OpenEndedQueView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
+
+    
+    
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
+        
+        
         
         if !multiple {
             secondQueContentView.isHidden = true
@@ -72,10 +77,17 @@ class OpenEndedQueView: UIView {
         unitLabel.textColor = .headingGreenColor
         unitLabel.text = currentQuestion.inputUnit
         unitLabel.textAlignment = .left
-        
-
-        
+    
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        contentView.addGestureRecognizer(tap)
+        contentView.isUserInteractionEnabled = true
     }
+    
+    
+    @objc func viewTapped(_ sender: UITapGestureRecognizer?) {
+        contentView.endEditing(true)
+    }
+  
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         
