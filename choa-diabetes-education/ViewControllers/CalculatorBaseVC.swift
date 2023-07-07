@@ -120,6 +120,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
                 self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .halfHourToTwoHours:
                 self.questionnaireManager.saveDose(0)
+                self.questionnaireManager.insulin(false)
                 self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
                 
             }
@@ -129,6 +130,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
                 self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
             case .oneToThreeHours:
                 self.questionnaireManager.saveDose(0)
+                self.questionnaireManager.insulin(false)
                 self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
             }
         }

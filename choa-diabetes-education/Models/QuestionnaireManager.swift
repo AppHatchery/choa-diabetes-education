@@ -36,6 +36,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveDose(_ dose: Int)
     func saveTBG(_ tbg: Int)
     func saveKetones(_ ketones: Float)
+    func insulin(_ needed: Bool)
     func saveAbdominalPain(_ pain: Bool)
 }
 
@@ -51,12 +52,14 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var tbg: Int?
     private(set) var ketones: Float?
     private(set) var abdominalPain: Bool?
+    private(set) var insulin: Bool = true
     private var calculation: Float {
         let initial = bloodSugar - (tbg ?? 100)
         let ket = Float(initial) * (ketones ?? 1.0)
         let correction = ket/Float(correctionFactor)
-        let calculation = correction - Float((dose ?? 0))
-        return calculation
+        var calculation = correction - Float((dose ?? 0))
+        if !insulin || calculation < 0 { calculation = 0 }
+        return roundToOneDecimal(value: calculation)
     }
 }
 
@@ -178,6 +181,10 @@ extension QuestionnaireManager {
         self.ketones = ketones
     }
     
+    func insulin(_ needed: Bool) {
+        self.insulin = needed
+    }
+    
     func saveAbdominalPain(_ pain: Bool) {
         self.abdominalPain = pain
     }
@@ -264,6 +271,7 @@ extension QuestionnaireManager {
     
     
     func triggerEmergencyActionFlow() {
+        saveTBG(100)
         showFinalStage(questionId: FinalQuestionId.generalEmergencyScreen.stepId, calculation: calculation)
     }
     
@@ -315,7 +323,7 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .generalEmergencyScreen:
             var str = ""
-            if let calculation = calculation {
+            if let calculation = calculation, calculation > 0 {
                 let s = "Calculator.General.FinalStep.calculation".localized()
                 str = String(format: s, String(calculation))
             }
@@ -390,4 +398,9 @@ extension QuestionnaireManager {
         quesObj.answerOptions = answerOptions
         return quesObj
     }
+    
+    func roundToOneDecimal(value: Float)-> Float {
+        return (round(value*10)/10.0)
+    }
+    
 }
