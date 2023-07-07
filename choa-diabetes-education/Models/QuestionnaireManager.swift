@@ -27,6 +27,9 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerAnyFollowingFlow(_ currentQuestion: Questionnaire)
     func triggerLastScheduledFlow(_ currentQuestion: Questionnaire)
     func triggerNotGivenFlow(_ currentQuestion: Questionnaire)
+    func triggerLastPumpFlow(_ currentQuestion: Questionnaire)
+    func triggerLastShotFlow(_ currentQuestion: Questionnaire)
+    func triggerPumpOrInjectionFlow(_ currentQuestion: Questionnaire)
     func triggerEndoNoDoseActionFlow()
     func triggerEndingStage()
     func saveTestType(_ testType: TestType)
@@ -74,11 +77,9 @@ extension QuestionnaireManager {
             triggerKetonesResponseActionFlow(currentQuestion)
         case YesOrNoQuestionId.insulinThreeHours.id:
             if currentTestType == .pump {
-                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que11.PumpLastDose.title".localized(), description: nil, answerOptions: [PumpLastDose.lessThan30.description, PumpLastDose.halfHourToTwoHours.description])
-                actionsDelegate?.showNextQuestion(createTimeQue)
+                triggerPumpOrInjectionFlow(currentQuestion)
             } else if currentTestType == .insulinShots {
-                let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que10.ShotLastDose.title".localized(), description: nil, answerOptions: [ShotLastDose.lessThanHour.description, ShotLastDose.oneToThreeHours.description])
-                actionsDelegate?.showNextQuestion(createTimeQue)
+                triggerLastShotFlow(currentQuestion)
             }
         case YesOrNoQuestionId.bedtime.id:
             saveTBG(150)
@@ -261,7 +262,22 @@ extension QuestionnaireManager {
         let createQue = createFourOptionsQuestion(questionId: .lastBasalInjection, question: "Calculator.Que19.ShotOnTime.title".localized(), description: nil, answerOptions: [ScheduledTime.yes.description, ScheduledTime.fourHoursLate.description, ScheduledTime.moreThanFourHours.description, ScheduledTime.notGiven.description])
         actionsDelegate?.showNextQuestion(createQue)
         
-        
+    }
+    
+    func triggerPumpOrInjectionFlow(_ currentQuestion: Questionnaire) {
+        let createPumpOrInjectionQue = createTwoCustomOptionsQuestion(questionId: .lastType, question: "Calculator.Que10.PumpOrInjection.title".localized(), description: nil, answerOptions: [LastType.pump.description, LastType.injection.description])
+        actionsDelegate?.showNextQuestion(createPumpOrInjectionQue)
+    }
+    
+    func triggerLastPumpFlow(_ currentQuestion: Questionnaire) {
+        print("trigger last pump flow")
+        let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que11.PumpLastDose.title".localized(), description: nil, answerOptions: [PumpLastDose.lessThan30.description, PumpLastDose.halfHourToTwoHours.description])
+        actionsDelegate?.showNextQuestion(createTimeQue)
+    }
+    
+    func triggerLastShotFlow(_ currentQuestion: Questionnaire) {
+        let createTimeQue = createTwoCustomOptionsQuestion(questionId: .lastDose, question: "Calculator.Que10.ShotLastDose.title".localized(), description: nil, answerOptions: [ShotLastDose.lessThanHour.description, ShotLastDose.oneToThreeHours.description])
+        actionsDelegate?.showNextQuestion(createTimeQue)
     }
     
     func triggerNotGivenFlow(_ currentQuestion: Questionnaire) {

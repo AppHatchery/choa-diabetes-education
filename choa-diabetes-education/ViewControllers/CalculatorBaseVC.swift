@@ -105,6 +105,13 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
             self.questionnaireManager.confirmBloodSugarFlow()
+        case .LastType(let lastType):
+            switch lastType {
+            case .pump:
+                self.questionnaireManager.triggerLastPumpFlow(currentQuestion)
+            case .injection:
+                self.questionnaireManager.triggerLastShotFlow(currentQuestion)
+            }
         case .UrineKetonesMeasurements(let urineKetonesMeasurements):
             switch urineKetonesMeasurements {
             case .zeroToSmall:

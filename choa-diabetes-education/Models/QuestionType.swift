@@ -87,6 +87,7 @@ enum TwoOptionsQuestionId {
     case testType
     case ketonesMeasure
     case lastDose
+    case lastType
     
     
     var id: Int {
@@ -97,6 +98,8 @@ enum TwoOptionsQuestionId {
             return 2
         case .lastDose:
             return 3
+        case .lastType:
+            return 4
         }
     }
     
@@ -108,6 +111,8 @@ enum TwoOptionsQuestionId {
             self = .ketonesMeasure
         case 3:
             self = .lastDose
+        case 4:
+            self = .lastType
         default:
             self = .testType
         }
@@ -293,6 +298,7 @@ enum YesOrNo {
 
 enum TwoOptionsAnswer: Equatable {
     case TestType(TestType)
+    case LastType(LastType)
     case UrineKetonesMeasurements(UrineKetonesMeasurements)
     case PumpLastDose(PumpLastDose)
     case ShotLastDose(ShotLastDose)
@@ -318,6 +324,31 @@ enum TestType {
             self = .pump
         case 2:
             self = .insulinShots
+        default:
+            self = .pump
+        }
+    }
+}
+
+enum LastType {
+    case pump
+    case injection
+    
+    var description: String {
+        switch self {
+        case .pump:
+            return "Calculator.Que10.PumpOrInjection.option1".localized()
+        case .injection:
+            return "Calculator.Que10.PumpOrInjection.option2".localized()
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .pump
+        case 2:
+            self = .injection
         default:
             self = .pump
         }

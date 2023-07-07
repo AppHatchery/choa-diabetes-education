@@ -102,7 +102,9 @@ class TwoOptionsView: UIView {
             } else if QuestionnaireManager.instance.currentTestType == .insulinShots {
                 delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .ShotLastDose(ShotLastDose(id: selected)))
             }
-        
+        case TwoOptionsQuestionId.lastType.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .LastType(LastType(id: selected)))
+            
         default:
             break
         
