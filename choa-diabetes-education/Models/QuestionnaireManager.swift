@@ -265,7 +265,7 @@ extension QuestionnaireManager {
     }
     
     func triggerPumpOrInjectionFlow(_ currentQuestion: Questionnaire) {
-        let createPumpOrInjectionQue = createTwoCustomOptionsQuestion(questionId: .lastType, question: "Calculator.Que10.PumpOrInjection.title".localized(), description: nil, answerOptions: [LastType.pump.description, LastType.injection.description])
+        let createPumpOrInjectionQue = createTwoCustomOptionsQuestion(questionId: .lastType, question: "Calculator.Que10-PumpOnly.PumpOrInjection.title".localized(), description: nil, answerOptions: [LastType.pump.description, LastType.injection.description])
         actionsDelegate?.showNextQuestion(createPumpOrInjectionQue)
     }
     

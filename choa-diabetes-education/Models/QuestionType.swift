@@ -337,9 +337,9 @@ enum LastType {
     var description: String {
         switch self {
         case .pump:
-            return "Calculator.Que10.PumpOrInjection.option1".localized()
+            return "Calculator.Que10-PumpOnly.PumpOrInjection.option1".localized()
         case .injection:
-            return "Calculator.Que10.PumpOrInjection.option2".localized()
+            return "Calculator.Que10-PumpOnly.PumpOrInjection.option2".localized()
         }
     }
     
