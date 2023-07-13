@@ -102,7 +102,7 @@ class YesOrNoQueView: UIView {
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if yesButton.isSelected {
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
-        } else {
+        } else if noButton.isSelected {
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
         }
     }

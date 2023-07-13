@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Isy-Ep-p5i"/>
-                <outlet property="descriptionLabel" destination="dA7-df-T43" id="aDS-Ng-gbA"/>
+                <outlet property="descriptionLabel" destination="tY5-mk-QhY" id="rM3-TA-Mwr"/>
                 <outlet property="gotItButton" destination="S9A-Uk-HVW" id="rZg-St-Ii5"/>
                 <outlet property="titleLabel" destination="a3U-cb-qWL" id="MAg-hi-1Ta"/>
             </connections>
@@ -35,12 +35,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dA7-df-T43">
-                    <rect key="frame" x="30" y="135" width="396" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9A-Uk-HVW" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                     <rect key="frame" x="167" y="344" width="122" height="48"/>
                     <constraints>
@@ -53,20 +47,29 @@
                         <action selector="didGotItButtonTap:" destination="-1" eventType="touchUpInside" id="xtb-uo-BRL"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tY5-mk-QhY">
+                    <rect key="frame" x="30" y="123" width="396" height="213"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Fqf-SU-dPw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DOW-bF-OfO"/>
+                <constraint firstItem="tY5-mk-QhY" firstAttribute="width" secondItem="a3U-cb-qWL" secondAttribute="width" id="EDj-ov-A3z"/>
+                <constraint firstItem="tY5-mk-QhY" firstAttribute="top" secondItem="a3U-cb-qWL" secondAttribute="bottom" constant="8" symbolic="YES" id="JzR-yD-HMz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="a3U-cb-qWL" secondAttribute="trailing" constant="30" id="M7n-aQ-U7r"/>
                 <constraint firstItem="S9A-Uk-HVW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PVe-dG-Rnz"/>
-                <constraint firstItem="dA7-df-T43" firstAttribute="top" secondItem="a3U-cb-qWL" secondAttribute="bottom" constant="20" id="VDe-eN-PFx"/>
+                <constraint firstItem="S9A-Uk-HVW" firstAttribute="top" secondItem="tY5-mk-QhY" secondAttribute="bottom" constant="8" symbolic="YES" id="VPq-O9-4vm"/>
                 <constraint firstItem="a3U-cb-qWL" firstAttribute="top" secondItem="Fqf-SU-dPw" secondAttribute="bottom" constant="20" id="bOB-5H-fmQ"/>
+                <constraint firstItem="tY5-mk-QhY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="emD-9b-7VJ"/>
                 <constraint firstItem="Fqf-SU-dPw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="nv3-W9-d8z"/>
                 <constraint firstItem="a3U-cb-qWL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="r8Q-Da-tIv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="S9A-Uk-HVW" secondAttribute="bottom" constant="50" id="raY-HA-dmD"/>
-                <constraint firstItem="dA7-df-T43" firstAttribute="trailing" secondItem="a3U-cb-qWL" secondAttribute="trailing" id="rfJ-8f-eO9"/>
-                <constraint firstItem="dA7-df-T43" firstAttribute="leading" secondItem="a3U-cb-qWL" secondAttribute="leading" id="vQt-eY-jNn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="164.8854961832061" y="-199.29577464788733"/>
@@ -74,6 +77,9 @@
     </objects>
     <resources>
         <image name="calculator-attention" width="54" height="54"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

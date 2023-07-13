@@ -5,12 +5,13 @@
 
 import Foundation
 
-enum QuestionType {
+enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
     case multipleOptions
+    case fourOptions(FourOptionsQueID)
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
-    case openEndedWithSingleInput
+    case openEndedWithSingleInput(OpenEndedWithSingleInputQuestionId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
 }
@@ -19,6 +20,14 @@ enum YesOrNoQuestionId {
     case severeDistress
     case ketonesInNext30Mins
     case insulinThreeHours
+    case bedtime
+    case dehydrated
+    case abdominal
+    case breathing
+    case vomiting
+    case anyFollowing
+    case moreThanFourHours
+    
     
     var id: Int {
         switch self {
@@ -28,6 +37,20 @@ enum YesOrNoQuestionId {
             return 2
         case .insulinThreeHours:
             return 3
+        case .bedtime:
+            return 4
+        case .dehydrated:
+            return 5
+        case .abdominal:
+            return 6
+        case .breathing:
+            return 7
+        case .vomiting:
+            return 8
+        case .anyFollowing:
+            return 9
+        case .moreThanFourHours:
+            return 10
             
         }
     }
@@ -40,6 +63,20 @@ enum YesOrNoQuestionId {
             self = .ketonesInNext30Mins
         case 3:
             self = .insulinThreeHours
+        case 4:
+            self = .bedtime
+        case 5:
+            self = .dehydrated
+        case 6:
+            self = .abdominal
+        case 7:
+            self = .breathing
+        case 8:
+            self = .vomiting
+        case 9:
+            self = .anyFollowing
+        case 10:
+            self = .moreThanFourHours
         default:
             self = .severeDistress
         }
@@ -50,6 +87,7 @@ enum TwoOptionsQuestionId {
     case testType
     case ketonesMeasure
     case lastDose
+    case lastType
     
     
     var id: Int {
@@ -60,6 +98,8 @@ enum TwoOptionsQuestionId {
             return 2
         case .lastDose:
             return 3
+        case .lastType:
+            return 4
         }
     }
     
@@ -71,8 +111,30 @@ enum TwoOptionsQuestionId {
             self = .ketonesMeasure
         case 3:
             self = .lastDose
+        case 4:
+            self = .lastType
         default:
             self = .testType
+        }
+    }
+}
+
+enum OpenEndedWithSingleInputQuestionId {
+    case lastDoseInsulin
+    
+    var id: Int {
+        switch self {
+        case .lastDoseInsulin:
+            return 1
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lastDoseInsulin
+        default:
+            self = .lastDoseInsulin
         }
     }
 }
@@ -125,6 +187,24 @@ enum MultipleOptionsDescriptionAtBottomQueId {
     }
 }
 
+enum FourOptionsQueID {
+    case lastBasalInjection
+    var id: Int {
+        switch self {
+        case .lastBasalInjection:
+            return 1
+        }
+    }
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .lastBasalInjection
+        default:
+            self = .lastBasalInjection
+        }
+    }
+}
+
 enum TwoOptionsDescriptionAtBottomId {
     case ketonesInNext30Mins
     case urineKetoneMeasurements
@@ -151,21 +231,27 @@ enum TwoOptionsDescriptionAtBottomId {
 }
 
 
-// TODO: Discuss use-case 
+
 
 enum FinalQuestionId {
     case firstEmergencyScreen
     case endocrinologistScreen
-    case emergencyBloodKetoneScreen
+    case endocrinologistNoDoseScreen
+    case generalEmergencyScreen
+    case endingScreen
     
     var stepId: Int {
         switch self {
         case .firstEmergencyScreen:
             return 1
         case .endocrinologistScreen:
-            return 6
-        case .emergencyBloodKetoneScreen:
-            return 8
+            return 2
+        case .endocrinologistNoDoseScreen:
+            return 3
+        case .generalEmergencyScreen:
+            return 4
+        case .endingScreen:
+            return 5
         }
         
     }
@@ -174,8 +260,14 @@ enum FinalQuestionId {
         switch id {
         case 1:
             self = .firstEmergencyScreen
-        case 6:
+        case 2:
             self = .endocrinologistScreen
+        case 3:
+            self = .endocrinologistNoDoseScreen
+        case 4:
+            self = .generalEmergencyScreen
+        case 5:
+            self = .endingScreen
         default:
             self = .firstEmergencyScreen
         }
@@ -206,6 +298,7 @@ enum YesOrNo {
 
 enum TwoOptionsAnswer: Equatable {
     case TestType(TestType)
+    case LastType(LastType)
     case UrineKetonesMeasurements(UrineKetonesMeasurements)
     case PumpLastDose(PumpLastDose)
     case ShotLastDose(ShotLastDose)
@@ -231,6 +324,31 @@ enum TestType {
             self = .pump
         case 2:
             self = .insulinShots
+        default:
+            self = .pump
+        }
+    }
+}
+
+enum LastType {
+    case pump
+    case injection
+    
+    var description: String {
+        switch self {
+        case .pump:
+            return "Calculator.Que10-PumpOnly.PumpOrInjection.option1".localized()
+        case .injection:
+            return "Calculator.Que10-PumpOnly.PumpOrInjection.option2".localized()
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .pump
+        case 2:
+            self = .injection
         default:
             self = .pump
         }
@@ -314,9 +432,63 @@ enum ShotLastDose {
     }
 }
 
+// MARK: Four Options
+
+enum FourOptionsAnswer: Equatable {
+    case ScheduledTime(ScheduledTime)
+}
+enum ScheduledTime {
+    case yes
+    case fourHoursLate
+    case moreThanFourHours
+    case notGiven
+    
+    var description: String {
+        switch self {
+        case .yes:
+            return "Calculator.Que19.ShotOnTime.option1".localized()
+        case .fourHoursLate:
+            return "Calculator.Que19.ShotOnTime.option2".localized()
+        case .moreThanFourHours:
+            return "Calculator.Que19.ShotOnTime.option3".localized()
+        case .notGiven:
+           return  "Calculator.Que19.ShotOnTime.option4".localized()
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .yes:
+            return 1
+        case .fourHoursLate:
+            return 2
+        case .moreThanFourHours:
+            return 3
+        case .notGiven:
+            return 4
+        }
+    }
+    
+    init(id: Int) {
+        switch id {
+        case 1:
+            self = .yes
+        case 2:
+            self = .fourHoursLate
+        case 3:
+            self = .moreThanFourHours
+        case 4:
+            self = .notGiven
+        default:
+            self = .yes
+        }
+    }
+    
+}
 
 
-// MARK: Multiple Options
+
+// MARK: Multiple (3) Options
 
 enum MultipleOptionsAnswer: Equatable {
     case KetonesType(KetonesType)
@@ -325,12 +497,15 @@ enum MultipleOptionsAnswer: Equatable {
 }
 
 enum KetonesType {
+    case none
     case urineKetones
     case bloodKetones
     case noAccess
     
     var description: String {
         switch self {
+        case .none:
+            return ""
         case .urineKetones:
             return "Calculator.Que4.Ketones.option1".localized()
         case .bloodKetones:
@@ -342,6 +517,8 @@ enum KetonesType {
     
     var id: Int {
         switch self {
+        case .none:
+            return 0
         case .urineKetones:
             return 1
         case .bloodKetones:
@@ -353,6 +530,8 @@ enum KetonesType {
     
     init(id: Int) {
         switch id {
+        case 0:
+            self = .none
         case 1:
             self = .urineKetones
         case 2:

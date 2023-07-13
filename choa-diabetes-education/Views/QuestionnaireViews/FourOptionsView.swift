@@ -1,28 +1,29 @@
 //
-//  MultipleOptionsView.swift
+//  FourOptionsView.swift
 //  choa-diabetes-education
 //
 
 import Foundation
 import UIKit
 
-protocol MultipleOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer)
+protocol FourOptionsViewProtocol: AnyObject {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer)
 }
 
-class MultipleOptionsView: UIView {
-    static let nibName = "MultipleOptionsView"
+class FourOptionsView: UIView {
+    static let nibName = "FourOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var firstButton: RoundedButton!
     @IBOutlet weak var secondButton: RoundedButton!
     @IBOutlet weak var thirdButton: RoundedButton!
+    @IBOutlet weak var fourthButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
     
     private var currentQuestion: Questionnaire!
-    weak var delegate: MultipleOptionsViewProtocol?
+    weak var delegate: FourOptionsViewProtocol?
     
     private var selected = 0
     
@@ -37,7 +38,7 @@ class MultipleOptionsView: UIView {
     }
     
     private func nibSetup() {
-        Bundle.main.loadNibNamed(MultipleOptionsView.nibName, owner: self)
+        Bundle.main.loadNibNamed(FourOptionsView.nibName, owner: self)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -55,6 +56,8 @@ class MultipleOptionsView: UIView {
             firstButton.setTitle(answerOptions[0].localized(), for: .normal)
             secondButton.setTitle(answerOptions[1].localized(), for: .normal)
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
+            fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
+            
         }
         
         descriptionLabel.font = .avenirLight14
@@ -69,6 +72,7 @@ class MultipleOptionsView: UIView {
         firstButton.updateButtonForSelection()
         secondButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
+        fourthButton.updateButtonForDeselection()
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
@@ -76,6 +80,7 @@ class MultipleOptionsView: UIView {
         secondButton.updateButtonForSelection()
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
+        fourthButton.updateButtonForDeselection()
     }
     
     @IBAction func didThirdButtonTap(_ sender: UIButton) {
@@ -83,16 +88,24 @@ class MultipleOptionsView: UIView {
         thirdButton.updateButtonForSelection()
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForDeselection()
+        fourthButton.updateButtonForDeselection()
+    }
+    
+    @IBAction func didFourthButtonTap(_ sender: UIButton) {
+        selected = 4
+        fourthButton.updateButtonForSelection()
+        firstButton.updateButtonForDeselection()
+        thirdButton.updateButtonForDeselection()
+        secondButton.updateButtonForDeselection()
+        
     }
     
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
         switch currentQuestion.questionId {
-            case MultipleOptionsDescriptionAtBottomQueId.ketonesChecked.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: MultipleOptionsAnswer.KetonesType(KetonesType(id: selected)))
-            case MultipleOptionsDescriptionAtBottomQueId.bloodKetoneMeasurements.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: MultipleOptionsAnswer.BloodKetonesMeasurements( BloodKetonesMeasurements(id: selected)))
+        case FourOptionsQueID.lastBasalInjection.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: FourOptionsAnswer.ScheduledTime(ScheduledTime(id: selected)))
             
             default:
                 break

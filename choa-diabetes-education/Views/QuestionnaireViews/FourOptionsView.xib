@@ -9,11 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MultipleOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="uv7-bc-wdA" id="wU5-eu-v13"/>
                 <outlet property="descriptionLabel" destination="yoD-NM-RDh" id="BU1-YI-QrL"/>
                 <outlet property="firstButton" destination="K5y-O5-q9P" id="4aV-Cs-EEl"/>
+                <outlet property="fourthButton" destination="ace-KI-93k" id="Cd7-Bn-Hlh"/>
                 <outlet property="nextButton" destination="EaT-UF-v5D" id="3M0-2M-7Kb"/>
                 <outlet property="questionLabel" destination="hKg-mK-vs6" id="6To-w3-dMV"/>
                 <outlet property="secondButton" destination="dg3-Jn-EgY" id="nfT-mn-l5S"/>
@@ -22,10 +23,10 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="uv7-bc-wdA">
-            <rect key="frame" x="0.0" y="0.0" width="360" height="387"/>
+            <rect key="frame" x="0.0" y="0.0" width="360" height="402"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
                     <rect key="frame" x="28" y="19.999999999999996" width="304" height="40.666666666666657"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -44,15 +45,37 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg3-Jn-EgY" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="28" y="132.66666666666666" width="195" height="47"/>
+                    <rect key="frame" x="28" y="131.66666666666666" width="195" height="47"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Button"/>
                     <connections>
                         <action selector="didSecondButtonTap:" destination="-1" eventType="touchUpInside" id="Ie3-RY-0Gx"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoD-NM-RDh">
+                    <rect key="frame" x="28" y="304.66666666666669" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J06-TU-vx2" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                    <rect key="frame" x="28" y="190.66666666666666" width="195" height="47"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="didThirdButtonTap:" destination="-1" eventType="touchUpInside" id="3wQ-Zq-NHT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ace-KI-93k" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                    <rect key="frame" x="28" y="249.66666666666663" width="195" height="47"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="didFourthButtonTap:" destination="-1" eventType="touchUpInside" id="0wk-lJ-fAu"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaT-UF-v5D" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="208" y="270" width="122" height="48"/>
+                    <rect key="frame" x="208" y="333.66666666666669" width="122" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="pT8-Da-PNI"/>
                         <constraint firstAttribute="width" constant="122" id="zCp-0N-rqo"/>
@@ -63,46 +86,36 @@
                         <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="fKU-Hf-rE4"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoD-NM-RDh">
-                    <rect key="frame" x="28" y="247.66666666666663" width="304" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J06-TU-vx2" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="28" y="192.66666666666666" width="195" height="47"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    <connections>
-                        <action selector="didThirdButtonTap:" destination="-1" eventType="touchUpInside" id="3wQ-Zq-NHT"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ba2-uc-4c5"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="ace-KI-93k" firstAttribute="height" secondItem="J06-TU-vx2" secondAttribute="height" id="0c4-vr-q0V"/>
                 <constraint firstAttribute="trailing" secondItem="hKg-mK-vs6" secondAttribute="trailing" constant="28" id="0ry-zo-Lnq"/>
+                <constraint firstItem="ba2-uc-4c5" firstAttribute="trailing" secondItem="EaT-UF-v5D" secondAttribute="trailing" constant="30" id="1Pl-cS-nZb"/>
                 <constraint firstItem="J06-TU-vx2" firstAttribute="width" secondItem="dg3-Jn-EgY" secondAttribute="width" id="6rY-ab-q1Z"/>
+                <constraint firstItem="J06-TU-vx2" firstAttribute="height" secondItem="dg3-Jn-EgY" secondAttribute="height" id="7LY-sC-tUv"/>
+                <constraint firstItem="ace-KI-93k" firstAttribute="leading" secondItem="J06-TU-vx2" secondAttribute="leading" id="8m1-ZD-23k"/>
                 <constraint firstItem="yoD-NM-RDh" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="28" id="Avt-Px-SRk"/>
+                <constraint firstItem="ace-KI-93k" firstAttribute="top" secondItem="J06-TU-vx2" secondAttribute="bottom" constant="12" id="Ewg-lw-rV7"/>
                 <constraint firstItem="hKg-mK-vs6" firstAttribute="leading" secondItem="uv7-bc-wdA" secondAttribute="leading" constant="28" id="F6S-Xd-umH"/>
-                <constraint firstItem="J06-TU-vx2" firstAttribute="height" secondItem="dg3-Jn-EgY" secondAttribute="height" id="G13-KK-h3i"/>
                 <constraint firstItem="K5y-O5-q9P" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="28" id="IMw-k8-8VR"/>
                 <constraint firstItem="hKg-mK-vs6" firstAttribute="top" secondItem="uv7-bc-wdA" secondAttribute="top" constant="20" id="Kh4-Su-rLX"/>
-                <constraint firstItem="yoD-NM-RDh" firstAttribute="top" secondItem="J06-TU-vx2" secondAttribute="bottom" constant="8" id="LNU-w1-ZfW"/>
                 <constraint firstItem="K5y-O5-q9P" firstAttribute="top" secondItem="hKg-mK-vs6" secondAttribute="bottom" constant="12" id="Uce-1z-dyO"/>
                 <constraint firstItem="dg3-Jn-EgY" firstAttribute="width" secondItem="K5y-O5-q9P" secondAttribute="width" id="VdJ-nZ-L6F"/>
                 <constraint firstItem="dg3-Jn-EgY" firstAttribute="height" secondItem="K5y-O5-q9P" secondAttribute="height" id="XhG-7D-yDN"/>
-                <constraint firstItem="ba2-uc-4c5" firstAttribute="bottom" secondItem="EaT-UF-v5D" secondAttribute="bottom" constant="35" id="an8-6h-lWn"/>
                 <constraint firstItem="dg3-Jn-EgY" firstAttribute="leading" secondItem="K5y-O5-q9P" secondAttribute="leading" id="bOV-U2-K6N"/>
-                <constraint firstItem="J06-TU-vx2" firstAttribute="top" secondItem="dg3-Jn-EgY" secondAttribute="bottom" constant="13" id="bOq-zZ-O0b"/>
-                <constraint firstItem="dg3-Jn-EgY" firstAttribute="top" secondItem="K5y-O5-q9P" secondAttribute="bottom" constant="13" id="jhf-Uo-HMu"/>
-                <constraint firstItem="ba2-uc-4c5" firstAttribute="trailing" secondItem="EaT-UF-v5D" secondAttribute="trailing" constant="30" id="qgE-d5-jOc"/>
+                <constraint firstItem="J06-TU-vx2" firstAttribute="top" secondItem="dg3-Jn-EgY" secondAttribute="bottom" constant="12" id="bOq-zZ-O0b"/>
+                <constraint firstItem="ace-KI-93k" firstAttribute="width" secondItem="J06-TU-vx2" secondAttribute="width" id="chB-Sg-ZR5"/>
+                <constraint firstItem="EaT-UF-v5D" firstAttribute="top" secondItem="yoD-NM-RDh" secondAttribute="bottom" constant="8" symbolic="YES" id="f9d-eg-DAS"/>
+                <constraint firstItem="dg3-Jn-EgY" firstAttribute="top" secondItem="K5y-O5-q9P" secondAttribute="bottom" constant="12" id="jhf-Uo-HMu"/>
+                <constraint firstItem="yoD-NM-RDh" firstAttribute="top" secondItem="ace-KI-93k" secondAttribute="bottom" constant="8" symbolic="YES" id="kYh-Xw-0HT"/>
                 <constraint firstItem="J06-TU-vx2" firstAttribute="trailing" secondItem="dg3-Jn-EgY" secondAttribute="trailing" id="t6E-og-Yp8"/>
                 <constraint firstItem="J06-TU-vx2" firstAttribute="leading" secondItem="dg3-Jn-EgY" secondAttribute="leading" id="w0s-JN-y0y"/>
                 <constraint firstItem="ba2-uc-4c5" firstAttribute="trailing" secondItem="yoD-NM-RDh" secondAttribute="trailing" constant="28" id="zOu-qP-0Ql"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="50.381679389312978" y="-143.3098591549296"/>
+            <point key="canvasLocation" x="50.381679389312978" y="-138.02816901408451"/>
         </view>
     </objects>
     <resources>

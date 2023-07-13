@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalculatorBaseVC" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="finalStepView" destination="J68-YE-IDa" id="tqY-hc-RFB"/>
+                <outlet property="fourOptionsView" destination="epP-UI-C2P" id="chd-aT-zPL"/>
                 <outlet property="multipleOptionsView" destination="l85-LO-Lor" id="GkV-Sa-x3y"/>
                 <outlet property="openEndedQueView" destination="G4M-wN-fvW" id="wNy-UZ-dW8"/>
                 <outlet property="twoOptionsView" destination="Ja4-62-Xb8" id="f17-3j-8Ft"/>
@@ -31,23 +32,27 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J68-YE-IDa" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="233" width="262" height="365"/>
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6KW-ym-w4T" customClass="YesOrNoQueView" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="233" width="262" height="365"/>
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ja4-62-Xb8" customClass="TwoOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="233" width="262" height="365"/>
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epP-UI-C2P" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4M-wN-fvW" customClass="OpenEndedQueView" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="233" width="262" height="365"/>
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l85-LO-Lor" customClass="MultipleOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="233" width="262" height="365"/>
+                    <rect key="frame" x="0.0" y="233" width="262" height="331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </subviews>
@@ -66,12 +71,16 @@
                 <constraint firstItem="l85-LO-Lor" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Nd5-Ri-rnl"/>
                 <constraint firstItem="Ja4-62-Xb8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UoF-ZD-N7H"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ja4-62-Xb8" secondAttribute="bottom" id="V5n-94-frV"/>
+                <constraint firstItem="epP-UI-C2P" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="XOc-MG-2cy"/>
+                <constraint firstItem="epP-UI-C2P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xfe-xD-DZg"/>
                 <constraint firstItem="Ja4-62-Xb8" firstAttribute="top" secondItem="DDZ-5p-THD" secondAttribute="bottom" id="Ycb-Oq-7Yb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="epP-UI-C2P" secondAttribute="bottom" id="baA-aM-gZU"/>
                 <constraint firstItem="6KW-ym-w4T" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cCe-Ac-qMv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DDZ-5p-THD" secondAttribute="trailing" id="dwp-KV-1Uy"/>
                 <constraint firstItem="DDZ-5p-THD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mhP-iy-nN0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="G4M-wN-fvW" secondAttribute="bottom" id="nji-bT-BVh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="l85-LO-Lor" secondAttribute="bottom" id="o9s-NR-rTN"/>
+                <constraint firstItem="epP-UI-C2P" firstAttribute="top" secondItem="DDZ-5p-THD" secondAttribute="bottom" id="q2M-w0-gd5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="l85-LO-Lor" secondAttribute="trailing" id="rgx-qk-RSf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ja4-62-Xb8" secondAttribute="trailing" id="saO-dK-sTr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="G4M-wN-fvW" secondAttribute="trailing" id="tFt-XI-Ti1"/>

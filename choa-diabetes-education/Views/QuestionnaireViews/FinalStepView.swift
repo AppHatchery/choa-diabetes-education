@@ -14,7 +14,7 @@ class FinalStepView: UIView {
     static let nibName = "FinalStepView"
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var gotItButton: PrimaryButton!
     
@@ -45,7 +45,7 @@ class FinalStepView: UIView {
         titleLabel.textAlignment = .center
         
         descriptionLabel.font = .avenirLight14
-        descriptionLabel.numberOfLines = 0
+        
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = currentQuestion.finalStep?.description
         descriptionLabel.textAlignment = .center
