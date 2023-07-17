@@ -36,7 +36,15 @@ class CalculatorHomeViewController: UIViewController {
     @IBAction func calculateBloodSugarWithSymptoms(_ sender: UIButton) {
         let manager = QuestionnaireManager.instance
         let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
-        let calculatorBaseVC = CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues)
+        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { creator in
+            CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues, coder: creator)
+        }
+        
+        
+        
+      
+
+        
         self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
     }
     

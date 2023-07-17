@@ -5,7 +5,7 @@
 
 import UIKit
 
-class CalculatorBaseVC: UIViewController {
+class CalculatorBaseVC: UITableViewController {
 
     
     
@@ -28,9 +28,13 @@ class CalculatorBaseVC: UIViewController {
         super.init(nibName: CalculatorBaseVC.nibName, bundle: nil)
     }
     
-    
+    init?(navVC: UINavigationController, currentQuestion: Questionnaire, coder: NSCoder) {
+        self.questionObj = currentQuestion
+        self.navVC = navVC
+        super.init(coder: coder)
+    }
 
- 
+    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,11 +44,32 @@ class CalculatorBaseVC: UIViewController {
         super.viewDidLoad()
         self.navVC.navigationBar.tintColor = UIColor.choaGreenColor
         self.questionnaireManager.actionsDelegate = self
-        let searchBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
+        let exitBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
         
-        self.navigationItem.rightBarButtonItem  = searchBarButtonItem
+        self.navigationItem.rightBarButtonItem  = exitBarButtonItem
+        
+        self.tableView.sectionHeaderTopPadding = 0.0
+        self.tableView.sectionHeaderHeight = 0.0
+        self.tableView.estimatedSectionHeaderHeight = 0.0
+        self.tableView.contentInsetAdjustmentBehavior = .never
+        
+ 
         hideAllViews()
+        setupViews()
         
+    }
+    
+    
+    private func hideAllViews() {
+        yesOrNoQueView.isHidden = true
+        finalStepView.isHidden = true
+        twoOptionsView.isHidden = true
+        openEndedQueView.isHidden = true
+        multipleOptionsView.isHidden = true
+        fourOptionsView.isHidden = true
+    }
+    
+    private func setupViews() {
         switch questionObj.questionType {
         case .yesOrNo:
             yesOrNoQueView.isHidden = false
@@ -79,15 +104,6 @@ class CalculatorBaseVC: UIViewController {
             
         case .none: break
         }
-    }
-    
-    private func hideAllViews() {
-        yesOrNoQueView.isHidden = true
-        finalStepView.isHidden = true
-        twoOptionsView.isHidden = true
-        openEndedQueView.isHidden = true
-        multipleOptionsView.isHidden = true
-        fourOptionsView.isHidden = true
     }
     
     @objc func closeTapped(_ sender: Any){
@@ -224,9 +240,13 @@ extension CalculatorBaseVC: FinalStepViewProtocol {
     }
 }
 
+
 extension CalculatorBaseVC: QuestionnaireActionsProtocol {
     func showNextQuestion(_ question: Questionnaire) {
-        let calculatorBaseVC = CalculatorBaseVC(navVC: self.navVC, currentQuestion: question)
+        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { creator in
+            CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: question, coder: creator)
+        }
+
         self.navVC.pushViewController(calculatorBaseVC, animated: true)
     }
 }
