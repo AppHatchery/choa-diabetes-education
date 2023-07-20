@@ -243,8 +243,8 @@ extension CalculatorBaseVC: FinalStepViewProtocol {
 
 extension CalculatorBaseVC: QuestionnaireActionsProtocol {
     func showNextQuestion(_ question: Questionnaire) {
-        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { creator in
-            CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: question, coder: creator)
+        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { [weak self] creator in
+            CalculatorBaseVC(navVC: self?.navigationController ?? self!.navVC, currentQuestion: question, coder: creator)
         }
 
         self.navVC.pushViewController(calculatorBaseVC, animated: true)
