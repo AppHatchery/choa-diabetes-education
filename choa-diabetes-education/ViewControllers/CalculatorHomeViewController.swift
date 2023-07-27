@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalculatorHomeViewController: UIViewController {
+class CalculatorHomeViewController: UITableViewController {
     
     var insulinForHighBloodSugar = false
     var insulinForFood = false
@@ -16,6 +16,10 @@ class CalculatorHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.sectionHeaderTopPadding = 0.0
+        self.tableView.sectionHeaderHeight = 0.0
+        self.tableView.estimatedSectionHeaderHeight = 0.0
+        self.tableView.contentInsetAdjustmentBehavior = .never
     }
     
     @IBAction func calculateInsulinForFood(_ sender: UIButton){
@@ -36,7 +40,10 @@ class CalculatorHomeViewController: UIViewController {
     @IBAction func calculateBloodSugarWithSymptoms(_ sender: UIButton) {
         let manager = QuestionnaireManager.instance
         let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
-        let calculatorBaseVC = CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues)
+        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { creator in
+            CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues, coder: creator)
+        }
+        
         self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
     }
     
