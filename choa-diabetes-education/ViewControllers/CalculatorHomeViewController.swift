@@ -44,11 +44,6 @@ class CalculatorHomeViewController: UITableViewController {
             CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues, coder: creator)
         }
         
-        
-        
-      
-
-        
         self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
     }
     

@@ -59,6 +59,14 @@ class CalculatorBaseVC: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        
+    }
+    
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true

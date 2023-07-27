@@ -106,9 +106,6 @@
                                     <color key="baseForegroundColor" name="headingGreenColor"/>
                                     <color key="baseBackgroundColor" name="backgroundColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="calculateBloodSugarWithSymptoms:" destination="oZv-U8-baV" eventType="touchUpInside" id="9eZ-7r-bys"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jyc-tg-lYg"/>
@@ -495,7 +492,7 @@
                                                         <color key="baseBackgroundColor" name="backgroundColor"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="calculateBloodSugarWithSymptoms:" destination="oZv-U8-baV" eventType="touchUpInside" id="qIp-Gc-T2L"/>
+                                                        <action selector="calculateBloodSugarWithSymptoms:" destination="GmT-0u-0WF" eventType="touchUpInside" id="A28-ys-pyz"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
