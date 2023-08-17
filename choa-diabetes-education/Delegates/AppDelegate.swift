@@ -25,18 +25,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set visitor as weekly cohorts
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm"
-
+        
+        let key = "visitorId"
         let visitorId = "Tester-May-\(UUID())" // Could use Cohorts in the future to track patients
         let accountId = "TypeU-Beta" // TypeU-Test TypeU-Beta for testing
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
-        PendoManager.shared().startSession(
-             visitorId,
-             accountId: accountId,
-             visitorData: [:],
-             accountData: [:]
-         )
+        
+        if UserDefaults.standard.string(forKey: key) == nil {
+            let visitorId = "Tester-May-\(UUID())"
+            UserDefaults.standard.set(visitorId, forKey: key)
+        }
+        
+        
+        if let visitorId = UserDefaults.standard.string(forKey: key) {
+            PendoManager.shared().startSession(
+                 visitorId,
+                 accountId: accountId,
+                 visitorData: [:],
+                 accountData: [:]
+             )
+        } else {
+            PendoManager.shared().startSession(
+                 "",
+                 accountId: accountId,
+                 visitorData: [:],
+                 accountData: [:]
+             )
+        }
+
         
         FirebaseApp.configure()
 
