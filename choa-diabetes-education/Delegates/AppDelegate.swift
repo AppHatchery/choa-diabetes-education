@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let key = "visitorId"
          // Could use Cohorts in the future to track patients
-        let accountId = "TypeU-Beta" // TypeU-Test TypeU-Beta for testing
+        let accountId = "TypeU-Test" // TypeU-Beta for testing
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
