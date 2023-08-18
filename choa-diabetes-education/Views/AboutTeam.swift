@@ -15,6 +15,8 @@ class AboutTeam: UIView {
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
     @IBOutlet weak var collaboratorsTextView: UITextView!
     
+    @IBOutlet weak var versionNumber: UILabel!
+    
     
     //------------------------------------------------------------------------------
     override init( frame: CGRect ) {

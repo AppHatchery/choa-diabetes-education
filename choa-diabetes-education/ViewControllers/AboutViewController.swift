@@ -44,9 +44,13 @@ class AboutViewController: UIViewController {
         
         let y = 0
         
-        let aboutApp = AboutApp(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 900))
+        let aboutApp = AboutApp(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 700))
         
         let aboutTeam = AboutTeam(frame: CGRect(x: 0, y: 0, width: Int(contentView.frame.width), height: 900))
+        
+        let contentHeightTeam = aboutTeam.versionNumber.frame.origin.y
+        
+        aboutTeam.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Int(contentFrame.width), height: Int(contentHeightTeam)))
         
         let currentView = index == 0 ? aboutApp : aboutTeam
                                  
