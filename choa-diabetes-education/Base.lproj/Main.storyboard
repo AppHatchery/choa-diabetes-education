@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,11 +14,11 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
-        </array>
-        <array key="GothamRoundedLight.ttf">
+        <array key="Gotham Rounded Light.otf">
             <string>GothamRounded-Light</string>
+        </array>
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
         </array>
         <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
@@ -700,7 +700,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
-                                <rect key="frame" x="20" y="100" width="374" height="28"/>
+                                <rect key="frame" x="20" y="100" width="374" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -712,7 +712,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizStart" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-sa-na4">
-                                <rect key="frame" x="24" y="168" width="366" height="187"/>
+                                <rect key="frame" x="24" y="164" width="366" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="187" id="TYr-ne-jZL"/>
                                 </constraints>
@@ -734,13 +734,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 questions, 2mins" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtj-aW-WrN">
-                                <rect key="frame" x="20" y="142" width="374" height="22"/>
+                                <rect key="frame" x="20" y="138" width="374" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="textColor" name="contentBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished the quiz." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyW-Bw-RUj">
-                                <rect key="frame" x="20" y="132" width="374" height="23.333333333333343"/>
+                                <rect key="frame" x="20" y="128" width="374" height="20"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                 <color key="textColor" name="choaGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -945,11 +945,11 @@
             <objects>
                 <viewController id="grA-36-m0Y" customClass="AboutViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AEa-6G-dZG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-g9-i9q">
-                                <rect key="frame" x="24" y="68" width="75.666666666666671" height="24"/>
+                                <rect key="frame" x="24" y="24" width="75.666666666666671" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -970,23 +970,41 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6X-Wt-jw2">
-                                <rect key="frame" x="0.0" y="112" width="414" height="706"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="750"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4s-g3-KKK">
+                                <rect key="frame" x="48" y="66" width="318" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="O3e-vC-u5b"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Content"/>
+                                    <segment title="Team"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="choaGreenColor"/>
+                                <connections>
+                                    <action selector="valueChanged:" destination="grA-36-m0Y" eventType="valueChanged" id="VKW-rJ-zEy"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uf6-or-Tqg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="centerX" secondItem="Uf6-or-Tqg" secondAttribute="centerX" id="AMw-zI-Gx4"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="i6X-Wt-jw2" secondAttribute="trailing" id="B52-Xm-1DE"/>
+                            <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="u4s-g3-KKK" secondAttribute="trailing" constant="48" id="Ees-TN-AL5"/>
                             <constraint firstItem="a8F-CO-kRR" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="FkA-Qo-2Fz"/>
+                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="u4s-g3-KKK" secondAttribute="bottom" constant="8" symbolic="YES" id="GBC-mM-YHn"/>
                             <constraint firstItem="GT4-g9-i9q" firstAttribute="top" secondItem="Uf6-or-Tqg" secondAttribute="top" constant="24" id="GYh-0s-mfU"/>
                             <constraint firstItem="GT4-g9-i9q" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="Gvc-Q9-wXz"/>
                             <constraint firstItem="a8F-CO-kRR" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="24" id="Mbn-YL-mCs"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="bottom" secondItem="i6X-Wt-jw2" secondAttribute="bottom" constant="24" id="Opw-q6-wj4"/>
-                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="20" id="TOa-Ow-jVN"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="a8F-CO-kRR" secondAttribute="trailing" constant="24" id="U6Q-Dh-zK4"/>
                             <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="a8F-CO-kRR" secondAttribute="bottom" constant="32" id="Uqn-aO-Lb6"/>
                             <constraint firstItem="i6X-Wt-jw2" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" id="Vht-wY-lQO"/>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="48" id="u2y-cR-5U2"/>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="18" id="vBV-ZL-QtU"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -997,11 +1015,12 @@
                     <connections>
                         <outlet property="aboutTitle" destination="GT4-g9-i9q" id="v51-0O-E8o"/>
                         <outlet property="contentView" destination="i6X-Wt-jw2" id="txd-rs-NaP"/>
+                        <outlet property="segment" destination="u4s-g3-KKK" id="hBB-44-e40"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5R-qk-Sru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4306" y="-1315"/>
+            <point key="canvasLocation" x="4305.7971014492759" y="-1315.1785714285713"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="s8W-WG-EDq">
