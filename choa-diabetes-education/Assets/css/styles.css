@@ -1,16 +1,19 @@
 @font-face {
-    font-family: GothamRoundedBook;
-    src: url("gotham-rounded/GothamRoundedBook.ttf");
-
+    font-family: GothamRoundedBold;
+    src: url("Gotham Rounded Bold.otf");
 }
 
-* {
-    font-family: GothamRoundedBook, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji" !important;
+@font-face {
+    font-family: NunitoRegular;
+    src: url("Nunito-Regular.ttf");
 }
 
+/** {*/
+/*    font-family: GothamRoundedBold, -apple-system,*/
+/*    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",*/
+/*    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",*/
+/*    "Segoe UI Symbol", "Noto Color Emoji" !important;*/
+/*}*/
 
 h1,
 .uk-h1,
@@ -25,6 +28,16 @@ h5,
 h6,
 .uk-h6 {
     color: #084E06;
+    font-family: GothamRoundedBold, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+p, div, span {
+    font-family: NunitoRegular, Roboto;
+    /* Fallback to sans-serif if AvenirRoman isn't available */
+    line-height: 28px;
 }
 
 a{

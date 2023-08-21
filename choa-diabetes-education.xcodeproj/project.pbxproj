@@ -98,11 +98,6 @@
 		D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */; };
 		D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */; };
 		D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */; };
-		D48D891E289C1A30001A61E2 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */; };
-		D48D891F289C1A30001A61E2 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */; };
-		D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */; };
-		D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */; };
-		D48D8922289C1A30001A61E2 /* Gotham Rounded Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */; };
 		D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8923289C214F001A61E2 /* HandbookViewController.swift */; };
 		D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8925289C215C001A61E2 /* CalculatorViewController.swift */; };
 		D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492A88F28F8E2A000B98CA3 /* SearchView.swift */; };
@@ -111,8 +106,6 @@
 		D492A8982901D67900B98CA3 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D492A8962901D67900B98CA3 /* SearchResultTableViewCell.xib */; };
 		D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */ = {isa = PBXBuildFile; fileRef = D492A89929088C9A00B98CA3 /* Irish_Grover */; };
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
-		D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
-		D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
 		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
 		D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
@@ -130,6 +123,14 @@
 		D4D48E9128D1123700820FD4 /* Communities.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48E9028D1123700820FD4 /* Communities.xib */; };
 		D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */; };
 		D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */; };
+		D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */; };
+		D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */; };
+		D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
+		D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */; };
+		D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
+		D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */; };
+		D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */; };
+		D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */; };
 		D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */; };
 		D4E4954B29B78D720016552D /* steps_to_test_blood_sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */; };
 		D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */; };
@@ -256,11 +257,6 @@
 		D48D88FC289C0045001A61E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D88FF289C0045001A61E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48D8901289C0045001A61E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
-		D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
-		D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
-		D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium.otf"; sourceTree = "<group>"; };
-		D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
 		D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8923289C214F001A61E2 /* HandbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbookViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +284,12 @@
 		D4D48E9028D1123700820FD4 /* Communities.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Communities.xib; sourceTree = "<group>"; };
 		D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
+		D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium.otf"; sourceTree = "<group>"; };
+		D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
+		D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
+		D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
+		D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
 		D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = when_to_check_blood_sugar.png; sourceTree = "<group>"; };
 		D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps_to_test_blood_sugar.png; sourceTree = "<group>"; };
 		D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 		D48167F228AD38E9003B14A3 /* font */ = {
 			isa = PBXGroup;
 			children = (
+				D4DFF2F52A8E734000CAEEF7 /* Nunito */,
 				D492A89B29088CA700B98CA3 /* Acme */,
 				D492A89929088C9A00B98CA3 /* Irish_Grover */,
 				D48167F328AD38FF003B14A3 /* gotham-rounded */,
@@ -575,13 +578,13 @@
 				D48167DA28AD35F1003B14A3 /* css */,
 				D48167D528AD35BB003B14A3 /* images */,
 				D48167C628AD02D3003B14A3 /* pages */,
+				D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */,
+				D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */,
+				D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */,
+				D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */,
+				D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */,
 				D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */,
 				D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */,
-				D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */,
-				D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */,
-				D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */,
-				D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */,
-				D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */,
 				D48D88FC289C0045001A61E2 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -603,6 +606,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4DFF2F52A8E734000CAEEF7 /* Nunito */ = {
+			isa = PBXGroup;
+			children = (
+				D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */,
+			);
+			path = Nunito;
 			sourceTree = "<group>";
 		};
 		FDC8E5342A27BC49006FDFF0 /* CustomComponents */ = {
@@ -701,11 +712,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */,
 				D4E4954B29B78D720016552D /* steps_to_test_blood_sugar.png in Resources */,
 				D42FA8FF29916B81009C51C3 /* AboutApp.xib in Resources */,
 				D4684AB4290B0B6600E7311B /* cheese_and_eggs.png in Resources */,
-				D48D891E289C1A30001A61E2 /* Gotham Rounded Bold.otf in Resources */,
 				D450EC1428C1158A0015D823 /* insulin.html in Resources */,
 				FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */,
 				D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */,
@@ -720,6 +729,9 @@
 				D450EC1128C1158A0015D823 /* types_of_food.html in Resources */,
 				FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
+				D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */,
+				D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */,
+				D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
 				D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */,
 				D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */,
@@ -739,15 +751,15 @@
 				D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */,
 				D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */,
 				D42E16C629CA15C6002D623E /* storage-of-insulin.png in Resources */,
-				D48D8922289C1A30001A61E2 /* Gotham Rounded Medium.otf in Resources */,
 				D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */,
 				D4C39B3128B7DA22003CCA14 /* whatisdiabetes.html in Resources */,
 				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
-				D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */,
+				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
 				D4684AAD290B0B6600E7311B /* milk_and_yogurt.png in Resources */,
 				D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */,
 				D4684AB5290B0B6600E7311B /* cereal.png in Resources */,
+				D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */,
 				D41D46912984172300825100 /* dairy_2.png in Resources */,
 				D4684AAF290B0B6600E7311B /* bread.png in Resources */,
 				FDC8E53C2A292F64006FDFF0 /* TwoOptionsView.xib in Resources */,
@@ -755,7 +767,6 @@
 				D4D48E9128D1123700820FD4 /* Communities.xib in Resources */,
 				D4684AAA290B0B6600E7311B /* taco.png in Resources */,
 				D450EC1028C1158A0015D823 /* insulin.png in Resources */,
-				D48D891F289C1A30001A61E2 /* Gotham Rounded Light.otf in Resources */,
 				D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */,
 				D41D46942984172300825100 /* dairy.png in Resources */,
 				D4D48E8D28D10FAB00820FD4 /* FoodDiary.xib in Resources */,
@@ -777,18 +788,19 @@
 				D4684AAB290B0B6600E7311B /* pasta.png in Resources */,
 				D492A89228F8E2A900B98CA3 /* SearchView.xib in Resources */,
 				D450EC1A28C1158A0015D823 /* nutrition_facts.png in Resources */,
+				D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */,
 				D4684AAE290B0B6600E7311B /* pizza.png in Resources */,
 				D48D88FD289C0045001A61E2 /* Assets.xcassets in Resources */,
 				FDC8E5432A294147006FDFF0 /* OpenEndedQueView.xib in Resources */,
 				D4684AA7290B0B6600E7311B /* maffin.png in Resources */,
 				FDC8E52F2A2699CE006FDFF0 /* YesOrNoQueView.xib in Resources */,
-				D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */,
+				D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */,
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
 				D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
+				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
-				D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */,
 				D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */,
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
