@@ -65,6 +65,7 @@
 		D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB8290B0B7B00E7311B /* know_your_carbs.html */; };
 		D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB9290B0B7B00E7311B /* foods_that_raise_blood_sugar.html */; };
 		D4684AC1290B208000E7311B /* starchy_vegetables.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684AC0290B208000E7311B /* starchy_vegetables.png */; };
+		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
 		D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679A28ABDE4F003B14A3 /* OrientationViewController.swift */; };
@@ -206,6 +207,7 @@
 		D4684AB8290B0B7B00E7311B /* know_your_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = know_your_carbs.html; sourceTree = "<group>"; };
 		D4684AB9290B0B7B00E7311B /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		D4684AC0290B208000E7311B /* starchy_vegetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starchy_vegetables.png; sourceTree = "<group>"; };
+		D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treatment-low-blood-sugar.png"; sourceTree = "<group>"; };
 		D481679628ABBCCC003B14A3 /* OrientationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHeader.swift; sourceTree = "<group>"; };
 		D481679828ABBCDE003B14A3 /* OrientationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrientationHeader.xib; sourceTree = "<group>"; };
 		D481679A28ABDE4F003B14A3 /* OrientationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 		D48167D528AD35BB003B14A3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */,
 				D42E16C529CA15C6002D623E /* storage-of-insulin.png */,
 				D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */,
 				D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */,
@@ -725,6 +728,7 @@
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
 				D4EEB6A629142EAE001E05A2 /* carbs_image.png in Resources */,
+				D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,7 +967,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -980,7 +984,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1001,7 +1005,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -1017,7 +1021,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
