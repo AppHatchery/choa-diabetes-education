@@ -44,8 +44,11 @@ class AboutTeam: UIView {
         aboutTitle.text = "Team.Title.Hatchery".localized()
         collaboratorsTitle.text = "Team.Title.Collaborators".localized()
         aboutDescriptionLabel.text = "Team.Hatchery.Description".localized()
-        collaboratorsTextView.text = "Team.Hatchery.Description".localized()
+        collaboratorsTextView.text = "Team.Collaborators.Description".localized()
         
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                versionNumber.text = "v\(version)"
+            }
     }
     
     @IBAction func openLink(_ sender: UIButton) {
