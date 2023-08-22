@@ -48,9 +48,9 @@ class AboutViewController: UIViewController {
         
         let aboutTeam = AboutTeam(frame: CGRect(x: 0, y: 0, width: Int(contentView.frame.width), height: 900))
         
-        let contentHeightTeam = aboutTeam.versionNumber.frame.origin.y
+        let contentHeightTeam = aboutTeam.versionNumber.frame.origin.y - 48
         aboutTeam.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Int(contentFrame.width), height: Int(contentHeightTeam)))
-        let contentHeightApp = aboutApp.versionNumber.frame.origin.y
+        let contentHeightApp = aboutApp.versionNumber.frame.origin.y - 48
         aboutApp.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Int(contentFrame.width), height: Int(contentHeightApp)))
         
         let currentView = index == 0 ? aboutApp : aboutTeam
