@@ -9,6 +9,8 @@ import UIKit
 
 extension UIFont {
     public static let gothamRoundedBold16 = UIFont(name: "GothamRounded-Bold", size: 16.0)!
+
+    public static let gothamRoundedMedium16 = UIFont(name: "GothamRounded-Medium", size: 16.0)!
     public static let avenirLight14 = UIFont(name: "Avenir-Light", size: 14.0)!
     public static let avenir17 = UIFont(name: "Avenir", size: 17)
 }

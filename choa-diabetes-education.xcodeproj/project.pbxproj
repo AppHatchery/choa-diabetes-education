@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
+		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
+		8EEF57802A900E98009BF5E7 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -100,7 +103,6 @@
 		D48D891F289C1A30001A61E2 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */; };
 		D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */; };
 		D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */; };
-		D48D8922289C1A30001A61E2 /* Gotham Rounded Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */; };
 		D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8923289C214F001A61E2 /* HandbookViewController.swift */; };
 		D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8925289C215C001A61E2 /* CalculatorViewController.swift */; };
 		D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492A88F28F8E2A000B98CA3 /* SearchView.swift */; };
@@ -146,6 +148,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
+		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
+		8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GothamRoundedMedium.ttf; path = "font/gotham-rounded/GothamRoundedMedium.ttf"; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -238,7 +243,6 @@
 		D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
 		D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
 		D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
-		D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium.otf"; sourceTree = "<group>"; };
 		D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
 		D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 				D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */,
 				D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */,
 				D42FA8FC29916B74009C51C3 /* AboutApp.swift */,
+				8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */,
+				8EBD52252A8DE3F200237C49 /* AboutTeam.xib */,
 				D42FA8FE29916B81009C51C3 /* AboutApp.xib */,
 			);
 			path = Views;
@@ -539,7 +545,7 @@
 				D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */,
 				D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */,
 				D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */,
-				D48D8912289C02D0001A61E2 /* Gotham Rounded Medium.otf */,
+				8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */,
 				D48D88FC289C0045001A61E2 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -649,6 +655,7 @@
 				D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */,
 				D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */,
 				D4684ABB290B0B7B00E7311B /* low_carb_snack_combinations.html in Resources */,
+				8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */,
 				FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */,
 				D41D46902984172300825100 /* blood_units.png in Resources */,
 				D48167F828AD394C003B14A3 /* glucose.png in Resources */,
@@ -663,7 +670,6 @@
 				D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */,
 				D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */,
 				D42E16C629CA15C6002D623E /* storage-of-insulin.png in Resources */,
-				D48D8922289C1A30001A61E2 /* Gotham Rounded Medium.otf in Resources */,
 				D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */,
 				D4C39B3128B7DA22003CCA14 /* whatisdiabetes.html in Resources */,
 				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
@@ -686,6 +692,7 @@
 				D4684AA3290B0B6600E7311B /* rice.png in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
 				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
+				8EEF57802A900E98009BF5E7 /* GothamRoundedMedium.ttf in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				D4684AB2290B0B6600E7311B /* bread,_cereal_rice_pasta.png in Resources */,
 				D41D46952984172300825100 /* additional_foods.png in Resources */,
@@ -778,6 +785,7 @@
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
+				8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,

@@ -7,16 +7,16 @@
 
 import UIKit
 
-class AboutApp: UIView {
+class AboutTeam: UIView {
 
     @IBOutlet weak var aboutTitle: UILabel!
-    @IBOutlet weak var americanDiabetesTitle: UILabel!
-    @IBOutlet weak var supportTitle: UILabel!
+    @IBOutlet weak var collaboratorsTitle: UILabel!
     
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
-    @IBOutlet weak var supportTextView: UITextView!
+    @IBOutlet weak var collaboratorsTextView: UITextView!
     
     @IBOutlet weak var versionNumber: UILabel!
+    
     
     //------------------------------------------------------------------------------
     override init( frame: CGRect ) {
@@ -32,7 +32,7 @@ class AboutApp: UIView {
     
     //------------------------------------------------------------------------------
     func customInit() {
-        let nibView = Bundle.main.loadNibNamed( "AboutApp", owner: self, options: nil)!.first as! UIView
+        let nibView = Bundle.main.loadNibNamed( "AboutTeam", owner: self, options: nil)!.first as! UIView
         self.addSubview( nibView )
         
         nibView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,19 +41,18 @@ class AboutApp: UIView {
         nibView.topAnchor.constraint( equalTo: self.topAnchor ).isActive = true
         nibView.bottomAnchor.constraint( equalTo: self.bottomAnchor ).isActive = true
         
-        aboutTitle.text = "About.Title.AboutTheApp".localized()
-        americanDiabetesTitle.text = "About.Title.AmericanDiabetes".localized()
-        supportTitle.text = "About.Title.Support".localized()
-        aboutDescriptionLabel.text = "About.Description".localized()
-        supportTextView.text = "About.Support.Description".localized()
+        aboutTitle.text = "Team.Title.Hatchery".localized()
+        collaboratorsTitle.text = "Team.Title.Collaborators".localized()
+        aboutDescriptionLabel.text = "Team.Hatchery.Description".localized()
+        collaboratorsTextView.text = "Team.Collaborators.Description".localized()
         
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
                 versionNumber.text = "v\(version)"
             }
     }
     
-    @IBAction func searchForResources(_ sender: UIButton) {
-        guard let url = URLs.aboutAppAmericalDiabetes else { return }
+    @IBAction func openLink(_ sender: UIButton) {
+        guard let url = URLs.appHatchery else { return }
         UIApplication.shared.open(url)
     }
 }
