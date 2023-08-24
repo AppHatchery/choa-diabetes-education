@@ -28,13 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let key = "visitorId"
          // Could use Cohorts in the future to track patients
-        let accountId = "TypeU-Test" // TypeU-Beta for testing
+        let accountId = "TypeU-Pilot" // TypeU-Beta for testing
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
         
         if UserDefaults.standard.string(forKey: key) == nil {
-            let visitorId = "Test-Sep23-\(UUID())"
+            let visitorId = "Pilot-Sep23-\(UUID())"
             UserDefaults.standard.set(visitorId, forKey: key)
         }
         
