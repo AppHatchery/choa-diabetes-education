@@ -26,18 +26,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "mm"
         
-        let key = "visitorId"
          // Could use Cohorts in the future to track patients
         let accountId = "TypeU-Pilot" // TypeU-Beta for testing
         // Use TypeU-Release when the educators give the go and we start bringing in patients
         // Potentially also use Pendo Guides to answer, are you a CHOA patient?
 
-        
-        if UserDefaults.standard.string(forKey: key) == nil {
-            let visitorId = "Pilot-Sep23-\(UUID())"
-            UserDefaults.standard.set(visitorId, forKey: key)
+        let key = "visitorId"
+        let firstLaunchDateKey = "FirstLaunchDate"
+
+        if UserDefaults.standard.value(forKey: firstLaunchDateKey) == nil {
+            UserDefaults.standard.set(Date(), forKey: firstLaunchDateKey)
         }
         
+        let targetDateComponents = DateComponents(year: 2023, month: 9, day: 1)
+        let calendar = Calendar.current
+
+        // Check if the first launch date is before our target date, to try to collect as many non-Pilot people as possible
+        if let firstLaunchDate = UserDefaults.standard.object(forKey: firstLaunchDateKey) as? Date,
+           let targetDate = calendar.date(from: targetDateComponents) {
+           
+            // If first launch is earlier than Sep 1st then it's a Tester
+           if firstLaunchDate < targetDate {
+               // User opened the app before September 1st
+               if UserDefaults.standard.string(forKey: key) == nil {
+                   let visitorId = "Tester-May23-\(UUID())"
+                   UserDefaults.standard.set(visitorId, forKey: key)
+               }
+               // If first launch is on or after Sep 1st it's likely to be a pilot
+           } else {
+               // User opened the app on or after September 1st
+               if UserDefaults.standard.string(forKey: key) == nil {
+                   let visitorId = "Pilot-Sep23-\(UUID())"
+                   UserDefaults.standard.set(visitorId, forKey: key)
+               }
+           }
+        }
+        
+        // Launch Pendo connection
         if let visitorId = UserDefaults.standard.string(forKey: key) {
             PendoManager.shared().startSession(
                  visitorId,
@@ -53,7 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  accountData: [:]
              )
         }
+        
+        // Save app version on file for future update changes
+        let appVersionKey = "PreviousAppVersion"
+        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
+        UserDefaults.standard.set(currentVersion, forKey: appVersionKey)
         
         FirebaseApp.configure()
 
