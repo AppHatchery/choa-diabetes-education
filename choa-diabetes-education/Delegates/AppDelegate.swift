@@ -34,10 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         if UserDefaults.standard.string(forKey: key) == nil {
-            let visitorId = "Tester-May-\(UUID())"
+            let visitorId = "Test-Sep23-\(UUID())"
             UserDefaults.standard.set(visitorId, forKey: key)
         }
-        
         
         if let visitorId = UserDefaults.standard.string(forKey: key) {
             PendoManager.shared().startSession(
