@@ -92,10 +92,6 @@ class CalculatorBaseVC: UITableViewController {
             multipleOptionsView.isHidden = false
             multipleOptionsView.delegate = self
             multipleOptionsView.setupView(currentQuestion: questionObj)
-        case .openEndedWithSingleInput:
-            openEndedQueView.isHidden = false
-            openEndedQueView.delegate = self
-            openEndedQueView.setupView(currentQuestion: questionObj, multiple: false)
         case .openEndedWithMultipleInput:
             openEndedQueView.isHidden = false
             openEndedQueView.delegate = self
@@ -104,11 +100,6 @@ class CalculatorBaseVC: UITableViewController {
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
-        case .fourOptions:
-            print("unhid the view")
-            fourOptionsView.isHidden = false
-            fourOptionsView.delegate = self
-            fourOptionsView.setupView(currentQuestion: questionObj)
             
         case .none: break
         }
@@ -119,100 +110,42 @@ class CalculatorBaseVC: UITableViewController {
     }
 }
 
-extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol, FourOptionsViewProtocol {
-
+extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
     
+
     
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
         switch selectedAnswer {
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
-            self.questionnaireManager.confirmBloodSugarFlow()
-        case .LastType(let lastType):
-            switch lastType {
-            case .pump:
-                self.questionnaireManager.triggerLastPumpFlow(currentQuestion)
-            case .injection:
-                self.questionnaireManager.triggerLastShotFlow(currentQuestion)
-            }
-        case .UrineKetonesMeasurements(let urineKetonesMeasurements):
-            switch urineKetonesMeasurements {
-            case .zeroToSmall:
-                self.questionnaireManager.saveKetones(1.0)
-                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-            case .moderateToLarge:
-                self.questionnaireManager.saveKetones(1.5)
-                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-            }
-        case .PumpLastDose(let pumpLastDose):
-            switch pumpLastDose {
-            case .lessThan30:
-                self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
-            case .halfHourToTwoHours:
-                self.questionnaireManager.saveDose(0)
-                self.questionnaireManager.insulin(false)
-                self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
-                
-            }
-        case .ShotLastDose(let shotLastDose):
-            switch shotLastDose {
-            case .lessThanHour:
-                self.questionnaireManager.triggerLastDoseTimeResponseActionFlow(currentQuestion)
-            case .oneToThreeHours:
-                self.questionnaireManager.saveDose(0)
-                self.questionnaireManager.insulin(false)
-                self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
-            }
+            self.questionnaireManager.triggerTestActionFlow(currentQuestion)
+        case .CalculationType(let method):
+            self.questionnaireManager.saveCalculationType(method)
+            self.questionnaireManager.triggerBloodSugarActionFlow(currentQuestion)
         }
         
     }
     
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
-        switch selectedAnswer {
-        case .ScheduledTime(let scheduledTime):
-            switch scheduledTime {
-            case .yes:
-                self.questionnaireManager.triggerEndingStage()
-            case .fourHoursLate:
-                self.questionnaireManager.triggerEndingStage()
-            case .moreThanFourHours:
-                self.questionnaireManager.triggerEndoNoDoseActionFlow()
-            case .notGiven:
-                self.questionnaireManager.triggerNotGivenFlow(currentQuestion)
-            }
-        }
-    }
     
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer) {
         
         switch selectedAnswer {
-        case .KetonesType(let ketonesType):
+        case .KetonesMeasurements(let ketonesType):
             switch ketonesType {
-            case .none:
-                self.questionnaireManager.saveKetones(1.0)
-                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-            case .urineKetones:
-                self.questionnaireManager.triggerUrineKetonesActionFlow(currentQuestion)
-            case .bloodKetones:
-                self.questionnaireManager.triggerBloodKetonesActionFlow(currentQuestion)
-            case .noAccess:
+            case .zeroToSmall:
+                self.questionnaireManager.saveKetones(type: ketonesType)
+                self.questionnaireManager.triggerResultsActionFlow(currentQuestion)
+                
+            case .moderateToLarge:
+                self.questionnaireManager.saveKetones(type: ketonesType)
+                self.questionnaireManager.triggerResultsActionFlow(currentQuestion)
+            case .unknown:
                 self.questionnaireManager.triggerNoKetonesActionFlow(currentQuestion)
             }
             
         
-        case .BloodKetonesMeasurements(let bloodKetonesMeasurements):
-            switch bloodKetonesMeasurements {
-            case .lessThanOne:
-                self.questionnaireManager.saveKetones(1.0)
-                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-            case .oneToThree:
-                self.questionnaireManager.triggerKetonesResponseActionFlow(currentQuestion)
-            case .greaterThanThree:
-                self.questionnaireManager.saveKetones(1.5)
-                self.questionnaireManager.triggerEmergencyActionFlow()
-            }
         }
 
     }
@@ -227,18 +160,19 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
     
     
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {
-        self.questionnaireManager.saveBloodSugarAndCF(bloodSugar, cf)
-        self.questionnaireManager.confirmForKetones()
+        self.questionnaireManager.saveData(bloodSugar: bloodSugar, correctionFactor: cf)
+        self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
     
-    func didSelectNextAction(currentQuestion: Questionnaire, lastDose: Int) {
-        self.questionnaireManager.saveDose(lastDose)
-        self.questionnaireManager.triggerLastDoseValueResponseActionFlow(currentQuestion)
-    }
 }
 
 extension CalculatorBaseVC: FinalStepViewProtocol {
-    func didSelectGotItAction() {
+    
+    func didSelectGotItAction(_ question: Questionnaire) {
+        if question.questionId == FinalQuestionId.shot.id {
+            self.questionnaireManager.triggerDisclaimerActionFlow(question)
+            return
+        }
         for controller in self.navVC.viewControllers as Array {
             if controller.isKind(of: CalculatorHomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)

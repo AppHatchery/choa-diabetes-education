@@ -61,96 +61,73 @@
 "Calculator.BloodSugar.CF.Error" = "Please enter a Correction Factor";
 "Calculator.BloodSugar.Target.Error" = "Please enter your target blood sugar (it may be 100 during the day and 150 at night)";
 
-"Calculator.Que.SevereDistress.title" = "· Is your child/teen under severe distress?";
-"Calculator.Que.SevereDistress.description" = "(for example: not responsive, weakly responsive with stimulation, confused, dizzy to the point of not being able to stand, blue color to the skin, and very labored breathing)";
+"Calculator.Que.SevereDistress.title" = "· Is your child severely ill?";
+"Calculator.Que.SevereDistress.description" = "(for example: not responding to name, dizzy and unable to stand, repeated vomiting, unable to swallow liquids)";
 
-"Calculator.First.FinalStep.title" = "Call 911 or proceed to the nearest ED";
-"Calculator.First.FinalStep.description" = "Whichever you believe is safest, drive carefully if you choose to drive, consider a dose of rapid-acting insulin if ketones and BG are elevated.\n\n If you feel comfortable going to the Child/teen's ED we advise you do so.";
+"Calculator.Final.Emergency.title" = "Call 911 or proceed to the nearest Emergency Room";
+"Calculator.Final.Emergency.description" = "";
 
-"Calculator.Que2.TestType.title" = "· Are you using a pump or insulin shots below the skin?";
-"Calculator.Que2.TestType.option1" = "Pump";
-"Calculator.Que2.TestType.option2" = "Insulin shot below the skin";
+"Calculator.Que.TestType.title" = "· Are you using a pump or insulin shots below the skin?";
+"Calculator.Que.TestType.option1" = "Pump";
+"Calculator.Que.TestType.option2" = "Insulin shot below the skin";
 
-"Calculator.Que3.BloodSugar.title" = "· What's your Blood Sugar?";
-"Calculator.Que3.BloodSugar.unit" = "mmol/L";
-"Calculator.Que3.BloodSugar.subQue" = "· What's your correction factor?";
+"Calculator.Que.CGM.title" = "· Does the pump show data from a Continuous Glucose Monitor?";
+"Calculator.Que.CGM.description" = "Examples include TSlim Control IQ, Omnipod 5 in Automode, Ilet pump";
 
-"Calculator.Que4.Ketones.title" = "· Which ketones have you checked for in the last 30 mins? (if you haven’t please do so now)";
-"Calculator.Que4.Ketones.description" = "";
-"Calculator.Que4.Ketones.option1" = "Urine ketones";
-"Calculator.Que4.Ketones.option2"  = "Blood Ketones";
-"Calculator.Que4.Ketones.option3" = "Don’t have access to either";
+"Calculator.Que.Method.title" = "· How do you calculate insulin for Blood Sugar?";
+"Calculator.Que.Method.option1" = "Sliding Scale";
+"Calculator.Que.Method.option2" = "Correction Factor/Formula";
+"Calculator.Que.Method.description" = "The formula using the correction factor may look like this: (Blood Sugar - 100) / correction factor";
 
-"Calculator.Que5.KetonesInNext30Mins.title" = "· Can you determine ketones in the next 30 mins?";
-"Calculator.Que5.KetonesInNext30Mins.description"  = "If you can determine ketones in the next 30 mins, we will assume they are low and when you have your measurement go through this flow again";
+"Calculator.Que.PumpBloodSugarCheck.title" = "Has your child's blood sugar been greater than 250 for at least 90 minutes?";
+"Calculator.Que.PumpBloodSugarCheck.description" = "NOTE: Only answer yes if your last insulin bolus was more than 3 hours ago?";
 
-"Calculator.Endo.FinalStep.title" = "Call the Endocrinologist";
-"Calculator.EndoNoDose.FinalStep.title" = "Call the Endocrinologist and no insulin is needed";
-"Calculator.Que6.FinalStep.description" = "";
+"Calculator.Que.ShotBloodSugarCheck.title" = "· Is your child's Blood sugar > 300 and last dose more than 3 hours ago?";
+"Calculator.Que.ShotBloodSugarCheck.description" = "";
 
-"Calculator.Que.KetonesMeasuring.title" = "What are your ketones measuring?";
-"Calculator.Que.KetonesMeasuring.description" ="If not applicable AND you can determine ketones in the next 30 mins click ‘Next’ otherwise call the endocrinologist";
+"Calculator.Que.BloodSugar.title" = "· What's your Blood Sugar?";
+"Calculator.Que.BloodSugar.unit" = "mmol/L";
+"Calculator.Que.BloodSugar.subQue" = "· What's your correction factor?";
+"Calculator.Que.BloodSugar.description" = "If you don’t know, check Urine ketones and\ncall the Endocrinologist";
 
-"Calculator.Que7.UrineKetonesMeasuring.option1" = "0, trace, small";
-"Calculator.Que7.UrineKetonesMeasuring.option2" = "Moderate, large";
+"Calculator.Final.Recheck.title" = "Recheck the Blood Sugar in 2 hours and if it's greater than 250, restart the High Blood Sugar Calculation";
+"Calculator.Final.Recheck.description" = "";
 
-"Calculator.Que8.BloodKetonesMeasuring.option1" = "< 1";
-"Calculator.Que8.BloodKetonesMeasuring.option2" = "1 - 3";
-"Calculator.Que8.BloodKetonesMeasuring.option3" = "> 3";
+"Calculator.Que.KetonesMeasuring.title" = "What are your child's urine ketones measuring?";
+"Calculator.Que.KetonesMeasuring.description" ="";
 
-"Calculator.General.FinalStep.title" = "Proceed to the nearest ED";
-"Calculator.General.FinalStep.description" = "If you feel comfortable going to the Child/teen's ED we advise you do so. Drive carefully if you choose to drive.";
-"Calculator.General.FinalStep.calculation" = "\n\n  And consider a dose of %@ units of rapid-acting insulin.";
+"Calculator.Que.KetonesMeasuring.option1" = "0, trace, small";
+"Calculator.Que.KetonesMeasuring.option2" = "Moderate, large";
+"Calculator.Que.KetonesMeasuring.option3" = "I don't know";
 
-"Calculator.Que9.RapidInsulin.title" = "· Have you given a rapid-acting insulin in the last 3 hours?";
-"Calculator.Que9.RapidInsulin.description" = "";
-
-"Calculator.Que10-PumpOnly.PumpOrInjection.title" = "· Was it through the pump or injection?";
-"Calculator.Que10-PumpOnly.PumpOrInjection.option1" = "Pump";
-"Calculator.Que10-PumpOnly.PumpOrInjection.option2" = "Injection";
-
-"Calculator.Que10.ShotLastDose.title" = "· When was your last dose of rapid-acting insulin?";
-"Calculator.Que10.ShotLastDose.option1" = "< 1 hr";
-"Calculator.Que10.ShotLastDose.option2" = "1 - 3 hrs";
+"Calculator.Final.Endo.title" = "Call the Endocrinologist";
+"Calculator.Final.Endo.description" = "";
 
 
+"Calculator.Final.Small.title" = "Next Steps";
+"Calculator.Final.Small.description" = "Put current sugar into the pump and give insulin according to what the pump says.\nCheck blood sugar and urine ketones in 2 hours.\nCall Endo if blood sugar has not dropped by 100 points or if Ketones show moderate or large.";
 
-"Calculator.Que11.PumpLastDose.title" = "· When was your last dose of rapid-acting insulin?";
-"Calculator.Que11.PumpLastDose.option1" = "< 30 min";
-"Calculator.Que11.PumpLastDose.option2" = "0.5 - 2 hrs";
+"Calculator.Final.Large1.title" = "Give your child %@ units of rapid acting insulin by shot";
+"Calculator.Final.Large1.description" = "Remove the pump.\nCheck blood sugar and urine ketones in 2 hours then replace the pump site.\nCall endo if ketones still moderate or large or if Blood sugar has not dropped by 100 points.";
 
-"Calculator.Que12.LastDose.title" = "· What was your last dose of insulin?";
-"Calculator.Que12.LastDose.unit" = "units";
+"Calculator.Final.Large2.title" = "Give your child %@ units of rapid acting insulin by shot";
+"Calculator.Final.Large2.description" = "Change the pump site.\nCheck blood sugar and urine ketones in 2 hours.\nCall endo if ketones still moderate or large or if Blood sugar has not dropped by 100 points.";
 
-"Calculator.Que13.Bedtime.title" = "· Are you near bedtime?";
-"Calculator.Que13.Bedtime.description" = "";
+"Calculator.Final.Shot.title" = "Give your child %@ units of rapid acting insulin to correct blood sugar";
+"Calculator.Final.Shot.description" = "Recheck blood sugar in 2 hours, and if it hasn't decreased, call the endocrinologist ☎️ 404-785-KIDS";
 
-"Calculator.Que14.Dehydration.title" = "Is your kid dehydrated?";
-"Calculator.Que14.Dehydration.description" = "Very thirsty, dry mouth, lost weight, weak";
-
-"Calculator.Que15.AbdominalPain.title" = "· Is your child/teen having abdominal pain?";
-"Calculator.Que15.AbdominalPain.description" = "";
-
-"Calculator.Que16.Breathing.title" = "· Is your child/teen breathing heavily or deeply?";
-"Calculator.Que16.Breathing.description" = "";
-
-"Calculator.Que17.Vomiting.title" = "· Has your child/teen been vomiting?";
-"Calculator.Que17.Vomiting.description" = "";
-
-"Calculator.Que18.AnyFollowing.title" = "· Do any of the following apply:";
-"Calculator.Que18.AnyFollowing.description" = "· Vomiting\n· Recent hospitalization or ER visit\n· Taking steroids\n· Third episode of hyperglycemia in 24 hours or second episode associated with either mod/large urine ketones";
-
-"Calculator.Que19.ShotOnTime.title" = "· Was the last scheduled basal insulin given on time?";
-"Calculator.Que19.ShotOnTime.option1" = "Yes, it was on time";
-"Calculator.Que19.ShotOnTime.option2" = "No, it was 4 hrs late";
-"Calculator.Que19.ShotOnTime.option3" = "No, it was more than 4 hrs late";
-"Calculator.Que19.ShotOnTime.option4" = "No, it was not given";
-
-"Calculator.Que20.MoreThanFourHours.title" = "· Is it more than 4 hrs since dose was due?";
+"Calculator.Que.ShotTwentyFourHours.title" = "Has it been more than 24 hours since your child's last long acting insulin dose?";
+"Calculator.Que.ShotTwentyFourHours.description" = "Remember: this is the insulin you take at the same time every day - same dose";
 
 
-"Calculator.Ending.FinalStep.title" = "Your child/teen should take %@ units of insulin.";
-"Calculator.Ending.FinalStep.description" = "Recheck BG and ketones in 3 hours (2 hours pump). If blood glucose does not fall by > 100 re-run this application. Symptoms that commonly occur when blood glucose is elevated include: mild HA, increased thirst, inc. urination, mild dizziness on standing, mild abdominal pain, blurred vision.\nIf your kid has other symptoms call your pediatrician now. If typical symptoms of elevated BG do not subside when BG is lowered, then call your pediatrician. You should take non-glucose containing fluids. You should rest if urine ketones or blood ketones are elevated";
+"Calculator.Final.NextDose.title" = "Give next dose as scheduled";
+"Calculator.Final.NextDose.description" = "If your child is planning to eat carbs in the next 2 hours, ONLY give insulin for food.";
+
+"Calculator.Final.FullDose.title" = "Give full dose now";
+"Calculator.Final.FullDose.description" = "Call endocrinologist for instructions to get dose back on schedule. If your child is planning to eat carbs in the next 2 hours, ONLY give insulin for food.";
+
+
+
 
 
 

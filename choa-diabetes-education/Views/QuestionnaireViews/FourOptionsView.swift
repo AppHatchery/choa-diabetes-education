@@ -103,13 +103,5 @@ class FourOptionsView: UIView {
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
-        switch currentQuestion.questionId {
-        case FourOptionsQueID.lastBasalInjection.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: FourOptionsAnswer.ScheduledTime(ScheduledTime(id: selected)))
-            
-            default:
-                break
-            
-        }
     }
 }

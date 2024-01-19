@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 protocol FinalStepViewProtocol: AnyObject {
-    func didSelectGotItAction()
+    func didSelectGotItAction(_ currentQuestion: Questionnaire)
 }
 
 class FinalStepView: UIView {
@@ -17,6 +17,8 @@ class FinalStepView: UIView {
     @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var gotItButton: PrimaryButton!
+    
+    private var currentQuestion: Questionnaire!
     
     weak var delegate: FinalStepViewProtocol?
     
@@ -38,6 +40,8 @@ class FinalStepView: UIView {
     }
     
     func setupView(currentQuestion: Questionnaire) {
+        
+        self.currentQuestion = currentQuestion
         titleLabel.font = .gothamRoundedBold16
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .headingGreenColor
@@ -51,11 +55,17 @@ class FinalStepView: UIView {
         descriptionLabel.text = currentQuestion.finalStep?.description
         descriptionLabel.textAlignment = .center
         
-        gotItButton.setTitle("Got it", for: .normal)
+        if currentQuestion.questionId == FinalQuestionId.shot.id {
+            gotItButton.setTitle("Next", for: .normal)
+        } else {
+            gotItButton.setTitle("Got it", for: .normal)
+        }
+        
+        
     }
     
     @IBAction func didGotItButtonTap(_ sender: UIButton) {
-        delegate?.didSelectGotItAction()
+        delegate?.didSelectGotItAction(currentQuestion)
     }
 }
 

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OpenEndedQueView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="8e8-OJ-FWy"/>
+                <outlet property="descriptionLabel" destination="79U-BR-A3M" id="oeR-6q-x1d"/>
                 <outlet property="firstInputField" destination="0uB-nE-aoF" id="WGp-E0-ueM"/>
                 <outlet property="firstQueContentView" destination="Ph2-ss-Jxj" id="drG-QT-OAH"/>
                 <outlet property="nextButton" destination="Cvd-PZ-LbK" id="74m-xF-CEK"/>
@@ -104,6 +105,12 @@
                         <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="krl-B8-Ru7"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79U-BR-A3M">
+                    <rect key="frame" x="28" y="228" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -111,11 +118,13 @@
                 <constraint firstItem="Ph2-ss-Jxj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="08J-kf-aiy"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cvd-PZ-LbK" secondAttribute="trailing" constant="30" id="G75-Lv-7DO"/>
                 <constraint firstItem="pFe-o0-u5T" firstAttribute="top" secondItem="Ph2-ss-Jxj" secondAttribute="bottom" id="H5x-u0-fkP"/>
+                <constraint firstItem="79U-BR-A3M" firstAttribute="leading" secondItem="Cam-81-hZt" secondAttribute="leading" id="JM2-cD-0fM"/>
                 <constraint firstItem="pFe-o0-u5T" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KJU-Xn-6d9"/>
                 <constraint firstAttribute="bottom" secondItem="Cvd-PZ-LbK" secondAttribute="bottom" constant="35" id="USV-dE-pez"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ph2-ss-Jxj" secondAttribute="trailing" id="bJb-BT-AGj"/>
                 <constraint firstItem="Ph2-ss-Jxj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gTX-Y9-1KM"/>
                 <constraint firstItem="pFe-o0-u5T" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lDV-Xv-Ja3"/>
+                <constraint firstItem="79U-BR-A3M" firstAttribute="top" secondItem="pFe-o0-u5T" secondAttribute="bottom" constant="8" symbolic="YES" id="t0q-at-osy"/>
                 <constraint firstItem="pFe-o0-u5T" firstAttribute="height" secondItem="Ph2-ss-Jxj" secondAttribute="height" id="vL4-6E-U5m"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

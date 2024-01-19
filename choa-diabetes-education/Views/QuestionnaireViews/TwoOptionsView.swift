@@ -94,17 +94,8 @@ class TwoOptionsView: UIView {
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)))
-        case TwoOptionsQuestionId.ketonesMeasure.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .UrineKetonesMeasurements(UrineKetonesMeasurements(id: selected)))
-        case TwoOptionsQuestionId.lastDose.id:
-            if QuestionnaireManager.instance.currentTestType == .pump {
-                delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .PumpLastDose(PumpLastDose(id: selected)))
-            } else if QuestionnaireManager.instance.currentTestType == .insulinShots {
-                delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .ShotLastDose(ShotLastDose(id: selected)))
-            }
-        case TwoOptionsQuestionId.lastType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .LastType(LastType(id: selected)))
-            
+        case TwoOptionsQuestionId.calculationType.id:
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .CalculationType(CalculationType(id: selected)))
         default:
             break
         

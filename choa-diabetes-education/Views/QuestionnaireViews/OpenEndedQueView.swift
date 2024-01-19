@@ -8,7 +8,6 @@ import UIKit
 
 protocol OpenEndedQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int)
-    func didSelectNextAction(currentQuestion: Questionnaire, lastDose: Int)
 }
 
 class OpenEndedQueView: UIView {
@@ -24,6 +23,7 @@ class OpenEndedQueView: UIView {
     @IBOutlet weak var firstInputField: UITextField!
     @IBOutlet weak var secondInputField: UITextField!
     
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var nextButton: PrimaryButton!
     
@@ -77,6 +77,21 @@ class OpenEndedQueView: UIView {
         unitLabel.textColor = .headingGreenColor
         unitLabel.text = currentQuestion.inputUnit
         unitLabel.textAlignment = .left
+        
+        guard let description = currentQuestion.description, description != "" else {
+            
+            descriptionLabel.isHidden = true
+            
+            return
+        }
+        
+        
+        descriptionLabel.isHidden = false
+        descriptionLabel.font = .avenirLight14
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textColor = .headingGreenColor
+        descriptionLabel.text = description
+        descriptionLabel.textAlignment = .left
     
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
         contentView.addGestureRecognizer(tap)
@@ -99,12 +114,6 @@ class OpenEndedQueView: UIView {
             case .bloodSugar:
                 guard let bloodSugar = Int(firstInputField.text ?? ""), let cf = Int(secondInputField.text ?? "") else { return }
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, cf: cf)
-            }
-        case .openEndedWithSingleInput(let id):
-            switch id {
-            case .lastDoseInsulin:
-                guard let insulin = Int(firstInputField.text ?? "") else { return }
-                delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, lastDose: insulin)
             }
         default:
             return
