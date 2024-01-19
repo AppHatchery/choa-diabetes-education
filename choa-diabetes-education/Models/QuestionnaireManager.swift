@@ -284,7 +284,7 @@ extension QuestionnaireManager {
             let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.NextDose.title".localized(), description: "Calculator.Final.NextDose.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .fullDose:
-            let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.FullDose.Small.title".localized(), description: "Calculator.Final.FullDose.description".localized())
+            let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.FullDose.title".localized(), description: "Calculator.Final.FullDose.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         }
         
