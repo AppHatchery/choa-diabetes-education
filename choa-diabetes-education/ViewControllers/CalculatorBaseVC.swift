@@ -122,7 +122,7 @@ extension CalculatorBaseVC: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, Open
             self.questionnaireManager.triggerTestActionFlow(currentQuestion)
         case .CalculationType(let method):
             self.questionnaireManager.saveCalculationType(method)
-            self.questionnaireManager.triggerBloodSugarActionFlow(currentQuestion)
+            self.questionnaireManager.triggerBloodSugarCheckActionFlow(currentQuestion)
         }
         
     }

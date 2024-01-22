@@ -17,6 +17,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerNoKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerTestActionFlow(_ currentQuestion: Questionnaire)
     func triggerBloodSugarActionFlow(_ currentQuestion: Questionnaire)
+    func triggerBloodSugarCheckActionFlow(_ currentQuestion: Questionnaire)
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire)
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
@@ -40,11 +41,6 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var ketones: KetonesMeasurements?
 
     private var calculation: Double {
-        
-        print("STARTING CALCULATION")
-        print(currentTestType)
-        print(currentMethod)
-        print(ketones)
         
         var calculation = 0.0
         
