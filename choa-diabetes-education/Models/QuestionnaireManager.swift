@@ -89,7 +89,6 @@ extension QuestionnaireManager {
             saveCGM(true)
             triggerBloodSugarCheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
-            
             triggerBloodSugarActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotBloodSugarCheck.id:
             triggerBloodSugarActionFlow(currentQuestion)

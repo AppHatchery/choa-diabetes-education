@@ -58,7 +58,8 @@ class FinalStepView: UIView {
         if currentQuestion.questionId == FinalQuestionId.shot.id {
             gotItButton.setTitle("Next", for: .normal)
         } else {
-            gotItButton.setTitle("Got it", for: .normal)
+            // Understand if users click done and then have to come back through the calculator to review the insulin dose
+            gotItButton.setTitle("Done", for: .normal)
         }
         
         
