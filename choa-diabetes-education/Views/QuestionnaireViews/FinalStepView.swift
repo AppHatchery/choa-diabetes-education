@@ -53,7 +53,7 @@ class FinalStepView: UIView {
         
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = currentQuestion.finalStep?.description
-        descriptionLabel.textAlignment = .center
+        descriptionLabel.textAlignment = .left
         
         if currentQuestion.questionId == FinalQuestionId.shot.id {
             gotItButton.setTitle("Next", for: .normal)
