@@ -25,6 +25,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveData(bloodSugar: Int, correctionFactor: Int)
     func saveKetones(type: KetonesMeasurements)
     func saveCalculationType(_ calculationType: CalculationType)
+    var currentMethod: CalculationType { get set }
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -34,7 +35,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     var actionsDelegate: QuestionnaireActionsProtocol?
     
     private(set) var currentTestType: TestType = .pump
-    private(set) var currentMethod: CalculationType = .formula
+    var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
     private(set) var bloodSugar: Int = 0
     private(set) var correctionFactor: Int = 0
@@ -51,9 +52,9 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
             if currentMethod == .formula {
                 print("2")
                 if ketones == .zeroToSmall {
-                    calculation = (Double((bloodSugar - 100)) * 1.5)/Double(correctionFactor)
-                } else if ketones == .moderateToLarge {
                     calculation = Double((bloodSugar - 100))/Double(correctionFactor)
+                } else if ketones == .moderateToLarge {
+                    calculation = (Double((bloodSugar - 100)) * 1.5)/Double(correctionFactor)
                 }
             } else if currentMethod == .scale {
                 print("3")
@@ -187,7 +188,7 @@ extension QuestionnaireManager {
     
     func triggerBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
         let createQue = createOpenEndedMultipleInpQuestion(questionId: .bloodSugar, question: "Calculator.Que.BloodSugar.title".localized(), subQuestion: "Calculator.Que.BloodSugar.subQue".localized(), inputUnit: "Calculator.Que.BloodSugar.unit".localized(), description: "Calculator.Que.BloodSugar.description".localized(), showDescriptionAtBottom: true)
-        actionsDelegate?.showNextQuestion(createQue)
+            actionsDelegate?.showNextQuestion(createQue)
     }
     
     
