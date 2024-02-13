@@ -54,12 +54,6 @@ class OpenEndedQueView: UIView {
     
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
         
-        
-        
-        if !multiple {
-            secondQueContentView.isHidden = true
-        }
-        
         self.currentQuestion = currentQuestion
         questionLabel.font = .gothamRoundedBold16
         questionLabel.numberOfLines = 0
@@ -72,6 +66,11 @@ class OpenEndedQueView: UIView {
         secondQuestionLabel.textColor = .headingGreenColor
         secondQuestionLabel.text = currentQuestion.subQuestion
         secondQuestionLabel.textAlignment = .left
+        
+        if !multiple {
+            secondQueContentView.isHidden = true
+            secondInputField.text = "0"
+        }
         
         unitLabel.font = .avenirLight14
         unitLabel.textColor = .headingGreenColor
