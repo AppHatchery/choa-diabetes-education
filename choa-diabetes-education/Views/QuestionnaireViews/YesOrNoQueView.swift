@@ -47,7 +47,7 @@ class YesOrNoQueView: UIView {
         self.currentQuestion = currentQuestion
         
         questionLabel.font = .gothamRoundedBold16
-        questionLabel.numberOfLines = 3
+        questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left

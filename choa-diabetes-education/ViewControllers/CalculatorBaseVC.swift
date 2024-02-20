@@ -95,7 +95,7 @@ class CalculatorBaseVC: UITableViewController {
         case .openEndedWithMultipleInput:
             openEndedQueView.isHidden = false
             openEndedQueView.delegate = self
-            openEndedQueView.setupView(currentQuestion: questionObj, multiple: self.questionnaireManager.currentMethod == .formula ? true : false)
+            openEndedQueView.setupView(currentQuestion: questionObj, multiple: true)
         case .finalStep:
             finalStepView.isHidden = false
             finalStepView.delegate = self

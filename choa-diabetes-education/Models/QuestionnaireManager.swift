@@ -60,15 +60,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
                 print("3")
                 let factor = (ketones == .zeroToSmall) ? 1 : 1.5
                  
-                if bloodSugar >= 200 && bloodSugar < 300 {
-                    calculation = 2 * factor
-                } else if bloodSugar >= 300 && bloodSugar < 400 {
-                    calculation = 4 * factor
-                } else if bloodSugar >= 400 {
-                    calculation = 6 * factor
-                } else {
-                    calculation = 0
-                }
+                calculation = Double(correctionFactor) * factor
             }
         }
         return roundToOneDecimal(value: calculation)
@@ -187,8 +179,13 @@ extension QuestionnaireManager {
     }
     
     func triggerBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
-        let createQue = createOpenEndedMultipleInpQuestion(questionId: .bloodSugar, question: "Calculator.Que.BloodSugar.title".localized(), subQuestion: "Calculator.Que.BloodSugar.subQue".localized(), inputUnit: "Calculator.Que.BloodSugar.unit".localized(), description: "Calculator.Que.BloodSugar.description".localized(), showDescriptionAtBottom: true)
+        if currentMethod == .scale {
+            let createQue = createOpenEndedMultipleInpQuestion(questionId: .bloodSugar, question: "Calculator.Que.BloodSugar.title".localized(), subQuestion: "Calculator.Que.BloodSugar.subQue.Scale".localized(), inputUnit: "Calculator.Que.BloodSugar.unit".localized(), description: "Calculator.Que.BloodSugar.description".localized(), showDescriptionAtBottom: true)
             actionsDelegate?.showNextQuestion(createQue)
+        } else {
+            let createQue = createOpenEndedMultipleInpQuestion(questionId: .bloodSugar, question: "Calculator.Que.BloodSugar.title".localized(), subQuestion: "Calculator.Que.BloodSugar.subQue".localized(), inputUnit: "Calculator.Que.BloodSugar.unit".localized(), description: "Calculator.Que.BloodSugar.description".localized(), showDescriptionAtBottom: true)
+            actionsDelegate?.showNextQuestion(createQue)
+        }
     }
     
     
