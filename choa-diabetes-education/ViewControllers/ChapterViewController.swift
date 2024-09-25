@@ -72,7 +72,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.leftAnchor
                 .constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 5),
             webView.bottomAnchor
-                .constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+                .constraint(equalTo: contentView.bottomAnchor),
             webView.rightAnchor
                 .constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor, constant: -5)
         ])
