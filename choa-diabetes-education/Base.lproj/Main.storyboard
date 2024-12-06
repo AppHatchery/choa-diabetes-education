@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -363,7 +363,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmy-mB-eP8">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHT-ag-ctt">
                                         <rect key="frame" x="20" y="36" width="305" height="24"/>
@@ -381,7 +381,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-tT-GCV">
-                                        <rect key="frame" x="0.0" y="101" width="414" height="717"/>
+                                        <rect key="frame" x="0.0" y="101" width="414" height="751"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="l1o-EM-oYF">
@@ -445,7 +445,7 @@
                         <constraints>
                             <constraint firstItem="Dmy-mB-eP8" firstAttribute="leading" secondItem="Oaw-cK-E2L" secondAttribute="leading" id="JDo-dD-KIf"/>
                             <constraint firstItem="Oaw-cK-E2L" firstAttribute="trailing" secondItem="Dmy-mB-eP8" secondAttribute="trailing" id="OCc-Nj-ud6"/>
-                            <constraint firstItem="Oaw-cK-E2L" firstAttribute="bottom" secondItem="Dmy-mB-eP8" secondAttribute="bottom" id="dWC-cc-8Ve"/>
+                            <constraint firstAttribute="bottom" secondItem="Dmy-mB-eP8" secondAttribute="bottom" id="dWC-cc-8Ve"/>
                             <constraint firstItem="Dmy-mB-eP8" firstAttribute="top" secondItem="Oaw-cK-E2L" secondAttribute="top" id="hM5-1r-2hr"/>
                         </constraints>
                     </view>
