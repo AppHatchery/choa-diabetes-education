@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            } else {
                // User opened the app on or after September 1st
                if UserDefaults.standard.string(forKey: key) == nil {
-                   let visitorId = "Pilot-Sep23-\(UUID())"
+                   let visitorId = "Pilot-Jan25-\(UUID())"
                    UserDefaults.standard.set(visitorId, forKey: key)
                }
            }
