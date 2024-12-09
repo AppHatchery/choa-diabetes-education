@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,7 +26,6 @@
 		D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FA9002991723E009C51C3 /* AboutViewController.swift */; };
 		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
 		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
-		D432FDD02981CFF8003D2657 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D432FDCF2981CFF8003D2657 /* Pendo */; };
 		D450EC0D28C1158A0015D823 /* blood_sugar_monitoring.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */; };
 		D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */; };
 		D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0028C115880015D823 /* how_to_count_carbs.html */; };
@@ -65,6 +64,9 @@
 		D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB8290B0B7B00E7311B /* know_your_carbs.html */; };
 		D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB9290B0B7B00E7311B /* foods_that_raise_blood_sugar.html */; };
 		D4684AC1290B208000E7311B /* starchy_vegetables.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684AC0290B208000E7311B /* starchy_vegetables.png */; };
+		D471DDED2CA44E5F00B34EB5 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D471DDEC2CA44E5F00B34EB5 /* Pendo */; };
+		D471DDF02CA4523A00B34EB5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D471DDEF2CA4523A00B34EB5 /* FirebaseAnalytics */; };
+		D471DDF22CA4523A00B34EB5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D471DDF12CA4523A00B34EB5 /* FirebaseCrashlytics */; };
 		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
@@ -114,8 +116,6 @@
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
 		D492A8A42908910A00B98CA3 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
 		D492A8A52908910D00B98CA3 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
-		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
-		D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
 		D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2928B7D9D7003CCA14 /* styles.css */; };
 		D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */; };
@@ -295,9 +295,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
-				D432FDD02981CFF8003D2657 /* Pendo in Frameworks */,
-				D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				D471DDF22CA4523A00B34EB5 /* FirebaseCrashlytics in Frameworks */,
+				D471DDF02CA4523A00B34EB5 /* FirebaseAnalytics in Frameworks */,
+				D471DDED2CA44E5F00B34EB5 /* Pendo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,9 +587,9 @@
 			);
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
-				D432FDCF2981CFF8003D2657 /* Pendo */,
-				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
-				D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				D471DDEC2CA44E5F00B34EB5 /* Pendo */,
+				D471DDEF2CA4523A00B34EB5 /* FirebaseAnalytics */,
+				D471DDF12CA4523A00B34EB5 /* FirebaseCrashlytics */,
 			);
 			productName = "choa-diabetes-education";
 			productReference = D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */;
@@ -611,7 +611,6 @@
 				};
 			};
 			buildConfigurationList = D48D88E8289C0043001A61E2 /* Build configuration list for PBXProject "choa-diabetes-education" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -620,9 +619,10 @@
 			);
 			mainGroup = D48D88E4289C0043001A61E2;
 			packageReferences = (
-				D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
-				D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D471DDEB2CA44E5F00B34EB5 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
+				D471DDEE2CA4523A00B34EB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = D48D88EE289C0043001A61E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1059,39 +1059,39 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
+		D471DDEB2CA44E5F00B34EB5 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pendo-io/pendo-mobile-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.1;
 			};
 		};
-		D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		D471DDEE2CA4523A00B34EB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D432FDCF2981CFF8003D2657 /* Pendo */ = {
+		D471DDEC2CA44E5F00B34EB5 /* Pendo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
+			package = D471DDEB2CA44E5F00B34EB5 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
 			productName = Pendo;
 		};
-		D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */ = {
+		D471DDEF2CA4523A00B34EB5 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
+			package = D471DDEE2CA4523A00B34EB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
-		D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+		D471DDF12CA4523A00B34EB5 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
+			package = D471DDEE2CA4523A00B34EB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
