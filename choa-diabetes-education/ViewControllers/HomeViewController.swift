@@ -14,11 +14,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nutritionButton: UIButton!
     @IBOutlet weak var managementButton: UIButton!
     @IBOutlet weak var orientationView: UIView!
-    @IBOutlet weak var orientationButton: UIButton!
-    @IBOutlet weak var orientationTitleLabel: UILabel!
-    @IBOutlet weak var orientationSubTitleLabel: UILabel!
+//    @IBOutlet weak var orientationButton: UIButton!
+//    @IBOutlet weak var orientationTitleLabel: UILabel!
+//    @IBOutlet weak var orientationSubTitleLabel: UILabel!
     
-    @IBOutlet weak var firstDayLabel: UILabel!
+	@IBOutlet var insulinCalculatorView: UIView!
+	@IBOutlet var mealsAndHighSugarButton: UIButton!
+
+	@IBOutlet var mealsButton: UIButton!
+	@IBOutlet var highSugarButton: UIButton!
+
+	@IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     
     var chapterContent = 0
@@ -30,8 +36,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        orientationTitleLabel.text = "Home.Orientation.Title".localized()
-        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
+//        orientationTitleLabel.text = "Home.Orientation.Title".localized()
+//        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
         
         let subtitleFont =  UIFont.gothamRoundedBold16
         let titleFont =  UIFont.avenirLight14
@@ -39,7 +45,18 @@ class HomeViewController: UIViewController {
         let diabetesBasicsButtonTitle = NSAttributedString(string: "Home.SectionOne.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
         let nutritionButtonTitle = NSAttributedString(string: "Home.SectionTwo.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
         let managementButtonTitle = NSAttributedString(string: "Home.SectionThree.Title".localized(), attributes: [NSAttributedString.Key.font: titleFont])
-        
+
+		insulinCalculatorView.layer.cornerRadius = 12
+		mealsAndHighSugarButton.layer.cornerRadius = 12
+
+		mealsButton.layer.cornerRadius = 12
+		mealsButton.layer.borderWidth = 2
+		mealsButton.layer.borderColor = UIColor.white.cgColor
+
+		highSugarButton.layer.cornerRadius = 12
+		highSugarButton.layer.borderWidth = 2
+		highSugarButton.layer.borderColor = UIColor.white.cgColor
+
         diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
         nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
         managementButton.setAttributedTitle(managementButtonTitle, for: .normal)
@@ -59,8 +76,8 @@ class HomeViewController: UIViewController {
         diabetesBasicsButton.detailedDropShadow(color: UIColor.diabetesBasicsDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
         nutritionButton.detailedDropShadow(color: UIColor.nutritionDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
         managementButton.detailedDropShadow(color: UIColor.managementDropShadowColor.cgColor, blur: 24.0, offset: 12, opacity: 1)
-        orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor, blur: 12.0, offset: 8, opacity: 0.62)
-        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6, opacity: 0.59)
+//        orientationView.detailedDropShadow(color: UIColor.orientationViewDropShadowColor.cgColor, blur: 12.0, offset: 8, opacity: 0.62)
+//        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6, opacity: 0.59)
         firstDayLabel.text = "Home.FirstDay.Title".localized()
         secondDayLabel.text = "Home.SecondDay.Title".localized()
     }
