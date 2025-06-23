@@ -38,7 +38,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 //        orientationTitleLabel.text = "Home.Orientation.Title".localized()
 //        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
-        
+
+		navigationItem.title = "TypeU"
+
         let subtitleFont =  UIFont.gothamRoundedBold16
         let titleFont =  UIFont.avenirLight14
         
@@ -129,4 +131,30 @@ class HomeViewController: UIViewController {
         
         //        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
     }
+	@IBAction func tappedMealsButton(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+		}
+	}
+
+	@IBAction func tappedHighSugarButton(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+		}
+	}
+	
+
+	@IBAction func tappedMealsAndHighSugarButton(_ sender: Any) {
+		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+		}
+	}
 }
