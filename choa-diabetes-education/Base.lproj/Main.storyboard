@@ -811,7 +811,7 @@
                                 <rect key="frame" x="24" y="56" width="327" height="446"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q1: What is Diabetes?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sU-kF-DEv">
-                                        <rect key="frame" x="20" y="32" width="220" height="20"/>
+                                        <rect key="frame" x="20" y="32" width="219.5" height="20"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -821,7 +821,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check all that apply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSn-nV-nc6">
-                                        <rect key="frame" x="20" y="70" width="220" height="16.5"/>
+                                        <rect key="frame" x="20" y="70" width="219.5" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -1155,221 +1155,140 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tU-vk-zK1">
-                                <rect key="frame" x="24" y="546" width="96" height="16"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Eex-DI-0Ox">
-                                <rect key="frame" x="24" y="566" width="327" height="145"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="145" id="1I4-9d-LoL"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 3" subtitle="Diabetes Self-Management" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.94070774319999995" green="0.77491599320000004" blue="0.86667543650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="tm0-0v-yVm"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionThreeImage" translatesAutoresizingMaskIntoConstraints="NO" id="GY5-mj-ftH">
-                                <rect key="frame" x="40" y="582" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="Dru-c5-Uvv"/>
-                                    <constraint firstAttribute="height" constant="52" id="Pfh-aj-feh"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2Kf-qh-Mmq">
-                                <rect key="frame" x="24" y="320" width="153" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="ETs-ho-zDh"/>
-                                    <constraint firstAttribute="height" constant="194" id="FaJ-Im-GS7"/>
-                                </constraints>
-                                <color key="tintColor" red="0.97647058819999999" green="0.78823529410000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 1" subtitle="Diabetes Basics" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.97647058819999999" green="0.78823529410000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="Ydf-88-x53"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2T1-2S-EST">
-                                <rect key="frame" x="198" y="320" width="153" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="194" id="OG0-HS-Tz4"/>
-                                </constraints>
-                                <color key="tintColor" red="0.97254901959999995" green="0.76862745099999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 2" subtitle="Nutrition and Carbs Counting" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.63921568630000003" green="0.85490196080000003" blue="0.76470588240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="bKU-Ou-P9d"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionTwoImage" translatesAutoresizingMaskIntoConstraints="NO" id="Bx4-bQ-tlM">
-                                <rect key="frame" x="214" y="336" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="0k9-O3-q9u"/>
-                                    <constraint firstAttribute="height" constant="52" id="jcN-eg-Ubz"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionOneImage" translatesAutoresizingMaskIntoConstraints="NO" id="xCR-TQ-3ML">
-                                <rect key="frame" x="40" y="336" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="FYm-03-RY0"/>
-                                    <constraint firstAttribute="width" constant="52" id="G5n-3i-7n9"/>
-                                </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-mb-rHP" userLabel="Insulin Calculator View">
-                                <rect key="frame" x="24" y="44" width="327" height="229"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dg8-Jc-ZY4">
+                                <rect key="frame" x="0.0" y="20" width="375" height="825"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulinCalculatorBg" translatesAutoresizingMaskIntoConstraints="NO" id="iPI-Qu-oR6">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="229"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geminiImage" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-Xc-0Uk">
-                                        <rect key="frame" x="228.5" y="0.0" width="104.5" height="151"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm1-3r-0AG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-mb-rHP" userLabel="Insulin Calculator View">
+                                                <rect key="frame" x="24" y="24" width="327" height="229"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulinCalculatorBg" translatesAutoresizingMaskIntoConstraints="NO" id="iPI-Qu-oR6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="229"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geminiImage" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-Xc-0Uk">
+                                                        <rect key="frame" x="228.5" y="0.0" width="104.5" height="151"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="151.06" id="WST-je-AdS"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate how much insulin you need for" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNy-eK-EdO">
+                                                        <rect key="frame" x="19" y="43" width="236" height="55"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us6-CS-hbl">
+                                                        <rect key="frame" x="19" y="25" width="209.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-yj-JXL">
+                                                        <rect key="frame" x="19" y="128" width="289" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="G3R-ze-yp9"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Meals + High Sugar">
+                                                            <color key="titleColor" name="primaryBlue"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedMealsAndHighSugarButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="zMZ-KY-T77"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ju-SR-Rys">
+                                                        <rect key="frame" x="19" y="178" width="138.5" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="PMT-ni-xcw"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Meals">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedMealsButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="pkr-bu-7iV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tj4-1l-5AX">
+                                                        <rect key="frame" x="171.5" y="178" width="138.5" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="MGE-SM-Jvo"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="High Sugar">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedHighSugarButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="zFL-yY-FIu"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="primaryBlue"/>
+                                                <constraints>
+                                                    <constraint firstItem="iPI-Qu-oR6" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" id="3wi-Hl-dK6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Tj4-1l-5AX" secondAttribute="bottom" constant="11" id="5JZ-gX-IUI"/>
+                                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="width" secondItem="4ju-SR-Rys" secondAttribute="width" multiplier="0.901408" constant="13.654929577464785" id="7in-BS-zEZ"/>
+                                                    <constraint firstItem="QSS-yj-JXL" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="7kS-l9-SSB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4ju-SR-Rys" secondAttribute="bottom" constant="11" id="9eW-TJ-n5C"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iPI-Qu-oR6" secondAttribute="trailing" id="C94-QI-Ewa"/>
+                                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="leading" secondItem="4ju-SR-Rys" secondAttribute="trailing" constant="14" id="EBN-AZ-ReV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zcQ-Xc-0Uk" secondAttribute="bottom" constant="78" id="FMx-b6-beK"/>
+                                                    <constraint firstItem="Us6-CS-hbl" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" constant="25" id="GNs-n9-w3K"/>
+                                                    <constraint firstItem="Us6-CS-hbl" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="KKE-HS-JsJ"/>
+                                                    <constraint firstItem="zcQ-Xc-0Uk" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" id="Kfi-cT-A2h"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zcQ-Xc-0Uk" secondAttribute="trailing" constant="-6" id="NLm-PT-GLY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Tj4-1l-5AX" secondAttribute="trailing" constant="17" id="O4S-T5-3un"/>
+                                                    <constraint firstItem="4ju-SR-Rys" firstAttribute="top" secondItem="QSS-yj-JXL" secondAttribute="bottom" constant="10" id="OMx-S8-k4H"/>
+                                                    <constraint firstAttribute="trailing" secondItem="eNy-eK-EdO" secondAttribute="trailing" constant="72" id="Pfb-bM-Z6s"/>
+                                                    <constraint firstItem="eNy-eK-EdO" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="Psi-YA-Zz4"/>
+                                                    <constraint firstItem="QSS-yj-JXL" firstAttribute="top" secondItem="eNy-eK-EdO" secondAttribute="bottom" constant="30" id="Tq6-Wd-oaJ"/>
+                                                    <constraint firstItem="eNy-eK-EdO" firstAttribute="top" secondItem="Us6-CS-hbl" secondAttribute="bottom" id="U3U-z4-kg7"/>
+                                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="top" secondItem="QSS-yj-JXL" secondAttribute="bottom" constant="10" id="Zss-V5-tts"/>
+                                                    <constraint firstItem="iPI-Qu-oR6" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" id="dLn-Yf-b2Q"/>
+                                                    <constraint firstAttribute="bottom" secondItem="iPI-Qu-oR6" secondAttribute="bottom" id="ihN-u4-1UF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QSS-yj-JXL" secondAttribute="trailing" constant="19" id="maW-19-tmO"/>
+                                                    <constraint firstItem="zcQ-Xc-0Uk" firstAttribute="leading" secondItem="Us6-CS-hbl" secondAttribute="trailing" id="o6f-VQ-5LL"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="250" id="uXd-On-Eq3"/>
+                                                    <constraint firstItem="4ju-SR-Rys" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="wQb-E9-YS6"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="151.06" id="WST-je-AdS"/>
+                                            <constraint firstAttribute="trailing" secondItem="uIT-mb-rHP" secondAttribute="trailing" constant="24" id="6pf-Gv-NcC"/>
+                                            <constraint firstItem="uIT-mb-rHP" firstAttribute="leading" secondItem="Wm1-3r-0AG" secondAttribute="leading" constant="24" id="9zD-6c-tpP"/>
+                                            <constraint firstItem="uIT-mb-rHP" firstAttribute="top" secondItem="Wm1-3r-0AG" secondAttribute="top" constant="24" id="BmE-y2-n5M"/>
+                                            <constraint firstAttribute="height" constant="598" id="geA-VT-XVE"/>
                                         </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate how much insulin you need for" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNy-eK-EdO">
-                                        <rect key="frame" x="19" y="43" width="236" height="55"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us6-CS-hbl">
-                                        <rect key="frame" x="19" y="25" width="209.5" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-yj-JXL">
-                                        <rect key="frame" x="19" y="128" width="289" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="G3R-ze-yp9"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Meals + High Sugar">
-                                            <color key="titleColor" name="primaryBlue"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedMealsAndHighSugarButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="zMZ-KY-T77"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ju-SR-Rys">
-                                        <rect key="frame" x="19" y="178" width="138.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="PMT-ni-xcw"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Meals">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedMealsButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="pkr-bu-7iV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tj4-1l-5AX">
-                                        <rect key="frame" x="171.5" y="178" width="138.5" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="MGE-SM-Jvo"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="High Sugar">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedHighSugarButton:" destination="0am-Sr-NIG" eventType="touchUpInside" id="zFL-yY-FIu"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" name="primaryBlue"/>
                                 <constraints>
-                                    <constraint firstItem="iPI-Qu-oR6" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" id="3wi-Hl-dK6"/>
-                                    <constraint firstAttribute="bottom" secondItem="Tj4-1l-5AX" secondAttribute="bottom" constant="11" id="5JZ-gX-IUI"/>
-                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="width" secondItem="4ju-SR-Rys" secondAttribute="width" multiplier="0.901408" constant="13.654929577464785" id="7in-BS-zEZ"/>
-                                    <constraint firstItem="QSS-yj-JXL" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="7kS-l9-SSB"/>
-                                    <constraint firstAttribute="bottom" secondItem="4ju-SR-Rys" secondAttribute="bottom" constant="11" id="9eW-TJ-n5C"/>
-                                    <constraint firstAttribute="trailing" secondItem="iPI-Qu-oR6" secondAttribute="trailing" id="C94-QI-Ewa"/>
-                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="leading" secondItem="4ju-SR-Rys" secondAttribute="trailing" constant="14" id="EBN-AZ-ReV"/>
-                                    <constraint firstAttribute="bottom" secondItem="zcQ-Xc-0Uk" secondAttribute="bottom" constant="78" id="FMx-b6-beK"/>
-                                    <constraint firstItem="Us6-CS-hbl" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" constant="25" id="GNs-n9-w3K"/>
-                                    <constraint firstItem="Us6-CS-hbl" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="KKE-HS-JsJ"/>
-                                    <constraint firstItem="zcQ-Xc-0Uk" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" id="Kfi-cT-A2h"/>
-                                    <constraint firstAttribute="trailing" secondItem="zcQ-Xc-0Uk" secondAttribute="trailing" constant="-6" id="NLm-PT-GLY"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tj4-1l-5AX" secondAttribute="trailing" constant="17" id="O4S-T5-3un"/>
-                                    <constraint firstItem="4ju-SR-Rys" firstAttribute="top" secondItem="QSS-yj-JXL" secondAttribute="bottom" constant="10" id="OMx-S8-k4H"/>
-                                    <constraint firstAttribute="trailing" secondItem="eNy-eK-EdO" secondAttribute="trailing" constant="72" id="Pfb-bM-Z6s"/>
-                                    <constraint firstItem="eNy-eK-EdO" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="Psi-YA-Zz4"/>
-                                    <constraint firstItem="QSS-yj-JXL" firstAttribute="top" secondItem="eNy-eK-EdO" secondAttribute="bottom" constant="30" id="Tq6-Wd-oaJ"/>
-                                    <constraint firstItem="eNy-eK-EdO" firstAttribute="top" secondItem="Us6-CS-hbl" secondAttribute="bottom" id="U3U-z4-kg7"/>
-                                    <constraint firstItem="Tj4-1l-5AX" firstAttribute="top" secondItem="QSS-yj-JXL" secondAttribute="bottom" constant="10" id="Zss-V5-tts"/>
-                                    <constraint firstItem="iPI-Qu-oR6" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="top" id="dLn-Yf-b2Q"/>
-                                    <constraint firstAttribute="bottom" secondItem="iPI-Qu-oR6" secondAttribute="bottom" id="ihN-u4-1UF"/>
-                                    <constraint firstAttribute="trailing" secondItem="QSS-yj-JXL" secondAttribute="trailing" constant="19" id="maW-19-tmO"/>
-                                    <constraint firstItem="zcQ-Xc-0Uk" firstAttribute="leading" secondItem="Us6-CS-hbl" secondAttribute="trailing" id="o6f-VQ-5LL"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="250" id="uXd-On-Eq3"/>
-                                    <constraint firstItem="4ju-SR-Rys" firstAttribute="leading" secondItem="uIT-mb-rHP" secondAttribute="leading" constant="19" id="wQb-E9-YS6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wm1-3r-0AG" secondAttribute="trailing" id="4RR-GC-uDi"/>
+                                    <constraint firstItem="Wm1-3r-0AG" firstAttribute="centerX" secondItem="dg8-Jc-ZY4" secondAttribute="centerX" id="DVf-TE-N7d"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wm1-3r-0AG" secondAttribute="bottom" constant="228" id="Fpr-jv-Bkf"/>
+                                    <constraint firstItem="Wm1-3r-0AG" firstAttribute="top" secondItem="dg8-Jc-ZY4" secondAttribute="top" id="Osg-EU-7NE"/>
+                                    <constraint firstItem="Wm1-3r-0AG" firstAttribute="leading" secondItem="dg8-Jc-ZY4" secondAttribute="leading" id="TFh-ln-ouw"/>
                                 </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyt-Lu-Qpi">
-                                <rect key="frame" x="24" y="300" width="72" height="16"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ag6-Q0-teH"/>
                         <color key="backgroundColor" name="primaryGreen"/>
                         <constraints>
-                            <constraint firstItem="GY5-mj-ftH" firstAttribute="top" secondItem="Eex-DI-0Ox" secondAttribute="top" constant="16" id="1CN-g4-QUs"/>
-                            <constraint firstItem="Bx4-bQ-tlM" firstAttribute="top" secondItem="2T1-2S-EST" secondAttribute="top" constant="16" id="6tn-fw-SYx"/>
-                            <constraint firstItem="8tU-vk-zK1" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="CUx-vv-cRJ"/>
-                            <constraint firstItem="Qyt-Lu-Qpi" firstAttribute="top" secondItem="uIT-mb-rHP" secondAttribute="bottom" constant="27" id="KTc-6C-aF8"/>
+                            <constraint firstItem="dg8-Jc-ZY4" firstAttribute="top" secondItem="ag6-Q0-teH" secondAttribute="top" id="4pO-AQ-uZr"/>
+                            <constraint firstItem="dg8-Jc-ZY4" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" id="EZx-gP-qVU"/>
                             <constraint firstItem="ag6-Q0-teH" firstAttribute="bottom" secondItem="UEt-0v-xgb" secondAttribute="bottom" id="LWA-He-kGJ"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="leading" secondItem="2Kf-qh-Mmq" secondAttribute="trailing" constant="21" id="Mnj-h4-1H2"/>
-                            <constraint firstItem="Eex-DI-0Ox" firstAttribute="top" secondItem="8tU-vk-zK1" secondAttribute="bottom" constant="4" id="N4H-cn-Bl6"/>
-                            <constraint firstItem="GY5-mj-ftH" firstAttribute="leading" secondItem="Eex-DI-0Ox" secondAttribute="leading" constant="16" id="NaQ-ea-Iu8"/>
                             <constraint firstItem="UEt-0v-xgb" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" id="R1t-cR-yCP"/>
-                            <constraint firstItem="uIT-mb-rHP" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="Tnn-EB-e23"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="width" secondItem="2Kf-qh-Mmq" secondAttribute="width" id="Tnu-0T-qTp"/>
-                            <constraint firstItem="8tU-vk-zK1" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="bottom" constant="32" id="Xg6-qd-w1u"/>
-                            <constraint firstItem="Qyt-Lu-Qpi" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="Yfk-mV-1Ct"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="2T1-2S-EST" secondAttribute="trailing" constant="24" id="b3e-8x-Ua4"/>
-                            <constraint firstItem="2Kf-qh-Mmq" firstAttribute="top" secondItem="Qyt-Lu-Qpi" secondAttribute="bottom" constant="4" id="cdt-aU-sJl"/>
                             <constraint firstItem="UEt-0v-xgb" firstAttribute="top" secondItem="ag6-Q0-teH" secondAttribute="top" id="dB4-b8-M6l"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="uIT-mb-rHP" secondAttribute="trailing" constant="24" id="dgB-x2-vNq"/>
-                            <constraint firstItem="Eex-DI-0Ox" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="diI-y7-9Xz"/>
-                            <constraint firstItem="Bx4-bQ-tlM" firstAttribute="leading" secondItem="2T1-2S-EST" secondAttribute="leading" constant="16" id="ehd-jn-WkZ"/>
-                            <constraint firstItem="uIT-mb-rHP" firstAttribute="top" secondItem="ag6-Q0-teH" secondAttribute="top" constant="24" id="jio-YZ-BcZ"/>
-                            <constraint firstItem="xCR-TQ-3ML" firstAttribute="leading" secondItem="2Kf-qh-Mmq" secondAttribute="leading" constant="16" id="kS6-lB-Oz2"/>
-                            <constraint firstItem="xCR-TQ-3ML" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" constant="16" id="knu-94-6LP"/>
-                            <constraint firstItem="2Kf-qh-Mmq" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="mgf-Cd-Ut4"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" id="nUg-dm-e22"/>
+                            <constraint firstItem="dg8-Jc-ZY4" firstAttribute="trailing" secondItem="ag6-Q0-teH" secondAttribute="trailing" id="dNn-e5-VGw"/>
                             <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="UEt-0v-xgb" secondAttribute="trailing" id="xh5-zW-sJ3"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="Eex-DI-0Ox" secondAttribute="trailing" constant="24" id="zEH-lc-5Uq"/>
+                            <constraint firstAttribute="bottom" secondItem="dg8-Jc-ZY4" secondAttribute="bottom" constant="-227" id="xi8-qM-woP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Handbook" image="book.fill" catalog="system" id="oZR-3F-C7S"/>
+                    <tabBarItem key="tabBarItem" title="Handbook" image="homeFilled" id="oZR-3F-C7S"/>
                     <navigationItem key="navigationItem" id="JP3-Yl-ZWo">
                         <barButtonItem key="backBarButtonItem" title="Home Page" id="KqG-05-N95">
                             <color key="tintColor" name="choaGreenColor"/>
@@ -1377,15 +1296,10 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="diabetesBasicsButton" destination="2Kf-qh-Mmq" id="NVT-Na-gjg"/>
-                        <outlet property="firstDayLabel" destination="Qyt-Lu-Qpi" id="mOu-tT-bg7"/>
                         <outlet property="highSugarButton" destination="Tj4-1l-5AX" id="CAw-L4-Dbf"/>
                         <outlet property="insulinCalculatorView" destination="uIT-mb-rHP" id="TsB-O5-Iz2"/>
-                        <outlet property="managementButton" destination="Eex-DI-0Ox" id="f94-2h-rBZ"/>
                         <outlet property="mealsAndHighSugarButton" destination="QSS-yj-JXL" id="eLC-e0-9sY"/>
                         <outlet property="mealsButton" destination="4ju-SR-Rys" id="Ufd-al-tz6"/>
-                        <outlet property="nutritionButton" destination="2T1-2S-EST" id="sdE-41-iIR"/>
-                        <outlet property="secondDayLabel" destination="8tU-vk-zK1" id="mEY-ld-hQI"/>
                         <segue destination="r9r-Zx-0xw" kind="show" identifier="SegueToContentListViewController" id="Y9B-w3-sYD"/>
                     </connections>
                 </viewController>
@@ -1652,9 +1566,6 @@
         <image name="section-1-icon" width="156" height="156"/>
         <image name="section-2-icon" width="156" height="156"/>
         <image name="section-3-icon" width="156" height="156"/>
-        <image name="sectionOneImage" width="156" height="156"/>
-        <image name="sectionThreeImage" width="156" height="156"/>
-        <image name="sectionTwoImage" width="156" height="156"/>
         <namedColor name="backgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
