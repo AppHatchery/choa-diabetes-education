@@ -28,14 +28,17 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Handbook-->
+        <!--Home-->
         <scene sceneID="l2I-G8-qIn">
             <objects>
-                <navigationController id="ZSC-5o-30c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Handbook" image="homeOutline" selectedImage="homeFilled" id="bAO-VP-Djn"/>
+                <navigationController title="Home" id="ZSC-5o-30c" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="homeOutline" selectedImage="homeFilled" id="bAO-VP-Djn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oMS-yL-QCe">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="6QC-M0-wRq" kind="relationship" relationship="rootViewController" id="NEz-JL-ZRK"/>
@@ -1355,11 +1358,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-5u-pMP" userLabel="Background">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qV-1n-PtN">
-                                <rect key="frame" x="0.0" y="20" width="375" height="825"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="781"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6U-iL-spI">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
@@ -1491,13 +1494,12 @@
                             <constraint firstItem="6qV-1n-PtN" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="suJ-PJ-h8P"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Handbook" image="homeFilled" id="r8Z-5a-6XU"/>
-                    <navigationItem key="navigationItem" id="CkD-Eo-Fhg">
-                        <barButtonItem key="backBarButtonItem" title="Home Page" id="Ci1-kJ-k7b">
+                    <tabBarItem key="tabBarItem" title="Home" image="homeFilled" id="r8Z-5a-6XU"/>
+                    <navigationItem key="navigationItem" title="Home" id="CkD-Eo-Fhg">
+                        <barButtonItem key="backBarButtonItem" title="Home" id="Ci1-kJ-k7b">
                             <color key="tintColor" name="choaGreenColor"/>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="highSugarButton" destination="Sya-Wk-8d1" id="0ho-J6-ndk"/>
                         <outlet property="insulinCalculatorView" destination="1qG-1t-4k1" id="Fpu-ID-vkQ"/>
