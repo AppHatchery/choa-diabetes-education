@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -34,11 +34,11 @@
                 <navigationController id="ZSC-5o-30c" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Handbook" image="homeOutline" selectedImage="homeFilled" id="bAO-VP-Djn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oMS-yL-QCe">
-                        <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="0am-Sr-NIG" kind="relationship" relationship="rootViewController" id="TNc-X7-tZm"/>
+                        <segue destination="6QC-M0-wRq" kind="relationship" relationship="rootViewController" id="NEz-JL-ZRK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyU-Ub-Med" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -50,20 +50,20 @@
             <objects>
                 <viewController id="U1f-o0-QwV" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6HJ-KS-crT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qd2-BI-xEz">
-                                <rect key="frame" x="31.000000000000007" y="100" width="120.66666666666669" height="33"/>
+                                <rect key="frame" x="31" y="32" width="120.5" height="33"/>
                                 <fontDescription key="fontDescription" name="IrishGrover-Regular" family="Irish Grover" pointSize="28"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0J-XP-FCo">
-                                <rect key="frame" x="24" y="167" width="366" height="100"/>
+                                <rect key="frame" x="24" y="99" width="327" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGp-dv-fAR">
-                                        <rect key="frame" x="315" y="45" width="31" height="31"/>
+                                        <rect key="frame" x="276" y="45" width="31" height="31"/>
                                         <color key="backgroundColor" name="hw-backgroundcolor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="31" id="WOY-3B-N78"/>
@@ -84,13 +84,13 @@
                                         <rect key="frame" x="12" y="37" width="150" height="49"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orientation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-ao-ln9">
-                                        <rect key="frame" x="167" y="37" width="123.66666666666669" height="28"/>
+                                        <rect key="frame" x="167" y="37" width="123.5" height="28"/>
                                         <fontDescription key="fontDescription" name="IrishGrover-Regular" family="Irish Grover" pointSize="24"/>
                                         <color key="textColor" name="hw-fontcolor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcg-bU-iBM">
-                                        <rect key="frame" x="170" y="66" width="121.33333333333331" height="20.333333333333329"/>
+                                        <rect key="frame" x="170" y="66" width="121.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Acme-Regular" family="Acme" pointSize="16"/>
                                         <color key="textColor" name="hw-fontcolor"/>
                                         <nil key="highlightedColor"/>
@@ -116,19 +116,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qf6-pI-tB9">
-                                <rect key="frame" x="24" y="300" width="70.666666666666671" height="16"/>
+                                <rect key="frame" x="24" y="232" width="71" height="16"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Light" family="Gotham Rounded" pointSize="16"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA4-T2-c02">
-                                <rect key="frame" x="24" y="533" width="95" height="16"/>
+                                <rect key="frame" x="24" y="465" width="95" height="16"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Light" family="Gotham Rounded" pointSize="16"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="kyf-64-5av">
-                                <rect key="frame" x="24" y="552" width="366" height="145"/>
+                                <rect key="frame" x="24" y="484" width="327" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="bTr-74-fkb"/>
                                 </constraints>
@@ -145,14 +145,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-3-icon" translatesAutoresizingMaskIntoConstraints="NO" id="bjc-uo-KYk">
-                                <rect key="frame" x="40" y="568" width="52" height="52"/>
+                                <rect key="frame" x="40" y="500" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="opQ-6o-5iN"/>
                                     <constraint firstAttribute="width" constant="52" id="rja-L5-Ceo"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="9rj-Au-hWo">
-                                <rect key="frame" x="24" y="319" width="172.66666666666666" height="194"/>
+                                <rect key="frame" x="24" y="251" width="153" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="4Aa-Fa-iiS"/>
                                     <constraint firstAttribute="height" constant="194" id="aLP-Ns-T8n"/>
@@ -171,7 +171,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fqw-5a-kjT">
-                                <rect key="frame" x="217.66666666666663" y="319" width="172.33333333333337" height="194"/>
+                                <rect key="frame" x="198" y="251" width="153" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="64A-0u-9Im"/>
                                 </constraints>
@@ -189,14 +189,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-2-icon" translatesAutoresizingMaskIntoConstraints="NO" id="HFI-BO-fdw">
-                                <rect key="frame" x="233.66666666666663" y="335" width="52" height="52"/>
+                                <rect key="frame" x="214" y="267" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="2n5-Fe-U9L"/>
                                     <constraint firstAttribute="width" constant="52" id="A8E-XK-Jrj"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-1-icon" translatesAutoresizingMaskIntoConstraints="NO" id="G3b-9y-mAc">
-                                <rect key="frame" x="40" y="335" width="52" height="52"/>
+                                <rect key="frame" x="40" y="267" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="08o-5F-Tfl"/>
                                     <constraint firstAttribute="width" constant="52" id="0wG-1d-4mV"/>
@@ -257,33 +257,33 @@
             <objects>
                 <viewController storyboardIdentifier="handbook" title="handbook" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r9r-Zx-0xw" customClass="HandbookViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9RB-Pu-EQf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="779"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes Basics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4A-Yh-lnh">
-                                <rect key="frame" x="20" y="124" width="244" height="24"/>
+                                <rect key="frame" x="20" y="56" width="205" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A focus on diabetes and skills." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-Px-9x6">
-                                <rect key="frame" x="20" y="152" width="244" height="22"/>
+                                <rect key="frame" x="20" y="84" width="205" height="44"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                 <color key="textColor" name="contentBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knowledgeLadder" translatesAutoresizingMaskIntoConstraints="NO" id="63e-pS-xRi">
-                                <rect key="frame" x="268" y="108" width="146" height="146"/>
+                                <rect key="frame" x="229" y="40" width="146" height="146"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="146" id="Cyx-M3-Ow1"/>
                                     <constraint firstAttribute="width" constant="146" id="d0I-qG-rgX"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-F8-ML0">
-                                <rect key="frame" x="0.0" y="194" width="414" height="635"/>
+                                <rect key="frame" x="0.0" y="148" width="375" height="569"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lMk-bm-Jil">
-                                        <rect key="frame" x="24" y="24" width="366" height="39"/>
+                                        <rect key="frame" x="24" y="24" width="327" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="aUv-nC-bRx"/>
                                         </constraints>
@@ -298,7 +298,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="120" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-hf-u2y">
-                                        <rect key="frame" x="24" y="92" width="366" height="463"/>
+                                        <rect key="frame" x="24" y="92" width="327" height="397"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -359,14 +359,14 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="r19-N5-KJf" customClass="ChapterViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tgp-4B-aPH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmy-mB-eP8">
-                                <rect key="frame" x="0.0" y="88" width="414" height="740"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHT-ag-ctt">
-                                        <rect key="frame" x="20" y="36" width="305" height="24"/>
+                                        <rect key="frame" x="20" y="36" width="266" height="24"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -381,17 +381,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-tT-GCV">
-                                        <rect key="frame" x="0.0" y="101" width="414" height="639"/>
+                                        <rect key="frame" x="0.0" y="101" width="375" height="546"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="l1o-EM-oYF">
-                                        <rect key="frame" x="43" y="71.666666666666657" width="347" height="4"/>
+                                        <rect key="frame" x="43" y="71.5" width="308" height="4"/>
                                         <color key="tintColor" red="0.94117647058823528" green="0.70980392156862748" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="progressTintColor" red="0.94117647058823528" green="0.70980392156862748" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="trackTintColor" name="backgroundColor"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsY-S5-dAT">
-                                        <rect key="frame" x="372" y="37" width="22" height="22"/>
+                                        <rect key="frame" x="333" y="37" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="eyy-Sz-hpX"/>
                                             <constraint firstAttribute="height" constant="22" id="mDg-8c-4I6"/>
@@ -404,7 +404,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVR-Kv-Q8A">
-                                        <rect key="frame" x="335" y="37" width="22" height="22"/>
+                                        <rect key="frame" x="296" y="37" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="M6S-zM-hrg"/>
                                             <constraint firstAttribute="width" constant="22" id="Sec-b3-nTx"/>
@@ -472,11 +472,11 @@
             <objects>
                 <viewController id="Avd-Xd-AEL" customClass="ChapterEndViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zYc-se-hrx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU1-IJ-eUy">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back to chapter list" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PU3-d5-wPQ">
@@ -498,34 +498,34 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZQ-FX-1gi">
-                                <rect key="frame" x="20" y="106" width="374" height="24"/>
+                                <rect key="frame" x="20" y="18" width="335" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check Yourself" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM5-9t-9MI">
-                                <rect key="frame" x="20" y="417" width="374" height="22"/>
+                                <rect key="frame" x="20" y="329" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizEnd" translatesAutoresizingMaskIntoConstraints="NO" id="kE2-Fx-MjV">
-                                <rect key="frame" x="20" y="170" width="374" height="187"/>
+                                <rect key="frame" x="20" y="82" width="335" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="187" id="Ov1-TG-BQK"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished the chapter." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZd-xj-5iy">
-                                <rect key="frame" x="20" y="138" width="374" height="20"/>
+                                <rect key="frame" x="20" y="50" width="335" height="20"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                 <color key="textColor" name="choaGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9i-OX-2uC">
-                                <rect key="frame" x="20" y="445" width="374" height="75"/>
+                                <rect key="frame" x="20" y="357" width="335" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-7o-csQ">
-                                        <rect key="frame" x="323" y="22" width="31" height="31"/>
+                                        <rect key="frame" x="284" y="22" width="31" height="31"/>
                                         <color key="backgroundColor" name="choaGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="tIb-uI-RH6"/>
@@ -546,20 +546,20 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizTableIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oUo-UR-cgc">
-                                        <rect key="frame" x="12" y="14.666666666666686" width="46" height="46"/>
+                                        <rect key="frame" x="12" y="14.5" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="Ppc-9q-mDP"/>
                                             <constraint firstAttribute="height" constant="46" id="qTx-p7-yCZ"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA2-Kt-tAl">
-                                        <rect key="frame" x="68" y="14.666666666666686" width="37.666666666666657" height="16"/>
+                                        <rect key="frame" x="68" y="14.5" width="37.5" height="16"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 question, 2 mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDU-zc-zI4">
-                                        <rect key="frame" x="67.999999999999986" y="31.666666666666686" width="128.66666666666663" height="22"/>
+                                        <rect key="frame" x="68" y="31.5" width="128.5" height="22"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -588,7 +588,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELn-aA-jKH">
-                                <rect key="frame" x="133" y="578" width="148" height="48"/>
+                                <rect key="frame" x="113.5" y="490" width="148" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KwB-gc-Wfz"/>
                                     <constraint firstAttribute="width" constant="148" id="S9Z-sg-b2X"/>
@@ -607,7 +607,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types of diabetes" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnh-cS-wfG">
-                                <rect key="frame" x="160.33333333333334" y="632" width="93.666666666666657" height="16.666666666666629"/>
+                                <rect key="frame" x="141" y="544" width="93.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -692,33 +692,33 @@
             <objects>
                 <viewController storyboardIdentifier="quizSplash" id="qTj-Ax-wBy" customClass="QuizIntroViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dxM-DC-RSd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="779"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erX-ET-2GE">
-                                <rect key="frame" x="0.0" y="88" width="414" height="691"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
-                                <rect key="frame" x="20" y="144" width="374" height="24"/>
+                                <rect key="frame" x="20" y="56" width="335" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes basics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY5-RB-pUo">
-                                <rect key="frame" x="20" y="118" width="374" height="22"/>
+                                <rect key="frame" x="20" y="30" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizStart" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-sa-na4">
-                                <rect key="frame" x="24" y="208" width="366" height="187"/>
+                                <rect key="frame" x="24" y="120" width="327" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="187" id="TYr-ne-jZL"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwf-sk-Deh">
-                                <rect key="frame" x="133.66666666666666" y="587" width="146.99999999999997" height="48"/>
+                                <rect key="frame" x="114" y="455" width="147" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="3ex-B1-4cS"/>
                                     <constraint firstAttribute="width" constant="147" id="yIu-e6-T3Y"/>
@@ -734,13 +734,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 questions, 2mins" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtj-aW-WrN">
-                                <rect key="frame" x="20" y="182" width="374" height="22"/>
+                                <rect key="frame" x="20" y="94" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="textColor" name="contentBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished the quiz." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyW-Bw-RUj">
-                                <rect key="frame" x="20" y="172" width="374" height="20"/>
+                                <rect key="frame" x="20" y="84" width="335" height="20"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                 <color key="textColor" name="choaGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -797,28 +797,28 @@
             <objects>
                 <viewController storyboardIdentifier="quiz" id="BXd-yQ-pgh" customClass="QuizQuestionsViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vf8-ao-zNa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHi-2b-psj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-VT-jsH">
-                                <rect key="frame" x="24" y="124" width="366" height="446"/>
+                                <rect key="frame" x="24" y="56" width="327" height="446"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q1: What is Diabetes?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sU-kF-DEv">
-                                        <rect key="frame" x="19.999999999999986" y="32" width="219.66666666666663" height="20"/>
+                                        <rect key="frame" x="20" y="32" width="219.5" height="20"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bMJ-hu-lXO">
-                                        <rect key="frame" x="20" y="94.666666666666657" width="326" height="331.33333333333337"/>
+                                        <rect key="frame" x="20" y="94.5" width="287" height="331.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check all that apply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSn-nV-nc6">
-                                        <rect key="frame" x="19.999999999999986" y="70" width="219.66666666666663" height="16.666666666666671"/>
+                                        <rect key="frame" x="20" y="70" width="219.5" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -845,26 +845,26 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose all answers that apply" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbu-6p-bAQ">
-                                <rect key="frame" x="20" y="588" width="374" height="23.666666666666629"/>
+                                <rect key="frame" x="20" y="520" width="335" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="incorrectIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Xfy-jp-Caz">
-                                <rect key="frame" x="20" y="594" width="36" height="36"/>
+                                <rect key="frame" x="20" y="526" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="11V-cB-SqR"/>
                                     <constraint firstAttribute="height" constant="36" id="6bh-Jb-h7c"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer A" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-XU-Kax">
-                                <rect key="frame" x="70" y="604" width="77.333333333333314" height="16"/>
+                                <rect key="frame" x="70" y="536" width="77.5" height="16"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPD-sq-Q2x">
-                                <rect key="frame" x="247" y="740" width="147" height="48"/>
+                                <rect key="frame" x="208" y="579" width="147" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="147" id="cIj-hJ-tkT"/>
                                     <constraint firstAttribute="height" constant="48" id="pyd-Fv-PnL"/>
@@ -880,7 +880,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLd-Ht-UsI">
-                                <rect key="frame" x="133" y="660" width="148" height="48"/>
+                                <rect key="frame" x="113.5" y="592" width="148" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="CYP-SU-qWL"/>
                                     <constraint firstAttribute="height" constant="48" id="L8n-l6-GR1"/>
@@ -945,11 +945,11 @@
             <objects>
                 <viewController id="grA-36-m0Y" customClass="AboutViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AEa-6G-dZG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT4-g9-i9q">
-                                <rect key="frame" x="24" y="68" width="75.666666666666671" height="24"/>
+                                <rect key="frame" x="24" y="44" width="75.5" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -970,7 +970,7 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6X-Wt-jw2">
-                                <rect key="frame" x="0.0" y="112" width="414" height="706"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="555"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -1010,7 +1010,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="4qZ-Tn-2lR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.3411764705882353" green="0.34509803921568627" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <tabBarAppearance key="standardAppearance">
@@ -1035,17 +1035,17 @@
             <objects>
                 <viewController id="Ims-8Z-0FR" customClass="ResourcesViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ecu-sY-3OZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="779"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resources" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
-                                <rect key="frame" x="20.000000000000007" y="132" width="124.66666666666669" height="24"/>
+                                <rect key="frame" x="20" y="64" width="125" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJN-go-SKx">
-                                <rect key="frame" x="0.0" y="172" width="414" height="607"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="514"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yaj-cm-XBt"/>
@@ -1076,11 +1076,11 @@
             <objects>
                 <viewController id="aRR-vJ-Lp0" customClass="ResourceDetailViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IVb-Dr-ra4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-pB-Sy3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="740"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" name="backgroundColor"/>
                             </view>
                         </subviews>
@@ -1108,7 +1108,7 @@
                 <navigationController id="TOz-Rh-ycr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Resources" image="resourcesOutline" id="wzW-jK-7B0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aEf-YC-XDe">
-                        <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1119,268 +1119,25 @@
             </objects>
             <point key="canvasLocation" x="2390" y="209"/>
         </scene>
-        <!--Home-->
-        <scene sceneID="xB8-uq-eb1">
-            <objects>
-                <viewController title="Home" id="0am-Sr-NIG" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YxE-ei-t72">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="779"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3a-tW-1Bj">
-                                <rect key="frame" x="31" y="100" width="122" height="24"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-zS-FSR">
-                                <rect key="frame" x="24" y="140" width="366" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYw-Jf-AEe">
-                                        <rect key="frame" x="315" y="34.666666666666657" width="31" height="31"/>
-                                        <color key="backgroundColor" name="choaGreenColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="YXW-6k-aWf"/>
-                                            <constraint firstAttribute="width" constant="31" id="kLB-dh-CfM"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="chevron.right" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="W18-st-JLh" kind="show" id="IP0-uC-Cop"/>
-                                        </connections>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orientationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mmI-n7-nBX">
-                                        <rect key="frame" x="10" y="25" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Dx7-94-g9i"/>
-                                            <constraint firstAttribute="width" constant="50" id="M2k-sU-5FP"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orientation" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5q-ZN-wwZ">
-                                        <rect key="frame" x="69.999999999999986" y="25" width="139.66666666666663" height="24"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
-                                        <color key="textColor" name="headingGreenColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMD-tB-s6L">
-                                        <rect key="frame" x="70" y="54" width="140" height="22"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="f5q-ZN-wwZ" firstAttribute="top" secondItem="mmI-n7-nBX" secondAttribute="top" id="14r-We-aI7"/>
-                                    <constraint firstItem="mmI-n7-nBX" firstAttribute="leading" secondItem="8fj-zS-FSR" secondAttribute="leading" constant="10" id="1Wx-dG-HAh"/>
-                                    <constraint firstAttribute="height" constant="100" id="66j-53-Y5k"/>
-                                    <constraint firstItem="mmI-n7-nBX" firstAttribute="centerY" secondItem="8fj-zS-FSR" secondAttribute="centerY" id="DHe-CY-1bq"/>
-                                    <constraint firstAttribute="trailing" secondItem="yYw-Jf-AEe" secondAttribute="trailing" constant="20" id="EtD-pL-HHh"/>
-                                    <constraint firstItem="yYw-Jf-AEe" firstAttribute="centerY" secondItem="mmI-n7-nBX" secondAttribute="centerY" id="OYi-Sm-Cbc"/>
-                                    <constraint firstItem="vMD-tB-s6L" firstAttribute="leading" secondItem="f5q-ZN-wwZ" secondAttribute="leading" id="W6T-I9-gT1"/>
-                                    <constraint firstItem="mmI-n7-nBX" firstAttribute="centerY" secondItem="8fj-zS-FSR" secondAttribute="centerY" id="dRA-lw-Xqn"/>
-                                    <constraint firstItem="f5q-ZN-wwZ" firstAttribute="leading" secondItem="mmI-n7-nBX" secondAttribute="trailing" constant="10" id="oDf-ih-Lb0"/>
-                                    <constraint firstItem="vMD-tB-s6L" firstAttribute="top" secondItem="f5q-ZN-wwZ" secondAttribute="bottom" constant="5" id="qso-MY-RMY"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="0gI-go-Fkq" appends="YES" id="BCB-f1-WLZ"/>
-                                </connections>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyt-Lu-Qpi">
-                                <rect key="frame" x="24" y="272" width="72" height="16"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tU-vk-zK1">
-                                <rect key="frame" x="24" y="518" width="96" height="16"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Eex-DI-0Ox">
-                                <rect key="frame" x="24" y="538" width="366" height="145"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="145" id="1I4-9d-LoL"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 3" subtitle="Diabetes Self-Management" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.94070774319999995" green="0.77491599320000004" blue="0.86667543650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="tm0-0v-yVm"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionThreeImage" translatesAutoresizingMaskIntoConstraints="NO" id="GY5-mj-ftH">
-                                <rect key="frame" x="40" y="554" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="Dru-c5-Uvv"/>
-                                    <constraint firstAttribute="height" constant="52" id="Pfh-aj-feh"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2Kf-qh-Mmq">
-                                <rect key="frame" x="24" y="292" width="172.66666666666666" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="ETs-ho-zDh"/>
-                                    <constraint firstAttribute="height" constant="194" id="FaJ-Im-GS7"/>
-                                </constraints>
-                                <color key="tintColor" red="0.97647058819999999" green="0.78823529410000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 1" subtitle="Diabetes Basics" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.97647058819999999" green="0.78823529410000004" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="Ydf-88-x53"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2T1-2S-EST">
-                                <rect key="frame" x="217.66666666666663" y="292" width="172.33333333333337" height="194"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="194" id="OG0-HS-Tz4"/>
-                                </constraints>
-                                <color key="tintColor" red="0.97254901959999995" green="0.76862745099999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Section 2" subtitle="Nutrition and Carbs Counting" titlePadding="2">
-                                    <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                    <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                    <color key="baseForegroundColor" name="headingGreenColor"/>
-                                    <color key="baseBackgroundColor" red="0.63921568630000003" green="0.85490196080000003" blue="0.76470588240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="tapSection:" destination="0am-Sr-NIG" eventType="touchUpInside" id="bKU-Ou-P9d"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionTwoImage" translatesAutoresizingMaskIntoConstraints="NO" id="Bx4-bQ-tlM">
-                                <rect key="frame" x="233.66666666666663" y="308" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="0k9-O3-q9u"/>
-                                    <constraint firstAttribute="height" constant="52" id="jcN-eg-Ubz"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sectionOneImage" translatesAutoresizingMaskIntoConstraints="NO" id="xCR-TQ-3ML">
-                                <rect key="frame" x="40" y="308" width="52" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="FYm-03-RY0"/>
-                                    <constraint firstAttribute="width" constant="52" id="G5n-3i-7n9"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-6Y-6BF">
-                                <rect key="frame" x="366" y="100" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="CAI-qV-eTx"/>
-                                    <constraint firstAttribute="height" constant="24" id="qBY-2K-KL8"/>
-                                </constraints>
-                                <color key="tintColor" red="0.24705882352941178" green="0.73725490196078436" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system"/>
-                                <connections>
-                                    <segue destination="grA-36-m0Y" kind="presentation" id="IWv-NP-T7d"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ag6-Q0-teH"/>
-                        <color key="backgroundColor" name="backgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="GY5-mj-ftH" firstAttribute="top" secondItem="Eex-DI-0Ox" secondAttribute="top" constant="16" id="1CN-g4-QUs"/>
-                            <constraint firstItem="Bx4-bQ-tlM" firstAttribute="top" secondItem="2T1-2S-EST" secondAttribute="top" constant="16" id="6tn-fw-SYx"/>
-                            <constraint firstItem="8tU-vk-zK1" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="CUx-vv-cRJ"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="leading" secondItem="2Kf-qh-Mmq" secondAttribute="trailing" constant="21" id="Mnj-h4-1H2"/>
-                            <constraint firstItem="Eex-DI-0Ox" firstAttribute="top" secondItem="8tU-vk-zK1" secondAttribute="bottom" constant="4" id="N4H-cn-Bl6"/>
-                            <constraint firstItem="GY5-mj-ftH" firstAttribute="leading" secondItem="Eex-DI-0Ox" secondAttribute="leading" constant="16" id="NaQ-ea-Iu8"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="f3a-tW-1Bj" secondAttribute="trailing" constant="220" id="P2N-74-g9q"/>
-                            <constraint firstItem="f3a-tW-1Bj" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="31" id="Rqy-gV-vYc"/>
-                            <constraint firstItem="8fj-zS-FSR" firstAttribute="top" secondItem="f3a-tW-1Bj" secondAttribute="bottom" constant="16" id="SB1-hc-NUC"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="width" secondItem="2Kf-qh-Mmq" secondAttribute="width" id="Tnu-0T-qTp"/>
-                            <constraint firstItem="8tU-vk-zK1" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="bottom" constant="32" id="Xg6-qd-w1u"/>
-                            <constraint firstItem="Qyt-Lu-Qpi" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="Yfk-mV-1Ct"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="2T1-2S-EST" secondAttribute="trailing" constant="24" id="b3e-8x-Ua4"/>
-                            <constraint firstItem="2Kf-qh-Mmq" firstAttribute="top" secondItem="Qyt-Lu-Qpi" secondAttribute="bottom" constant="4" id="cdt-aU-sJl"/>
-                            <constraint firstItem="Eex-DI-0Ox" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="diI-y7-9Xz"/>
-                            <constraint firstItem="Bx4-bQ-tlM" firstAttribute="leading" secondItem="2T1-2S-EST" secondAttribute="leading" constant="16" id="ehd-jn-WkZ"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="8fj-zS-FSR" secondAttribute="trailing" constant="24" id="f2R-x0-GEa"/>
-                            <constraint firstItem="Qyt-Lu-Qpi" firstAttribute="top" secondItem="8fj-zS-FSR" secondAttribute="bottom" constant="32" id="hcU-Nh-Hzh"/>
-                            <constraint firstItem="xCR-TQ-3ML" firstAttribute="leading" secondItem="2Kf-qh-Mmq" secondAttribute="leading" constant="16" id="kS6-lB-Oz2"/>
-                            <constraint firstItem="xCR-TQ-3ML" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" constant="16" id="knu-94-6LP"/>
-                            <constraint firstItem="WQD-6Y-6BF" firstAttribute="trailing" secondItem="ag6-Q0-teH" secondAttribute="trailing" constant="-24" id="lVx-bF-DX2"/>
-                            <constraint firstItem="2Kf-qh-Mmq" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="mgf-Cd-Ut4"/>
-                            <constraint firstItem="2T1-2S-EST" firstAttribute="top" secondItem="2Kf-qh-Mmq" secondAttribute="top" id="nUg-dm-e22"/>
-                            <constraint firstItem="WQD-6Y-6BF" firstAttribute="centerY" secondItem="f3a-tW-1Bj" secondAttribute="centerY" id="oeh-zZ-no5"/>
-                            <constraint firstItem="f3a-tW-1Bj" firstAttribute="top" secondItem="ag6-Q0-teH" secondAttribute="top" constant="12" id="pfq-Rz-wzp"/>
-                            <constraint firstItem="8fj-zS-FSR" firstAttribute="leading" secondItem="ag6-Q0-teH" secondAttribute="leading" constant="24" id="yxj-Bn-9QV"/>
-                            <constraint firstItem="ag6-Q0-teH" firstAttribute="trailing" secondItem="Eex-DI-0Ox" secondAttribute="trailing" constant="24" id="zEH-lc-5Uq"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Handbook" image="homeFilled" id="oZR-3F-C7S"/>
-                    <navigationItem key="navigationItem" id="JP3-Yl-ZWo">
-                        <barButtonItem key="backBarButtonItem" title="Home Page" id="KqG-05-N95">
-                            <color key="tintColor" name="choaGreenColor"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="diabetesBasicsButton" destination="2Kf-qh-Mmq" id="NVT-Na-gjg"/>
-                        <outlet property="firstDayLabel" destination="Qyt-Lu-Qpi" id="mOu-tT-bg7"/>
-                        <outlet property="managementButton" destination="Eex-DI-0Ox" id="f94-2h-rBZ"/>
-                        <outlet property="nutritionButton" destination="2T1-2S-EST" id="sdE-41-iIR"/>
-                        <outlet property="orientationButton" destination="yYw-Jf-AEe" id="gtc-Yc-Y3H"/>
-                        <outlet property="orientationSubTitleLabel" destination="vMD-tB-s6L" id="nQM-bc-uw8"/>
-                        <outlet property="orientationTitleLabel" destination="f5q-ZN-wwZ" id="O9d-PD-Tdk"/>
-                        <outlet property="orientationView" destination="8fj-zS-FSR" id="u4J-cc-8nn"/>
-                        <outlet property="secondDayLabel" destination="8tU-vk-zK1" id="mEY-ld-hQI"/>
-                        <segue destination="r9r-Zx-0xw" kind="show" identifier="SegueToContentListViewController" id="Y9B-w3-sYD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K1k-tJ-5F2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="0gI-go-Fkq">
-                    <connections>
-                        <segue destination="W18-st-JLh" kind="show" id="k5Z-lk-q64"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="3197" y="-591"/>
-        </scene>
         <!--Handbook-->
         <scene sceneID="Cru-wU-ese">
             <objects>
                 <viewController id="Ijd-WX-XEd" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22Q-t4-Y5z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-7I-N3X">
-                                <rect key="frame" x="31.000000000000007" y="100" width="120.66666666666669" height="33"/>
+                                <rect key="frame" x="31" y="32" width="120.5" height="33"/>
                                 <fontDescription key="fontDescription" name="IrishGrover-Regular" family="Irish Grover" pointSize="28"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtb-jU-J92">
-                                <rect key="frame" x="24" y="167" width="366" height="100"/>
+                                <rect key="frame" x="24" y="99" width="327" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4B-M9-r5x">
-                                        <rect key="frame" x="315" y="45" width="31" height="31"/>
+                                        <rect key="frame" x="276" y="45" width="31" height="31"/>
                                         <color key="backgroundColor" name="hw-backgroundcolor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="31" id="am9-H2-iaX"/>
@@ -1401,13 +1158,13 @@
                                         <rect key="frame" x="12" y="37" width="150" height="49"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orientation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us3-1C-QgS">
-                                        <rect key="frame" x="167" y="37" width="123.66666666666669" height="28"/>
+                                        <rect key="frame" x="167" y="37" width="123.5" height="28"/>
                                         <fontDescription key="fontDescription" name="IrishGrover-Regular" family="Irish Grover" pointSize="24"/>
                                         <color key="textColor" name="hw-fontcolor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxI-oq-KcD">
-                                        <rect key="frame" x="170" y="66" width="121.33333333333331" height="20.333333333333329"/>
+                                        <rect key="frame" x="170" y="66" width="121.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Acme-Regular" family="Acme" pointSize="16"/>
                                         <color key="textColor" name="hw-fontcolor"/>
                                         <nil key="highlightedColor"/>
@@ -1433,19 +1190,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Sy-aa-ZaY">
-                                <rect key="frame" x="24" y="300" width="70.666666666666671" height="16"/>
+                                <rect key="frame" x="24" y="232" width="71" height="16"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Light" family="Gotham Rounded" pointSize="16"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g2-aH-dFV">
-                                <rect key="frame" x="24" y="533" width="95" height="16"/>
+                                <rect key="frame" x="24" y="465" width="95" height="16"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Light" family="Gotham Rounded" pointSize="16"/>
                                 <color key="textColor" name="hw-fontcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-zz-Jlt">
-                                <rect key="frame" x="24" y="552" width="366" height="145"/>
+                                <rect key="frame" x="24" y="484" width="327" height="145"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="145" id="eLe-uc-l5r"/>
                                 </constraints>
@@ -1462,14 +1219,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-3-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Vz2-My-ch8">
-                                <rect key="frame" x="40" y="568" width="52" height="52"/>
+                                <rect key="frame" x="40" y="500" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="0xh-Sm-pMR"/>
                                     <constraint firstAttribute="height" constant="52" id="TvY-2J-Q78"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="WT1-Th-fSj">
-                                <rect key="frame" x="24" y="319" width="172.66666666666666" height="194"/>
+                                <rect key="frame" x="24" y="251" width="153" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="CRk-AR-beC"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="yZr-ch-O7O"/>
@@ -1488,7 +1245,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="WbW-FS-Py3">
-                                <rect key="frame" x="217.66666666666663" y="319" width="172.33333333333337" height="194"/>
+                                <rect key="frame" x="198" y="251" width="153" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="kTK-yf-RUB"/>
                                 </constraints>
@@ -1506,14 +1263,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-2-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ZfW-aW-PwE">
-                                <rect key="frame" x="233.66666666666663" y="335" width="52" height="52"/>
+                                <rect key="frame" x="214" y="267" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="52" id="Ltc-7E-kwP"/>
                                     <constraint firstAttribute="height" constant="52" id="Uly-Rl-Biv"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="section-1-icon" translatesAutoresizingMaskIntoConstraints="NO" id="3ot-7I-UJQ">
-                                <rect key="frame" x="40" y="335" width="52" height="52"/>
+                                <rect key="frame" x="40" y="267" width="52" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="kIv-Gy-HmM"/>
                                     <constraint firstAttribute="width" constant="52" id="llm-h0-lYg"/>
@@ -1589,9 +1346,172 @@
             </objects>
             <point key="canvasLocation" x="3891" y="-626"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="l3i-za-M3F">
+            <objects>
+                <viewController title="Home" id="6QC-M0-wRq" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gje-YZ-Nnv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-5u-pMP" userLabel="Background">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qV-1n-PtN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="825"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6U-iL-spI">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-1t-4k1" userLabel="Insulin Calculator View">
+                                                <rect key="frame" x="24" y="24" width="327" height="229"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulinCalculatorBg" translatesAutoresizingMaskIntoConstraints="NO" id="gOX-mZ-WXV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="229"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geminiImage" translatesAutoresizingMaskIntoConstraints="NO" id="6SS-Qa-vJV">
+                                                        <rect key="frame" x="228.5" y="0.0" width="104.5" height="151"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="151.06" id="Ahe-Ox-VNG"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate how much insulin you need for" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abn-4V-fEW">
+                                                        <rect key="frame" x="19" y="43" width="236" height="55"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-4B-FYU">
+                                                        <rect key="frame" x="19" y="25" width="209.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQ3-14-XYD">
+                                                        <rect key="frame" x="19" y="128" width="289" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="8wt-6F-DND"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Meals + High Sugar">
+                                                            <color key="titleColor" name="primaryBlue"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedMealsAndHighSugarButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="qfm-bh-ZQ8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rA-te-4bz">
+                                                        <rect key="frame" x="19" y="178" width="138.5" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Ijz-JR-iO7"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Meals">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedMealsButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="SH1-XQ-qsN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sya-Wk-8d1">
+                                                        <rect key="frame" x="171.5" y="178" width="138.5" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="ydT-Hw-fIP"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="High Sugar">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tappedHighSugarButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="fZV-ZX-nig"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="primaryBlue"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="abn-4V-fEW" secondAttribute="trailing" constant="72" id="0bw-SO-kLS"/>
+                                                    <constraint firstItem="aoY-4B-FYU" firstAttribute="leading" secondItem="1qG-1t-4k1" secondAttribute="leading" constant="19" id="1hA-pl-uRM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="gOX-mZ-WXV" secondAttribute="bottom" id="2Vy-RT-Ocz"/>
+                                                    <constraint firstItem="gOX-mZ-WXV" firstAttribute="leading" secondItem="1qG-1t-4k1" secondAttribute="leading" id="3Ea-6e-hEi"/>
+                                                    <constraint firstItem="TQ3-14-XYD" firstAttribute="top" secondItem="abn-4V-fEW" secondAttribute="bottom" constant="30" id="3Mm-Jz-I17"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6SS-Qa-vJV" secondAttribute="trailing" constant="-6" id="Bxo-og-ywQ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="6rA-te-4bz" secondAttribute="bottom" constant="11" id="Edi-Se-6R4"/>
+                                                    <constraint firstItem="6rA-te-4bz" firstAttribute="top" secondItem="TQ3-14-XYD" secondAttribute="bottom" constant="10" id="Fov-kd-PG5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Sya-Wk-8d1" secondAttribute="trailing" constant="17" id="G9s-th-NkZ"/>
+                                                    <constraint firstItem="TQ3-14-XYD" firstAttribute="leading" secondItem="1qG-1t-4k1" secondAttribute="leading" constant="19" id="GqP-BQ-z0t"/>
+                                                    <constraint firstItem="Sya-Wk-8d1" firstAttribute="leading" secondItem="6rA-te-4bz" secondAttribute="trailing" constant="14" id="LhU-zu-N4N"/>
+                                                    <constraint firstItem="Sya-Wk-8d1" firstAttribute="width" secondItem="6rA-te-4bz" secondAttribute="width" multiplier="0.901408" constant="13.654929577464785" id="RM6-iQ-bJr"/>
+                                                    <constraint firstItem="abn-4V-fEW" firstAttribute="leading" secondItem="1qG-1t-4k1" secondAttribute="leading" constant="19" id="S9m-sZ-AGu"/>
+                                                    <constraint firstItem="Sya-Wk-8d1" firstAttribute="top" secondItem="TQ3-14-XYD" secondAttribute="bottom" constant="10" id="SwS-3S-Nbw"/>
+                                                    <constraint firstItem="6SS-Qa-vJV" firstAttribute="top" secondItem="1qG-1t-4k1" secondAttribute="top" id="Vhx-f9-rGm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="gOX-mZ-WXV" secondAttribute="trailing" id="WFh-5W-NmE"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="250" id="a1A-5j-Aer"/>
+                                                    <constraint firstAttribute="bottom" secondItem="6SS-Qa-vJV" secondAttribute="bottom" constant="78" id="c2d-N3-tRZ"/>
+                                                    <constraint firstItem="aoY-4B-FYU" firstAttribute="top" secondItem="1qG-1t-4k1" secondAttribute="top" constant="25" id="dEJ-h4-I0u"/>
+                                                    <constraint firstItem="6SS-Qa-vJV" firstAttribute="leading" secondItem="aoY-4B-FYU" secondAttribute="trailing" id="khb-T3-W9f"/>
+                                                    <constraint firstItem="6rA-te-4bz" firstAttribute="leading" secondItem="1qG-1t-4k1" secondAttribute="leading" constant="19" id="lgP-JO-57K"/>
+                                                    <constraint firstItem="abn-4V-fEW" firstAttribute="top" secondItem="aoY-4B-FYU" secondAttribute="bottom" id="mZe-cv-5O7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TQ3-14-XYD" secondAttribute="trailing" constant="19" id="oAc-RC-gUa"/>
+                                                    <constraint firstItem="gOX-mZ-WXV" firstAttribute="top" secondItem="1qG-1t-4k1" secondAttribute="top" id="pK0-X4-gel"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Sya-Wk-8d1" secondAttribute="bottom" constant="11" id="wVo-9f-aIn"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="1qG-1t-4k1" firstAttribute="top" secondItem="e6U-iL-spI" secondAttribute="top" constant="24" id="Etf-4w-I0m"/>
+                                            <constraint firstItem="1qG-1t-4k1" firstAttribute="leading" secondItem="e6U-iL-spI" secondAttribute="leading" constant="24" id="G7h-Mx-Xc3"/>
+                                            <constraint firstAttribute="trailing" secondItem="1qG-1t-4k1" secondAttribute="trailing" constant="24" id="Ydh-JY-TzJ"/>
+                                            <constraint firstAttribute="height" constant="598" id="hom-x1-p5r"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="e6U-iL-spI" firstAttribute="leading" secondItem="6qV-1n-PtN" secondAttribute="leading" id="LJs-5C-rrs"/>
+                                    <constraint firstItem="e6U-iL-spI" firstAttribute="top" secondItem="6qV-1n-PtN" secondAttribute="top" id="SSA-Tg-975"/>
+                                    <constraint firstItem="e6U-iL-spI" firstAttribute="centerX" secondItem="6qV-1n-PtN" secondAttribute="centerX" id="Sng-cg-WKQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="e6U-iL-spI" secondAttribute="bottom" constant="228" id="fvy-Xa-PMJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="e6U-iL-spI" secondAttribute="trailing" id="qsX-t5-bsg"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Fpi-Xq-p7T"/>
+                        <color key="backgroundColor" name="primaryGreen"/>
+                        <constraints>
+                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="bottom" secondItem="jAP-5u-pMP" secondAttribute="bottom" id="IC7-vA-wGc"/>
+                            <constraint firstItem="jAP-5u-pMP" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="IEI-zO-gZY"/>
+                            <constraint firstItem="jAP-5u-pMP" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="JPM-P5-dad"/>
+                            <constraint firstItem="6qV-1n-PtN" firstAttribute="trailing" secondItem="Fpi-Xq-p7T" secondAttribute="trailing" id="VcY-EX-B6O"/>
+                            <constraint firstAttribute="bottom" secondItem="6qV-1n-PtN" secondAttribute="bottom" constant="-227" id="Xjh-Gp-V3e"/>
+                            <constraint firstItem="6qV-1n-PtN" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="YbG-nn-rZ5"/>
+                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="trailing" secondItem="jAP-5u-pMP" secondAttribute="trailing" id="lZI-sm-33j"/>
+                            <constraint firstItem="6qV-1n-PtN" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="suJ-PJ-h8P"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Handbook" image="homeFilled" id="r8Z-5a-6XU"/>
+                    <navigationItem key="navigationItem" id="CkD-Eo-Fhg">
+                        <barButtonItem key="backBarButtonItem" title="Home Page" id="Ci1-kJ-k7b">
+                            <color key="tintColor" name="choaGreenColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="highSugarButton" destination="Sya-Wk-8d1" id="0ho-J6-ndk"/>
+                        <outlet property="insulinCalculatorView" destination="1qG-1t-4k1" id="Fpu-ID-vkQ"/>
+                        <outlet property="mealsAndHighSugarButton" destination="TQ3-14-XYD" id="tFB-eL-max"/>
+                        <outlet property="mealsButton" destination="6rA-te-4bz" id="cN7-9W-OES"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d8U-Bg-2Hu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cKx-PT-a9z"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="-591.45427286356824"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IP0-uC-Cop"/>
         <segue reference="L1W-07-Vpb"/>
         <segue reference="CS3-6i-fi4"/>
     </inferredMetricsTieBreakers>
@@ -1601,24 +1521,21 @@
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="directions-icon" width="150" height="138"/>
         <image name="fontSize" width="21" height="21"/>
-        <image name="homeFilled" width="30.333333969116211" height="30"/>
-        <image name="homeOutline" width="30.333333969116211" height="30"/>
+        <image name="geminiImage" width="104.66666412353516" height="171.33332824707031"/>
+        <image name="homeFilled" width="30.5" height="30"/>
+        <image name="homeOutline" width="30.5" height="30"/>
         <image name="incorrectIcon" width="111" height="111"/>
+        <image name="insulinCalculatorBg" width="1086" height="771"/>
         <image name="knowledgeLadder" width="387" height="438"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="orientationIcon" width="150" height="150"/>
-        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="quizEnd" width="978" height="561"/>
         <image name="quizStart" width="978" height="561"/>
         <image name="quizTableIcon" width="138" height="138"/>
-        <image name="resourcesOutline" width="30.333333969116211" height="30"/>
+        <image name="resourcesOutline" width="30.5" height="30"/>
         <image name="section-1-icon" width="156" height="156"/>
         <image name="section-2-icon" width="156" height="156"/>
         <image name="section-3-icon" width="156" height="156"/>
-        <image name="sectionOneImage" width="156" height="156"/>
-        <image name="sectionThreeImage" width="156" height="156"/>
-        <image name="sectionTwoImage" width="156" height="156"/>
         <namedColor name="backgroundColor">
             <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1639,6 +1556,12 @@
         </namedColor>
         <namedColor name="hw-fontcolor">
             <color red="0.99199998378753662" green="0.94900000095367432" blue="0.85900002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryGreen">
+            <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
