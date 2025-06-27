@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CalculatorHomeViewController: UITableViewController {
-    
+class CalculatorHomeViewController: UIViewController {
+
     var insulinForHighBloodSugar = false
     var insulinForFood = false
     
@@ -16,10 +16,10 @@ class CalculatorHomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.sectionHeaderTopPadding = 0.0
-        self.tableView.sectionHeaderHeight = 0.0
-        self.tableView.estimatedSectionHeaderHeight = 0.0
-        self.tableView.contentInsetAdjustmentBehavior = .never
+//        self.tableView.sectionHeaderTopPadding = 0.0
+//        self.tableView.sectionHeaderHeight = 0.0
+//        self.tableView.estimatedSectionHeaderHeight = 0.0
+//        self.tableView.contentInsetAdjustmentBehavior = .never
     }
     
     @IBAction func calculateInsulinForFood(_ sender: UIButton){

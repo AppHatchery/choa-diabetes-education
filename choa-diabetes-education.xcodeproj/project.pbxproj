@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
+		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
+		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -168,6 +170,8 @@
 /* Begin PBXFileReference section */
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
+		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
+		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -464,6 +468,7 @@
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
+				B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */,
 				FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */,
 				FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */,
 				D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */,
@@ -494,6 +499,7 @@
 				D42A53792964DC990031D395 /* CalculatorBViewController.swift */,
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
 				FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */,
+				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
 				FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */,
 			);
 			path = ViewControllers;
@@ -759,6 +765,7 @@
 				D4684AAD290B0B6600E7311B /* milk_and_yogurt.png in Resources */,
 				D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */,
 				D4684AB5290B0B6600E7311B /* cereal.png in Resources */,
+				B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */,
 				D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */,
 				D41D46912984172300825100 /* dairy_2.png in Resources */,
 				D4684AAF290B0B6600E7311B /* bread.png in Resources */,
@@ -845,6 +852,7 @@
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				D4D48E8B28D10FA200820FD4 /* FoodDiary.swift in Sources */,
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
+				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,

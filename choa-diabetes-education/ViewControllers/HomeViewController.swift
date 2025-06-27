@@ -24,7 +24,10 @@ class HomeViewController: UIViewController {
 	@IBOutlet var mealsButton: UIButton!
 	@IBOutlet var highSugarButton: UIButton!
 
-    @IBOutlet weak var firstDayLabel: UILabel!
+	@IBOutlet var getHelpView: UIView!
+	@IBOutlet var getHelpButton: UIButton!
+
+	@IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     
     var chapterContent = 0
@@ -33,7 +36,10 @@ class HomeViewController: UIViewController {
     var chapterSubName = ""
     
     let halloweenMessage = true
-    
+
+	var insulinForHighBloodSugar = false
+	var insulinForFood = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        orientationTitleLabel.text = "Home.Orientation.Title".localized()
@@ -56,6 +62,9 @@ class HomeViewController: UIViewController {
 		highSugarButton.layer.cornerRadius = 12
 		highSugarButton.layer.borderWidth = 2
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
+
+		getHelpView.layer.cornerRadius = 12
+		getHelpButton.layer.cornerRadius = 12
 
 //        diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
 //        nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
@@ -131,29 +140,50 @@ class HomeViewController: UIViewController {
     }
 
 	@IBAction func tappedMealsButton(_ sender: Any) {
+		insulinForFood = true
+		insulinForHighBloodSugar = false
+
 		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
 
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
 			self.navigationController?.pushViewController(destinationVC, animated: true)
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+			destinationVC.insulinForFoodBoolean = insulinForFood
 		}
 	}
 
 	@IBAction func tappedHighSugarButton(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
 
+		insulinForFood = false
+		insulinForHighBloodSugar = true
+
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
 			self.navigationController?.pushViewController(destinationVC, animated: true)
+
+			destinationVC.insulinForFoodBoolean = insulinForFood
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
 		}
 	}
 
 
 	@IBAction func tappedMealsAndHighSugarButton(_ sender: Any) {
 		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+
+		insulinForFood = true
+		insulinForHighBloodSugar = true
+
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
 			self.navigationController?.pushViewController(destinationVC, animated: true)
+			destinationVC.insulinForFoodBoolean = insulinForFood
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
 		}
+	}
+
+	@IBAction func tappedGetHelpButton(_ sender: Any) {
+		performSegue(withIdentifier: "SegueToGetHelp", sender: nil)
 	}
 }

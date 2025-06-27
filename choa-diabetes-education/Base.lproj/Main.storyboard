@@ -1334,6 +1334,7 @@
             <objects>
                 <viewControllerPlaceholder storyboardName="Calculator" id="f1U-zR-v7p" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="mMh-Tj-QLc"/>
+                    <navigationItem key="navigationItem" id="2N0-Ka-53D"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LCR-rO-3P7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1348,6 +1349,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KZ9-OK-I2u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3891" y="-626"/>
+        </scene>
+        <!--GetHelp-->
+        <scene sceneID="26D-ex-r79">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="GetHelpViewController" storyboardName="GetHelp" id="8Ad-bW-OKf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Vzz-cE-XQU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qwJ-7D-cWA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3794" y="-413"/>
         </scene>
         <!--Home-->
         <scene sceneID="l3i-za-M3F">
@@ -1365,7 +1376,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="781"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6U-iL-spI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                                        <rect key="frame" x="0.0" y="24" width="375" height="598"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-1t-4k1" userLabel="Insulin Calculator View">
                                                 <rect key="frame" x="24" y="24" width="327" height="229"/>
@@ -1462,11 +1473,78 @@
                                                     <constraint firstAttribute="bottom" secondItem="Sya-Wk-8d1" secondAttribute="bottom" constant="11" id="wVo-9f-aIn"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCc-xs-sq2" userLabel="Get Help View">
+                                                <rect key="frame" x="24" y="279" width="327" height="160"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="getHelpBannerBg" translatesAutoresizingMaskIntoConstraints="NO" id="mnC-ch-UAG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="160"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="327" id="xYs-hA-97m"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsure About an Urgent Health Concern?" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoA-rt-vbV">
+                                                        <rect key="frame" x="19" y="12" width="262" height="33"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMO-RQ-29S" userLabel="Get Help">
+                                                        <rect key="frame" x="19" y="98" width="138.5" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="u2b-zJ-lKe"/>
+                                                            <constraint firstAttribute="width" constant="138.5" id="xrd-AD-brY"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Get Help" image="leftArrow">
+                                                            <color key="titleColor" name="secondaryFireRed300"/>
+                                                        </state>
+                                                        <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Get Help">
+                                                            <color key="baseForegroundColor" name="secondaryFireRed300"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="tappedGetHelpButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="FAi-cd-e3J"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panickGirl" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-vB-X70">
+                                                        <rect key="frame" x="193" y="25" width="139" height="134"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Get guidance on what to do next" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiE-Ie-XFp">
+                                                        <rect key="frame" x="19" y="46" width="191" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="mnC-ch-UAG" firstAttribute="leading" secondItem="lCc-xs-sq2" secondAttribute="leading" id="Afz-lM-oKl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TiE-Ie-XFp" secondAttribute="trailing" constant="117" id="B48-m8-tVH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OoA-rt-vbV" secondAttribute="trailing" constant="46" id="BuQ-I8-Lbj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="LWv-vB-X70" secondAttribute="bottom" constant="1" id="E5U-ye-jjE"/>
+                                                    <constraint firstItem="OoA-rt-vbV" firstAttribute="top" secondItem="lCc-xs-sq2" secondAttribute="top" constant="12" id="FZ0-hm-gzg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LWv-vB-X70" secondAttribute="trailing" constant="-5" id="IIZ-cD-5uc"/>
+                                                    <constraint firstItem="TiE-Ie-XFp" firstAttribute="top" secondItem="OoA-rt-vbV" secondAttribute="bottom" constant="1" id="Rhl-F5-xys"/>
+                                                    <constraint firstItem="eMO-RQ-29S" firstAttribute="leading" secondItem="lCc-xs-sq2" secondAttribute="leading" constant="19" id="SNc-4y-MSc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mnC-ch-UAG" secondAttribute="bottom" id="Ysq-od-aFW"/>
+                                                    <constraint firstItem="TiE-Ie-XFp" firstAttribute="leading" secondItem="lCc-xs-sq2" secondAttribute="leading" constant="19" id="Zc8-3e-nDO"/>
+                                                    <constraint firstItem="mnC-ch-UAG" firstAttribute="top" secondItem="lCc-xs-sq2" secondAttribute="top" id="bC9-7W-ZYE"/>
+                                                    <constraint firstItem="eMO-RQ-29S" firstAttribute="top" secondItem="TiE-Ie-XFp" secondAttribute="bottom" constant="16" id="c7h-DR-6KX"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="327" id="cT5-aJ-qJv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="eMO-RQ-29S" secondAttribute="bottom" constant="22" id="emT-e0-dN4"/>
+                                                    <constraint firstItem="OoA-rt-vbV" firstAttribute="leading" secondItem="lCc-xs-sq2" secondAttribute="leading" constant="19" id="l33-n1-QiS"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mnC-ch-UAG" secondAttribute="trailing" id="qHT-Iq-ijV"/>
+                                                    <constraint firstItem="LWv-vB-X70" firstAttribute="top" secondItem="lCc-xs-sq2" secondAttribute="top" constant="25" id="rQ3-Ve-574"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="lCc-xs-sq2" secondAttribute="trailing" constant="24" id="2Qc-mb-lHu"/>
+                                            <constraint firstItem="lCc-xs-sq2" firstAttribute="leading" secondItem="e6U-iL-spI" secondAttribute="leading" constant="24" id="9ZC-EJ-mfK"/>
+                                            <constraint firstAttribute="bottom" secondItem="lCc-xs-sq2" secondAttribute="bottom" constant="159" id="DnU-UW-FeU"/>
                                             <constraint firstItem="1qG-1t-4k1" firstAttribute="top" secondItem="e6U-iL-spI" secondAttribute="top" constant="24" id="Etf-4w-I0m"/>
                                             <constraint firstItem="1qG-1t-4k1" firstAttribute="leading" secondItem="e6U-iL-spI" secondAttribute="leading" constant="24" id="G7h-Mx-Xc3"/>
+                                            <constraint firstItem="lCc-xs-sq2" firstAttribute="top" secondItem="1qG-1t-4k1" secondAttribute="bottom" constant="26" id="Gsw-Ty-WJ9"/>
                                             <constraint firstAttribute="trailing" secondItem="1qG-1t-4k1" secondAttribute="trailing" constant="24" id="Ydh-JY-TzJ"/>
                                             <constraint firstAttribute="height" constant="598" id="hom-x1-p5r"/>
                                         </constraints>
@@ -1474,9 +1552,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="e6U-iL-spI" firstAttribute="leading" secondItem="6qV-1n-PtN" secondAttribute="leading" id="LJs-5C-rrs"/>
-                                    <constraint firstItem="e6U-iL-spI" firstAttribute="top" secondItem="6qV-1n-PtN" secondAttribute="top" id="SSA-Tg-975"/>
+                                    <constraint firstItem="e6U-iL-spI" firstAttribute="top" secondItem="6qV-1n-PtN" secondAttribute="top" constant="24" id="SSA-Tg-975"/>
                                     <constraint firstItem="e6U-iL-spI" firstAttribute="centerX" secondItem="6qV-1n-PtN" secondAttribute="centerX" id="Sng-cg-WKQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="e6U-iL-spI" secondAttribute="bottom" constant="228" id="fvy-Xa-PMJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="e6U-iL-spI" secondAttribute="bottom" constant="207" id="fvy-Xa-PMJ"/>
                                     <constraint firstAttribute="trailing" secondItem="e6U-iL-spI" secondAttribute="trailing" id="qsX-t5-bsg"/>
                                 </constraints>
                             </scrollView>
@@ -1501,10 +1579,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="getHelpButton" destination="eMO-RQ-29S" id="XA5-Qr-Tbw"/>
+                        <outlet property="getHelpView" destination="lCc-xs-sq2" id="Mcw-00-dXt"/>
                         <outlet property="highSugarButton" destination="Sya-Wk-8d1" id="0ho-J6-ndk"/>
                         <outlet property="insulinCalculatorView" destination="1qG-1t-4k1" id="Fpu-ID-vkQ"/>
                         <outlet property="mealsAndHighSugarButton" destination="TQ3-14-XYD" id="tFB-eL-max"/>
                         <outlet property="mealsButton" destination="6rA-te-4bz" id="cN7-9W-OES"/>
+                        <segue destination="8Ad-bW-OKf" kind="show" identifier="SegueToGetHelp" id="PGI-iE-Hc8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8U-Bg-2Hu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1524,13 +1605,16 @@
         <image name="directions-icon" width="150" height="138"/>
         <image name="fontSize" width="21" height="21"/>
         <image name="geminiImage" width="104.66666412353516" height="171.33332824707031"/>
+        <image name="getHelpBannerBg" width="1086" height="528"/>
         <image name="homeFilled" width="30.5" height="30"/>
         <image name="homeOutline" width="30.5" height="30"/>
         <image name="incorrectIcon" width="111" height="111"/>
         <image name="insulinCalculatorBg" width="1086" height="771"/>
         <image name="knowledgeLadder" width="387" height="438"/>
+        <image name="leftArrow" width="20" height="20"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="panickGirl" width="139" height="143"/>
         <image name="quizEnd" width="978" height="561"/>
         <image name="quizStart" width="978" height="561"/>
         <image name="quizTableIcon" width="138" height="138"/>
@@ -1564,6 +1648,9 @@
         </namedColor>
         <namedColor name="primaryGreen">
             <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryFireRed300">
+            <color red="0.92941176470588238" green="0.10980392156862745" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
