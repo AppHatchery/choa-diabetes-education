@@ -184,6 +184,22 @@ class HomeViewController: UIViewController {
 	}
 
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
-		performSegue(withIdentifier: "SegueToGetHelp", sender: nil)
+		insulinForFood = true
+		insulinForHighBloodSugar = true
+
+		let manager = QuestionnaireManager.instance
+		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
+
+		let getHelpViewController = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(
+			identifier: String(describing: GetHelpViewController.self)
+		) { creator in
+			GetHelpViewController(
+				navVC: self.navigationController!,
+				currentQuestion: firstQues,
+				coder: creator
+			)
+		}
+
+		self.navigationController?.pushViewController(getHelpViewController, animated: true)
 	}
 }

@@ -185,16 +185,16 @@ extension GetHelpViewController: FinalStepViewProtocol {
 
 
 extension GetHelpViewController: QuestionnaireActionsProtocol {
-//    func showNextQuestion(_ question: Questionnaire) {
-//        let getHelpViewController = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(identifier: String(describing: GetHelpViewController.self)) { [weak self] creator in
-//            GetHelpViewController(navVC: self?.navigationController ?? self!.navVC, currentQuestion: question, coder: creator)
-//        }
-//
-//        self.navVC.pushViewController(getHelpViewController, animated: true)
-//    }
+    func showNextQuestion(_ question: Questionnaire) {
+        let getHelpViewController = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(identifier: String(describing: GetHelpViewController.self)) { [weak self] creator in
+            GetHelpViewController(navVC: self?.navigationController ?? self!.navVC, currentQuestion: question, coder: creator)
+        }
 
-	func showNextQuestion(_ question: Questionnaire) {
-		let getHelpViewController = GetHelpViewController(navVC: self.navigationController ?? self.navVC, currentQuestion: question)
-		self.navVC.pushViewController(getHelpViewController, animated: true)
-	}
+        self.navVC.pushViewController(getHelpViewController, animated: true)
+    }
+
+//	func showNextQuestion(_ question: Questionnaire) {
+//		let getHelpViewController = GetHelpViewController(navVC: self.navigationController ?? self.navVC, currentQuestion: question)
+//		self.navVC.pushViewController(getHelpViewController, animated: true)
+//	}
 }

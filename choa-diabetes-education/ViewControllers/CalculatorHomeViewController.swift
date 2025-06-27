@@ -46,7 +46,7 @@ class CalculatorHomeViewController: UIViewController {
         
         self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorAViewController = segue.destination as? CalculatorAViewController {
             calculatorAViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
