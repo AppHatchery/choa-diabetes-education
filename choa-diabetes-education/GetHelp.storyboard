@@ -4,45 +4,31 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Get Help View Controller-->
+        <!--Care Guidance-->
         <scene sceneID="Rzr-wb-643">
             <objects>
-                <tableViewController storyboardIdentifier="GetHelpViewController" extendedLayoutIncludesOpaqueBars="YES" id="Pw5-0Z-M0h" customClass="GetHelpViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GetHelpViewController" title="Care Guidance" extendedLayoutIncludesOpaqueBars="YES" id="Pw5-0Z-M0h" customClass="GetHelpViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3Ys-Cp-EOe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="WBj-i4-3HP">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <viewLayoutGuide key="safeArea" id="Syj-wZ-VLS"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <sections>
                             <tableViewSection id="PgJ-Gh-3xU">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="291" id="VPZ-Y7-Sg0">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="291"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VPZ-Y7-Sg0" id="FHO-sq-cUF">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="291"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frame" translatesAutoresizingMaskIntoConstraints="NO" id="Stb-i1-W6q">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="291"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Stb-i1-W6q" secondAttribute="height" multiplier="217:193" id="u3V-Rh-X8t"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Stb-i1-W6q" firstAttribute="top" secondItem="FHO-sq-cUF" secondAttribute="top" id="CH5-R1-CHB"/>
-                                                <constraint firstAttribute="bottom" secondItem="Stb-i1-W6q" secondAttribute="bottom" id="L8L-8g-Ymd"/>
-                                                <constraint firstAttribute="trailing" secondItem="Stb-i1-W6q" secondAttribute="trailing" id="Nsc-9y-dum"/>
-                                                <constraint firstItem="Stb-i1-W6q" firstAttribute="leading" secondItem="FHO-sq-cUF" secondAttribute="leading" id="rW9-jT-PTI"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="485" id="irN-By-4on">
-                                        <rect key="frame" x="0.0" y="341" width="393" height="485"/>
+                                        <rect key="frame" x="0.0" y="140" width="393" height="485"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irN-By-4on" id="rOd-fC-Ec1">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
@@ -62,6 +48,11 @@
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35B-Wu-675" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHm-bu-RtS" userLabel="Five Options View" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSd-0h-uqN" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
@@ -109,10 +100,11 @@
                             <outlet property="delegate" destination="Pw5-0Z-M0h" id="Usk-i7-njK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xSY-c5-EWx"/>
+                    <navigationItem key="navigationItem" title="Care Guidance" id="xSY-c5-EWx"/>
                     <size key="freeformSize" width="393" height="1000"/>
                     <connections>
                         <outlet property="finalStepView" destination="DSd-0h-uqN" id="xPl-5C-85x"/>
+                        <outlet property="fiveOptionsView" destination="bHm-bu-RtS" id="FEC-RN-xag"/>
                         <outlet property="fourOptionsView" destination="35B-Wu-675" id="ywU-nA-Oyo"/>
                         <outlet property="multipleOptionsView" destination="o8f-da-BMn" id="Cgj-hr-2ro"/>
                         <outlet property="openEndedQueView" destination="GuY-Uz-4V7" id="4d4-nP-o0H"/>
@@ -122,11 +114,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hl-vH-PvQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3372" y="1955"/>
+            <point key="canvasLocation" x="3372" y="1954.7226386806599"/>
         </scene>
     </scenes>
     <resources>
-        <image name="frame" width="187.5" height="155.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
