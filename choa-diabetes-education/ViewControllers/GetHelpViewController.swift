@@ -7,7 +7,6 @@ import UIKit
 
 class GetHelpViewController: UITableViewController {
 
-
     
     
     static let nibName = "GetHelp"
@@ -17,9 +16,8 @@ class GetHelpViewController: UITableViewController {
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
-	@IBOutlet weak var fourOptionsView: FourOptionsView!
-	@IBOutlet weak var fiveOptionsView: FourOptionsView!
-
+    @IBOutlet weak var fourOptionsView: FourOptionsView!
+    
     private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
     private let navVC: UINavigationController
@@ -81,7 +79,6 @@ class GetHelpViewController: UITableViewController {
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
-		fiveOptionsView.isHidden = true
     }
     
     private func setupViews() {
@@ -94,10 +91,6 @@ class GetHelpViewController: UITableViewController {
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
-		case .fourOptions:
-			fourOptionsView.isHidden = false
-			fourOptionsView.delegate = self
-			fourOptionsView.setupView(currentQuestion: questionObj)
         case .multipleOptions: break
         case .multipleOptionsDescriptionAtBottom:
             multipleOptionsView.isHidden = false
@@ -113,7 +106,7 @@ class GetHelpViewController: UITableViewController {
             finalStepView.setupView(currentQuestion: questionObj)
             
         case .none: break
-		}
+        }
     }
     
     @objc func closeTapped(_ sender: Any){
@@ -121,25 +114,8 @@ class GetHelpViewController: UITableViewController {
     }
 }
 
-extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol,
-	FourOptionsViewProtocol{
-
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
-
-		switch selectedAnswer {
-		case .dka:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .hyperglycemia:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .hypoglycemia:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .notSure:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .haveAnySymptoms:
-			self.questionnaireManager.triggerNoSymptomsFlow(currentQuestion)
-		}
-	}
-
+extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
+    
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
         switch selectedAnswer {
         case .TestType(let testType):

@@ -8,7 +8,6 @@ import Foundation
 enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
-	case fourOptions(FourOptionsQuestionId)
     case multipleOptions
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
@@ -333,81 +332,9 @@ enum KetonesMeasurements {
 
 
 enum FourOptionsAnswer: Equatable {
-	case dka
-	case hyperglycemia
-	case hypoglycemia
-	case notSure
-	case haveAnySymptoms
-
-	var description: String {
-		switch self {
-		case .dka:
-			return "Calculator.Que.ChildIssue.option1".localized()
-		case .hyperglycemia:
-			return "Calculator.Que.ChildIssue.option2".localized()
-		case .hypoglycemia:
-			return "Calculator.Que.ChildIssue.option3".localized()
-		case .notSure:
-			return "Calculator.Que.ChildIssue.option4".localized()
-		case .haveAnySymptoms:
-			return "Calculator.Que.ChildIssue.option5".localized()
-		}
-	}
-
-	init(id: Int) {
-		switch id {
-		case 1:
-			self = .dka
-		case 2:
-			self = .hyperglycemia
-		case 3:
-			self = .hypoglycemia
-		case 4:
-			self = .notSure
-		case 5:
-			self = .haveAnySymptoms
-		default:
-			self = .dka
-		}
-	}
+    
 }
 
-enum FourOptionsQuestionId {
-	case dka
-	case hyperglycemia
-	case hypoglycemia
-	case notSure
-	case haveAnySymptoms
-
-	var id: Int {
-		switch self {
-		case .dka:
-			return 1
-		case .hyperglycemia:
-			return 2
-		case .hypoglycemia:
-			return 3
-		case .notSure:
-			return 4
-		case .haveAnySymptoms:
-			return 5
-		}
-	}
-
-	init(id: Int) {
-		switch id {
-		case 1:
-			self = .dka
-		case 2:
-			self = .hyperglycemia
-		case 3:
-			self = .hypoglycemia
-		case 4:
-			self = .notSure
-		case 5:
-			self = .haveAnySymptoms
-		default:
-			self = .dka
-		}
-	}
+enum FourOptionsQueID {
+    
 }

@@ -47,7 +47,7 @@ class FourOptionsView: UIView {
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
         questionLabel.font = .gothamRoundedBold16
-        questionLabel.numberOfLines = 5
+        questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
@@ -103,23 +103,5 @@ class FourOptionsView: UIView {
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
-
-		print("SELECTED: \(currentQuestion.questionId ?? 0)")
-
-		switch currentQuestion.questionId {
-
-		case FourOptionsQuestionId.dka.id:
-			delegate?
-				.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .dka
-				)
-		case FourOptionsQuestionId.haveAnySymptoms.id:
-			delegate?
-				.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .haveAnySymptoms
-			)
-		default:
-			break
-		}
     }
 }

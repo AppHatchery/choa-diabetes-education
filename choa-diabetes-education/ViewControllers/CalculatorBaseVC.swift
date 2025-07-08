@@ -5,12 +5,7 @@
 
 import UIKit
 
-class CalculatorBaseVC: UITableViewController, FourOptionsViewProtocol {
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
-		print("CURRENT QUESTION: \(currentQuestion)")
-		print("SELECTED Answer: \(selectedAnswer)")
-	}
-
+class CalculatorBaseVC: UITableViewController {
 
     
     
@@ -92,10 +87,6 @@ class CalculatorBaseVC: UITableViewController, FourOptionsViewProtocol {
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
-		case .fourOptions:
-			fourOptionsView.isHidden = false
-			fourOptionsView.delegate = self
-			fourOptionsView.setupView(currentQuestion: questionObj)
         case .multipleOptions: break
         case .multipleOptionsDescriptionAtBottom:
             multipleOptionsView.isHidden = false
