@@ -11,6 +11,8 @@
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
+		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
+		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -172,6 +174,8 @@
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
 		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
 		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
+		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
+		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -646,6 +650,8 @@
 				FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */,
 				8EAF82C22A467EBC0035919B /* FourOptionsView.swift */,
 				8EAF82C02A467EAE0035919B /* FourOptionsView.xib */,
+				B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */,
+				B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -805,6 +811,7 @@
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
 				D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */,
+				B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
 				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
@@ -887,6 +894,7 @@
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
+				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
