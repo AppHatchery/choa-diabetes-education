@@ -103,5 +103,14 @@ class FourOptionsView: UIView {
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
+
+		switch currentQuestion.questionId {
+		case FourOptionsQuestionId.childIssue.id:
+			if selected == 1 {
+				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .ChildIssue(ChildIssue(id: selected)))
+			}
+		default:
+			break
+		}
     }
 }

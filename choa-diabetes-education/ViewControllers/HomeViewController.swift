@@ -190,12 +190,24 @@ class HomeViewController: UIViewController {
 		let manager = QuestionnaireManager.instance
 		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
 
+		let secondQuestion = manager.createFourCustomOptionsQuestion(
+			questionId: FourOptionsQuestionId.childIssue,
+			question: "GetHelp.Que.ChildIssue.title".localized(),
+			description: nil,
+			answerOptions: [
+				"GetHelp.Que.ChildIssue.option1".localized(),
+				"GetHelp.Que.ChildIssue.option2".localized(),
+				"GetHelp.Que.ChildIssue.option3".localized(),
+				"GetHelp.Que.ChildIssue.option4".localized()
+			]
+		)
+
 		let getHelpViewController = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(
 			identifier: String(describing: GetHelpViewController.self)
 		) { creator in
 			GetHelpViewController(
 				navVC: self.navigationController!,
-				currentQuestion: firstQues,
+				currentQuestion: secondQuestion,
 				coder: creator
 			)
 		}

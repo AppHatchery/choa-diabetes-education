@@ -17,7 +17,8 @@ class GetHelpViewController: UITableViewController {
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
     @IBOutlet weak var fourOptionsView: FourOptionsView!
-    
+	@IBOutlet weak var fiveOptionsView: FiveOptionsView!
+
     private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
     private let navVC: UINavigationController
@@ -79,6 +80,7 @@ class GetHelpViewController: UITableViewController {
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
+		fiveOptionsView.isHidden = true
     }
     
     private func setupViews() {
@@ -91,6 +93,14 @@ class GetHelpViewController: UITableViewController {
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
+		case .fourOptions:
+			fourOptionsView.isHidden = false
+			fourOptionsView.delegate = self
+			fourOptionsView.setupView(currentQuestion: questionObj)
+		case .fiveOptions:
+			fiveOptionsView.isHidden = false
+			fiveOptionsView.delegate = self
+			fiveOptionsView.setupView(currentQuestion: questionObj)
         case .multipleOptions: break
         case .multipleOptionsDescriptionAtBottom:
             multipleOptionsView.isHidden = false
@@ -114,8 +124,8 @@ class GetHelpViewController: UITableViewController {
     }
 }
 
-extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
-    
+extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
+
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
         switch selectedAnswer {
         case .TestType(let testType):
@@ -127,8 +137,23 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         }
         
     }
-    
-    
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
+		switch selectedAnswer {
+		case .ChildIssue(let childIssue):
+			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
+
+			print("Four options \(selectedAnswer)")
+		}
+
+	}
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer) {
+
+		print("Five options \(selectedAnswer)")
+
+	}
+
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer) {
         

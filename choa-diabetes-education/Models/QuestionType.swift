@@ -8,6 +8,8 @@ import Foundation
 enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
+	case fourOptions(FourOptionsQuestionId)
+	case fiveOptions(FiveOptionsQuestionId)
     case multipleOptions
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
@@ -332,9 +334,69 @@ enum KetonesMeasurements {
 
 
 enum FourOptionsAnswer: Equatable {
-    
+    case ChildIssue(ChildIssue)
 }
 
-enum FourOptionsQueID {
-    
+enum ChildIssue {
+	case diabeticKetoacidosis
+
+	var description: String {
+		switch self {
+		case .diabeticKetoacidosis:
+			return "GetHelp.Que.ChildIssue.option1".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .diabeticKetoacidosis
+		default:
+			self = .diabeticKetoacidosis
+		}
+	}
+}
+
+enum FiveOptionsAnswer: Equatable {
+	case noneOfTheAbove
+}
+
+enum FourOptionsQuestionId {
+	case childIssue
+
+	var id: Int {
+		switch self {
+		case .childIssue:
+			return 1
+		}
+	}
+	
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childIssue
+		default:
+			self = .childIssue
+		}
+	}
+}
+
+enum FiveOptionsQuestionId {
+	case childHasAnySymptoms
+
+	var id: Int {
+		switch self {
+		case .childHasAnySymptoms:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childHasAnySymptoms
+		default:
+			self = .childHasAnySymptoms
+		}
+	}
 }

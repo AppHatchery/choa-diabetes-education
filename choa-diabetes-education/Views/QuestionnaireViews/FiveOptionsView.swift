@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 protocol FiveOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer)
 }
 
 class FiveOptionsView: UIView {
@@ -58,7 +58,7 @@ class FiveOptionsView: UIView {
             secondButton.setTitle(answerOptions[1].localized(), for: .normal)
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
             fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
-            
+			fifthButton.setTitle(answerOptions[4].localized(), for: .normal)
         }
         
         descriptionLabel.font = .avenirLight14
@@ -74,6 +74,7 @@ class FiveOptionsView: UIView {
         secondButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
@@ -82,6 +83,7 @@ class FiveOptionsView: UIView {
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didThirdButtonTap(_ sender: UIButton) {
@@ -90,6 +92,7 @@ class FiveOptionsView: UIView {
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didFourthButtonTap(_ sender: UIButton) {
@@ -98,9 +101,18 @@ class FiveOptionsView: UIView {
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         secondButton.updateButtonForDeselection()
-        
+		fifthButton.updateButtonForDeselection()
     }
-    
+
+	@IBAction func didFifthButtonTap(_ sender: UIButton) {
+		selected = 5
+		fifthButton.updateButtonForSelection()
+		firstButton.updateButtonForDeselection()
+		thirdButton.updateButtonForDeselection()
+		secondButton.updateButtonForDeselection()
+		fourthButton.updateButtonForDeselection()
+	}
+
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
@@ -109,16 +121,8 @@ class FiveOptionsView: UIView {
 
 		switch currentQuestion.questionId {
 
-		case FourOptionsQuestionId.dka.id:
-			delegate?
-				.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .dka
-				)
-		case FourOptionsQuestionId.haveAnySymptoms.id:
-			delegate?
-				.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .haveAnySymptoms
-			)
+		case FourOptionsQuestionId.childIssue.id:
+			print("Four options \(selected)")
 		default:
 			break
 		}

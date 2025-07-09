@@ -64,6 +64,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft0-Ya-weg" customClass="FiveOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSd-0h-uqN" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,11 +85,14 @@
                                                 <constraint firstItem="35B-Wu-675" firstAttribute="leading" secondItem="rOd-fC-Ec1" secondAttribute="leading" id="8tJ-5T-vw7"/>
                                                 <constraint firstAttribute="bottom" secondItem="DSd-0h-uqN" secondAttribute="bottom" id="A3M-fo-QEW"/>
                                                 <constraint firstItem="QFY-9w-gFa" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="Ctv-Zl-cRl"/>
+                                                <constraint firstAttribute="bottom" secondItem="ft0-Ya-weg" secondAttribute="bottom" id="I7v-T6-bJw"/>
                                                 <constraint firstItem="o8f-da-BMn" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="Jjm-cC-hMP"/>
                                                 <constraint firstAttribute="trailing" secondItem="DSd-0h-uqN" secondAttribute="trailing" id="N3m-ag-Ou8"/>
                                                 <constraint firstItem="DSd-0h-uqN" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="PmO-jQ-OB7"/>
+                                                <constraint firstItem="ft0-Ya-weg" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="Q0D-A3-qeg"/>
                                                 <constraint firstItem="QFY-9w-gFa" firstAttribute="leading" secondItem="rOd-fC-Ec1" secondAttribute="leading" id="YBM-fd-jk2"/>
                                                 <constraint firstItem="9dr-uf-2To" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="Yiu-ha-sQ1"/>
+                                                <constraint firstAttribute="trailing" secondItem="ft0-Ya-weg" secondAttribute="trailing" id="Z3j-rd-AQM"/>
                                                 <constraint firstItem="GuY-Uz-4V7" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="ZZf-6Y-9dZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="GuY-Uz-4V7" secondAttribute="trailing" id="awn-Eg-OyW"/>
                                                 <constraint firstAttribute="bottom" secondItem="35B-Wu-675" secondAttribute="bottom" id="b2a-vq-1vO"/>
@@ -94,6 +101,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="9dr-uf-2To" secondAttribute="bottom" id="jIE-d2-1XV"/>
                                                 <constraint firstItem="DSd-0h-uqN" firstAttribute="leading" secondItem="rOd-fC-Ec1" secondAttribute="leading" id="kHC-WO-QVi"/>
                                                 <constraint firstAttribute="trailing" secondItem="35B-Wu-675" secondAttribute="trailing" id="lSV-pt-khk"/>
+                                                <constraint firstItem="ft0-Ya-weg" firstAttribute="leading" secondItem="rOd-fC-Ec1" secondAttribute="leading" id="lwx-xX-fxU"/>
                                                 <constraint firstItem="GuY-Uz-4V7" firstAttribute="leading" secondItem="rOd-fC-Ec1" secondAttribute="leading" id="vKh-SB-IHV"/>
                                                 <constraint firstAttribute="trailing" secondItem="9dr-uf-2To" secondAttribute="trailing" id="vSQ-eY-IQF"/>
                                                 <constraint firstItem="35B-Wu-675" firstAttribute="top" secondItem="rOd-fC-Ec1" secondAttribute="top" id="wcB-6p-nbJ"/>
@@ -113,6 +121,7 @@
                     <size key="freeformSize" width="393" height="1000"/>
                     <connections>
                         <outlet property="finalStepView" destination="DSd-0h-uqN" id="xPl-5C-85x"/>
+                        <outlet property="fiveOptionsView" destination="ft0-Ya-weg" id="WVO-AC-ADB"/>
                         <outlet property="fourOptionsView" destination="35B-Wu-675" id="ywU-nA-Oyo"/>
                         <outlet property="multipleOptionsView" destination="o8f-da-BMn" id="Cgj-hr-2ro"/>
                         <outlet property="openEndedQueView" destination="GuY-Uz-4V7" id="4d4-nP-o0H"/>

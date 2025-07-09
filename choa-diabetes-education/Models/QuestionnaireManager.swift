@@ -11,6 +11,7 @@ protocol QuestionnaireActionsProtocol: AnyObject {
 
 protocol QuestionnaireManagerProvider: AnyObject {
     var actionsDelegate: QuestionnaireActionsProtocol? { get set }
+	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
     func triggerYesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoActionFlow(_ currentQuestion: Questionnaire)
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -35,6 +36,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     var actionsDelegate: QuestionnaireActionsProtocol?
     
     private(set) var currentTestType: TestType = .pump
+	private(set) var currentChildIssue: ChildIssue = .diabeticKetoacidosis
     var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
     private(set) var bloodSugar: Int = 0
@@ -68,7 +70,28 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
-    
+	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue) {
+		switch currentQuestion.questionId {
+			case FourOptionsQuestionId.childIssue.id:
+			let createFiveOptionsQuestion = createFiveCustomOptionsQuestion(
+				questionId: FiveOptionsQuestionId.childHasAnySymptoms,
+				question: "GetHelp.Que.ChildHasAnySymptoms.title".localized(),
+				description: nil,
+				answerOptions: [
+					"GetHelp.Que.ChildHasAnySymptoms.option1".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option2".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option3".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option4".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option5".localized(),
+				]
+			)
+			actionsDelegate?.showNextQuestion(createFiveOptionsQuestion)
+//			showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
+		default:
+			return
+		}
+	}
+
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
         switch currentQuestion.questionId {
             
@@ -304,7 +327,27 @@ extension QuestionnaireManager {
         quesObj.answerOptions = answerOptions
         return quesObj
     }
-    
+
+	func createFourCustomOptionsQuestion(questionId: FourOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId.id
+		quesObj.questionType = .fourOptions(questionId)
+		quesObj.question = question
+		quesObj.description = description
+		quesObj.answerOptions = answerOptions
+		return quesObj
+	}
+
+	func createFiveCustomOptionsQuestion(questionId: FiveOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId.id
+		quesObj.questionType = .fiveOptions(questionId)
+		quesObj.question = question
+		quesObj.description = description
+		quesObj.answerOptions = answerOptions
+		return quesObj
+	}
+
     func createOpenEndedMultipleInpQuestion(questionId: OpenEndedWithMultipleInputQuestionId, question: String, subQuestion: String, inputUnit: String, description: String?, showDescriptionAtBottom: Bool) -> Questionnaire {
         let quesObj = Questionnaire()
         quesObj.questionId = questionId.id
