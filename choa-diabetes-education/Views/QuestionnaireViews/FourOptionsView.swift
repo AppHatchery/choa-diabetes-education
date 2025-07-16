@@ -107,7 +107,24 @@ class FourOptionsView: UIView {
 		switch currentQuestion.questionId {
 		case FourOptionsQuestionId.childIssue.id:
 			if selected == 1 {
-				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .ChildIssue(ChildIssue(id: selected)))
+				delegate?
+					.didSelectNextAction(
+						currentQuestion: currentQuestion,
+						selectedAnswer: .DKAIssue(ChildIssue(id: selected))
+					)
+			} else if selected == 2 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .HighBloodSugar(ChildIssue(id: selected))
+				)
+			} else if selected == 3 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
+				)
+			} else {
+				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
+				)
 			}
 		default:
 			break

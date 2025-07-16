@@ -190,7 +190,7 @@ class HomeViewController: UIViewController {
 		let manager = QuestionnaireManager.instance
 		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
 
-		let secondQuestion = manager.createFourCustomOptionsQuestion(
+		_ = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,
 			question: "GetHelp.Que.ChildIssue.title".localized(),
 			description: nil,
@@ -207,7 +207,7 @@ class HomeViewController: UIViewController {
 		) { creator in
 			GetHelpViewController(
 				navVC: self.navigationController!,
-				currentQuestion: secondQuestion,
+				currentQuestion: firstQues,
 				coder: creator
 			)
 		}

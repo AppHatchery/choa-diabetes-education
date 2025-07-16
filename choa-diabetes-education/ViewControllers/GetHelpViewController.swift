@@ -140,10 +140,16 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
 		switch selectedAnswer {
-		case .ChildIssue(let childIssue):
+		case .DKAIssue(let childIssue):
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 
-			print("Four options \(selectedAnswer)")
+			print("Four options selected answer: \(selectedAnswer)")
+		case .HighBloodSugar(let childIssue):
+			print("Four options selected answer: \(selectedAnswer)")
+		case .LowBloodSugar(_):
+			print("Four options selected answer: \(selectedAnswer)")
+		case .NotSure(_):
+			print("Four options selected answer: \(selectedAnswer)")
 		}
 
 	}

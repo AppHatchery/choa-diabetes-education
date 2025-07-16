@@ -266,6 +266,93 @@ enum TestType {
     }
 }
 
+enum FourOptionsAnswer: Equatable {
+	case DKAIssue(ChildIssue)
+	case HighBloodSugar(ChildIssue)
+	case LowBloodSugar(ChildIssue)
+	case NotSure(ChildIssue)
+
+}
+
+enum ChildIssue {
+	case diabeticKetoacidosis
+	case highBloodSugar
+	case lowBloodSugar
+	case notSure
+
+	var description: String {
+		switch self {
+		case .diabeticKetoacidosis:
+			return "GetHelp.Que.ChildIssue.option1".localized()
+		case .highBloodSugar:
+			return "GetHelp.Que.ChildIssue.option2".localized()
+		case .lowBloodSugar:
+			return "GetHelp.Que.ChildIssue.option3".localized()
+		case .notSure:
+			return "GetHelp.Que.ChildIssue.option4".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .diabeticKetoacidosis
+		case 2:
+			self = .highBloodSugar
+		case 3:
+			self = .lowBloodSugar
+		case 4:
+			self = .notSure
+		default:
+			self = .diabeticKetoacidosis
+		}
+	}
+}
+
+enum FiveOptionsAnswer: Equatable {
+	case noneOfTheAbove
+}
+
+enum FourOptionsQuestionId {
+	case childIssue
+
+	var id: Int {
+		switch self {
+		case .childIssue:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childIssue
+		default:
+			self = .childIssue
+		}
+	}
+}
+
+enum FiveOptionsQuestionId {
+	case childHasAnySymptoms
+
+	var id: Int {
+		switch self {
+		case .childHasAnySymptoms:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childHasAnySymptoms
+		default:
+			self = .childHasAnySymptoms
+		}
+	}
+}
+
 enum CalculationType {
     case scale
     case formula
@@ -330,73 +417,4 @@ enum KetonesMeasurements {
             self = .zeroToSmall
         }
     }
-}
-
-
-enum FourOptionsAnswer: Equatable {
-    case ChildIssue(ChildIssue)
-}
-
-enum ChildIssue {
-	case diabeticKetoacidosis
-
-	var description: String {
-		switch self {
-		case .diabeticKetoacidosis:
-			return "GetHelp.Que.ChildIssue.option1".localized()
-		}
-	}
-
-	init(id: Int) {
-		switch id {
-		case 1:
-			self = .diabeticKetoacidosis
-		default:
-			self = .diabeticKetoacidosis
-		}
-	}
-}
-
-enum FiveOptionsAnswer: Equatable {
-	case noneOfTheAbove
-}
-
-enum FourOptionsQuestionId {
-	case childIssue
-
-	var id: Int {
-		switch self {
-		case .childIssue:
-			return 1
-		}
-	}
-	
-	init(id: Int) {
-		switch id {
-		case 1:
-			self = .childIssue
-		default:
-			self = .childIssue
-		}
-	}
-}
-
-enum FiveOptionsQuestionId {
-	case childHasAnySymptoms
-
-	var id: Int {
-		switch self {
-		case .childHasAnySymptoms:
-			return 1
-		}
-	}
-
-	init(id: Int) {
-		switch id {
-		case 1:
-			self = .childHasAnySymptoms
-		default:
-			self = .childHasAnySymptoms
-		}
-	}
 }
