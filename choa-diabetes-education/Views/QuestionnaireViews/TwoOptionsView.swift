@@ -22,7 +22,10 @@ class TwoOptionsView: UIView {
     
     @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
-    private var currentQuestion: Questionnaire!
+	@IBOutlet var followUpQuestionView: UIView!
+
+	private var currentQuestion: Questionnaire!
+	private var followUpQuestion: Questionnaire?
     weak var delegate: TwoOptionsViewProtocol?
     
     private var selected = 0
@@ -77,12 +80,34 @@ class TwoOptionsView: UIView {
         selected = 1
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForSelection()
+		followUpQuestionView.isHidden = true
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
         selected = 2
         secondButton.updateButtonForSelection()
         firstButton.updateButtonForDeselection()
+
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+			followUpQuestionView.isHidden = false
+
+			print("Current Question: \(currentQuestion.questionId ?? 0)")
+			print("Selected Answer: \(selected)")
+			let followUpSubview = YesOrNoFollowUpQuestionView()
+
+			followUpQuestionView.addSubview(followUpSubview)
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor).isActive = true
+			followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor).isActive = true
+			followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor).isActive = true
+			followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor).isActive = true
+
+			followUpSubview.setupView(currentQuestion: currentQuestion)
+		default:
+			followUpQuestionView.isHidden = true
+		}
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
@@ -102,4 +127,28 @@ class TwoOptionsView: UIView {
         }
         
     }
+
+	private func addFollowUpQuestionView() {
+		resetFollowUpView()
+
+		let followUpView = YesOrNoFollowUpQuestionView()
+		followUpView.translatesAutoresizingMaskIntoConstraints = false
+
+		followUpQuestionView.addSubview(followUpView)
+		self.followUpQuestionView = followUpView
+
+			// Set up Auto Layout constraints
+		NSLayoutConstraint.activate([
+			followUpView.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
+			followUpView.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
+			followUpView.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
+			followUpView.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
+		])
+
+		let followUpQuestion = currentQuestion
+	}
+
+	private func resetFollowUpView() {
+		followUpQuestionView.isHidden = true
+	}
 }
