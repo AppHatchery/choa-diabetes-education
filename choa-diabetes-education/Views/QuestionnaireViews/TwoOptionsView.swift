@@ -7,10 +7,15 @@ import Foundation
 import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView {
+class TwoOptionsView: UIView, YesOrNoFollowUpQuestionView.YesOrNoFollowUpDelegate {
+    
+    func followUpView(_ view: YesOrNoFollowUpQuestionView, didSelect answer: Int) {
+        self.followUpAnswer = answer
+    }
+    
     static let nibName = "TwoOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -29,6 +34,7 @@ class TwoOptionsView: UIView {
     weak var delegate: TwoOptionsViewProtocol?
     
     private var selected = 0
+    private var followUpAnswer = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -118,9 +124,9 @@ class TwoOptionsView: UIView {
         
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)))
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
         case TwoOptionsQuestionId.calculationType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .CalculationType(CalculationType(id: selected)))
+            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .CalculationType(CalculationType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)))
         default:
             break
         
@@ -132,6 +138,7 @@ class TwoOptionsView: UIView {
 		resetFollowUpView()
 
 		let followUpView = YesOrNoFollowUpQuestionView()
+        followUpView.delegate = self
 		followUpView.translatesAutoresizingMaskIntoConstraints = false
 
 		followUpQuestionView.addSubview(followUpView)

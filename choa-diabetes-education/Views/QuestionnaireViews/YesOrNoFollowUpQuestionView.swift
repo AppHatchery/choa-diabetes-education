@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class YesOrNoFollowUpQuestionView: UIView {
+    protocol YesOrNoFollowUpDelegate: AnyObject {
+        func followUpView(_ view: YesOrNoFollowUpQuestionView, didSelect answer: Int)
+    }
 
 	private var questionLabel: UILabel!
 		// Please note that this will also be for TwoOption type questions so the yes/no buttons shouldn't restrict the question type
@@ -16,7 +19,7 @@ class YesOrNoFollowUpQuestionView: UIView {
 	private var noButton: RoundedButton!
 
 	private var currentQuestion: Questionnaire!
-	weak var delegate: YesOrNoQueViewProtocol?
+	weak var delegate: YesOrNoFollowUpDelegate?
 
 	private var selected = 0
 
@@ -74,12 +77,14 @@ class YesOrNoFollowUpQuestionView: UIView {
 		selected = 1
 		yesButton.updateButtonForSelection()
 		noButton.updateButtonForDeselection()
+        delegate?.followUpView(self, didSelect:selected)
 	}
 
 	@objc private func noButtonTapped() {
 		selected = 2
 		yesButton.updateButtonForDeselection()
 		noButton.updateButtonForSelection()
+        delegate?.followUpView(self, didSelect: selected)
 	}
 
 	func setupView(currentQuestion: Questionnaire) {
