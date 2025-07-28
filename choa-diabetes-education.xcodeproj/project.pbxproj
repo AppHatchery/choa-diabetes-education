@@ -13,8 +13,8 @@
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
 		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
 		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
-		B4B788D22E27A4C100BC296C /* YesOrNoFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* YesOrNoFollowUpQuestionView.swift */; };
-		B4B788D42E27A78600BC296C /* YesOrNoFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* YesOrNoFollowUpQuestionView.xib */; };
+		B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */; };
+		B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -176,8 +176,8 @@
 		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
 		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
 		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
-		B4B788D12E27A4C100BC296C /* YesOrNoFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoFollowUpQuestionView.swift; sourceTree = "<group>"; };
-		B4B788D32E27A78600BC296C /* YesOrNoFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpQuestionView.xib; sourceTree = "<group>"; };
+		B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsFollowUpQuestionView.swift; sourceTree = "<group>"; };
+		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -650,8 +650,8 @@
 				8EAF82C02A467EAE0035919B /* FourOptionsView.xib */,
 				B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */,
 				B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */,
-				B4B788D12E27A4C100BC296C /* YesOrNoFollowUpQuestionView.swift */,
-				B4B788D32E27A78600BC296C /* YesOrNoFollowUpQuestionView.xib */,
+				B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */,
+				B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -814,7 +814,7 @@
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
 				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
-				B4B788D42E27A78600BC296C /* YesOrNoFollowUpQuestionView.xib in Resources */,
+				B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */,
 				D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */,
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
@@ -889,7 +889,7 @@
 				D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */,
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
-				B4B788D22E27A4C100BC296C /* YesOrNoFollowUpQuestionView.swift in Sources */,
+				B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,

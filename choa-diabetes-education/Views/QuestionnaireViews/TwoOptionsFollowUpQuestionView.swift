@@ -1,5 +1,5 @@
 //
-//  YesOrNoFollowUpQuestionView.swift
+//  TwoOptionsFollowUpQuestionView.swift
 //  choa-diabetes-education
 //
 //  Created by Maxwell Kapezi Jr on 16/07/2025.
@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class YesOrNoFollowUpQuestionView: UIView {
+class TwoOptionsFollowUpQuestionView: UIView {
     protocol YesOrNoFollowUpDelegate: AnyObject {
-        func followUpView(_ view: YesOrNoFollowUpQuestionView, didSelect answer: Int)
+        func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int)
     }
 
 	private var questionLabel: UILabel!
@@ -78,6 +78,15 @@ class YesOrNoFollowUpQuestionView: UIView {
 		yesButton.updateButtonForSelection()
 		noButton.updateButtonForDeselection()
         delegate?.followUpView(self, didSelect:selected)
+
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+			self.delegate?.followUpView(self, didSelect: selected)
+			print("Follow up answer FROM YES OR NO FOLLOW UP VIEW: \(selected)")
+		default:
+			break
+		}
 	}
 
 	@objc private func noButtonTapped() {
@@ -85,6 +94,16 @@ class YesOrNoFollowUpQuestionView: UIView {
 		yesButton.updateButtonForDeselection()
 		noButton.updateButtonForSelection()
         delegate?.followUpView(self, didSelect: selected)
+
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+			self.delegate?.followUpView(self, didSelect: selected)
+			
+			print("Follow up answer FROM YES OR NO FOLLOW UP VIEW: \(selected)")
+		default:
+			break
+		}
 	}
 
 	func setupView(currentQuestion: Questionnaire) {

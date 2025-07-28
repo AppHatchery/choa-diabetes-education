@@ -130,10 +130,15 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         switch selectedAnswer {
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
+
+			if let followUp = followUpAnswer,
+			   case .CalculationType(let calculationType) = followUp {
+				self.questionnaireManager.saveCalculationType(calculationType)
+			}
+
             self.questionnaireManager.triggerTestActionFlow(currentQuestion)
-        case .CalculationType(let method):
-            self.questionnaireManager.saveCalculationType(method)
-            self.questionnaireManager.triggerBloodSugarCheckActionFlow(currentQuestion)
+		default:
+			return
         }
         
     }
@@ -206,7 +211,7 @@ extension GetHelpViewController: FinalStepViewProtocol {
             return
         }
         for controller in self.navVC.viewControllers as Array {
-            if controller.isKind(of: CalculatorHomeViewController.self) {
+			if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
                 break
             }

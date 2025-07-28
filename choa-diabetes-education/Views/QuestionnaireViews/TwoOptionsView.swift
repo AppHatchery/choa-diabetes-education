@@ -10,9 +10,9 @@ protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView, YesOrNoFollowUpQuestionView.YesOrNoFollowUpDelegate {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.YesOrNoFollowUpDelegate {
     
-    func followUpView(_ view: YesOrNoFollowUpQuestionView, didSelect answer: Int) {
+    func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
         self.followUpAnswer = answer
     }
     
@@ -101,7 +101,9 @@ class TwoOptionsView: UIView, YesOrNoFollowUpQuestionView.YesOrNoFollowUpDelegat
 
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
-			let followUpSubview = YesOrNoFollowUpQuestionView()
+			let followUpSubview = TwoOptionsFollowUpQuestionView()
+
+			followUpSubview.delegate = self
 
 			followUpQuestionView.addSubview(followUpSubview)
 			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
@@ -124,36 +126,13 @@ class TwoOptionsView: UIView, YesOrNoFollowUpQuestionView.YesOrNoFollowUpDelegat
         
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
-        case TwoOptionsQuestionId.calculationType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .CalculationType(CalculationType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)))
+				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
         default:
             break
         
         }
         
     }
-
-	private func addFollowUpQuestionView() {
-		resetFollowUpView()
-
-		let followUpView = YesOrNoFollowUpQuestionView()
-        followUpView.delegate = self
-		followUpView.translatesAutoresizingMaskIntoConstraints = false
-
-		followUpQuestionView.addSubview(followUpView)
-		self.followUpQuestionView = followUpView
-
-			// Set up Auto Layout constraints
-		NSLayoutConstraint.activate([
-			followUpView.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
-			followUpView.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
-			followUpView.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
-			followUpView.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
-		])
-
-		let followUpQuestion = currentQuestion
-	}
 
 	private func resetFollowUpView() {
 		followUpQuestionView.isHidden = true
