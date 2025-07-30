@@ -422,122 +422,6 @@
             </objects>
             <point key="canvasLocation" x="2390" y="1805"/>
         </scene>
-        <!--Calculator BaseVC-->
-        <scene sceneID="gim-mA-HcN">
-            <objects>
-                <tableViewController storyboardIdentifier="CalculatorBaseVC" extendedLayoutIncludesOpaqueBars="YES" id="vre-mE-XO7" customClass="CalculatorBaseVC" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hKa-fi-hG2">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="tHa-ha-FP1">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="291" id="eSi-SV-8lX">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="291"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eSi-SV-8lX" id="HES-mw-WWZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="291"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frame" translatesAutoresizingMaskIntoConstraints="NO" id="bC6-Cd-1H5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="291"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="bC6-Cd-1H5" secondAttribute="height" multiplier="217:193" id="C4p-Uj-a2p"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="bC6-Cd-1H5" firstAttribute="top" secondItem="HES-mw-WWZ" secondAttribute="top" id="4iB-5P-qWH"/>
-                                                <constraint firstAttribute="bottom" secondItem="bC6-Cd-1H5" secondAttribute="bottom" id="5Eb-5q-TgK"/>
-                                                <constraint firstAttribute="trailing" secondItem="bC6-Cd-1H5" secondAttribute="trailing" id="E07-cs-cio"/>
-                                                <constraint firstItem="bC6-Cd-1H5" firstAttribute="leading" secondItem="HES-mw-WWZ" secondAttribute="leading" id="cHZ-07-YkC"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="485" id="aQg-0J-OhL">
-                                        <rect key="frame" x="0.0" y="341" width="393" height="485"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aQg-0J-OhL" id="mdw-bL-42w">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbZ-9G-eIl" customClass="OpenEndedQueView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-5U-XTH" customClass="TwoOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1h7-mM-W1w" customClass="YesOrNoQueView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GU0-O9-Rjb" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yq7-GS-1Yx" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8q9-A4-auN" customClass="MultipleOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="485"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="1h7-mM-W1w" secondAttribute="bottom" id="1A0-2t-gwh"/>
-                                                <constraint firstAttribute="bottom" secondItem="XbZ-9G-eIl" secondAttribute="bottom" id="7iD-9g-Fjd"/>
-                                                <constraint firstAttribute="bottom" secondItem="Yq7-GS-1Yx" secondAttribute="bottom" id="7xh-u4-ZNE"/>
-                                                <constraint firstItem="8q9-A4-auN" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="84s-fj-5Ab"/>
-                                                <constraint firstItem="1h7-mM-W1w" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="Aw1-lt-4h0"/>
-                                                <constraint firstItem="XbZ-9G-eIl" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="DNH-0F-x8l"/>
-                                                <constraint firstItem="Yq7-GS-1Yx" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="Efb-ld-9C7"/>
-                                                <constraint firstAttribute="trailing" secondItem="2vf-5U-XTH" secondAttribute="trailing" id="Hab-NV-VMw"/>
-                                                <constraint firstItem="GU0-O9-Rjb" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="I3U-PH-4Kk"/>
-                                                <constraint firstItem="8q9-A4-auN" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="Ngz-dH-Yah"/>
-                                                <constraint firstItem="2vf-5U-XTH" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="O2X-xn-uwf"/>
-                                                <constraint firstItem="XbZ-9G-eIl" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="Sgc-4g-Uf3"/>
-                                                <constraint firstItem="Yq7-GS-1Yx" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="UZ3-di-6kY"/>
-                                                <constraint firstAttribute="bottom" secondItem="2vf-5U-XTH" secondAttribute="bottom" id="WqI-sc-vX6"/>
-                                                <constraint firstItem="1h7-mM-W1w" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="at8-AP-RVL"/>
-                                                <constraint firstAttribute="bottom" secondItem="8q9-A4-auN" secondAttribute="bottom" id="cCC-52-rI7"/>
-                                                <constraint firstAttribute="trailing" secondItem="GU0-O9-Rjb" secondAttribute="trailing" id="dsU-vd-gSO"/>
-                                                <constraint firstAttribute="trailing" secondItem="Yq7-GS-1Yx" secondAttribute="trailing" id="jIN-Yz-wfw"/>
-                                                <constraint firstItem="GU0-O9-Rjb" firstAttribute="leading" secondItem="mdw-bL-42w" secondAttribute="leading" id="o2K-wG-khY"/>
-                                                <constraint firstAttribute="trailing" secondItem="XbZ-9G-eIl" secondAttribute="trailing" id="qQz-2n-VVr"/>
-                                                <constraint firstAttribute="trailing" secondItem="1h7-mM-W1w" secondAttribute="trailing" id="tXa-cO-gTm"/>
-                                                <constraint firstAttribute="bottom" secondItem="GU0-O9-Rjb" secondAttribute="bottom" id="vIL-G1-2Do"/>
-                                                <constraint firstItem="2vf-5U-XTH" firstAttribute="top" secondItem="mdw-bL-42w" secondAttribute="top" id="wqO-2u-8mD"/>
-                                                <constraint firstAttribute="trailing" secondItem="8q9-A4-auN" secondAttribute="trailing" id="xor-FH-dLa"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="vre-mE-XO7" id="WCZ-sO-r9o"/>
-                            <outlet property="delegate" destination="vre-mE-XO7" id="qQZ-NG-FaA"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="jIA-c3-nL6"/>
-                    <size key="freeformSize" width="393" height="1000"/>
-                    <connections>
-                        <outlet property="finalStepView" destination="Yq7-GS-1Yx" id="0Yp-hW-CKA"/>
-                        <outlet property="fourOptionsView" destination="GU0-O9-Rjb" id="A56-Gw-ggr"/>
-                        <outlet property="multipleOptionsView" destination="8q9-A4-auN" id="7m7-dz-4os"/>
-                        <outlet property="openEndedQueView" destination="XbZ-9G-eIl" id="68i-9l-XxN"/>
-                        <outlet property="twoOptionsView" destination="2vf-5U-XTH" id="BLi-tc-xrV"/>
-                        <outlet property="yesOrNoQueView" destination="1h7-mM-W1w" id="Hwr-JE-YwZ"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XX7-Rb-XKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3372" y="1955"/>
-        </scene>
         <!--CalculatorB View Controller-->
         <scene sceneID="dDD-Y0-FYK">
             <objects>
@@ -1353,7 +1237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ipa-CJ-Loq"/>
+        <segue reference="aTD-Ou-0iR"/>
         <segue reference="v97-e6-biO"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>
@@ -1372,7 +1256,6 @@
         <image name="calculator-results" width="866" height="511"/>
         <image name="calculatorFilled" width="30.5" height="30"/>
         <image name="calculatorOutline" width="30" height="30"/>
-        <image name="frame" width="187.5" height="155.5"/>
         <namedColor name="backgroundColor">
             <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

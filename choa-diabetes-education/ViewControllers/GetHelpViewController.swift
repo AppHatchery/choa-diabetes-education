@@ -7,7 +7,6 @@ import UIKit
 
 class GetHelpViewController: UITableViewController {
 
-
     
     
     static let nibName = "GetHelp"
@@ -17,8 +16,8 @@ class GetHelpViewController: UITableViewController {
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
-	@IBOutlet weak var fourOptionsView: FourOptionsView!
-	@IBOutlet weak var fiveOptionsView: FourOptionsView!
+    @IBOutlet weak var fourOptionsView: FourOptionsView!
+	@IBOutlet weak var fiveOptionsView: FiveOptionsView!
 
     private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
@@ -98,6 +97,10 @@ class GetHelpViewController: UITableViewController {
 			fourOptionsView.isHidden = false
 			fourOptionsView.delegate = self
 			fourOptionsView.setupView(currentQuestion: questionObj)
+		case .fiveOptions:
+			fiveOptionsView.isHidden = false
+			fiveOptionsView.delegate = self
+			fiveOptionsView.setupView(currentQuestion: questionObj)
         case .multipleOptions: break
         case .multipleOptionsDescriptionAtBottom:
             multipleOptionsView.isHidden = false
@@ -113,7 +116,7 @@ class GetHelpViewController: UITableViewController {
             finalStepView.setupView(currentQuestion: questionObj)
             
         case .none: break
-		}
+        }
     }
     
     @objc func closeTapped(_ sender: Any){
@@ -121,38 +124,47 @@ class GetHelpViewController: UITableViewController {
     }
 }
 
-extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol,
-	FourOptionsViewProtocol{
+extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
 
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
-
-		switch selectedAnswer {
-		case .dka:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .hyperglycemia:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .hypoglycemia:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .notSure:
-			self.questionnaireManager.triggerDKAActionFlow(currentQuestion)
-		case .haveAnySymptoms:
-			self.questionnaireManager.triggerNoSymptomsFlow(currentQuestion)
-		}
-	}
-
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer? ) {
         switch selectedAnswer {
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
+
+			if let followUp = followUpAnswer,
+			   case .CalculationType(let calculationType) = followUp {
+				self.questionnaireManager.saveCalculationType(calculationType)
+			}
+
             self.questionnaireManager.triggerTestActionFlow(currentQuestion)
-        case .CalculationType(let method):
-            self.questionnaireManager.saveCalculationType(method)
-            self.questionnaireManager.triggerBloodSugarCheckActionFlow(currentQuestion)
+		default:
+			return
         }
         
     }
-    
-    
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
+		switch selectedAnswer {
+		case .DKAIssue(let childIssue):
+			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
+
+			print("Four options selected answer: \(selectedAnswer)")
+		case .HighBloodSugar(let childIssue):
+			print("Four options selected answer: \(selectedAnswer)")
+		case .LowBloodSugar(_):
+			print("Four options selected answer: \(selectedAnswer)")
+		case .NotSure(_):
+			print("Four options selected answer: \(selectedAnswer)")
+		}
+
+	}
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer) {
+
+		print("Five options \(selectedAnswer)")
+
+	}
+
     
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: MultipleOptionsAnswer) {
         
@@ -199,7 +211,7 @@ extension GetHelpViewController: FinalStepViewProtocol {
             return
         }
         for controller in self.navVC.viewControllers as Array {
-            if controller.isKind(of: CalculatorHomeViewController.self) {
+			if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
                 break
             }

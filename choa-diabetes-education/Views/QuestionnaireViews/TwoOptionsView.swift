@@ -7,10 +7,15 @@ import Foundation
 import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer)
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.YesOrNoFollowUpDelegate {
+    
+    func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
+        self.followUpAnswer = answer
+    }
+    
     static let nibName = "TwoOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
@@ -22,10 +27,14 @@ class TwoOptionsView: UIView {
     
     @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
-    private var currentQuestion: Questionnaire!
+	@IBOutlet var followUpQuestionView: UIView!
+
+	private var currentQuestion: Questionnaire!
+	private var followUpQuestion: Questionnaire?
     weak var delegate: TwoOptionsViewProtocol?
     
     private var selected = 0
+    private var followUpAnswer = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,12 +86,36 @@ class TwoOptionsView: UIView {
         selected = 1
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForSelection()
+		followUpQuestionView.isHidden = true
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
         selected = 2
         secondButton.updateButtonForSelection()
         firstButton.updateButtonForDeselection()
+
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+			followUpQuestionView.isHidden = false
+
+			print("Current Question: \(currentQuestion.questionId ?? 0)")
+			print("Selected Answer: \(selected)")
+			let followUpSubview = TwoOptionsFollowUpQuestionView()
+
+			followUpSubview.delegate = self
+
+			followUpQuestionView.addSubview(followUpSubview)
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor).isActive = true
+			followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor).isActive = true
+			followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor).isActive = true
+			followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor).isActive = true
+
+			followUpSubview.setupView(currentQuestion: currentQuestion)
+		default:
+			followUpQuestionView.isHidden = true
+		}
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
@@ -93,13 +126,15 @@ class TwoOptionsView: UIView {
         
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)))
-        case TwoOptionsQuestionId.calculationType.id:
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .CalculationType(CalculationType(id: selected)))
+				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
         default:
             break
         
         }
         
     }
+
+	private func resetFollowUpView() {
+		followUpQuestionView.isHidden = true
+	}
 }

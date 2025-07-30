@@ -36,16 +36,6 @@ class CalculatorHomeViewController: UIViewController {
         insulinForFood = true
         insulinForHighBloodSugar = true
     }
-    
-    @IBAction func calculateBloodSugarWithSymptoms(_ sender: UIButton) {
-        let manager = QuestionnaireManager.instance
-        let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
-        let calculatorBaseVC = UIStoryboard(name: "Calculator", bundle: nil).instantiateViewController(identifier: String(describing: CalculatorBaseVC.self)) { creator in
-            CalculatorBaseVC(navVC: self.navigationController!, currentQuestion: firstQues, coder: creator)
-        }
-        
-        self.navigationController?.pushViewController(calculatorBaseVC, animated: true)
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorAViewController = segue.destination as? CalculatorAViewController {

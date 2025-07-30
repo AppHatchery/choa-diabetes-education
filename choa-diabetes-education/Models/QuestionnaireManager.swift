@@ -11,6 +11,7 @@ protocol QuestionnaireActionsProtocol: AnyObject {
 
 protocol QuestionnaireManagerProvider: AnyObject {
     var actionsDelegate: QuestionnaireActionsProtocol? { get set }
+	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
     func triggerYesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoActionFlow(_ currentQuestion: Questionnaire)
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -20,8 +21,6 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerBloodSugarCheckActionFlow(_ currentQuestion: Questionnaire)
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire)
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
-	func triggerDKAActionFlow(_ currentQuestion: Questionnaire)
-	func triggerNoSymptomsFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
     func saveCGM(_ cgm: Bool)
     func saveData(bloodSugar: Int, correctionFactor: Int)
@@ -37,6 +36,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     var actionsDelegate: QuestionnaireActionsProtocol?
     
     private(set) var currentTestType: TestType = .pump
+	private(set) var currentChildIssue: ChildIssue = .diabeticKetoacidosis
     var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
     private(set) var bloodSugar: Int = 0
@@ -70,7 +70,28 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
-    
+	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue) {
+		switch currentQuestion.questionId {
+			case FourOptionsQuestionId.childIssue.id:
+			let createFiveOptionsQuestion = createFiveCustomOptionsQuestion(
+				questionId: FiveOptionsQuestionId.childHasAnySymptoms,
+				question: "GetHelp.Que.ChildHasAnySymptoms.title".localized(),
+				description: nil,
+				answerOptions: [
+					"GetHelp.Que.ChildHasAnySymptoms.option1".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option2".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option3".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option4".localized(),
+					"GetHelp.Que.ChildHasAnySymptoms.option5".localized(),
+				]
+			)
+			actionsDelegate?.showNextQuestion(createFiveOptionsQuestion)
+//			showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
+		default:
+			return
+		}
+	}
+
     func triggerYesActionFlow(_ currentQuestion: Questionnaire) {
         switch currentQuestion.questionId {
             
@@ -91,35 +112,7 @@ extension QuestionnaireManager {
         
         
     }
-
-	func triggerDKAActionFlow(_ currentQuestion: Questionnaire) {
-		switch currentQuestion.questionId {
-		case FourOptionsQuestionId.dka.id:
-			let createHaveAnySymptomsQuestion = createFourCustomOptionsQuestion(
-				questionId: FourOptionsQuestionId.haveAnySymptoms,
-				question: "GetHelp.Que.Q2.title".localized(),
-				description: nil,
-				answerOptions: [
-					"GetHelp.Que.Q2.option1".localized(),
-					"GetHelp.Que.Q2.option2".localized(),
-					"GetHelp.Que.Q2.option3".localized(),
-					"GetHelp.Que.Q2.option4".localized()
-				]
-			)
-			actionsDelegate?.showNextQuestion(createHaveAnySymptomsQuestion)
-		default:
-			return
-		}
-	}
-
-	func triggerNoSymptomsFlow(_ currentQuestion: Questionnaire) {
-		let createQue = createTwoCustomOptionsQuestion(questionId: TwoOptionsQuestionId.testType, question: "GetHelp.Que.Q3.title".localized(), description: nil, answerOptions: [
-			"GetHelp.Que.Q3.option1".localized(),
-			"GetHelp.Que.Q3.option2".localized()
-		])
-		actionsDelegate?.showNextQuestion(createQue)
-	}
-
+    
     func triggerNoActionFlow(_ currentQuestion: Questionnaire) {
         
         switch currentQuestion.questionId {
@@ -173,9 +166,12 @@ extension QuestionnaireManager {
         if currentTestType == .pump {
             let createQue = createYesOrNoQuestion(questionId: .continuousGlucoseMonitor, question: "Calculator.Que.CGM.title".localized(), description: "Calculator.Que.CGM.description".localized(), showDescriptionAtBottom: true)
             actionsDelegate?.showNextQuestion(createQue)
-            
+
         } else if currentTestType == .insulinShots {
-            let createQue = createTwoCustomOptionsQuestion(questionId: .calculationType, question: "Calculator.Que.Method.title".localized(), description: "Calculator.Que.Method.description".localized(), answerOptions: ["Calculator.Que.Method.option1".localized(), "Calculator.Que.Method.option2".localized()])
+//            let createQue = createTwoCustomOptionsQuestion(questionId: .calculationType, question: "Calculator.Que.Method.title".localized(), description: "Calculator.Que.Method.description".localized(), answerOptions: ["Calculator.Que.Method.option1".localized(), "Calculator.Que.Method.option2".localized()])
+
+			let createQue = createYesOrNoQuestion(questionId: .shotBloodSugarCheck, question: "Calculator.Que.ShotBloodSugarCheck.title".localized(), description: "Calculator.Que.ShotBloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
+
             actionsDelegate?.showNextQuestion(createQue)
         }
 
@@ -324,7 +320,7 @@ extension QuestionnaireManager {
         quesObj.answerOptions = [YesOrNo.yes.description, YesOrNo.no.description]
         return quesObj
     }
-
+    
     func createTwoCustomOptionsQuestion(questionId: TwoOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
         let quesObj = Questionnaire()
         quesObj.questionId = questionId.id
@@ -339,6 +335,16 @@ extension QuestionnaireManager {
 		let quesObj = Questionnaire()
 		quesObj.questionId = questionId.id
 		quesObj.questionType = .fourOptions(questionId)
+		quesObj.question = question
+		quesObj.description = description
+		quesObj.answerOptions = answerOptions
+		return quesObj
+	}
+
+	func createFiveCustomOptionsQuestion(questionId: FiveOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId.id
+		quesObj.questionType = .fiveOptions(questionId)
 		quesObj.question = question
 		quesObj.description = description
 		quesObj.answerOptions = answerOptions

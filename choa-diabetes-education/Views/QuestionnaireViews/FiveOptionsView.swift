@@ -1,17 +1,17 @@
 //
-//  FourOptionsView.swift
+//  FiveOptionsView.swift
 //  choa-diabetes-education
 //
 
 import Foundation
 import UIKit
 
-protocol FourOptionsViewProtocol: AnyObject {
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer)
+protocol FiveOptionsViewProtocol: AnyObject {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer)
 }
 
-class FourOptionsView: UIView {
-    static let nibName = "FourOptionsView"
+class FiveOptionsView: UIView {
+    static let nibName = "FiveOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -19,11 +19,12 @@ class FourOptionsView: UIView {
     @IBOutlet weak var secondButton: RoundedButton!
     @IBOutlet weak var thirdButton: RoundedButton!
     @IBOutlet weak var fourthButton: RoundedButton!
+	@IBOutlet weak var fifthButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
     
     private var currentQuestion: Questionnaire!
-    weak var delegate: FourOptionsViewProtocol?
+    weak var delegate: FiveOptionsViewProtocol?
     
     private var selected = 0
     
@@ -38,7 +39,7 @@ class FourOptionsView: UIView {
     }
     
     private func nibSetup() {
-        Bundle.main.loadNibNamed(FourOptionsView.nibName, owner: self)
+        Bundle.main.loadNibNamed(FiveOptionsView.nibName, owner: self)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -47,7 +48,7 @@ class FourOptionsView: UIView {
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
         questionLabel.font = .gothamRoundedBold16
-        questionLabel.numberOfLines = 0
+        questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
@@ -57,7 +58,7 @@ class FourOptionsView: UIView {
             secondButton.setTitle(answerOptions[1].localized(), for: .normal)
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
             fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
-            
+			fifthButton.setTitle(answerOptions[4].localized(), for: .normal)
         }
         
         descriptionLabel.font = .avenirLight14
@@ -73,6 +74,7 @@ class FourOptionsView: UIView {
         secondButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
@@ -81,6 +83,7 @@ class FourOptionsView: UIView {
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didThirdButtonTap(_ sender: UIButton) {
@@ -89,6 +92,7 @@ class FourOptionsView: UIView {
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForDeselection()
         fourthButton.updateButtonForDeselection()
+		fifthButton.updateButtonForDeselection()
     }
     
     @IBAction func didFourthButtonTap(_ sender: UIButton) {
@@ -97,35 +101,28 @@ class FourOptionsView: UIView {
         firstButton.updateButtonForDeselection()
         thirdButton.updateButtonForDeselection()
         secondButton.updateButtonForDeselection()
-        
+		fifthButton.updateButtonForDeselection()
     }
-    
+
+	@IBAction func didFifthButtonTap(_ sender: UIButton) {
+		selected = 5
+		fifthButton.updateButtonForSelection()
+		firstButton.updateButtonForDeselection()
+		thirdButton.updateButtonForDeselection()
+		secondButton.updateButtonForDeselection()
+		fourthButton.updateButtonForDeselection()
+	}
+
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
 
+		print("SELECTED: \(currentQuestion.questionId ?? 0)")
+
 		switch currentQuestion.questionId {
+
 		case FourOptionsQuestionId.childIssue.id:
-			if selected == 1 {
-				delegate?
-					.didSelectNextAction(
-						currentQuestion: currentQuestion,
-						selectedAnswer: .DKAIssue(ChildIssue(id: selected))
-					)
-			} else if selected == 2 {
-				delegate?.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .HighBloodSugar(ChildIssue(id: selected))
-				)
-			} else if selected == 3 {
-				delegate?.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
-				)
-			} else {
-				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
-				)
-			}
+			print("Four options \(selected)")
 		default:
 			break
 		}
