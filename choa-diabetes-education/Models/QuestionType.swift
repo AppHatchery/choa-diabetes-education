@@ -247,9 +247,9 @@ enum TestType {
     
     var description: String {
         switch self {
-        case .pump:
+		case .insulinShots:
             return "Calculator.Que.TestType.option1".localized()
-        case .insulinShots:
+		case .pump:
             return "Calculator.Que.TestType.option2".localized()
         }
     }
@@ -257,11 +257,11 @@ enum TestType {
     init(id: Int) {
         switch id {
         case 1:
-            self = .pump
+			self = .insulinShots
         case 2:
-            self = .insulinShots
+			self = .pump
         default:
-            self = .pump
+			self = .insulinShots
         }
     }
 }
@@ -310,7 +310,51 @@ enum ChildIssue {
 }
 
 enum FiveOptionsAnswer: Equatable {
+	case troubleBreathing(ChildSymptom)
+	case confused(ChildSymptom)
+	case veryTired(ChildSymptom)
+	case vomitedMoreThanOnce(ChildSymptom)
+	case noneOfTheAbove(ChildSymptom)
+}
+
+enum ChildSymptom {
+	case troubleBreathing
+	case confused
+	case veryTired
+	case vomitedMoreThanOnce
 	case noneOfTheAbove
+
+	var description: String {
+		switch self {
+			case .troubleBreathing:
+				return "GetHelp.Que.ChildSymptoms.option1".localized()
+			case .confused:
+				return "GetHelp.Que.ChildSymptoms.option2".localized()
+			case .veryTired:
+				return "GetHelp.Que.ChildSymptoms.option3".localized()
+			case .vomitedMoreThanOnce:
+				return "GetHelp.Que.ChildSymptoms.option4".localized()
+			case .noneOfTheAbove:
+				return "GetHelp.Que.ChildSymptoms.option5".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .troubleBreathing
+		case 2:
+			self = .confused
+		case 3:
+			self = .veryTired
+		case 4:
+			self = .vomitedMoreThanOnce
+		case 5:
+			self = .noneOfTheAbove
+		default:
+			self = .troubleBreathing
+		}
+	}
 }
 
 enum FourOptionsQuestionId {

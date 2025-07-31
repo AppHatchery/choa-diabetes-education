@@ -188,9 +188,9 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
 
 		let manager = QuestionnaireManager.instance
-		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
+//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
 
-		_ = manager.createFourCustomOptionsQuestion(
+		let firstQues = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,
 			question: "GetHelp.Que.ChildIssue.title".localized(),
 			description: nil,

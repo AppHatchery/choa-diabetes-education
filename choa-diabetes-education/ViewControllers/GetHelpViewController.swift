@@ -149,7 +149,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 
 			print("Four options selected answer: \(selectedAnswer)")
-		case .HighBloodSugar(let childIssue):
+		case .HighBloodSugar(_):
 			print("Four options selected answer: \(selectedAnswer)")
 		case .LowBloodSugar(_):
 			print("Four options selected answer: \(selectedAnswer)")
@@ -161,7 +161,23 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer) {
 
-		print("Five options \(selectedAnswer)")
+		switch selectedAnswer {
+		case .noneOfTheAbove(let childSymptom):
+			self.questionnaireManager
+				.triggerNoSymptomsActionFlow(
+					currentQuestion,
+					childSymptom: childSymptom
+				)
+			print("Five options selected answer: \(selectedAnswer)")
+		case .troubleBreathing(_):
+			print("Five options selected answer: \(selectedAnswer)")
+		case .confused(_):
+			print("Five options selected answer: \(selectedAnswer)")
+		case .veryTired(_):
+			print("Five options selected answer: \(selectedAnswer)")
+		case .vomitedMoreThanOnce(_):
+			print("Five options selected answer: \(selectedAnswer)")
+		}
 
 	}
 

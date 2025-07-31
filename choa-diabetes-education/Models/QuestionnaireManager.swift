@@ -27,6 +27,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveKetones(type: KetonesMeasurements)
     func saveCalculationType(_ calculationType: CalculationType)
     var currentMethod: CalculationType { get set }
+	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -89,6 +90,17 @@ extension QuestionnaireManager {
 //			showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
 		default:
 			return
+		}
+	}
+
+	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom) {
+		switch currentQuestion.questionId {
+			case FiveOptionsQuestionId.childHasAnySymptoms.id:
+			let createTestTypeQue = createTwoCustomOptionsQuestion(questionId: .testType, question: "Calculator.Que.TestType.title".localized(), description: nil, answerOptions: [
+				TestType.insulinShots.description, TestType.pump.description])
+			actionsDelegate?.showNextQuestion(createTestTypeQue)
+			default:
+				return
 		}
 	}
 

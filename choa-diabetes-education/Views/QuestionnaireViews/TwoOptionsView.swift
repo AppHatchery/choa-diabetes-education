@@ -10,12 +10,16 @@ protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.YesOrNoFollowUpDelegate {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate {
     
     func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
         self.followUpAnswer = answer
     }
-    
+
+	func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+	}
+
     static let nibName = "TwoOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
