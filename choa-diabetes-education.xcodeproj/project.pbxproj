@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
+		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
+		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
 		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
@@ -174,6 +176,8 @@
 /* Begin PBXFileReference section */
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
+		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
+		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
 		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
 		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
 		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
@@ -658,6 +662,8 @@
 				B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */,
 				B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */,
 				B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */,
+				B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */,
+				B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -787,6 +793,7 @@
 				D450EC1028C1158A0015D823 /* insulin.png in Resources */,
 				D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */,
 				D41D46942984172300825100 /* dairy.png in Resources */,
+				B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */,
 				D4D48E8D28D10FAB00820FD4 /* FoodDiary.xib in Resources */,
 				D4684AA4290B0B6600E7311B /* low_carbs.png in Resources */,
 				D4684AA3290B0B6600E7311B /* rice.png in Resources */,
@@ -909,6 +916,7 @@
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
 				FDC8E5452A2A7717006FDFF0 /* MultipleOptionsView.swift in Sources */,
 				D492A8972901D67900B98CA3 /* SearchResultTableViewCell.swift in Sources */,
+				B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */,
 				D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */,
 				FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */,
 				D4D48E8F28D1122F00820FD4 /* Communities.swift in Sources */,

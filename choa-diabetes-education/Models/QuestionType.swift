@@ -63,7 +63,8 @@ enum YesOrNoQuestionId {
 enum TwoOptionsQuestionId {
     case testType
     case calculationType
-    
+	case measuringType
+
     
     var id: Int {
         switch self {
@@ -71,6 +72,8 @@ enum TwoOptionsQuestionId {
             return 1
         case .calculationType:
             return 2
+		case .measuringType:
+			return 3
         }
     }
     
@@ -80,12 +83,13 @@ enum TwoOptionsQuestionId {
             self = .testType
         case 2:
             self = .calculationType
+		case 3:
+			self = .measuringType
         default:
             self = .testType
         }
     }
 }
-
 
 
 enum OpenEndedWithMultipleInputQuestionId {
@@ -264,6 +268,31 @@ enum TestType {
 			self = .insulinShots
         }
     }
+}
+
+enum MeasuringType {
+	case urineKetone
+	case bloodKetone
+
+	var description: String {
+		switch self {
+		case .urineKetone:
+			return "Calculator.Que.MeasuringType.option1".localized()
+		case .bloodKetone:
+			return "Calculator.Que.MeasuringType.option2".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .urineKetone
+		case 2:
+			self = .bloodKetone
+		default:
+			self = .urineKetone
+		}
+	}
 }
 
 enum FourOptionsAnswer: Equatable {

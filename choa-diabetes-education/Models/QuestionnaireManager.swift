@@ -115,7 +115,10 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
             triggerBloodSugarActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotBloodSugarCheck.id:
-            triggerBloodSugarActionFlow(currentQuestion)
+//            triggerBloodSugarActionFlow(currentQuestion)
+			triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+//			triggerKetonesActionFlow(currentQuestion)
+			print("SHOT BLOOD SUGAR")
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerFullDoseActionFlow()
         default:
@@ -225,7 +228,17 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createQue)
         }
     }
-    
+
+	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire) {
+		let createQue = createTwoCustomOptionsQuestion(questionId: .measuringType, question: "Calculator.Que.KetonesMeasuringType.title".localized(), description: nil, answerOptions: [
+			"Calculator.Que.KetonesMeasuringType.option1".localized(),
+			"Calculator.Que.KetonesMeasuringType.option2".localized()]
+		)
+		actionsDelegate?.showNextQuestion(
+			createQue
+		)
+	}
+
     
     
     func triggerRecheckActionFlow(_ currentQuestion: Questionnaire) {

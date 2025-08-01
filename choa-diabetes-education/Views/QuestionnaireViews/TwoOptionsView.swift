@@ -91,6 +91,22 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         secondButton.updateButtonForDeselection()
         firstButton.updateButtonForSelection()
 		followUpQuestionView.isHidden = true
+
+		switch currentQuestion.questionId {
+		case TwoOptionsQuestionId.testType.id:
+			followUpQuestionView.isHidden = true
+
+		case TwoOptionsQuestionId.measuringType.id:
+			followUpQuestionView.isHidden = false
+
+			print("Current Question: \(currentQuestion.questionId ?? 0)")
+			print("Selected Answer: \(selected)")
+
+			let followUpSubview = UrineKetoneLevelView()
+			followUpQuestionView.addSubview(followUpSubview)
+		default:
+			break
+		}
     }
     
     @IBAction func didSecondButtonTap(_ sender: UIButton) {
@@ -131,6 +147,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
 				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
+		case TwoOptionsQuestionId.measuringType.id:
+			print("Go to final page")
         default:
             break
         
