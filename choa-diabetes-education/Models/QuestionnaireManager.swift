@@ -25,9 +25,11 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveCGM(_ cgm: Bool)
     func saveData(bloodSugar: Int, correctionFactor: Int)
     func saveKetones(type: KetonesMeasurements)
+	func saveUrineKetoneLevel(level: UrineKetoneLevel)
     func saveCalculationType(_ calculationType: CalculationType)
     var currentMethod: CalculationType { get set }
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
+	func showFinalPage(currentQuestion: Questionnaire)
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -43,6 +45,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var bloodSugar: Int = 0
     private(set) var correctionFactor: Int = 0
     private(set) var ketones: KetonesMeasurements?
+	private(set) var urineKetones: UrineKetoneLevel?
 
     private var calculation: Double {
         
@@ -172,7 +175,10 @@ extension QuestionnaireManager {
     func saveKetones(type: KetonesMeasurements) {
         self.ketones = type
     }
-    
+
+	func saveUrineKetoneLevel(level: UrineKetoneLevel) {
+		self.urineKetones = level
+	}
     
     
     
@@ -277,7 +283,11 @@ extension QuestionnaireManager {
         let createQue = createYesOrNoQuestion(questionId: .shotTwentyFourHours, question: "Calculator.Que.ShotTwentyFourHours.title".localized(), description: "Calculator.Que.ShotTwentyFourHours.description".localized(), showDescriptionAtBottom: false)
         actionsDelegate?.showNextQuestion(createQue)
     }
-    
+
+	func showFinalPage(currentQuestion: Questionnaire) {
+		showFinalStage(stage: FinalQuestionId.continueRegularCare, calculation: nil)
+	}
+
     
     
     
@@ -328,8 +338,11 @@ extension QuestionnaireManager {
             let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.NextDose.title".localized(), description: "Calculator.Final.NextDose.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .fullDose:
-            let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.FullDose.title".localized(), description: "Calculator.Final.FullDose.description".localized())
+            let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.FullDose.title".localized(), description: "Calculator.Final.ContinueRegularCare.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
+		case .continueRegularCare:
+			let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.ContinueRegularCare.title".localized(), description: "Calculator.Final.ContinueRegularCare.description".localized())
+			actionsDelegate?.showNextQuestion(finalStepObj)
         }
         
         

@@ -9,11 +9,19 @@ import Foundation
 import UIKit
 
 class UrineKetoneLevelView: UIView {
+	protocol UrineKetoneLevelDelegate: AnyObject {
+		func urineKetoneFollowUpView(_ view: UrineKetoneLevelView, didSelect answer: Int)
+	}
+
 	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var levelButtons: [UIButton]!
 	@IBOutlet var contentView: UIView!
+	@IBOutlet var ketoneLevelButtons: [UIButton]!
 
 	private var currentQuestion: Questionnaire!
+
+	weak var delegate: UrineKetoneLevelDelegate?
+
+	private var selected = 0
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -34,20 +42,35 @@ class UrineKetoneLevelView: UIView {
 
 		addSubview(view)
 	}
+	
+	@IBAction func ketoneLevelButtonTapped(_ sender: UIButton) {
+		let level: UrineKetoneLevel
 
-	func setupView(currentQuestion: Questionnaire) {
-		self.currentQuestion = currentQuestion
-
-		switch currentQuestion.questionId {
-
-		case TwoOptionsQuestionId.testType.id:
-			print("SOME NEWS!")
-		default:
-			break
+		switch sender.tag {
+		case 0: level = .negative
+		case 1: level = .zeroPointFive
+		case 2: level = .onePointFive
+		case 3: level = .four
+		case 4: level = .eight
+		case 5: level = .sixteen
+		default: return
 		}
-	}
 
-	@IBAction func didTapNegativeKetoneLevel(_ sender: Any) {
-		
+		selected = sender.tag + 1
+		delegate?.urineKetoneFollowUpView(self, didSelect: selected)
+		print("Follow up answer FROM URINE KETONE LEVEL VIEW: \(selected)")
+
+		for button in ketoneLevelButtons {
+			button.alpha = (button == sender) ? 1.0 : 0.5
+		}
+
+		switch level {
+		case .negative, .zeroPointFive:
+			print("Level: \(level)")
+		case .onePointFive, .four:
+			print("Level: \(level)")
+		case .eight, .sixteen:
+			print("Level: \(level)")
+		}
 	}
 }

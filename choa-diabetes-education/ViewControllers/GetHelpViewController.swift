@@ -143,6 +143,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         
     }
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
+		print("HERE IS FOLLOW UP ANSWER \(followUpAnswer)")
+		print("Current Question: \(currentQuestion)")
+
+		switch selectedAnswer {
+		case .UrineKetoneLevel(let level):
+			self.questionnaireManager.saveUrineKetoneLevel(level: level)
+			self.questionnaireManager.showFinalPage(currentQuestion: currentQuestion)
+		default:
+			break
+		}
+	}
+
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
 		switch selectedAnswer {
 		case .DKAIssue(let childIssue):
@@ -244,9 +257,4 @@ extension GetHelpViewController: QuestionnaireActionsProtocol {
 
         self.navVC.pushViewController(getHelpViewController, animated: true)
     }
-
-//	func showNextQuestion(_ question: Questionnaire) {
-//		let getHelpViewController = GetHelpViewController(navVC: self.navigationController ?? self.navVC, currentQuestion: question)
-//		self.navVC.pushViewController(getHelpViewController, animated: true)
-//	}
 }

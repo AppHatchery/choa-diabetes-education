@@ -8,9 +8,16 @@ import UIKit
 
 protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate {
+
+	func urineKetoneFollowUpView(_ view: UrineKetoneLevelView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+	}
+
     
     func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
         self.followUpAnswer = answer
@@ -103,7 +110,17 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			print("Selected Answer: \(selected)")
 
 			let followUpSubview = UrineKetoneLevelView()
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 			followUpQuestionView.addSubview(followUpSubview)
+			followUpSubview.delegate = self
+
+			NSLayoutConstraint.activate([
+				followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
+				followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
+			])
+
 		default:
 			break
 		}
@@ -148,15 +165,21 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         case TwoOptionsQuestionId.testType.id:
 				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
 		case TwoOptionsQuestionId.measuringType.id:
-			print("Go to final page")
+			print("Current Question: \(currentQuestion.questionId ?? 0)")
+			print("Selected Answer: \(selected)")
+			print("Follow Up Answer: \(followUpAnswer)")
+
+			guard followUpAnswer != 0 else { return }
+			let answerEnum = UrineKetoneLevel(id: followUpAnswer)
+			delegate?.didSelectNextAction(
+				currentQuestion: currentQuestion,
+				selectedAnswer: .UrineKetoneLevel(answerEnum),
+				followUpAnswer: .UrineKetoneLevel(answerEnum)
+			)
         default:
             break
         
         }
         
     }
-
-	private func resetFollowUpView() {
-		followUpQuestionView.isHidden = true
-	}
 }

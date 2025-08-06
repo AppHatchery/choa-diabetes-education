@@ -154,9 +154,6 @@ enum TwoOptionsDescriptionAtBottomId {
     }
 }
 
-
-
-
 enum FinalQuestionId {
     case firstEmergencyScreen
     case recheckScreen
@@ -167,7 +164,8 @@ enum FinalQuestionId {
     case shot
     case nextDose
     case fullDose
-    
+	case continueRegularCare
+
     var id: Int {
         switch self {
         case .firstEmergencyScreen:
@@ -188,6 +186,8 @@ enum FinalQuestionId {
             return 8
         case .fullDose:
             return 9
+		case .continueRegularCare:
+			return 10
         }
     }
     
@@ -209,6 +209,8 @@ enum FinalQuestionId {
             self = .nextDose
         case 8:
             self = .fullDose
+		case 10:
+			self = .continueRegularCare
         default:
             self = .firstEmergencyScreen
         }
@@ -490,4 +492,36 @@ enum KetonesMeasurements {
             self = .zeroToSmall
         }
     }
+}
+
+enum SixOptionsAnswer: Equatable {
+	case UrineKetoneLevel(UrineKetoneLevel)
+}
+
+enum UrineKetoneLevel {
+	case negative
+	case zeroPointFive
+	case onePointFive
+	case four
+	case eight
+	case sixteen
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .negative
+		case 2:
+			self = .zeroPointFive
+		case 3:
+			self = .onePointFive
+		case 5:
+			self = .four
+		case 6:
+			self = .eight
+		case 7:
+			self = .sixteen
+		default:
+			self = .negative
+		}
+	}
 }
