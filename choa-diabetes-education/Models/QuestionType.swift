@@ -496,6 +496,7 @@ enum KetonesMeasurements {
 
 enum SixOptionsAnswer: Equatable {
 	case UrineKetoneLevel(UrineKetoneLevel)
+	case BloodKetoneLevel(BloodKetoneLevel)
 }
 
 enum UrineKetoneLevel {
@@ -514,14 +515,33 @@ enum UrineKetoneLevel {
 			self = .zeroPointFive
 		case 3:
 			self = .onePointFive
-		case 5:
+		case 4:
 			self = .four
-		case 6:
+		case 5:
 			self = .eight
-		case 7:
+		case 6:
 			self = .sixteen
 		default:
 			self = .negative
+		}
+	}
+}
+
+enum BloodKetoneLevel {
+	case low
+	case moderate
+	case large
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .low
+		case 2:
+			self = .moderate
+		case 3:
+			self = .large
+		default:
+			self = .low
 		}
 	}
 }
