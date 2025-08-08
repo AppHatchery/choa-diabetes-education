@@ -150,7 +150,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.showFinalPage(currentQuestion: currentQuestion)
+			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
 		default:
 			break
 		}
