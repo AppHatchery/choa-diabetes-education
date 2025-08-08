@@ -496,6 +496,9 @@ enum KetonesMeasurements {
 
 enum SixOptionsAnswer: Equatable {
 	case UrineKetoneLevel(UrineKetoneLevel)
+}
+
+enum ThreeOptionsAnswer: Equatable {
 	case BloodKetoneLevel(BloodKetoneLevel)
 }
 
