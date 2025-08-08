@@ -210,13 +210,16 @@ extension QuestionnaireManager {
 		switch level {
 		case .low:
 			// Low blood ketones - continue with normal insulin calculation
-			triggerResultsActionFlow(currentQuestion)
+			// triggerResultsActionFlow(currentQuestion)
+            showFinalPage(currentQuestion: currentQuestion)
 		case .moderate:
 			// Moderate blood ketones - show warning
-			showFinalStage(stage: .endo, calculation: nil)
+			// showFinalStage(stage: .endo, calculation: nil)
+            showFinalPage(currentQuestion: currentQuestion)
 		case .large:
 			// Large blood ketones - emergency situation
-			showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+			// showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+            showFinalPage(currentQuestion: currentQuestion)
 		}
 	}
     

@@ -156,6 +156,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		}
 	}
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?) {
+		print("Blood ketone follow up answer: \(followUpAnswer)")
+		print("Current Question: \(currentQuestion)")
+
+		switch selectedAnswer {
+		case .BloodKetoneLevel(let level):
+			self.questionnaireManager.saveBloodKetoneLevel(level: level)
+			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
+		default:
+			break
+		}
+	}
+
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer) {
 		switch selectedAnswer {
 		case .DKAIssue(let childIssue):
@@ -230,6 +243,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
     
+
 }
 
 extension GetHelpViewController: FinalStepViewProtocol {
