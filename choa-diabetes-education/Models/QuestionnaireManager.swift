@@ -26,9 +26,12 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveData(bloodSugar: Int, correctionFactor: Int)
     func saveKetones(type: KetonesMeasurements)
 	func saveUrineKetoneLevel(level: UrineKetoneLevel)
+    func saveBloodKetoneLevel(level: BloodKetoneLevel)
     func saveCalculationType(_ calculationType: CalculationType)
     var currentMethod: CalculationType { get set }
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
+	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
 	func showFinalPage(currentQuestion: Questionnaire)
 }
 
@@ -46,6 +49,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var correctionFactor: Int = 0
     private(set) var ketones: KetonesMeasurements?
 	private(set) var urineKetones: UrineKetoneLevel?
+	private(set) var bloodKetones: BloodKetoneLevel?
 
     private var calculation: Double {
         
@@ -178,6 +182,45 @@ extension QuestionnaireManager {
 
 	func saveUrineKetoneLevel(level: UrineKetoneLevel) {
 		self.urineKetones = level
+	}
+
+	func saveBloodKetoneLevel(level: BloodKetoneLevel) {
+		self.bloodKetones = level
+	}
+
+	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
+		switch level {
+		case .negative, .zeroPointFive:
+			// Low/negative ketones - continue with normal insulin calculation
+			// triggerResultsActionFlow(currentQuestion)
+            showFinalPage(currentQuestion: currentQuestion)
+            // showFinalStage(stage: .endo, calculation: nil)
+		case .onePointFive, .four:
+			// Moderate ketones - show warning and contact endocrinologist
+			showFinalPage(currentQuestion: currentQuestion)
+            // showFinalStage(stage: .endo, calculation: nil)
+		case .eight, .sixteen:
+			// High ketones - emergency situation
+            showFinalPage(currentQuestion: currentQuestion)
+			// showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+		}
+	}
+
+	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
+		switch level {
+		case .low:
+			// Low blood ketones - continue with normal insulin calculation
+			// triggerResultsActionFlow(currentQuestion)
+            showFinalPage(currentQuestion: currentQuestion)
+		case .moderate:
+			// Moderate blood ketones - show warning
+			// showFinalStage(stage: .endo, calculation: nil)
+            showFinalPage(currentQuestion: currentQuestion)
+		case .large:
+			// Large blood ketones - emergency situation
+			// showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+            showFinalPage(currentQuestion: currentQuestion)
+		}
 	}
     
     

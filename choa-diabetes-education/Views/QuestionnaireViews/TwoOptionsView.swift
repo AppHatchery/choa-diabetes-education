@@ -10,11 +10,17 @@ protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?)
+	
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
 }
 
-class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate, BloodKetoneLevelView.BloodKetoneLevelDelegate {
 
 	func urineKetoneFollowUpView(_ view: UrineKetoneLevelView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+	}
+
+	func bloodKetoneFollowUpView(_ view: BloodKetoneLevelView, didSelect answer: Int) {
 		self.followUpAnswer = answer
 	}
 
@@ -90,6 +96,10 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
 
+			// Clear any existing subviews
+			followUpQuestionView.subviews.forEach { $0.removeFromSuperview() }
+
+			// Show urine ketone level view (first option)
 			let followUpSubview = UrineKetoneLevelView()
 			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 			followUpQuestionView.addSubview(followUpSubview)
@@ -131,6 +141,29 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor).isActive = true
 
 			followUpSubview.setupView(currentQuestion: currentQuestion)
+
+		case TwoOptionsQuestionId.measuringType.id:
+			followUpQuestionView.isHidden = false
+
+			print("Current Question: \(currentQuestion.questionId ?? 0)")
+			print("Selected Answer: \(selected)")
+
+			// Clear any existing subviews
+			followUpQuestionView.subviews.forEach { $0.removeFromSuperview() }
+
+			// Show blood ketone level view (second option)
+			let followUpSubview = BloodKetoneLevelView()
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionView.addSubview(followUpSubview)
+			followUpSubview.delegate = self
+
+			NSLayoutConstraint.activate([
+				followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
+				followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
+			])
+
 		default:
 			followUpQuestionView.isHidden = true
 		}
@@ -151,12 +184,24 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			print("Follow Up Answer: \(followUpAnswer)")
 
 			guard followUpAnswer != 0 else { return }
-			let answerEnum = UrineKetoneLevel(id: followUpAnswer)
-			delegate?.didSelectNextAction(
-				currentQuestion: currentQuestion,
-				selectedAnswer: .UrineKetoneLevel(answerEnum),
-				followUpAnswer: .UrineKetoneLevel(answerEnum)
-			)
+			
+			if selected == 1 {
+				// Urine ketones selected
+				let answerEnum = UrineKetoneLevel(id: followUpAnswer)
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .UrineKetoneLevel(answerEnum),
+					followUpAnswer: .UrineKetoneLevel(answerEnum)
+				)
+			} else if selected == 2 {
+				// Blood ketones selected
+				let answerEnum = BloodKetoneLevel(id: followUpAnswer)
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .BloodKetoneLevel(answerEnum),
+					followUpAnswer: .BloodKetoneLevel(answerEnum)
+				)
+			}
         default:
             break
         

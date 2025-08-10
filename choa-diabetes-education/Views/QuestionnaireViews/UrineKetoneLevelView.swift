@@ -66,11 +66,11 @@ class UrineKetoneLevelView: UIView {
 
 		switch level {
 		case .negative, .zeroPointFive:
-			print("Level: \(level)")
+			print("Level: \(level) - Low/Negative")
 		case .onePointFive, .four:
-			print("Level: \(level)")
+			print("Level: \(level) - Moderate")
 		case .eight, .sixteen:
-			print("Level: \(level)")
+			print("Level: \(level) - High")
 		}
 	}
 }
