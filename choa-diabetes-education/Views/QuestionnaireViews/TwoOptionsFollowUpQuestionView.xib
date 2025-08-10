@@ -16,44 +16,49 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Eh-kU-BbJ">
-                    <rect key="frame" x="28" y="21.999999999999996" width="304" height="53.666666666666657"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="28" y="17.666666666666668" width="304" height="53.666666666666657"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53.666666666666657" id="LVd-bj-6lD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-zK-hMx" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="16" y="103" width="151" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="47" id="JPW-ze-JNQ"/>
-                        <constraint firstAttribute="width" constant="151" id="XaX-wG-Crq"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="Button"/>
-                        </attributedString>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6g-6e-57E" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="16" y="170" width="151" height="47"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="33H-MM-pSJ">
+                    <rect key="frame" x="28" y="87.333333333333329" width="304" height="49.999999999999986"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-zK-hMx" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="139" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="VHw-JA-y76"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Button"/>
+                                </attributedString>
+                            </buttonConfiguration>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6g-6e-57E" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="165" y="0.0" width="139" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="mdt-UM-rlW"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Qfm-zD-KhP"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="F6g-6e-57E" firstAttribute="leading" secondItem="jN8-zK-hMx" secondAttribute="leading" id="9qD-ic-fdx"/>
-                <constraint firstItem="F6g-6e-57E" firstAttribute="leading" secondItem="Qfm-zD-KhP" secondAttribute="leading" constant="16" id="Bm2-qN-784"/>
-                <constraint firstItem="jN8-zK-hMx" firstAttribute="top" secondItem="5Eh-kU-BbJ" secondAttribute="bottom" constant="27.329999999999998" id="Eb1-b7-d7R"/>
-                <constraint firstItem="5Eh-kU-BbJ" firstAttribute="leading" secondItem="dHj-xT-ANu" secondAttribute="leading" constant="28" id="Fho-wa-Eu6"/>
-                <constraint firstItem="jN8-zK-hMx" firstAttribute="leading" secondItem="Qfm-zD-KhP" secondAttribute="leading" constant="16" id="IlO-rM-WUR"/>
-                <constraint firstItem="F6g-6e-57E" firstAttribute="width" secondItem="jN8-zK-hMx" secondAttribute="width" id="TjT-OL-RKR"/>
-                <constraint firstItem="5Eh-kU-BbJ" firstAttribute="top" secondItem="dHj-xT-ANu" secondAttribute="top" constant="22" id="UUd-CW-lod"/>
-                <constraint firstAttribute="trailing" secondItem="5Eh-kU-BbJ" secondAttribute="trailing" constant="28" id="cpZ-Vf-OYf"/>
-                <constraint firstItem="F6g-6e-57E" firstAttribute="height" secondItem="jN8-zK-hMx" secondAttribute="height" id="gbU-TO-Wvd"/>
-                <constraint firstItem="Qfm-zD-KhP" firstAttribute="bottom" secondItem="F6g-6e-57E" secondAttribute="bottom" constant="136" id="sOZ-QQ-qLF"/>
-                <constraint firstItem="F6g-6e-57E" firstAttribute="top" secondItem="jN8-zK-hMx" secondAttribute="bottom" constant="20" id="szo-aD-SbB"/>
+                <constraint firstItem="Qfm-zD-KhP" firstAttribute="trailing" secondItem="33H-MM-pSJ" secondAttribute="trailing" constant="28" id="3xh-L6-cas"/>
+                <constraint firstItem="5Eh-kU-BbJ" firstAttribute="leading" secondItem="dHj-xT-ANu" secondAttribute="leading" constant="28" id="6nb-2p-2yU"/>
+                <constraint firstItem="33H-MM-pSJ" firstAttribute="top" secondItem="5Eh-kU-BbJ" secondAttribute="bottom" constant="16" id="Dm1-st-ZaX"/>
+                <constraint firstAttribute="trailing" secondItem="5Eh-kU-BbJ" secondAttribute="trailing" constant="28" id="S1A-7Y-glV"/>
+                <constraint firstItem="Qfm-zD-KhP" firstAttribute="bottom" secondItem="33H-MM-pSJ" secondAttribute="bottom" constant="215.66666666666666" id="aOb-MZ-khz"/>
+                <constraint firstItem="33H-MM-pSJ" firstAttribute="leading" secondItem="Qfm-zD-KhP" secondAttribute="leading" constant="28" id="cbx-Dg-aow"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="130.53435114503816" y="-192.60563380281693"/>

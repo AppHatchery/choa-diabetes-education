@@ -14,7 +14,6 @@ class FiveOptionsView: UIView {
 	static let nibName = "FiveOptionsView"
 
 	@IBOutlet weak var questionLabel: UILabel!
-	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var firstButton: RoundedButton!
 	@IBOutlet weak var secondButton: RoundedButton!
 	@IBOutlet weak var thirdButton: RoundedButton!
@@ -47,7 +46,7 @@ class FiveOptionsView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
-		questionLabel.font = .gothamRoundedBold16
+		questionLabel.font = .gothamRoundedMedium
 		questionLabel.numberOfLines = 5
 		questionLabel.textColor = .headingGreenColor
 		questionLabel.text = currentQuestion.question
@@ -60,12 +59,6 @@ class FiveOptionsView: UIView {
 			fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
 			fifthButton.setTitle(answerOptions[4].localized(), for: .normal)
 		}
-
-		descriptionLabel.font = .avenirLight14
-		descriptionLabel.numberOfLines = 0
-		descriptionLabel.textColor = .headingGreenColor
-		descriptionLabel.text = currentQuestion.description
-		descriptionLabel.textAlignment = .left
 	}
 
 	@IBAction func didFirstButtonTap(_ sender: UIButton) {

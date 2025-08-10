@@ -8,20 +8,22 @@ import UIKit
 
 protocol FourOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FourOptionsAnswer)
+
+	func didSelectExitAction()
 }
 
 class FourOptionsView: UIView {
     static let nibName = "FourOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var firstButton: RoundedButton!
     @IBOutlet weak var secondButton: RoundedButton!
     @IBOutlet weak var thirdButton: RoundedButton!
     @IBOutlet weak var fourthButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-    
+	@IBOutlet var exitButton: UIButton!
+
     private var currentQuestion: Questionnaire!
     weak var delegate: FourOptionsViewProtocol?
     
@@ -46,9 +48,9 @@ class FourOptionsView: UIView {
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        questionLabel.font = .gothamRoundedBold16
+		questionLabel.font = .gothamRoundedMedium
         questionLabel.numberOfLines = 0
-        questionLabel.textColor = .headingGreenColor
+		questionLabel.textColor = .primaryBlue
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
         
@@ -57,14 +59,7 @@ class FourOptionsView: UIView {
             secondButton.setTitle(answerOptions[1].localized(), for: .normal)
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
             fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
-            
         }
-        
-        descriptionLabel.font = .avenirLight14
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .headingGreenColor
-        descriptionLabel.text = currentQuestion.description
-        descriptionLabel.textAlignment = .left
     }
     
     @IBAction func didFirstButtonTap(_ sender: UIButton) {
@@ -130,4 +125,9 @@ class FourOptionsView: UIView {
 			break
 		}
     }
+
+
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
+	}
 }

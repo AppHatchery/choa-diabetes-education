@@ -31,7 +31,7 @@ open class PrimaryButton: UIButton {
         self.layer.backgroundColor = UIColor.primaryGreenColor.cgColor
         self.titleLabel?.font = UIFont.avenirMedium20
         self.tintColor = UIColor.white
-        self.layer.cornerRadius = self.layer.bounds.height/2
+		self.layer.cornerRadius = 12.0
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowOpacity = 0.1
         self.layer.shadowRadius = 2.0

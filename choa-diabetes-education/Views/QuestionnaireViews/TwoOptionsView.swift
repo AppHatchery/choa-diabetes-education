@@ -30,14 +30,10 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     static let nibName = "TwoOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var firstButton: RoundedButton!
     @IBOutlet weak var secondButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-    
-    @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
 	@IBOutlet var followUpQuestionView: UIView!
 
 	private var currentQuestion: Questionnaire!
@@ -66,7 +62,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        questionLabel.font = .gothamRoundedBold16
+		questionLabel.font = .gothamRoundedMedium
         questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
@@ -76,21 +72,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
             firstButton.setTitle(answerOptions[0], for: .normal)
             secondButton.setTitle(answerOptions[1], for: .normal)
         }
-        
-        guard let description = currentQuestion.description, description != "" else {
-            descriptionLabelTopConstraint.constant = 0
-            descriptionLabel.isHidden = true
-            buttonTopConstraint.constant = 0
-            return
-        }
-        descriptionLabelTopConstraint.constant = 10
-        buttonTopConstraint.constant = 30
-        descriptionLabel.isHidden = false
-        descriptionLabel.font = .avenirLight14
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .headingGreenColor
-        descriptionLabel.text = description
-        descriptionLabel.textAlignment = .left
     }
     
     @IBAction func didFirstButtonTap(_ sender: UIButton) {

@@ -23,55 +23,52 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk2-Yf-S09">
-                    <rect key="frame" x="28" y="21.999999999999996" width="304" height="53.666666666666657"/>
+                    <rect key="frame" x="28" y="21.999999999999996" width="304" height="40.666666666666657"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-2Y-sNo" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="16" y="103" width="151" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="47" id="4Yv-7m-Hds"/>
-                        <constraint firstAttribute="width" constant="151" id="Tdh-8q-cIm"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="Yes">
-                                <attributes>
-                                    <font key="NSFont" size="12" name="Helvetica"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="yesButtonTapped:" destination="-1" eventType="touchUpInside" id="0va-9E-PBn"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2q-ARU" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="16" y="170" width="151" height="47"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="No"/>
-                    <connections>
-                        <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="jX3-l1-Fk6"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13.67" translatesAutoresizingMaskIntoConstraints="NO" id="Yq2-xz-yXe">
+                    <rect key="frame" x="28" y="90" width="304" height="34.333333333333343"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-2Y-sNo" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="145.33333333333334" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Yes">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="yesButtonTapped:" destination="-1" eventType="touchUpInside" id="0va-9E-PBn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2q-ARU" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="159" y="0.0" width="145" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="No"/>
+                            <connections>
+                                <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="jX3-l1-Fk6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="4AI-s6-PfN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="bk2-Yf-S09" firstAttribute="top" secondItem="w4O-O1-DoN" secondAttribute="top" constant="22" id="2Aj-MV-MQ3"/>
-                <constraint firstItem="ayS-2Y-sNo" firstAttribute="leading" secondItem="4AI-s6-PfN" secondAttribute="leading" constant="16" id="E8q-YU-suw"/>
-                <constraint firstItem="Iog-2q-ARU" firstAttribute="width" secondItem="ayS-2Y-sNo" secondAttribute="width" id="R64-yQ-T8W"/>
-                <constraint firstItem="4AI-s6-PfN" firstAttribute="bottom" secondItem="Iog-2q-ARU" secondAttribute="bottom" constant="136" id="UBw-A0-2f8"/>
-                <constraint firstItem="Iog-2q-ARU" firstAttribute="height" secondItem="ayS-2Y-sNo" secondAttribute="height" id="ZQt-wa-7Go"/>
-                <constraint firstItem="bk2-Yf-S09" firstAttribute="leading" secondItem="w4O-O1-DoN" secondAttribute="leading" constant="28" id="ail-oY-q1C"/>
-                <constraint firstItem="Iog-2q-ARU" firstAttribute="leading" secondItem="4AI-s6-PfN" secondAttribute="leading" constant="16" id="dRh-Zg-ls9"/>
-                <constraint firstItem="ayS-2Y-sNo" firstAttribute="top" secondItem="bk2-Yf-S09" secondAttribute="bottom" constant="27.329999999999998" id="dWo-1T-CxN"/>
-                <constraint firstAttribute="trailing" secondItem="bk2-Yf-S09" secondAttribute="trailing" constant="28" id="ij0-c5-3GQ"/>
-                <constraint firstItem="Iog-2q-ARU" firstAttribute="leading" secondItem="ayS-2Y-sNo" secondAttribute="leading" id="pew-Me-xFd"/>
-                <constraint firstItem="Iog-2q-ARU" firstAttribute="top" secondItem="ayS-2Y-sNo" secondAttribute="bottom" constant="20" id="uDk-1j-UMO"/>
+                <constraint firstItem="Yq2-xz-yXe" firstAttribute="leading" secondItem="4AI-s6-PfN" secondAttribute="leading" constant="28" id="4h7-Xp-Eqi"/>
+                <constraint firstAttribute="trailing" secondItem="bk2-Yf-S09" secondAttribute="trailing" constant="28" id="GNw-L9-hBl"/>
+                <constraint firstItem="bk2-Yf-S09" firstAttribute="top" secondItem="w4O-O1-DoN" secondAttribute="top" constant="22" id="GUf-BD-D6w"/>
+                <constraint firstItem="Yq2-xz-yXe" firstAttribute="top" secondItem="bk2-Yf-S09" secondAttribute="bottom" constant="27.329999999999998" id="HUy-xF-cZP"/>
+                <constraint firstItem="4AI-s6-PfN" firstAttribute="trailing" secondItem="Yq2-xz-yXe" secondAttribute="trailing" constant="28" id="YHx-FV-aKK"/>
+                <constraint firstItem="bk2-Yf-S09" firstAttribute="leading" secondItem="w4O-O1-DoN" secondAttribute="leading" constant="28" id="hcL-gx-YWM"/>
+                <constraint firstItem="4AI-s6-PfN" firstAttribute="bottom" secondItem="Yq2-xz-yXe" secondAttribute="bottom" constant="228.66999999999999" id="t6d-vm-RUb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="130.53435114503816" y="-192.60563380281693"/>

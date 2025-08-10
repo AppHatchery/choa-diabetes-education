@@ -15,14 +15,11 @@ class YesOrNoQueView: UIView {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionLabelAtBottom: UILabel!
     @IBOutlet weak var yesButton: RoundedButton!
     @IBOutlet weak var noButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-    
-    @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
+
     private var currentQuestion: Questionnaire!
     weak var delegate: YesOrNoQueViewProtocol?
     
@@ -60,32 +57,12 @@ class YesOrNoQueView: UIView {
         if let currDesctiption = currentQuestion.description, currDesctiption != "" {
             if currentQuestion.showDescriptionAtBottom {
                 
-                descriptionLabelTopConstraint.constant = 0
-                descriptionLabel.isHidden = true
-                buttonTopConstraint.constant = 0
-                
-                descriptionLabelAtBottom.isHidden = false
-                descriptionLabelAtBottom.font = .avenirLight14
-                descriptionLabelAtBottom.numberOfLines = 0
-                descriptionLabelAtBottom.textColor = .headingGreenColor
-                descriptionLabelAtBottom.text = currDesctiption
-                descriptionLabelAtBottom.textAlignment = .left
+                print("Description At Bottom: \(currDesctiption)")
             } else {
-                descriptionLabelAtBottom.isHidden = true
-                descriptionLabelTopConstraint.constant = 10
-                buttonTopConstraint.constant = 30
-                descriptionLabel.isHidden = false
-                descriptionLabel.font = .avenirLight14
-                descriptionLabel.numberOfLines = 0
-                descriptionLabel.textColor = .headingGreenColor
-                descriptionLabel.text = currDesctiption
-                descriptionLabel.textAlignment = .left
+				print("Description At Top: \(currDesctiption)")
             }
         } else {
-            descriptionLabelTopConstraint.constant = 0
-            descriptionLabel.isHidden = true
-            descriptionLabelAtBottom.isHidden = true
-            buttonTopConstraint.constant = 0
+			print("No Description")
         }
     }
     

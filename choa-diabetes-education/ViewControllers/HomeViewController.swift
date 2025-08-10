@@ -42,6 +42,23 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.backgroundColor = UIColor.choaGreenColor
+
+		appearance.titleTextAttributes = [
+			.foregroundColor: UIColor.white,
+			.font: UIFont.gothamRoundedBold16
+		]
+		appearance.largeTitleTextAttributes = [
+			.foregroundColor: UIColor.white,
+			.font: UIFont.gothamRoundedBold16
+		]
+
+		navigationController?.navigationBar.standardAppearance = appearance
+		navigationController?.navigationBar.scrollEdgeAppearance = appearance
+		navigationController?.navigationBar.tintColor = UIColor.white
+
 //        orientationTitleLabel.text = "Home.Orientation.Title".localized()
 //        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
         
@@ -188,7 +205,7 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
 
 		let manager = QuestionnaireManager.instance
-//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
+			//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
 
 		let firstQues = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,

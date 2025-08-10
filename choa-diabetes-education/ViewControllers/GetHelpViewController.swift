@@ -5,7 +5,7 @@
 
 import UIKit
 
-class GetHelpViewController: UITableViewController {
+class GetHelpViewController: UIViewController {
 
     
     
@@ -47,31 +47,39 @@ class GetHelpViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navVC.navigationBar.tintColor = UIColor.choaGreenColor
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.backgroundColor = UIColor.choaGreenColor
+
+		appearance.titleTextAttributes = [
+			.foregroundColor: UIColor.white,
+			.font: UIFont.gothamRoundedBold16
+		]
+		appearance.largeTitleTextAttributes = [
+			.foregroundColor: UIColor.white,
+			.font: UIFont.gothamRoundedBold16
+		]
+
+			// ✅ Make back button (text + arrow) white
+		let backButtonAppearance = UIBarButtonItemAppearance()
+		backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+		appearance.backButtonAppearance = backButtonAppearance
+
+			// Apply appearance
+		navigationController?.navigationBar.standardAppearance = appearance
+		navigationController?.navigationBar.scrollEdgeAppearance = appearance
+		navigationController?.navigationBar.tintColor = UIColor.white // applies to the back icon
+
+
+		self.hidesBottomBarWhenPushed = true
+		navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.gothamRoundedBold]
+
         self.questionnaireManager.actionsDelegate = self
-        let exitBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
-        
-        self.navigationItem.rightBarButtonItem  = exitBarButtonItem
-        
-        self.tableView.sectionHeaderTopPadding = 0.0
-        self.tableView.sectionHeaderHeight = 0.0
-        self.tableView.estimatedSectionHeaderHeight = 0.0
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        
- 
+
         hideAllViews()
         setupViews()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        
-    }
-    
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true
@@ -117,10 +125,6 @@ class GetHelpViewController: UITableViewController {
             
         case .none: break
         }
-    }
-    
-    @objc func closeTapped(_ sender: Any){
-        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -229,7 +233,11 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.saveData(bloodSugar: bloodSugar, correctionFactor: cf)
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
-    
+
+	func didSelectExitAction() {
+		self.navVC.popToRootViewController(animated: true)
+	}
+
 }
 
 extension GetHelpViewController: FinalStepViewProtocol {

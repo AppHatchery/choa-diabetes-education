@@ -8,9 +8,11 @@
 import UIKit
 
 extension UIColor {
-    public static let headingGreenColor = UIColor(named: "headingGreenColor")!
+    public static let headingGreenColor = UIColor(named: "primaryBlue")!
     public static let answerSelectionColor = UIColor(named: "answerSelectionColor")!
     public static let choaGreenColor = UIColor(named: "choaGreenColor")!
+	public static let primaryBlue = UIColor(named: "primaryBlue")!
+	public static let veryLightBlue = UIColor(named: "veryLightBlue")!
     public static let contentBlackColor = UIColor(named: "contentBlackColor")!
     public static let backgroundColor = UIColor(named: "backgroundColor")!
     public static let shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0)
