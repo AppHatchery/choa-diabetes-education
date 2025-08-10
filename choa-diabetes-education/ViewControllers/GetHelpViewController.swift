@@ -5,7 +5,7 @@
 
 import UIKit
 
-class GetHelpViewController: UITableViewController {
+class GetHelpViewController: UIViewController {
 
     
     
@@ -52,12 +52,6 @@ class GetHelpViewController: UITableViewController {
         let exitBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
         
         self.navigationItem.rightBarButtonItem  = exitBarButtonItem
-        
-        self.tableView.sectionHeaderTopPadding = 0.0
-        self.tableView.sectionHeaderHeight = 0.0
-        self.tableView.estimatedSectionHeaderHeight = 0.0
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        
  
         hideAllViews()
         setupViews()
@@ -242,7 +236,10 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.saveData(bloodSugar: bloodSugar, correctionFactor: cf)
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
-    
+
+	func didSelectExitAction() {
+		self.navVC.popToRootViewController(animated: true)
+	}
 
 }
 
