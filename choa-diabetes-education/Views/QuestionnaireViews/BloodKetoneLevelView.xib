@@ -31,12 +31,6 @@
                         <constraint firstAttribute="width" constant="60" id="xBZ-tc-WQL"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Blood Ketone Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcN-GP-dnD">
-                    <rect key="frame" x="68" y="37" width="266" height="23.333333333333329"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" name="primaryBlue"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKI-Dk-had" userLabel="Level Buttons View">
                     <rect key="frame" x="0.0" y="108" width="334" height="49"/>
                     <subviews>
@@ -100,17 +94,23 @@
                         <constraint firstAttribute="trailing" secondItem="kh1-bS-dGD" secondAttribute="trailing" id="l3o-yL-LTh"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Blood Ketone Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcN-GP-dnD">
+                    <rect key="frame" x="68" y="40" width="266" height="23.333333333333329"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" name="primaryBlue"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="KrC-Dd-lT9"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="NKI-Dk-had" secondAttribute="bottom" id="0bl-2x-xjB"/>
                 <constraint firstItem="NKI-Dk-had" firstAttribute="leading" secondItem="KrC-Dd-lT9" secondAttribute="leading" id="1mg-Uo-XXr"/>
+                <constraint firstItem="dcN-GP-dnD" firstAttribute="top" secondItem="euD-h4-rdU" secondAttribute="top" constant="40" id="2wd-DO-Fb8"/>
                 <constraint firstItem="KrC-Dd-lT9" firstAttribute="trailing" secondItem="NKI-Dk-had" secondAttribute="trailing" id="9CT-C0-Yhw"/>
+                <constraint firstItem="kBm-0J-Hak" firstAttribute="top" secondItem="euD-h4-rdU" secondAttribute="top" constant="40" id="At4-WB-Xm4"/>
                 <constraint firstItem="dcN-GP-dnD" firstAttribute="leading" secondItem="kBm-0J-Hak" secondAttribute="trailing" constant="8" symbolic="YES" id="Mey-vt-PS0"/>
                 <constraint firstItem="NKI-Dk-had" firstAttribute="top" secondItem="kBm-0J-Hak" secondAttribute="bottom" constant="8" symbolic="YES" id="eAs-c3-fY6"/>
                 <constraint firstItem="kBm-0J-Hak" firstAttribute="leading" secondItem="euD-h4-rdU" secondAttribute="leading" id="enc-4N-K2o"/>
-                <constraint firstItem="dcN-GP-dnD" firstAttribute="top" secondItem="euD-h4-rdU" secondAttribute="top" constant="37" id="n2h-5C-YSY"/>
                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="dcN-GP-dnD" secondAttribute="trailing" id="xmV-D9-hMG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

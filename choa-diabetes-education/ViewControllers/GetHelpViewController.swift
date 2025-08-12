@@ -45,27 +45,30 @@ class GetHelpViewController: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navVC.navigationBar.tintColor = UIColor.choaGreenColor
-        self.questionnaireManager.actionsDelegate = self
-        let exitBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
-        
-        self.navigationItem.rightBarButtonItem  = exitBarButtonItem
- 
-        hideAllViews()
-        setupViews()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        
-    }
-    
+			// Create appearance with transparent background
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.shadowColor = .clear
+		
+			// Set the tint color on the appearance object itself
+		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+
+			// Apply the appearance
+		navigationController?.navigationBar.standardAppearance = appearance
+		navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+			// IMPORTANT: Set tint color AFTER setting the appearance
+		navigationController?.navigationBar.tintColor = UIColor.black
+
+		self.questionnaireManager.actionsDelegate = self
+		hideAllViews()
+		setupViews()
+	}
+
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true

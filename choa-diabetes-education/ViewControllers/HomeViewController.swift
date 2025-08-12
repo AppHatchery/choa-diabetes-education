@@ -44,20 +44,21 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
-		appearance.backgroundColor = UIColor.choaGreenColor
+		appearance.backgroundColor = UIColor.white
+		appearance.shadowColor = UIColor.clear
 
 		appearance.titleTextAttributes = [
-			.foregroundColor: UIColor.white,
+			.foregroundColor: UIColor.black,
 			.font: UIFont.gothamRoundedBold16
 		]
 		appearance.largeTitleTextAttributes = [
-			.foregroundColor: UIColor.white,
+			.foregroundColor: UIColor.black,
 			.font: UIFont.gothamRoundedBold16
 		]
 
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance
-		navigationController?.navigationBar.tintColor = UIColor.white
+		navigationController?.navigationBar.tintColor = UIColor.black
 
 //        orientationTitleLabel.text = "Home.Orientation.Title".localized()
 //        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()

@@ -12,6 +12,8 @@ protocol TwoOptionsViewProtocol: AnyObject {
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?)
 	
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
+
+	func didSelectExitAction()
 }
 
 class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate, BloodKetoneLevelView.BloodKetoneLevelDelegate {
@@ -208,4 +210,10 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         }
         
     }
+
+
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
+	}
+
 }

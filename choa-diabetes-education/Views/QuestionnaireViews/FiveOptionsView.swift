@@ -8,6 +8,8 @@ import UIKit
 
 protocol FiveOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: FiveOptionsAnswer)
+
+	func didSelectExitAction()
 }
 
 class FiveOptionsView: UIView {
@@ -120,6 +122,11 @@ class FiveOptionsView: UIView {
 			default:
 				break
 		}
+	}
+
+
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
 	}
 }
 

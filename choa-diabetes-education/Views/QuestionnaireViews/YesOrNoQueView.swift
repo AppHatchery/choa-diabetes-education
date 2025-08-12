@@ -8,6 +8,8 @@ import UIKit
 
 protocol YesOrNoQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo)
+
+	func didSelectExitAction()
 }
 
 class YesOrNoQueView: UIView {
@@ -83,4 +85,9 @@ class YesOrNoQueView: UIView {
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
         }
     }
+
+
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
+	}
 }
