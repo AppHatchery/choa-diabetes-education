@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,11 +14,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwoOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="mcN-wV-Tt9" id="lVW-ud-aVY"/>
-                <outlet property="firstButton" destination="lSy-7s-KXz" id="Z06-qN-Vh6"/>
-                <outlet property="followUpQuestionView" destination="1qp-3D-xH1" id="p7H-CZ-L6w"/>
+                <outlet property="firstButtonLabel" destination="PtT-ZT-c86" id="oPs-vu-SES"/>
+                <outlet property="followUpQuestionStackView" destination="gta-fH-YWH" id="YYe-2h-Zbw"/>
                 <outlet property="nextButton" destination="kuU-rn-CP1" id="WMC-2h-7Tx"/>
+                <outlet property="optionsStackView" destination="f3L-Mi-67V" id="laJ-WA-PNq"/>
                 <outlet property="questionLabel" destination="SKw-ag-lAw" id="VOg-aA-dqZ"/>
-                <outlet property="secondButton" destination="6uz-xQ-cF3" id="fXX-Lg-8bj"/>
+                <outlet property="secondButtonLabel" destination="mSD-GN-g7J" id="osn-W1-AZe"/>
+                <outletCollection property="optionButtons" destination="aXH-GO-ZrE" collectionClass="NSMutableArray" id="lpE-H1-Czh"/>
+                <outletCollection property="optionButtons" destination="O44-N8-JUe" collectionClass="NSMutableArray" id="yyf-By-xXU"/>
+                <outletCollection property="optionButtonLabels" destination="PtT-ZT-c86" collectionClass="NSMutableArray" id="I3p-yp-0wU"/>
+                <outletCollection property="optionButtonLabels" destination="mSD-GN-g7J" collectionClass="NSMutableArray" id="mFi-Cy-al4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,102 +31,140 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
-                    <rect key="frame" x="28" y="20" width="337" height="52"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="o4D-r9-j00"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuU-rn-CP1" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                    <rect key="frame" x="241" y="708" width="122" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="122" id="cSc-nx-2jH"/>
-                        <constraint firstAttribute="height" constant="48" id="jni-24-ZeU"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Next"/>
-                    <connections>
-                        <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="l26-J7-mDo"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qp-3D-xH1" userLabel="Follow Up Question View">
-                    <rect key="frame" x="28" y="205.66666666666666" width="337" height="440.66666666666674"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="13.67" translatesAutoresizingMaskIntoConstraints="NO" id="5fr-W9-23O">
-                    <rect key="frame" x="28" y="80" width="337" height="50"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-23-bqq" userLabel="Main Stack View">
+                    <rect key="frame" x="28" y="138" width="337" height="505"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-7s-KXz" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="161.66666666666666" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="rPX-8o-b0A"/>
-                            </constraints>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
+                            <rect key="frame" x="0.0" y="0.0" width="337" height="39.666666666666664"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
+                            <rect key="frame" x="0.0" y="51.666666666666643" width="337" height="192.33333333333337"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
+                                    <rect key="frame" x="0.0" y="0.0" width="337" height="192.33333333333334"/>
+                                    <subviews>
+                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
+                                            <rect key="frame" x="0.0" y="0.0" width="162.66666666666666" height="192.33333333333334"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
+                                                    <rect key="frame" x="10" y="168.00000000000003" width="142.66666666666666" height="14.333333333333343"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
+                                                    <color key="textColor" name="primaryBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_injection" translatesAutoresizingMaskIntoConstraints="NO" id="nEF-zy-IkU">
+                                                    <rect key="frame" x="10" y="5" width="142.66666666666666" height="153"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="veryLightBlue"/>
+                                            <constraints>
+                                                <constraint firstItem="nEF-zy-IkU" firstAttribute="top" secondItem="aXH-GO-ZrE" secondAttribute="top" constant="5" id="1ok-2v-auo"/>
+                                                <constraint firstAttribute="bottom" secondItem="PtT-ZT-c86" secondAttribute="bottom" constant="10" id="3Ln-WM-EWv"/>
+                                                <constraint firstItem="PtT-ZT-c86" firstAttribute="top" secondItem="nEF-zy-IkU" secondAttribute="bottom" constant="10" id="V22-mK-i5h"/>
+                                                <constraint firstAttribute="trailing" secondItem="nEF-zy-IkU" secondAttribute="trailing" constant="10" id="Xin-vZ-KR3"/>
+                                                <constraint firstItem="PtT-ZT-c86" firstAttribute="top" secondItem="nEF-zy-IkU" secondAttribute="bottom" constant="10" id="ePm-30-VtX"/>
+                                                <constraint firstItem="PtT-ZT-c86" firstAttribute="leading" secondItem="aXH-GO-ZrE" secondAttribute="leading" constant="10" id="hq9-AK-nzi"/>
+                                                <constraint firstAttribute="trailing" secondItem="PtT-ZT-c86" secondAttribute="trailing" constant="10" id="s0y-hN-quS"/>
+                                                <constraint firstItem="nEF-zy-IkU" firstAttribute="leading" secondItem="aXH-GO-ZrE" secondAttribute="leading" constant="10" id="yb6-eH-DgH"/>
+                                            </constraints>
+                                        </view>
+                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O44-N8-JUe" userLabel="Button View">
+                                            <rect key="frame" x="174.66666666666663" y="0.0" width="162.33333333333337" height="192.33333333333334"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
+                                                    <rect key="frame" x="10" y="168.00000000000003" width="142.33333333333334" height="14.333333333333343"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
+                                                    <color key="textColor" name="primaryBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="umB-35-JSo">
+                                                    <rect key="frame" x="10" y="5" width="142.33333333333334" height="153"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="veryLightBlue"/>
+                                            <constraints>
+                                                <constraint firstItem="mSD-GN-g7J" firstAttribute="top" secondItem="umB-35-JSo" secondAttribute="bottom" constant="10" id="39L-wc-f22"/>
+                                                <constraint firstAttribute="trailing" secondItem="mSD-GN-g7J" secondAttribute="trailing" constant="10" id="5qI-Yf-5rK"/>
+                                                <constraint firstItem="umB-35-JSo" firstAttribute="leading" secondItem="O44-N8-JUe" secondAttribute="leading" constant="10" id="CJ2-q1-QWR"/>
+                                                <constraint firstAttribute="bottom" secondItem="mSD-GN-g7J" secondAttribute="bottom" constant="10" id="DdR-3m-Qko"/>
+                                                <constraint firstAttribute="trailing" secondItem="umB-35-JSo" secondAttribute="trailing" constant="10" id="QRU-K4-ZDi"/>
+                                                <constraint firstItem="umB-35-JSo" firstAttribute="top" secondItem="O44-N8-JUe" secondAttribute="top" constant="5" id="Y7Y-Us-oOz"/>
+                                                <constraint firstItem="mSD-GN-g7J" firstAttribute="leading" secondItem="O44-N8-JUe" secondAttribute="leading" constant="10" id="ZQJ-ml-CeY"/>
+                                                <constraint firstItem="mSD-GN-g7J" firstAttribute="top" secondItem="umB-35-JSo" secondAttribute="bottom" constant="10" id="gM3-Bg-ttf"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
+                            <rect key="frame" x="0.0" y="256" width="337" height="249"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="gta-fH-YWH" secondAttribute="bottom" id="BGU-Eb-WWf"/>
+                        <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="DUu-Jn-cXj"/>
+                        <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="IY1-be-iJa"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-GV-ImM" userLabel="Nav Buttons Stack View">
+                    <rect key="frame" x="28" y="708" width="337" height="48"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDd-Te-DOC">
+                            <rect key="frame" x="0.0" y="0.0" width="163.66666666666666" height="48"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="6" titleAlignment="center">
+                                <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                <color key="baseForegroundColor" name="primaryGreen"/>
+                            </buttonConfiguration>
                             <connections>
-                                <action selector="didFirstButtonTap:" destination="-1" eventType="touchUpInside" id="XFF-bu-Blf"/>
+                                <action selector="didTapExitButton:" destination="-1" eventType="touchUpInside" id="flY-ZS-zB5"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uz-xQ-cF3" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="175.33333333333337" y="0.0" width="161.66666666666663" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuU-rn-CP1" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="173.66666666666663" y="0.0" width="163.33333333333337" height="48"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="EXL-I3-uA7"/>
+                                <constraint firstAttribute="height" constant="48" id="jni-24-ZeU"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Next"/>
                             <connections>
-                                <action selector="didSecondButtonTap:" destination="-1" eventType="touchUpInside" id="meu-4f-2uN"/>
+                                <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="l26-J7-mDo"/>
                             </connections>
                         </button>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDd-Te-DOC">
-                    <rect key="frame" x="16" y="708" width="138" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="sQC-F7-dVT"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="6" titleAlignment="center">
-                        <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                        <color key="baseForegroundColor" name="primaryGreen"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="didTapExitButton:" destination="-1" eventType="touchUpInside" id="flY-ZS-zB5"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Jc5-Vg-BvI"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="1qp-3D-xH1" firstAttribute="top" relation="lessThanOrEqual" secondItem="5fr-W9-23O" secondAttribute="bottom" constant="41.666666666666657" id="2XG-f0-Fwm"/>
-                <constraint firstItem="1qp-3D-xH1" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="28" id="6rb-uH-q1k"/>
-                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="trailing" secondItem="5fr-W9-23O" secondAttribute="trailing" constant="28" id="8DJ-VJ-JWe"/>
-                <constraint firstAttribute="trailing" secondItem="SKw-ag-lAw" secondAttribute="trailing" constant="28" id="AdS-ob-kHa"/>
-                <constraint firstItem="wDd-Te-DOC" firstAttribute="width" secondItem="kuU-rn-CP1" secondAttribute="width" multiplier="1.13115" id="BGr-ho-7Pf"/>
-                <constraint firstItem="SKw-ag-lAw" firstAttribute="leading" secondItem="mcN-wV-Tt9" secondAttribute="leading" constant="28" id="PSN-AJ-AhZ"/>
-                <constraint firstItem="wDd-Te-DOC" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="16" id="TSb-lB-Egb"/>
-                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="bottom" secondItem="wDd-Te-DOC" secondAttribute="bottom" constant="28" id="VdP-Sp-6X5"/>
-                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="trailing" secondItem="1qp-3D-xH1" secondAttribute="trailing" constant="28" id="aZa-GW-gIT"/>
-                <constraint firstItem="kuU-rn-CP1" firstAttribute="leading" secondItem="wDd-Te-DOC" secondAttribute="trailing" constant="87" id="cFz-bR-Jv9"/>
-                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="trailing" secondItem="kuU-rn-CP1" secondAttribute="trailing" constant="30" id="i0w-aV-Nqp"/>
-                <constraint firstItem="SKw-ag-lAw" firstAttribute="top" secondItem="mcN-wV-Tt9" secondAttribute="top" constant="20" id="ibJ-g9-5D3"/>
-                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="bottom" secondItem="kuU-rn-CP1" secondAttribute="bottom" constant="28" id="jiM-Eb-gBH"/>
-                <constraint firstItem="kuU-rn-CP1" firstAttribute="top" secondItem="1qp-3D-xH1" secondAttribute="bottom" constant="61.666666666666657" id="m0F-66-euz"/>
-                <constraint firstItem="5fr-W9-23O" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="28" id="nIh-Oh-Ctv"/>
-                <constraint firstItem="1qp-3D-xH1" firstAttribute="centerY" secondItem="mcN-wV-Tt9" secondAttribute="centerY" id="v5s-vO-vtk"/>
-                <constraint firstItem="5fr-W9-23O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SKw-ag-lAw" secondAttribute="bottom" constant="8" id="yVT-sJ-2I3"/>
+                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="trailing" secondItem="bXi-GV-ImM" secondAttribute="trailing" constant="28" id="IA6-dN-vCn"/>
+                <constraint firstItem="tGn-23-bqq" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="28" id="KL3-nN-No3"/>
+                <constraint firstItem="tGn-23-bqq" firstAttribute="top" secondItem="Jc5-Vg-BvI" secondAttribute="top" constant="20" id="TFr-ry-D6E"/>
+                <constraint firstItem="bXi-GV-ImM" firstAttribute="top" secondItem="tGn-23-bqq" secondAttribute="bottom" priority="999" constant="65" id="j3N-rS-FbT"/>
+                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="bottom" secondItem="bXi-GV-ImM" secondAttribute="bottom" constant="28" id="nRy-VA-Ogp"/>
+                <constraint firstItem="bXi-GV-ImM" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="28" id="oPq-U5-oba"/>
+                <constraint firstAttribute="trailing" secondItem="tGn-23-bqq" secondAttribute="trailing" constant="28" id="ugh-al-rhT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="50.381679389312978" y="-143.3098591549296"/>
+            <point key="canvasLocation" x="49.618320610687022" y="-143.66197183098592"/>
         </view>
     </objects>
     <resources>
+        <image name="insulin_injection" width="153" height="153"/>
+        <image name="insulin_pump" width="153" height="153"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryGreen">
             <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightBlue">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

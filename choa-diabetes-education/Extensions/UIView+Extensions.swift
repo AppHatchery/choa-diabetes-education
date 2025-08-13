@@ -39,7 +39,30 @@ extension UIView {
         layer.shadowColor = color
         layer.masksToBounds = false
     }
-    
+
+	func roundedCorners(corners: UIRectCorner, radius: CGFloat) {
+		let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+		let shape = CAShapeLayer()
+		shape.path = maskPath.cgPath
+		layer.mask = shape
+	}
+
+	func updateViewForSelection() {
+		self.backgroundColor = .answerSelectionColor
+		self.layer.borderColor = UIColor.primaryBlue.cgColor
+//		self.layer.borderWidth = 1.0
+		self.layer.cornerRadius = 8.0
+		self.layer.masksToBounds = true
+	}
+
+	func updateViewForDeselection() {
+		self.backgroundColor = .veryLightBlue
+		self.layer.borderColor = UIColor.clear.cgColor
+//		self.layer.borderWidth = 1.0
+		self.layer.cornerRadius = 8.0
+		self.layer.masksToBounds = true
+	}
+
     // MARK: - load from nibs
     class func instantiateFromNib<T: UIView>(viewType: T.Type, owner: AnyObject!) -> T? {
         if let url = NSURL(string: NSStringFromClass(viewType)) {

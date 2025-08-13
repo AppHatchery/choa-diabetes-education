@@ -16,13 +16,18 @@ class FiveOptionsView: UIView {
 	static let nibName = "FiveOptionsView"
 
 	@IBOutlet weak var questionLabel: UILabel!
-	@IBOutlet weak var firstButton: RoundedButton!
-	@IBOutlet weak var secondButton: RoundedButton!
-	@IBOutlet weak var thirdButton: RoundedButton!
-	@IBOutlet weak var fourthButton: RoundedButton!
-	@IBOutlet weak var fifthButton: RoundedButton!
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var nextButton: PrimaryButton!
+
+	@IBOutlet var optionButtons: [UIView]!
+	@IBOutlet var optionButtonLabels: [UILabel]!
+
+	@IBOutlet var firstButtonLabel: UILabel!
+	@IBOutlet var secondButtonLabel: UILabel!
+	@IBOutlet var thirdButtonLabel: UILabel!
+	@IBOutlet var fourthButtonLabel: UILabel!
+	@IBOutlet var fifthButtonLabel: UILabel!
+
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FiveOptionsViewProtocol?
@@ -54,58 +59,41 @@ class FiveOptionsView: UIView {
 		questionLabel.text = currentQuestion.question
 		questionLabel.textAlignment = .left
 
+		optionButtons.forEach {
+			$0.layer.cornerRadius = 8
+		}
+
+		for (index, view) in optionButtons.enumerated() {
+			view.isUserInteractionEnabled = true
+			let tap = UITapGestureRecognizer(target: self, action: #selector(optionButtonViewTapped(_:)))
+			view.addGestureRecognizer(tap)
+			view.tag = index
+		}
+
 		if let answerOptions = currentQuestion.answerOptions {
-			firstButton.setTitle(answerOptions[0].localized(), for: .normal)
-			secondButton.setTitle(answerOptions[1].localized(), for: .normal)
-			thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
-			fourthButton.setTitle(answerOptions[3].localized(), for: .normal)
-			fifthButton.setTitle(answerOptions[4].localized(), for: .normal)
+			firstButtonLabel.text = answerOptions[0].localized()
+			secondButtonLabel.text = answerOptions[1].localized()
+			thirdButtonLabel.text = answerOptions[2].localized()
+			fourthButtonLabel.text = answerOptions[3].localized()
+			fifthButtonLabel.text = answerOptions[4].localized()
 		}
 	}
 
-	@IBAction func didFirstButtonTap(_ sender: UIButton) {
-		selected = 1
-		firstButton.updateButtonForSelection()
-		secondButton.updateButtonForDeselection()
-		thirdButton.updateButtonForDeselection()
-		fourthButton.updateButtonForDeselection()
-		fifthButton.updateButtonForDeselection()
-	}
+	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
+		guard let tappedView = sender.view else { return }
 
-	@IBAction func didSecondButtonTap(_ sender: UIButton) {
-		selected = 2
-		secondButton.updateButtonForSelection()
-		firstButton.updateButtonForDeselection()
-		thirdButton.updateButtonForDeselection()
-		fourthButton.updateButtonForDeselection()
-		fifthButton.updateButtonForDeselection()
-	}
-
-	@IBAction func didThirdButtonTap(_ sender: UIButton) {
-		selected = 3
-		thirdButton.updateButtonForSelection()
-		secondButton.updateButtonForDeselection()
-		firstButton.updateButtonForDeselection()
-		fourthButton.updateButtonForDeselection()
-		fifthButton.updateButtonForDeselection()
-	}
-
-	@IBAction func didFourthButtonTap(_ sender: UIButton) {
-		selected = 4
-		fourthButton.updateButtonForSelection()
-		firstButton.updateButtonForDeselection()
-		thirdButton.updateButtonForDeselection()
-		secondButton.updateButtonForDeselection()
-		fifthButton.updateButtonForDeselection()
-	}
-
-	@IBAction func didFifthButtonTap(_ sender: UIButton) {
-		selected = 5
-		fifthButton.updateButtonForSelection()
-		firstButton.updateButtonForDeselection()
-		thirdButton.updateButtonForDeselection()
-		secondButton.updateButtonForDeselection()
-		fourthButton.updateButtonForDeselection()
+			// Loop through all views & labels
+		for (index, view) in optionButtons.enumerated() {
+			let label = optionButtonLabels[index]
+			if index == tappedView.tag {
+				selected = index + 1
+				view.updateViewForSelection()
+				label.updateLabelForSelection()
+			} else {
+				view.updateViewForDeselection()
+				label.updateLabelForDeselection()
+			}
+		}
 	}
 
 

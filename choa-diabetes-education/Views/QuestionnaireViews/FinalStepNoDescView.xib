@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepNoDescView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="yH8-bJ-MN6" id="pru-2m-oAL"/>
+                <outlet property="doneButton" destination="LQZ-yt-N2K" id="maY-1K-8IB"/>
+                <outlet property="finalButton" destination="LQZ-yt-N2K" id="gqs-cq-gNH"/>
+                <outlet property="finalImage" destination="Ua4-Ot-rkW" id="p1T-rK-UKu"/>
+                <outlet property="titleLabel" destination="wRD-A1-AHg" id="rKH-fe-KRT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yH8-bJ-MN6">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRD-A1-AHg">
+                    <rect key="frame" x="28" y="146" width="337" height="20"/>
+                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                    <color key="textColor" name="choaGreenColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="Ua4-Ot-rkW">
+                    <rect key="frame" x="28" y="256" width="337" height="401"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-yt-N2K">
+                    <rect key="frame" x="159" y="690" width="75" height="36"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q44-JH-esr"/>
+            <color key="backgroundColor" name="lightGreenColor"/>
+            <constraints>
+                <constraint firstItem="wRD-A1-AHg" firstAttribute="top" secondItem="Q44-JH-esr" secondAttribute="top" constant="28" id="Al4-J0-j6p"/>
+                <constraint firstItem="LQZ-yt-N2K" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="159" id="JXj-qx-yp3"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="wRD-A1-AHg" secondAttribute="trailing" constant="28" id="Mep-DO-AL0"/>
+                <constraint firstItem="wRD-A1-AHg" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="Tqs-yX-VYv"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="LQZ-yt-N2K" secondAttribute="trailing" constant="159" id="VGX-6M-FeJ"/>
+                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="wRD-A1-AHg" secondAttribute="bottom" constant="90" id="f5R-ex-WhK"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="Ua4-Ot-rkW" secondAttribute="trailing" constant="28" id="jwm-2a-a7H"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="LQZ-yt-N2K" secondAttribute="bottom" constant="58" id="nrC-cW-rRS"/>
+                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="oVJ-xN-Ony"/>
+                <constraint firstItem="LQZ-yt-N2K" firstAttribute="top" secondItem="Ua4-Ot-rkW" secondAttribute="bottom" constant="33" id="ty9-4J-IEC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="226.71755725190837" y="41.549295774647888"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="hope_normal_care" width="276" height="401"/>
+        <namedColor name="choaGreenColor">
+            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreenColor">
+            <color red="0.95294117647058818" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -21,4 +21,12 @@ extension UILabel
         
         return label.frame.height
     }
+
+	func updateLabelForSelection() {
+		self.textColor = .white
+	}
+
+	func updateLabelForDeselection() {
+		self.textColor = .primaryBlue
+	}
 }

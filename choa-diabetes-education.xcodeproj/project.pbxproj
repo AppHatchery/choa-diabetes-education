@@ -19,6 +19,9 @@
 		B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */; };
 		B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */; };
 		B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */; };
+		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
+		B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */; };
+		B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */; };
 		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
 		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
 		B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */; };
@@ -192,6 +195,9 @@
 		B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
 		B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodKetoneLevelView.swift; sourceTree = "<group>"; };
 		B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BloodKetoneLevelView.xib; sourceTree = "<group>"; };
+		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
+		B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepNoDescView.xib; sourceTree = "<group>"; };
+		B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonWithImage.swift; sourceTree = "<group>"; };
 		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
 		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
 		B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpView.xib; sourceTree = "<group>"; };
@@ -661,6 +667,7 @@
 			children = (
 				FDC8E5322A27B735006FDFF0 /* RoundedButton.swift */,
 				FDC8E5352A27C12E006FDFF0 /* PrimaryButton.swift */,
+				B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -690,6 +697,8 @@
 				B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */,
 				B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */,
 				B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */,
+				B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */,
+				B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -787,6 +796,7 @@
 				FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
 				D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */,
+				B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */,
 				D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */,
 				D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
@@ -938,6 +948,7 @@
 				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,
 				FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
+				B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
@@ -969,6 +980,7 @@
 				FDC8E52B2A204974006FDFF0 /* Questionnaire.swift in Sources */,
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
+				B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

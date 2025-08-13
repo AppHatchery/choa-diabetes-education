@@ -38,11 +38,17 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     static let nibName = "TwoOptionsView"
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var firstButton: RoundedButton!
-    @IBOutlet weak var secondButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-	@IBOutlet var followUpQuestionView: UIView!
+
+	@IBOutlet var optionButtons: [UIView]!
+	@IBOutlet var optionButtonLabels: [UILabel]!
+
+	@IBOutlet var firstButtonLabel: UILabel!
+	@IBOutlet var secondButtonLabel: UILabel!
+
+	@IBOutlet var followUpQuestionStackView: UIStackView!
+	@IBOutlet var optionsStackView: UIStackView!
 
 	private var currentQuestion: Questionnaire!
 	private var followUpQuestion: Questionnaire?
@@ -50,7 +56,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     
     private var selected = 0
     private var followUpAnswer = 0
-    
+
+	private var followUpSubview = TwoOptionsFollowUpQuestionView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         nibSetup()
@@ -75,99 +83,114 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
-        
-        if let answerOptions = currentQuestion.answerOptions {
-            firstButton.setTitle(answerOptions[0], for: .normal)
-            secondButton.setTitle(answerOptions[1], for: .normal)
-        }
-    }
-    
-    @IBAction func didFirstButtonTap(_ sender: UIButton) {
-        selected = 1
-        secondButton.updateButtonForDeselection()
-        firstButton.updateButtonForSelection()
-		followUpQuestionView.isHidden = true
 
+		optionButtons.forEach {
+			$0.layer.cornerRadius = 8
+		}
+
+		for (index, view) in optionButtons.enumerated() {
+			view.isUserInteractionEnabled = true
+			let tap = UITapGestureRecognizer(target: self, action: #selector(optionButtonViewTapped(_:)))
+			view.addGestureRecognizer(tap)
+			view.tag = index
+		}
+
+		if let answerOptions = currentQuestion.answerOptions {
+			firstButtonLabel.text = answerOptions[0].localized()
+			secondButtonLabel.text = answerOptions[1].localized()
+		}
+    }
+
+	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
+		guard let tappedView = sender.view else { return }
+
+			// Loop through all views & labels
+		for (index, view) in optionButtons.enumerated() {
+			let label = optionButtonLabels[index]
+			if index == tappedView.tag {
+				selected = index + 1
+				view.updateViewForSelection()
+				label.updateLabelForSelection()
+			} else {
+				view.updateViewForDeselection()
+				label.updateLabelForDeselection()
+			}
+		}
+
+		if selected == 1 {
+			didFirstButtonTap()
+		} else if selected == 2 {
+			didSecondButtonTap()
+		}
+	}
+
+	func didFirstButtonTap() {
 		switch currentQuestion.questionId {
 		case TwoOptionsQuestionId.testType.id:
-			followUpQuestionView.isHidden = true
+
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
 		case TwoOptionsQuestionId.measuringType.id:
-			followUpQuestionView.isHidden = false
 
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
 
 			// Clear any existing subviews
-			followUpQuestionView.subviews.forEach { $0.removeFromSuperview() }
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
 			// Show urine ketone level view (first option)
 			let followUpSubview = UrineKetoneLevelView()
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpQuestionView.addSubview(followUpSubview)
-			followUpSubview.delegate = self
 
-			NSLayoutConstraint.activate([
-				followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
-				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
-				followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
-			])
-
+			if followUpSubview.isDescendant(of: followUpQuestionStackView) {
+				return
+			} else {
+				followUpQuestionStackView.addArrangedSubview(followUpSubview)
+				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+				followUpSubview.delegate = self
+			}
 		default:
 			break
 		}
     }
-    
-    @IBAction func didSecondButtonTap(_ sender: UIButton) {
-        selected = 2
-        secondButton.updateButtonForSelection()
-        firstButton.updateButtonForDeselection()
 
+	func didSecondButtonTap() {
 		switch currentQuestion.questionId {
 
 		case TwoOptionsQuestionId.testType.id:
-			followUpQuestionView.isHidden = false
+				//			followUpQuestionView.isHidden = false
 
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
-			let followUpSubview = TwoOptionsFollowUpQuestionView()
+
+			followUpSubview = TwoOptionsFollowUpQuestionView()
+
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
 			followUpSubview.delegate = self
-
-			followUpQuestionView.addSubview(followUpSubview)
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor).isActive = true
-			followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor).isActive = true
-			followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor).isActive = true
-			followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor).isActive = true
-
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 		case TwoOptionsQuestionId.measuringType.id:
-			followUpQuestionView.isHidden = false
 
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
 
-			// Clear any existing subviews
-			followUpQuestionView.subviews.forEach { $0.removeFromSuperview() }
+				// Clear any existing subviews
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-			// Show blood ketone level view (second option)
+				// Show blood ketone level view (second option)
 			let followUpSubview = BloodKetoneLevelView()
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpQuestionView.addSubview(followUpSubview)
-			followUpSubview.delegate = self
 
-			NSLayoutConstraint.activate([
-				followUpSubview.topAnchor.constraint(equalTo: followUpQuestionView.topAnchor),
-				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionView.trailingAnchor),
-				followUpSubview.bottomAnchor.constraint(equalTo: followUpQuestionView.bottomAnchor)
-			])
+			if followUpQuestionStackView.subviews.contains(followUpSubview) {
+				return
+			} else {
+				followUpQuestionStackView.addArrangedSubview(followUpSubview)
+				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+				followUpSubview.delegate = self
+			}
 
 		default:
-			followUpQuestionView.isHidden = true
+			break
 		}
     }
     

@@ -1,12 +1,14 @@
 //
-//  UIButton+Extensions.swift
+//  RoundedButtonWithImage.swift
 //  choa-diabetes-education
+//
+//  Created by Maxwell Kapezi Jr on 13/08/2025.
 //
 
 import Foundation
 import UIKit
 
-open class RoundedButton: UIButton {
+open class RoundedButtonWithImage: UIButton {
 
 	required public override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -39,8 +41,8 @@ open class RoundedButton: UIButton {
 	public func updateButtonForSelection() {
 		self.layer.masksToBounds = true
 		self.isSelected = true
-//		self.layer.borderColor = UIColor.choaGreenColor.cgColor
-//		self.layer.borderWidth = 1
+			//		self.layer.borderColor = UIColor.choaGreenColor.cgColor
+			//		self.layer.borderWidth = 1
 		self.layer.backgroundColor = UIColor.primaryBlue.cgColor
 		self.tintColor = UIColor.white
 		self.layer.cornerRadius = 10

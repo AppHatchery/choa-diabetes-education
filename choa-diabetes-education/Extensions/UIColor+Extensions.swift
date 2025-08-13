@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     public static let headingGreenColor = UIColor(named: "primaryBlue")!
-    public static let answerSelectionColor = UIColor(named: "answerSelectionColor")!
+    public static let answerSelectionColor = UIColor(named: "primaryBlue")!
     public static let choaGreenColor = UIColor(named: "choaGreenColor")!
 	public static let primaryBlue = UIColor(named: "primaryBlue")!
 	public static let veryLightBlue = UIColor(named: "veryLightBlue")!

@@ -17,10 +17,12 @@ class TwoOptionsFollowUpQuestionView: UIView {
 		func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int)
 	}
 
-	private var questionLabel: UILabel!
+
+	@IBOutlet var questionLabel: UILabel!
 		// Please note that this will also be for TwoOption type questions so the yes/no buttons shouldn't restrict the question type
-	private var option1Button: RoundedButton!
-	private var option2Button: RoundedButton!
+	@IBOutlet var option1Button: RoundedButton!
+	@IBOutlet var option2Button: RoundedButton!
+
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: TwoOptionsFollowUpDelegate?
@@ -30,52 +32,22 @@ class TwoOptionsFollowUpQuestionView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		setupUI()
+		loadFromNib()
 	}
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		setupUI()
+		loadFromNib()
 	}
 
-	private func setupUI() {
-		questionLabel = UILabel()
-		questionLabel.translatesAutoresizingMaskIntoConstraints = false
-		questionLabel.numberOfLines = 0
-		questionLabel.textAlignment = .left
-		addSubview(questionLabel)
+	private func loadFromNib() {
+		let bundle = Bundle(for: type(of: self))
+		let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+		guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+			return
+		}
 
-		option1Button = RoundedButton()
-		option1Button.translatesAutoresizingMaskIntoConstraints = false
-		option1Button.addTarget(self, action: #selector(option1Tapped), for: .touchUpInside)
-		addSubview(option1Button)
-
-		option2Button = RoundedButton()
-		option2Button.translatesAutoresizingMaskIntoConstraints = false
-		option2Button.addTarget(self, action: #selector(option2Tapped), for: .touchUpInside)
-		addSubview(option2Button)
-
-		setupConstraints()
-	}
-
-	private func setupConstraints() {
-		NSLayoutConstraint.activate([
-			questionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-			questionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			questionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
-			option1Button.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 0),
-			option1Button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			option1Button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-			option1Button.heightAnchor.constraint(equalToConstant: 44),
-
-			option2Button.topAnchor.constraint(equalTo: option1Button.bottomAnchor, constant: 8),
-			option2Button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			option2Button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-			option2Button.heightAnchor.constraint(equalToConstant: 44),
-
-			bottomAnchor.constraint(equalTo: option2Button.bottomAnchor, constant: 8)
-		])
+		addSubview(view)
 	}
 
 	@objc private func option1Tapped() {
