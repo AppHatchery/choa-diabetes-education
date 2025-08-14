@@ -100,14 +100,17 @@
                                 </stackView>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
                             <rect key="frame" x="0.0" y="256" width="337" height="249"/>
                         </stackView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="2lP-nq-I9H"/>
                         <constraint firstAttribute="bottom" secondItem="gta-fH-YWH" secondAttribute="bottom" id="BGU-Eb-WWf"/>
+                        <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="CKU-tn-KKY"/>
                         <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="DUu-Jn-cXj"/>
                         <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="IY1-be-iJa"/>
+                        <constraint firstAttribute="bottom" secondItem="gta-fH-YWH" secondAttribute="bottom" id="aGC-vz-DU1"/>
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-GV-ImM" userLabel="Nav Buttons Stack View">

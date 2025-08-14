@@ -16,7 +16,7 @@ protocol TwoOptionsViewProtocol: AnyObject {
 	func didSelectExitAction()
 }
 
-class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate, BloodKetoneLevelView.BloodKetoneLevelDelegate {
+class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate, BloodKetoneLevelView.BloodKetoneLevelDelegate, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 
 	func urineKetoneFollowUpView(_ view: UrineKetoneLevelView, didSelect answer: Int) {
 		self.followUpAnswer = answer
@@ -57,7 +57,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     private var selected = 0
     private var followUpAnswer = 0
 
-	private var followUpSubview = TwoOptionsFollowUpQuestionView()
+	private var followUpSubview = YesOrNoFollowUpView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -145,8 +145,10 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				return
 			} else {
 				followUpQuestionStackView.addArrangedSubview(followUpSubview)
-				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+
 				followUpSubview.delegate = self
+
+				followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
 			}
 		default:
 			break
@@ -157,17 +159,21 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		switch currentQuestion.questionId {
 
 		case TwoOptionsQuestionId.testType.id:
-				//			followUpQuestionView.isHidden = false
+				// followUpQuestionView.isHidden = false
 
 			print("Current Question: \(currentQuestion.questionId ?? 0)")
 			print("Selected Answer: \(selected)")
 
-			followUpSubview = TwoOptionsFollowUpQuestionView()
+			followUpSubview = YesOrNoFollowUpView()
 
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
 			followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
 			followUpSubview.delegate = self
+
+			followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
+
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 		case TwoOptionsQuestionId.measuringType.id:
@@ -185,8 +191,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				return
 			} else {
 				followUpQuestionStackView.addArrangedSubview(followUpSubview)
-				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 				followUpSubview.delegate = self
+
+				followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
 			}
 
 		default:

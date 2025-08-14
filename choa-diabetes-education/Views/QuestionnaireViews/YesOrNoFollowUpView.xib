@@ -19,30 +19,33 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="w4O-O1-DoN">
-            <rect key="frame" x="0.0" y="0.0" width="360" height="155"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="281" height="230"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="H25-nV-vpb" userLabel="Main Stack View">
-                    <rect key="frame" x="0.0" y="0.0" width="360" height="102"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="II7-zg-5F0" userLabel="Main Stack View">
+                    <rect key="frame" x="0.0" y="118" width="281" height="97"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk2-Yf-S09">
-                            <rect key="frame" x="0.0" y="0.0" width="360" height="40.666666666666664"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk2-Yf-S09">
+                            <rect key="frame" x="0.0" y="0.0" width="281" height="61"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13.67" translatesAutoresizingMaskIntoConstraints="NO" id="Yq2-xz-yXe">
-                            <rect key="frame" x="0.0" y="67.666666666666671" width="360" height="34.333333333333329"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Yq2-xz-yXe">
+                            <rect key="frame" x="0.0" y="61" width="281" height="36"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-2Y-sNo" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="173.33333333333334" height="34.333333333333336"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="dcZ-te-NAe"/>
+                                    </constraints>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain">
                                         <attributedString key="attributedTitle">
-                                            <fragment content="Yes">
+                                            <fragment content="Button">
                                                 <attributes>
-                                                    <font key="NSFont" size="12" name="Helvetica"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -52,9 +55,18 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2q-ARU" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                    <rect key="frame" x="187" y="0.0" width="173" height="34.333333333333336"/>
+                                    <rect key="frame" x="147.66666666666663" y="0.0" width="133.33333333333337" height="36"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="No"/>
+                                    <buttonConfiguration key="configuration" style="plain">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="Button">
+                                                <attributes>
+                                                    <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </buttonConfiguration>
                                     <connections>
                                         <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="jX3-l1-Fk6"/>
                                     </connections>
@@ -67,12 +79,12 @@
             <viewLayoutGuide key="safeArea" id="4AI-s6-PfN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="H25-nV-vpb" secondAttribute="trailing" id="1ks-Mh-k5B"/>
-                <constraint firstItem="H25-nV-vpb" firstAttribute="top" secondItem="w4O-O1-DoN" secondAttribute="top" id="ETk-wb-geL"/>
-                <constraint firstItem="H25-nV-vpb" firstAttribute="leading" secondItem="w4O-O1-DoN" secondAttribute="leading" id="Fzy-dR-gVo"/>
+                <constraint firstItem="II7-zg-5F0" firstAttribute="leading" secondItem="4AI-s6-PfN" secondAttribute="leading" id="5OU-DV-LrX"/>
+                <constraint firstItem="II7-zg-5F0" firstAttribute="top" secondItem="4AI-s6-PfN" secondAttribute="top" id="BR7-0Y-at5"/>
+                <constraint firstItem="4AI-s6-PfN" firstAttribute="trailing" secondItem="II7-zg-5F0" secondAttribute="trailing" id="TV9-fp-joI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="129.7709923664122" y="-274.29577464788736"/>
+            <point key="canvasLocation" x="95.419847328244273" y="-271.12676056338029"/>
         </view>
     </objects>
     <resources>

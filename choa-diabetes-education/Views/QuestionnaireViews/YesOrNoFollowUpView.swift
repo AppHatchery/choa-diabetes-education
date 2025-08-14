@@ -8,11 +8,10 @@
 import Foundation
 import UIKit
 
-protocol YesOrNoFollowUpViewDelegate: AnyObject {
-	func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo)
-}
-
 class YesOrNoFollowUpView: UIView {
+	protocol YesOrNoFollowUpViewDelegate: AnyObject {
+		func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int)
+	}
 
 	@IBOutlet var questionLabel: UILabel!
 	@IBOutlet var yesButton: RoundedButton!
@@ -20,6 +19,8 @@ class YesOrNoFollowUpView: UIView {
 	@IBOutlet var contentView: UIView!
 	
 	weak var delegate: YesOrNoFollowUpViewDelegate?
+
+	private var selected = 0
 
 	private var currentQuestion: Questionnaire!
 
@@ -47,11 +48,33 @@ class YesOrNoFollowUpView: UIView {
 		// MARK: - Actions
 	@IBAction private func yesButtonTapped(_ sender: RoundedButton) {
 			// Handle yes button tap
-			// delegate?.didSelectNextAction(currentQuestion: <your_question>, userSelectedType: .yes)
+		delegate?.followUpView(self, didSelect: selected)
 	}
 
 	@IBAction private func noButtonTapped(_ sender: RoundedButton) {
-			// Handle no button tap
-			// delegate?.didSelectNextAction(currentQuestion: <your_question>, userSelectedType: .no)
+		delegate?.followUpView(self, didSelect: selected)
+
+	}
+
+	func setupView(currentQuestion: Questionnaire) {
+		self.currentQuestion = currentQuestion
+
+		questionLabel.font = .gothamRoundedBold16
+		questionLabel.numberOfLines = 0
+		questionLabel.textColor = .headingGreenColor
+
+		questionLabel.textAlignment = .left
+
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+			questionLabel.text = "Calculator.Que.IletPump.title".localized()
+
+			yesButton.setTitle("Yes".localized(), for: .normal)
+			noButton.setTitle("No".localized(), for: .normal)
+		default:
+			break
+		}
+
 	}
 }

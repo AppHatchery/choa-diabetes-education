@@ -86,7 +86,7 @@
                                 <constraint firstAttribute="height" constant="48" id="30O-bG-Kg8"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="4"/>
                             <connections>
                                 <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="8ik-R0-I9t"/>
                             </connections>
@@ -109,6 +109,7 @@
         </view>
     </objects>
     <resources>
+        <image name="leftArrow" width="20" height="20"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="primaryGreen">
             <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
