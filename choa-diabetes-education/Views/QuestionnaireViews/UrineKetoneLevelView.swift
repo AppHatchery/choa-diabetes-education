@@ -16,6 +16,7 @@ class UrineKetoneLevelView: UIView {
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var ketoneLevelButtons: [UIButton]!
+	@IBOutlet var ketoneLevelsStackView: UIStackView!
 
 	private var currentQuestion: Questionnaire!
 
@@ -41,6 +42,16 @@ class UrineKetoneLevelView: UIView {
 		}
 
 		addSubview(view)
+
+		ketoneLevelButtons.forEach {
+			$0.layer.cornerRadius = 4
+		}
+
+		ketoneLevelsStackView.layer.borderWidth = 1
+		ketoneLevelsStackView.layer.borderColor = UIColor.black.cgColor
+		ketoneLevelsStackView.layer.cornerRadius = 12
+		ketoneLevelsStackView.isLayoutMarginsRelativeArrangement = true
+		ketoneLevelsStackView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
 	}
 	
 	@IBAction func ketoneLevelButtonTapped(_ sender: UIButton) {

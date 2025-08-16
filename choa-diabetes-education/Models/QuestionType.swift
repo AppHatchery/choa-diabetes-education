@@ -14,6 +14,7 @@ enum QuestionType: Equatable {
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
+	case finalStepNoDesc(FinalQuestionId)
 }
 
 

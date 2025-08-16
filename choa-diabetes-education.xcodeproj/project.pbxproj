@@ -22,6 +22,7 @@
 		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
 		B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */; };
 		B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */; };
+		B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */; };
 		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
 		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
 		B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */; };
@@ -198,6 +199,7 @@
 		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
 		B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepNoDescView.xib; sourceTree = "<group>"; };
 		B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonWithImage.swift; sourceTree = "<group>"; };
+		B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
 		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
 		B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpView.xib; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				D48167B628ABF711003B14A3 /* UIView+Extensions.swift */,
 				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
 				FD99F3992A1D0D43009F3C30 /* URLs.swift */,
+				B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -937,6 +940,7 @@
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
+				B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */,
 				D48167BE28ABFE24003B14A3 /* ChapterListTableViewCell.swift in Sources */,
 				FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */,
 				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,

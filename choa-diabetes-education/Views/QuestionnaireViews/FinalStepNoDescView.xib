@@ -18,7 +18,6 @@
             <connections>
                 <outlet property="contentView" destination="yH8-bJ-MN6" id="pru-2m-oAL"/>
                 <outlet property="doneButton" destination="LQZ-yt-N2K" id="maY-1K-8IB"/>
-                <outlet property="finalButton" destination="LQZ-yt-N2K" id="gqs-cq-gNH"/>
                 <outlet property="finalImage" destination="Ua4-Ot-rkW" id="p1T-rK-UKu"/>
                 <outlet property="titleLabel" destination="wRD-A1-AHg" id="rKH-fe-KRT"/>
             </connections>
@@ -38,23 +37,23 @@
                     <rect key="frame" x="28" y="256" width="337" height="401"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-yt-N2K">
-                    <rect key="frame" x="159" y="690" width="75" height="36"/>
+                    <rect key="frame" x="159" y="690" width="97.333333333333314" height="36"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system" imagePlacement="trailing" title="Button"/>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q44-JH-esr"/>
             <color key="backgroundColor" name="lightGreenColor"/>
             <constraints>
+                <constraint firstItem="LQZ-yt-N2K" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="159" id="57x-jb-XpU"/>
                 <constraint firstItem="wRD-A1-AHg" firstAttribute="top" secondItem="Q44-JH-esr" secondAttribute="top" constant="28" id="Al4-J0-j6p"/>
-                <constraint firstItem="LQZ-yt-N2K" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="159" id="JXj-qx-yp3"/>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="wRD-A1-AHg" secondAttribute="trailing" constant="28" id="Mep-DO-AL0"/>
                 <constraint firstItem="wRD-A1-AHg" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="Tqs-yX-VYv"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="LQZ-yt-N2K" secondAttribute="trailing" constant="159" id="VGX-6M-FeJ"/>
                 <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="wRD-A1-AHg" secondAttribute="bottom" constant="90" id="f5R-ex-WhK"/>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="Ua4-Ot-rkW" secondAttribute="trailing" constant="28" id="jwm-2a-a7H"/>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="LQZ-yt-N2K" secondAttribute="bottom" constant="58" id="nrC-cW-rRS"/>
                 <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="oVJ-xN-Ony"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="LQZ-yt-N2K" secondAttribute="trailing" constant="136.66999999999999" id="rAx-OR-o9I"/>
                 <constraint firstItem="LQZ-yt-N2K" firstAttribute="top" secondItem="Ua4-Ot-rkW" secondAttribute="bottom" constant="33" id="ty9-4J-IEC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -63,6 +62,7 @@
     </objects>
     <resources>
         <image name="hope_normal_care" width="276" height="401"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

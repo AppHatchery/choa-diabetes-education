@@ -187,13 +187,13 @@
                         </stackView>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Id-wlA" userLabel="Nav Buttons Stack View">
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Id-wlA" userLabel="Nav Buttons Stack View">
                     <rect key="frame" x="28" y="708" width="337" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLJ-gL-fxn">
-                            <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="162.66666666666666" height="48"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="6" titleAlignment="center">
+                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8" titleAlignment="center">
                                 <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
                                 <color key="baseForegroundColor" name="primaryGreen"/>
                             </buttonConfiguration>
@@ -202,12 +202,12 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaT-UF-v5D" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="176.66666666666663" y="0.0" width="160.33333333333337" height="48"/>
+                            <rect key="frame" x="174.66666666666663" y="0.0" width="162.33333333333337" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="z0C-gF-e6E"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8"/>
                             <connections>
                                 <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="vtH-gt-EwA"/>
                             </connections>
@@ -234,6 +234,7 @@
         <image name="hope_lethargic" width="153" height="153"/>
         <image name="hope_repeated_vomiting" width="153" height="153"/>
         <image name="hope_trouble_breathing" width="153" height="153"/>
+        <image name="leftArrow" width="20" height="20"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="primaryBlue">
             <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

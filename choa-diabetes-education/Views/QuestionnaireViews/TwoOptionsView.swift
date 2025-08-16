@@ -144,11 +144,16 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			if followUpSubview.isDescendant(of: followUpQuestionStackView) {
 				return
 			} else {
+				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 				followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+				NSLayoutConstraint.activate([
+					followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+					followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+				])
 
 				followUpSubview.delegate = self
 
-				followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
 			}
 		default:
 			break
@@ -168,11 +173,15 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 			followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
-			followUpSubview.delegate = self
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
 
-			followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
+			followUpSubview.delegate = self
 
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
@@ -190,10 +199,15 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			if followUpQuestionStackView.subviews.contains(followUpSubview) {
 				return
 			} else {
+				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 				followUpQuestionStackView.addArrangedSubview(followUpSubview)
-				followUpSubview.delegate = self
 
-				followUpSubview.widthAnchor.constraint(equalTo: followUpQuestionStackView.widthAnchor).isActive = true
+				NSLayoutConstraint.activate([
+					followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+					followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+				])
+
+				followUpSubview.delegate = self
 			}
 
 		default:

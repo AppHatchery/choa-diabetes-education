@@ -120,6 +120,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUN-qi-RLG" userLabel="Final Step No Desc View" customClass="FinalStepNoDescView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6t-7x-GEr" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -156,6 +160,7 @@
                             <constraint firstItem="W6t-7x-GEr" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="0RP-ao-xO2"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="dt8-K3-Fgq" secondAttribute="bottom" id="3aK-Al-qO9"/>
                             <constraint firstAttribute="trailing" secondItem="a9x-JQ-2BE" secondAttribute="trailing" id="3gI-t8-vCx"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="wUN-qi-RLG" secondAttribute="bottom" id="3t6-7l-GJm"/>
                             <constraint firstItem="a9x-JQ-2BE" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="5XI-yh-NBJ"/>
                             <constraint firstItem="dX5-Tc-aJy" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="6yu-eY-6NC"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="0vn-ym-cdQ" secondAttribute="bottom" id="7TP-Md-bYN"/>
@@ -164,6 +169,7 @@
                             <constraint firstAttribute="trailing" secondItem="dX5-Tc-aJy" secondAttribute="trailing" id="GQS-2k-61X"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="W6t-7x-GEr" secondAttribute="bottom" id="H2F-IE-58c"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="dX5-Tc-aJy" secondAttribute="bottom" id="Ic5-ta-k90"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="wUN-qi-RLG" secondAttribute="trailing" id="PDj-B2-wKf"/>
                             <constraint firstItem="7xL-af-9Q9" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="RIS-za-lW2"/>
                             <constraint firstItem="0vn-ym-cdQ" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="SEY-cQ-ckU"/>
                             <constraint firstItem="W6t-7x-GEr" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="ThK-5a-aJX"/>
@@ -175,8 +181,10 @@
                             <constraint firstItem="dX5-Tc-aJy" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="hjD-Ah-uvg"/>
                             <constraint firstItem="0vn-ym-cdQ" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="iIl-aT-fA9"/>
                             <constraint firstItem="a9x-JQ-2BE" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="itl-vE-Uw2"/>
+                            <constraint firstItem="wUN-qi-RLG" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="jkv-aH-OBE"/>
                             <constraint firstItem="l8R-X1-5JF" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="lTm-dK-nGj"/>
                             <constraint firstAttribute="trailing" secondItem="0vn-ym-cdQ" secondAttribute="trailing" id="lU7-LZ-oIp"/>
+                            <constraint firstItem="wUN-qi-RLG" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="uWQ-uV-LSu"/>
                             <constraint firstAttribute="trailing" secondItem="7xL-af-9Q9" secondAttribute="trailing" id="wLl-v8-mvG"/>
                             <constraint firstItem="7xL-af-9Q9" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="wrc-mj-Vw9"/>
                             <constraint firstItem="dt8-K3-Fgq" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="xGs-X8-kwB"/>
@@ -184,6 +192,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="finalStepNoDescView" destination="wUN-qi-RLG" id="S5H-YS-yEw"/>
                         <outlet property="finalStepView" destination="W6t-7x-GEr" id="Br9-SL-RGk"/>
                         <outlet property="fiveOptionsView" destination="0vn-ym-cdQ" id="Z7M-3o-V2J"/>
                         <outlet property="fourOptionsView" destination="dt8-K3-Fgq" id="RmO-VE-qau"/>

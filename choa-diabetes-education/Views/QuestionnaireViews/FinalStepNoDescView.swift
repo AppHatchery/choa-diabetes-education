@@ -7,20 +7,60 @@
 
 import UIKit
 
+protocol FinalStepNoDescViewProtocol: AnyObject {
+	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+}
+
 class FinalStepNoDescView: UIView {
+	static let nibName = "FinalStepNoDescView"
 
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var doneButton: UIButton!
 	@IBOutlet var finalImage: UIImageView!
-	
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+	private var currentQuestion: Questionnaire!
+	weak var delegate: FinalStepNoDescViewProtocol?
+
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		nibSetup()
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		nibSetup()
+	}
+
+	private func nibSetup() {
+		Bundle.main.loadNibNamed(FinalStepNoDescView.nibName, owner: self)
+		addSubview(contentView)
+		contentView.frame = self.bounds
+		contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+	}
+
+	func setupView(currentQuestion: Questionnaire) {
+
+		self.currentQuestion = currentQuestion
+		titleLabel.font = .gothamRoundedBold16
+		titleLabel.numberOfLines = 0
+		titleLabel.textColor = .headingGreenColor
+		titleLabel.text = currentQuestion.finalStep?.title
+		titleLabel.textAlignment = .center
+
+		if currentQuestion.questionId == FinalQuestionId.shot.id {
+			doneButton.setTitle("Next", for: .normal)
+		} else {
+				// Understand if users click done and then have to come back through the calculator to review the insulin dose
+			doneButton.setTitle("Done", for: .normal)
+		}
+
+
+	}
+
+	@IBAction func didDoneButtonTap(_ sender: UIButton) {
+		delegate?.didSelectGotItAction(currentQuestion)
+	}
 
 }

@@ -13,156 +13,170 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UrineKetoneLevelView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="euD-h4-rdU" id="vkS-PP-KCh"/>
+                <outlet property="ketoneLevelsStackView" destination="7CI-gu-cCF" id="7Qf-3T-odo"/>
                 <outlet property="titleLabel" destination="dcN-GP-dnD" id="JUg-OW-Lg3"/>
                 <outletCollection property="ketoneLevelButtons" destination="EpV-da-2yZ" collectionClass="NSMutableArray" id="lc4-eb-T3z"/>
                 <outletCollection property="ketoneLevelButtons" destination="4aM-eb-Gzq" collectionClass="NSMutableArray" id="Jum-gY-bSU"/>
-                <outletCollection property="ketoneLevelButtons" destination="Hjx-KN-LuJ" collectionClass="NSMutableArray" id="i38-Ng-F4O"/>
-                <outletCollection property="ketoneLevelButtons" destination="BgR-Rg-C2Y" collectionClass="NSMutableArray" id="NrB-ox-lSh"/>
                 <outletCollection property="ketoneLevelButtons" destination="mxd-ah-a1k" collectionClass="NSMutableArray" id="omx-Iv-Tu8"/>
                 <outletCollection property="ketoneLevelButtons" destination="b0b-cI-8O1" collectionClass="NSMutableArray" id="cY9-5S-aNF"/>
+                <outletCollection property="ketoneLevelButtons" destination="Hjx-KN-LuJ" collectionClass="NSMutableArray" id="i38-Ng-F4O"/>
+                <outletCollection property="ketoneLevelButtons" destination="BgR-Rg-C2Y" collectionClass="NSMutableArray" id="NrB-ox-lSh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="euD-h4-rdU">
-            <rect key="frame" x="0.0" y="0.0" width="334" height="157"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euD-h4-rdU">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tools" translatesAutoresizingMaskIntoConstraints="NO" id="kBm-0J-Hak">
-                    <rect key="frame" x="0.0" y="40" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="XvK-gH-Tbv"/>
-                        <constraint firstAttribute="width" constant="60" id="xBZ-tc-WQL"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Urine Ketone level (mmol/l)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcN-GP-dnD">
-                    <rect key="frame" x="68" y="37" width="266" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" name="primaryBlue"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKI-Dk-had" userLabel="Level Buttons View">
-                    <rect key="frame" x="0.0" y="108" width="334" height="49"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SwS-5q-qwO">
+                    <rect key="frame" x="0.0" y="158" width="393" height="151"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="kh1-bS-dGD">
-                            <rect key="frame" x="0.0" y="0.0" width="334" height="49"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the ketone test results?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhN-6w-h8p">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
+                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7CI-gu-cCF">
+                            <rect key="frame" x="0.0" y="30" width="393" height="121"/>
                             <subviews>
-                                <button opaque="NO" tag="0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-da-2yZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="52.333333333333336" height="49"/>
-                                    <color key="backgroundColor" name="ketoneLowNegative"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0dN-Kc-gRf">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Tools" translatesAutoresizingMaskIntoConstraints="NO" id="kBm-0J-Hak">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="XvK-gH-Tbv"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Urine Ketone level (mmol/l)" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcN-GP-dnD">
+                                            <rect key="frame" x="72" y="0.0" width="321" height="20"/>
+                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="textColor" name="primaryBlue"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKI-Dk-had" userLabel="Level Buttons View">
+                                    <rect key="frame" x="0.0" y="72" width="393" height="49"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="kh1-bS-dGD">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-da-2yZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="49"/>
+                                                    <color key="backgroundColor" name="ketoneLowNegative"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="7WO-zL-uZT"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Neg">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="pRa-vI-RhH"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-eb-Gzq">
+                                                    <rect key="frame" x="66.333333333333329" y="0.0" width="61.999999999999986" height="49"/>
+                                                    <color key="backgroundColor" name="ketoneLow"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="2b1-8k-YLK"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="0.5">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="rom-9r-hOz"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjx-KN-LuJ">
+                                                    <rect key="frame" x="132.33333333333334" y="0.0" width="62.333333333333343" height="49"/>
+                                                    <color key="backgroundColor" name="ketoneMidLow"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="5jt-gL-aQb"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="1.5">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Xwk-Ol-L6A"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgR-Rg-C2Y">
+                                                    <rect key="frame" x="198.66666666666666" y="0.0" width="61.999999999999972" height="49"/>
+                                                    <color key="backgroundColor" name="ketoneMidHigh"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="rDk-k9-aRF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="4.0">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="6TE-L8-AXk"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxd-ah-a1k">
+                                                    <rect key="frame" x="264.66666666666669" y="0.0" width="62.333333333333314" height="49"/>
+                                                    <color key="backgroundColor" name="ketoneHigh"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="qVA-zc-Nib"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="8.0">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="kz8-jc-NzU"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-cI-8O1">
+                                                    <rect key="frame" x="331" y="0.0" width="62" height="49"/>
+                                                    <color key="backgroundColor" name="KetoneHighVeryHigh"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="49" id="GHD-LW-9QF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="16.0">
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="kPL-Mw-ky4"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="7WO-zL-uZT"/>
+                                        <constraint firstAttribute="bottom" secondItem="kh1-bS-dGD" secondAttribute="bottom" id="4bL-Qd-vZ4"/>
+                                        <constraint firstItem="kh1-bS-dGD" firstAttribute="leading" secondItem="NKI-Dk-had" secondAttribute="leading" id="6M6-82-ksK"/>
+                                        <constraint firstAttribute="height" constant="49" id="bjU-zw-mJB"/>
+                                        <constraint firstItem="kh1-bS-dGD" firstAttribute="top" secondItem="NKI-Dk-had" secondAttribute="top" id="ebF-ku-7vy"/>
+                                        <constraint firstAttribute="trailing" secondItem="kh1-bS-dGD" secondAttribute="trailing" id="l3o-yL-LTh"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Neg">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="pRa-vI-RhH"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-eb-Gzq">
-                                    <rect key="frame" x="56.333333333333329" y="0.0" width="52.333333333333329" height="49"/>
-                                    <color key="backgroundColor" name="ketoneLow"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="2b1-8k-YLK"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="0.5">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="rom-9r-hOz"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjx-KN-LuJ">
-                                    <rect key="frame" x="112.66666666666667" y="0.0" width="52.333333333333329" height="49"/>
-                                    <color key="backgroundColor" name="ketoneMidLow"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="5jt-gL-aQb"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="1.5">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Xwk-Ol-L6A"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgR-Rg-C2Y">
-                                    <rect key="frame" x="169" y="0.0" width="52.333333333333343" height="49"/>
-                                    <color key="backgroundColor" name="ketoneMidHigh"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="rDk-k9-aRF"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="4.0">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="6TE-L8-AXk"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxd-ah-a1k">
-                                    <rect key="frame" x="225.33333333333334" y="0.0" width="52.333333333333343" height="49"/>
-                                    <color key="backgroundColor" name="ketoneHigh"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="qVA-zc-Nib"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="8.0">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="kz8-jc-NzU"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0b-cI-8O1">
-                                    <rect key="frame" x="281.66666666666669" y="0.0" width="52.333333333333314" height="49"/>
-                                    <color key="backgroundColor" name="KetoneHighVeryHigh"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="49" id="GHD-LW-9QF"/>
-                                    </constraints>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="16.0">
-                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="kPL-Mw-ky4"/>
-                                    </connections>
-                                </button>
+                                </view>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="kh1-bS-dGD" secondAttribute="bottom" id="4bL-Qd-vZ4"/>
-                        <constraint firstItem="kh1-bS-dGD" firstAttribute="leading" secondItem="NKI-Dk-had" secondAttribute="leading" id="6M6-82-ksK"/>
-                        <constraint firstAttribute="height" constant="49" id="bjU-zw-mJB"/>
-                        <constraint firstItem="kh1-bS-dGD" firstAttribute="top" secondItem="NKI-Dk-had" secondAttribute="top" id="ebF-ku-7vy"/>
-                        <constraint firstAttribute="trailing" secondItem="kh1-bS-dGD" secondAttribute="trailing" id="l3o-yL-LTh"/>
-                    </constraints>
-                </view>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="KrC-Dd-lT9"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="NKI-Dk-had" secondAttribute="bottom" id="0bl-2x-xjB"/>
-                <constraint firstItem="NKI-Dk-had" firstAttribute="leading" secondItem="KrC-Dd-lT9" secondAttribute="leading" id="1mg-Uo-XXr"/>
-                <constraint firstItem="KrC-Dd-lT9" firstAttribute="trailing" secondItem="NKI-Dk-had" secondAttribute="trailing" id="9CT-C0-Yhw"/>
-                <constraint firstItem="dcN-GP-dnD" firstAttribute="leading" secondItem="kBm-0J-Hak" secondAttribute="trailing" constant="8" symbolic="YES" id="Mey-vt-PS0"/>
-                <constraint firstItem="NKI-Dk-had" firstAttribute="top" secondItem="kBm-0J-Hak" secondAttribute="bottom" constant="8" symbolic="YES" id="eAs-c3-fY6"/>
-                <constraint firstItem="kBm-0J-Hak" firstAttribute="leading" secondItem="euD-h4-rdU" secondAttribute="leading" id="enc-4N-K2o"/>
-                <constraint firstItem="dcN-GP-dnD" firstAttribute="top" secondItem="euD-h4-rdU" secondAttribute="top" constant="37" id="n2h-5C-YSY"/>
-                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="dcN-GP-dnD" secondAttribute="trailing" id="xmV-D9-hMG"/>
+                <constraint firstItem="KrC-Dd-lT9" firstAttribute="trailing" secondItem="SwS-5q-qwO" secondAttribute="trailing" id="8uh-Ue-XFk"/>
+                <constraint firstItem="SwS-5q-qwO" firstAttribute="leading" secondItem="KrC-Dd-lT9" secondAttribute="leading" id="Bgl-i6-bfh"/>
+                <constraint firstItem="SwS-5q-qwO" firstAttribute="top" secondItem="KrC-Dd-lT9" secondAttribute="top" constant="40" id="VVH-ys-1OP"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="58.015267175572518" y="-313.02816901408454"/>
+            <point key="canvasLocation" x="57.251908396946561" y="-489.43661971830988"/>
         </view>
     </objects>
     <resources>

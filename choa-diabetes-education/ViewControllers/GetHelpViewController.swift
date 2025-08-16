@@ -13,6 +13,8 @@ class GetHelpViewController: UIViewController {
 
     @IBOutlet weak var yesOrNoQueView: YesOrNoQueView!
     @IBOutlet weak var finalStepView: FinalStepView!
+	@IBOutlet weak var finalStepNoDescView: FinalStepNoDescView!
+
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
@@ -73,6 +75,7 @@ class GetHelpViewController: UIViewController {
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true
         finalStepView.isHidden = true
+		finalStepNoDescView.isHidden = true
         twoOptionsView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
@@ -111,7 +114,11 @@ class GetHelpViewController: UIViewController {
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
-            
+		case .finalStepNoDesc:
+			finalStepNoDescView.isHidden = false
+			finalStepNoDescView.delegate = self
+			finalStepNoDescView.setupView(currentQuestion: questionObj)
+
         case .none: break
         }
     }
@@ -246,8 +253,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol {
-    
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol {
+
     func didSelectGotItAction(_ question: Questionnaire) {
         if question.questionId == FinalQuestionId.shot.id {
             self.questionnaireManager.triggerDisclaimerActionFlow(question)

@@ -194,6 +194,7 @@ extension QuestionnaireManager {
 			// Low/negative ketones - continue with normal insulin calculation
 			// triggerResultsActionFlow(currentQuestion)
             showFinalPage(currentQuestion: currentQuestion)
+			
             // showFinalStage(stage: .endo, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
@@ -331,6 +332,10 @@ extension QuestionnaireManager {
 		showFinalStage(stage: FinalQuestionId.continueRegularCare, calculation: nil)
 	}
 
+	func showFinalPageNoDescription(currentQuestion: Questionnaire) {
+		showFinalStage(stage: FinalQuestionId.continueRegularCare, calculation: nil)
+	}
+
     
     
     
@@ -339,19 +344,33 @@ extension QuestionnaireManager {
 }
 
 extension QuestionnaireManager {
-    func createFinalStage(questionId: Int, title: String, description: String?) -> Questionnaire {
+    func createFinalStage(questionId: Int, title: String, description: String?, imageName: String? = nil) -> Questionnaire {
         let finalStepObj = FinalStep()
         finalStepObj.title = title
         finalStepObj.description = description
-        
+		finalStepObj.imageName = imageName
+
         let quesObj = Questionnaire()
         quesObj.questionId = questionId
         quesObj.questionType = .finalStep(FinalQuestionId(id: questionId))
-        quesObj.finalStep = finalStepObj
+
+		quesObj.finalStep = finalStepObj
         return quesObj
     }
     
     // TODO: Rework Final Stages
+
+	func createFinalStageNoDescription(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+		finalStepObj.description = nil
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .finalStepNoDesc(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
 
     
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {

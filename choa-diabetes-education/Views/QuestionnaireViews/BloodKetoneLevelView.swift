@@ -16,6 +16,7 @@ class BloodKetoneLevelView: UIView {
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var ketoneLevelButtons: [UIButton]!
+	@IBOutlet var ketoneLevelsStackView: UIStackView!
 
 	private var currentQuestion: Questionnaire!
 
@@ -43,6 +44,13 @@ class BloodKetoneLevelView: UIView {
 		addSubview(view)
 		view.frame = self.bounds
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+		ketoneLevelsStackView.layer.borderWidth = 1
+		ketoneLevelsStackView.layer.borderColor = UIColor.black.cgColor
+		ketoneLevelsStackView.layer.cornerRadius = 12
+		ketoneLevelsStackView.isLayoutMarginsRelativeArrangement = true
+		ketoneLevelsStackView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+
 	}
 	
 	func setupView(currentQuestion: Questionnaire) {

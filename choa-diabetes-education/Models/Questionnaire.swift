@@ -21,4 +21,5 @@ class Questionnaire {
 class FinalStep {
     var title: String!
     var description: String?
+	var imageName: String?
 }
