@@ -9,19 +9,24 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedMedium.ttf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BloodKetoneLevelView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="euD-h4-rdU" id="vkS-PP-KCh"/>
                 <outlet property="ketoneLevelsStackView" destination="XuV-Vy-YiE" id="eJy-uD-xmQ"/>
                 <outlet property="titleLabel" destination="dcN-GP-dnD" id="JUg-OW-Lg3"/>
-                <outletCollection property="ketoneLevelButtons" destination="4aM-eb-Gzq" collectionClass="NSMutableArray" id="Jum-gY-bSU"/>
                 <outletCollection property="ketoneLevelButtons" destination="EpV-da-2yZ" collectionClass="NSMutableArray" id="lc4-eb-T3z"/>
+                <outletCollection property="ketoneLevelButtons" destination="4aM-eb-Gzq" collectionClass="NSMutableArray" id="Jum-gY-bSU"/>
                 <outletCollection property="ketoneLevelButtons" destination="Hjx-KN-LuJ" collectionClass="NSMutableArray" id="i38-Ng-F4O"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="euD-h4-rdU">
+        <view contentMode="scaleToFill" id="euD-h4-rdU">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -55,78 +60,65 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKI-Dk-had" userLabel="Level Buttons View">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kh1-bS-dGD">
                                     <rect key="frame" x="0.0" y="72" width="393" height="49"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kh1-bS-dGD">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-da-2yZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125.66666666666667" height="49"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="49" id="7WO-zL-uZT"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Low" subtitle="&lt; 6.0">
-                                                        <backgroundConfiguration key="background" image="low_blood_ketone"/>
-                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                        <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="pRa-vI-RhH"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-eb-Gzq">
-                                                    <rect key="frame" x="133.66666666666666" y="0.0" width="125.66666666666666" height="49"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="49" id="2b1-8k-YLK"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Moderate" subtitle="0.6 - 2.6">
-                                                        <backgroundConfiguration key="background" image="medium_blood_ketone"/>
-                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                        <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="rom-9r-hOz"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjx-KN-LuJ">
-                                                    <rect key="frame" x="267.33333333333331" y="0.0" width="125.66666666666669" height="49"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="49" id="5jt-gL-aQb"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" subtitle="2.5 +">
-                                                        <backgroundConfiguration key="background" image="high_blood_ketone"/>
-                                                        <attributedString key="attributedTitle">
-                                                            <fragment content="High">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="GothamRounded-Bold"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Xwk-Ol-L6A"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-da-2yZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="125.66666666666667" height="49"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49" id="7WO-zL-uZT"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Low" subtitle="&lt; 6.0">
+                                                <backgroundConfiguration key="background" image="low_blood_ketone"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="pRa-vI-RhH"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-eb-Gzq">
+                                            <rect key="frame" x="133.66666666666666" y="0.0" width="125.66666666666666" height="49"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49" id="2b1-8k-YLK"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Moderate" subtitle="0.6 - 2.6">
+                                                <backgroundConfiguration key="background" image="medium_blood_ketone"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="rom-9r-hOz"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjx-KN-LuJ">
+                                            <rect key="frame" x="267.33333333333331" y="0.0" width="125.66666666666669" height="49"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="49" id="5jt-gL-aQb"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" subtitle="2.5 +">
+                                                <backgroundConfiguration key="background" image="high_blood_ketone"/>
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="High">
+                                                        <attributes>
+                                                            <font key="NSFont" size="14" name="GothamRounded-Bold"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Xwk-Ol-L6A"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="kh1-bS-dGD" secondAttribute="bottom" id="4bL-Qd-vZ4"/>
-                                        <constraint firstItem="kh1-bS-dGD" firstAttribute="leading" secondItem="NKI-Dk-had" secondAttribute="leading" id="6M6-82-ksK"/>
-                                        <constraint firstAttribute="height" constant="49" id="bjU-zw-mJB"/>
-                                        <constraint firstItem="kh1-bS-dGD" firstAttribute="top" secondItem="NKI-Dk-had" secondAttribute="top" id="ebF-ku-7vy"/>
-                                        <constraint firstAttribute="trailing" secondItem="kh1-bS-dGD" secondAttribute="trailing" id="l3o-yL-LTh"/>
-                                    </constraints>
-                                </view>
+                                </stackView>
                             </subviews>
                         </stackView>
                     </subviews>

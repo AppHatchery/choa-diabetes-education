@@ -13,7 +13,6 @@ class UrineKetoneLevelView: UIView {
 		func urineKetoneFollowUpView(_ view: UrineKetoneLevelView, didSelect answer: Int)
 	}
 
-	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var ketoneLevelButtons: [UIButton]!
 	@IBOutlet var ketoneLevelsStackView: UIStackView!
