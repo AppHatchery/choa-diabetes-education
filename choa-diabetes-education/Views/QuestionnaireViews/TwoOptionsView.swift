@@ -14,6 +14,8 @@ protocol TwoOptionsViewProtocol: AnyObject {
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
 
 	func didSelectExitAction()
+
+	func didSelectLearnHowAction()
 }
 
 class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpDelegate, UrineKetoneLevelView.UrineKetoneLevelDelegate, BloodKetoneLevelView.BloodKetoneLevelDelegate, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
@@ -49,6 +51,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 	@IBOutlet var followUpQuestionStackView: UIStackView!
 	@IBOutlet var optionsStackView: UIStackView!
+
+	@IBOutlet var resourcesStackView: UIStackView!
+	@IBOutlet var learnHowLabel: UILabel!
 
 	private var currentQuestion: Questionnaire!
 	private var followUpQuestion: Questionnaire?
@@ -88,6 +93,12 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			$0.layer.cornerRadius = 8
 		}
 
+		if (currentQuestion.question == "How does your child take insulin?") {
+			resourcesStackView.isHidden = true
+		} else {
+			setupLearnHowLabel()
+		}
+
 		for (index, view) in optionButtons.enumerated() {
 			view.isUserInteractionEnabled = true
 			let tap = UITapGestureRecognizer(target: self, action: #selector(optionButtonViewTapped(_:)))
@@ -100,6 +111,32 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			secondButtonLabel.text = answerOptions[1].localized()
 		}
     }
+
+	private func setupLearnHowLabel() {
+			// Create underlined attributed text
+		let text = "Learn how to measure ketones"
+		let attributedString = NSMutableAttributedString(string: text)
+		attributedString.addAttribute(.underlineStyle,
+									  value: NSUnderlineStyle.single.rawValue,
+									  range: NSRange(location: 0, length: text.count))
+
+			// Optional: Change text color to make it look like a link
+		attributedString.addAttribute(.foregroundColor,
+									  value: UIColor.primaryBlue,
+									  range: NSRange(location: 0, length: text.count))
+
+		learnHowLabel.attributedText = attributedString
+
+			// Make it tappable
+		learnHowLabel.isUserInteractionEnabled = true
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(learnHowLabelTapped))
+		learnHowLabel.addGestureRecognizer(tapGesture)
+	}
+
+	@objc private func learnHowLabelTapped() {
+		print("Learn How label tapped!")
+		delegate?.didSelectLearnHowAction()
+	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
 		guard let tappedView = sender.view else { return }

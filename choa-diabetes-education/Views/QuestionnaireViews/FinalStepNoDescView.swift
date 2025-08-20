@@ -44,7 +44,7 @@ class FinalStepNoDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold32
+		titleLabel.font = .gothamRoundedBold26
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = .choaGreenColor
 		titleLabel.text = currentQuestion.finalStep?.title

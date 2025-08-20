@@ -15,6 +15,8 @@
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
 		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
 		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
+		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
+		B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */; };
 		B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */; };
 		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
 		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
@@ -194,6 +196,8 @@
 		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
 		B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEmergencyView.swift; sourceTree = "<group>"; };
 		B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEmergencyView.xib; sourceTree = "<group>"; };
+		B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutKetoneMeasurementsViewController.swift; sourceTree = "<group>"; };
+		B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutKetoneMeasurementsView.storyboard; sourceTree = "<group>"; };
 		B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
 		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
@@ -708,6 +712,8 @@
 				B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */,
 				B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */,
 				B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */,
+				B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */,
+				B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -853,6 +859,7 @@
 				D4684AA4290B0B6600E7311B /* low_carbs.png in Resources */,
 				D4684AA3290B0B6600E7311B /* rice.png in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
+				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				D4684AB2290B0B6600E7311B /* bread,_cereal_rice_pasta.png in Resources */,
@@ -967,6 +974,7 @@
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */,
+				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FirstEmergencyViewProtocol: AnyObject {
-	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+	func didSelectExitAction()
 }
 
 class FirstEmergencyView: UIView {
@@ -26,6 +26,7 @@ class FirstEmergencyView: UIView {
 	@IBOutlet var goToTheNearestLabel: UILabel!
 	@IBOutlet var emergencyDepartmentLabel: UILabel!
 
+	@IBOutlet var exitButton: UIButton!
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -64,7 +65,7 @@ class FirstEmergencyView: UIView {
 		emergencyDepartmentLabel.textColor = .secondaryRedColor
 		emergencyDepartmentLabel.textAlignment = .center
 
-		call911Button.layer.cornerRadius = 8
+		call911Button.layer.cornerRadius = 12
 	}
 
 	@IBAction func call911(_ sender: UIButton) {
@@ -76,4 +77,7 @@ class FirstEmergencyView: UIView {
 //		delegate?.didSelectGotItAction(currentQuestion)
 	}
 
+	@IBAction func didExitButtonTap(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
+	}
 }

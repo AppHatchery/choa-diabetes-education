@@ -195,7 +195,7 @@ extension QuestionnaireManager {
 			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-             showFinalStage(stage: .endo, calculation: nil)
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .eight, .sixteen:
 			// High ketones - emergency situation
 			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
@@ -206,10 +206,10 @@ extension QuestionnaireManager {
 		switch level {
 		case .low:
 			// Low blood ketones - continue with normal insulin calculation
-			 triggerResultsActionFlow(currentQuestion)
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .moderate:
 			// Moderate blood ketones - show warning
-			 showFinalStage(stage: .endo, calculation: nil)
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .large:
 			// Large blood ketones - emergency situation
 			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
@@ -322,7 +322,7 @@ extension QuestionnaireManager {
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire) {
         let createQue = createYesOrNoQuestion(questionId: .shotTwentyFourHours, question: "Calculator.Que.ShotTwentyFourHours.title".localized(), description: "Calculator.Que.ShotTwentyFourHours.description".localized(), showDescriptionAtBottom: false)
         actionsDelegate?.showNextQuestion(createQue)
-    } 
+    }
 }
 
 extension QuestionnaireManager {

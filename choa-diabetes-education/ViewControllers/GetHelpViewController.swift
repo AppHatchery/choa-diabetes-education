@@ -160,6 +160,14 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         
     }
 
+	func didSelectLearnHowAction() {
+		let storyboard = UIStoryboard(name: "GetHelp", bundle: nil)
+		if let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutKetoneMeasurementsViewController") as? AboutKetoneMeasurementsViewController {
+			aboutVC.modalPresentationStyle = .pageSheet
+			present(aboutVC, animated: true)
+		}
+	}
+
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
 		print("Current Question: \(currentQuestion)")
 
