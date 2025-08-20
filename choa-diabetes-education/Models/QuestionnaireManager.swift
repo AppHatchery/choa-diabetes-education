@@ -32,7 +32,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
-	func showFinalPage(currentQuestion: Questionnaire)
+	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire)
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -94,7 +94,6 @@ extension QuestionnaireManager {
 				]
 			)
 			actionsDelegate?.showNextQuestion(createFiveOptionsQuestion)
-//			showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
 		default:
 			return
 		}
@@ -191,19 +190,15 @@ extension QuestionnaireManager {
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
 		switch level {
 		case .negative, .zeroPointFive:
-			// Low/negative ketones - continue with normal insulin calculation
-			// triggerResultsActionFlow(currentQuestion)
-            showFinalPage(currentQuestion: currentQuestion)
-			
-            // showFinalStage(stage: .endo, calculation: nil)
+			// Low/negative ketones - continue with regular care
+
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-			showFinalPage(currentQuestion: currentQuestion)
-            // showFinalStage(stage: .endo, calculation: nil)
+             showFinalStage(stage: .endo, calculation: nil)
 		case .eight, .sixteen:
 			// High ketones - emergency situation
-            showFinalPage(currentQuestion: currentQuestion)
-			// showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
 		}
 	}
 
@@ -211,16 +206,13 @@ extension QuestionnaireManager {
 		switch level {
 		case .low:
 			// Low blood ketones - continue with normal insulin calculation
-			// triggerResultsActionFlow(currentQuestion)
-            showFinalPage(currentQuestion: currentQuestion)
+			 triggerResultsActionFlow(currentQuestion)
 		case .moderate:
 			// Moderate blood ketones - show warning
-			// showFinalStage(stage: .endo, calculation: nil)
-            showFinalPage(currentQuestion: currentQuestion)
+			 showFinalStage(stage: .endo, calculation: nil)
 		case .large:
 			// Large blood ketones - emergency situation
-			// showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
-            showFinalPage(currentQuestion: currentQuestion)
+			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
 		}
 	}
     
@@ -302,7 +294,11 @@ extension QuestionnaireManager {
     func triggerFullDoseActionFlow() {
         showFinalStage(stage: .fullDose, calculation: nil)
     }
-    
+
+	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire) {
+		showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
+	}
+
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire) {
         
         if currentTestType == .pump {
@@ -326,21 +322,7 @@ extension QuestionnaireManager {
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire) {
         let createQue = createYesOrNoQuestion(questionId: .shotTwentyFourHours, question: "Calculator.Que.ShotTwentyFourHours.title".localized(), description: "Calculator.Que.ShotTwentyFourHours.description".localized(), showDescriptionAtBottom: false)
         actionsDelegate?.showNextQuestion(createQue)
-    }
-
-	func showFinalPage(currentQuestion: Questionnaire) {
-		showFinalStage(stage: FinalQuestionId.continueRegularCare, calculation: nil)
-	}
-
-	func showFinalPageNoDescription(currentQuestion: Questionnaire) {
-		showFinalStage(stage: FinalQuestionId.continueRegularCare, calculation: nil)
-	}
-
-    
-    
-    
-
-    
+    } 
 }
 
 extension QuestionnaireManager {
@@ -360,10 +342,10 @@ extension QuestionnaireManager {
     
     // TODO: Rework Final Stages
 
-	func createFinalStageNoDescription(questionId: Int, title: String) -> Questionnaire {
+	func createFinalStageNoDescription(questionId: Int, title: String, imageName: String? = nil) -> Questionnaire {
 		let finalStepObj = FinalStep()
 		finalStepObj.title = title
-		finalStepObj.description = nil
+		finalStepObj.imageName = imageName
 
 		let quesObj = Questionnaire()
 		quesObj.questionId = questionId
@@ -376,7 +358,7 @@ extension QuestionnaireManager {
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {
         switch stage {
         case .firstEmergencyScreen:
-            let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.Emergency.title".localized(), description: "Calculator.Final.Emergency.description".localized())
+			let finalStepObj = createFirstEmergencyStage(questionId: stage.id, title: "Calculator.Final.FirstEmergency.title".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
         case .recheckScreen:
             let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.Recheck.title".localized(), description: "Calculator.Final.Recheck.description".localized())
@@ -403,7 +385,11 @@ extension QuestionnaireManager {
             let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.FullDose.title".localized(), description: "Calculator.Final.ContinueRegularCare.description".localized())
             actionsDelegate?.showNextQuestion(finalStepObj)
 		case .continueRegularCare:
-			let finalStepObj = createFinalStage(questionId: stage.id, title: "Calculator.Final.ContinueRegularCare.title".localized(), description: "Calculator.Final.ContinueRegularCare.description".localized())
+			let finalStepObj = createFinalStageNoDescription(
+				questionId: stage.id,
+				title: "Calculator.Final.ContinueRegularCare.title".localized(),
+				imageName: "hope_regular_care"
+			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
         }
         
@@ -430,6 +416,19 @@ extension QuestionnaireManager {
         quesObj.answerOptions = answerOptions
         return quesObj
     }
+
+	func createFirstEmergencyStage(questionId: Int, title: String) -> Questionnaire {
+
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .firstEmergency(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
 
 	func createFourCustomOptionsQuestion(questionId: FourOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
 		let quesObj = Questionnaire()

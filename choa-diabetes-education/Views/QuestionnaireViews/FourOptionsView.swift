@@ -87,6 +87,7 @@ class FourOptionsView: UIView {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
+				print("Selected FOUR OPTIONS Answer: \(selected)")
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
@@ -115,10 +116,17 @@ class FourOptionsView: UIView {
 					currentQuestion: currentQuestion,
 					selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
 				)
-			} else {
-				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
-				)
 			}
+
+//			else {
+//				delegate?
+//					.didSelectNextAction(
+//						currentQuestion: currentQuestion,
+//						selectedAnswer: .NotSure(
+//							ChildIssue(id: selected)
+//						)
+//				)
+//			}
 		default:
 			break
 		}

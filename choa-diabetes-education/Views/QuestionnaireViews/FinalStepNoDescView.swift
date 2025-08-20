@@ -22,6 +22,7 @@ class FinalStepNoDescView: UIView {
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepNoDescViewProtocol?
 
+	weak var viewController: UIViewController?
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -43,9 +44,9 @@ class FinalStepNoDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold16
+		titleLabel.font = .gothamRoundedBold32
 		titleLabel.numberOfLines = 0
-		titleLabel.textColor = .headingGreenColor
+		titleLabel.textColor = .choaGreenColor
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
 
@@ -53,7 +54,7 @@ class FinalStepNoDescView: UIView {
 			doneButton.setTitle("Next", for: .normal)
 		} else {
 				// Understand if users click done and then have to come back through the calculator to review the insulin dose
-			doneButton.setTitle("Done", for: .normal)
+			doneButton.setTitle("Exit", for: .normal)
 		}
 
 

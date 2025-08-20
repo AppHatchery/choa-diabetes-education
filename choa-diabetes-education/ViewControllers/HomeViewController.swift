@@ -55,6 +55,8 @@ class HomeViewController: UIViewController {
 			.foregroundColor: UIColor.black,
 			.font: UIFont.gothamRoundedBold16
 		]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+		appearance.backButtonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.clear]
 
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance

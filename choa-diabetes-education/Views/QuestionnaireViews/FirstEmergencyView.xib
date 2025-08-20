@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirstEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="call911Button" destination="Vdg-ui-Xf3" id="59R-iB-Nwv"/>
+                <outlet property="contentView" destination="17x-Aa-l7g" id="60z-qa-LY5"/>
+                <outlet property="emergencyDepartmentLabel" destination="9q1-K8-wNX" id="Jz3-I7-Qza"/>
+                <outlet property="goToTheNearestLabel" destination="Gt0-B4-bvH" id="od5-cH-7Ok"/>
+                <outlet property="titleLabel" destination="bkm-ES-OTE" id="8TL-ad-2Q9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="17x-Aa-l7g">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="H6d-rS-Rlm">
+                    <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Seek Immediate Medical Attention" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-ES-OTE">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first_emergency" translatesAutoresizingMaskIntoConstraints="NO" id="pTe-v6-zaB">
+                            <rect key="frame" x="0.0" y="158" width="393" height="187"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="186.94" id="dDa-dI-c4t"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-7f-T6D">
+                            <rect key="frame" x="0.0" y="415" width="393" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vdg-ui-Xf3">
+                                    <rect key="frame" x="28" y="0.0" width="337" height="48"/>
+                                    <color key="backgroundColor" name="secondaryFireRed300"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="0t9-zL-YKZ"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Call 911"/>
+                                    <connections>
+                                        <action selector="call911:" destination="-1" eventType="touchUpInside" id="sCQ-s6-kyi"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="lightRedColor"/>
+                            <constraints>
+                                <constraint firstItem="Vdg-ui-Xf3" firstAttribute="top" secondItem="2qr-7f-T6D" secondAttribute="top" id="0LE-Hd-uJk"/>
+                                <constraint firstAttribute="bottom" secondItem="Vdg-ui-Xf3" secondAttribute="bottom" constant="2" id="hoY-oW-KCd"/>
+                                <constraint firstItem="Vdg-ui-Xf3" firstAttribute="leading" secondItem="2qr-7f-T6D" secondAttribute="leading" constant="28" id="rVC-DM-aKr"/>
+                                <constraint firstAttribute="trailing" secondItem="Vdg-ui-Xf3" secondAttribute="trailing" constant="28" id="wJ8-0Q-QpF"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="BCG-Zw-IVR">
+                            <rect key="frame" x="0.0" y="535" width="393" height="131"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tlg-x0-164">
+                                    <rect key="frame" x="188.66666666666666" y="0.0" width="15.666666666666657" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D4-nK-4L5">
+                                    <rect key="frame" x="50" y="41.333333333333378" width="293" height="89.666666666666686"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="6NC-h9-MTf">
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="61.666666666666664"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to the nearest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gt0-B4-bvH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="293" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency Department" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q1-K8-wNX">
+                                                    <rect key="frame" x="0.0" y="41.333333333333258" width="293" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="lightRedColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="6NC-h9-MTf" secondAttribute="trailing" id="dRJ-ay-QnE"/>
+                                        <constraint firstItem="6NC-h9-MTf" firstAttribute="top" secondItem="6D4-nK-4L5" secondAttribute="top" id="fWF-U0-cdk"/>
+                                        <constraint firstItem="6NC-h9-MTf" firstAttribute="leading" secondItem="6D4-nK-4L5" secondAttribute="leading" id="jZn-t7-8cv"/>
+                                        <constraint firstAttribute="bottom" secondItem="6NC-h9-MTf" secondAttribute="bottom" constant="28" id="mFL-PY-XtI"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="6D4-nK-4L5" secondAttribute="trailing" constant="50" id="Laf-rm-7E0"/>
+                                <constraint firstItem="6D4-nK-4L5" firstAttribute="leading" secondItem="BCG-Zw-IVR" secondAttribute="leading" constant="50" id="cxM-xM-w5c"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="5oM-sH-8I5"/>
+            <color key="backgroundColor" name="lightRedColor"/>
+            <constraints>
+                <constraint firstItem="5oM-sH-8I5" firstAttribute="trailing" secondItem="H6d-rS-Rlm" secondAttribute="trailing" id="2ic-1T-dih"/>
+                <constraint firstItem="H6d-rS-Rlm" firstAttribute="top" secondItem="5oM-sH-8I5" secondAttribute="top" id="meG-EN-Etx"/>
+                <constraint firstItem="5oM-sH-8I5" firstAttribute="bottom" secondItem="H6d-rS-Rlm" secondAttribute="bottom" id="qLc-tJ-MFb"/>
+                <constraint firstItem="H6d-rS-Rlm" firstAttribute="leading" secondItem="5oM-sH-8I5" secondAttribute="leading" id="zze-QH-sUE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="209.92366412213741" y="41.549295774647888"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="first_emergency" width="287.66665649414062" height="187"/>
+        <namedColor name="lightRedColor">
+            <color red="0.99607843137254903" green="0.9137254901960784" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryFireRed300">
+            <color red="0.92941176470588238" green="0.10980392156862745" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

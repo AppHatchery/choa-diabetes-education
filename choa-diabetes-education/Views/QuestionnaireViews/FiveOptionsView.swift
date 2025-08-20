@@ -99,14 +99,19 @@ class FiveOptionsView: UIView {
 
 	@IBAction func didNextButtonTap(_ sender: UIButton) {
 		if selected == 0 { return }
-
-		print("SELECTED: \(currentQuestion.questionId ?? 0)")
-
 		switch currentQuestion.questionId {
 			case FiveOptionsQuestionId.childHasAnySymptoms.id:
 				if (selected == 5) {
 					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .noneOfTheAbove(ChildSymptom(id: selected)))
-				}
+				} else if (selected == 1) {
+					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .troubleBreathing(ChildSymptom(id: selected)))
+				} else if (selected == 2) {
+					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .confused(ChildSymptom(id: selected)))
+				} else if (selected == 3) {
+					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .veryTired(ChildSymptom(id: selected)))
+				} else {
+				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .repeatedVomiting(ChildSymptom(id: selected)))
+			}
 			default:
 				break
 		}

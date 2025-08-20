@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepNoDescView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="yH8-bJ-MN6" id="pru-2m-oAL"/>
+                <outlet property="contentView" destination="yH8-bJ-MN6" id="nPq-ky-0JQ"/>
                 <outlet property="doneButton" destination="LQZ-yt-N2K" id="maY-1K-8IB"/>
                 <outlet property="finalImage" destination="Ua4-Ot-rkW" id="p1T-rK-UKu"/>
                 <outlet property="titleLabel" destination="wRD-A1-AHg" id="rKH-fe-KRT"/>
@@ -28,32 +28,34 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRD-A1-AHg">
-                    <rect key="frame" x="28" y="146" width="337" height="20"/>
+                    <rect key="frame" x="20" y="146" width="353" height="20"/>
                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                     <color key="textColor" name="choaGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="Ua4-Ot-rkW">
-                    <rect key="frame" x="28" y="256" width="337" height="401"/>
+                    <rect key="frame" x="20" y="206" width="353" height="401"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-yt-N2K">
-                    <rect key="frame" x="159" y="690" width="97.333333333333314" height="36"/>
+                    <rect key="frame" x="144" y="640" width="105.33333333333331" height="116"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system" imagePlacement="trailing" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system" imagePlacement="trailing" title="Button" imagePadding="8"/>
+                    <connections>
+                        <action selector="didDoneButtonTap:" destination="-1" eventType="touchUpInside" id="xhD-HW-jBh"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q44-JH-esr"/>
             <color key="backgroundColor" name="lightGreenColor"/>
             <constraints>
-                <constraint firstItem="LQZ-yt-N2K" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="159" id="57x-jb-XpU"/>
                 <constraint firstItem="wRD-A1-AHg" firstAttribute="top" secondItem="Q44-JH-esr" secondAttribute="top" constant="28" id="Al4-J0-j6p"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="wRD-A1-AHg" secondAttribute="trailing" constant="28" id="Mep-DO-AL0"/>
-                <constraint firstItem="wRD-A1-AHg" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="Tqs-yX-VYv"/>
-                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="wRD-A1-AHg" secondAttribute="bottom" constant="90" id="f5R-ex-WhK"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="Ua4-Ot-rkW" secondAttribute="trailing" constant="28" id="jwm-2a-a7H"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="LQZ-yt-N2K" secondAttribute="bottom" constant="58" id="nrC-cW-rRS"/>
-                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="28" id="oVJ-xN-Ony"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="LQZ-yt-N2K" secondAttribute="trailing" constant="136.66999999999999" id="rAx-OR-o9I"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="wRD-A1-AHg" secondAttribute="trailing" constant="20" id="Mep-DO-AL0"/>
+                <constraint firstItem="wRD-A1-AHg" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="20" id="Tqs-yX-VYv"/>
+                <constraint firstItem="LQZ-yt-N2K" firstAttribute="centerX" secondItem="yH8-bJ-MN6" secondAttribute="centerX" id="W4b-JQ-fCc"/>
+                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="wRD-A1-AHg" secondAttribute="bottom" constant="40" id="f5R-ex-WhK"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="Ua4-Ot-rkW" secondAttribute="trailing" constant="20" id="jwm-2a-a7H"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="LQZ-yt-N2K" secondAttribute="bottom" constant="28" id="nrC-cW-rRS"/>
+                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="20" id="oVJ-xN-Ony"/>
                 <constraint firstItem="LQZ-yt-N2K" firstAttribute="top" secondItem="Ua4-Ot-rkW" secondAttribute="bottom" constant="33" id="ty9-4J-IEC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

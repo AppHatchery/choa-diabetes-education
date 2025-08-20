@@ -13,6 +13,8 @@
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
+		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
+		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
 		B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */; };
 		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
 		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
@@ -190,6 +192,8 @@
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
 		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
 		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
+		B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEmergencyView.swift; sourceTree = "<group>"; };
+		B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEmergencyView.xib; sourceTree = "<group>"; };
 		B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
 		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
@@ -702,6 +706,8 @@
 				B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */,
 				B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */,
 				B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */,
+				B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */,
+				B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -789,6 +795,7 @@
 				D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */,
 				8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */,
 				D4684AB0290B0B6600E7311B /* burger.png in Resources */,
+				B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */,
 				D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */,
 				D4684AA9290B0B6600E7311B /* non-starchy_veggetables.png in Resources */,
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
@@ -975,6 +982,7 @@
 				D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */,
 				FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */,
 				D4D48E8F28D1122F00820FD4 /* Communities.swift in Sources */,
+				B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */,
 				D48167A728ABE73E003B14A3 /* AgendaView.swift in Sources */,
 				D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */,
 				D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */,

@@ -15,6 +15,7 @@ enum QuestionType: Equatable {
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
 	case finalStepNoDesc(FinalQuestionId)
+	case firstEmergency(FinalQuestionId)
 }
 
 
@@ -345,7 +346,7 @@ enum FiveOptionsAnswer: Equatable {
 	case troubleBreathing(ChildSymptom)
 	case confused(ChildSymptom)
 	case veryTired(ChildSymptom)
-	case vomitedMoreThanOnce(ChildSymptom)
+	case repeatedVomiting(ChildSymptom)
 	case noneOfTheAbove(ChildSymptom)
 }
 
@@ -353,7 +354,7 @@ enum ChildSymptom {
 	case troubleBreathing
 	case confused
 	case veryTired
-	case vomitedMoreThanOnce
+	case repeatedVomiting
 	case noneOfTheAbove
 
 	var description: String {
@@ -364,7 +365,7 @@ enum ChildSymptom {
 				return "GetHelp.Que.ChildSymptoms.option2".localized()
 			case .veryTired:
 				return "GetHelp.Que.ChildSymptoms.option3".localized()
-			case .vomitedMoreThanOnce:
+			case .repeatedVomiting:
 				return "GetHelp.Que.ChildSymptoms.option4".localized()
 			case .noneOfTheAbove:
 				return "GetHelp.Que.ChildSymptoms.option5".localized()
@@ -380,7 +381,7 @@ enum ChildSymptom {
 		case 3:
 			self = .veryTired
 		case 4:
-			self = .vomitedMoreThanOnce
+			self = .repeatedVomiting
 		case 5:
 			self = .noneOfTheAbove
 		default:

@@ -10,6 +10,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedMedium.ttf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FiveOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
@@ -39,31 +44,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="vGE-wo-bdP" userLabel="Main Stack View">
-                    <rect key="frame" x="28" y="138" width="337" height="518.66666666666663"/>
+                    <rect key="frame" x="20" y="138" width="353" height="526.33333333333337"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
-                            <rect key="frame" x="0.0" y="0.0" width="337" height="27.666666666666668"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="29.333333333333332"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rYE-Ad-7u0" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="55.666666666666629" width="337" height="463"/>
+                            <rect key="frame" x="0.0" y="57.333333333333371" width="353" height="469"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="tQt-fb-SDD">
-                                    <rect key="frame" x="0.0" y="0.0" width="337" height="192.33333333333334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="194.33333333333334"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbq-Mq-QdC" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="162.66666666666666" height="192.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="194.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiN-6y-2K6">
-                                                    <rect key="frame" x="10" y="168.00000000000003" width="142.66666666666666" height="14.333333333333343"/>
+                                                    <rect key="frame" x="10" y="169.99999999999997" width="150.66666666666666" height="14.333333333333343"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_trouble_breathing" translatesAutoresizingMaskIntoConstraints="NO" id="kKl-lf-axA">
-                                                    <rect key="frame" x="10" y="5" width="142.66666666666666" height="153"/>
+                                                    <rect key="frame" x="10" y="5" width="150.66666666666666" height="155"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="veryLightBlue"/>
@@ -79,16 +84,16 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-VE-LAI" userLabel="Button View">
-                                            <rect key="frame" x="174.66666666666663" y="0.0" width="162.33333333333337" height="192.33333333333334"/>
+                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="194.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6t-ub-JrC">
-                                                    <rect key="frame" x="10" y="168.00000000000003" width="142.33333333333334" height="14.333333333333343"/>
+                                                    <rect key="frame" x="10" y="169.99999999999997" width="150.33333333333334" height="14.333333333333343"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_confused" translatesAutoresizingMaskIntoConstraints="NO" id="Ard-dz-RHC">
-                                                    <rect key="frame" x="10" y="5" width="142.33333333333334" height="153"/>
+                                                    <rect key="frame" x="10" y="5" width="150.33333333333334" height="155"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="veryLightBlue"/>
@@ -106,19 +111,19 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gZo-po-gbn">
-                                    <rect key="frame" x="0.0" y="204.33333333333331" width="337" height="192.33333333333331"/>
+                                    <rect key="frame" x="0.0" y="206.33333333333331" width="353" height="194.33333333333331"/>
                                     <subviews>
                                         <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33H-qb-rib" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="162.66666666666666" height="192.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="194.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tay-08-FDF">
-                                                    <rect key="frame" x="10" y="168" width="142.66666666666666" height="14.333333333333343"/>
+                                                    <rect key="frame" x="10" y="169.99999999999994" width="150.66666666666666" height="14.333333333333343"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_lethargic" translatesAutoresizingMaskIntoConstraints="NO" id="i5Q-zO-sTq">
-                                                    <rect key="frame" x="10" y="5" width="142.66666666666666" height="153"/>
+                                                    <rect key="frame" x="10" y="5" width="150.66666666666666" height="155"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="veryLightBlue"/>
@@ -134,16 +139,16 @@
                                             </constraints>
                                         </view>
                                         <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDl-uP-K60" userLabel="Button View">
-                                            <rect key="frame" x="174.66666666666663" y="0.0" width="162.33333333333337" height="192.33333333333334"/>
+                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="194.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIO-C8-ns5">
-                                                    <rect key="frame" x="10" y="168" width="142.33333333333334" height="14.333333333333343"/>
+                                                    <rect key="frame" x="10" y="169.99999999999994" width="150.33333333333334" height="14.333333333333343"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_repeated_vomiting" translatesAutoresizingMaskIntoConstraints="NO" id="HEj-hZ-7of">
-                                                    <rect key="frame" x="10" y="5" width="142.33333333333334" height="153"/>
+                                                    <rect key="frame" x="10" y="5" width="150.33333333333334" height="155"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="veryLightBlue"/>
@@ -161,10 +166,10 @@
                                     </subviews>
                                 </stackView>
                                 <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ne4-hW-hH1" userLabel="Button View">
-                                    <rect key="frame" x="0.0" y="408.66666666666674" width="337" height="54.333333333333314"/>
+                                    <rect key="frame" x="0.0" y="412.66666666666663" width="353" height="56.333333333333314"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjM-u0-ZQt">
-                                            <rect key="frame" x="20" y="20" width="297" height="14.333333333333336"/>
+                                            <rect key="frame" x="20" y="20" width="313" height="16.333333333333329"/>
                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="14"/>
                                             <color key="textColor" name="primaryBlue"/>
                                             <nil key="highlightedColor"/>
@@ -188,10 +193,10 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qCL-Id-wlA" userLabel="Nav Buttons Stack View">
-                    <rect key="frame" x="28" y="708" width="337" height="48"/>
+                    <rect key="frame" x="20" y="736" width="353" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLJ-gL-fxn">
-                            <rect key="frame" x="0.0" y="0.0" width="162.66666666666666" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="48"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8" titleAlignment="center">
                                 <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
@@ -202,7 +207,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaT-UF-v5D" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="174.66666666666663" y="0.0" width="162.33333333333337" height="48"/>
+                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="z0C-gF-e6E"/>
                             </constraints>
@@ -218,12 +223,12 @@
             <viewLayoutGuide key="safeArea" id="ba2-uc-4c5"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="qCL-Id-wlA" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="28" id="3et-EV-rzh"/>
-                <constraint firstItem="ba2-uc-4c5" firstAttribute="trailing" secondItem="qCL-Id-wlA" secondAttribute="trailing" constant="28" id="GgZ-8D-we7"/>
+                <constraint firstItem="qCL-Id-wlA" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="20" id="3et-EV-rzh"/>
+                <constraint firstItem="ba2-uc-4c5" firstAttribute="trailing" secondItem="qCL-Id-wlA" secondAttribute="trailing" constant="20" id="GgZ-8D-we7"/>
                 <constraint firstItem="vGE-wo-bdP" firstAttribute="top" secondItem="ba2-uc-4c5" secondAttribute="top" constant="20" id="Q55-oq-nZ5"/>
-                <constraint firstItem="vGE-wo-bdP" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="28" id="jQG-NO-vt9"/>
-                <constraint firstItem="ba2-uc-4c5" firstAttribute="bottom" secondItem="qCL-Id-wlA" secondAttribute="bottom" constant="28" id="uds-ns-mfP"/>
-                <constraint firstAttribute="trailing" secondItem="vGE-wo-bdP" secondAttribute="trailing" constant="28" id="ukO-IY-Z2S"/>
+                <constraint firstItem="vGE-wo-bdP" firstAttribute="leading" secondItem="ba2-uc-4c5" secondAttribute="leading" constant="20" id="jQG-NO-vt9"/>
+                <constraint firstItem="ba2-uc-4c5" firstAttribute="bottom" secondItem="qCL-Id-wlA" secondAttribute="bottom" id="uds-ns-mfP"/>
+                <constraint firstAttribute="trailing" secondItem="vGE-wo-bdP" secondAttribute="trailing" constant="20" id="ukO-IY-Z2S"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="23.664122137404579" y="-163.38028169014086"/>

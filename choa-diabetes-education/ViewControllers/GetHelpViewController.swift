@@ -20,8 +20,9 @@ class GetHelpViewController: UIViewController {
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
     @IBOutlet weak var fourOptionsView: FourOptionsView!
 	@IBOutlet weak var fiveOptionsView: FiveOptionsView!
+	@IBOutlet var firstEmergencyView: FirstEmergencyView!
 
-    private let questionObj: Questionnaire
+	private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
     private let navVC: UINavigationController
     
@@ -65,10 +66,16 @@ class GetHelpViewController: UIViewController {
 
 			// IMPORTANT: Set tint color AFTER setting the appearance
 		navigationController?.navigationBar.tintColor = UIColor.black
+		navigationItem.backButtonDisplayMode = .minimal
 
 		self.questionnaireManager.actionsDelegate = self
 		hideAllViews()
 		setupViews()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		navigationItem.backButtonDisplayMode = .minimal
 	}
 
     
@@ -81,8 +88,9 @@ class GetHelpViewController: UIViewController {
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
 		fiveOptionsView.isHidden = true
+		firstEmergencyView.isHidden = true
     }
-    
+
     private func setupViews() {
         switch questionObj.questionType {
         case .yesOrNo:
@@ -118,8 +126,12 @@ class GetHelpViewController: UIViewController {
 			finalStepNoDescView.isHidden = false
 			finalStepNoDescView.delegate = self
 			finalStepNoDescView.setupView(currentQuestion: questionObj)
-
-        case .none: break
+		case .firstEmergency:
+			firstEmergencyView.isHidden = false
+			firstEmergencyView.delegate = self
+			firstEmergencyView.setupView(currentQuestion: questionObj)
+        case .none:
+			break
         }
     }
     
@@ -128,7 +140,8 @@ class GetHelpViewController: UIViewController {
     }
 }
 
-extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
+extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol,
+	FirstEmergencyViewProtocol {
 
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer? ) {
         switch selectedAnswer {
@@ -148,28 +161,22 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
-		print("HERE IS FOLLOW UP ANSWER \(followUpAnswer)")
 		print("Current Question: \(currentQuestion)")
 
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
 			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
-		default:
-			break
 		}
 	}
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?) {
-		print("Blood ketone follow up answer: \(followUpAnswer)")
 		print("Current Question: \(currentQuestion)")
 
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
 			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
-		default:
-			break
 		}
 	}
 
@@ -179,10 +186,12 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 
 			print("Four options selected answer: \(selectedAnswer)")
-		case .HighBloodSugar(_):
+		case .HighBloodSugar(let childIssue):
 			print("Four options selected answer: \(selectedAnswer)")
-		case .LowBloodSugar(_):
+			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
+		case .LowBloodSugar(let childIssue):
 			print("Four options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 		case .NotSure(_):
 			print("Four options selected answer: \(selectedAnswer)")
 		}
@@ -200,13 +209,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 				)
 			print("Five options selected answer: \(selectedAnswer)")
 		case .troubleBreathing(_):
+			self.questionnaireManager
+				.triggerFirstEmergencyActionFlow(currentQuestion)
 			print("Five options selected answer: \(selectedAnswer)")
 		case .confused(_):
 			print("Five options selected answer: \(selectedAnswer)")
+			self.questionnaireManager
+				.triggerFirstEmergencyActionFlow(currentQuestion)
 		case .veryTired(_):
 			print("Five options selected answer: \(selectedAnswer)")
-		case .vomitedMoreThanOnce(_):
+			self.questionnaireManager.triggerFirstEmergencyActionFlow(currentQuestion)
+		case .repeatedVomiting(_):
 			print("Five options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerFirstEmergencyActionFlow(currentQuestion)
 		}
 
 	}
