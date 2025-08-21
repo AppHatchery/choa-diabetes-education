@@ -13,6 +13,8 @@ extension UIColor {
     public static let choaGreenColor = UIColor(named: "choaGreenColor")!
 	public static let primaryBlue = UIColor(named: "primaryBlue")!
 	public static let veryLightBlue = UIColor(named: "veryLightBlue")!
+	public static let veryLightRed = UIColor(named: "lightRedColor")!
+	public static let veryLightGreen	= UIColor(named: "lightGreenColor")!
     public static let contentBlackColor = UIColor(named: "contentBlackColor")!
 	public static let backgroundColor = UIColor(named: "backgroundColor")!
 	public static let secondaryRedColor = UIColor(named: "secondaryFireRed300")!

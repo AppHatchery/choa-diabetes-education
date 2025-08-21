@@ -55,6 +55,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 	@IBOutlet var resourcesStackView: UIStackView!
 	@IBOutlet var learnHowLabel: UILabel!
 
+	@IBOutlet var firstButtonImage: UIImageView!
+	@IBOutlet var secondButtonImage: UIImageView!
+
 	private var currentQuestion: Questionnaire!
 	private var followUpQuestion: Questionnaire?
     weak var delegate: TwoOptionsViewProtocol?
@@ -97,6 +100,15 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			resourcesStackView.isHidden = true
 		} else {
 			setupLearnHowLabel()
+		}
+
+		if (currentQuestion.questionId == TwoOptionsQuestionId.measuringType.id) {
+			firstButtonImage.image = UIImage(named: "ketone_strip")
+			secondButtonImage.image = UIImage(named: "blood_ketone")
+		}
+
+		if selected == 0 {
+			nextButton.alpha = 0.3
 		}
 
 		for (index, view) in optionButtons.enumerated() {
@@ -148,6 +160,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
+
+
+				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()

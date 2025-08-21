@@ -78,6 +78,14 @@ class GetHelpViewController: UIViewController {
 		navigationItem.backButtonDisplayMode = .minimal
 	}
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(true)
+
+		if isMovingFromParent {
+			resetBackgroundColor()
+		}
+	}
+
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true
@@ -122,26 +130,72 @@ class GetHelpViewController: UIViewController {
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .finalStepNoDesc:
 			finalStepNoDescView.isHidden = false
 			finalStepNoDescView.delegate = self
 			finalStepNoDescView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .firstEmergency:
 			firstEmergencyView.isHidden = false
 			firstEmergencyView.delegate = self
 			firstEmergencyView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
         case .none:
 			break
         }
     }
-    
+
+	private func updateBackgroundColorForFinalStep(questionId: Int) {
+		let backgroundColor: UIColor
+
+		switch questionId {
+		case FinalQuestionId.firstEmergencyScreen.id:
+			backgroundColor = .veryLightRed
+		case FinalQuestionId.endo.id:
+			backgroundColor = .white
+		case FinalQuestionId.continueRegularCare.id:
+			backgroundColor = .veryLightGreen
+		default:
+			backgroundColor = .white
+		}
+
+		view.backgroundColor = backgroundColor
+
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.backgroundColor = backgroundColor
+		appearance.shadowColor = .clear
+
+		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+
+		navigationController?.navigationBar.standardAppearance = appearance
+		navigationController?.navigationBar.scrollEdgeAppearance = appearance
+		navigationController?.navigationBar.tintColor = UIColor.black
+	}
+
+	private func resetBackgroundColor() {
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.backgroundColor = .white
+		appearance.shadowColor = .clear
+
+		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+
+		navigationController?.navigationBar.standardAppearance = appearance
+		navigationController?.navigationBar.scrollEdgeAppearance = appearance
+		navigationController?.navigationBar.tintColor = UIColor.black
+		view.backgroundColor = .white
+	}
+
     @objc func closeTapped(_ sender: Any){
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
-extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol,
-	FirstEmergencyViewProtocol {
+extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
 
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer? ) {
         switch selectedAnswer {
@@ -276,7 +330,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol {
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FirstEmergencyViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
         if question.questionId == FinalQuestionId.shot.id {

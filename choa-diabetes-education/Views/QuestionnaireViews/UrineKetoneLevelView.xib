@@ -66,11 +66,11 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-9d-h25">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-9d-h25">
                                     <rect key="frame" x="0.0" y="71.999999999999972" width="393" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-ZX-uMX">
-                                            <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="56.333333333333336" height="50"/>
                                             <color key="backgroundColor" name="ketoneLowNegative"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -89,7 +89,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w64-on-z1o">
-                                            <rect key="frame" x="66.333333333333329" y="0.0" width="61.999999999999986" height="50"/>
+                                            <rect key="frame" x="67.333333333333329" y="0.0" width="56.333333333333329" height="50"/>
                                             <color key="backgroundColor" name="ketoneLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -108,7 +108,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwt-px-RnC">
-                                            <rect key="frame" x="132.33333333333334" y="0.0" width="62.333333333333343" height="50"/>
+                                            <rect key="frame" x="134.66666666666666" y="0.0" width="56.333333333333343" height="50"/>
                                             <color key="backgroundColor" name="ketoneMidLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -127,7 +127,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95g-5c-gFe">
-                                            <rect key="frame" x="198.66666666666666" y="0.0" width="61.999999999999972" height="50"/>
+                                            <rect key="frame" x="202" y="0.0" width="56.333333333333314" height="50"/>
                                             <color key="backgroundColor" name="ketoneMidHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -146,7 +146,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-TJ-dV7">
-                                            <rect key="frame" x="264.66666666666669" y="0.0" width="62.333333333333314" height="50"/>
+                                            <rect key="frame" x="269.33333333333331" y="0.0" width="56.333333333333314" height="50"/>
                                             <color key="backgroundColor" name="ketoneHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -165,7 +165,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hza-H8-NJp">
-                                            <rect key="frame" x="331" y="0.0" width="62" height="50"/>
+                                            <rect key="frame" x="336.66666666666669" y="0.0" width="56.333333333333314" height="50"/>
                                             <color key="backgroundColor" name="KetoneHighVeryHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>

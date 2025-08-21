@@ -75,6 +75,10 @@ class FourOptionsView: UIView {
 			thirdButtonLabel.text = answerOptions[2].localized()
 			fourthButtonLabel.text = answerOptions[3].localized()
         }
+
+		if selected == 0 {
+			nextButton.alpha = 0.3
+		}
     }
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
@@ -88,6 +92,9 @@ class FourOptionsView: UIView {
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
 				print("Selected FOUR OPTIONS Answer: \(selected)")
+
+				nextButton.isEnabled = true
+				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()

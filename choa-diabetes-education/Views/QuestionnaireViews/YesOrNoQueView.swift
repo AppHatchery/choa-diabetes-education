@@ -45,7 +45,7 @@ class YesOrNoQueView: UIView {
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
         
-        questionLabel.font = .gothamRoundedBold16
+        questionLabel.font = .gothamRoundedMedium
         questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
@@ -66,16 +66,22 @@ class YesOrNoQueView: UIView {
         } else {
 			print("No Description")
         }
+
+		nextButton.alpha = 0.3
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {
         noButton.updateButtonForDeselection()
         yesButton.updateButtonForSelection()
+
+		nextButton.alpha = 1
     }
     
     @IBAction func didNoButtonTap(_ sender: UIButton) {
         noButton.updateButtonForSelection()
         yesButton.updateButtonForDeselection()
+
+		nextButton.alpha = 1
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {

@@ -54,17 +54,20 @@ class FirstEmergencyView: UIView {
 		titleLabel.textAlignment = .center
 
 
-		goToTheNearestLabel.font = .gothamRoundedBold26
+		goToTheNearestLabel.text = "Calculator.Final.FirstEmergency.GoTo".localized()
+		goToTheNearestLabel.font = .gothamRoundedBold24
 		goToTheNearestLabel.numberOfLines = 0
 		goToTheNearestLabel.textColor = .black
-		goToTheNearestLabel.text = currentQuestion.finalStep?.title
 		goToTheNearestLabel.textAlignment = .center
 
+		emergencyDepartmentLabel.text = "Calculator.Final.FirstEmergency.EmergencyDepartment"
+			.localized()
 		emergencyDepartmentLabel.font = .gothamRoundedBold26
 		emergencyDepartmentLabel.numberOfLines = 0
 		emergencyDepartmentLabel.textColor = .secondaryRedColor
 		emergencyDepartmentLabel.textAlignment = .center
 
+		call911Button.titleLabel?.font = .gothamRoundedBold20
 		call911Button.layer.cornerRadius = 12
 	}
 
@@ -74,7 +77,6 @@ class FirstEmergencyView: UIView {
 		if UIApplication.shared.canOpenURL(url) {
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
-//		delegate?.didSelectGotItAction(currentQuestion)
 	}
 
 	@IBAction func didExitButtonTap(_ sender: UIButton) {

@@ -45,8 +45,8 @@ class BloodKetoneLevelView: UIView {
 		view.frame = self.bounds
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-		ketoneLevelsStackView.layer.borderWidth = 1
-		ketoneLevelsStackView.layer.borderColor = UIColor.black.cgColor
+		ketoneLevelsStackView.layer.borderWidth = 0.5
+		ketoneLevelsStackView.layer.borderColor = UIColor.darkGray.cgColor
 		ketoneLevelsStackView.layer.cornerRadius = 12
 		ketoneLevelsStackView.isLayoutMarginsRelativeArrangement = true
 		ketoneLevelsStackView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
@@ -86,7 +86,7 @@ class BloodKetoneLevelView: UIView {
 		print("Follow up answer FROM BLOOD KETONE LEVEL VIEW: \(selected)")
 
 		for button in ketoneLevelButtons {
-			button.alpha = (button == sender) ? 1.0 : 0.5
+			button.alpha = (button == sender) ? 1.0 : 0.3
 		}
 
 		switch level {

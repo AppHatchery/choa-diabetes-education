@@ -77,6 +77,10 @@ class FiveOptionsView: UIView {
 			fourthButtonLabel.text = answerOptions[3].localized()
 			fifthButtonLabel.text = answerOptions[4].localized()
 		}
+
+		if selected == 0 {
+			nextButton.alpha = 0.3
+		}
 	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
@@ -89,6 +93,8 @@ class FiveOptionsView: UIView {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
+
+				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
