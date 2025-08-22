@@ -43,27 +43,37 @@ class YesOrNoFollowUpView: UIView {
 		}
 
 		addSubview(view)
+		view.frame = self.bounds
+		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 	}
 
 		// MARK: - Actions
 	@IBAction private func yesButtonTapped(_ sender: RoundedButton) {
-			// Handle yes button tap
+		selected = 1
 		delegate?.followUpView(self, didSelect: selected)
+
+		yesButton.updateButtonForSelection()
+		noButton.updateButtonForDeselection()
 	}
 
 	@IBAction private func noButtonTapped(_ sender: RoundedButton) {
+		selected = 2
 		delegate?.followUpView(self, didSelect: selected)
 
+		noButton.updateButtonForSelection()
+		yesButton.updateButtonForDeselection()
 	}
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 
-		questionLabel.font = .gothamRoundedBold16
+		questionLabel.font = .gothamRoundedMedium
 		questionLabel.numberOfLines = 0
 		questionLabel.textColor = .headingGreenColor
 
 		questionLabel.textAlignment = .left
+
+		selected = 0
 
 		switch currentQuestion.questionId {
 
@@ -72,9 +82,14 @@ class YesOrNoFollowUpView: UIView {
 
 			yesButton.setTitle("Yes".localized(), for: .normal)
 			noButton.setTitle("No".localized(), for: .normal)
+
+		case YesOrNoQuestionId.bloodSugarCheck.id:
+			questionLabel.text = QuestionnaireManager.instance.iLetPump ? "Calculator.Que.ILetPumpBloodSugarTimeCheck.title".localized() : "Calculator.Que.BloodSugarTimeCheck.title".localized()
+
+			yesButton.setTitle("Yes".localized(), for: .normal)
+			noButton.setTitle("No".localized(), for: .normal)
 		default:
 			break
 		}
-
 	}
 }

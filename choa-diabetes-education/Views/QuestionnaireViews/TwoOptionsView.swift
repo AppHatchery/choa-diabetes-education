@@ -9,6 +9,8 @@ import UIKit
 protocol TwoOptionsViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?)
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?)
+
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?)
 	
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
@@ -179,51 +181,20 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 	func didFirstButtonTap() {
 		switch currentQuestion.questionId {
 		case TwoOptionsQuestionId.testType.id:
-
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
 		case TwoOptionsQuestionId.measuringType.id:
 
-			print("Current Question: \(currentQuestion.questionId ?? 0)")
-			print("Selected Answer: \(selected)")
-
-			// Clear any existing subviews
-			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
-
-			// Show urine ketone level view (first option)
-			let followUpSubview = UrineKetoneLevelView()
-
-			if followUpSubview.isDescendant(of: followUpQuestionStackView) {
+				// Guard against adding duplicate UrineKetoneLevelView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
 				return
-			} else {
-				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-				followUpQuestionStackView.addArrangedSubview(followUpSubview)
-
-				NSLayoutConstraint.activate([
-					followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
-					followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
-				])
-
-				followUpSubview.delegate = self
-
 			}
-		default:
-			break
-		}
-    }
 
-	func didSecondButtonTap() {
-		switch currentQuestion.questionId {
-
-		case TwoOptionsQuestionId.testType.id:
-				// followUpQuestionView.isHidden = false
-
-			print("Current Question: \(currentQuestion.questionId ?? 0)")
-			print("Selected Answer: \(selected)")
-
-			followUpSubview = YesOrNoFollowUpView()
-
+				// Clear any existing subviews
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+				// Show urine ketone level view (first option)
+			let followUpSubview = UrineKetoneLevelView()
 
 			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
 			followUpQuestionStackView.addArrangedSubview(followUpSubview)
@@ -235,12 +206,43 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 			followUpSubview.delegate = self
 
+		default:
+			break
+		}
+	}
+
+	func didSecondButtonTap() {
+		switch currentQuestion.questionId {
+
+		case TwoOptionsQuestionId.testType.id:
+
+				// Guard against adding duplicate YesOrNoFollowUpView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is YesOrNoFollowUpView }) {
+				return
+			}
+
+				// Clear any existing subviews first
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+			let followUpSubview = YesOrNoFollowUpView()
+
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
+
+			followUpSubview.delegate = self
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 		case TwoOptionsQuestionId.measuringType.id:
 
-			print("Current Question: \(currentQuestion.questionId ?? 0)")
-			print("Selected Answer: \(selected)")
+				// Guard against adding duplicate BloodKetoneLevelView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
+				return
+			}
 
 				// Clear any existing subviews
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
@@ -248,25 +250,21 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				// Show blood ketone level view (second option)
 			let followUpSubview = BloodKetoneLevelView()
 
-			if followUpQuestionStackView.subviews.contains(followUpSubview) {
-				return
-			} else {
-				followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-				followUpQuestionStackView.addArrangedSubview(followUpSubview)
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
-				NSLayoutConstraint.activate([
-					followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
-					followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
-				])
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
 
-				followUpSubview.delegate = self
-			}
+			followUpSubview.delegate = self
 
 		default:
 			break
 		}
-    }
-    
+	}
+
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         
         // TODO: Architecture Discussion -> Switch Logic to VC
@@ -275,17 +273,27 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         
         switch currentQuestion.questionId {
         case TwoOptionsQuestionId.testType.id:
+			if selected == 1 {
+				// Uses Injection / Insulin Pen
 				delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .TestType(TestType(id: selected)), followUpAnswer: .CalculationType(CalculationType(id: followUpAnswer)) )
-		case TwoOptionsQuestionId.measuringType.id:
-			print("Current Question: \(currentQuestion.questionId ?? 0)")
-			print("Selected Answer: \(selected)")
-			print("Follow Up Answer: \(followUpAnswer)")
+			} else if selected == 2 {
+				guard followUpAnswer != 0 else { return }
+				// Uses Insulin Pump
+				delegate?
+					.didSelectNextAction(
+						currentQuestion: currentQuestion,
+						selectedAnswer: .TestType(TestType(id: selected)),
+						followUpAnswer: followUpAnswer == 1 ? .yes : .no
+					)
+			}
 
+		case TwoOptionsQuestionId.measuringType.id:
 			guard followUpAnswer != 0 else { return }
 			
 			if selected == 1 {
 				// Urine ketones selected
 				let answerEnum = UrineKetoneLevel(id: followUpAnswer)
+
 				delegate?.didSelectNextAction(
 					currentQuestion: currentQuestion,
 					selectedAnswer: .UrineKetoneLevel(answerEnum),

@@ -23,6 +23,9 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
     func saveCGM(_ cgm: Bool)
+	func saveILetPump(_ iLetPump: Bool)
+	func bloodSugarOver300For3Hours(_ over300: Bool)
+	var iLetPump: Bool { get }
     func saveData(bloodSugar: Int, correctionFactor: Int)
     func saveKetones(type: KetonesMeasurements)
 	func saveUrineKetoneLevel(level: UrineKetoneLevel)
@@ -45,6 +48,8 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 	private(set) var currentChildIssue: ChildIssue = .diabeticKetoacidosis
     var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
+	private(set) var iLetPump: Bool = false
+	private(set) var bloodSugarOver300For3Hours: Bool = false
     private(set) var bloodSugar: Int = 0
     private(set) var correctionFactor: Int = 0
     private(set) var ketones: KetonesMeasurements?
@@ -120,11 +125,8 @@ extension QuestionnaireManager {
             triggerBloodSugarCheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
             triggerBloodSugarActionFlow(currentQuestion)
-        case YesOrNoQuestionId.shotBloodSugarCheck.id:
-//            triggerBloodSugarActionFlow(currentQuestion)
+        case YesOrNoQuestionId.bloodSugarCheck.id:
 			triggerKetoneMeasuringTypeActionFlow(currentQuestion)
-//			triggerKetonesActionFlow(currentQuestion)
-			print("SHOT BLOOD SUGAR")
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerFullDoseActionFlow()
         default:
@@ -146,8 +148,8 @@ extension QuestionnaireManager {
             triggerBloodSugarCheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
             triggerRecheckActionFlow(currentQuestion)
-        case YesOrNoQuestionId.shotBloodSugarCheck.id:
-            triggerRecheckActionFlow(currentQuestion)
+        case YesOrNoQuestionId.bloodSugarCheck.id:
+            showFinalStage(stage: .continueRegularCare, calculation: nil)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
         default:
@@ -169,7 +171,15 @@ extension QuestionnaireManager {
     func saveCGM(_ cgm: Bool) {
         self.cgm = cgm
     }
-    
+
+	func saveILetPump(_ iLetPump: Bool) {
+		self.iLetPump = iLetPump
+	}
+
+	func bloodSugarOver300For3Hours(_ over300: Bool) {
+		self.bloodSugarOver300For3Hours = over300
+	}
+
     func saveData(bloodSugar: Int, correctionFactor: Int) {
         self.bloodSugar = bloodSugar
         self.correctionFactor = correctionFactor
@@ -220,18 +230,17 @@ extension QuestionnaireManager {
     
     
     func triggerTestActionFlow(_ currentQuestion: Questionnaire) {
-        if currentTestType == .pump {
-            let createQue = createYesOrNoQuestion(questionId: .continuousGlucoseMonitor, question: "Calculator.Que.CGM.title".localized(), description: "Calculator.Que.CGM.description".localized(), showDescriptionAtBottom: true)
-            actionsDelegate?.showNextQuestion(createQue)
+		if currentTestType == .insulinShots {
+			saveILetPump(false)
+			let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: "Calculator.Que.BloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
 
-        } else if currentTestType == .insulinShots {
+			actionsDelegate?.showNextQuestion(createQue)
+		} else if currentTestType == .pump {
 //            let createQue = createTwoCustomOptionsQuestion(questionId: .calculationType, question: "Calculator.Que.Method.title".localized(), description: "Calculator.Que.Method.description".localized(), answerOptions: ["Calculator.Que.Method.option1".localized(), "Calculator.Que.Method.option2".localized()])
+			let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: "Calculator.Que.BloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
 
-			let createQue = createYesOrNoQuestion(questionId: .shotBloodSugarCheck, question: "Calculator.Que.ShotBloodSugarCheck.title".localized(), description: "Calculator.Que.ShotBloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
-
-            actionsDelegate?.showNextQuestion(createQue)
-        }
-
+			actionsDelegate?.showNextQuestion(createQue)
+		}
     }
     
     
@@ -256,7 +265,7 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createQue)
             
         } else if currentTestType == .insulinShots {
-            let createQue = createYesOrNoQuestion(questionId: .shotBloodSugarCheck, question: "Calculator.Que.ShotBloodSugarCheck.title".localized(), description: "Calculator.Que.ShotBloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
+            let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: "Calculator.Que.BloodSugarCheck.description".localized(), showDescriptionAtBottom: false)
             actionsDelegate?.showNextQuestion(createQue)
         }
     }

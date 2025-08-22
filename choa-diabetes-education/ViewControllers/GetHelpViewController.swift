@@ -197,7 +197,7 @@ class GetHelpViewController: UIViewController {
 
 extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
 
-    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer? ) {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?) {
         switch selectedAnswer {
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
@@ -214,16 +214,37 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         
     }
 
-	func didSelectLearnHowAction() {
-		let storyboard = UIStoryboard(name: "GetHelp", bundle: nil)
-		if let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutKetoneMeasurementsViewController") as? AboutKetoneMeasurementsViewController {
-			aboutVC.modalPresentationStyle = .pageSheet
-			present(aboutVC, animated: true)
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?) {
+		switch selectedAnswer {
+		case .TestType(let testType):
+			self.questionnaireManager.saveTestType(testType)
+
+			if followUpAnswer == .yes {
+				self.questionnaireManager.saveILetPump(true)
+				print("Uses iLetPump")
+			} else {
+				self.questionnaireManager.saveILetPump(false)
+				print("Does not use iLetPump")
+				print(self.questionnaireManager.iLetPump)
+			}
+
+			self.questionnaireManager.triggerTestActionFlow(currentQuestion)
+		default:
+			return
+		}
+	}
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
+
+		switch selectedAnswer {
+		case .yes:
+			self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+		case .no:
+			self.questionnaireManager.triggerNoActionFlow(currentQuestion)
 		}
 	}
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
-		print("Current Question: \(currentQuestion)")
 
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
@@ -233,7 +254,6 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 	}
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?) {
-		print("Current Question: \(currentQuestion)")
 
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
@@ -317,7 +337,14 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
             self.questionnaireManager.triggerNoActionFlow(currentQuestion)
         }
     }
-    
+
+	func didSelectLearnHowAction() {
+		let storyboard = UIStoryboard(name: "GetHelp", bundle: nil)
+		if let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutKetoneMeasurementsViewController") as? AboutKetoneMeasurementsViewController {
+			aboutVC.modalPresentationStyle = .pageSheet
+			present(aboutVC, animated: true)
+		}
+	}
     
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int) {
         self.questionnaireManager.saveData(bloodSugar: bloodSugar, correctionFactor: cf)

@@ -9,22 +9,30 @@ import UIKit
 protocol YesOrNoQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo)
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?)
+
 	func didSelectExitAction()
 }
 
-class YesOrNoQueView: UIView {
+class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
+	func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+	}
+
     static let nibName = "YesOrNoQueView"
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var yesButton: RoundedButton!
     @IBOutlet weak var noButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
+	@IBOutlet var followUpQuestionStackView: UIStackView!
 
     private var currentQuestion: Questionnaire!
     weak var delegate: YesOrNoQueViewProtocol?
-    
+
+	private var followUpAnswer = 0
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         nibSetup()
@@ -74,12 +82,41 @@ class YesOrNoQueView: UIView {
         noButton.updateButtonForDeselection()
         yesButton.updateButtonForSelection()
 
+		switch currentQuestion.questionId {
+		case YesOrNoQuestionId.bloodSugarCheck.id:
+				// Guard against adding duplicate YesOrNoFollowUpView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is YesOrNoFollowUpView }) {
+				return
+			}
+
+				// Clear any existing subviews first
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+			let followUpSubview = YesOrNoFollowUpView()
+
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
+
+			followUpSubview.delegate = self
+			followUpSubview.setupView(currentQuestion: currentQuestion)
+
+		default:
+			break
+		}
+
 		nextButton.alpha = 1
     }
     
     @IBAction func didNoButtonTap(_ sender: UIButton) {
         noButton.updateButtonForSelection()
         yesButton.updateButtonForDeselection()
+
+		followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
 		nextButton.alpha = 1
     }
