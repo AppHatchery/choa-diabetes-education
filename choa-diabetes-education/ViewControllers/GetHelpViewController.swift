@@ -214,6 +214,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         
     }
 
+		// For checking if they use iLet Pump
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?) {
 		switch selectedAnswer {
 		case .TestType(let testType):
@@ -229,18 +230,22 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			}
 
 			self.questionnaireManager.triggerTestActionFlow(currentQuestion)
+		
 		default:
 			return
 		}
 	}
 
+		// For checking if blood sugar is over 300 for 3 hours or 90 minutes (for iLet Pump)
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
 
 		switch selectedAnswer {
 		case .yes:
-			self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+				self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+				self.questionnaireManager.bloodSugarOver300For3Hours(true)
 		case .no:
-			self.questionnaireManager.triggerNoActionFlow(currentQuestion)
+				self.questionnaireManager.triggerNoActionFlow(currentQuestion)
+				self.questionnaireManager.bloodSugarOver300For3Hours(false)
 		}
 	}
 

@@ -62,7 +62,7 @@
                                 <constraint firstAttribute="height" constant="36" id="ua1-nW-ccM"/>
                             </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="A91-rA-Lme" userLabel="Follow Up Question Stack View">
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A91-rA-Lme" userLabel="Follow Up Question Stack View">
                             <rect key="frame" x="0.0" y="100.66666666666669" width="353" height="200"/>
                         </stackView>
                     </subviews>
@@ -103,8 +103,8 @@
                 <constraint firstItem="Hef-Za-fKy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="67z-SE-lx5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6lb-bB-6Qr" secondAttribute="bottom" id="7iZ-XQ-SXm"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6lb-bB-6Qr" secondAttribute="trailing" constant="20" id="95r-Pz-bum"/>
+                <constraint firstItem="6lb-bB-6Qr" firstAttribute="top" secondItem="Hef-Za-fKy" secondAttribute="bottom" priority="999" constant="415.32998657226562" id="F1t-IS-h3l"/>
                 <constraint firstAttribute="trailing" secondItem="Hef-Za-fKy" secondAttribute="trailing" constant="20" id="S2t-4u-u4c"/>
-                <constraint firstAttribute="bottom" secondItem="Hef-Za-fKy" secondAttribute="bottom" constant="531.33333333333326" id="klI-V7-bHN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="50.381679389312978" y="-143.3098591549296"/>

@@ -10,7 +10,7 @@ import UIKit
 
 class YesOrNoFollowUpView: UIView {
 	protocol YesOrNoFollowUpViewDelegate: AnyObject {
-		func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int)
+		func yesOrNoFollowUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int)
 	}
 
 	@IBOutlet var questionLabel: UILabel!
@@ -38,6 +38,7 @@ class YesOrNoFollowUpView: UIView {
 	private func loadFromNib() {
 		let bundle = Bundle(for: type(of: self))
 		let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+		
 		guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
 			return
 		}
@@ -50,7 +51,7 @@ class YesOrNoFollowUpView: UIView {
 		// MARK: - Actions
 	@IBAction private func yesButtonTapped(_ sender: RoundedButton) {
 		selected = 1
-		delegate?.followUpView(self, didSelect: selected)
+		delegate?.yesOrNoFollowUpView(self, didSelect: selected)
 
 		yesButton.updateButtonForSelection()
 		noButton.updateButtonForDeselection()
@@ -58,7 +59,7 @@ class YesOrNoFollowUpView: UIView {
 
 	@IBAction private func noButtonTapped(_ sender: RoundedButton) {
 		selected = 2
-		delegate?.followUpView(self, didSelect: selected)
+		delegate?.yesOrNoFollowUpView(self, didSelect: selected)
 
 		noButton.updateButtonForSelection()
 		yesButton.updateButtonForDeselection()

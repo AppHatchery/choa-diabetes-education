@@ -15,7 +15,11 @@ protocol YesOrNoQueViewProtocol: AnyObject {
 }
 
 class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
-	func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+	func yesOrNoFollowUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+	}
+
+	func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
 		self.followUpAnswer = answer
 	}
 
@@ -63,17 +67,6 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
             yesButton.setTitle(answerOptions[0].localized(), for: .normal)
             noButton.setTitle(answerOptions[1].localized(), for: .normal)
         }
-        
-        if let currDesctiption = currentQuestion.description, currDesctiption != "" {
-            if currentQuestion.showDescriptionAtBottom {
-                
-                print("Description At Bottom: \(currDesctiption)")
-            } else {
-				print("Description At Top: \(currDesctiption)")
-            }
-        } else {
-			print("No Description")
-        }
 
 		nextButton.alpha = 0.3
     }
@@ -103,6 +96,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 			])
 
 			followUpSubview.delegate = self
+			
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 		default:
@@ -123,6 +117,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if yesButton.isSelected {
+			guard followUpAnswer != 0 else { return }
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
         } else if noButton.isSelected {
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)

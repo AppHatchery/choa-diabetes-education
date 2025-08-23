@@ -35,7 +35,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         self.followUpAnswer = answer
     }
 
-	func followUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+	func yesOrNoFollowUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
 		self.followUpAnswer = answer
 	}
 
