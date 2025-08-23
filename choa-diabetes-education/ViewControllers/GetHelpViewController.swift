@@ -241,11 +241,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 		switch selectedAnswer {
 		case .yes:
-				self.questionnaireManager.triggerYesActionFlow(currentQuestion)
-				self.questionnaireManager.bloodSugarOver300For3Hours(true)
+			self.questionnaireManager.bloodSugarOver300For3Hours(true)
 		case .no:
-				self.questionnaireManager.triggerNoActionFlow(currentQuestion)
-				self.questionnaireManager.bloodSugarOver300For3Hours(false)
+			self.questionnaireManager.bloodSugarOver300For3Hours(false)
 		}
 	}
 
@@ -281,6 +279,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 		case .NotSure(_):
 			print("Four options selected answer: \(selectedAnswer)")
+
+		case .Nausea(let otherSymptom):
+			print("Four options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		case .AbdominalPain(let otherSymptom):
+			print("Four options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		case .RepeatedVomiting(let otherSymptom):
+			print("Four options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		case .NoneOfTheAbove(let otherSymptom):
+			print("Four options selected answer: \(selectedAnswer)")
+			self.questionnaireManager.triggerContinueActionFlow(currentQuestion)
 		}
 
 	}

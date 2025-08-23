@@ -12,6 +12,8 @@ protocol QuestionnaireActionsProtocol: AnyObject {
 protocol QuestionnaireManagerProvider: AnyObject {
     var actionsDelegate: QuestionnaireActionsProtocol? { get set }
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
+	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
+	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
     func triggerYesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoActionFlow(_ currentQuestion: Questionnaire)
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -36,6 +38,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
 	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire)
+	func triggerContinueActionFlow(_ currentQuestion: Questionnaire)
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -104,6 +107,26 @@ extension QuestionnaireManager {
 		}
 	}
 
+	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire) {
+		switch currentQuestion.questionId {
+		case YesOrNoQuestionId.bloodSugarCheck.id:
+			let createTestTypeQue = createFourCustomOptionsQuestion(
+				questionId: FourOptionsQuestionId.otherSymptom,
+				question: "GetHelp.Que.OtherSymptoms.title".localized(),
+				description: nil,
+				answerOptions: [
+					"GetHelp.Que.OtherSymptoms.option1".localized(),
+					"GetHelp.Que.OtherSymptoms.option2".localized(),
+					"GetHelp.Que.OtherSymptoms.option3".localized(),
+					"GetHelp.Que.OtherSymptoms.option4".localized(),
+				]
+			)
+			actionsDelegate?.showNextQuestion(createTestTypeQue)
+			default:
+				return
+		}
+	}
+
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom) {
 		switch currentQuestion.questionId {
 			case FiveOptionsQuestionId.childHasAnySymptoms.id:
@@ -149,7 +172,7 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
             triggerRecheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.bloodSugarCheck.id:
-            showFinalStage(stage: .continueRegularCare, calculation: nil)
+			triggerOtherSymptomsActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
         default:
@@ -306,6 +329,10 @@ extension QuestionnaireManager {
 
 	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire) {
 		showFinalStage(stage: FinalQuestionId.firstEmergencyScreen, calculation: nil)
+	}
+
+	func triggerContinueActionFlow(_ currentQuestion: Questionnaire) {
+		showFinalStage(stage: .continueRegularCare, calculation: nil)
 	}
 
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire) {

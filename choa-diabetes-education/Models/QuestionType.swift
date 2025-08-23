@@ -304,7 +304,11 @@ enum FourOptionsAnswer: Equatable {
 	case HighBloodSugar(ChildIssue)
 	case LowBloodSugar(ChildIssue)
 	case NotSure(ChildIssue)
-
+		//	Other Symptoms
+	case Nausea(OtherSymptom)
+	case AbdominalPain(OtherSymptom)
+	case RepeatedVomiting(OtherSymptom)
+	case NoneOfTheAbove(OtherSymptom)
 }
 
 enum ChildIssue {
@@ -338,6 +342,41 @@ enum ChildIssue {
 			self = .notSure
 		default:
 			self = .diabeticKetoacidosis
+		}
+	}
+}
+
+enum OtherSymptom {
+	case nausea
+	case abdominalPain
+	case repeatedVomiting
+	case noneOfTheAbove
+
+	var description: String {
+		switch self {
+		case .nausea:
+			return "GetHelp.Que.OtherSymptoms.option1".localized()
+		case .abdominalPain:
+			return "GetHelp.Que.OtherSymptoms.option2".localized()
+		case .repeatedVomiting:
+			return "GetHelp.Que.OtherSymptoms.option3".localized()
+		case .noneOfTheAbove:
+			return "GetHelp.Que.OtherSymptoms.option4".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .nausea
+		case 2:
+			self = .abdominalPain
+		case 3:
+			self = .repeatedVomiting
+		case 4:
+			self = .noneOfTheAbove
+		default:
+			self = .nausea
 		}
 	}
 }
@@ -392,11 +431,14 @@ enum ChildSymptom {
 
 enum FourOptionsQuestionId {
 	case childIssue
+	case otherSymptom
 
 	var id: Int {
 		switch self {
 		case .childIssue:
 			return 1
+		case .otherSymptom:
+			return 2
 		}
 	}
 
@@ -404,6 +446,8 @@ enum FourOptionsQuestionId {
 		switch id {
 		case 1:
 			self = .childIssue
+		case 2:
+			self = .otherSymptom
 		default:
 			self = .childIssue
 		}

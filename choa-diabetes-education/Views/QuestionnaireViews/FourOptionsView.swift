@@ -28,6 +28,10 @@ class FourOptionsView: UIView {
 	@IBOutlet var thirdButtonLabel: UILabel!
 	@IBOutlet var fourthButtonLabel: UILabel!
 
+	@IBOutlet var firstButtonImage: UIImageView!
+	@IBOutlet var secondButtonImage: UIImageView!
+	@IBOutlet var thirdButtonImage: UIImageView!
+
 	private var currentQuestion: Questionnaire!
     weak var delegate: FourOptionsViewProtocol?
     
@@ -75,6 +79,12 @@ class FourOptionsView: UIView {
 			thirdButtonLabel.text = answerOptions[2].localized()
 			fourthButtonLabel.text = answerOptions[3].localized()
         }
+
+		if currentQuestion.questionId == FourOptionsQuestionId.otherSymptom.id {
+			firstButtonImage.image = UIImage(named: "hope_nausea")
+			secondButtonImage.image = UIImage(named: "hope_abdominal_pain")
+			thirdButtonImage.image = UIImage(named: "hope_repeated_vomiting")
+		}
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
@@ -124,16 +134,28 @@ class FourOptionsView: UIView {
 					selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
 				)
 			}
-
-//			else {
-//				delegate?
-//					.didSelectNextAction(
-//						currentQuestion: currentQuestion,
-//						selectedAnswer: .NotSure(
-//							ChildIssue(id: selected)
-//						)
-//				)
-//			}
+		case FourOptionsQuestionId.otherSymptom.id:
+			if selected == 1 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .Nausea(OtherSymptom(id: selected))
+				)
+			} else if selected == 2 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .AbdominalPain(OtherSymptom(id: selected))
+				)
+			} else if selected == 3 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .RepeatedVomiting(OtherSymptom(id: selected))
+				)
+			} else if selected == 4 {
+				delegate?.didSelectNextAction(
+					currentQuestion: currentQuestion,
+					selectedAnswer: .NoneOfTheAbove(OtherSymptom(id: selected))
+				)
+			}
 		default:
 			break
 		}
