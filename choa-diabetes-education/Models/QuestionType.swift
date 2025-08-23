@@ -27,6 +27,7 @@ enum YesOrNoQuestionId {
     case continuousGlucoseMonitor
     case pumpBloodSugarCheck
     case bloodSugarCheck
+	case bloodSugarRecheck
     case shotTwentyFourHours
     
     
@@ -40,8 +41,10 @@ enum YesOrNoQuestionId {
             return 3
         case .bloodSugarCheck:
             return 4
+		case .bloodSugarRecheck:
+			return 5
         case .shotTwentyFourHours:
-            return 5
+            return 6
         }
     }
     
@@ -55,7 +58,9 @@ enum YesOrNoQuestionId {
             self = .pumpBloodSugarCheck
         case 4:
             self = .bloodSugarCheck
-        case 5:
+		case 5:
+			self = .bloodSugarRecheck
+        case 6:
             self = .shotTwentyFourHours
         default:
             self = .severeDistress

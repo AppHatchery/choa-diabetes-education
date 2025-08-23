@@ -288,16 +288,16 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		case .NotSure(_):
 			print("Four options selected answer: \(selectedAnswer)")
 
-		case .Nausea(let otherSymptom):
+		case .Nausea(_):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
-		case .AbdominalPain(let otherSymptom):
+		case .AbdominalPain(_):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
-		case .RepeatedVomiting(let otherSymptom):
+		case .RepeatedVomiting(_):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
-		case .NoneOfTheAbove(let otherSymptom):
+		case .NoneOfTheAbove(_):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerContinueActionFlow(currentQuestion)
 		}
