@@ -228,7 +228,7 @@ extension QuestionnaireManager {
 			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
+			showFinalStage(stage: .continueRegularCareWithDescription, calculation: nil)
 		case .eight, .sixteen:
 			// High ketones - emergency situation
 			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
@@ -242,7 +242,7 @@ extension QuestionnaireManager {
 			showFinalStage(stage: .continueRegularCare, calculation: nil)
 		case .moderate:
 			// Moderate blood ketones - show warning
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
+			showFinalStage(stage: .continueRegularCareWithDescription, calculation: nil)
 		case .large:
 			// Large blood ketones - emergency situation
 			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
@@ -390,6 +390,17 @@ extension QuestionnaireManager {
 		return quesObj
 	}
 
+	func createFinalStageWithDescription(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .finalStepWithDesc(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
     
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {
         switch stage {
@@ -425,6 +436,12 @@ extension QuestionnaireManager {
 				questionId: stage.id,
 				title: "Calculator.Final.ContinueRegularCare.title".localized(),
 				imageName: "hope_regular_care"
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .continueRegularCareWithDescription:
+			let finalStepObj = createFinalStageWithDescription(
+				questionId: stage.id,
+				title: "Calculator.Final.ContinueRegularCare.title".localized(),
 			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
         }

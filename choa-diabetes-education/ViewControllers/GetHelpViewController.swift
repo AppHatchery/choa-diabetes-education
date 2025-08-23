@@ -14,6 +14,8 @@ class GetHelpViewController: UIViewController {
     @IBOutlet weak var yesOrNoQueView: YesOrNoQueView!
     @IBOutlet weak var finalStepView: FinalStepView!
 	@IBOutlet weak var finalStepNoDescView: FinalStepNoDescView!
+	@IBOutlet var finalStepWithDescView: FinalStepWithDescView!
+
 
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
@@ -91,6 +93,7 @@ class GetHelpViewController: UIViewController {
         yesOrNoQueView.isHidden = true
         finalStepView.isHidden = true
 		finalStepNoDescView.isHidden = true
+		finalStepWithDescView.isHidden = true
         twoOptionsView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
@@ -135,6 +138,11 @@ class GetHelpViewController: UIViewController {
 			finalStepNoDescView.isHidden = false
 			finalStepNoDescView.delegate = self
 			finalStepNoDescView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .finalStepWithDesc:
+			finalStepWithDescView.isHidden = false
+			finalStepWithDescView.delegate = self
+			finalStepWithDescView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .firstEmergency:
 			firstEmergencyView.isHidden = false
@@ -373,7 +381,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FirstEmergencyViewProtocol {
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
         if question.questionId == FinalQuestionId.shot.id {

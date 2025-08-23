@@ -33,6 +33,8 @@
 		B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */; };
 		B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */; };
 		B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */; };
+		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
+		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -214,6 +216,8 @@
 		B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoFollowUpView.swift; sourceTree = "<group>"; };
 		B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsFollowUpQuestionView.swift; sourceTree = "<group>"; };
 		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
+		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
+		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 				B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */,
 				B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */,
 				B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */,
+				B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */,
+				B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -883,6 +889,7 @@
 				FDC8E52F2A2699CE006FDFF0 /* YesOrNoQueView.xib in Resources */,
 				B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */,
 				D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */,
+				B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */,
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
 				D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */,
@@ -955,6 +962,7 @@
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
 				B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */,
+				B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */,
 				D48167BE28ABFE24003B14A3 /* ChapterListTableViewCell.swift in Sources */,
 				FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */,
 				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,

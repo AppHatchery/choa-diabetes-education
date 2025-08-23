@@ -15,6 +15,7 @@ enum QuestionType: Equatable {
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
 	case finalStepNoDesc(FinalQuestionId)
+	case finalStepWithDesc(FinalQuestionId)
 	case firstEmergency(FinalQuestionId)
 }
 
@@ -167,6 +168,7 @@ enum FinalQuestionId {
     case nextDose
     case fullDose
 	case continueRegularCare
+	case continueRegularCareWithDescription
 
     var id: Int {
         switch self {
@@ -190,6 +192,8 @@ enum FinalQuestionId {
             return 9
 		case .continueRegularCare:
 			return 10
+		case .continueRegularCareWithDescription:
+			return 11
         }
     }
     
@@ -213,6 +217,8 @@ enum FinalQuestionId {
             self = .fullDose
 		case 10:
 			self = .continueRegularCare
+		case 11:
+			self = .continueRegularCareWithDescription
         default:
             self = .firstEmergencyScreen
         }

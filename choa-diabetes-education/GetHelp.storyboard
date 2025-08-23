@@ -127,6 +127,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-zC-1Ol" customClass="FinalStepWithDescView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUN-qi-RLG" userLabel="First Emergency View" customClass="FirstEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -176,17 +180,20 @@
                             <constraint firstItem="dX5-Tc-aJy" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="6yu-eY-6NC"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="0vn-ym-cdQ" secondAttribute="bottom" id="7TP-Md-bYN"/>
                             <constraint firstAttribute="trailing" secondItem="W6t-7x-GEr" secondAttribute="trailing" id="D6g-6G-roX"/>
+                            <constraint firstItem="EOW-zC-1Ol" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="DkO-2b-vhD"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="7xL-af-9Q9" secondAttribute="bottom" id="DpA-95-kY7"/>
                             <constraint firstAttribute="trailing" secondItem="dX5-Tc-aJy" secondAttribute="trailing" id="GQS-2k-61X"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="W6t-7x-GEr" secondAttribute="bottom" id="H2F-IE-58c"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="dX5-Tc-aJy" secondAttribute="bottom" id="Ic5-ta-k90"/>
                             <constraint firstItem="HAC-w5-MM5" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="IhI-hk-66V"/>
                             <constraint firstItem="HAC-w5-MM5" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="J5z-62-f3I"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="EOW-zC-1Ol" secondAttribute="bottom" id="M9Q-Jb-o7b"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="wUN-qi-RLG" secondAttribute="trailing" id="PDj-B2-wKf"/>
                             <constraint firstItem="HAC-w5-MM5" firstAttribute="bottom" secondItem="jBt-r3-vyH" secondAttribute="bottom" id="PEl-hN-Zmo"/>
                             <constraint firstItem="7xL-af-9Q9" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="RIS-za-lW2"/>
                             <constraint firstItem="0vn-ym-cdQ" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="SEY-cQ-ckU"/>
                             <constraint firstItem="W6t-7x-GEr" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="ThK-5a-aJX"/>
+                            <constraint firstItem="EOW-zC-1Ol" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="VTM-Kd-kic"/>
                             <constraint firstItem="l8R-X1-5JF" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="Z5s-eq-aSJ"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="a9x-JQ-2BE" secondAttribute="bottom" id="bYd-Np-Hs3"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="l8R-X1-5JF" secondAttribute="bottom" id="dMN-C7-d1h"/>
@@ -200,6 +207,7 @@
                             <constraint firstItem="l8R-X1-5JF" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="lTm-dK-nGj"/>
                             <constraint firstAttribute="trailing" secondItem="0vn-ym-cdQ" secondAttribute="trailing" id="lU7-LZ-oIp"/>
                             <constraint firstItem="wUN-qi-RLG" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="uWQ-uV-LSu"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="EOW-zC-1Ol" secondAttribute="trailing" id="uvS-pO-LSW"/>
                             <constraint firstAttribute="trailing" secondItem="7xL-af-9Q9" secondAttribute="trailing" id="wLl-v8-mvG"/>
                             <constraint firstItem="7xL-af-9Q9" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="wrc-mj-Vw9"/>
                             <constraint firstItem="dt8-K3-Fgq" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="xGs-X8-kwB"/>
@@ -209,6 +217,7 @@
                     <connections>
                         <outlet property="finalStepNoDescView" destination="HAC-w5-MM5" id="R1t-7r-PHp"/>
                         <outlet property="finalStepView" destination="W6t-7x-GEr" id="Br9-SL-RGk"/>
+                        <outlet property="finalStepWithDescView" destination="EOW-zC-1Ol" id="sZD-Zx-W03"/>
                         <outlet property="firstEmergencyView" destination="wUN-qi-RLG" id="Yjh-QN-T8Q"/>
                         <outlet property="fiveOptionsView" destination="0vn-ym-cdQ" id="Z7M-3o-V2J"/>
                         <outlet property="fourOptionsView" destination="dt8-K3-Fgq" id="RmO-VE-qau"/>
@@ -261,7 +270,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="eGD-6b-gKd"/>
                                                         </constraints>
-                                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
