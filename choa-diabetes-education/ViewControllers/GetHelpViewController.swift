@@ -23,6 +23,8 @@ class GetHelpViewController: UIViewController {
     @IBOutlet weak var fourOptionsView: FourOptionsView!
 	@IBOutlet weak var fiveOptionsView: FiveOptionsView!
 	@IBOutlet var firstEmergencyView: FirstEmergencyView!
+	@IBOutlet var finalStepCallChoaView: FinalStepCallChoaView!
+	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
 
 	private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
@@ -94,6 +96,8 @@ class GetHelpViewController: UIViewController {
         finalStepView.isHidden = true
 		finalStepNoDescView.isHidden = true
 		finalStepWithDescView.isHidden = true
+		finalStepCallChoaView.isHidden = true
+		finalStepWithReminderView.isHidden = true
         twoOptionsView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
@@ -148,6 +152,16 @@ class GetHelpViewController: UIViewController {
 			firstEmergencyView.isHidden = false
 			firstEmergencyView.delegate = self
 			firstEmergencyView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .callChoa:
+			finalStepCallChoaView.isHidden = false
+			finalStepCallChoaView.delegate = self
+			finalStepCallChoaView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .reminder:
+			finalStepWithReminderView.isHidden = false
+			finalStepWithReminderView.delegate = self
+			finalStepWithReminderView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
         case .none:
 			break
@@ -381,7 +395,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol {
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
         if question.questionId == FinalQuestionId.shot.id {

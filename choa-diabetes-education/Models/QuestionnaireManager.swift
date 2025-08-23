@@ -23,7 +23,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerBloodSugarCheckActionFlow(_ currentQuestion: Questionnaire)
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire)
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
-	func triggerReminderActionFlow(_ currentQuestion: Questionnaire)
+	func triggerCallChoaActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
     func saveCGM(_ cgm: Bool)
 	func saveILetPump(_ iLetPump: Bool)
@@ -152,7 +152,7 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.bloodSugarCheck.id:
 			triggerKetoneMeasuringTypeActionFlow(currentQuestion)
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-			triggerReminderActionFlow(currentQuestion)
+			triggerCallChoaActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerFullDoseActionFlow()
         default:
@@ -177,7 +177,7 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.bloodSugarCheck.id:
 			triggerOtherSymptomsActionFlow(currentQuestion)
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-			triggerReminderActionFlow(currentQuestion)
+			triggerCallChoaActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
         default:
@@ -288,8 +288,8 @@ extension QuestionnaireManager {
 		}
     }
 
-	func triggerReminderActionFlow(_ currentQuestion: Questionnaire) {
-		print("Reminder Flow Triggered")
+	func triggerCallChoaActionFlow(_ currentQuestion: Questionnaire) {
+		showFinalStage(stage: .callChoa, calculation: nil)
 	}
 
     
@@ -427,6 +427,28 @@ extension QuestionnaireManager {
 		return quesObj
 	}
 
+	func createFinalStageWithReminder(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .reminder(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
+	func createFinalStageCallChoa(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .callChoa(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
     
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {
         switch stage {
@@ -470,8 +492,20 @@ extension QuestionnaireManager {
 				title: "Calculator.Final.ContinueRegularCare.title".localized(),
 			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .reminder:
+			let finalStepObj = createFinalStageWithReminder(
+				questionId: stage.id,
+				title: "You can manage this at home by following these steps:",
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .callChoa:
+			let finalStepObj = createFinalStageCallChoa(
+				questionId: stage.id,
+				title: "You can manage this at home by following these steps:",
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
         }
-        
+
         
     }
     

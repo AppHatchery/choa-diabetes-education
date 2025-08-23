@@ -35,6 +35,10 @@
 		B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */; };
 		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
 		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
+		B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */; };
+		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
+		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
+		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -218,6 +222,10 @@
 		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
 		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
 		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
+		B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithReminderView.swift; sourceTree = "<group>"; };
+		B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithReminderView.xib; sourceTree = "<group>"; };
+		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
+		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -720,6 +728,10 @@
 				B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */,
 				B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */,
 				B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */,
+				B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */,
+				B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */,
+				B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */,
+				B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -865,6 +877,7 @@
 				D4684AA4290B0B6600E7311B /* low_carbs.png in Resources */,
 				D4684AA3290B0B6600E7311B /* rice.png in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
+				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
 				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
@@ -907,6 +920,7 @@
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
 				FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */,
 				FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */,
+				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
@@ -960,6 +974,7 @@
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
+				B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
 				B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */,
 				B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */,
@@ -985,6 +1000,7 @@
 				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
+				B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,

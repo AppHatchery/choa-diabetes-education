@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepCallChoaView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="e7o-fC-reN" id="RIn-oV-hjv"/>
+                <outlet property="titleLabel" destination="riu-5H-yGt" id="gNM-4y-BWn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="e7o-fC-reN">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fX7-QZ-Zzx">
+                    <rect key="frame" x="0.0" y="118" width="393" height="1325"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1025.3333333333333"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
+                                    <rect key="frame" x="20" y="0.0" width="353" height="1005.3333333333334"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
+                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="textColor" name="primaryBlue"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Uyt-JY-8Ri" userLabel="Injection Stack View">
+                                            <rect key="frame" x="0.0" y="56" width="353" height="212"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d23-fR-Zxm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-tC-mwc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="1Ek-1E-eQw"/>
+                                                                <constraint firstAttribute="height" constant="60" id="Bcy-RI-QAh"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dF4-tM-2GQ">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-3P-FBu">
+                                                    <rect key="frame" x="0.0" y="76" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Q5-Bsp">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="UBY-VU-6ZZ"/>
+                                                                <constraint firstAttribute="height" constant="60" id="djJ-MG-iaf"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check blood sugar and ketones every 2 hours" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFm-eF-YUg">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MKy-9X-Kye">
+                                                    <rect key="frame" x="0.0" y="152" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Pzf-rj-oyy">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="KpO-97-cOm"/>
+                                                                <constraint firstAttribute="height" constant="60" id="QB9-6G-uWK"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCK-3v-zoD">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-nG-uQM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="60"/>
+                                                                    <string key="text">Repeat correction every 2 hours until:
+Urine ketones are trace or negative</string>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2XN-Vm-5HY">
+                                                                    <rect key="frame" x="0.0" y="60" width="281" height="0.0"/>
+                                                                    <string key="text">Repeat correction every 2 hours until:
+Urine ketones are trace or negative</string>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwO-eO-f24">
+                                                                    <rect key="frame" x="0.0" y="60" width="281" height="0.0"/>
+                                                                    <string key="text">Repeat correction every 2 hours until:
+Urine ketones are trace or negative</string>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7Ht-MT-Xmp" userLabel="Insulin Pump Stack View">
+                                            <rect key="frame" x="0.0" y="284" width="353" height="364"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-3A-4SY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="15s-kN-Vnu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="84b-92-ek5"/>
+                                                                <constraint firstAttribute="width" constant="60" id="Xbx-jk-NSd"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54M-FS-n20">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-Bs-sVa">
+                                                    <rect key="frame" x="0.0" y="76" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-2P-dZY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="cN9-8Y-fDq"/>
+                                                                <constraint firstAttribute="height" constant="60" id="mOX-Oz-BSF"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-PY-Tbs">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-gl-L0w">
+                                                    <rect key="frame" x="0.0" y="152" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-vv-cZ4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="cQx-Mc-ioZ"/>
+                                                                <constraint firstAttribute="width" constant="60" id="h9E-Jk-cr0"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-nM-x3l">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-RL-273">
+                                                    <rect key="frame" x="0.0" y="228" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-P1-C9f">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="IQc-ga-GVF"/>
+                                                                <constraint firstAttribute="width" constant="60" id="qxr-8q-B8t"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-OS-uhr">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UzD-EX-U9u">
+                                                    <rect key="frame" x="0.0" y="304" width="353" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="mxg-gL-edi">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="GaH-u2-zHK"/>
+                                                                <constraint firstAttribute="width" constant="60" id="yBO-Wc-kT7"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-bX-7F0">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Call View">
+                                            <rect key="frame" x="0.0" y="664" width="353" height="189.33333333333337"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
+                                                    <rect key="frame" x="10" y="10" width="333" height="169.33333333333334"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="333" height="109.33333333333333"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_normal_call" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="109.33333333333333"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="60" id="eu4-HE-Oqa"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
+                                                                    <rect key="frame" x="72" y="0.0" width="261" height="109.33333333333333"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="48.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                            <color key="textColor" name="primaryBlue"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                            <rect key="frame" x="0.0" y="48.333333333333371" width="261" height="61"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
+                                                            <rect key="frame" x="0.0" y="121.33333333333337" width="333" height="48"/>
+                                                            <color key="backgroundColor" name="primaryBlue"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="ic_phone" imagePlacement="leading" title="Call CHOA" imagePadding="8" cornerStyle="fixed">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                                                            </buttonConfiguration>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="veryLightBlue"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="10" id="468-q6-SCW"/>
+                                                <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" constant="10" id="SQd-9a-wzL"/>
+                                                <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" constant="10" id="fZ0-Rg-A9G"/>
+                                                <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="srs-4Q-NQt"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv">
+                                            <rect key="frame" x="0.0" y="869.33333333333337" width="353" height="136"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-80-Ije">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Stay hydrated, Drink fluids based on age">
+                                                            <attributes>
+                                                                <color key="NSColor" name="primaryBlue"/>
+                                                                <font key="NSFont" size="18" name="GothamRounded-Medium"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIG-T6-kdM">
+                                                    <rect key="frame" x="0.0" y="36" width="353" height="100"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="xpo-Eo-gEY"/>
+                                                    </constraints>
+                                                    <string key="text">Example: A 2-year-old drinks 2 oz per hour 
+- If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)
+- If blood sugar is over 150, drink without sugar (e.g., Water, Gatorade Zero)</string>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="714" id="MPq-sW-6Z2"/>
+                                        <constraint firstAttribute="height" constant="1005.3333333333334" id="WDv-va-rsQ"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="4Zn-bi-mKk"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="F18-Pd-Evl"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="ez8-wb-vNd"/>
+                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="20" id="fGH-rT-Egz"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="G8D-EZ-mKS" secondAttribute="leading" constant="20" id="ryc-7v-urM"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="leading" secondItem="fX7-QZ-Zzx" secondAttribute="leading" id="CuQ-FP-1IJ"/>
+                        <constraint firstAttribute="bottom" secondItem="G8D-EZ-mKS" secondAttribute="bottom" constant="319.67000000000002" id="HVF-bJ-VAI"/>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="top" secondItem="fX7-QZ-Zzx" secondAttribute="top" id="NTL-l6-J5d"/>
+                        <constraint firstAttribute="trailing" secondItem="G8D-EZ-mKS" secondAttribute="trailing" id="WaN-xn-LSa"/>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="width" secondItem="fX7-QZ-Zzx" secondAttribute="width" id="lVj-8j-0bf"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="9s9-L5-g4D"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="LcP-oo-jQU"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="o1S-mO-jTY"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="trailing" secondItem="o1S-mO-jTY" secondAttribute="trailing" id="NHh-pc-d4t"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" id="Ohe-bc-ceT"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="top" secondItem="o1S-mO-jTY" secondAttribute="top" id="kFF-Iv-ML4"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="bottom" secondItem="o1S-mO-jTY" secondAttribute="bottom" id="tQO-V9-tQp"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-106.10687022900763" y="410.91549295774649"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="hope_normal_call" width="67" height="137"/>
+        <image name="ic_phone" width="15" height="15.333333015441895"/>
+        <image name="injection_insulin_pen" width="153" height="153"/>
+        <image name="insulin_pump" width="153" height="153"/>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightBlue">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
