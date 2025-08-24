@@ -224,6 +224,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         case .TestType(let testType):
             self.questionnaireManager.saveTestType(testType)
 
+			print("TestType: \(testType)")
+
 			if let followUp = followUpAnswer,
 			   case .CalculationType(let calculationType) = followUp {
 				self.questionnaireManager.saveCalculationType(calculationType)
@@ -241,6 +243,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .TestType(let testType):
 			self.questionnaireManager.saveTestType(testType)
+
+			print("TestType: \(testType)")
 
 			if followUpAnswer == .yes {
 				self.questionnaireManager.saveILetPump(true)

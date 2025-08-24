@@ -29,6 +29,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func saveILetPump(_ iLetPump: Bool)
 	func bloodSugarOver300For3Hours(_ over300: Bool)
 	var iLetPump: Bool { get }
+	var currentTestType: TestType { get }
     func saveData(bloodSugar: Int, correctionFactor: Int)
     func saveKetones(type: KetonesMeasurements)
 	func saveUrineKetoneLevel(level: UrineKetoneLevel)

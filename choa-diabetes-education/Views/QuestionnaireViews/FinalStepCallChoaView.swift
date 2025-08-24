@@ -17,8 +17,24 @@ class FinalStepCallChoaView: UIView {
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var titleLabel: UILabel!
-//	@IBOutlet weak var doneButton: UIButton!
-//	@IBOutlet var iLetPumpInfoStackView: UIStackView!
+	@IBOutlet var insulinPumpStackView: UIStackView!
+	@IBOutlet var injectionStackView: UIStackView!
+
+	@IBOutlet var callView: UIView!
+	@IBOutlet var callInstructions: UILabel!
+	@IBOutlet var callChoaButton: UIButton!
+
+	@IBOutlet var giveNormalDoseLabel: UILabel!
+	@IBOutlet var checkBloodSugarLabel: UILabel!
+	@IBOutlet var repeatCorrectionLabel: UITextView!
+
+	@IBOutlet var removePumpLabel: UILabel!
+	@IBOutlet var calculateAndCorrectLabel: UILabel!
+	@IBOutlet var replacePumpLabel: UILabel!
+	@IBOutlet var repeatCorrections2: UILabel!
+	@IBOutlet var switchBackLabel: UILabel!
+
+	@IBOutlet var doneButton: UIButton!
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepCallChoaViewProtocol?
@@ -44,27 +60,70 @@ class FinalStepCallChoaView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 
+		giveNormalDoseLabel.setText(
+			"Final.CallChoa.GiveNormalDose.text".localized(),
+			boldPhrases: ["normal correction dose", "rapid-acting insulin"]
+		)
+
+		checkBloodSugarLabel.setText(
+			"Final.CallChoa.CheckBloodSugar.text".localized(),
+			boldPhrases: ["blood sugar", "ketones", "2 hours"]
+		)
+
+		repeatCorrectionLabel.setText(
+			"Final.CallChoa.RepeatCorrection.text".localized(),
+			boldPhrases: ["correction every 2 hours", "Urine ketones", "trace or negative", "Blood ketones are below 0.6 mmol/L"]
+		)
+
+		callInstructions.setText(
+			"Final.CallChoa.CallInstructions.text".localized(),
+			boldPhrases: ["Call 404-785-5437", "blood sugar", "ketones", "after 2 corrections"]
+		)
+
+			// Insulin Pump Text
+		removePumpLabel.setText(
+			"Final.CallChoa.RemovePump.text".localized(),
+			boldPhrases: ["Remove"]
+		)
+
+		calculateAndCorrectLabel.setText(
+			"Final.CallChoa.CalculateCorrectionDose.text".localized(),
+			boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "pen"]
+		)
+
+		replacePumpLabel.setText("Final.CallChoa.ReplacePump.text".localized(), boldPhrases: ["manual mode"])
+
+		repeatCorrections2.setText("Final.CallChoa.RepeatCorrection.text2".localized(), boldPhrases: ["corrections every 2 hours", "Urine ketones", "trace or negative", "Blood ketones", "below 0.6 mmol/L"])
+
+		switchBackLabel.setText("Final.CallChoa.SwitchBack.text".localized(), boldPhrases: ["Switch back to automated mode"])
+
 		self.currentQuestion = currentQuestion
 		titleLabel.font = .gothamRoundedBold20
 		titleLabel.numberOfLines = 0
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .natural
 
-//		if QuestionnaireManager.instance.iLetPump {
-//			iLetPumpInfoStackView.isHidden = false
-//		} else {
-//			iLetPumpInfoStackView.isHidden = true
-//		}
+
+		callView.layer.cornerRadius = 12
+		callChoaButton.layer.cornerRadius = 12
 
 
-		if currentQuestion.questionId == FinalQuestionId.shot.id {
-//			doneButton.setTitle("Next", for: .normal)
+
+		if QuestionnaireManager.instance.currentTestType == .insulinShots {
+			insulinPumpStackView.isHidden = true
+			injectionStackView.isHidden = false
 		} else {
-				// Understand if users click done and then have to come back through the calculator to review the insulin dose
-//			doneButton.setTitle("Exit", for: .normal)
+			insulinPumpStackView.isHidden = false
+			injectionStackView.isHidden = true
 		}
+	}
 
+	@IBAction func didCallChoaButtonTap(_ sender: Any) {
+		guard let url = URL(string: "tel://+404-785-5437") else { return }
 
+		if UIApplication.shared.canOpenURL(url) {
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
 	}
 
 	@IBAction func didDoneButtonTap(_ sender: UIButton) {

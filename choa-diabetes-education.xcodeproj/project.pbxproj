@@ -21,6 +21,7 @@
 		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
 		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
 		B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */; };
+		B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */; };
 		B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */; };
 		B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */; };
 		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
@@ -208,6 +209,7 @@
 		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
 		B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
+		B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodKetoneLevelView.swift; sourceTree = "<group>"; };
 		B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BloodKetoneLevelView.xib; sourceTree = "<group>"; };
 		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
 				FD99F3992A1D0D43009F3C30 /* URLs.swift */,
 				B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */,
+				B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -970,6 +973,7 @@
 				D4C39B3328B7E1D0003CCA14 /* QuizIntroViewController.swift in Sources */,
 				D48167AB28ABEF68003B14A3 /* MedicalTeam.swift in Sources */,
 				D481679D28ABE1F4003B14A3 /* UILabel+Extensions.swift in Sources */,
+				B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */,
 				D48167C228AC00C8003B14A3 /* QuizTableViewCell.swift in Sources */,
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,

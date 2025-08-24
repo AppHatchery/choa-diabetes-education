@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,7 +18,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepCallChoaView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
+                <outlet property="calculateAndCorrectLabel" destination="CGh-PY-Tbs" id="7SV-SC-m9p"/>
+                <outlet property="callChoaButton" destination="eJE-eD-Qs5" id="NQX-5I-apS"/>
+                <outlet property="callInstructions" destination="UuX-ze-NFt" id="hVz-Tt-sc8"/>
+                <outlet property="callView" destination="OKG-UU-IT1" id="2gX-Zk-s40"/>
+                <outlet property="checkBloodSugarLabel" destination="jFm-eF-YUg" id="qvn-rh-EZF"/>
                 <outlet property="contentView" destination="e7o-fC-reN" id="RIn-oV-hjv"/>
+                <outlet property="doneButton" destination="6do-CM-QoM" id="waH-ia-jiC"/>
+                <outlet property="giveNormalDoseLabel" destination="dF4-tM-2GQ" id="qCe-bq-Qbe"/>
+                <outlet property="injectionStackView" destination="Uyt-JY-8Ri" id="fYm-s9-WhA"/>
+                <outlet property="insulinPumpStackView" destination="7Ht-MT-Xmp" id="Afg-t5-6dh"/>
+                <outlet property="removePumpLabel" destination="54M-FS-n20" id="6OC-PD-vaB"/>
+                <outlet property="repeatCorrectionLabel" destination="2bC-gi-ypM" id="A1K-8H-CQK"/>
+                <outlet property="repeatCorrections2" destination="rHU-OS-uhr" id="HvK-uv-8PK"/>
+                <outlet property="replacePumpLabel" destination="I7U-nM-x3l" id="XYc-lr-1F3"/>
+                <outlet property="switchBackLabel" destination="gJd-bX-7F0" id="SaY-fd-STk"/>
                 <outlet property="titleLabel" destination="riu-5H-yGt" id="gNM-4y-BWn"/>
             </connections>
         </placeholder>
@@ -27,27 +42,27 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fX7-QZ-Zzx">
-                    <rect key="frame" x="0.0" y="118" width="393" height="1325"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1025.3333333333333"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1517.6666666666667"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                                    <rect key="frame" x="20" y="0.0" width="353" height="1005.3333333333334"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
+                                    <rect key="frame" x="20" y="0.0" width="353" height="1217.6666666666667"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                             <color key="textColor" name="primaryBlue"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Uyt-JY-8Ri" userLabel="Injection Stack View">
-                                            <rect key="frame" x="0.0" y="56" width="353" height="212"/>
+                                            <rect key="frame" x="0.0" y="60" width="353" height="270"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d23-fR-Zxm">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-tC-mwc">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-tC-mwc">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="1Ek-1E-eQw"/>
@@ -56,7 +71,7 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dF4-tM-2GQ">
                                                             <rect key="frame" x="72" y="0.0" width="281" height="60"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -65,7 +80,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-3P-FBu">
                                                     <rect key="frame" x="0.0" y="76" width="353" height="60"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Q5-Bsp">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_monitor" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Q5-Bsp">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="UBY-VU-6ZZ"/>
@@ -74,57 +89,46 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check blood sugar and ketones every 2 hours" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFm-eF-YUg">
                                                             <rect key="frame" x="72" y="0.0" width="281" height="60"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MKy-9X-Kye">
-                                                    <rect key="frame" x="0.0" y="152" width="353" height="60"/>
+                                                    <rect key="frame" x="0.0" y="152" width="353" height="118"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Pzf-rj-oyy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin" translatesAutoresizingMaskIntoConstraints="NO" id="Pzf-rj-oyy">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="118"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="KpO-97-cOm"/>
-                                                                <constraint firstAttribute="height" constant="60" id="QB9-6G-uWK"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XCK-3v-zoD">
-                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="XCK-3v-zoD">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="118"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-nG-uQM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="60"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bC-gi-ypM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="118"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <string key="text">Repeat correction every 2 hours until:
-Urine ketones are trace or negative</string>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2XN-Vm-5HY">
-                                                                    <rect key="frame" x="0.0" y="60" width="281" height="0.0"/>
-                                                                    <string key="text">Repeat correction every 2 hours until:
-Urine ketones are trace or negative</string>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwO-eO-f24">
-                                                                    <rect key="frame" x="0.0" y="60" width="281" height="0.0"/>
-                                                                    <string key="text">Repeat correction every 2 hours until:
-Urine ketones are trace or negative</string>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+Urine ketones are trace or negative
+                            or
+Blood ketones are below 0.6 mmol/L</string>
+                                                                    <color key="textColor" systemColor="labelColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                </textView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="270" id="fck-1b-Ear"/>
+                                            </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7Ht-MT-Xmp" userLabel="Insulin Pump Stack View">
-                                            <rect key="frame" x="0.0" y="284" width="353" height="364"/>
+                                            <rect key="frame" x="0.0" y="350" width="353" height="406.66666666666674"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MPx-3A-4SY">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -136,7 +140,7 @@ Urine ketones are trace or negative</string>
                                                                 <constraint firstAttribute="width" constant="60" id="Xbx-jk-NSd"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54M-FS-n20">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove the pump site" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54M-FS-n20">
                                                             <rect key="frame" x="72" y="0.0" width="281" height="60"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -145,17 +149,16 @@ Urine ketones are trace or negative</string>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mNu-Bs-sVa">
-                                                    <rect key="frame" x="0.0" y="76" width="353" height="60"/>
+                                                    <rect key="frame" x="0.0" y="76" width="353" height="61"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-2P-dZY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin" translatesAutoresizingMaskIntoConstraints="NO" id="LPN-2P-dZY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="61"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="cN9-8Y-fDq"/>
-                                                                <constraint firstAttribute="height" constant="60" id="mOX-Oz-BSF"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-PY-Tbs">
-                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculate and give correction dose using rapid-acting insulin by an insulin pen or syringe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-PY-Tbs">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="61"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -163,7 +166,7 @@ Urine ketones are trace or negative</string>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-gl-L0w">
-                                                    <rect key="frame" x="0.0" y="152" width="353" height="60"/>
+                                                    <rect key="frame" x="0.0" y="153" width="353" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-vv-cZ4">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -172,7 +175,7 @@ Urine ketones are trace or negative</string>
                                                                 <constraint firstAttribute="width" constant="60" id="h9E-Jk-cr0"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-nM-x3l">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Replace the pump site, set it to manual mode" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-nM-x3l">
                                                             <rect key="frame" x="72" y="0.0" width="281" height="60"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -181,17 +184,20 @@ Urine ketones are trace or negative</string>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-RL-273">
-                                                    <rect key="frame" x="0.0" y="228" width="353" height="60"/>
+                                                    <rect key="frame" x="0.0" y="228.99999999999997" width="353" height="101.66666666666666"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-P1-C9f">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-P1-C9f">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="101.66666666666667"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="60" id="IQc-ga-GVF"/>
                                                                 <constraint firstAttribute="width" constant="60" id="qxr-8q-B8t"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-OS-uhr">
-                                                            <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHU-OS-uhr">
+                                                            <rect key="frame" x="72" y="0.0" width="281" height="101.66666666666667"/>
+                                                            <string key="text">Give corrections every 2 hours through the pump site until:
+Urine ketones are trace or negative
+                                 or
+Blood ketones are below 0.6 mmol/L</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -199,7 +205,7 @@ Urine ketones are trace or negative</string>
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UzD-EX-U9u">
-                                                    <rect key="frame" x="0.0" y="304" width="353" height="60"/>
+                                                    <rect key="frame" x="0.0" y="346.66666666666663" width="353" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="mxg-gL-edi">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -208,7 +214,7 @@ Urine ketones are trace or negative</string>
                                                                 <constraint firstAttribute="width" constant="60" id="yBO-Wc-kT7"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give a normal correction dose with rapid-acting insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-bX-7F0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch back to automated mode once ketones are cleared" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-bX-7F0">
                                                             <rect key="frame" x="72" y="0.0" width="281" height="60"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -217,35 +223,43 @@ Urine ketones are trace or negative</string>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="DIW-N7-OcJ"/>
+                                            </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Call View">
-                                            <rect key="frame" x="0.0" y="664" width="353" height="189.33333333333337"/>
+                                            <rect key="frame" x="0.0" y="776.66666666666663" width="353" height="217"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
-                                                    <rect key="frame" x="10" y="10" width="333" height="169.33333333333334"/>
+                                                    <rect key="frame" x="20" y="10" width="313" height="197"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="333" height="109.33333333333333"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="137"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_normal_call" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="109.33333333333333"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="137"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="eu4-HE-Oqa"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
-                                                                    <rect key="frame" x="72" y="0.0" width="261" height="109.33333333333333"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
+                                                                    <rect key="frame" x="72" y="0.0" width="241" height="137"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="48.333333333333336"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="35.333333333333336"/>
                                                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
-                                                                            <rect key="frame" x="0.0" y="48.333333333333371" width="261" height="61"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                            <rect key="frame" x="0.0" y="35.333333333333378" width="205" height="101.66666666666669"/>
+                                                                            <attributedString key="attributedText">
+                                                                                <fragment content="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections">
+                                                                                    <attributes>
+                                                                                        <font key="NSFont" metaFont="system" size="16"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                            </attributedString>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -253,7 +267,7 @@ Urine ketones are trace or negative</string>
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
-                                                            <rect key="frame" x="0.0" y="121.33333333333337" width="333" height="48"/>
+                                                            <rect key="frame" x="0.0" y="149" width="313" height="48"/>
                                                             <color key="backgroundColor" name="primaryBlue"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
@@ -264,20 +278,24 @@ Urine ketones are trace or negative</string>
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                                                 <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="didCallChoaButtonTap:" destination="-1" eventType="touchUpInside" id="vJV-Hq-kts"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" name="veryLightBlue"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="10" id="468-q6-SCW"/>
+                                                <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="20" id="468-q6-SCW"/>
                                                 <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" constant="10" id="SQd-9a-wzL"/>
-                                                <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" constant="10" id="fZ0-Rg-A9G"/>
+                                                <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" constant="20" id="fZ0-Rg-A9G"/>
+                                                <constraint firstAttribute="height" constant="217" id="hbg-KE-DJ7"/>
                                                 <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="srs-4Q-NQt"/>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv">
-                                            <rect key="frame" x="0.0" y="869.33333333333337" width="353" height="136"/>
+                                            <rect key="frame" x="0.0" y="1013.6666666666665" width="353" height="136"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-80-Ije">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
@@ -292,10 +310,10 @@ Urine ketones are trace or negative</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIG-T6-kdM">
-                                                    <rect key="frame" x="0.0" y="36" width="353" height="100"/>
+                                                    <rect key="frame" x="0.0" y="36.000000000000114" width="353" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="xpo-Eo-gEY"/>
+                                                        <constraint firstAttribute="height" constant="100" id="X5E-uH-NfU"/>
                                                     </constraints>
                                                     <string key="text">Example: A 2-year-old drinks 2 oz per hour 
 - If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)
@@ -306,29 +324,39 @@ Urine ketones are trace or negative</string>
                                                 </textView>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6do-CM-QoM">
+                                            <rect key="frame" x="0.0" y="1169.6666666666667" width="353" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="Fe2-Pf-Hsv"/>
+                                            </constraints>
+                                            <color key="tintColor" name="choaGreenColor"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8">
+                                                <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didDoneButtonTap:" destination="-1" eventType="touchUpInside" id="8e7-Nr-G3u"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="714" id="MPq-sW-6Z2"/>
-                                        <constraint firstAttribute="height" constant="1005.3333333333334" id="WDv-va-rsQ"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="4Zn-bi-mKk"/>
-                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="F18-Pd-Evl"/>
-                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="ez8-wb-vNd"/>
-                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="20" id="fGH-rT-Egz"/>
-                                <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="G8D-EZ-mKS" secondAttribute="leading" constant="20" id="ryc-7v-urM"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="BP4-ib-y9J"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="G8D-EZ-mKS" secondAttribute="leading" constant="20" id="V3c-Os-uev"/>
+                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="300" id="ceD-c1-0m6"/>
+                                <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="lXb-Xb-QbN"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="leading" secondItem="fX7-QZ-Zzx" secondAttribute="leading" id="CuQ-FP-1IJ"/>
-                        <constraint firstAttribute="bottom" secondItem="G8D-EZ-mKS" secondAttribute="bottom" constant="319.67000000000002" id="HVF-bJ-VAI"/>
-                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="top" secondItem="fX7-QZ-Zzx" secondAttribute="top" id="NTL-l6-J5d"/>
-                        <constraint firstAttribute="trailing" secondItem="G8D-EZ-mKS" secondAttribute="trailing" id="WaN-xn-LSa"/>
-                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="width" secondItem="fX7-QZ-Zzx" secondAttribute="width" id="lVj-8j-0bf"/>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="leading" secondItem="fX7-QZ-Zzx" secondAttribute="leading" id="CLs-CL-eqN"/>
+                        <constraint firstAttribute="trailing" secondItem="G8D-EZ-mKS" secondAttribute="trailing" id="gol-KO-RRj"/>
+                        <constraint firstAttribute="bottom" secondItem="G8D-EZ-mKS" secondAttribute="bottom" id="u4q-kZ-E2o"/>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="top" secondItem="fX7-QZ-Zzx" secondAttribute="top" id="wTv-ru-gUY"/>
+                        <constraint firstItem="G8D-EZ-mKS" firstAttribute="width" secondItem="fX7-QZ-Zzx" secondAttribute="width" id="wn5-YP-xat"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="9s9-L5-g4D"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="LcP-oo-jQU"/>
@@ -337,20 +365,25 @@ Urine ketones are trace or negative</string>
             <viewLayoutGuide key="safeArea" id="o1S-mO-jTY"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="trailing" secondItem="o1S-mO-jTY" secondAttribute="trailing" id="NHh-pc-d4t"/>
-                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" id="Ohe-bc-ceT"/>
-                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="top" secondItem="o1S-mO-jTY" secondAttribute="top" id="kFF-Iv-ML4"/>
-                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="bottom" secondItem="o1S-mO-jTY" secondAttribute="bottom" id="tQO-V9-tQp"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" id="4Ig-S5-Eoa"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="trailing" secondItem="o1S-mO-jTY" secondAttribute="trailing" id="dPn-ST-aR9"/>
+                <constraint firstAttribute="bottom" secondItem="fX7-QZ-Zzx" secondAttribute="bottom" id="fVj-bG-V9n"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="top" secondItem="e7o-fC-reN" secondAttribute="top" id="gel-iT-gQV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-106.10687022900763" y="410.91549295774649"/>
         </view>
     </objects>
     <resources>
+        <image name="bg_monitor" width="60" height="60"/>
         <image name="hope_normal_call" width="67" height="137"/>
         <image name="ic_phone" width="15" height="15.333333015441895"/>
-        <image name="injection_insulin_pen" width="153" height="153"/>
+        <image name="insulin" width="60" height="60"/>
         <image name="insulin_pump" width="153" height="153"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="choaGreenColor">
+            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryBlue">
             <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
