@@ -24,7 +24,9 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet weak var fiveOptionsView: FiveOptionsView!
 	@IBOutlet var firstEmergencyView: FirstEmergencyView!
 	@IBOutlet var finalStepCallChoaView: FinalStepCallChoaView!
+	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
+
 
 	private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
@@ -97,6 +99,7 @@ class GetHelpViewController: UIViewController {
 		finalStepNoDescView.isHidden = true
 		finalStepWithDescView.isHidden = true
 		finalStepCallChoaView.isHidden = true
+		finalStepCallChoaEmergencyView.isHidden = true
 		finalStepWithReminderView.isHidden = true
         twoOptionsView.isHidden = true
         openEndedQueView.isHidden = true
@@ -157,6 +160,11 @@ class GetHelpViewController: UIViewController {
 			finalStepCallChoaView.isHidden = false
 			finalStepCallChoaView.delegate = self
 			finalStepCallChoaView.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .callChoaEmergency:
+			finalStepCallChoaEmergencyView.isHidden = false
+			finalStepCallChoaEmergencyView.delegate = self
+			finalStepCallChoaEmergencyView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .reminder:
 			finalStepWithReminderView.isHidden = false
@@ -399,7 +407,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol {
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
         if question.questionId == FinalQuestionId.shot.id {

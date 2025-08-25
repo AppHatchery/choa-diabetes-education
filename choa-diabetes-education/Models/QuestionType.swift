@@ -19,6 +19,7 @@ enum QuestionType: Equatable {
 	case firstEmergency(FinalQuestionId)
 	case reminder(FinalQuestionId)
 	case callChoa(FinalQuestionId)
+	case callChoaEmergency(FinalQuestionId)
 }
 
 
@@ -178,6 +179,7 @@ enum FinalQuestionId {
 	case continueRegularCareWithDescription
 	case reminder
 	case callChoa
+	case callChoaEmergency
 
     var id: Int {
         switch self {
@@ -207,7 +209,8 @@ enum FinalQuestionId {
 			return 12
 		case .callChoa:
 			return 13
-
+		case .callChoaEmergency:
+			return 14
         }
     }
     

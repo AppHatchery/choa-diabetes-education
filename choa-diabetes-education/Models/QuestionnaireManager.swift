@@ -178,7 +178,7 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.bloodSugarCheck.id:
 			triggerOtherSymptomsActionFlow(currentQuestion)
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-			triggerCallChoaActionFlow(currentQuestion)
+			triggerCallChoaEmergencyActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
         default:
@@ -246,7 +246,15 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		case .eight, .sixteen:
 			// High ketones - emergency situation
-			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+			let createQue = createYesOrNoQuestion(
+				questionId: .bloodSugarRecheck,
+				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
+				description: nil,
+				showDescriptionAtBottom: false
+			)
+			
+			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
 
@@ -268,7 +276,15 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		case .large:
 			// Large blood ketones - emergency situation
-			 showFinalStage(stage: .firstEmergencyScreen, calculation: nil)
+			let createQue = createYesOrNoQuestion(
+				questionId: .bloodSugarRecheck,
+				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
+				description: nil,
+				showDescriptionAtBottom: false
+			)
+
+			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
     
@@ -293,8 +309,9 @@ extension QuestionnaireManager {
 		showFinalStage(stage: .callChoa, calculation: nil)
 	}
 
-    
-
+	func triggerCallChoaEmergencyActionFlow(_ currentQuestion: Questionnaire) {
+		showFinalStage(stage: .callChoaEmergency, calculation: nil)
+	}
     
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire) {
         let createQue = createMultipleCustomOptionsQuestion(questionId: MultipleOptionsDescriptionAtBottomQueId.urineKetones, question: "Calculator.Que.KetonesMeasuring.title".localized(), description: "Calculator.Que.KetonesMeasuring.description".localized(), answerOptions: ["Calculator.Que.KetonesMeasuring.option1".localized(), "Calculator.Que.KetonesMeasuring.option2".localized(), "Calculator.Que.KetonesMeasuring.option3".localized()])
@@ -450,6 +467,17 @@ extension QuestionnaireManager {
 		return quesObj
 	}
 
+	func createFinalStageCallChoaEmergency(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .callChoaEmergency(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
     
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {
         switch stage {
@@ -503,6 +531,12 @@ extension QuestionnaireManager {
 			let finalStepObj = createFinalStageCallChoa(
 				questionId: stage.id,
 				title: "You can manage this at home by following these steps:",
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .callChoaEmergency:
+			let finalStepObj = createFinalStageCallChoaEmergency(
+				questionId: stage.id,
+				title: "Call your care team or doctor for further instructions",
 			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
         }
