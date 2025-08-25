@@ -18,9 +18,11 @@ class FiveOptionsView: UIView {
 	@IBOutlet weak var questionLabel: UILabel!
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var nextButton: PrimaryButton!
+	@IBOutlet var exitButton: UIButton!
 
 	@IBOutlet var optionButtons: [UIView]!
 	@IBOutlet var optionButtonLabels: [UILabel]!
+	@IBOutlet var optionButtonImages: [UIImageView]!
 
 	@IBOutlet var firstButtonLabel: UILabel!
 	@IBOutlet var secondButtonLabel: UILabel!
@@ -28,6 +30,10 @@ class FiveOptionsView: UIView {
 	@IBOutlet var fourthButtonLabel: UILabel!
 	@IBOutlet var fifthButtonLabel: UILabel!
 
+	@IBOutlet var firstButtonImage: UIImageView!
+	@IBOutlet var secondButtonImage: UIImageView!
+	@IBOutlet var thirdButtonImage: UIImageView!
+	@IBOutlet var forthButtonImage: UIImageView!
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FiveOptionsViewProtocol?
@@ -59,6 +65,13 @@ class FiveOptionsView: UIView {
 		questionLabel.text = currentQuestion.question
 		questionLabel.textAlignment = .left
 
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
+		exitButton.titleLabel?.font = .gothamRoundedMedium20
+
+		optionButtonImages.forEach {
+			$0.layer.cornerRadius = 8
+		}
+
 		optionButtons.forEach {
 			$0.layer.cornerRadius = 8
 		}
@@ -80,24 +93,30 @@ class FiveOptionsView: UIView {
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
+			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
 	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
 		guard let tappedView = sender.view else { return }
 
-			// Loop through all views & labels
 		for (index, view) in optionButtons.enumerated() {
 			let label = optionButtonLabels[index]
+
+				// This is here since we have less images than we have views/buttons
+			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
+
 			if index == tappedView.tag {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
+				image?.updateImageForSelection()
 
 				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
+				image?.updateImageForDeselection()
 			}
 		}
 	}

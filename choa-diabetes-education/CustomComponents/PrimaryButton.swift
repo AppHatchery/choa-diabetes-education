@@ -29,7 +29,7 @@ open class PrimaryButton: UIButton {
     func setupComponents() {
         self.layer.masksToBounds = false
         self.layer.backgroundColor = UIColor.primaryGreenColor.cgColor
-		self.titleLabel?.font = .gothamRoundedBold16
+		self.titleLabel?.font = .gothamRoundedBold20
         self.tintColor = UIColor.white
 		self.layer.cornerRadius = 12.0
         self.layer.shadowOffset = CGSize(width: 0, height: 0)

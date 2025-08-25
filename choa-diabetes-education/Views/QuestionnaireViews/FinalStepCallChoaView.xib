@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -45,10 +45,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1517.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1537.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                                    <rect key="frame" x="20" y="0.0" width="353" height="1217.6666666666667"/>
+                                    <rect key="frame" x="20" y="20" width="353" height="1217.6666666666667"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
@@ -274,9 +274,15 @@ Blood ketones are below 0.6 mmol/L</string>
                                                             </constraints>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="ic_phone" imagePlacement="leading" title="Call CHOA" imagePadding="8" cornerStyle="fixed">
+                                                            <buttonConfiguration key="configuration" style="plain" image="ic_phone" imagePlacement="leading" imagePadding="8" cornerStyle="fixed">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                                                                <attributedString key="attributedTitle">
+                                                                    <fragment content="Call CHOA">
+                                                                        <attributes>
+                                                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="didCallChoaButtonTap:" destination="-1" eventType="touchUpInside" id="vJV-Hq-kts"/>
@@ -295,7 +301,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv">
-                                            <rect key="frame" x="0.0" y="1013.6666666666665" width="353" height="136"/>
+                                            <rect key="frame" x="0.0" y="1013.6666666666667" width="353" height="136"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-80-Ije">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
@@ -310,7 +316,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIG-T6-kdM">
-                                                    <rect key="frame" x="0.0" y="36.000000000000114" width="353" height="100"/>
+                                                    <rect key="frame" x="0.0" y="36" width="353" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="X5E-uH-NfU"/>
@@ -344,7 +350,7 @@ Blood ketones are below 0.6 mmol/L</string>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" id="BP4-ib-y9J"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" constant="20" id="BP4-ib-y9J"/>
                                 <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="G8D-EZ-mKS" secondAttribute="leading" constant="20" id="V3c-Os-uev"/>
                                 <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="300" id="ceD-c1-0m6"/>
                                 <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="lXb-Xb-QbN"/>

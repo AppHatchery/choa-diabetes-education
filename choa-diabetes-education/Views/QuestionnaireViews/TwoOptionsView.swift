@@ -44,9 +44,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
+	@IBOutlet var exitButton: UIButton!
 
 	@IBOutlet var optionButtons: [UIView]!
 	@IBOutlet var optionButtonLabels: [UILabel]!
+	@IBOutlet var optionButtonImages: [UIImageView]!
 
 	@IBOutlet var firstButtonLabel: UILabel!
 	@IBOutlet var secondButtonLabel: UILabel!
@@ -94,6 +96,13 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
 
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
+		exitButton.titleLabel?.font = .gothamRoundedMedium20
+
+		optionButtonImages.forEach {
+			$0.layer.cornerRadius = 8
+		}
+
 		optionButtons.forEach {
 			$0.layer.cornerRadius = 8
 		}
@@ -111,6 +120,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
+			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
 
 		for (index, view) in optionButtons.enumerated() {
@@ -158,16 +168,22 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			// Loop through all views & labels
 		for (index, view) in optionButtons.enumerated() {
 			let label = optionButtonLabels[index]
+
+				// This is here since we have less images than we have views/buttons
+			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
+
 			if index == tappedView.tag {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
+				image?.updateImageForSelection()
 
 
 				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
+				image?.updateImageForDeselection()
 			}
 		}
 

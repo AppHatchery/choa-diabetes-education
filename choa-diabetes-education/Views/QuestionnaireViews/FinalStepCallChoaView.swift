@@ -103,6 +103,8 @@ class FinalStepCallChoaView: UIView {
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .natural
 
+		doneButton.titleLabel?.font = .gothamRoundedMedium20
+		callChoaButton.titleLabel?.font = .gothamRoundedMedium20
 
 		callView.layer.cornerRadius = 12
 		callChoaButton.layer.cornerRadius = 12

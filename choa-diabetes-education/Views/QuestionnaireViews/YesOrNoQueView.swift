@@ -56,7 +56,9 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        
+
+		followUpAnswer = 0
+
         questionLabel.font = .gothamRoundedMedium
         questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
@@ -64,11 +66,15 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
         questionLabel.textAlignment = .left
         
         if let answerOptions = currentQuestion.answerOptions {
-            yesButton.setTitle(answerOptions[0].localized(), for: .normal)
-            noButton.setTitle(answerOptions[1].localized(), for: .normal)
+			yesButton.titleLabel?.text = answerOptions[0].localized()
+			noButton.titleLabel?.text = answerOptions[1].localized()
         }
 
-		nextButton.alpha = 0.3
+		if followUpAnswer == 0 {
+			nextButton.alpha = 0.3
+		} else {
+			nextButton.alpha = 1
+		}
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {

@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,11 +40,10 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzb-R9-382" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="36"/>
+                                    <color key="tintColor" name="primaryBlue"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="Button"/>
-                                        </attributedString>
+                                    <buttonConfiguration key="configuration" style="plain" title="Yes">
+                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="didYesButtonTap:" destination="-1" eventType="touchUpInside" id="rIX-ve-fa0"/>
@@ -51,8 +51,11 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdJ-wY-Y92" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                     <rect key="frame" x="183.33333333333337" y="0.0" width="169.66666666666663" height="36"/>
+                                    <color key="tintColor" name="primaryBlue"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="No">
+                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    </buttonConfiguration>
                                     <connections>
                                         <action selector="didNoButtonTap:" destination="-1" eventType="touchUpInside" id="zPl-ed-IEF"/>
                                     </connections>
@@ -70,11 +73,18 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6lb-bB-6Qr" userLabel="Nav Buttons Stack View">
                     <rect key="frame" x="20" y="736" width="353" height="48"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Yl-kG9">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Yl-kG9">
                             <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="48"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8" titleAlignment="center">
+                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="8" titleAlignment="center">
                                 <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Exit">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <color key="baseForegroundColor" name="primaryGreen"/>
                             </buttonConfiguration>
                             <connections>
@@ -87,7 +97,15 @@
                                 <constraint firstAttribute="height" constant="48" id="30O-bG-Kg8"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" imagePadding="8">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Next">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="8ik-R0-I9t"/>
                             </connections>
@@ -113,6 +131,9 @@
     <resources>
         <image name="leftArrow" width="20" height="20"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryGreen">
             <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

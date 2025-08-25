@@ -22,6 +22,7 @@ class FourOptionsView: UIView {
 
 	@IBOutlet var optionButtons: [UIView]!
 	@IBOutlet var optionButtonLabels: [UILabel]!
+	@IBOutlet var optionButtonImages: [UIImageView]!
 
 	@IBOutlet var firstButtonLabel: UILabel!
 	@IBOutlet var secondButtonLabel: UILabel!
@@ -61,6 +62,12 @@ class FourOptionsView: UIView {
 		questionLabel.textColor = .primaryBlue
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
+		exitButton.titleLabel?.font = .gothamRoundedMedium20
+
+		optionButtonImages.forEach {
+			$0.layer.cornerRadius = 8
+		}
 
 		optionButtons.forEach {
 			$0.layer.cornerRadius = 8
@@ -88,6 +95,7 @@ class FourOptionsView: UIView {
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
+			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
     }
 
@@ -97,23 +105,30 @@ class FourOptionsView: UIView {
 			// Loop through all views & labels
 		for (index, view) in optionButtons.enumerated() {
 			let label = optionButtonLabels[index]
+
+				// This is here since we have less images than we have views/buttons
+			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
+
 			if index == tappedView.tag {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
-				print("Selected FOUR OPTIONS Answer: \(selected)")
+				image?.updateImageForSelection()
 
 				nextButton.isEnabled = true
 				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
+				image?.updateImageForDeselection()
 			}
 		}
 	}
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
+
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
 		switch currentQuestion.questionId {
 		case FourOptionsQuestionId.childIssue.id:

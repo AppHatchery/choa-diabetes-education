@@ -186,6 +186,8 @@ class GetHelpViewController: UIViewController {
 			backgroundColor = .white
 		case FinalQuestionId.continueRegularCare.id:
 			backgroundColor = .veryLightGreen
+		case FinalQuestionId.callChoaEmergency.id:
+			backgroundColor = .lightBackgroundColor
 		default:
 			backgroundColor = .white
 		}

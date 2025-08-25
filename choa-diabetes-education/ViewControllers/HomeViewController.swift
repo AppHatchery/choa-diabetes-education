@@ -76,15 +76,16 @@ class HomeViewController: UIViewController {
 		mealsAndHighSugarButton.layer.cornerRadius = 12
 
 		mealsButton.layer.cornerRadius = 12
-		mealsButton.layer.borderWidth = 2
+		mealsButton.layer.borderWidth = 1
 		mealsButton.layer.borderColor = UIColor.white.cgColor
 
 		highSugarButton.layer.cornerRadius = 12
-		highSugarButton.layer.borderWidth = 2
+		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
 
 		getHelpView.layer.cornerRadius = 12
 		getHelpButton.layer.cornerRadius = 12
+		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
 
 //        diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
 //        nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
@@ -206,6 +207,7 @@ class HomeViewController: UIViewController {
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
 		insulinForFood = true
 		insulinForHighBloodSugar = true
+		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
 
 		let manager = QuestionnaireManager.instance
 			//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)

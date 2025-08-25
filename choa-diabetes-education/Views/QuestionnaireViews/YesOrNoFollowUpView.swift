@@ -81,14 +81,14 @@ class YesOrNoFollowUpView: UIView {
 		case TwoOptionsQuestionId.testType.id:
 			questionLabel.text = "Calculator.Que.IletPump.title".localized()
 
-			yesButton.setTitle("Yes".localized(), for: .normal)
-			noButton.setTitle("No".localized(), for: .normal)
+			yesButton.titleLabel?.text = "Yes".localized()
+			noButton.titleLabel?.text = "No".localized()
 
 		case YesOrNoQuestionId.bloodSugarCheck.id:
 			questionLabel.text = QuestionnaireManager.instance.iLetPump ? "Calculator.Que.ILetPumpBloodSugarTimeCheck.title".localized() : "Calculator.Que.BloodSugarTimeCheck.title".localized()
 
-			yesButton.setTitle("Yes".localized(), for: .normal)
-			noButton.setTitle("No".localized(), for: .normal)
+			yesButton.titleLabel?.text = "Yes".localized()
+			noButton.titleLabel?.text = "No".localized()
 		default:
 			break
 		}

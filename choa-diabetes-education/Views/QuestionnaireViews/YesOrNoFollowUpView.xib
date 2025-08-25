@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,38 +35,26 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Yq2-xz-yXe">
                             <rect key="frame" x="0.0" y="73" width="281" height="36"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-2Y-sNo" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-2Y-sNo" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="dcZ-te-NAe"/>
                                     </constraints>
+                                    <color key="tintColor" name="primaryBlue"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="Button">
-                                                <attributes>
-                                                    <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <buttonConfiguration key="configuration" style="plain" title="Yes">
+                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="yesButtonTapped:" destination="-1" eventType="touchUpInside" id="0va-9E-PBn"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2q-ARU" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-2q-ARU" customClass="RoundedButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                     <rect key="frame" x="147.66666666666663" y="0.0" width="133.33333333333337" height="36"/>
+                                    <color key="tintColor" name="primaryBlue"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="Button">
-                                                <attributes>
-                                                    <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <buttonConfiguration key="configuration" style="plain" title="No">
+                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                     </buttonConfiguration>
                                     <connections>
                                         <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="jX3-l1-Fk6"/>
@@ -88,6 +77,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

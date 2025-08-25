@@ -7,7 +7,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -101,7 +100,7 @@ care team or doctor for further instructions</string>
                                     </constraints>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="lightBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="CoS-MD-9X4" firstAttribute="top" secondItem="Ta3-qA-UOf" secondAttribute="top" id="g0t-Xu-8dk"/>
                                 <constraint firstItem="CoS-MD-9X4" firstAttribute="leading" secondItem="Ta3-qA-UOf" secondAttribute="leading" constant="10" id="iT9-en-sMV"/>
@@ -127,7 +126,7 @@ care team or doctor for further instructions</string>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="o1S-mO-jTY"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="lightBackgroundColor"/>
             <constraints>
                 <constraint firstItem="o1S-mO-jTY" firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="2wq-Ln-OW0"/>
                 <constraint firstItem="o1S-mO-jTY" firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" id="kWe-m3-20s"/>
@@ -140,14 +139,14 @@ care team or doctor for further instructions</string>
     <resources>
         <image name="hope_call_blob" width="220" height="352.33334350585938"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="lightBackgroundColor">
+            <color red="0.94901960784313721" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryBlue">
             <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryFireRed300">
             <color red="0.92941176470588238" green="0.10980392156862745" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

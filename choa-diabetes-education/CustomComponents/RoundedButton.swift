@@ -20,6 +20,7 @@ open class RoundedButton: UIButton {
 
 	override public func layoutSubviews() {
 		super.layoutSubviews()
+		titleLabel?.font = .gothamRoundedBold16
 	}
 
 	func commonInit() {
@@ -29,9 +30,8 @@ open class RoundedButton: UIButton {
 	func setupComponents() {
 		self.layer.masksToBounds = true
 		self.layer.backgroundColor = UIColor.veryLightBlue.cgColor
-		setTitleColor(UIColor.black, for: .normal)
-		setTitleColor(UIColor.black, for: .highlighted)
-		self.layer.cornerRadius = 10
+		self.tintColor = UIColor.primaryBlue
+		self.layer.cornerRadius = 8
 		self.layer.borderColor = UIColor.lightGreenColor.cgColor
 		self.layer.borderWidth = 0
 	}
@@ -39,11 +39,9 @@ open class RoundedButton: UIButton {
 	public func updateButtonForSelection() {
 		self.layer.masksToBounds = true
 		self.isSelected = true
-//		self.layer.borderColor = UIColor.choaGreenColor.cgColor
-//		self.layer.borderWidth = 1
 		self.layer.backgroundColor = UIColor.primaryBlue.cgColor
 		self.tintColor = UIColor.white
-		self.layer.cornerRadius = 10
+		self.layer.cornerRadius = 8
 	}
 
 	public func updateButtonForDeselection() {
