@@ -37,6 +37,20 @@ class FinalStepWithReminderView: UIView {
 
 	private var currentReminderId: String?
 
+	private var countdownTimer: Timer?
+
+	override func didMoveToWindow() {
+		super.didMoveToWindow()
+		if window != nil {
+				// View is being added to hierarchy - restore state
+			restoreReminderState()
+		} else {
+				// View is being removed - clean up
+			countdownTimer?.invalidate()
+			countdownTimer = nil
+		}
+	}
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		nibSetup()
@@ -47,6 +61,10 @@ class FinalStepWithReminderView: UIView {
 		super.init(coder: aDecoder)
 		nibSetup()
 		setupReminderManager()
+	}
+
+	deinit {
+		cleanup()
 	}
 
 	private func nibSetup() {
@@ -139,24 +157,76 @@ class FinalStepWithReminderView: UIView {
 		viewController.present(alert, animated: true)
 	}
 
+	private func restoreReminderState() {
+		guard QuestionnaireManager.instance.hasActiveReminder(),
+			  let reminderId = QuestionnaireManager.instance.getActiveReminderId(),
+			  let remainingTime = QuestionnaireManager.instance.getRemainingTime() else {
+			currentReminderId = nil
+			updateReminderButtonTitle()
+			return
+		}
+
+		currentReminderId = reminderId
+		startCountdownTimer(with: Int(remainingTime))
+	}
+
+	private func startCountdownTimer(with seconds: Int) {
+			// Invalidate any existing timer
+		countdownTimer?.invalidate()
+
+		var remainingSeconds = seconds
+
+			// Update immediately
+		updateReminderButtonTitleWithCountdown(remainingSeconds)
+
+			// Start timer for countdown updates
+		countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+			guard let self = self else {
+				timer.invalidate()
+				return
+			}
+
+			remainingSeconds -= 1
+
+			if remainingSeconds <= 0 {
+				timer.invalidate()
+				self.currentReminderId = nil
+				self.updateReminderButtonTitle()
+				QuestionnaireManager.instance.clearActiveReminder()
+			} else {
+				self.updateReminderButtonTitleWithCountdown(remainingSeconds)
+			}
+		}
+	}
+
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
 			ReminderManager.shared.cancelReminder(withIdentifier: existingId)
 			currentReminderId = nil
 			updateReminderButtonTitle()
+			countdownTimer?.invalidate()
+			countdownTimer = nil
+			QuestionnaireManager.instance.clearActiveReminder()
 
 				// Show cancellation confirmation
 			showAlert(title: "Reminder Canceled", message: "Your reminder has been canceled.")
 			return
 		}
 
-			// Schedule a 30-second reminder for testing with countdown enabled
-		currentReminderId = ReminderManager.shared.scheduleTestReminder(
+			// Schedule a 30-second reminder
+		let scheduledTime = Date().addingTimeInterval(30)
+		let newReminderId = ReminderManager.shared.scheduleTestReminder(
 			title: "Test Reminder",
 			body: "Your 30-second test reminder is here!",
 			enableCountdown: true
 		)
+
+			// Store the reminder ID immediately
+		currentReminderId = newReminderId
+		
+		QuestionnaireManager.instance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+		startCountdownTimer(with: 30)
 	}
 
 	@IBAction func didDoneButtonTap(_ sender: UIButton) {
@@ -166,12 +236,8 @@ class FinalStepWithReminderView: UIView {
 
 // MARK: - ReminderManagerDelegate
 extension FinalStepWithReminderView: ReminderManagerDelegate {
-
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String) {
-			// Initial setup - countdown will start updating immediately if enabled
-		updateReminderButtonTitle()
 
-			// Show success message
 		showAlert(
 			title: "Test Reminder Set",
 			message: "You'll get a test notification in 30 seconds!"
@@ -179,23 +245,27 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 	}
 
 	func reminderManager(_ manager: ReminderManager, countdownUpdate seconds: Int, forReminderId id: String) {
-			// Only update if this is our current reminder
 		guard id == currentReminderId else { return }
-
-			// Update button with countdown
-		updateReminderButtonTitleWithCountdown(seconds)
+			// updateReminderButtonTitleWithCountdown(seconds)
 	}
 
 	func reminderManager(_ manager: ReminderManager, countdownFinishedForReminderId id: String) {
-			// Only update if this is our current reminder
 		guard id == currentReminderId else { return }
-
-			// Reset reminder state
 		currentReminderId = nil
 		updateReminderButtonTitle()
+		countdownTimer?.invalidate()
+		countdownTimer = nil
+		QuestionnaireManager.instance.clearActiveReminder()
 	}
 
 	func reminderManager(_ manager: ReminderManager, didFailWithError error: Error) {
+			// Clean up on error
+		currentReminderId = nil
+		updateReminderButtonTitle()
+		countdownTimer?.invalidate()
+		countdownTimer = nil
+		QuestionnaireManager.instance.clearActiveReminder()
+
 		showAlert(
 			title: "Error",
 			message: "Failed to set reminder: \(error.localizedDescription)"
@@ -203,10 +273,22 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 	}
 
 	func reminderManager(_ manager: ReminderManager, permissionDenied: Bool) {
+			// Clean up if permission was denied
+		currentReminderId = nil
+		updateReminderButtonTitle()
+		countdownTimer?.invalidate()
+		countdownTimer = nil
+		QuestionnaireManager.instance.clearActiveReminder()
+
 		showAlert(
 			title: "Permission Required",
 			message: "Please enable notifications in Settings to use reminders.",
 			showSettings: true
 		)
+	}
+
+	func cleanup() {
+		countdownTimer?.invalidate()
+		countdownTimer = nil
 	}
 }

@@ -41,6 +41,13 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
 	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire)
 	func triggerContinueActionFlow(_ currentQuestion: Questionnaire)
+
+		// Reminder management
+	func saveActiveReminder(id: String, scheduledTime: Date)
+	func clearActiveReminder()
+	func hasActiveReminder() -> Bool
+	func getRemainingTime() -> TimeInterval?
+	func getActiveReminderId() -> String?
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
@@ -241,16 +248,18 @@ extension QuestionnaireManager {
 
 	func hasActiveReminder() -> Bool {
 		guard let scheduledTime = reminderScheduledTime else { return false }
-
 			// Check if reminder is still valid (not expired)
 		return scheduledTime > Date()
 	}
 
 	func getRemainingTime() -> TimeInterval? {
 		guard let scheduledTime = reminderScheduledTime else { return nil }
-
 		let timeRemaining = scheduledTime.timeIntervalSince(Date())
 		return timeRemaining > 0 ? timeRemaining : nil
+	}
+
+	func getActiveReminderId() -> String? {
+		return activeReminderId
 	}
 
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {

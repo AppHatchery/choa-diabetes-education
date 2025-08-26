@@ -89,6 +89,17 @@ class ReminderManager: NSObject {
 					self.delegate?.reminderManager(self, permissionDenied: true)
 				case .notDetermined:
 					self.requestPermissions()
+				case .ephemeral:
+					self.createAndScheduleNotification(
+						identifier: reminderIdentifier,
+						timeInterval: timeInterval,
+						title: title,
+						body: body
+					)
+
+					if enableCountdown {
+						self.startCountdown(for: reminderIdentifier, duration: timeInterval)
+					}
 				@unknown default:
 					let error = NSError(domain: "ReminderManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown authorization status"])
 					self.delegate?.reminderManager(self, didFailWithError: error)
@@ -289,7 +300,7 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
 		withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
 	) {
 			// Show notification even when app is in foreground
-		completionHandler([.alert, .sound, .badge])
+		completionHandler([.banner, .sound, .badge])
 	}
 
 		/// Called when user interacts with a notification

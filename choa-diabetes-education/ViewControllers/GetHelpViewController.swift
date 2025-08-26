@@ -89,6 +89,7 @@ class GetHelpViewController: UIViewController {
 
 		if isMovingFromParent {
 			resetBackgroundColor()
+			finalStepWithReminderView?.cleanup()
 		}
 	}
 
