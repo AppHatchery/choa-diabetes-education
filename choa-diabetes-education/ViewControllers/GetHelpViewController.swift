@@ -169,6 +169,7 @@ class GetHelpViewController: UIViewController {
 		case .reminder:
 			finalStepWithReminderView.isHidden = false
 			finalStepWithReminderView.delegate = self
+			finalStepWithReminderView.viewController = self
 			finalStepWithReminderView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
         case .none:

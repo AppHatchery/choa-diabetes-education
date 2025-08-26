@@ -60,6 +60,8 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var ketones: KetonesMeasurements?
 	private(set) var urineKetones: UrineKetoneLevel?
 	private(set) var bloodKetones: BloodKetoneLevel?
+	private(set) var activeReminderId: String?
+	private(set) var reminderScheduledTime: Date?
 
     private var calculation: Double {
         
@@ -226,12 +228,37 @@ extension QuestionnaireManager {
 		self.bloodKetones = level
 	}
 
+		//	Reminder Functions
+	func saveActiveReminder(id: String, scheduledTime: Date) {
+		self.activeReminderId = id
+		self.reminderScheduledTime = scheduledTime
+	}
+
+	func clearActiveReminder() {
+		self.activeReminderId = nil
+		self.reminderScheduledTime = nil
+	}
+
+	func hasActiveReminder() -> Bool {
+		guard let scheduledTime = reminderScheduledTime else { return false }
+
+			// Check if reminder is still valid (not expired)
+		return scheduledTime > Date()
+	}
+
+	func getRemainingTime() -> TimeInterval? {
+		guard let scheduledTime = reminderScheduledTime else { return nil }
+
+		let timeRemaining = scheduledTime.timeIntervalSince(Date())
+		return timeRemaining > 0 ? timeRemaining : nil
+	}
+
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
 		switch level {
 		case .negative, .zeroPointFive:
 			// Low/negative ketones - continue with regular care
 
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
+			showFinalStage(stage: .reminder, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
 //			showFinalStage(stage: .continueRegularCareWithDescription, calculation: nil)
@@ -253,7 +280,7 @@ extension QuestionnaireManager {
 				description: nil,
 				showDescriptionAtBottom: false
 			)
-			
+
 			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
@@ -262,7 +289,7 @@ extension QuestionnaireManager {
 		switch level {
 		case .low:
 			// Low blood ketones - continue with normal insulin calculation
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
+			showFinalStage(stage: .reminder, calculation: nil)
 		case .moderate:
 			// Moderate blood ketones - show warning
 			let createQue = createYesOrNoQuestion(

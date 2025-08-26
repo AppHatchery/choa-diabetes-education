@@ -65,8 +65,8 @@ class FiveOptionsView: UIView {
 		questionLabel.text = currentQuestion.question
 		questionLabel.textAlignment = .left
 
-		nextButton.titleLabel?.font = .gothamRoundedMedium20
-		exitButton.titleLabel?.font = .gothamRoundedMedium20
+		nextButton.setTitleWithStyle("Next", font: .gothamRoundedBold20)
+		exitButton.setTitleWithStyle("Exit", font: .gothamRoundedBold20)
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8
