@@ -20,6 +20,7 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 	@IBOutlet var measurementTitles: [UILabel]!
 	@IBOutlet var measurementDescriptions: [UITextView]!
 
+	@IBOutlet var closeButton: PrimaryButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,6 +28,8 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 		titleLabel.text = "About.KetoneMeasurements.title".localized()
 		titleLabel.textColor = .choaGreenColor
 		titleLabel.numberOfLines = 0
+
+		closeButton.setTitleWithStyle("Close", font: .gothamRoundedMedium20)
 
 
 		measurementTitles.enumerated().forEach { index, label in

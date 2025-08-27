@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -249,6 +249,7 @@
                     <connections>
                         <outlet property="bloodMeasurementDescription" destination="Btq-7x-yFu" id="5k1-hc-RkX"/>
                         <outlet property="bloodMeasurementTitle" destination="D3a-xr-Q99" id="2FT-9l-9as"/>
+                        <outlet property="closeButton" destination="FUb-b0-qjs" id="raN-D2-w7E"/>
                         <outlet property="titleLabel" destination="Z2h-kf-DaX" id="3eX-r8-ymM"/>
                         <outlet property="urineMeasurementDescription" destination="Oyd-dh-l91" id="uw9-kd-0VL"/>
                         <outlet property="urineMeasurementTitle" destination="M98-Yg-k0B" id="Ciq-nL-v3c"/>

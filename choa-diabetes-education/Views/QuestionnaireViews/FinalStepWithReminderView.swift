@@ -19,10 +19,23 @@ class FinalStepWithReminderView: UIView {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var reminderButton: UIButton!
 
-	@IBOutlet var iLetStackView: UIStackView!
-	@IBOutlet var insulinPumpStackView: UIStackView!
+	@IBOutlet var confirmChangeDisconnectStackView: UIStackView!
+
+	@IBOutlet var confirmChangeDisconnectImage: UIImageView!
+	@IBOutlet var confirmChangeDisconnectLabel: UILabel!
+
+	@IBOutlet var giveRecommendedDoseStackView: UIStackView!
+	@IBOutlet var giveRecommendedDoseLabel: UILabel!
+
+	@IBOutlet var hopeImage: UIImageView!
+
+	@IBOutlet var hydrationInfoStackView: UIStackView!
+	@IBOutlet var rearrangeableStackView: UIStackView!
 
 	@IBOutlet var reminderView: UIView!
+	@IBOutlet var reminderNextCheckLabel: UILabel!
+	@IBOutlet var reminderNextCheckDescriptionLabel: UILabel!
+	@IBOutlet var reminderTimeCheckLabel: UILabel!
 
 	@IBOutlet var yesOver2hoursButton: UIButton!
 
@@ -30,6 +43,9 @@ class FinalStepWithReminderView: UIView {
 
 
 	private var currentQuestion: Questionnaire!
+
+	private var questionnaireManagerInstance: QuestionnaireManager = QuestionnaireManager.instance
+
 	weak var delegate: FinalStepWithReminderViewProtocol?
 
 		// Reference to the parent view controller for showing alerts
@@ -84,7 +100,10 @@ class FinalStepWithReminderView: UIView {
 		self.currentQuestion = currentQuestion
 		titleLabel.font = .gothamRoundedBold20
 		titleLabel.numberOfLines = 0
-		titleLabel.text = currentQuestion.finalStep?.title
+
+		titleLabel.text = questionnaireManagerInstance.currentTestType == .insulinShots ? "Calculator.Final.ContinueRegularCare.title"
+			.localized().capitalizedFirstLetter : currentQuestion.finalStep?.title
+
 		titleLabel.textAlignment = .natural
 
 		reminderView.layer.cornerRadius = 12
@@ -96,15 +115,77 @@ class FinalStepWithReminderView: UIView {
 		yesOver2hoursButton.layer.borderWidth = 1
 		yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
 
-		let yesOverText = QuestionnaireManager.instance.iLetPump ?
+		let yesOverText = questionnaireManagerInstance.iLetPump ?
 		"Yes, Over 90 mins" : "Yes, Over 2hrs"
+
+		giveRecommendedDoseLabel.setText(
+			"Final.GiveRecommendedDose.text".localized(),
+			boldPhrases: ["correction dose through", "pump site"]
+		)
+
+		if questionnaireManagerInstance.currentTestType == .pump {
+
+			confirmChangeDisconnectLabel
+				.setText("Final.ConfirmPumpIsSecure.text".localized(), boldPhrases: ["pump site is securely connected"])
+			hopeImage.isHidden = true
+
+			flipHydrationAndReminder()
+		}
+
+		// iLet Pump View Conditions
+		if questionnaireManagerInstance.iLetPump {
+			confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
+
+			if questionnaireManagerInstance.bloodKetones ==
+				.moderate || (
+					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
+				) {
+				confirmChangeDisconnectLabel.setText("Final.ChangeIletPumpSite.text".localized(), boldPhrases: ["Change", "pump site"])
+				giveRecommendedDoseStackView.isHidden = true
+			} else if questionnaireManagerInstance.bloodKetones ==
+				.moderate || (
+					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
+				) {
+				confirmChangeDisconnectLabel.setText("Final.DisconnectIletPump.text".localized(), boldPhrases: ["Disconnect", "pump"])
+
+				giveRecommendedDoseStackView.isHidden = false
+
+				giveRecommendedDoseLabel.setText(
+					"Final.CalculateAndGiveCorrectionDose.text".localized(),
+					boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
+				)
+			}
+
+			reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
+			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
+			reminderTimeCheckLabel.setText("Final.ReminderTimeCheckForIlet.text".localized(), boldPhrases: ["90 minutes"])
+
+			hopeImage.isHidden = true
+
+			flipHydrationAndReminder()
+		} else {
+			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+
+			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
+			reminderTimeCheckLabel.setText("Final.ReminderTimeCheck.text".localized(), boldPhrases: ["2 hours"])
+		}
+
+		if questionnaireManagerInstance.currentTestType == .insulinShots {
+			confirmChangeDisconnectStackView.isHidden = true
+			giveRecommendedDoseStackView.isHidden = true
+		}
 
 		yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
 
-		iLetStackView.isHidden = true
-		insulinPumpStackView.isHidden = true
-
 		updateReminderButtonTitle()
+	}
+
+	func flipHydrationAndReminder() {
+		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
+		rearrangeableStackView.removeArrangedSubview(reminderView)
+
+		rearrangeableStackView.addArrangedSubview(reminderView)
+		rearrangeableStackView.addArrangedSubview(hydrationInfoStackView)
 	}
 
 	private func updateReminderButtonTitle() {
@@ -112,7 +193,7 @@ class FinalStepWithReminderView: UIView {
 			reminderButton.setTitleWithStyle("Test Reminder Set", font: .gothamRoundedMedium20)
 			reminderButton.backgroundColor = .systemGray
 		} else {
-			reminderButton.setTitleWithStyle("Remind Me in (30s)", font: .gothamRoundedMedium20)
+			reminderButton.setTitleWithStyle("Remind Me", font: .gothamRoundedMedium20)
 			reminderButton.backgroundColor = .primaryBlue
 		}
 	}
@@ -120,7 +201,7 @@ class FinalStepWithReminderView: UIView {
 	private func updateReminderButtonTitleWithCountdown(_ seconds: Int) {
 		let timeText = formatCountdownTime(seconds)
 		reminderButton.setTitleWithStyle("Reminder Set (\(timeText))", font: .gothamRoundedMedium20)
-		reminderButton.backgroundColor = .systemOrange
+		reminderButton.backgroundColor = .secondaryRedColor
 	}
 
 	private func formatCountdownTime(_ seconds: Int) -> String {
@@ -158,9 +239,9 @@ class FinalStepWithReminderView: UIView {
 	}
 
 	private func restoreReminderState() {
-		guard QuestionnaireManager.instance.hasActiveReminder(),
-			  let reminderId = QuestionnaireManager.instance.getActiveReminderId(),
-			  let remainingTime = QuestionnaireManager.instance.getRemainingTime() else {
+		guard questionnaireManagerInstance.hasActiveReminder(),
+			  let reminderId = questionnaireManagerInstance.getActiveReminderId(),
+			  let remainingTime = questionnaireManagerInstance.getRemainingTime() else {
 			currentReminderId = nil
 			updateReminderButtonTitle()
 			return
@@ -192,7 +273,7 @@ class FinalStepWithReminderView: UIView {
 				timer.invalidate()
 				self.currentReminderId = nil
 				self.updateReminderButtonTitle()
-				QuestionnaireManager.instance.clearActiveReminder()
+				questionnaireManagerInstance.clearActiveReminder()
 			} else {
 				self.updateReminderButtonTitleWithCountdown(remainingSeconds)
 			}
@@ -207,7 +288,7 @@ class FinalStepWithReminderView: UIView {
 			updateReminderButtonTitle()
 			countdownTimer?.invalidate()
 			countdownTimer = nil
-			QuestionnaireManager.instance.clearActiveReminder()
+			questionnaireManagerInstance.clearActiveReminder()
 
 				// Show cancellation confirmation
 			showAlert(title: "Reminder Canceled", message: "Your reminder has been canceled.")
@@ -225,7 +306,7 @@ class FinalStepWithReminderView: UIView {
 			// Store the reminder ID immediately
 		currentReminderId = newReminderId
 		
-		QuestionnaireManager.instance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+		questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
 		startCountdownTimer(with: 30)
 	}
 
@@ -255,7 +336,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		QuestionnaireManager.instance.clearActiveReminder()
+		questionnaireManagerInstance.clearActiveReminder()
 	}
 
 	func reminderManager(_ manager: ReminderManager, didFailWithError error: Error) {
@@ -264,7 +345,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		QuestionnaireManager.instance.clearActiveReminder()
+		questionnaireManagerInstance.clearActiveReminder()
 
 		showAlert(
 			title: "Error",
@@ -278,7 +359,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		QuestionnaireManager.instance.clearActiveReminder()
+		questionnaireManagerInstance.clearActiveReminder()
 
 		showAlert(
 			title: "Permission Required",
