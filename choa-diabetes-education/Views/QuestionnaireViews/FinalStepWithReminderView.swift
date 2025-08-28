@@ -10,6 +10,8 @@ import UIKit
 
 protocol FinalStepWithReminderViewProtocol: AnyObject {
 	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+
+	func didSelectYesOverAction(_ currentQuestion: Questionnaire)
 }
 
 class FinalStepWithReminderView: UIView {
@@ -44,7 +46,7 @@ class FinalStepWithReminderView: UIView {
 
 	private var currentQuestion: Questionnaire!
 
-	private var questionnaireManagerInstance: QuestionnaireManager = QuestionnaireManager.instance
+	private let questionnaireManagerInstance: QuestionnaireManager = QuestionnaireManager.instance
 
 	weak var delegate: FinalStepWithReminderViewProtocol?
 
@@ -308,6 +310,14 @@ class FinalStepWithReminderView: UIView {
 		
 		questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
 		startCountdownTimer(with: 30)
+	}
+
+
+	@IBAction func yesOverButtonTapped(_ sender: Any) {
+		print("yesOverButtonTapped")
+		questionnaireManagerInstance.saveYesOver2hours(true)
+		delegate?.didSelectYesOverAction(
+			currentQuestion)
 	}
 
 	@IBAction func didDoneButtonTap(_ sender: UIButton) {

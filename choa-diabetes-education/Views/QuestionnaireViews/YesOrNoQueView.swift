@@ -30,6 +30,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     @IBOutlet weak var noButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
+	@IBOutlet var exitButton: UIButton!
 	@IBOutlet var followUpQuestionStackView: UIStackView!
 
     private var currentQuestion: Questionnaire!
@@ -75,6 +76,9 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 		} else {
 			nextButton.alpha = 1
 		}
+
+		nextButton.setTitleWithStyle("Next", font: .gothamRoundedMedium20)
+		exitButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {

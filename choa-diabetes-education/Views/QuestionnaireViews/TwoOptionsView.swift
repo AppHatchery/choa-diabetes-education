@@ -15,6 +15,10 @@ protocol TwoOptionsViewProtocol: AnyObject {
 	
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer)
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer)
+
 	func didSelectExitAction()
 
 	func didSelectLearnHowAction()
@@ -62,8 +66,13 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 	@IBOutlet var firstButtonImage: UIImageView!
 	@IBOutlet var secondButtonImage: UIImageView!
 
+	@IBOutlet var switchToLabel: UILabel!
+
 	private var currentQuestion: Questionnaire!
 	private var followUpQuestion: Questionnaire?
+
+	private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
+
     weak var delegate: TwoOptionsViewProtocol?
     
     private var selected = 0
@@ -107,10 +116,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			$0.layer.cornerRadius = 8
 		}
 
-		if (currentQuestion.question == "How does your child take insulin?") {
+		if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id) {
 			resourcesStackView.isHidden = true
 		} else {
 			setupLearnHowLabel()
+			setupSwitchToLabel()
 		}
 
 		if (currentQuestion.questionId == TwoOptionsQuestionId.measuringType.id) {
@@ -121,6 +131,16 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		if selected == 0 {
 			nextButton.alpha = 0.3
 			nextButton.titleLabel?.font = .gothamRoundedMedium20
+		}
+
+		if questionnaireManager.yesOver2hours {
+			switchToLabel.isHidden = false
+			optionsStackView.isHidden = true
+
+			setupSwitchToLabel()
+			toggleUrineAndBloodKetone()
+		} else {
+			switchToLabel.isHidden = true
 		}
 
 		for (index, view) in optionButtons.enumerated() {
@@ -135,6 +155,57 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			secondButtonLabel.text = answerOptions[1].localized()
 		}
     }
+
+	func toggleUrineAndBloodKetone() {
+		if questionnaireManager.currentMeasuringMethod == .urineKetone {
+			selected = 1
+				// Guard against adding duplicate UrineKetoneLevelView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
+				return
+			}
+
+				// Clear any existing subviews
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+				// Show urine ketone level view (first option)
+			let followUpSubview = UrineKetoneLevelView()
+
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
+
+			followUpSubview.delegate = self
+		} else if questionnaireManager.currentMeasuringMethod == .bloodKetone {
+			selected = 2
+
+				// Guard against adding duplicate BloodKetoneLevelView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
+				return
+			}
+
+			questionnaireManager.saveMeasuringMethod(.bloodKetone)
+
+				// Clear any existing subviews
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+				// Show blood ketone level view (second option)
+			let followUpSubview = BloodKetoneLevelView()
+
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
+
+			followUpSubview.delegate = self
+		}
+	}
 
 	private func setupLearnHowLabel() {
 			// Create underlined attributed text
@@ -157,9 +228,38 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		learnHowLabel.addGestureRecognizer(tapGesture)
 	}
 
+	private func setupSwitchToLabel() {
+		let text = questionnaireManager.currentTestType == .insulinShots ? "Switch to Blood Ketone" : "Switch to Urine"
+		let attributedString = NSMutableAttributedString(string: text)
+		attributedString.addAttribute(.underlineStyle,
+									  value: NSUnderlineStyle.single.rawValue,
+									  range: NSRange(location: 0, length: text.count))
+
+			// Optional: Change text color to make it look like a link
+		attributedString.addAttribute(.foregroundColor,
+									  value: UIColor.primaryBlue,
+									  range: NSRange(location: 0, length: text.count))
+
+		switchToLabel.isUserInteractionEnabled = true
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(switchToLabelTapped))
+		switchToLabel.addGestureRecognizer(tapGesture)
+	}
+
 	@objc private func learnHowLabelTapped() {
 		print("Learn How label tapped!")
 		delegate?.didSelectLearnHowAction()
+	}
+
+	@objc private func switchToLabelTapped() {
+		if questionnaireManager.currentMeasuringMethod == .urineKetone {
+			questionnaireManager.saveMeasuringMethod(.bloodKetone)
+			switchToLabel.text = "Switch to Blood Ketone"
+		} else {
+			questionnaireManager.saveMeasuringMethod(.urineKetone)
+			switchToLabel.text = "Switch to Urine Ketone"
+		}
+
+		toggleUrineAndBloodKetone()
 	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {
@@ -237,6 +337,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				return
 			}
 
+			questionnaireManager.saveMeasuringMethod(.urineKetone)
+
 				// Clear any existing subviews first
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
@@ -259,6 +361,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			if followUpQuestionStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
 				return
 			}
+
+			questionnaireManager.saveMeasuringMethod(.bloodKetone)
 
 				// Clear any existing subviews
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
@@ -304,25 +408,36 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			}
 
 		case TwoOptionsQuestionId.measuringType.id:
-			guard followUpAnswer != 0 else { return }
-			
-			if selected == 1 {
-				// Urine ketones selected
-				let answerEnum = UrineKetoneLevel(id: followUpAnswer)
+			if questionnaireManager.yesOver2hours == false {
+				guard followUpAnswer != 0 else { return }
 
-				delegate?.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .UrineKetoneLevel(answerEnum),
-					followUpAnswer: .UrineKetoneLevel(answerEnum)
-				)
-			} else if selected == 2 {
-				// Blood ketones selected
-				let answerEnum = BloodKetoneLevel(id: followUpAnswer)
-				delegate?.didSelectNextAction(
-					currentQuestion: currentQuestion,
-					selectedAnswer: .BloodKetoneLevel(answerEnum),
-					followUpAnswer: .BloodKetoneLevel(answerEnum)
-				)
+				if selected == 1 {
+						// Urine ketones selected
+					let answerEnum = UrineKetoneLevel(id: followUpAnswer)
+					questionnaireManager.saveMeasuringMethod(.urineKetone)
+
+					delegate?.didSelectNextAction(
+						currentQuestion: currentQuestion,
+						selectedAnswer: .UrineKetoneLevel(answerEnum),
+						followUpAnswer: .UrineKetoneLevel(answerEnum)
+					)
+				} else if selected == 2 {
+						// Blood ketones selected
+					let answerEnum = BloodKetoneLevel(id: followUpAnswer)
+					questionnaireManager.saveMeasuringMethod(.bloodKetone)
+
+					delegate?.didSelectNextAction(
+						currentQuestion: currentQuestion,
+						selectedAnswer: .BloodKetoneLevel(answerEnum),
+						followUpAnswer: .BloodKetoneLevel(answerEnum)
+					)
+				}
+			} else {
+				if questionnaireManager.currentMeasuringMethod == .urineKetone {
+					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .UrineKetoneLevel(UrineKetoneLevel(id: followUpAnswer)))
+				} else {
+					delegate?.didSelectNextAction(currentQuestion: currentQuestion, selectedAnswer: .BloodKetoneLevel(BloodKetoneLevel(id: followUpAnswer)))
+				}
 			}
         default:
             break

@@ -50,14 +50,7 @@ class FinalStepNoDescView: UIView {
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
 
-		if currentQuestion.questionId == FinalQuestionId.shot.id {
-			doneButton.titleLabel?.text = "Done"
-		} else {
-				// Understand if users click done and then have to come back through the calculator to review the insulin dose
-			doneButton.titleLabel?.text = "Exit"
-		}
-
-		doneButton.titleLabel?.font = .gothamRoundedMedium20
+		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
 	}
 
 	@IBAction func didDoneButtonTap(_ sender: UIButton) {

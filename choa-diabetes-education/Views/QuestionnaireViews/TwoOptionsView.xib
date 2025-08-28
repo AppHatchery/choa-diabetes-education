@@ -30,6 +30,7 @@
                 <outlet property="resourcesStackView" destination="Wq1-sI-pDY" id="TwH-ni-v78"/>
                 <outlet property="secondButtonImage" destination="p5L-ak-o7C" id="90V-gk-Ikc"/>
                 <outlet property="secondButtonLabel" destination="mSD-GN-g7J" id="osn-W1-AZe"/>
+                <outlet property="switchToLabel" destination="Xjd-Ne-K3D" id="jCW-4v-ncj"/>
                 <outletCollection property="optionButtons" destination="aXH-GO-ZrE" collectionClass="NSMutableArray" id="lpE-H1-Czh"/>
                 <outletCollection property="optionButtons" destination="O44-N8-JUe" collectionClass="NSMutableArray" id="yyf-By-xXU"/>
                 <outletCollection property="optionButtonLabels" destination="PtT-ZT-c86" collectionClass="NSMutableArray" id="I3p-yp-0wU"/>
@@ -77,23 +78,23 @@
                                 </view>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
-                            <rect key="frame" x="0.0" y="94.333333333333343" width="353" height="39.666666666666657"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="146" width="353" height="209.33333333333337"/>
+                            <rect key="frame" x="0.0" y="94.333333333333343" width="353" height="263.33333333333326"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="39.666666666666664"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209.33333333333334"/>
+                                    <rect key="frame" x="0.0" y="51.666666666666671" width="353" height="211.66666666666663"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="209.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="211.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
-                                                    <rect key="frame" x="10" y="173.33333333333331" width="150.66666666666666" height="16"/>
+                                                    <rect key="frame" x="10" y="175.66666666666669" width="150.66666666666666" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -106,7 +107,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-V4-WiZ">
-                                                    <rect key="frame" x="10" y="10" width="150.66666666666666" height="153.33333333333334"/>
+                                                    <rect key="frame" x="10" y="10" width="150.66666666666666" height="155.66666666666666"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
@@ -122,10 +123,10 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O44-N8-JUe" userLabel="Button View">
-                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="209.33333333333334"/>
+                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="211.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
-                                                    <rect key="frame" x="10" y="173.33333333333331" width="150.33333333333334" height="16"/>
+                                                    <rect key="frame" x="10" y="175.66666666666669" width="150.33333333333334" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -138,7 +139,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-ak-o7C">
-                                                    <rect key="frame" x="10" y="10" width="150.33333333333334" height="153.33333333333334"/>
+                                                    <rect key="frame" x="10" y="10" width="150.33333333333334" height="155.66666666666666"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
@@ -158,16 +159,20 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                            <rect key="frame" x="0.0" y="367.33333333333331" width="353" height="165.66666666666669"/>
+                            <rect key="frame" x="0.0" y="369.66666666666669" width="353" height="131"/>
                         </stackView>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch to Blood Ketone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjd-Ne-K3D" userLabel="Switch to Blood Ketone">
+                            <rect key="frame" x="0.0" y="512.66666666666663" width="353" height="20.333333333333371"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="2lP-nq-I9H"/>
-                        <constraint firstAttribute="bottom" secondItem="gta-fH-YWH" secondAttribute="bottom" id="BGU-Eb-WWf"/>
                         <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="CKU-tn-KKY"/>
                         <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="DUu-Jn-cXj"/>
                         <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="IY1-be-iJa"/>
-                        <constraint firstAttribute="bottom" secondItem="gta-fH-YWH" secondAttribute="bottom" id="aGC-vz-DU1"/>
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-GV-ImM" userLabel="Nav Buttons Stack View">

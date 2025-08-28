@@ -231,6 +231,23 @@ class GetHelpViewController: UIViewController {
 
 extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
 
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
+		switch selectedAnswer {
+		case .UrineKetoneLevel(let level):
+			self.questionnaireManager.saveUrineKetoneLevel(level: level)
+			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
+		}
+	}
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
+		switch selectedAnswer {
+		case .BloodKetoneLevel(let level):
+			self.questionnaireManager.saveBloodKetoneLevel(level: level)
+			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
+		}
+	}
+
+
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?) {
         switch selectedAnswer {
         case .TestType(let testType):
@@ -425,6 +442,10 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
             }
         }
     }
+
+	func didSelectYesOverAction(_ question: Questionnaire) {
+		self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(question)
+	}
 }
 
 

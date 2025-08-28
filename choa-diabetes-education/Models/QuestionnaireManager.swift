@@ -25,6 +25,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
 	func triggerCallChoaActionFlow(_ currentQuestion: Questionnaire)
     func saveTestType(_ testType: TestType)
+	func saveMeasuringMethod(_ method: MeasuringType)
     func saveCGM(_ cgm: Bool)
 	func saveILetPump(_ iLetPump: Bool)
 	func bloodSugarOver300For3Hours(_ over300: Bool)
@@ -35,6 +36,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func saveUrineKetoneLevel(level: UrineKetoneLevel)
     func saveBloodKetoneLevel(level: BloodKetoneLevel)
     func saveCalculationType(_ calculationType: CalculationType)
+	func saveYesOver2hours(_ over2hours: Bool)
     var currentMethod: CalculationType { get set }
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
@@ -57,6 +59,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     var actionsDelegate: QuestionnaireActionsProtocol?
     
     private(set) var currentTestType: TestType = .pump
+	private(set) var currentMeasuringMethod: MeasuringType = .urineKetone
 	private(set) var currentChildIssue: ChildIssue = .diabeticKetoacidosis
     var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
@@ -67,6 +70,8 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var ketones: KetonesMeasurements?
 	private(set) var urineKetones: UrineKetoneLevel?
 	private(set) var bloodKetones: BloodKetoneLevel?
+	private(set) var yesOver2hours: Bool = false
+
 	private(set) var activeReminderId: String?
 	private(set) var reminderScheduledTime: Date?
 
@@ -199,7 +204,11 @@ extension QuestionnaireManager {
     func saveTestType(_ testType: TestType) {
         currentTestType = testType
     }
-    
+
+	func saveMeasuringMethod(_ method: MeasuringType) {
+		currentMeasuringMethod = method
+	}
+
     func saveCalculationType(_ calculationType: CalculationType) {
         currentMethod = calculationType
         print(currentMethod)
@@ -216,6 +225,10 @@ extension QuestionnaireManager {
 
 	func bloodSugarOver300For3Hours(_ over300: Bool) {
 		self.bloodSugarOver300For3Hours = over300
+	}
+
+	func saveYesOver2hours(_ over2hours: Bool) {
+		self.yesOver2hours = over2hours
 	}
 
     func saveData(bloodSugar: Int, correctionFactor: Int) {
@@ -267,10 +280,14 @@ extension QuestionnaireManager {
 		case .negative, .zeroPointFive:
 			// Low/negative ketones - continue with regular care
 
-			showFinalStage(stage: .reminder, calculation: nil)
+			if yesOver2hours {
+				showFinalStage(stage: .continueRegularCare, calculation: nil)
+			} else {
+				showFinalStage(stage: .reminder, calculation: nil)
+			}
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-//			showFinalStage(stage: .continueRegularCareWithDescription, calculation: nil)
+
 			let createQue = createYesOrNoQuestion(
 				questionId: .bloodSugarRecheck,
 				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
@@ -298,7 +315,11 @@ extension QuestionnaireManager {
 		switch level {
 		case .low:
 			// Low blood ketones - continue with normal insulin calculation
-			showFinalStage(stage: .reminder, calculation: nil)
+			if yesOver2hours {
+				showFinalStage(stage: .continueRegularCare, calculation: nil)
+			} else {
+				showFinalStage(stage: .reminder, calculation: nil)
+			}
 		case .moderate:
 			// Moderate blood ketones - show warning
 			let createQue = createYesOrNoQuestion(
