@@ -26,6 +26,7 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet var finalStepCallChoaView: FinalStepCallChoaView!
 	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
+	@IBOutlet var recheckKetoneLevelView: RecheckKetoneLevelView!
 
 
 	private let questionObj: Questionnaire
@@ -117,6 +118,7 @@ class GetHelpViewController: UIViewController {
             yesOrNoQueView.delegate = self
             yesOrNoQueView.setupView(currentQuestion: questionObj)
         case .twoOptions:
+			questionnaireManager.saveYesOver2hours(false)
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
@@ -173,6 +175,11 @@ class GetHelpViewController: UIViewController {
 			finalStepWithReminderView.viewController = self
 			finalStepWithReminderView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .recheckKetoneLevel:
+			questionnaireManager.saveYesOver2hours(true)
+			recheckKetoneLevelView.isHidden = false
+			recheckKetoneLevelView.delegate = self
+			recheckKetoneLevelView.setupView(currentQuestion: questionObj)
         case .none:
 			break
         }
@@ -230,23 +237,6 @@ class GetHelpViewController: UIViewController {
 }
 
 extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol, FourOptionsViewProtocol, FiveOptionsViewProtocol, OpenEndedQueViewProtocol, MultipleOptionsViewProtocol {
-
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
-		switch selectedAnswer {
-		case .UrineKetoneLevel(let level):
-			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
-		}
-	}
-
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
-		switch selectedAnswer {
-		case .BloodKetoneLevel(let level):
-			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
-		}
-	}
-
 
     func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: TwoOptionsAnswer?) {
         switch selectedAnswer {
@@ -423,18 +413,15 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	func didSelectExitAction() {
+		QuestionnaireManager.resetInstance()
 		self.navVC.popToRootViewController(animated: true)
 	}
 
 }
 
-extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol {
+extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol, RecheckKetoneLevelViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
-        if question.questionId == FinalQuestionId.shot.id {
-            self.questionnaireManager.triggerDisclaimerActionFlow(question)
-            return
-        }
         for controller in self.navVC.viewControllers as Array {
 			if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
@@ -444,7 +431,31 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
     }
 
 	func didSelectYesOverAction(_ question: Questionnaire) {
-		self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(question)
+		self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+	}
+
+		// Recheck Ketone Level Functions
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
+
+		print("Selected Answer: \(selectedAnswer)")
+
+		switch selectedAnswer {
+		case .UrineKetoneLevel(let level):
+			self.questionnaireManager.saveUrineKetoneLevel(level: level)
+			self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+		}
+	}
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
+
+		print("Selected Answer: \(selectedAnswer)")
+
+		switch selectedAnswer {
+		case .BloodKetoneLevel(let level):
+			self.questionnaireManager.saveBloodKetoneLevel(level: level)
+			self.questionnaireManager
+				.triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+		}
 	}
 }
 

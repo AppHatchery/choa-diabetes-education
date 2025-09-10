@@ -14,6 +14,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
+	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
     func triggerYesActionFlow(_ currentQuestion: Questionnaire)
     func triggerNoActionFlow(_ currentQuestion: Questionnaire)
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -43,6 +44,8 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
 	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire)
 	func triggerContinueActionFlow(_ currentQuestion: Questionnaire)
+	func triggerRecheckUrineKetoneActionFlow(_ currentQuestion: Questionnaire, urineLevel: UrineKetoneLevel)
+	func triggerRecheckBloodKetoneActionFlow(_ currentQuestion: Questionnaire, bloodLevel: BloodKetoneLevel)
 
 		// Reminder management
 	func saveActiveReminder(id: String, scheduledTime: Date)
@@ -55,7 +58,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
 class QuestionnaireManager: QuestionnaireManagerProvider  {
     
     
-    static let instance: QuestionnaireManager = QuestionnaireManager()
+	static var instance: QuestionnaireManager = QuestionnaireManager()
     var actionsDelegate: QuestionnaireActionsProtocol?
     
     private(set) var currentTestType: TestType = .pump
@@ -187,8 +190,6 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.continuousGlucoseMonitor.id:
             saveCGM(false)
             triggerBloodSugarCheckActionFlow(currentQuestion)
-        case YesOrNoQuestionId.pumpBloodSugarCheck.id:
-            triggerRecheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.bloodSugarCheck.id:
 			triggerOtherSymptomsActionFlow(currentQuestion)
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
@@ -275,16 +276,47 @@ extension QuestionnaireManager {
 		return activeReminderId
 	}
 
+	func triggerRecheckUrineKetoneActionFlow(
+		_ currentQuestion: Questionnaire,
+		urineLevel: UrineKetoneLevel,
+	) {
+		switch urineLevel {
+				// Low/negative urine OR low blood
+		case .negative, .zeroPointFive:
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
+
+				// Moderate risk (urine 1.5 or 4) OR blood moderate
+		case .onePointFive, .four, .eight, .sixteen:
+			showFinalStage(stage: .callChoa, calculation: nil)
+
+				// High risk (urine 8 or 16) OR blood large
+//		case :
+//			showFinalStage(stage: .callChoa, calculation: nil)
+		}
+	}
+
+	func triggerRecheckBloodKetoneActionFlow(
+		_ currentQuestion: Questionnaire,
+		bloodLevel: BloodKetoneLevel,
+	) {
+		switch bloodLevel {
+				// Low/negative urine OR low blood
+		case .low:
+			showFinalStage(stage: .continueRegularCare, calculation: nil)
+
+				// Moderate/Large risk (urine 1.5 or 4) OR blood moderate
+		case .moderate, .large:
+			showFinalStage(stage: .callChoa, calculation: nil)
+		}
+	}
+
+
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
 		switch level {
 		case .negative, .zeroPointFive:
 			// Low/negative ketones - continue with regular care
 
-			if yesOver2hours {
-				showFinalStage(stage: .continueRegularCare, calculation: nil)
-			} else {
-				showFinalStage(stage: .reminder, calculation: nil)
-			}
+			showFinalStage(stage: .reminder, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
 
@@ -414,11 +446,9 @@ extension QuestionnaireManager {
 		)
 	}
 
-    
-    
-    func triggerRecheckActionFlow(_ currentQuestion: Questionnaire) {
-        showFinalStage(stage: .recheckScreen, calculation: nil)
-    }
+	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire) {
+		showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
+	}
     
     func triggerNextDoseActionFlow() {
         showFinalStage(stage: .nextDose, calculation: nil)
@@ -535,6 +565,17 @@ extension QuestionnaireManager {
 		return quesObj
 	}
 
+	func createRecheckKetoneStage(questionId: Int, title: String) -> Questionnaire {
+		let finalStepObj = FinalStep()
+		finalStepObj.title = title
+
+		let quesObj = Questionnaire()
+		quesObj.questionId = questionId
+		quesObj.questionType = .recheckKetoneLevel(FinalQuestionId(id: questionId))
+		quesObj.finalStep = finalStepObj
+		return quesObj
+	}
+
     
     func showFinalStage(stage: FinalQuestionId, calculation: Float?) {
         switch stage {
@@ -595,6 +636,9 @@ extension QuestionnaireManager {
 				questionId: stage.id,
 				title: "Call your care team or doctor for further instructions",
 			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .recheckKetoneLevel:
+			let finalStepObj = createRecheckKetoneStage(questionId: stage.id, title: "Calculator.Final.RecheckKetone.title".localized())
 			actionsDelegate?.showNextQuestion(finalStepObj)
         }
 
@@ -681,5 +725,8 @@ extension QuestionnaireManager {
     func roundToOneDecimal(value: Double)-> Double {
         return (round(value*10)/10.0)
     }
-    
+
+	static func resetInstance() {
+		instance = QuestionnaireManager()
+	}
 }

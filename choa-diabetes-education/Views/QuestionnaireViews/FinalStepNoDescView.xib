@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepNoDescView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="yH8-bJ-MN6" id="nPq-ky-0JQ"/>
-                <outlet property="doneButton" destination="LQZ-yt-N2K" id="maY-1K-8IB"/>
+                <outlet property="doneButton" destination="LQZ-yt-N2K" id="iQJ-ly-N4S"/>
                 <outlet property="finalImage" destination="Ua4-Ot-rkW" id="p1T-rK-UKu"/>
                 <outlet property="titleLabel" destination="wRD-A1-AHg" id="rKH-fe-KRT"/>
             </connections>
@@ -54,7 +54,7 @@
                                 <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                             </buttonConfiguration>
                             <connections>
-                                <action selector="didDoneButtonTap:" destination="-1" eventType="touchUpInside" id="xhD-HW-jBh"/>
+                                <action selector="didSelectExitAction:" destination="-1" eventType="touchUpInside" id="Hp6-XN-Tq5"/>
                             </connections>
                         </button>
                     </subviews>

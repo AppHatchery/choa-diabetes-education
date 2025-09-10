@@ -20,6 +20,7 @@ enum QuestionType: Equatable {
 	case reminder(FinalQuestionId)
 	case callChoa(FinalQuestionId)
 	case callChoaEmergency(FinalQuestionId)
+	case recheckKetoneLevel(FinalQuestionId)
 }
 
 
@@ -180,6 +181,7 @@ enum FinalQuestionId {
 	case reminder
 	case callChoa
 	case callChoaEmergency
+	case recheckKetoneLevel
 
     var id: Int {
         switch self {
@@ -211,6 +213,8 @@ enum FinalQuestionId {
 			return 13
 		case .callChoaEmergency:
 			return 14
+		case .recheckKetoneLevel:
+			return 15
         }
     }
     
@@ -240,6 +244,8 @@ enum FinalQuestionId {
 			self = .reminder
 		case 13:
 			self = .callChoa
+		case 14:
+			self = .recheckKetoneLevel
         default:
             self = .firstEmergencyScreen
         }

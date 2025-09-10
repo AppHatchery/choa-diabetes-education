@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepCallChoaEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
@@ -119,7 +124,7 @@ care team or doctor for further instructions</string>
                                 <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                             </buttonConfiguration>
                             <connections>
-                                <action selector="didDoneButtonTap:" destination="-1" eventType="touchUpInside" id="8e7-Nr-G3u"/>
+                                <action selector="didTapExitButton:" destination="-1" eventType="touchUpInside" id="K3S-P2-tkQ"/>
                             </connections>
                         </button>
                     </subviews>

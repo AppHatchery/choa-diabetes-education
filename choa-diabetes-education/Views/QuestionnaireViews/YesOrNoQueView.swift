@@ -17,10 +17,14 @@ protocol YesOrNoQueViewProtocol: AnyObject {
 class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 	func yesOrNoFollowUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
 		self.followUpAnswer = answer
+
+		nextButton.alpha = 1
 	}
 
 	func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
 		self.followUpAnswer = answer
+
+		nextButton.alpha = 1
 	}
 
     static let nibName = "YesOrNoQueView"
@@ -73,8 +77,6 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 
 		if followUpAnswer == 0 {
 			nextButton.alpha = 0.3
-		} else {
-			nextButton.alpha = 1
 		}
 
 		nextButton.setTitleWithStyle("Next", font: .gothamRoundedMedium20)
@@ -109,11 +111,10 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 			
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
+			nextButton.alpha = 0.3
 		default:
 			break
 		}
-
-		nextButton.alpha = 1
     }
     
     @IBAction func didNoButtonTap(_ sender: UIButton) {
@@ -122,7 +123,9 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 
 		followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-		nextButton.alpha = 1
+		if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+			nextButton.alpha = 1
+		}
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {

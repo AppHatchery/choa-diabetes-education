@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FinalStepNoDescViewProtocol: AnyObject {
-	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+	func didSelectExitAction()
 }
 
 class FinalStepNoDescView: UIView {
@@ -53,8 +53,7 @@ class FinalStepNoDescView: UIView {
 		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
 	}
 
-	@IBAction func didDoneButtonTap(_ sender: UIButton) {
-		delegate?.didSelectGotItAction(currentQuestion)
+	@IBAction func didSelectExitAction(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
 	}
-
 }

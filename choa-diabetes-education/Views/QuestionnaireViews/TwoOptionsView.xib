@@ -30,7 +30,6 @@
                 <outlet property="resourcesStackView" destination="Wq1-sI-pDY" id="TwH-ni-v78"/>
                 <outlet property="secondButtonImage" destination="p5L-ak-o7C" id="90V-gk-Ikc"/>
                 <outlet property="secondButtonLabel" destination="mSD-GN-g7J" id="osn-W1-AZe"/>
-                <outlet property="switchToLabel" destination="Xjd-Ne-K3D" id="jCW-4v-ncj"/>
                 <outletCollection property="optionButtons" destination="aXH-GO-ZrE" collectionClass="NSMutableArray" id="lpE-H1-Czh"/>
                 <outletCollection property="optionButtons" destination="O44-N8-JUe" collectionClass="NSMutableArray" id="yyf-By-xXU"/>
                 <outletCollection property="optionButtonLabels" destination="PtT-ZT-c86" collectionClass="NSMutableArray" id="I3p-yp-0wU"/>
@@ -159,14 +158,8 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                            <rect key="frame" x="0.0" y="369.66666666666669" width="353" height="131"/>
+                            <rect key="frame" x="0.0" y="369.66666666666669" width="353" height="163.33333333333331"/>
                         </stackView>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch to Blood Ketone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjd-Ne-K3D" userLabel="Switch to Blood Ketone">
-                            <rect key="frame" x="0.0" y="512.66666666666663" width="353" height="20.333333333333371"/>
-                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                            <color key="textColor" name="primaryBlue"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="2lP-nq-I9H"/>

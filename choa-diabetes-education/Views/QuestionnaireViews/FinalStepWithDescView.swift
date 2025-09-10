@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FinalStepWithDescViewProtocol: AnyObject {
-	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+	func didSelectExitAction()
 }
 
 class FinalStepWithDescView: UIView {
@@ -62,11 +62,9 @@ class FinalStepWithDescView: UIView {
 				// Understand if users click done and then have to come back through the calculator to review the insulin dose
 			doneButton.setTitle("Exit", for: .normal)
 		}
-
-
 	}
 
-	@IBAction func didDoneButtonTap(_ sender: UIButton) {
-		delegate?.didSelectGotItAction(currentQuestion)
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
 	}
 }

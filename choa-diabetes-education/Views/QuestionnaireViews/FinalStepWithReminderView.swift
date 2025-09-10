@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FinalStepWithReminderViewProtocol: AnyObject {
-	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+	func didSelectExitAction()
 
 	func didSelectYesOverAction(_ currentQuestion: Questionnaire)
 }
@@ -320,8 +320,8 @@ class FinalStepWithReminderView: UIView {
 			currentQuestion)
 	}
 
-	@IBAction func didDoneButtonTap(_ sender: UIButton) {
-		delegate?.didSelectGotItAction(currentQuestion)
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
 	}
 }
 

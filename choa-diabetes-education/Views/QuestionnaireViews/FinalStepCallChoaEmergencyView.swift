@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FinalStepCallChoaEmergencyViewProtocol: AnyObject {
-	func didSelectGotItAction(_ currentQuestion: Questionnaire)
+	func didSelectExitAction()
 }
 
 class FinalStepCallChoaEmergencyView: UIView {
@@ -68,7 +68,7 @@ class FinalStepCallChoaEmergencyView: UIView {
 		}
 	}
 
-	@IBAction func didDoneButtonTap(_ sender: UIButton) {
-		delegate?.didSelectGotItAction(currentQuestion)
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
 	}
 }
