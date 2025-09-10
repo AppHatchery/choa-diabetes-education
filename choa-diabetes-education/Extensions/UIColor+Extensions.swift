@@ -18,8 +18,10 @@ extension UIColor {
     public static let contentBlackColor = UIColor(named: "contentBlackColor")!
 	public static let backgroundColor = UIColor(named: "backgroundColor")!
 	public static let lightBackgroundColor = UIColor(named: "lightBackgroundColor")!
-	public static let highlightedBlueColor = UIColor(named: "highlightedBlueColor")
+	public static let highlightedBlueColor = UIColor(named: "highlightedBlueColor")!
 	public static let secondaryRedColor = UIColor(named: "secondaryFireRed300")!
+	public static let whiteColor = UIColor(named: "whiteColor")!
+	public static let ketoneBorderColor = UIColor(named: "ketoneBorderColor")!
     public static let shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0)
     public static let quotesViewBorderColor = UIColor(red: 163/255, green: 218/255, blue: 195/255, alpha: 1)
     public static let errorRedColor = UIColor(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)

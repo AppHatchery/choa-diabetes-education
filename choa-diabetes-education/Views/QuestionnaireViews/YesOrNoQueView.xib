@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YesOrNoQueView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Cwj-Fd-ir1"/>
-                <outlet property="exitButton" destination="uFd-Yl-kG9" id="Q19-Mu-B7D"/>
                 <outlet property="followUpQuestionStackView" destination="A91-rA-Lme" id="crk-Q9-XdI"/>
                 <outlet property="nextButton" destination="BV5-c3-1O9" id="N3f-ZS-wmM"/>
                 <outlet property="noButton" destination="PdJ-wY-Y92" id="Ncf-O9-met"/>
@@ -74,27 +72,8 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6lb-bB-6Qr" userLabel="Nav Buttons Stack View">
                     <rect key="frame" x="20" y="736" width="353" height="48"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFd-Yl-kG9">
-                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="48"/>
-                            <color key="tintColor" name="choaGreenColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="8" titleAlignment="center">
-                                <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                <attributedString key="attributedTitle">
-                                    <fragment content="Exit">
-                                        <attributes>
-                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <color key="baseForegroundColor" name="primaryGreen"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="didTapExitButton:" destination="-1" eventType="touchUpInside" id="8dc-7b-qgF"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BV5-c3-1O9" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="30O-bG-Kg8"/>
                             </constraints>
@@ -132,15 +111,8 @@
     </objects>
     <resources>
         <image name="leftArrow" width="20" height="20"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
-        <namedColor name="choaGreenColor">
-            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="primaryBlue">
             <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primaryGreen">
-            <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

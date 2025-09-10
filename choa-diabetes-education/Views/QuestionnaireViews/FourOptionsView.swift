@@ -18,7 +18,6 @@ class FourOptionsView: UIView {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-	@IBOutlet var exitButton: UIButton!
 
 	@IBOutlet var optionButtons: [UIView]!
 	@IBOutlet var optionButtonLabels: [UILabel]!
@@ -63,7 +62,6 @@ class FourOptionsView: UIView {
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
 		nextButton.titleLabel?.font = .gothamRoundedMedium20
-		exitButton.titleLabel?.font = .gothamRoundedMedium20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8
@@ -71,6 +69,8 @@ class FourOptionsView: UIView {
 
 		optionButtons.forEach {
 			$0.layer.cornerRadius = 8
+			$0.layer.borderWidth = 1
+			$0.layer.borderColor = UIColor.highlightedBlueColor.cgColor
 		}
 
 		for (index, view) in optionButtons.enumerated() {
@@ -107,20 +107,18 @@ class FourOptionsView: UIView {
 			let label = optionButtonLabels[index]
 
 				// This is here since we have less images than we have views/buttons
-			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
+//			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
 
 			if index == tappedView.tag {
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
-				image?.updateImageForSelection()
 
 				nextButton.isEnabled = true
 				nextButton.alpha = 1
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
-				image?.updateImageForDeselection()
 			}
 		}
 	}
@@ -175,9 +173,4 @@ class FourOptionsView: UIView {
 			break
 		}
     }
-
-
-	@IBAction func didTapExitButton(_ sender: UIButton) {
-		delegate?.didSelectExitAction()
-	}
 }

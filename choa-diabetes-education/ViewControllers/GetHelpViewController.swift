@@ -75,6 +75,15 @@ class GetHelpViewController: UIViewController {
 		navigationController?.navigationBar.tintColor = UIColor.black
 		navigationItem.backButtonDisplayMode = .minimal
 
+		let icon = UIImage(named: "close_black")
+		let rightButton = UIBarButtonItem(
+			image: icon,
+			style: .plain,
+			target: self,
+			action: #selector(didSelectExitAction)
+		)
+		navigationItem.rightBarButtonItem = rightButton
+
 		self.questionnaireManager.actionsDelegate = self
 		hideAllViews()
 		setupViews()
@@ -412,7 +421,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
 
-	func didSelectExitAction() {
+	@objc func didSelectExitAction() {
 		QuestionnaireManager.resetInstance()
 		self.navVC.popToRootViewController(animated: true)
 	}

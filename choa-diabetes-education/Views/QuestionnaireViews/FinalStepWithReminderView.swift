@@ -34,6 +34,7 @@ class FinalStepWithReminderView: UIView {
 	@IBOutlet var hydrationInfoStackView: UIStackView!
 	@IBOutlet var rearrangeableStackView: UIStackView!
 
+	@IBOutlet var reminderContainerView: UIView!
 	@IBOutlet var reminderView: UIView!
 	@IBOutlet var reminderNextCheckLabel: UILabel!
 	@IBOutlet var reminderNextCheckDescriptionLabel: UILabel!
@@ -114,7 +115,7 @@ class FinalStepWithReminderView: UIView {
 		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
 
 		yesOver2hoursButton.layer.cornerRadius = 12
-		yesOver2hoursButton.layer.borderWidth = 1
+		yesOver2hoursButton.layer.borderWidth = 0
 		yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
 
 		let yesOverText = questionnaireManagerInstance.iLetPump ?
@@ -184,9 +185,9 @@ class FinalStepWithReminderView: UIView {
 
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
-		rearrangeableStackView.removeArrangedSubview(reminderView)
+		rearrangeableStackView.removeArrangedSubview(reminderContainerView)
 
-		rearrangeableStackView.addArrangedSubview(reminderView)
+		rearrangeableStackView.addArrangedSubview(reminderContainerView)
 		rearrangeableStackView.addArrangedSubview(hydrationInfoStackView)
 	}
 

@@ -45,7 +45,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1537.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1237.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
                                     <rect key="frame" x="20" y="20" width="353" height="1217.6666666666667"/>
@@ -352,7 +352,7 @@ Blood ketones are below 0.6 mmol/L</string>
                             <constraints>
                                 <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="G8D-EZ-mKS" secondAttribute="top" constant="20" id="BP4-ib-y9J"/>
                                 <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="G8D-EZ-mKS" secondAttribute="leading" constant="20" id="V3c-Os-uev"/>
-                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="300" id="ceD-c1-0m6"/>
+                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" id="ceD-c1-0m6"/>
                                 <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="lXb-Xb-QbN"/>
                             </constraints>
                         </view>

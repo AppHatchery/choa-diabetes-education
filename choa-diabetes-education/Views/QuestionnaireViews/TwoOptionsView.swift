@@ -56,7 +56,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-	@IBOutlet var exitButton: UIButton!
 
 	@IBOutlet var optionButtons: [UIView]!
 	@IBOutlet var optionButtonLabels: [UILabel]!
@@ -112,7 +111,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.textAlignment = .left
 
 		nextButton.titleLabel?.font = .gothamRoundedMedium20
-		exitButton.titleLabel?.font = .gothamRoundedMedium20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8
@@ -120,6 +118,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 		optionButtons.forEach {
 			$0.layer.cornerRadius = 8
+			$0.layer.borderWidth = 1
+			$0.layer.borderColor = UIColor.highlightedBlueColor.cgColor
 		}
 
 		if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id) {
@@ -191,7 +191,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				selected = index + 1
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
-				image?.updateImageForSelection()
 
 				if currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 1 {
 					nextButton.alpha = 1
@@ -201,7 +200,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()
-				image?.updateImageForDeselection()
 			}
 		}
 

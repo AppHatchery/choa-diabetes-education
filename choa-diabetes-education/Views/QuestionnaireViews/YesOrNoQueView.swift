@@ -34,7 +34,6 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     @IBOutlet weak var noButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-	@IBOutlet var exitButton: UIButton!
 	@IBOutlet var followUpQuestionStackView: UIStackView!
 
     private var currentQuestion: Questionnaire!
@@ -79,8 +78,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 			nextButton.alpha = 0.3
 		}
 
-		nextButton.setTitleWithStyle("Next", font: .gothamRoundedMedium20)
-		exitButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {
@@ -114,6 +112,8 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 			nextButton.alpha = 0.3
+		case YesOrNoQuestionId.bloodSugarRecheck.id:
+			nextButton.alpha = 1
 		default:
 			break
 		}
@@ -128,6 +128,8 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 		if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
 			QuestionnaireManager.instance.saveBloodSugarOver300(false)
 
+			nextButton.alpha = 1
+		} else if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarRecheck.id {
 			nextButton.alpha = 1
 		}
     }

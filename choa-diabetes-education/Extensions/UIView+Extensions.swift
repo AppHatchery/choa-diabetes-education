@@ -50,15 +50,15 @@ extension UIView {
 	func updateViewForSelection() {
 		self.backgroundColor = .answerSelectionColor
 		self.layer.borderColor = UIColor.primaryBlue.cgColor
-//		self.layer.borderWidth = 1.0
+		self.layer.borderWidth = 1.0
 		self.layer.cornerRadius = 8.0
 		self.layer.masksToBounds = true
 	}
 
 	func updateViewForDeselection() {
-		self.backgroundColor = .veryLightBlue
-		self.layer.borderColor = UIColor.clear.cgColor
-//		self.layer.borderWidth = 1.0
+		self.backgroundColor = .white
+		self.layer.borderColor = UIColor.highlightedBlueColor.cgColor
+		self.layer.borderWidth = 1.0
 		self.layer.cornerRadius = 8.0
 		self.layer.masksToBounds = true
 	}

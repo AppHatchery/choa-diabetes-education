@@ -29,11 +29,11 @@ open class RoundedButton: UIButton {
 
 	func setupComponents() {
 		self.layer.masksToBounds = true
-		self.layer.backgroundColor = UIColor.veryLightBlue.cgColor
+		self.layer.backgroundColor = UIColor.whiteColor.cgColor
 		self.tintColor = UIColor.primaryBlue
 		self.layer.cornerRadius = 8
-		self.layer.borderColor = UIColor.lightGreenColor.cgColor
-		self.layer.borderWidth = 0
+		self.layer.borderColor = UIColor.highlightedBlueColor.cgColor
+		self.layer.borderWidth = 1
 	}
 
 	public func updateButtonForSelection() {
@@ -42,6 +42,8 @@ open class RoundedButton: UIButton {
 		self.layer.backgroundColor = UIColor.primaryBlue.cgColor
 		self.tintColor = UIColor.white
 		self.layer.cornerRadius = 8
+		self.layer.borderColor = UIColor.primaryBlue.cgColor
+		self.layer.borderWidth = 1
 	}
 
 	public func updateButtonForDeselection() {

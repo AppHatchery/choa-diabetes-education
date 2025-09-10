@@ -45,8 +45,8 @@ class BloodKetoneLevelView: UIView {
 		view.frame = self.bounds
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-		ketoneLevelsStackView.layer.borderWidth = 0.5
-		ketoneLevelsStackView.layer.borderColor = UIColor.darkGray.cgColor
+		ketoneLevelsStackView.layer.borderWidth = 1
+		ketoneLevelsStackView.layer.borderColor = UIColor.ketoneBorderColor.cgColor
 		ketoneLevelsStackView.layer.cornerRadius = 12
 		ketoneLevelsStackView.isLayoutMarginsRelativeArrangement = true
 		ketoneLevelsStackView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)

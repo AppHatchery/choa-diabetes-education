@@ -46,8 +46,8 @@ class UrineKetoneLevelView: UIView {
 			$0.layer.cornerRadius = 4
 		}
 
-		ketoneLevelsStackView.layer.borderWidth = 0.5
-		ketoneLevelsStackView.layer.borderColor = UIColor.darkGray.cgColor
+		ketoneLevelsStackView.layer.borderWidth = 1
+		ketoneLevelsStackView.layer.borderColor = UIColor.ketoneBorderColor.cgColor
 		ketoneLevelsStackView.layer.cornerRadius = 12
 		ketoneLevelsStackView.isLayoutMarginsRelativeArrangement = true
 		ketoneLevelsStackView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)

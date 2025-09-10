@@ -29,10 +29,11 @@
                 <outlet property="hydrationInfoStackView" destination="RjE-5L-D4F" id="9Ii-yT-Mgw"/>
                 <outlet property="rearrangeableStackView" destination="vpb-oV-3ek" id="ceh-3k-ZY9"/>
                 <outlet property="reminderButton" destination="eJE-eD-Qs5" id="g2N-zy-Gc9"/>
+                <outlet property="reminderContainerView" destination="OKG-UU-IT1" id="lyN-Ii-yQ8"/>
                 <outlet property="reminderNextCheckDescriptionLabel" destination="UuX-ze-NFt" id="T6O-GR-3xi"/>
                 <outlet property="reminderNextCheckLabel" destination="fGK-TG-kaF" id="xah-ee-4nA"/>
                 <outlet property="reminderTimeCheckLabel" destination="5sX-Sk-Bpx" id="oxV-LI-Ww8"/>
-                <outlet property="reminderView" destination="OKG-UU-IT1" id="lyN-Ii-yQ8"/>
+                <outlet property="reminderView" destination="iCq-Bg-56s" id="zBf-K3-sPo"/>
                 <outlet property="titleLabel" destination="riu-5H-yGt" id="y4o-kh-tKd"/>
                 <outlet property="yesOver2hoursButton" destination="5FW-iM-jIZ" id="Bbu-ak-dOo"/>
             </connections>
@@ -46,10 +47,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="1207"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z94-fI-lxz">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1458"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1045.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                                    <rect key="frame" x="20" y="20" width="353" height="1032.6666666666667"/>
+                                    <rect key="frame" x="20" y="20" width="353" height="1025.6666666666667"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
@@ -99,8 +100,8 @@
                                                 <constraint firstAttribute="height" constant="250" id="j92-Pj-2YV"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vpb-oV-3ek" userLabel="Rearrangable Stack View">
-                                            <rect key="frame" x="0.0" y="474" width="353" height="494.66666666666674"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="vpb-oV-3ek" userLabel="Rearrangable Stack View">
+                                            <rect key="frame" x="0.0" y="474" width="353" height="487.66666666666674"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-5L-D4F" userLabel="Hydration Info Stack View">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="136"/>
@@ -132,103 +133,125 @@
                                                         </textView>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Reminder View">
-                                                    <rect key="frame" x="0.0" y="151.00000000000003" width="353" height="343.66666666666674"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Reminder Container View">
+                                                    <rect key="frame" x="0.0" y="160.00000000000003" width="353" height="327.66666666666674"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
-                                                            <rect key="frame" x="20" y="20" width="313" height="303.66666666666669"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="lim-S9-yuw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="327.66666666666669"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="313" height="109.33333333333333"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCq-Bg-56s" userLabel="Reminder View">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="192.33333333333334"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="alarm_clock" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="109.33333333333333"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="80" id="94z-sO-qhv"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
-                                                                            <rect key="frame" x="92" y="0.0" width="221" height="109.33333333333333"/>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
+                                                                            <rect key="frame" x="12" y="10" width="329" height="172.33333333333334"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Next Check in 2 Hours" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="221" height="40"/>
-                                                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                                                    <color key="textColor" name="primaryBlue"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="You’ll need to check your blood sugar and ketones in 2 hours." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
-                                                                                    <rect key="frame" x="0.0" y="52" width="221" height="57.333333333333343"/>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                                    <nil key="textColor"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="112.33333333333333"/>
+                                                                                    <subviews>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="alarm_clock" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="112.33333333333333"/>
+                                                                                            <constraints>
+                                                                                                <constraint firstAttribute="width" constant="80" id="94z-sO-qhv"/>
+                                                                                            </constraints>
+                                                                                        </imageView>
+                                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
+                                                                                            <rect key="frame" x="92" y="0.0" width="237" height="112.33333333333333"/>
+                                                                                            <subviews>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Next Check in 2 Hours" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="62"/>
+                                                                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                                                    <color key="textColor" name="primaryBlue"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="You’ll need to check your blood sugar and ketones in 2 hours." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                                                    <rect key="frame" x="0.0" y="74" width="237" height="38.333333333333343"/>
+                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                                    <nil key="textColor"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                            </subviews>
+                                                                                        </stackView>
+                                                                                    </subviews>
+                                                                                </stackView>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
+                                                                                    <rect key="frame" x="0.0" y="124.33333333333337" width="329" height="48"/>
+                                                                                    <color key="backgroundColor" name="primaryBlue"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
+                                                                                    </constraints>
+                                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="plain" image="ic_alarm" imagePlacement="leading" title="Remind Me" imagePadding="8" cornerStyle="fixed">
+                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                                                                                    </buttonConfiguration>
+                                                                                    <connections>
+                                                                                        <action selector="remindMeButtonTapped:" destination="-1" eventType="touchUpInside" id="Hdo-hd-yZ0"/>
+                                                                                    </connections>
+                                                                                </button>
                                                                             </subviews>
                                                                         </stackView>
                                                                     </subviews>
-                                                                </stackView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
-                                                                    <rect key="frame" x="0.0" y="129.33333333333337" width="313" height="48"/>
-                                                                    <color key="backgroundColor" name="primaryBlue"/>
+                                                                    <color key="backgroundColor" name="veryLightBlue"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="12" id="2DA-zb-wDv"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="7pD-ov-VoS"/>
+                                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="iCq-Bg-56s" secondAttribute="leading" constant="12" id="A6P-oR-XbW"/>
+                                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="iCq-Bg-56s" secondAttribute="top" constant="10" id="j2G-ax-mI3"/>
                                                                     </constraints>
-                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="ic_alarm" imagePlacement="leading" title="Remind Me" imagePadding="8" cornerStyle="fixed">
-                                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
-                                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
-                                                                    </buttonConfiguration>
-                                                                    <connections>
-                                                                        <action selector="remindMeButtonTapped:" destination="-1" eventType="touchUpInside" id="Hdo-hd-yZ0"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has it been more than 2 hours since your last ketone test?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-Sk-Bpx">
-                                                                    <rect key="frame" x="0.0" y="197.33333333333337" width="313" height="38.333333333333343"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="v4Z-Ml-9cg">
-                                                                    <rect key="frame" x="0.0" y="255.66666666666663" width="313" height="48"/>
+                                                                </view>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="cff-7E-G1M" userLabel="Over 2 Hours Stack View">
+                                                                    <rect key="frame" x="0.0" y="232.3333333333334" width="353" height="95.333333333333343"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
-                                                                            <rect key="frame" x="139.33333333333337" y="0.0" width="173.66666666666663" height="48"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="48" id="4ts-oB-Nb7"/>
-                                                                            </constraints>
-                                                                            <color key="tintColor" name="primaryBlue"/>
-                                                                            <state key="normal" title="Button"/>
-                                                                            <buttonConfiguration key="configuration" style="plain">
-                                                                                <attributedString key="attributedTitle">
-                                                                                    <fragment content="Yes, Over 2hrs ">
-                                                                                        <attributes>
-                                                                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
-                                                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                                                        </attributes>
-                                                                                    </fragment>
-                                                                                </attributedString>
-                                                                            </buttonConfiguration>
-                                                                            <connections>
-                                                                                <action selector="yesOverButtonTapped:" destination="-1" eventType="touchUpInside" id="xk3-zk-ndS"/>
-                                                                            </connections>
-                                                                        </button>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has it been more than 2 hours since your last ketone test?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-Sk-Bpx">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="38.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="v4Z-Ml-9cg">
+                                                                            <rect key="frame" x="0.0" y="47.333333333333258" width="353" height="48"/>
+                                                                            <subviews>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
+                                                                                    <rect key="frame" x="179.33333333333337" y="0.0" width="173.66666666666663" height="48"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="48" id="4ts-oB-Nb7"/>
+                                                                                    </constraints>
+                                                                                    <color key="tintColor" name="primaryBlue"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="plain">
+                                                                                        <attributedString key="attributedTitle">
+                                                                                            <fragment content="Yes, Over 2hrs ">
+                                                                                                <attributes>
+                                                                                                    <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                                                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                                                                </attributes>
+                                                                                            </fragment>
+                                                                                        </attributedString>
+                                                                                    </buttonConfiguration>
+                                                                                    <connections>
+                                                                                        <action selector="yesOverButtonTapped:" destination="-1" eventType="touchUpInside" id="xk3-zk-ndS"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="veryLightBlue"/>
+                                                    <color key="backgroundColor" name="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="20" id="468-q6-SCW"/>
-                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" constant="20" id="SQd-9a-wzL"/>
-                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" constant="20" id="fZ0-Rg-A9G"/>
-                                                        <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="20" id="srs-4Q-NQt"/>
+                                                        <constraint firstItem="lim-S9-yuw" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" id="PXm-Xb-ByW"/>
+                                                        <constraint firstItem="lim-S9-yuw" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" id="e5y-js-Hak"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lim-S9-yuw" secondAttribute="bottom" id="ej5-bQ-Eud"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lim-S9-yuw" secondAttribute="trailing" id="nW4-E7-cAE"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLg-8e-GOb">
-                                            <rect key="frame" x="0.0" y="984.66666666666663" width="353" height="47.999999999999886"/>
+                                            <rect key="frame" x="0.0" y="977.66666666666663" width="353" height="47.999999999999886"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="4w9-Wj-6Jr"/>
                                             </constraints>
@@ -248,7 +271,7 @@
                             <constraints>
                                 <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="Z94-fI-lxz" secondAttribute="leading" constant="20" id="91U-H1-nSj"/>
                                 <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="Dof-vm-M6P"/>
-                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" constant="405.32999999999998" id="bdd-Va-QKU"/>
+                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" id="bdd-Va-QKU"/>
                                 <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="Z94-fI-lxz" secondAttribute="top" constant="20" id="hrY-4n-c67"/>
                             </constraints>
                         </view>
@@ -291,6 +314,9 @@
         </namedColor>
         <namedColor name="veryLightBlue">
             <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

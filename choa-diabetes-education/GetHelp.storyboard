@@ -199,7 +199,7 @@
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-dh-l91">
                                                         <rect key="frame" x="0.0" y="28" width="335" height="200"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="lightGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="eGD-6b-gKd"/>
                                                         </constraints>
@@ -221,7 +221,7 @@
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-7x-yFu">
                                                         <rect key="frame" x="0.0" y="28" width="335" height="200"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="lightGreenColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -248,7 +248,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ru1-eJ-dZH"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="lightGreenColor"/>
                         <constraints>
                             <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" constant="50" id="UMj-9C-pRN"/>
                             <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="Fs0-Yy-ZkI" secondAttribute="trailing" constant="20" id="bkD-gu-t2s"/>
@@ -277,6 +277,9 @@
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreenColor">
+            <color red="0.95294117647058818" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

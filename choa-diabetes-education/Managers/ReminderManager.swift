@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import UIKit
 
 protocol ReminderManagerDelegate: AnyObject {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String)
@@ -314,6 +315,8 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
 			// Handle notification tap - you can customize this behavior
 		print("User tapped on reminder with ID: \(identifier)")
 
+		UIApplication.shared.applicationIconBadgeNumber = 0
+		
 		completionHandler()
 	}
 }
