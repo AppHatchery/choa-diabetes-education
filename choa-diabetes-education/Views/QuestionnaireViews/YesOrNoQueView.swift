@@ -94,6 +94,8 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 				return
 			}
 
+			QuestionnaireManager.instance.saveBloodSugarOver300(true)
+
 				// Clear any existing subviews first
 			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
@@ -124,6 +126,8 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 		followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
 		if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+			QuestionnaireManager.instance.saveBloodSugarOver300(false)
+
 			nextButton.alpha = 1
 		}
     }

@@ -29,7 +29,8 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func saveMeasuringMethod(_ method: MeasuringType)
     func saveCGM(_ cgm: Bool)
 	func saveILetPump(_ iLetPump: Bool)
-	func bloodSugarOver300For3Hours(_ over300: Bool)
+	func saveBloodSugarOver300(_ over300: Bool)
+	func saveBloodSugarOver300For3Hours(_ over300: Bool)
 	var iLetPump: Bool { get }
 	var currentTestType: TestType { get }
     func saveData(bloodSugar: Int, correctionFactor: Int)
@@ -67,6 +68,7 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     var currentMethod: CalculationType = .formula
     private(set) var cgm: Bool = true
 	private(set) var iLetPump: Bool = false
+	private(set) var bloodSugarOver300: Bool = false
 	private(set) var bloodSugarOver300For3Hours: Bool = false
     private(set) var bloodSugar: Int = 0
     private(set) var correctionFactor: Int = 0
@@ -176,8 +178,6 @@ extension QuestionnaireManager {
         default:
             return
         }
-        
-        
     }
     
     func triggerNoActionFlow(_ currentQuestion: Questionnaire) {
@@ -224,7 +224,11 @@ extension QuestionnaireManager {
 		self.iLetPump = iLetPump
 	}
 
-	func bloodSugarOver300For3Hours(_ over300: Bool) {
+	func saveBloodSugarOver300(_ over300: Bool) {
+		self.bloodSugarOver300 = over300
+	}
+
+	func saveBloodSugarOver300For3Hours(_ over300: Bool) {
 		self.bloodSugarOver300For3Hours = over300
 	}
 
@@ -283,15 +287,23 @@ extension QuestionnaireManager {
 		switch urineLevel {
 				// Low/negative urine OR low blood
 		case .negative, .zeroPointFive:
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
+			if bloodSugarOver300 {
+				showFinalStage(stage: .callChoa, calculation: nil)
+			}	else {
+				showFinalStage(stage: .continueRegularCare, calculation: nil)
+			}
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
 		case .onePointFive, .four, .eight, .sixteen:
-			showFinalStage(stage: .callChoa, calculation: nil)
+			let createQue = createYesOrNoQuestion(
+				questionId: .bloodSugarRecheck,
+				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
+				description: nil,
+				showDescriptionAtBottom: false
+			)
 
-				// High risk (urine 8 or 16) OR blood large
-//		case :
-//			showFinalStage(stage: .callChoa, calculation: nil)
+			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
 
@@ -302,11 +314,22 @@ extension QuestionnaireManager {
 		switch bloodLevel {
 				// Low/negative urine OR low blood
 		case .low:
-			showFinalStage(stage: .continueRegularCare, calculation: nil)
-
+			if bloodSugarOver300 == true {
+				showFinalStage(stage: .callChoa, calculation: nil)
+			} else {
+				showFinalStage(stage: .continueRegularCare, calculation: nil)
+			}
 				// Moderate/Large risk (urine 1.5 or 4) OR blood moderate
 		case .moderate, .large:
-			showFinalStage(stage: .callChoa, calculation: nil)
+			let createQue = createYesOrNoQuestion(
+				questionId: .bloodSugarRecheck,
+				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
+				description: nil,
+				showDescriptionAtBottom: false
+			)
+
+			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
 
@@ -319,7 +342,6 @@ extension QuestionnaireManager {
 			showFinalStage(stage: .reminder, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-
 			let createQue = createYesOrNoQuestion(
 				questionId: .bloodSugarRecheck,
 				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"

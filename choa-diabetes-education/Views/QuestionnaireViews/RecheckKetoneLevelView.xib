@@ -32,11 +32,11 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="138" width="353" height="311"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
+                    <rect key="frame" x="20" y="137.99999999999997" width="353" height="304.33333333333326"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fN1-7x-I34" userLabel="Resources Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="72.333333333333329"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="242.33333333333334"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s Ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQL-VA-Fmu">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
@@ -57,20 +57,16 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nE0-1g-pEQ">
-                                    <rect key="frame" x="0.0" y="62.333333333333343" width="353" height="10"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="10" id="yqU-qW-dNn"/>
-                                    </constraints>
-                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Dv-HP8">
+                                    <rect key="frame" x="0.0" y="62.333333333333343" width="353" height="180"/>
+                                </stackView>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Dv-HP8" userLabel="Ketone Measuring Type Stack View">
-                            <rect key="frame" x="0.0" y="72.333333333333329" width="353" height="218.33333333333337"/>
-                        </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-la-Zrs">
-                            <rect key="frame" x="0.0" y="290.66666666666669" width="353" height="20.333333333333314"/>
+                            <rect key="frame" x="0.0" y="254.33333333333331" width="353" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="LFQ-uR-Tko"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
@@ -128,9 +124,9 @@
                 <constraint firstItem="pus-77-mAb" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="22b-7z-Nww"/>
                 <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="pus-77-mAb" secondAttribute="trailing" constant="20" id="7dY-pC-IiV"/>
                 <constraint firstItem="pus-77-mAb" firstAttribute="bottom" secondItem="iAm-wi-cBS" secondAttribute="bottom" id="OaD-IW-CJh"/>
+                <constraint firstItem="pus-77-mAb" firstAttribute="top" secondItem="fLf-23-qes" secondAttribute="bottom" constant="293.67000000000002" id="VKf-gB-dto"/>
                 <constraint firstItem="fLf-23-qes" firstAttribute="top" secondItem="iAm-wi-cBS" secondAttribute="top" constant="20" id="ce1-08-vvX"/>
                 <constraint firstAttribute="trailing" secondItem="fLf-23-qes" secondAttribute="trailing" constant="20" id="j7S-FR-zHx"/>
-                <constraint firstItem="pus-77-mAb" firstAttribute="top" secondItem="fLf-23-qes" secondAttribute="bottom" priority="999" constant="287" id="m9u-Zu-2OG"/>
                 <constraint firstItem="fLf-23-qes" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="zLg-4Q-YP7"/>
             </constraints>
             <point key="canvasLocation" x="180.91603053435114" y="-56.338028169014088"/>

@@ -286,9 +286,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 		switch selectedAnswer {
 		case .yes:
-			self.questionnaireManager.bloodSugarOver300For3Hours(true)
+			questionnaireManager.saveBloodSugarOver300For3Hours(true)
 		case .no:
-			self.questionnaireManager.bloodSugarOver300For3Hours(false)
+			questionnaireManager.saveBloodSugarOver300For3Hours(false)
 		}
 	}
 
