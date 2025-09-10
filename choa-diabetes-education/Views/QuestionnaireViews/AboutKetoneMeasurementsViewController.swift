@@ -29,7 +29,7 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 		titleLabel.textColor = .choaGreenColor
 		titleLabel.numberOfLines = 0
 
-		closeButton.setTitleWithStyle("Close", font: .gothamRoundedMedium20)
+		closeButton.titleLabel?.font = .gothamRoundedMedium20
 
 
 		measurementTitles.enumerated().forEach { index, label in

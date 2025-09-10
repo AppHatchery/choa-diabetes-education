@@ -34,6 +34,8 @@ class FinalStepCallChoaView: UIView {
 	@IBOutlet var repeatCorrections2: UILabel!
 	@IBOutlet var switchBackLabel: UILabel!
 
+	@IBOutlet var hydrationExampleInfoTextView: UITextView!
+
 	@IBOutlet var doneButton: UIButton!
 
 	private var currentQuestion: Questionnaire!
@@ -96,6 +98,8 @@ class FinalStepCallChoaView: UIView {
 		repeatCorrections2.setText("Final.CallChoa.RepeatCorrection.text2".localized(), boldPhrases: ["corrections every 2 hours", "Urine ketones", "trace or negative", "Blood ketones", "below 0.6 mmol/L"])
 
 		switchBackLabel.setText("Final.CallChoa.SwitchBack.text".localized(), boldPhrases: ["Switch back to automated mode"])
+
+		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
 
 		self.currentQuestion = currentQuestion
 		titleLabel.font = .gothamRoundedBold20

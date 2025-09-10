@@ -112,6 +112,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 			followUpSubview.setupView(currentQuestion: currentQuestion)
 
 			nextButton.alpha = 0.3
+			followUpAnswer = 0
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
 			nextButton.alpha = 1
 		default:

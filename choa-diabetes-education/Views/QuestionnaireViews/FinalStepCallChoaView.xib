@@ -26,6 +26,7 @@
                 <outlet property="contentView" destination="e7o-fC-reN" id="RIn-oV-hjv"/>
                 <outlet property="doneButton" destination="6do-CM-QoM" id="waH-ia-jiC"/>
                 <outlet property="giveNormalDoseLabel" destination="dF4-tM-2GQ" id="qCe-bq-Qbe"/>
+                <outlet property="hydrationExampleInfoTextView" destination="aIG-T6-kdM" id="PKy-lx-G4M"/>
                 <outlet property="injectionStackView" destination="Uyt-JY-8Ri" id="fYm-s9-WhA"/>
                 <outlet property="insulinPumpStackView" destination="7Ht-MT-Xmp" id="Afg-t5-6dh"/>
                 <outlet property="removePumpLabel" destination="54M-FS-n20" id="6OC-PD-vaB"/>
@@ -45,10 +46,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1237.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1239.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                                    <rect key="frame" x="20" y="20" width="353" height="1217.6666666666667"/>
+                                    <rect key="frame" x="20" y="20" width="353" height="1219.6666666666667"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
@@ -301,7 +302,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv">
-                                            <rect key="frame" x="0.0" y="1013.6666666666667" width="353" height="136"/>
+                                            <rect key="frame" x="0.0" y="1013.6666666666667" width="353" height="138"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-80-Ije">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
@@ -315,11 +316,11 @@ Blood ketones are below 0.6 mmol/L</string>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIG-T6-kdM">
-                                                    <rect key="frame" x="0.0" y="36" width="353" height="100"/>
+                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIG-T6-kdM" userLabel="Hydration Example Info Text View">
+                                                    <rect key="frame" x="0.0" y="36" width="353" height="102"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="X5E-uH-NfU"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="102" id="X5E-uH-NfU"/>
                                                     </constraints>
                                                     <string key="text">Example: A 2-year-old drinks 2 oz per hour 
 - If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)
@@ -331,7 +332,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6do-CM-QoM">
-                                            <rect key="frame" x="0.0" y="1169.6666666666667" width="353" height="48"/>
+                                            <rect key="frame" x="0.0" y="1171.6666666666667" width="353" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Fe2-Pf-Hsv"/>
                                             </constraints>

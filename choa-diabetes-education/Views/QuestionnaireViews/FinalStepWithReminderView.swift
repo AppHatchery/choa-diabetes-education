@@ -42,6 +42,8 @@ class FinalStepWithReminderView: UIView {
 
 	@IBOutlet var yesOver2hoursButton: UIButton!
 
+	@IBOutlet var hydrationExampleInfoTextView: UITextView!
+
 	@IBOutlet var doneButton: UIButton!
 
 
@@ -125,6 +127,8 @@ class FinalStepWithReminderView: UIView {
 			"Final.GiveRecommendedDose.text".localized(),
 			boldPhrases: ["correction dose through", "pump site"]
 		)
+
+		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
 
 		if questionnaireManagerInstance.currentTestType == .pump {
 

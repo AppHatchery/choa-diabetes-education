@@ -287,7 +287,7 @@ extension QuestionnaireManager {
 		switch urineLevel {
 				// Low/negative urine OR low blood
 		case .negative, .zeroPointFive:
-			if bloodSugarOver300 {
+			if bloodSugarOver300 && currentTestType == .pump {
 				showFinalStage(stage: .callChoa, calculation: nil)
 			}	else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
@@ -314,7 +314,7 @@ extension QuestionnaireManager {
 		switch bloodLevel {
 				// Low/negative urine OR low blood
 		case .low:
-			if bloodSugarOver300 == true {
+			if bloodSugarOver300 && currentTestType == .pump {
 				showFinalStage(stage: .callChoa, calculation: nil)
 			} else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
@@ -324,7 +324,7 @@ extension QuestionnaireManager {
 			let createQue = createYesOrNoQuestion(
 				questionId: .bloodSugarRecheck,
 				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
+					.localized() :	"Calculator.Que.BloodSugarRecheck.title".localized(),
 				description: nil,
 				showDescriptionAtBottom: false
 			)

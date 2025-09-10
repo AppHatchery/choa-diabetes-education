@@ -185,7 +185,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			let label = optionButtonLabels[index]
 
 				// This is here since we have less images than we have views/buttons
-			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
+//			let image = optionButtonImages.indices.contains(index) ? optionButtonImages[index] : nil
 
 			if index == tappedView.tag {
 				selected = index + 1
@@ -194,9 +194,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 				if currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 1 {
 					nextButton.alpha = 1
-				} else if currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 2 {
+				} else {
 					nextButton.alpha = 0.3
+					followUpAnswer = 0
 				}
+
 			} else {
 				view.updateViewForDeselection()
 				label.updateLabelForDeselection()

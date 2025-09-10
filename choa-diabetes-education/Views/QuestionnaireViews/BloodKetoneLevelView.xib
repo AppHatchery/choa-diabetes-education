@@ -31,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zGZ-wW-YE0">
-                    <rect key="frame" x="0.0" y="158" width="393" height="151"/>
+                    <rect key="frame" x="0.0" y="158" width="393" height="158"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the ketone test results?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reu-cX-Ytf">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
@@ -40,7 +40,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="XuV-Vy-YiE">
-                            <rect key="frame" x="0.0" y="30" width="393" height="121"/>
+                            <rect key="frame" x="0.0" y="30" width="393" height="128"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="wn5-iF-1lt">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -61,18 +61,18 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kh1-bS-dGD">
-                                    <rect key="frame" x="0.0" y="72" width="393" height="49"/>
+                                    <rect key="frame" x="0.0" y="72" width="393" height="56"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpV-da-2yZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="125.66666666666667" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125.66666666666667" height="56"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="49" id="7WO-zL-uZT"/>
+                                                <constraint firstAttribute="height" constant="56" id="7WO-zL-uZT"/>
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Low" subtitle="&lt; 6.0">
                                                 <backgroundConfiguration key="background" image="low_blood_ketone"/>
-                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
@@ -80,15 +80,12 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aM-eb-Gzq">
-                                            <rect key="frame" x="133.66666666666666" y="0.0" width="125.66666666666666" height="49"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="49" id="2b1-8k-YLK"/>
-                                            </constraints>
+                                            <rect key="frame" x="133.66666666666666" y="0.0" width="125.66666666666666" height="56"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Moderate" subtitle="0.6 - 2.6">
                                                 <backgroundConfiguration key="background" image="medium_blood_ketone"/>
-                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
-                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
@@ -96,21 +93,12 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hjx-KN-LuJ">
-                                            <rect key="frame" x="267.33333333333331" y="0.0" width="125.66666666666669" height="49"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="49" id="5jt-gL-aQb"/>
-                                            </constraints>
+                                            <rect key="frame" x="267.33333333333331" y="0.0" width="125.66666666666669" height="56"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" subtitle="2.5 +">
+                                            <buttonConfiguration key="configuration" style="plain" title="High" subtitle="2.5 +">
                                                 <backgroundConfiguration key="background" image="high_blood_ketone"/>
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="High">
-                                                        <attributes>
-                                                            <font key="NSFont" size="14" name="GothamRounded-Bold"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                <fontDescription key="subtitleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
                                             <connections>
