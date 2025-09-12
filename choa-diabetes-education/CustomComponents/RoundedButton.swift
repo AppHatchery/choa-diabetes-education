@@ -43,7 +43,7 @@ open class RoundedButton: UIButton {
 		self.tintColor = UIColor.white
 		self.layer.cornerRadius = 8
 		self.layer.borderColor = UIColor.primaryBlue.cgColor
-		self.layer.borderWidth = 1
+		self.layer.borderWidth = 0
 	}
 
 	public func updateButtonForDeselection() {

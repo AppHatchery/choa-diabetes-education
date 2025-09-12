@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -32,7 +32,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-Wy-Aey">
-                    <rect key="frame" x="0.0" y="158" width="393" height="152"/>
+                    <rect key="frame" x="0.0" y="158" width="393" height="158"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the ketone test results?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk6-kn-pK5">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
@@ -41,7 +41,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8yg-zB-Cch">
-                            <rect key="frame" x="0.0" y="30" width="393" height="122"/>
+                            <rect key="frame" x="0.0" y="30" width="393" height="128"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="any-I0-ZL3">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -62,10 +62,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-9d-h25">
-                                    <rect key="frame" x="0.0" y="72" width="393" height="50"/>
+                                    <rect key="frame" x="0.0" y="72" width="393" height="56"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-ZX-uMX">
-                                            <rect key="frame" x="0.0" y="0.0" width="59" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="59" height="56"/>
                                             <color key="backgroundColor" name="ketoneLowNegative"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -84,7 +84,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w64-on-z1o">
-                                            <rect key="frame" x="67" y="0.0" width="58.666666666666657" height="50"/>
+                                            <rect key="frame" x="67" y="0.0" width="58.666666666666657" height="56"/>
                                             <color key="backgroundColor" name="ketoneLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -103,7 +103,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwt-px-RnC">
-                                            <rect key="frame" x="133.66666666666666" y="0.0" width="59" height="50"/>
+                                            <rect key="frame" x="133.66666666666666" y="0.0" width="59" height="56"/>
                                             <color key="backgroundColor" name="ketoneMidLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -122,7 +122,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95g-5c-gFe">
-                                            <rect key="frame" x="200.66666666666666" y="0.0" width="58.666666666666657" height="50"/>
+                                            <rect key="frame" x="200.66666666666666" y="0.0" width="58.666666666666657" height="56"/>
                                             <color key="backgroundColor" name="ketoneMidHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -141,7 +141,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-TJ-dV7">
-                                            <rect key="frame" x="267.33333333333331" y="0.0" width="59" height="50"/>
+                                            <rect key="frame" x="267.33333333333331" y="0.0" width="59" height="56"/>
                                             <color key="backgroundColor" name="ketoneHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -160,7 +160,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="246" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hza-H8-NJp">
-                                            <rect key="frame" x="334.33333333333331" y="0.0" width="58.666666666666686" height="50"/>
+                                            <rect key="frame" x="334.33333333333331" y="0.0" width="58.666666666666686" height="56"/>
                                             <color key="backgroundColor" name="KetoneHighVeryHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
@@ -180,7 +180,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="tMl-3f-J2f"/>
+                                        <constraint firstAttribute="height" constant="56" id="tMl-3f-J2f"/>
                                     </constraints>
                                 </stackView>
                             </subviews>

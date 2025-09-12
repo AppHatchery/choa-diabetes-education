@@ -31,40 +31,28 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="137.99999999999997" width="353" height="304.33333333333326"/>
+                    <rect key="frame" x="20" y="188.33333333333337" width="353" height="254"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fN1-7x-I34" userLabel="Resources Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="272"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fN1-7x-I34" userLabel="Resources Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s Ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQL-VA-Fmu">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
-                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
-                                    <color key="textColor" name="primaryBlue"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-Z2-aXk">
-                                    <rect key="frame" x="0.0" y="30" width="353" height="20.333333333333329"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="Learn how to measure ketones">
-                                            <attributes>
-                                                <color key="NSColor" name="primaryBlue"/>
-                                                <font key="NSFont" metaFont="system" size="17"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Dv-HP8">
-                                    <rect key="frame" x="0.0" y="62.333333333333357" width="353" height="209.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="209.66999999999999" id="fOZ-f0-QDB"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-uR-3lj">
+                            <rect key="frame" x="0.0" y="221.66666666666666" width="353" height="0.0"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="iLT-6L-nxG"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-la-Zrs">
-                            <rect key="frame" x="0.0" y="284" width="353" height="20.333333333333314"/>
+                            <rect key="frame" x="0.0" y="233.66666666666666" width="353" height="20.333333333333343"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
@@ -96,17 +84,51 @@
                         </button>
                     </subviews>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeU-je-s2v">
+                    <rect key="frame" x="20" y="138" width="353" height="50.333333333333343"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s Ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQL-VA-Fmu">
+                            <rect key="frame" x="0.0" y="0.0" width="285" height="18"/>
+                            <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-Z2-aXk">
+                            <rect key="frame" x="0.0" y="30" width="233" height="20.333333333333329"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Learn how to measure ketones">
+                                    <attributes>
+                                        <color key="NSColor" name="primaryBlue"/>
+                                        <font key="NSFont" metaFont="system" size="17"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Bey-Z2-aXk" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="L41-pQ-HmT"/>
+                        <constraint firstItem="DQL-VA-Fmu" firstAttribute="top" secondItem="VeU-je-s2v" secondAttribute="top" id="USm-KD-s7X"/>
+                        <constraint firstItem="Bey-Z2-aXk" firstAttribute="top" secondItem="DQL-VA-Fmu" secondAttribute="bottom" constant="12" id="jus-Xi-C8i"/>
+                        <constraint firstItem="DQL-VA-Fmu" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="m70-An-gpC"/>
+                        <constraint firstAttribute="bottom" secondItem="Bey-Z2-aXk" secondAttribute="bottom" id="xZp-hs-y5A"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="iAm-wi-cBS"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="pus-77-mAb" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="22b-7z-Nww"/>
-                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="pus-77-mAb" secondAttribute="trailing" constant="20" id="7dY-pC-IiV"/>
-                <constraint firstItem="pus-77-mAb" firstAttribute="bottom" secondItem="iAm-wi-cBS" secondAttribute="bottom" id="OaD-IW-CJh"/>
-                <constraint firstItem="pus-77-mAb" firstAttribute="top" relation="lessThanOrEqual" secondItem="fLf-23-qes" secondAttribute="bottom" priority="999" constant="293.67000000000002" id="VKf-gB-dto"/>
-                <constraint firstItem="fLf-23-qes" firstAttribute="top" secondItem="iAm-wi-cBS" secondAttribute="top" constant="20" id="ce1-08-vvX"/>
-                <constraint firstAttribute="trailing" secondItem="fLf-23-qes" secondAttribute="trailing" constant="20" id="j7S-FR-zHx"/>
-                <constraint firstItem="fLf-23-qes" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="zLg-4Q-YP7"/>
+                <constraint firstItem="fLf-23-qes" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="6V4-TT-nY0"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="pus-77-mAb" secondAttribute="trailing" constant="20" id="LhX-f8-Zks"/>
+                <constraint firstItem="VeU-je-s2v" firstAttribute="top" secondItem="iAm-wi-cBS" secondAttribute="top" constant="20" id="MAk-NV-qiY"/>
+                <constraint firstItem="pus-77-mAb" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="Ota-GB-ogc"/>
+                <constraint firstItem="pus-77-mAb" firstAttribute="bottom" secondItem="iAm-wi-cBS" secondAttribute="bottom" id="bwh-0l-Su9"/>
+                <constraint firstItem="VeU-je-s2v" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="dcl-NF-9wY"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="fLf-23-qes" secondAttribute="trailing" constant="20" id="mD4-cb-SiA"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="VeU-je-s2v" secondAttribute="trailing" constant="20" id="rUD-f1-1w3"/>
+                <constraint firstItem="fLf-23-qes" firstAttribute="top" secondItem="VeU-je-s2v" secondAttribute="bottom" id="ygI-NZ-kUJ"/>
             </constraints>
             <point key="canvasLocation" x="180.91603053435114" y="-56.338028169014088"/>
         </view>
