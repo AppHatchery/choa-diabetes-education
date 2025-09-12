@@ -118,8 +118,19 @@ class ReminderManager: NSObject {
 		///   - enableCountdown: Whether to start a countdown timer for this reminder
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
-	func scheduleTwoHourReminder(title: String = "Reminder", body: String = "Your 2-hour reminder is here!", enableCountdown: Bool = false) -> String {
+	func scheduleTwoHourReminder(title: String = "Time to check!", body: String = "Time to test your blood sugar and ketones.", enableCountdown: Bool = true) -> String {
 		return scheduleReminder(in: 7200, title: title, body: body, enableCountdown: enableCountdown) // 2 hours = 7200 seconds
+	}
+
+		/// Schedule a 90-minute reminder (convenience method)
+		/// - Parameters:
+		///   - title: Notification title
+		///   - body: Notification body
+		///   - enableCountdown: Whether to start a countdown timer for this reminder
+		/// - Returns: The identifier of the scheduled reminder
+	@discardableResult
+	func schedule90MinuteReminder(title: String = "Time to check!", body: String = "Time to test your blood sugar and ketones.", enableCountdown: Bool = true) -> String {
+		return scheduleReminder(in: 5400, title: title, body: body, enableCountdown: enableCountdown) // 90 minutes = 5400 seconds
 	}
 
 		/// Schedule a 30-second test reminder (convenience method for testing)
@@ -316,7 +327,52 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
 		print("User tapped on reminder with ID: \(identifier)")
 
 		UIApplication.shared.applicationIconBadgeNumber = 0
-		
+
 		completionHandler()
+	}
+
+		/// Computed property to check if there's an active reminder
+	var hasActiveReminder: Bool {
+		return !countdownTimers.isEmpty
+	}
+
+		/// Get the current active reminder ID (since we only allow one)
+	var currentReminderId: String? {
+		return countdownTimers.keys.first
+	}
+
+		/// Get remaining time for the current active reminder
+	var currentReminderRemainingTime: TimeInterval? {
+		guard let reminderId = currentReminderId,
+			  let scheduledTime = reminderScheduleTimes[reminderId] else {
+			return nil
+		}
+
+		let timeRemaining = scheduledTime.timeIntervalSince(Date())
+		return timeRemaining > 0 ? timeRemaining : nil
+	}
+
+		/// Get complete info about the current active reminder
+	var currentReminderInfo: (id: String, remainingTime: TimeInterval)? {
+		guard let id = currentReminderId,
+			  let remainingTime = currentReminderRemainingTime else {
+			return nil
+		}
+		return (id: id, remainingTime: remainingTime)
+	}
+
+		/// Cancel the current active reminder (convenience method)
+	func cancelCurrentReminder() {
+		if let reminderId = currentReminderId {
+			cancelReminder(withIdentifier: reminderId)
+		}
+	}
+
+		/// Get formatted time string for current reminder
+	var currentReminderTimeString: String? {
+		guard let remainingTime = currentReminderRemainingTime else {
+			return nil
+		}
+		return formatCountdownTime(Int(remainingTime))
 	}
 }

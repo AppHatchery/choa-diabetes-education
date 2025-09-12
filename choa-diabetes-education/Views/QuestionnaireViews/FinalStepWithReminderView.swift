@@ -60,6 +60,10 @@ class FinalStepWithReminderView: UIView {
 
 	private var countdownTimer: Timer?
 
+	private var reminderIsActive = ReminderManager.shared.hasActiveReminder
+
+	private var countdownFinished: Bool = false
+
 	override func didMoveToWindow() {
 		super.didMoveToWindow()
 		if window != nil {
@@ -139,7 +143,7 @@ class FinalStepWithReminderView: UIView {
 			flipHydrationAndReminder()
 		}
 
-		// iLet Pump View Conditions
+			// iLet Pump View Conditions
 		if questionnaireManagerInstance.iLetPump {
 			confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
 
@@ -196,19 +200,74 @@ class FinalStepWithReminderView: UIView {
 	}
 
 	private func updateReminderButtonTitle() {
-		if currentReminderId != nil {
-			reminderButton.setTitleWithStyle("Test Reminder Set", font: .gothamRoundedMedium20)
-			reminderButton.backgroundColor = .systemGray
+		reminderButton
+			.setTitleWithStyle(
+				"Remind Me",
+				font: .gothamRoundedMedium20,
+				color: .white,
+				image: UIImage(named: "ic_alarm"),
+				imagePlacement: .left
+			)
+
+		reminderButton.backgroundColor = .primaryBlue
+		reminderButton.layer.borderWidth = 0
+		reminderButton.tintColor = .white
+		reminderButton.titleLabel?.textColor = .white
+
+		if reminderIsActive {
+			reminderNextCheckDescriptionLabel.text = "Final.ReminderNextCheckDescription.text".localized()
+			reminderNextCheckDescriptionLabel.textColor = .black
+			reminderNextCheckDescriptionLabel.font = .gothamRoundedMedium20
 		} else {
-			reminderButton.setTitleWithStyle("Remind Me", font: .gothamRoundedMedium20)
-			reminderButton.backgroundColor = .primaryBlue
+			if questionnaireManagerInstance.iLetPump {
+				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
+
+				reminderNextCheckDescriptionLabel.textColor = .black
+			} else {
+				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
+
+				reminderNextCheckDescriptionLabel.textColor = .black
+			}
 		}
 	}
 
-	private func updateReminderButtonTitleWithCountdown(_ seconds: Int) {
+	private func updateReminderViewsWithCountdown(_ seconds: Int) {
 		let timeText = formatCountdownTime(seconds)
-		reminderButton.setTitleWithStyle("Reminder Set (\(timeText))", font: .gothamRoundedMedium20)
-		reminderButton.backgroundColor = .secondaryRedColor
+
+		reminderView.backgroundColor = .veryLightGreen
+
+		reminderButton.setTitleWithStyle("Skip This Reminder", font: .gothamRoundedMedium20, color: .primaryBlue)
+		reminderButton.backgroundColor = .clear
+		reminderButton.tintColor = .primaryBlue
+		reminderButton.layer.borderWidth = 1
+		reminderButton.layer.borderColor = UIColor.primaryBlue.cgColor
+
+		reminderNextCheckLabel.text = "Final.ReminderNextCheckIn.text".localized()
+
+		reminderNextCheckDescriptionLabel.text = timeText
+		reminderNextCheckDescriptionLabel.textColor = .choaGreenColor
+		reminderNextCheckDescriptionLabel.font = .gothamRoundedBold32
+	}
+
+	private func updateViewsWhenCountdownFinished() {
+		reminderView.backgroundColor = .veryLightGreen
+		reminderNextCheckLabel.isHidden = true
+		reminderNextCheckDescriptionLabel.text = "Final.ReminderTimeToCheck.text".localized()
+		reminderNextCheckDescriptionLabel.textColor = .choaGreenColor
+		reminderNextCheckDescriptionLabel.font = .gothamRoundedBold32
+
+		reminderButton
+			.setTitleWithStyle(
+				"Start Test",
+				font: .gothamRoundedMedium20,
+				color: .whiteColor,
+				image: UIImage(named: "leftArrow"),
+				imagePlacement: .right
+			)
+		reminderButton.backgroundColor = .choaGreenColor
+		reminderButton.tintColor = .white
+		reminderButton.layer.borderWidth = 1
+		reminderButton.layer.borderColor = UIColor.choaGreenColor.cgColor
 	}
 
 	private func formatCountdownTime(_ seconds: Int) -> String {
@@ -216,7 +275,8 @@ class FinalStepWithReminderView: UIView {
 			let hours = seconds / 3600
 			let minutes = (seconds % 3600) / 60
 			let secs = seconds % 60
-			return String(format: "%dh %dm %ds", hours, minutes, secs)
+//			return String(format: "%dh %dm %ds", hours, minutes, secs)
+			return String(format: "%dh %dm", hours, minutes)
 		} else if seconds >= 60 {
 			let minutes = seconds / 60
 			let secs = seconds % 60
@@ -246,9 +306,9 @@ class FinalStepWithReminderView: UIView {
 	}
 
 	private func restoreReminderState() {
-		guard questionnaireManagerInstance.hasActiveReminder(),
-			  let reminderId = questionnaireManagerInstance.getActiveReminderId(),
-			  let remainingTime = questionnaireManagerInstance.getRemainingTime() else {
+		guard ReminderManager.shared.hasActiveReminder,
+			  let reminderId = ReminderManager.shared.currentReminderId,
+			  let remainingTime = ReminderManager.shared.currentReminderRemainingTime else {
 			currentReminderId = nil
 			updateReminderButtonTitle()
 			return
@@ -265,7 +325,7 @@ class FinalStepWithReminderView: UIView {
 		var remainingSeconds = seconds
 
 			// Update immediately
-		updateReminderButtonTitleWithCountdown(remainingSeconds)
+		updateReminderViewsWithCountdown(remainingSeconds)
 
 			// Start timer for countdown updates
 		countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
@@ -279,10 +339,11 @@ class FinalStepWithReminderView: UIView {
 			if remainingSeconds <= 0 {
 				timer.invalidate()
 				self.currentReminderId = nil
-				self.updateReminderButtonTitle()
+				self.updateViewsWhenCountdownFinished()
+				self.countdownFinished = true
 				questionnaireManagerInstance.clearActiveReminder()
 			} else {
-				self.updateReminderButtonTitleWithCountdown(remainingSeconds)
+				self.updateReminderViewsWithCountdown(remainingSeconds)
 			}
 		}
 	}
@@ -290,36 +351,58 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
+			questionnaireManagerInstance.saveYesOver2hours(true)
+			delegate?.didSelectYesOverAction(
+				currentQuestion)
+
 			ReminderManager.shared.cancelReminder(withIdentifier: existingId)
 			currentReminderId = nil
 			updateReminderButtonTitle()
 			countdownTimer?.invalidate()
 			countdownTimer = nil
 			questionnaireManagerInstance.clearActiveReminder()
+			ReminderManager.shared.cancelAllReminders()
 
-				// Show cancellation confirmation
-			showAlert(title: "Reminder Canceled", message: "Your reminder has been canceled.")
+			reminderView.backgroundColor = .veryLightBlue
 			return
 		}
 
-			// Schedule a 30-second reminder
-		let scheduledTime = Date().addingTimeInterval(30)
-		let newReminderId = ReminderManager.shared.scheduleTestReminder(
-			title: "Test Reminder",
-			body: "Your 30-second test reminder is here!",
-			enableCountdown: true
-		)
+		if countdownFinished {
+			countdownFinished = false
 
-			// Store the reminder ID immediately
-		currentReminderId = newReminderId
-		
-		questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
-		startCountdownTimer(with: 30)
+			reminderView.backgroundColor = .veryLightBlue
+			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+			reminderNextCheckLabel.isHidden = false
+
+			reminderNextCheckDescriptionLabel.font = .systemFont(ofSize: 14)
+			reminderNextCheckDescriptionLabel.textColor = .black
+
+			if questionnaireManagerInstance.iLetPump {
+				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
+			} else {
+				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
+			}
+
+			questionnaireManagerInstance.saveYesOver2hours(true)
+			delegate?.didSelectYesOverAction(
+				currentQuestion)
+		} else {
+			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 7200
+
+			let scheduledTime = Date().addingTimeInterval(duration)
+
+			let newReminderId = questionnaireManagerInstance.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
+
+			currentReminderId = newReminderId
+
+			questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+
+			startCountdownTimer(with: Int(duration))
+		}
 	}
 
 
 	@IBAction func yesOverButtonTapped(_ sender: Any) {
-		print("yesOverButtonTapped")
 		questionnaireManagerInstance.saveYesOver2hours(true)
 		delegate?.didSelectYesOverAction(
 			currentQuestion)
@@ -334,15 +417,16 @@ class FinalStepWithReminderView: UIView {
 extension FinalStepWithReminderView: ReminderManagerDelegate {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String) {
 
-		showAlert(
-			title: "Test Reminder Set",
-			message: "You'll get a test notification in 30 seconds!"
-		)
+//		showAlert(
+//			title: "Reminder Set",
+//			message: questionnaireManagerInstance.iLetPump ? "You'll get a notification in 90 minutes to recheck your blood sugar and ketones." : "You'll get a notification in 2 hours to recheck your blood sugar and ketones."
+//		)
 	}
 
 	func reminderManager(_ manager: ReminderManager, countdownUpdate seconds: Int, forReminderId id: String) {
 		guard id == currentReminderId else { return }
-			// updateReminderButtonTitleWithCountdown(seconds)
+
+		updateReminderViewsWithCountdown(seconds)
 	}
 
 	func reminderManager(_ manager: ReminderManager, countdownFinishedForReminderId id: String) {
@@ -352,6 +436,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		countdownTimer?.invalidate()
 		countdownTimer = nil
 		questionnaireManagerInstance.clearActiveReminder()
+		reminderIsActive = false
 	}
 
 	func reminderManager(_ manager: ReminderManager, didFailWithError error: Error) {

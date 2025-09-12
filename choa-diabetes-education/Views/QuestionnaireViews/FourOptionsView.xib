@@ -42,10 +42,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uks-JJ-022" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="138" width="352" height="518.66666666666663"/>
+                    <rect key="frame" x="20" y="138" width="353" height="518.66666666666663"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
-                            <rect key="frame" x="0.0" y="0.0" width="352" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                             <attributedString key="attributedText">
                                 <fragment content="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd">
                                     <attributes>
@@ -58,16 +58,16 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DFd-k1-lXc" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="88.000000000000028" width="352" height="430.66666666666674"/>
+                            <rect key="frame" x="0.0" y="88.000000000000028" width="353" height="430.66666666666674"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YUM-TP-cjd">
-                                    <rect key="frame" x="0.0" y="0.0" width="352" height="209.33333333333334"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209.33333333333334"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7h9-kM-YCL" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="209.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="209.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctc-65-3hs">
-                                                    <rect key="frame" x="10" y="173.33333333333331" width="150" height="16"/>
+                                                    <rect key="frame" x="10" y="173.33333333333331" width="150.66666666666666" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="5N6-CB-RJD"/>
                                                     </constraints>
@@ -102,10 +102,10 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="may-qB-D4g" userLabel="Button View">
-                                            <rect key="frame" x="182" y="0.0" width="170" height="209.33333333333334"/>
+                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="209.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-xT-3eR">
-                                                    <rect key="frame" x="10" y="173.33333333333331" width="150" height="16"/>
+                                                    <rect key="frame" x="10" y="173.33333333333331" width="150.33333333333334" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -140,13 +140,13 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ab8-Ho-LUK">
-                                    <rect key="frame" x="0.0" y="221.33333333333331" width="352" height="209.33333333333331"/>
+                                    <rect key="frame" x="0.0" y="221.33333333333331" width="353" height="209.33333333333331"/>
                                     <subviews>
                                         <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJQ-SA-R3j" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="209.33333333333334"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="209.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zi7-Jo-ghv">
-                                                    <rect key="frame" x="10" y="173.33333333333331" width="150" height="16"/>
+                                                    <rect key="frame" x="10" y="173.33333333333331" width="150.66666666666666" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -179,10 +179,10 @@
                                             </constraints>
                                         </view>
                                         <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2f-Yt-es7" userLabel="Button View">
-                                            <rect key="frame" x="182" y="0.0" width="170" height="209.33333333333334"/>
+                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="209.33333333333334"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIm-6s-wck">
-                                                    <rect key="frame" x="10" y="10" width="150" height="189.33333333333334"/>
+                                                    <rect key="frame" x="10" y="10" width="150.33333333333334" height="189.33333333333334"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -213,10 +213,10 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GW0-z3-ry9" userLabel="Nav Buttons Stack View">
-                    <rect key="frame" x="20" y="736" width="352" height="48"/>
+                    <rect key="frame" x="20" y="736" width="353" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaT-UF-v5D" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="352" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="pT8-Da-PNI"/>
                             </constraints>

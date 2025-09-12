@@ -37,7 +37,6 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var nextButton: PrimaryButton!
-	@IBOutlet var exitButton: UIButton!
 
 	@IBOutlet var ketoneMeasuringTypeStackView: UIStackView!
 
@@ -79,7 +78,6 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 		self.currentQuestion = currentQuestion
 
 		nextButton.titleLabel?.font = .gothamRoundedMedium20
-		exitButton.titleLabel?.font = .gothamRoundedMedium20
 
 		setupLearnHowLabel()
 		setupSwitchToLabel()

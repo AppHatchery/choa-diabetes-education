@@ -31,7 +31,6 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 
 		closeButton.titleLabel?.font = .gothamRoundedMedium20
 
-
 		measurementTitles.enumerated().forEach { index, label in
 			label.textColor = .choaGreenColor
 			label.numberOfLines = 0
