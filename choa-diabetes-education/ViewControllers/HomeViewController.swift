@@ -68,6 +68,16 @@ class HomeViewController: UIViewController {
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance
 		navigationController?.navigationBar.tintColor = UIColor.black
+        
+        let tabBarAppearance = UITabBarAppearance()
+        
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = UIColor.white
+        tabBarAppearance.shadowColor = UIColor.clear
+        
+        tabBarController?.tabBar.standardAppearance = tabBarAppearance
+        tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
+        tabBarController?.tabBar.tintColor = UIColor.black
 
 //        orientationTitleLabel.text = "Home.Orientation.Title".localized()
 //        orientationSubTitleLabel.text = "Home.Orientation.Subtitle".localized()
