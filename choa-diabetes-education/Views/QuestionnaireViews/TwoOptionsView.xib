@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedBold.ttf">
+        <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
+        </array>
+        <array key="GothamRoundedMedium.ttf">
+            <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -42,10 +45,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-23-bqq" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="138" width="353" height="533"/>
+                    <rect key="frame" x="20" y="40" width="353" height="699"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-sI-pDY" userLabel="Resources Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="82.333333333333329"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="82.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s Ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2O-Xw-owa">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
@@ -54,7 +57,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8W-Q0-crO">
-                                    <rect key="frame" x="0.0" y="30" width="353" height="20.333333333333329"/>
+                                    <rect key="frame" x="0.0" y="30" width="353" height="20.5"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Learn how to measure ketones">
                                             <attributes>
@@ -67,7 +70,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnZ-jN-izc">
-                                    <rect key="frame" x="0.0" y="62.333333333333343" width="353" height="20"/>
+                                    <rect key="frame" x="0.0" y="62.5" width="353" height="20"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="YZ1-Mf-vff"/>
@@ -76,35 +79,28 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="94.333333333333343" width="353" height="263.33333333333326"/>
+                            <rect key="frame" x="0.0" y="94.5" width="353" height="263.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="39.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
-                                    <rect key="frame" x="0.0" y="51.666666666666671" width="353" height="211.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="52" width="353" height="211.5"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170.66666666666666" height="211.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="211.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
-                                                    <rect key="frame" x="10" y="175.66666666666669" width="150.66666666666666" height="16"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <color key="NSColor" name="primaryBlue"/>
-                                                                <font key="NSFont" size="16" name="GothamRounded-Bold"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
+                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                    <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-V4-WiZ">
-                                                    <rect key="frame" x="10" y="10" width="150.66666666666666" height="155.66666666666666"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="155.5"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -120,23 +116,16 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O44-N8-JUe" userLabel="Button View">
-                                            <rect key="frame" x="182.66666666666663" y="0.0" width="170.33333333333337" height="211.66666666666666"/>
+                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="211.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
-                                                    <rect key="frame" x="10" y="175.66666666666669" width="150.33333333333334" height="16"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <color key="NSColor" name="primaryBlue"/>
-                                                                <font key="NSFont" size="16" name="GothamRounded-Bold"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
+                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                    <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-ak-o7C">
-                                                    <rect key="frame" x="10" y="10" width="150.33333333333334" height="155.66666666666666"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="155.5"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -156,7 +145,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                            <rect key="frame" x="0.0" y="369.66666666666669" width="353" height="163.33333333333331"/>
+                            <rect key="frame" x="0.0" y="370" width="353" height="329"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -167,7 +156,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-GV-ImM" userLabel="Nav Buttons Stack View">
-                    <rect key="frame" x="20" y="736" width="353" height="48"/>
+                    <rect key="frame" x="20" y="804" width="353" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuU-rn-CP1" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
