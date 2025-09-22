@@ -32,6 +32,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var resourceCards: [UIView]!
     
+    @IBOutlet weak var diabetesBasicsResourceCard: UIView!
+    @IBOutlet weak var nutritionResourceCard: UIView!
+    @IBOutlet weak var diabetesSelfManagementResourceCard: UIView!
+    
+    
     var chapterContent = 0
     var quizContent = 0
     var chapterName = ""
@@ -92,8 +97,8 @@ class HomeViewController: UIViewController {
         resourceCards.forEach {
             $0.layer.cornerRadius = 8
         }
-        
-        
+
+        addTapRecognizersToResourceCards()
 
 //        diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
 //        nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
@@ -118,6 +123,22 @@ class HomeViewController: UIViewController {
 //        orientationButton.detailedDropShadow(color:  UIColor.orientationButtonDropShadowColor.cgColor, blur: 12, offset: 6, opacity: 0.59)
 //        firstDayLabel.text = "Home.FirstDay.Title".localized()
 //        secondDayLabel.text = "Home.SecondDay.Title".localized()
+    }
+
+    private func addTapRecognizersToResourceCards() {
+        // Ensure the views can receive touches
+        diabetesBasicsResourceCard.isUserInteractionEnabled = true
+        nutritionResourceCard.isUserInteractionEnabled = true
+        diabetesSelfManagementResourceCard.isUserInteractionEnabled = true
+
+        let basicsTap = UITapGestureRecognizer(target: self, action: #selector(didTapDiabetesBasicsCard))
+        diabetesBasicsResourceCard.addGestureRecognizer(basicsTap)
+
+        let nutritionTap = UITapGestureRecognizer(target: self, action: #selector(didTapNutritionCard))
+        nutritionResourceCard.addGestureRecognizer(nutritionTap)
+
+        let managementTap = UITapGestureRecognizer(target: self, action: #selector(didTapManagementCard))
+        diabetesSelfManagementResourceCard.addGestureRecognizer(managementTap)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -166,6 +187,32 @@ class HomeViewController: UIViewController {
         }
         
         //        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
+    }
+
+    // MARK: - Tap handlers for resource cards
+
+    @objc private func didTapDiabetesBasicsCard() {
+        chapterContent = ContentChapter().sectionOne.count
+        quizContent = ContentChapter().sectionOne.count
+        chapterName = ContentChapter().sectionTitles[0]
+        chapterSubName = ContentChapter().sectionSubtitles[0]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
+    }
+
+    @objc private func didTapNutritionCard() {
+        chapterContent = ContentChapter().sectionTwo.count
+        quizContent = 2
+        chapterName = ContentChapter().sectionTitles[1]
+        chapterSubName = ContentChapter().sectionSubtitles[1]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
+    }
+
+    @objc private func didTapManagementCard() {
+        chapterContent = ContentChapter().sectionThree.count
+        quizContent = ContentChapter().sectionThree.count
+        chapterName = ContentChapter().sectionTitles[2]
+        chapterSubName = ContentChapter().sectionSubtitles[2]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
     }
 
 	@IBAction func tappedMealsButton(_ sender: Any) {
@@ -245,3 +292,4 @@ class HomeViewController: UIViewController {
 		self.navigationController?.pushViewController(getHelpViewController, animated: true)
 	}
 }
+
