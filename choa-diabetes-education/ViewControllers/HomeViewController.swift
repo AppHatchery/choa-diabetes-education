@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     
+    @IBOutlet var resourceCards: [UIView]!
+    
     var chapterContent = 0
     var quizContent = 0
     var chapterName = ""
@@ -86,6 +88,12 @@ class HomeViewController: UIViewController {
 		getHelpView.layer.cornerRadius = 12
 		getHelpButton.layer.cornerRadius = 12
 		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+        
+        resourceCards.forEach {
+            $0.layer.cornerRadius = 8
+        }
+        
+        
 
 //        diabetesBasicsButton.setAttributedTitle(diabetesBasicsButtonTitle, for: .normal)
 //        nutritionButton.setAttributedTitle(nutritionButtonTitle, for: .normal)
