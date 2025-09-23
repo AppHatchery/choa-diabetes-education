@@ -268,27 +268,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes Basics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4A-Yh-lnh">
-                                <rect key="frame" x="20" y="110" width="205" height="24"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
-                                <color key="textColor" name="headingGreenColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A focus on diabetes and skills." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-Px-9x6">
-                                <rect key="frame" x="20" y="138" width="205" height="44"/>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                <color key="textColor" name="contentBlackColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knowledgeLadder" translatesAutoresizingMaskIntoConstraints="NO" id="63e-pS-xRi">
-                                <rect key="frame" x="229" y="94" width="146" height="146"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="63e-pS-xRi">
+                                <rect key="frame" x="229" y="74" width="146" height="146"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="146" id="Cyx-M3-Ow1"/>
                                     <constraint firstAttribute="width" constant="146" id="d0I-qG-rgX"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-F8-ML0">
-                                <rect key="frame" x="0.0" y="202" width="375" height="432"/>
+                                <rect key="frame" x="0.0" y="186" width="375" height="448"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lMk-bm-Jil">
                                         <rect key="frame" x="24" y="24" width="327" height="39"/>
@@ -306,7 +294,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="120" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-hf-u2y">
-                                        <rect key="frame" x="24" y="92" width="327" height="260"/>
+                                        <rect key="frame" x="24" y="92" width="327" height="276"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -322,32 +310,35 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
+                                        <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes Basics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4A-Yh-lnh">
+                                <rect key="frame" x="16" y="144" width="205" height="20"/>
+                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                <color key="textColor" name="whiteColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uHn-u8-6R3"/>
-                        <color key="backgroundColor" name="backgroundColor"/>
+                        <color key="backgroundColor" name="secondaryMeadowGreen300"/>
                         <constraints>
                             <constraint firstItem="NyV-F8-ML0" firstAttribute="leading" secondItem="uHn-u8-6R3" secondAttribute="leading" id="1zh-FL-dok"/>
-                            <constraint firstItem="NyV-F8-ML0" firstAttribute="top" secondItem="M2d-Px-9x6" secondAttribute="bottom" constant="20" id="2qH-Vv-PaY"/>
-                            <constraint firstItem="M2d-Px-9x6" firstAttribute="leading" secondItem="v4A-Yh-lnh" secondAttribute="leading" id="8uc-bt-dIX"/>
                             <constraint firstAttribute="bottom" secondItem="NyV-F8-ML0" secondAttribute="bottom" constant="-50" id="9Kx-dX-xAU"/>
-                            <constraint firstItem="v4A-Yh-lnh" firstAttribute="leading" secondItem="uHn-u8-6R3" secondAttribute="leading" constant="20" id="LK5-QS-9o4"/>
-                            <constraint firstItem="M2d-Px-9x6" firstAttribute="trailing" secondItem="v4A-Yh-lnh" secondAttribute="trailing" id="Oj4-BG-VOA"/>
+                            <constraint firstItem="v4A-Yh-lnh" firstAttribute="leading" secondItem="uHn-u8-6R3" secondAttribute="leading" constant="16" id="LK5-QS-9o4"/>
                             <constraint firstItem="uHn-u8-6R3" firstAttribute="trailing" secondItem="NyV-F8-ML0" secondAttribute="trailing" id="PHg-pJ-Pr8"/>
-                            <constraint firstItem="63e-pS-xRi" firstAttribute="top" secondItem="uHn-u8-6R3" secondAttribute="top" constant="20" id="SAT-2R-cWs"/>
-                            <constraint firstItem="63e-pS-xRi" firstAttribute="leading" secondItem="v4A-Yh-lnh" secondAttribute="trailing" constant="4" id="UgO-fP-8HZ"/>
-                            <constraint firstItem="v4A-Yh-lnh" firstAttribute="top" secondItem="uHn-u8-6R3" secondAttribute="top" constant="36" id="Y20-ea-dYJ"/>
+                            <constraint firstItem="63e-pS-xRi" firstAttribute="top" secondItem="uHn-u8-6R3" secondAttribute="top" id="SAT-2R-cWs"/>
+                            <constraint firstItem="63e-pS-xRi" firstAttribute="leading" secondItem="v4A-Yh-lnh" secondAttribute="trailing" constant="8" id="UgO-fP-8HZ"/>
+                            <constraint firstItem="v4A-Yh-lnh" firstAttribute="top" secondItem="uHn-u8-6R3" secondAttribute="top" constant="70" id="Y20-ea-dYJ"/>
                             <constraint firstItem="uHn-u8-6R3" firstAttribute="trailing" secondItem="63e-pS-xRi" secondAttribute="trailing" id="gPi-cp-2f9"/>
-                            <constraint firstItem="M2d-Px-9x6" firstAttribute="top" secondItem="v4A-Yh-lnh" secondAttribute="bottom" constant="4" id="hHk-XG-wQD"/>
+                            <constraint firstItem="NyV-F8-ML0" firstAttribute="top" secondItem="v4A-Yh-lnh" secondAttribute="bottom" constant="22" id="rmU-fT-LEk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BSZ-iM-dKA"/>
                     <connections>
-                        <outlet property="chapterSubtitle" destination="M2d-Px-9x6" id="k9J-rb-kHO"/>
                         <outlet property="chapterTitle" destination="v4A-Yh-lnh" id="xRr-by-8OR"/>
+                        <outlet property="sectionImage" destination="63e-pS-xRi" id="0ZZ-pZ-JzH"/>
                         <outlet property="segmentedControl" destination="lMk-bm-Jil" id="RAx-Jf-wPL"/>
                         <outlet property="tableView" destination="rAt-hf-u2y" id="MFN-pv-ZBe"/>
                         <segue destination="r19-N5-KJf" kind="show" identifier="SegueToContentViewController" id="CS3-6i-fi4"/>
@@ -1812,7 +1803,6 @@
         <image name="hope_panic_call" width="164" height="140"/>
         <image name="incorrectIcon" width="111" height="111"/>
         <image name="insulinCalculatorBg" width="1086" height="771"/>
-        <image name="knowledgeLadder" width="387" height="438"/>
         <image name="leftArrow" width="20" height="20"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
