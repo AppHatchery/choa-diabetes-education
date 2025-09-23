@@ -8,24 +8,39 @@ import UIKit
 
 protocol YesOrNoQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, userSelectedType: YesOrNo)
+
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?)
+
+	func didSelectExitAction()
 }
 
-class YesOrNoQueView: UIView {
+class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
+	func yesOrNoFollowUpView(_ view: YesOrNoFollowUpView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+
+		nextButton.alpha = 1
+	}
+
+	func followUpView(_ view: TwoOptionsFollowUpQuestionView, didSelect answer: Int) {
+		self.followUpAnswer = answer
+
+		nextButton.alpha = 1
+	}
+
     static let nibName = "YesOrNoQueView"
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var descriptionLabelAtBottom: UILabel!
     @IBOutlet weak var yesButton: RoundedButton!
     @IBOutlet weak var noButton: RoundedButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
-    
-    @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
+	@IBOutlet var followUpQuestionStackView: UIStackView!
+
     private var currentQuestion: Questionnaire!
     weak var delegate: YesOrNoQueViewProtocol?
-    
+
+	private var followUpAnswer = 0
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         nibSetup()
@@ -45,65 +60,95 @@ class YesOrNoQueView: UIView {
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        
-        questionLabel.font = .gothamRoundedBold16
+
+		followUpAnswer = 0
+
+        questionLabel.font = .gothamRoundedMedium
         questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
         
         if let answerOptions = currentQuestion.answerOptions {
-            yesButton.setTitle(answerOptions[0].localized(), for: .normal)
-            noButton.setTitle(answerOptions[1].localized(), for: .normal)
+			yesButton.titleLabel?.text = answerOptions[0].localized()
+			noButton.titleLabel?.text = answerOptions[1].localized()
         }
-        
-        if let currDesctiption = currentQuestion.description, currDesctiption != "" {
-            if currentQuestion.showDescriptionAtBottom {
-                
-                descriptionLabelTopConstraint.constant = 0
-                descriptionLabel.isHidden = true
-                buttonTopConstraint.constant = 0
-                
-                descriptionLabelAtBottom.isHidden = false
-                descriptionLabelAtBottom.font = .avenirLight14
-                descriptionLabelAtBottom.numberOfLines = 0
-                descriptionLabelAtBottom.textColor = .headingGreenColor
-                descriptionLabelAtBottom.text = currDesctiption
-                descriptionLabelAtBottom.textAlignment = .left
-            } else {
-                descriptionLabelAtBottom.isHidden = true
-                descriptionLabelTopConstraint.constant = 10
-                buttonTopConstraint.constant = 30
-                descriptionLabel.isHidden = false
-                descriptionLabel.font = .avenirLight14
-                descriptionLabel.numberOfLines = 0
-                descriptionLabel.textColor = .headingGreenColor
-                descriptionLabel.text = currDesctiption
-                descriptionLabel.textAlignment = .left
-            }
-        } else {
-            descriptionLabelTopConstraint.constant = 0
-            descriptionLabel.isHidden = true
-            descriptionLabelAtBottom.isHidden = true
-            buttonTopConstraint.constant = 0
-        }
+
+		if followUpAnswer == 0 {
+			nextButton.alpha = 0.3
+		}
+
+		nextButton.titleLabel?.font = .gothamRoundedMedium20
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {
         noButton.updateButtonForDeselection()
         yesButton.updateButtonForSelection()
+
+		switch currentQuestion.questionId {
+		case YesOrNoQuestionId.bloodSugarCheck.id:
+				// Guard against adding duplicate YesOrNoFollowUpView
+			if followUpQuestionStackView.subviews.contains(where: { $0 is YesOrNoFollowUpView }) {
+				return
+			}
+
+			QuestionnaireManager.instance.saveBloodSugarOver300(true)
+
+				// Clear any existing subviews first
+			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+			let followUpSubview = YesOrNoFollowUpView()
+
+			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+
+			NSLayoutConstraint.activate([
+				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+			])
+
+			followUpSubview.delegate = self
+			
+			followUpSubview.setupView(currentQuestion: currentQuestion)
+
+			nextButton.alpha = 0.3
+			followUpAnswer = 0
+		case YesOrNoQuestionId.bloodSugarRecheck.id:
+			nextButton.alpha = 1
+		default:
+			break
+		}
     }
     
     @IBAction func didNoButtonTap(_ sender: UIButton) {
         noButton.updateButtonForSelection()
         yesButton.updateButtonForDeselection()
+
+		followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+
+		if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+			QuestionnaireManager.instance.saveBloodSugarOver300(false)
+
+			nextButton.alpha = 1
+		} else if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarRecheck.id {
+			nextButton.alpha = 1
+		}
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if yesButton.isSelected {
+			if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+				
+				guard followUpAnswer != 0 else { return }
+			}
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
         } else if noButton.isSelected {
             delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
         }
     }
+
+
+	@IBAction func didTapExitButton(_ sender: UIButton) {
+		delegate?.didSelectExitAction()
+	}
 }

@@ -8,10 +8,19 @@ import Foundation
 enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
+	case fourOptions(FourOptionsQuestionId)
+	case fiveOptions(FiveOptionsQuestionId)
     case multipleOptions
     case multipleOptionsDescriptionAtBottom(MultipleOptionsDescriptionAtBottomQueId)
     case openEndedWithMultipleInput(OpenEndedWithMultipleInputQuestionId)
     case finalStep(FinalQuestionId)
+	case finalStepNoDesc(FinalQuestionId)
+	case finalStepWithDesc(FinalQuestionId)
+	case firstEmergency(FinalQuestionId)
+	case reminder(FinalQuestionId)
+	case callChoa(FinalQuestionId)
+	case callChoaEmergency(FinalQuestionId)
+	case recheckKetoneLevel(FinalQuestionId)
 }
 
 
@@ -21,7 +30,8 @@ enum YesOrNoQuestionId {
     case severeDistress
     case continuousGlucoseMonitor
     case pumpBloodSugarCheck
-    case shotBloodSugarCheck
+    case bloodSugarCheck
+	case bloodSugarRecheck
     case shotTwentyFourHours
     
     
@@ -33,10 +43,12 @@ enum YesOrNoQuestionId {
             return 2
         case .pumpBloodSugarCheck:
             return 3
-        case .shotBloodSugarCheck:
+        case .bloodSugarCheck:
             return 4
+		case .bloodSugarRecheck:
+			return 5
         case .shotTwentyFourHours:
-            return 5
+            return 6
         }
     }
     
@@ -49,8 +61,10 @@ enum YesOrNoQuestionId {
         case 3:
             self = .pumpBloodSugarCheck
         case 4:
-            self = .shotBloodSugarCheck
-        case 5:
+            self = .bloodSugarCheck
+		case 5:
+			self = .bloodSugarRecheck
+        case 6:
             self = .shotTwentyFourHours
         default:
             self = .severeDistress
@@ -61,7 +75,8 @@ enum YesOrNoQuestionId {
 enum TwoOptionsQuestionId {
     case testType
     case calculationType
-    
+	case measuringType
+
     
     var id: Int {
         switch self {
@@ -69,6 +84,8 @@ enum TwoOptionsQuestionId {
             return 1
         case .calculationType:
             return 2
+		case .measuringType:
+			return 3
         }
     }
     
@@ -78,12 +95,13 @@ enum TwoOptionsQuestionId {
             self = .testType
         case 2:
             self = .calculationType
+		case 3:
+			self = .measuringType
         default:
             self = .testType
         }
     }
 }
-
 
 
 enum OpenEndedWithMultipleInputQuestionId {
@@ -148,9 +166,6 @@ enum TwoOptionsDescriptionAtBottomId {
     }
 }
 
-
-
-
 enum FinalQuestionId {
     case firstEmergencyScreen
     case recheckScreen
@@ -161,7 +176,13 @@ enum FinalQuestionId {
     case shot
     case nextDose
     case fullDose
-    
+	case continueRegularCare
+	case continueRegularCareWithDescription
+	case reminder
+	case callChoa
+	case callChoaEmergency
+	case recheckKetoneLevel
+
     var id: Int {
         switch self {
         case .firstEmergencyScreen:
@@ -182,6 +203,18 @@ enum FinalQuestionId {
             return 8
         case .fullDose:
             return 9
+		case .continueRegularCare:
+			return 10
+		case .continueRegularCareWithDescription:
+			return 11
+		case .reminder:
+			return 12
+		case .callChoa:
+			return 13
+		case .callChoaEmergency:
+			return 14
+		case .recheckKetoneLevel:
+			return 15
         }
     }
     
@@ -203,6 +236,16 @@ enum FinalQuestionId {
             self = .nextDose
         case 8:
             self = .fullDose
+		case 10:
+			self = .continueRegularCare
+		case 11:
+			self = .continueRegularCareWithDescription
+		case 12:
+			self = .reminder
+		case 13:
+			self = .callChoa
+		case 14:
+			self = .recheckKetoneLevel
         default:
             self = .firstEmergencyScreen
         }
@@ -245,9 +288,9 @@ enum TestType {
     
     var description: String {
         switch self {
-        case .pump:
+		case .insulinShots:
             return "Calculator.Que.TestType.option1".localized()
-        case .insulinShots:
+		case .pump:
             return "Calculator.Que.TestType.option2".localized()
         }
     }
@@ -255,13 +298,213 @@ enum TestType {
     init(id: Int) {
         switch id {
         case 1:
-            self = .pump
+			self = .insulinShots
         case 2:
-            self = .insulinShots
+			self = .pump
         default:
-            self = .pump
+			self = .insulinShots
         }
     }
+}
+
+enum MeasuringType {
+	case urineKetone
+	case bloodKetone
+
+	var description: String {
+		switch self {
+		case .urineKetone:
+			return "Calculator.Que.MeasuringType.option1".localized()
+		case .bloodKetone:
+			return "Calculator.Que.MeasuringType.option2".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .urineKetone
+		case 2:
+			self = .bloodKetone
+		default:
+			self = .urineKetone
+		}
+	}
+}
+
+enum FourOptionsAnswer: Equatable {
+	case DKAIssue(ChildIssue)
+	case HighBloodSugar(ChildIssue)
+	case LowBloodSugar(ChildIssue)
+	case NotSure(ChildIssue)
+		//	Other Symptoms
+	case Nausea(OtherSymptom)
+	case AbdominalPain(OtherSymptom)
+	case RepeatedVomiting(OtherSymptom)
+	case NoneOfTheAbove(OtherSymptom)
+}
+
+enum ChildIssue {
+	case diabeticKetoacidosis
+	case highBloodSugar
+	case lowBloodSugar
+	case notSure
+
+	var description: String {
+		switch self {
+		case .diabeticKetoacidosis:
+			return "GetHelp.Que.ChildIssue.option1".localized()
+		case .highBloodSugar:
+			return "GetHelp.Que.ChildIssue.option2".localized()
+		case .lowBloodSugar:
+			return "GetHelp.Que.ChildIssue.option3".localized()
+		case .notSure:
+			return "GetHelp.Que.ChildIssue.option4".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .diabeticKetoacidosis
+		case 2:
+			self = .highBloodSugar
+		case 3:
+			self = .lowBloodSugar
+		case 4:
+			self = .notSure
+		default:
+			self = .diabeticKetoacidosis
+		}
+	}
+}
+
+enum OtherSymptom {
+	case nausea
+	case abdominalPain
+	case repeatedVomiting
+	case noneOfTheAbove
+
+	var description: String {
+		switch self {
+		case .nausea:
+			return "GetHelp.Que.OtherSymptoms.option1".localized()
+		case .abdominalPain:
+			return "GetHelp.Que.OtherSymptoms.option2".localized()
+		case .repeatedVomiting:
+			return "GetHelp.Que.OtherSymptoms.option3".localized()
+		case .noneOfTheAbove:
+			return "GetHelp.Que.OtherSymptoms.option4".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .nausea
+		case 2:
+			self = .abdominalPain
+		case 3:
+			self = .repeatedVomiting
+		case 4:
+			self = .noneOfTheAbove
+		default:
+			self = .nausea
+		}
+	}
+}
+
+enum FiveOptionsAnswer: Equatable {
+	case troubleBreathing(ChildSymptom)
+	case confused(ChildSymptom)
+	case veryTired(ChildSymptom)
+	case repeatedVomiting(ChildSymptom)
+	case noneOfTheAbove(ChildSymptom)
+}
+
+enum ChildSymptom {
+	case troubleBreathing
+	case confused
+	case veryTired
+	case repeatedVomiting
+	case noneOfTheAbove
+
+	var description: String {
+		switch self {
+			case .troubleBreathing:
+				return "GetHelp.Que.ChildSymptoms.option1".localized()
+			case .confused:
+				return "GetHelp.Que.ChildSymptoms.option2".localized()
+			case .veryTired:
+				return "GetHelp.Que.ChildSymptoms.option3".localized()
+			case .repeatedVomiting:
+				return "GetHelp.Que.ChildSymptoms.option4".localized()
+			case .noneOfTheAbove:
+				return "GetHelp.Que.ChildSymptoms.option5".localized()
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .troubleBreathing
+		case 2:
+			self = .confused
+		case 3:
+			self = .veryTired
+		case 4:
+			self = .repeatedVomiting
+		case 5:
+			self = .noneOfTheAbove
+		default:
+			self = .troubleBreathing
+		}
+	}
+}
+
+enum FourOptionsQuestionId {
+	case childIssue
+	case otherSymptom
+
+	var id: Int {
+		switch self {
+		case .childIssue:
+			return 1
+		case .otherSymptom:
+			return 2
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childIssue
+		case 2:
+			self = .otherSymptom
+		default:
+			self = .childIssue
+		}
+	}
+}
+
+enum FiveOptionsQuestionId {
+	case childHasAnySymptoms
+
+	var id: Int {
+		switch self {
+		case .childHasAnySymptoms:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .childHasAnySymptoms
+		default:
+			self = .childHasAnySymptoms
+		}
+	}
 }
 
 enum CalculationType {
@@ -330,11 +573,57 @@ enum KetonesMeasurements {
     }
 }
 
-
-enum FourOptionsAnswer: Equatable {
-    
+enum SixOptionsAnswer: Equatable {
+	case UrineKetoneLevel(UrineKetoneLevel)
 }
 
-enum FourOptionsQueID {
-    
+enum ThreeOptionsAnswer: Equatable {
+	case BloodKetoneLevel(BloodKetoneLevel)
+}
+
+enum UrineKetoneLevel {
+	case negative
+	case zeroPointFive
+	case onePointFive
+	case four
+	case eight
+	case sixteen
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .negative
+		case 2:
+			self = .zeroPointFive
+		case 3:
+			self = .onePointFive
+		case 4:
+			self = .four
+		case 5:
+			self = .eight
+		case 6:
+			self = .sixteen
+		default:
+			self = .negative
+		}
+	}
+}
+
+enum BloodKetoneLevel {
+	case low
+	case moderate
+	case large
+
+	init(id: Int) {
+		switch id {
+		case 1:
+			self = .low
+		case 2:
+			self = .moderate
+		case 3:
+			self = .large
+		default:
+			self = .low
+		}
+	}
 }

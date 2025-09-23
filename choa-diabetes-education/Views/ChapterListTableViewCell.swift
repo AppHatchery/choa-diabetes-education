@@ -9,12 +9,11 @@ import UIKit
 
 class ChapterListTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var topLineConnector: UIView!
-    @IBOutlet weak var bottomLineConnector: UIView!
     @IBOutlet weak var completionCircle: UIView!
     
     @IBOutlet weak var cardTitle: UILabel!
     @IBOutlet weak var cardSubtitle: UILabel!
+    @IBOutlet weak var cardImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UrineKetoneLevelView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="euD-h4-rdU" id="vkS-PP-KCh"/>
+                <outlet property="ketoneLevelsStackView" destination="8yg-zB-Cch" id="kWI-uk-v3o"/>
+                <outletCollection property="ketoneLevelButtons" destination="w64-on-z1o" collectionClass="NSMutableArray" id="GxO-Nd-PIQ"/>
+                <outletCollection property="ketoneLevelButtons" destination="yY4-ZX-uMX" collectionClass="NSMutableArray" id="cwa-Ne-7L9"/>
+                <outletCollection property="ketoneLevelButtons" destination="Vwt-px-RnC" collectionClass="NSMutableArray" id="F27-lB-U5l"/>
+                <outletCollection property="ketoneLevelButtons" destination="95g-5c-gFe" collectionClass="NSMutableArray" id="oXh-2b-ait"/>
+                <outletCollection property="ketoneLevelButtons" destination="hVA-TJ-dV7" collectionClass="NSMutableArray" id="fZN-Jk-iI3"/>
+                <outletCollection property="ketoneLevelButtons" destination="hza-H8-NJp" collectionClass="NSMutableArray" id="yMI-F6-t4F"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euD-h4-rdU">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-Wy-Aey">
+                    <rect key="frame" x="0.0" y="158" width="393" height="158"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the ketone test results?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk6-kn-pK5">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
+                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8yg-zB-Cch">
+                            <rect key="frame" x="0.0" y="30" width="393" height="128"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="any-I0-ZL3">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ketone_strip_small" translatesAutoresizingMaskIntoConstraints="NO" id="Ldi-SH-CWx">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="gpF-H5-hfx"/>
+                                                <constraint firstAttribute="height" constant="60" id="ydO-ub-2Bf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Urine ketone level mmol/l" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWS-tL-5e3">
+                                            <rect key="frame" x="72" y="0.0" width="321" height="20"/>
+                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="textColor" name="primaryBlue"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-9d-h25">
+                                    <rect key="frame" x="0.0" y="72" width="393" height="56"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yY4-ZX-uMX">
+                                            <rect key="frame" x="0.0" y="0.0" width="59" height="56"/>
+                                            <color key="backgroundColor" name="ketoneLowNegative"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Neg">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Bub-oZ-Jco"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w64-on-z1o">
+                                            <rect key="frame" x="67" y="0.0" width="58.666666666666657" height="56"/>
+                                            <color key="backgroundColor" name="ketoneLow"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="0.5">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="8hb-3j-kwG"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwt-px-RnC">
+                                            <rect key="frame" x="133.66666666666666" y="0.0" width="59" height="56"/>
+                                            <color key="backgroundColor" name="ketoneMidLow"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="1.5">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="oAP-3C-xoH"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95g-5c-gFe">
+                                            <rect key="frame" x="200.66666666666666" y="0.0" width="58.666666666666657" height="56"/>
+                                            <color key="backgroundColor" name="ketoneMidHigh"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="4.0">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Iab-zq-iwi"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVA-TJ-dV7">
+                                            <rect key="frame" x="267.33333333333331" y="0.0" width="59" height="56"/>
+                                            <color key="backgroundColor" name="ketoneHigh"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="8.0">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="E2a-jN-JU7"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="246" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hza-H8-NJp">
+                                            <rect key="frame" x="334.33333333333331" y="0.0" width="58.666666666666686" height="56"/>
+                                            <color key="backgroundColor" name="KetoneHighVeryHigh"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="16">
+                                                        <attributes>
+                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
+                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="MV0-KZ-hsl"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="56" id="tMl-3f-J2f"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="KrC-Dd-lT9"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KrC-Dd-lT9" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G8D-Wy-Aey" secondAttribute="bottom" constant="435.66666666666663" id="3jc-Us-cm7"/>
+                <constraint firstItem="G8D-Wy-Aey" firstAttribute="leading" secondItem="KrC-Dd-lT9" secondAttribute="leading" id="bOZ-WM-amp"/>
+                <constraint firstItem="KrC-Dd-lT9" firstAttribute="trailing" secondItem="G8D-Wy-Aey" secondAttribute="trailing" id="gpq-nz-KZO"/>
+                <constraint firstItem="G8D-Wy-Aey" firstAttribute="top" secondItem="KrC-Dd-lT9" secondAttribute="top" constant="40" id="qra-6c-usA"/>
+            </constraints>
+            <point key="canvasLocation" x="43.511450381679388" y="-642.25352112676057"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ketone_strip_small" width="60" height="60"/>
+        <namedColor name="KetoneHighVeryHigh">
+            <color red="0.4823529411764706" green="0.14509803921568629" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ketoneHigh">
+            <color red="0.59607843137254901" green="0.21176470588235294" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ketoneLow">
+            <color red="0.97647058823529409" green="0.6588235294117647" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ketoneLowNegative">
+            <color red="0.98431372549019602" green="0.73333333333333328" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ketoneMidHigh">
+            <color red="0.79607843137254897" green="0.32941176470588235" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ketoneMidLow">
+            <color red="0.94901960784313721" green="0.51372549019607838" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedMedium.ttf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Get Help View Controller-->
+        <scene sceneID="RHJ-MH-T0g">
+            <objects>
+                <viewController storyboardIdentifier="GetHelpViewController" hidesBottomBarWhenPushed="YES" id="ply-vB-dTq" customClass="GetHelpViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HxV-vl-WIU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18Q-zq-WRo" userLabel="Recheck Ketone Level View" customClass="RecheckKetoneLevelView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hp2-ZR-yc9" userLabel="Final Step Call Choa Emergency View" customClass="FinalStepCallChoaEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9n-au-n38" userLabel="Final Step Call Choa View" customClass="FinalStepCallChoaView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elY-vn-3Y5" userLabel="Final Step With Reminder View" customClass="FinalStepWithReminderView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-zC-1Ol" customClass="FinalStepWithDescView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUN-qi-RLG" userLabel="First Emergency View" customClass="FirstEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAC-w5-MM5" userLabel="Final Step No Desc View" customClass="FinalStepNoDescView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6t-7x-GEr" customClass="FinalStepView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dX5-Tc-aJy" customClass="MultipleOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vn-ym-cdQ" customClass="FiveOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-JQ-2BE" customClass="OpenEndedQueView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xL-af-9Q9" customClass="YesOrNoQueView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dt8-K3-Fgq" customClass="FourOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8R-X1-5JF" customClass="TwoOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jBt-r3-vyH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W6t-7x-GEr" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="0RP-ao-xO2"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="18Q-zq-WRo" secondAttribute="trailing" id="0rC-VF-mHn"/>
+                            <constraint firstItem="l9n-au-n38" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="2RJ-Fl-x1f"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="dt8-K3-Fgq" secondAttribute="bottom" id="3aK-Al-qO9"/>
+                            <constraint firstAttribute="trailing" secondItem="a9x-JQ-2BE" secondAttribute="trailing" id="3gI-t8-vCx"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="wUN-qi-RLG" secondAttribute="bottom" id="3t6-7l-GJm"/>
+                            <constraint firstItem="a9x-JQ-2BE" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="5XI-yh-NBJ"/>
+                            <constraint firstItem="dX5-Tc-aJy" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="6yu-eY-6NC"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="0vn-ym-cdQ" secondAttribute="bottom" id="7TP-Md-bYN"/>
+                            <constraint firstItem="18Q-zq-WRo" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="CzK-pO-Q9N"/>
+                            <constraint firstAttribute="trailing" secondItem="W6t-7x-GEr" secondAttribute="trailing" id="D6g-6G-roX"/>
+                            <constraint firstItem="EOW-zC-1Ol" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="DkO-2b-vhD"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="7xL-af-9Q9" secondAttribute="bottom" id="DpA-95-kY7"/>
+                            <constraint firstAttribute="trailing" secondItem="dX5-Tc-aJy" secondAttribute="trailing" id="GQS-2k-61X"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="W6t-7x-GEr" secondAttribute="bottom" id="H2F-IE-58c"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="dX5-Tc-aJy" secondAttribute="bottom" id="Ic5-ta-k90"/>
+                            <constraint firstItem="HAC-w5-MM5" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="IhI-hk-66V"/>
+                            <constraint firstItem="l9n-au-n38" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="J1R-8d-Z2w"/>
+                            <constraint firstItem="HAC-w5-MM5" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="J5z-62-f3I"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="elY-vn-3Y5" secondAttribute="bottom" id="Lih-Cz-03X"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="EOW-zC-1Ol" secondAttribute="bottom" id="M9Q-Jb-o7b"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="wUN-qi-RLG" secondAttribute="trailing" id="PDj-B2-wKf"/>
+                            <constraint firstItem="HAC-w5-MM5" firstAttribute="bottom" secondItem="jBt-r3-vyH" secondAttribute="bottom" id="PEl-hN-Zmo"/>
+                            <constraint firstItem="7xL-af-9Q9" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="RIS-za-lW2"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="elY-vn-3Y5" secondAttribute="trailing" id="RNc-gv-9TB"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="Hp2-ZR-yc9" secondAttribute="bottom" id="Rpd-sD-zaL"/>
+                            <constraint firstItem="0vn-ym-cdQ" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="SEY-cQ-ckU"/>
+                            <constraint firstItem="l9n-au-n38" firstAttribute="bottom" secondItem="jBt-r3-vyH" secondAttribute="bottom" id="SQc-2Z-1Zz"/>
+                            <constraint firstItem="Hp2-ZR-yc9" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="SdG-bu-5Ud"/>
+                            <constraint firstItem="W6t-7x-GEr" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="ThK-5a-aJX"/>
+                            <constraint firstItem="EOW-zC-1Ol" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="VTM-Kd-kic"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="18Q-zq-WRo" secondAttribute="bottom" id="Y0F-Iz-W9g"/>
+                            <constraint firstItem="l8R-X1-5JF" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="Z5s-eq-aSJ"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="Hp2-ZR-yc9" secondAttribute="trailing" id="a34-sg-9dT"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="a9x-JQ-2BE" secondAttribute="bottom" id="bYd-Np-Hs3"/>
+                            <constraint firstItem="elY-vn-3Y5" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="byc-sZ-Rdq"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="l8R-X1-5JF" secondAttribute="bottom" id="dMN-C7-d1h"/>
+                            <constraint firstAttribute="trailing" secondItem="l8R-X1-5JF" secondAttribute="trailing" id="e78-md-kW5"/>
+                            <constraint firstAttribute="trailing" secondItem="dt8-K3-Fgq" secondAttribute="trailing" id="eSE-uv-yv2"/>
+                            <constraint firstItem="HAC-w5-MM5" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="fTV-hk-Ibk"/>
+                            <constraint firstItem="l9n-au-n38" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="h2q-Pu-MaN"/>
+                            <constraint firstItem="dX5-Tc-aJy" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="hjD-Ah-uvg"/>
+                            <constraint firstItem="0vn-ym-cdQ" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="iIl-aT-fA9"/>
+                            <constraint firstItem="a9x-JQ-2BE" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="itl-vE-Uw2"/>
+                            <constraint firstItem="elY-vn-3Y5" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="jfM-Ef-Cx6"/>
+                            <constraint firstItem="wUN-qi-RLG" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="jkv-aH-OBE"/>
+                            <constraint firstItem="l8R-X1-5JF" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="lTm-dK-nGj"/>
+                            <constraint firstAttribute="trailing" secondItem="0vn-ym-cdQ" secondAttribute="trailing" id="lU7-LZ-oIp"/>
+                            <constraint firstItem="wUN-qi-RLG" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="uWQ-uV-LSu"/>
+                            <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="EOW-zC-1Ol" secondAttribute="trailing" id="uvS-pO-LSW"/>
+                            <constraint firstAttribute="trailing" secondItem="7xL-af-9Q9" secondAttribute="trailing" id="wLl-v8-mvG"/>
+                            <constraint firstItem="7xL-af-9Q9" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="wrc-mj-Vw9"/>
+                            <constraint firstItem="dt8-K3-Fgq" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="xGs-X8-kwB"/>
+                            <constraint firstItem="Hp2-ZR-yc9" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="y7N-Sf-acM"/>
+                            <constraint firstItem="dt8-K3-Fgq" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="ypO-Oz-qvR"/>
+                            <constraint firstItem="18Q-zq-WRo" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="zpZ-qQ-yZi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="finalStepCallChoaEmergencyView" destination="Hp2-ZR-yc9" id="W8m-Va-chZ"/>
+                        <outlet property="finalStepCallChoaView" destination="l9n-au-n38" id="5F0-pc-vad"/>
+                        <outlet property="finalStepNoDescView" destination="HAC-w5-MM5" id="R1t-7r-PHp"/>
+                        <outlet property="finalStepView" destination="W6t-7x-GEr" id="Br9-SL-RGk"/>
+                        <outlet property="finalStepWithDescView" destination="EOW-zC-1Ol" id="sZD-Zx-W03"/>
+                        <outlet property="finalStepWithReminderView" destination="elY-vn-3Y5" id="bnO-Ew-qLW"/>
+                        <outlet property="firstEmergencyView" destination="wUN-qi-RLG" id="Yjh-QN-T8Q"/>
+                        <outlet property="fiveOptionsView" destination="0vn-ym-cdQ" id="Z7M-3o-V2J"/>
+                        <outlet property="fourOptionsView" destination="dt8-K3-Fgq" id="RmO-VE-qau"/>
+                        <outlet property="multipleOptionsView" destination="dX5-Tc-aJy" id="X3t-ey-pH9"/>
+                        <outlet property="openEndedQueView" destination="a9x-JQ-2BE" id="5Fm-hh-3rC"/>
+                        <outlet property="recheckKetoneLevelView" destination="18Q-zq-WRo" id="3qs-Hg-9ry"/>
+                        <outlet property="twoOptionsView" destination="l8R-X1-5JF" id="F2r-24-YXQ"/>
+                        <outlet property="yesOrNoQueView" destination="7xL-af-9Q9" id="VSk-1Q-d4H"/>
+                        <segue destination="HGN-Y1-cXL" kind="presentation" id="7NC-4x-yw5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSE-Wu-u9E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4232.8000000000002" y="1792.353823088456"/>
+        </scene>
+        <!--About Ketone Measurements View Controller-->
+        <scene sceneID="TE3-Dk-ZgR">
+            <objects>
+                <viewController storyboardIdentifier="AboutKetoneMeasurementsViewController" id="HGN-Y1-cXL" customClass="AboutKetoneMeasurementsViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wXk-MV-mty">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
+                                <rect key="frame" x="20" y="50" width="335" height="596"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-kf-DaX">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <color key="textColor" name="choaGreenColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-Z1-GD4">
+                                        <rect key="frame" x="0.0" y="44" width="335" height="480"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zNu-ps-ZLt">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="228"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M98-Yg-k0B">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="16" id="43W-HS-c4Y"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                        <color key="textColor" name="choaGreenColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-dh-l91">
+                                                        <rect key="frame" x="0.0" y="28" width="335" height="200"/>
+                                                        <color key="backgroundColor" name="lightGreenColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="eGD-6b-gKd"/>
+                                                        </constraints>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tJ-OHv">
+                                                <rect key="frame" x="0.0" y="252" width="335" height="228"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-xr-Q99">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                        <color key="textColor" name="choaGreenColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-7x-yFu">
+                                                        <rect key="frame" x="0.0" y="28" width="335" height="200"/>
+                                                        <color key="backgroundColor" name="lightGreenColor"/>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="548" width="335" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Close" imagePadding="8">
+                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="HGN-Y1-cXL" eventType="touchUpInside" id="0HV-sm-LN6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ru1-eJ-dZH"/>
+                        <color key="backgroundColor" name="lightGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" constant="50" id="UMj-9C-pRN"/>
+                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="Fs0-Yy-ZkI" secondAttribute="trailing" constant="20" id="bkD-gu-t2s"/>
+                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" constant="20" id="oPz-f0-3qQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bloodMeasurementDescription" destination="Btq-7x-yFu" id="5k1-hc-RkX"/>
+                        <outlet property="bloodMeasurementTitle" destination="D3a-xr-Q99" id="2FT-9l-9as"/>
+                        <outlet property="closeButton" destination="FUb-b0-qjs" id="raN-D2-w7E"/>
+                        <outlet property="titleLabel" destination="Z2h-kf-DaX" id="3eX-r8-ymM"/>
+                        <outlet property="urineMeasurementDescription" destination="Oyd-dh-l91" id="uw9-kd-0VL"/>
+                        <outlet property="urineMeasurementTitle" destination="M98-Yg-k0B" id="Ciq-nL-v3c"/>
+                        <outletCollection property="measurementDescriptions" destination="Oyd-dh-l91" collectionClass="NSMutableArray" id="8Je-7r-aya"/>
+                        <outletCollection property="measurementDescriptions" destination="Btq-7x-yFu" collectionClass="NSMutableArray" id="eiq-Pg-j0o"/>
+                        <outletCollection property="measurementTitles" destination="M98-Yg-k0B" collectionClass="NSMutableArray" id="jmx-x0-fue"/>
+                        <outletCollection property="measurementTitles" destination="D3a-xr-Q99" collectionClass="NSMutableArray" id="Jfg-NU-QaL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezM-aj-hMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5160.8000000000002" y="1791.4542728635683"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="choaGreenColor">
+            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGreenColor">
+            <color red="0.95294117647058818" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

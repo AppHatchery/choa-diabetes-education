@@ -29,5 +29,10 @@ extension String {
         let bundle: Bundle = bundle ?? Bundle.main
         return bundle.localizedString(forKey: self, value: nil, table: tableName)
     }
+
+	var capitalizedFirstLetter: String {
+		guard !isEmpty else { return self }
+		return prefix(1).uppercased() + dropFirst()
+	}
 }
 

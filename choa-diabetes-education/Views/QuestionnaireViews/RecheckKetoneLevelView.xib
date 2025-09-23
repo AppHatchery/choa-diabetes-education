@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecheckKetoneLevelView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="vmA-gb-Pe7" id="g78-xc-DUy"/>
+                <outlet property="ketoneMeasuringTypeStackView" destination="i3b-Dv-HP8" id="Rct-5Z-V1u"/>
+                <outlet property="learnHowLabel" destination="Bey-Z2-aXk" id="zHP-Pv-3KL"/>
+                <outlet property="nextButton" destination="InV-Fy-5iV" id="Dax-aX-wGa"/>
+                <outlet property="resourcesStackView" destination="fN1-7x-I34" id="wt8-ix-Kae"/>
+                <outlet property="switchToLabel" destination="LVP-la-Zrs" id="tQC-VF-lzY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="vmA-gb-Pe7">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
+                    <rect key="frame" x="20" y="188.33333333333337" width="353" height="254"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fN1-7x-I34" userLabel="Resources Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Dv-HP8">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="209.66999999999999" id="fOZ-f0-QDB"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-uR-3lj">
+                            <rect key="frame" x="0.0" y="221.66666666666666" width="353" height="0.0"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="iLT-6L-nxG"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-la-Zrs">
+                            <rect key="frame" x="0.0" y="233.66666666666666" width="353" height="20.333333333333343"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pus-77-mAb" userLabel="Nav Buttons Stack View">
+                    <rect key="frame" x="20" y="736" width="353" height="48"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InV-Fy-5iV" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="nEN-Rz-8cW"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" imagePadding="8">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Next">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="9KG-2V-QRT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeU-je-s2v">
+                    <rect key="frame" x="20" y="138" width="353" height="50.333333333333343"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s Ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQL-VA-Fmu">
+                            <rect key="frame" x="0.0" y="0.0" width="285" height="18"/>
+                            <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
+                            <color key="textColor" name="primaryBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-Z2-aXk">
+                            <rect key="frame" x="0.0" y="30" width="233" height="20.333333333333329"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Learn how to measure ketones">
+                                    <attributes>
+                                        <color key="NSColor" name="primaryBlue"/>
+                                        <font key="NSFont" metaFont="system" size="17"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Bey-Z2-aXk" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="L41-pQ-HmT"/>
+                        <constraint firstItem="DQL-VA-Fmu" firstAttribute="top" secondItem="VeU-je-s2v" secondAttribute="top" id="USm-KD-s7X"/>
+                        <constraint firstItem="Bey-Z2-aXk" firstAttribute="top" secondItem="DQL-VA-Fmu" secondAttribute="bottom" constant="12" id="jus-Xi-C8i"/>
+                        <constraint firstItem="DQL-VA-Fmu" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="m70-An-gpC"/>
+                        <constraint firstAttribute="bottom" secondItem="Bey-Z2-aXk" secondAttribute="bottom" id="xZp-hs-y5A"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="iAm-wi-cBS"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fLf-23-qes" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="6V4-TT-nY0"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="pus-77-mAb" secondAttribute="trailing" constant="20" id="LhX-f8-Zks"/>
+                <constraint firstItem="VeU-je-s2v" firstAttribute="top" secondItem="iAm-wi-cBS" secondAttribute="top" constant="20" id="MAk-NV-qiY"/>
+                <constraint firstItem="pus-77-mAb" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="Ota-GB-ogc"/>
+                <constraint firstItem="pus-77-mAb" firstAttribute="bottom" secondItem="iAm-wi-cBS" secondAttribute="bottom" id="bwh-0l-Su9"/>
+                <constraint firstItem="VeU-je-s2v" firstAttribute="leading" secondItem="iAm-wi-cBS" secondAttribute="leading" constant="20" id="dcl-NF-9wY"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="fLf-23-qes" secondAttribute="trailing" constant="20" id="mD4-cb-SiA"/>
+                <constraint firstItem="iAm-wi-cBS" firstAttribute="trailing" secondItem="VeU-je-s2v" secondAttribute="trailing" constant="20" id="rUD-f1-1w3"/>
+                <constraint firstItem="fLf-23-qes" firstAttribute="top" secondItem="VeU-je-s2v" secondAttribute="bottom" id="ygI-NZ-kUJ"/>
+            </constraints>
+            <point key="canvasLocation" x="180.91603053435114" y="-56.338028169014088"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="leftArrow" width="20" height="20"/>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

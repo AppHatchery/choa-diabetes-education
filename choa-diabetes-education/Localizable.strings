@@ -67,12 +67,16 @@
 "Calculator.Final.Emergency.title" = "Call 911 or proceed to the nearest Emergency Room";
 "Calculator.Final.Emergency.description" = "";
 
-"Calculator.Que.TestType.title" = "· Is your child using a pump or insulin shots below the skin?";
-"Calculator.Que.TestType.option1" = "Pump";
-"Calculator.Que.TestType.option2" = "Insulin shot below the skin";
+"Calculator.Que.TestType.title" = "How does your child take insulin?";
+"Calculator.Que.TestType.option1" = "Injection / Insulin Pen";
+"Calculator.Que.TestType.option2" = "Insulin Pump";
 
 "Calculator.Que.CGM.title" = "· Does the pump show data from a Continuous Glucose Monitor?";
 "Calculator.Que.CGM.description" = "Examples of pumps that show Continuous Glucose Monitor data include TSlim Control IQ, Omnipod 5 in Automode, Ilet pump";
+
+"Calculator.Que.IletPump.title" = "Does your child use an iLet Pump?";
+"Calculator.Que.IletPump.option1" = "Yes";
+"Calculator.Que.IletPump.option2" = "No";
 
 "Calculator.Que.Method.title" = "· How does your child calculate insulin for high blood sugar?";
 "Calculator.Que.Method.option1" = "Sliding Scale";
@@ -82,8 +86,13 @@
 "Calculator.Que.PumpBloodSugarCheck.title" = "· Has your child's blood sugar been greater than 250 for at least 90 minutes AND their last insulin bolus was more than 3 hours ago?";
 "Calculator.Que.PumpBloodSugarCheck.description" = "";
 
-"Calculator.Que.ShotBloodSugarCheck.title" = "· Has your child's blood sugar been greater than 300 AND their last dose was more than 3 hours ago?";
-"Calculator.Que.ShotBloodSugarCheck.description" = "";
+"Calculator.Que.BloodSugarCheck.title" = "Has your child’s blood glucose been over 300?";
+"Calculator.Que.BloodSugarTimeCheck.title" = "Has the blood sugar been over 300 for 3hrs or more?";
+"Calculator.Que.ILetPumpBloodSugarTimeCheck.title" = "Has the blood sugar been over 300 for 90 mins or more?";
+
+"Calculator.Que.BloodSugarRecheck.title" = "Is your child's blood sugar 150 or higher?";
+
+"Calculator.Que.BloodSugarRecheckILetPump.title" = "Is your child's blood sugar 180 or higher?";
 
 "Calculator.Que.BloodSugar.title" = "· What's your child's blood sugar?";
 "Calculator.Que.BloodSugar.unit" = "mg/dL";
@@ -93,6 +102,19 @@
 
 "Calculator.Final.Recheck.title" = "Recheck blood sugar and ketones in 3 hours and if blood sugar is greater than 250, or if ketones are moderate/large, restart the High Blood Sugar Calculation";
 "Calculator.Final.Recheck.description" = "";
+
+"Calculator.Final.ContinueRegularCare.title" = "Continue regular diabetes care";
+"Calculator.Final.FirstEmergency.title" = "Seek Immediate Medical Attention";
+"Calculator.Final.FirstEmergency.GoTo" = "Go to the nearest";
+"Calculator.Final.FirstEmergency.EmergencyDepartment" = "Emergency Department";
+
+"Calculator.Final.ContinueRegularCare.description" = "Example: A 2-year-old drinks 2 oz per hour 
+If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)
+If blood sugar is over 150, drink without sugar (e.g., Water, Gatorade Zero)";
+
+"Calculator.Que.KetonesMeasuringType.title" = "How did your child measure ketones?";
+"Calculator.Que.KetonesMeasuringType.option1" = "Urine Ketone Level";
+"Calculator.Que.KetonesMeasuringType.option2" = "Blood Ketone Level";
 
 "Calculator.Que.KetonesMeasuring.title" = "· What are your child's urine ketones measuring?";
 "Calculator.Que.KetonesMeasuring.description" ="";
@@ -127,8 +149,68 @@
 "Calculator.Final.FullDose.title" = "Give full dose now";
 "Calculator.Final.FullDose.description" = "Call endocrinologist for instructions to get dose back on schedule. If your child is planning to eat carbs in the next 2 hours, ONLY give insulin for food.";
 
+	// ChildIssue - Select Issue Child is Facing
+"GetHelp.Que.ChildIssue.title" = "Select the issue your child is facing:";
+"GetHelp.Que.ChildIssue.option1" = "Diabetic ketoacidosis (DKA)";
+"GetHelp.Que.ChildIssue.option2" = "High Blood Sugar (Hyperglycemia)";
+"GetHelp.Que.ChildIssue.option3" = "Low Blood Sugar (Hypoglycemia)";
+"GetHelp.Que.ChildIssue.option4" = "Not Sure What's Wrong";
+	//"GetHelp.Que.ChildIssue.description" = "(for example: not responding to name, dizzy and unable to stand, repeated vomiting, unable to swallow liquids)";
 
+	// ChildHasAnySymptoms - Select Child's Symptoms
+"GetHelp.Que.ChildHasAnySymptoms.title" = "Is your child having any of these symptoms?";
+"GetHelp.Que.ChildHasAnySymptoms.option1" = "Trouble breathing";
+"GetHelp.Que.ChildHasAnySymptoms.option2" = "Confused";
+"GetHelp.Que.ChildHasAnySymptoms.option3" = "Lethargic";
+"GetHelp.Que.ChildHasAnySymptoms.option4" = "Repeated Vomiting";
+"GetHelp.Que.ChildHasAnySymptoms.option5" = "None of the Above";
 
+"GetHelp.Que.OtherSymptoms.title" = "Is your child having any of these symptoms?";
+"GetHelp.Que.OtherSymptoms.option1" = "Nausea";
+"GetHelp.Que.OtherSymptoms.option2" = "Abdominal Pain";
+"GetHelp.Que.OtherSymptoms.option3" = "Repeated Vomiting";
+"GetHelp.Que.OtherSymptoms.option4" = "None of the Above";
 
+"About.KetoneMeasurements.title" = "How to measure ketones";
 
+"About.KetoneMeasurements.Urine.title" = "Measuring Urine Ketones";
 
+"About.KetoneMeasurements.Urine.description" = "1. Collect urine in a clean cup or pee directly on the strip.\n2. Dip strip in urine or hold in stream for 1–2 seconds.\n3. Shake off excess urine.\n4. Wait 15–60 seconds for color to appear.\n5. Compare color to chart on the strip bottle.";
+
+"About.KetoneMeasurements.Blood.title" = "Measuring Blood Ketones";
+
+"About.KetoneMeasurements.Blood.description" = "1. Wash and dry your hands thoroughly.\n2. Insert the ketone strip into the blood ketone meter.\n3. Use the lancing device to prick the side of your fingertip.\n4. Touch the test strip to the drop of blood until it fills the strip.\n5. Wait for the result — usually shows up in 10–15 seconds.";
+
+"Final.CallChoa.GiveNormalDose.text" = "Give a normal correction dose with rapid-acting insulin";
+"Final.CallChoa.CheckBloodSugar.text" = "Check blood sugar and ketones every 2 hours";
+"Final.CallChoa.RepeatCorrection.text" = "Repeat correction every 2 hours until:\nUrine ketones are trace or negative\n                               or\nBlood ketones are below 0.6 mmol/L";
+
+"Final.CallChoa.RemovePump.text" = "Remove the pump site";
+"Final.CallChoa.CalculateCorrectionDose.text" = "Calculate and give correction dose using rapid-acting insulin by an insulin pen or syringe";
+"Final.CallChoa.ReplacePump.text" = "Replace the pump site, set it to manual mode";
+"Final.CallChoa.RepeatCorrection.text2" = "Give corrections every 2 hours through the pump site until:\nUrine ketones are trace or negative\n                          or\nBlood ketones are below 0.6 mmol/L";
+"Final.CallChoa.SwitchBack.text" = "Switch back to automated mode once ketones are cleared";
+
+"Final.CallChoa.CallInstructions.text" = "Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections";
+
+"Final.ConfirmPumpIsSecure.text" = "Confirm that your pump site is securely connected and not leaking.";
+"Final.CalculateAndGiveCorrectionDose.text" = "Calculate and give correction dose using rapid-acting insulin by an insulin pen or syringe";
+"Final.ChangeIletPumpSite.text" = "Change the iLet pump site.";
+"Final.DisconnectIletPump.text" = "Disconnect the iLet pump.";
+"Final.GiveRecommendedDose.text" = "Give the recommended correction dose through the pump site.";
+
+"Final.HydrationExampleInfo.text" = "Example: A 2-year-old drinks 2 oz per hour\n
+• If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)\n
+• If blood sugar is over 150, drink without sugar (e.g., Water, Gatorade Zero)";
+
+"Final.ReminderNextCheck.text" = "Next Check in 2 Hours";
+"Final.ReminderNextCheckIn.text" = "Next Check in";
+"Final.ReminderTimeToCheck.text" = "Time to Check";
+
+"Final.ReminderNextCheckDescription.text" = "You’ll need to check your blood sugar and ketones in 2 hours.";
+"Final.ReminderTimeCheck.text" = "Has it been more than 2 hours since your last ketone test?";
+
+// For iLet
+"Final.ReminderNextCheckForIlet.text" = "Next Check in 90 mins";
+"Final.ReminderNextCheckDescriptionForIlet.text" = "You’ll need to check your blood sugar and ketones in 90 mins.";
+"Final.ReminderTimeCheckForIlet.text" = "Has it been more than 90 minutes since your last ketone test?";

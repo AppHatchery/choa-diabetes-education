@@ -9,6 +9,44 @@
 /* Begin PBXBuildFile section */
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
+		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
+		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
+		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
+		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
+		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
+		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
+		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
+		B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */; };
+		B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */; };
+		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
+		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
+		B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */; };
+		B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */; };
+		B44D1F172E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */; };
+		B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */; };
+		B44D1F1A2E5C7A1500DE4E3A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */; };
+		B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */; };
+		B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */; };
+		B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */; };
+		B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */; };
+		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
+		B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */; };
+		B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */; };
+		B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */; };
+		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
+		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
+		B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */; };
+		B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */; };
+		B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */; };
+		B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */; };
+		B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */; };
+		B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */; };
+		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
+		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
+		B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */; };
+		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
+		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
+		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
 		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
 		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
 		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
@@ -146,8 +184,6 @@
 		FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD99F3992A1D0D43009F3C30 /* URLs.swift */; };
 		FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */; };
 		FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */; };
-		FDC8E5262A1FD9E4006FDFF0 /* CalculatorBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */; };
-		FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */; };
 		FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */; };
 		FDC8E52B2A204974006FDFF0 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */; };
 		FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */; };
@@ -168,6 +204,44 @@
 /* Begin PBXFileReference section */
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
+		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
+		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
+		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
+		B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHelpViewController.swift; sourceTree = "<group>"; };
+		B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEmergencyView.swift; sourceTree = "<group>"; };
+		B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEmergencyView.xib; sourceTree = "<group>"; };
+		B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutKetoneMeasurementsViewController.swift; sourceTree = "<group>"; };
+		B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutKetoneMeasurementsView.storyboard; sourceTree = "<group>"; };
+		B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
+		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
+		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
+		B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
+		B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaEmergencyView.swift; sourceTree = "<group>"; };
+		B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaEmergencyView.xib; sourceTree = "<group>"; };
+		B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
+		B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodKetoneLevelView.swift; sourceTree = "<group>"; };
+		B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BloodKetoneLevelView.xib; sourceTree = "<group>"; };
+		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
+		B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepNoDescView.xib; sourceTree = "<group>"; };
+		B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonWithImage.swift; sourceTree = "<group>"; };
+		B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
+		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
+		B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpView.xib; sourceTree = "<group>"; };
+		B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoFollowUpView.swift; sourceTree = "<group>"; };
+		B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsFollowUpQuestionView.swift; sourceTree = "<group>"; };
+		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
+		B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecheckKetoneLevelView.swift; sourceTree = "<group>"; };
+		B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecheckKetoneLevelView.xib; sourceTree = "<group>"; };
+		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
+		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
+		B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithReminderView.swift; sourceTree = "<group>"; };
+		B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithReminderView.xib; sourceTree = "<group>"; };
+		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
+		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -305,8 +379,6 @@
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		FDC8E51F2A1FAC59006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Calculator.storyboard"; sourceTree = "<group>"; };
 		FDC8E5222A1FAE87006FDFF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "choa-diabetes-education/Base.lproj/Orientation.storyboard"; sourceTree = "<group>"; };
-		FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBaseVC.swift; sourceTree = "<group>"; };
-		FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculatorBaseVC.xib; sourceTree = "<group>"; };
 		FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
 		FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireManager.swift; sourceTree = "<group>"; };
@@ -338,6 +410,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B438F6BB2E44C570005CBD49 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */,
+				B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */,
+				B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */,
+				B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B44D1F1B2E5CA24200DE4E3A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		D48167C628AD02D3003B14A3 /* pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +545,8 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
+				B44D1F1B2E5CA24200DE4E3A /* Managers */,
+				B438F6BB2E44C570005CBD49 /* Fonts */,
 				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
 				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
@@ -464,6 +557,7 @@
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
+				B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */,
 				FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */,
 				FDC8E51E2A1FAC59006FDFF0 /* Calculator.storyboard */,
 				D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */,
@@ -493,8 +587,7 @@
 				D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */,
 				D42A53792964DC990031D395 /* CalculatorBViewController.swift */,
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
-				FDC8E5242A1FD9E4006FDFF0 /* CalculatorBaseVC.swift */,
-				FDC8E5252A1FD9E4006FDFF0 /* CalculatorBaseVC.xib */,
+				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -558,6 +651,10 @@
 				D48167B628ABF711003B14A3 /* UIView+Extensions.swift */,
 				FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */,
 				FD99F3992A1D0D43009F3C30 /* URLs.swift */,
+				B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */,
+				B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */,
+				B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */,
+				B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,6 +718,7 @@
 			children = (
 				FDC8E5322A27B735006FDFF0 /* RoundedButton.swift */,
 				FDC8E5352A27C12E006FDFF0 /* PrimaryButton.swift */,
+				B48409BE2E4C728C009171DA /* RoundedButtonWithImage.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -640,6 +738,32 @@
 				FDC8E5462A2A771F006FDFF0 /* MultipleOptionsView.xib */,
 				8EAF82C22A467EBC0035919B /* FourOptionsView.swift */,
 				8EAF82C02A467EAE0035919B /* FourOptionsView.xib */,
+				B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */,
+				B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */,
+				B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */,
+				B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */,
+				B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */,
+				B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */,
+				B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */,
+				B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */,
+				B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */,
+				B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */,
+				B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */,
+				B455E2A62E4B9DB5009AA560 /* FinalStepNoDescView.xib */,
+				B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */,
+				B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */,
+				B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */,
+				B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */,
+				B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */,
+				B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */,
+				B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */,
+				B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */,
+				B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */,
+				B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */,
+				B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */,
+				B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */,
+				B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */,
+				B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -677,6 +801,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+				);
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
@@ -716,10 +848,10 @@
 				D42FA8FF29916B81009C51C3 /* AboutApp.xib in Resources */,
 				D4684AB4290B0B6600E7311B /* cheese_and_eggs.png in Resources */,
 				D450EC1428C1158A0015D823 /* insulin.html in Resources */,
-				FDC8E5272A1FD9E4006FDFF0 /* CalculatorBaseVC.xib in Resources */,
 				D4EEB6AA29142EF3001E05A2 /* diabetes-type-1.png in Resources */,
 				8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */,
 				D4684AB0290B0B6600E7311B /* burger.png in Resources */,
+				B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */,
 				D4EEB6A929142EF3001E05A2 /* diabetes-type-2.png in Resources */,
 				D4684AA9290B0B6600E7311B /* non-starchy_veggetables.png in Resources */,
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
@@ -730,9 +862,11 @@
 				FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */,
 				D450EC1928C1158A0015D823 /* youtube_video.png in Resources */,
 				D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */,
+				B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */,
 				D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */,
 				D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */,
 				D4EEB6A229142E74001E05A2 /* nutritionscroll.png in Resources */,
+				B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */,
 				D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */,
 				D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */,
 				D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */,
@@ -756,9 +890,11 @@
 				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
 				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
+				B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */,
 				D4684AAD290B0B6600E7311B /* milk_and_yogurt.png in Resources */,
 				D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */,
 				D4684AB5290B0B6600E7311B /* cereal.png in Resources */,
+				B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */,
 				D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */,
 				D41D46912984172300825100 /* dairy_2.png in Resources */,
 				D4684AAF290B0B6600E7311B /* bread.png in Resources */,
@@ -769,10 +905,14 @@
 				D450EC1028C1158A0015D823 /* insulin.png in Resources */,
 				D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */,
 				D41D46942984172300825100 /* dairy.png in Resources */,
+				B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */,
 				D4D48E8D28D10FAB00820FD4 /* FoodDiary.xib in Resources */,
 				D4684AA4290B0B6600E7311B /* low_carbs.png in Resources */,
 				D4684AA3290B0B6600E7311B /* rice.png in Resources */,
+				B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
+				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
+				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				D4684AB2290B0B6600E7311B /* bread,_cereal_rice_pasta.png in Resources */,
@@ -794,18 +934,27 @@
 				FDC8E5432A294147006FDFF0 /* OpenEndedQueView.xib in Resources */,
 				D4684AA7290B0B6600E7311B /* maffin.png in Resources */,
 				FDC8E52F2A2699CE006FDFF0 /* YesOrNoQueView.xib in Resources */,
+				B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */,
 				D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */,
+				B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */,
 				D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */,
 				D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */,
 				D4E4954A29B78D720016552D /* when_to_check_blood_sugar.png in Resources */,
+				B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
 				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
+				B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */,
+				B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */,
+				B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */,
+				B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */,
+				B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */,
 				D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */,
 				D41D46962984172300825100 /* correctionFormulaBox.png in Resources */,
 				D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */,
 				FDC8E5232A1FAE87006FDFF0 /* Orientation.storyboard in Resources */,
 				FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */,
+				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
@@ -845,58 +994,77 @@
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				D4D48E8B28D10FA200820FD4 /* FoodDiary.swift in Sources */,
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
+				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
+				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
+				B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */,
 				FDC8E53A2A281DC5006FDFF0 /* FinalStepView.swift in Sources */,
 				D4C39B3328B7E1D0003CCA14 /* QuizIntroViewController.swift in Sources */,
 				D48167AB28ABEF68003B14A3 /* MedicalTeam.swift in Sources */,
 				D481679D28ABE1F4003B14A3 /* UILabel+Extensions.swift in Sources */,
+				B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */,
+				B44D1F172E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift in Sources */,
 				D48167C228AC00C8003B14A3 /* QuizTableViewCell.swift in Sources */,
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
+				B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
+				B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
+				B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */,
+				B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */,
 				D48167BE28ABFE24003B14A3 /* ChapterListTableViewCell.swift in Sources */,
 				FDC8E5332A27B735006FDFF0 /* RoundedButton.swift in Sources */,
 				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
 				8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */,
+				B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
+				B44D1F1A2E5C7A1500DE4E3A /* UIImageView+Extensions.swift in Sources */,
 				D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */,
 				FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
+				B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
 				D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */,
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
+				B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */,
+				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
+				B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
+				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
 				FDC8E5452A2A7717006FDFF0 /* MultipleOptionsView.swift in Sources */,
 				D492A8972901D67900B98CA3 /* SearchResultTableViewCell.swift in Sources */,
+				B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */,
 				D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */,
 				FDC8E5292A2046FD006FDFF0 /* QuestionType.swift in Sources */,
 				D4D48E8F28D1122F00820FD4 /* Communities.swift in Sources */,
+				B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */,
+				B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */,
 				D48167A728ABE73E003B14A3 /* AgendaView.swift in Sources */,
 				D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */,
 				D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */,
 				D48167A328ABE4B2003B14A3 /* HomeViewController.swift in Sources */,
-				FDC8E5262A1FD9E4006FDFF0 /* CalculatorBaseVC.swift in Sources */,
 				D48167A528ABE6E5003B14A3 /* AgendaViewController.swift in Sources */,
 				D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */,
 				FDC8E52B2A204974006FDFF0 /* Questionnaire.swift in Sources */,
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
+				B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
