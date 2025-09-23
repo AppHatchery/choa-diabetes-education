@@ -26,6 +26,15 @@ class CalculatorCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .diabetesBasicsLightColor
+        appearance.shadowColor = .clear
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         calculateInsulin()
         // Do any additional setup after loading the view.
     }

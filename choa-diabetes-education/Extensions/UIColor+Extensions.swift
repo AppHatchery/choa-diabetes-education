@@ -23,6 +23,7 @@ extension UIColor {
 	public static let whiteColor = UIColor(named: "whiteColor")!
 	public static let ketoneBorderColor = UIColor(named: "ketoneBorderColor")!
     public static let diabetesBasicsColor = UIColor(named: "secondaryMeadowGreen300")!
+    public static let diabetesBasicsLightColor = UIColor(named: "secondaryMeadowGreen100")!
     public static let nutritionAndCarbColor = UIColor(named: "secondarySunsetOrange300")!
     public static let diabetesSelfManagementColor = UIColor(named: "secondaryRoyalPurple300")!
     public static let shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0)
