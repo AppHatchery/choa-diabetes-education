@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5M5-YN-Mkz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZSC-5o-30c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,11 +17,11 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
+        <array key="Gotham Rounded Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
         <array key="GothamRoundedLight.ttf">
             <string>GothamRounded-Light</string>
-        </array>
-        <array key="GothamRoundedMedium.ttf">
-            <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
             <string>IrishGrover-Regular</string>
@@ -265,7 +265,7 @@
             <objects>
                 <viewController storyboardIdentifier="handbook" title="handbook" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r9r-Zx-0xw" customClass="HandbookViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9RB-Pu-EQf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="63e-pS-xRi">
@@ -276,7 +276,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-F8-ML0">
-                                <rect key="frame" x="0.0" y="186" width="375" height="448"/>
+                                <rect key="frame" x="0.0" y="186" width="375" height="531"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lMk-bm-Jil">
                                         <rect key="frame" x="24" y="24" width="327" height="39"/>
@@ -294,7 +294,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="120" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-hf-u2y">
-                                        <rect key="frame" x="24" y="92" width="327" height="276"/>
+                                        <rect key="frame" x="24" y="92" width="327" height="359"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -436,7 +436,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Oaw-cK-E2L"/>
-                        <color key="backgroundColor" name="backgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dmy-mB-eP8" firstAttribute="leading" secondItem="Oaw-cK-E2L" secondAttribute="leading" id="JDo-dD-KIf"/>
                             <constraint firstItem="Oaw-cK-E2L" firstAttribute="trailing" secondItem="Dmy-mB-eP8" secondAttribute="trailing" id="OCc-Nj-ud6"/>
@@ -687,11 +687,11 @@
             <objects>
                 <viewController storyboardIdentifier="quizSplash" id="qTj-Ax-wBy" customClass="QuizIntroViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dxM-DC-RSd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erX-ET-2GE">
-                                <rect key="frame" x="0.0" y="74" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
@@ -713,7 +713,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwf-sk-Deh">
-                                <rect key="frame" x="114" y="392" width="147" height="48"/>
+                                <rect key="frame" x="114" y="475" width="147" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="3ex-B1-4cS"/>
                                     <constraint firstAttribute="width" constant="147" id="yIu-e6-T3Y"/>
@@ -998,36 +998,12 @@
             </objects>
             <point key="canvasLocation" x="4306" y="-1315"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="s8W-WG-EDq">
-            <objects>
-                <tabBarController id="5M5-YN-Mkz" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="4qZ-Tn-2lR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <tabBarAppearance key="standardAppearance" stackedItemPositioning="fill">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </tabBarAppearance>
-                    </tabBar>
-                    <connections>
-                        <segue destination="ZSC-5o-30c" kind="relationship" relationship="viewControllers" id="ZDQ-ee-Cr0"/>
-                        <segue destination="f1U-zR-v7p" kind="relationship" relationship="viewControllers" id="n1K-8A-c3b"/>
-                        <segue destination="TOz-Rh-ycr" kind="relationship" relationship="viewControllers" id="gzN-qw-QRT"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tOf-MC-m5d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1213" y="202"/>
-        </scene>
         <!--Resources-->
         <scene sceneID="Ida-lQ-Ok3">
             <objects>
                 <viewController id="Ims-8Z-0FR" customClass="ResourcesViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ecu-sY-3OZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resources" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
@@ -1037,7 +1013,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJN-go-SKx">
-                                <rect key="frame" x="0.0" y="114" width="375" height="470"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yaj-cm-XBt"/>
@@ -1352,13 +1328,13 @@
         <!--Home-->
         <scene sceneID="l3i-za-M3F">
             <objects>
-                <viewController title="Home" id="6QC-M0-wRq" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" hidesBottomBarWhenPushed="YES" id="6QC-M0-wRq" customClass="HomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gje-YZ-Nnv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey5-Hn-OzV">
-                                <rect key="frame" x="0.0" y="74" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01N-wh-4QW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="650"/>
@@ -1746,6 +1722,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fpi-Xq-p7T"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="bottom" secondItem="Fpi-Xq-p7T" secondAttribute="bottom" id="3Fj-2e-JtI"/>
                             <constraint firstItem="01N-wh-4QW" firstAttribute="width" secondItem="gje-YZ-Nnv" secondAttribute="width" multiplier="0.963636" constant="13.636499999999955" id="E23-pD-4ln"/>

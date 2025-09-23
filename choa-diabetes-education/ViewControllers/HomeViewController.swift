@@ -40,6 +40,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
 		appearance.backgroundColor = UIColor.white
@@ -72,6 +73,9 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.standardAppearance = tabBarAppearance
         tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
         tabBarController?.tabBar.tintColor = UIColor.black
+        
+        // Hide the tab bar entirely
+        tabBarController?.tabBar.isHidden = true
 
 		insulinCalculatorView.layer.cornerRadius = 12
 		mealsAndHighSugarButton.layer.cornerRadius = 12
@@ -93,6 +97,12 @@ class HomeViewController: UIViewController {
         }
 
         addTapRecognizersToResourceCards()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Ensure the tab bar stays hidden whenever this view appears
+        tabBarController?.tabBar.isHidden = true
     }
 
     private func addTapRecognizersToResourceCards() {
@@ -262,3 +272,4 @@ class HomeViewController: UIViewController {
 		self.navigationController?.pushViewController(getHelpViewController, animated: true)
 	}
 }
+

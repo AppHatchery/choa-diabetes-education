@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedBold.ttf">
+        <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -26,7 +26,7 @@
                 <navigationController id="Ghu-L0-qWH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Calculator" image="calculatorOutline" selectedImage="calculatorFilled" id="JZ6-7q-U4y"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZe-bC-hnL">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -52,7 +52,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uw-I9-vFF">
-                                <rect key="frame" x="24" y="64" width="211.5" height="24"/>
+                                <rect key="frame" x="24" y="74" width="185" height="28"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -175,13 +175,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ect-VD-gcp">
-                                        <rect key="frame" x="20" y="411.5" width="155" height="20"/>
+                                        <rect key="frame" x="20" y="411.5" width="133.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kKr-Jy-xTq">
-                                        <rect key="frame" x="18" y="449.5" width="124" height="54"/>
+                                        <rect key="frame" x="18" y="453" width="124" height="54"/>
                                         <color key="tintColor" name="calculatorGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="31R-DE-Xqg"/>
@@ -192,25 +192,25 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdn-jQ-VZ4">
-                                        <rect key="frame" x="47.5" y="522.5" width="65" height="14"/>
+                                        <rect key="frame" x="47.5" y="526" width="65" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDP-q1-SIz">
-                                        <rect key="frame" x="265.5" y="522.5" width="59" height="15"/>
+                                        <rect key="frame" x="265.5" y="526" width="59" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="15" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-sr-bAo">
-                                        <rect key="frame" x="233" y="449.5" width="124" height="54"/>
+                                        <rect key="frame" x="233" y="453" width="124" height="54"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLl-fr-CoT">
-                                        <rect key="frame" x="20" y="513.5" width="120" height="5"/>
+                                        <rect key="frame" x="20" y="517" width="120" height="5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="211-Ru-J5f"/>
@@ -223,7 +223,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASx-0w-WBu">
-                                        <rect key="frame" x="235" y="513.5" width="120" height="5"/>
+                                        <rect key="frame" x="235" y="517" width="120" height="5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="E16-lq-96g"/>
@@ -236,7 +236,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-1y-0RM">
-                                        <rect key="frame" x="113.5" y="651.5" width="148" height="48"/>
+                                        <rect key="frame" x="113.5" y="655" width="148" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="cbC-WD-wG4"/>
                                             <constraint firstAttribute="width" constant="148" id="xyI-CG-0uC"/>
@@ -255,13 +255,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfG-ej-TEC">
-                                        <rect key="frame" x="184" y="462" width="7" height="29"/>
+                                        <rect key="frame" x="184" y="465.5" width="7" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-6J-m0H">
-                                        <rect key="frame" x="20" y="709.5" width="335" height="16.5"/>
+                                        <rect key="frame" x="20" y="713" width="335" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -353,14 +353,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-main" translatesAutoresizingMaskIntoConstraints="NO" id="fTm-9K-AZz">
-                                                    <rect key="frame" x="-11" y="-1" width="397" height="370"/>
+                                                    <rect key="frame" x="-6.5" y="3" width="388" height="362"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="ggi-3a-Dmt"/>
                                                         <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="lDb-AO-Rqd"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqk-74-1hp">
-                                                    <rect key="frame" x="16" y="85" width="211.5" height="24"/>
+                                                    <rect key="frame" x="16" y="89" width="185" height="28"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                                     <color key="textColor" name="headingGreenColor"/>
                                                     <nil key="highlightedColor"/>
@@ -441,13 +441,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for high blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ7-Gd-fyN">
-                                        <rect key="frame" x="20" y="411.5" width="276.5" height="20"/>
+                                        <rect key="frame" x="20" y="411.5" width="243" height="23.5"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-hb-Glq">
-                                        <rect key="frame" x="30" y="449.5" width="124" height="54"/>
+                                        <rect key="frame" x="30" y="453" width="124" height="54"/>
                                         <color key="tintColor" name="calculatorGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="DRT-di-GXB"/>
@@ -458,25 +458,25 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGr-Ab-4uo">
-                                        <rect key="frame" x="57.5" y="522.5" width="69" height="14"/>
+                                        <rect key="frame" x="57.5" y="526" width="69" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgv-xe-5BO">
-                                        <rect key="frame" x="228.5" y="522.5" width="109" height="15"/>
+                                        <rect key="frame" x="228.5" y="526" width="109" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BER-a7-Jr6">
-                                        <rect key="frame" x="221" y="449.5" width="124" height="54"/>
+                                        <rect key="frame" x="221" y="453" width="124" height="54"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJI-IW-mMV">
-                                        <rect key="frame" x="32" y="513.5" width="120" height="5"/>
+                                        <rect key="frame" x="32" y="517" width="120" height="5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="TQe-pl-xOn"/>
@@ -489,7 +489,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zku-X7-GJx">
-                                        <rect key="frame" x="223" y="513.5" width="120" height="5"/>
+                                        <rect key="frame" x="223" y="517" width="120" height="5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="eht-6L-EQJ"/>
@@ -502,7 +502,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B">
-                                        <rect key="frame" x="113.5" y="651.5" width="148" height="48"/>
+                                        <rect key="frame" x="113.5" y="655" width="148" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="148" id="nYN-iP-ZJS"/>
                                             <constraint firstAttribute="height" constant="48" id="oRm-Rh-hUU"/>
@@ -521,56 +521,56 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wt4-p1-hAL">
-                                        <rect key="frame" x="7" y="462" width="8" height="29"/>
+                                        <rect key="frame" x="7" y="465.5" width="8" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-fU-cfe">
-                                        <rect key="frame" x="182" y="461.5" width="11" height="30"/>
+                                        <rect key="frame" x="182" y="465" width="11" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=")" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRb-ne-GVR">
-                                        <rect key="frame" x="359" y="462" width="8" height="29"/>
+                                        <rect key="frame" x="359" y="465.5" width="8" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M33-Uy-c8R">
-                                        <rect key="frame" x="261.5" y="564" width="7" height="29"/>
+                                        <rect key="frame" x="261.5" y="567.5" width="7" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin is not needed if blood sugar is less than 150." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYg-Z5-9YE">
-                                        <rect key="frame" x="32" y="558.5" width="134" height="43"/>
+                                        <rect key="frame" x="32" y="562" width="134" height="43"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-attention" translatesAutoresizingMaskIntoConstraints="NO" id="S6v-ji-cRG">
-                                        <rect key="frame" x="8" y="570" width="20" height="20"/>
+                                        <rect key="frame" x="8" y="573.5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="ETL-Xw-H8C"/>
                                             <constraint firstAttribute="width" constant="20" id="xGA-1r-moA"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD6-CH-aav">
-                                        <rect key="frame" x="251.5" y="624.5" width="99" height="15"/>
+                                        <rect key="frame" x="251.5" y="628" width="99" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="contentBlackColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kp9-xv-07h">
-                                        <rect key="frame" x="282.5" y="551.5" width="37" height="54"/>
+                                        <rect key="frame" x="282.5" y="555" width="37" height="54"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSq-de-jOX">
-                                        <rect key="frame" x="275" y="615.5" width="52" height="5"/>
+                                        <rect key="frame" x="275" y="619" width="52" height="5"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="BSj-mN-glp"/>
@@ -583,7 +583,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
-                                        <rect key="frame" x="20" y="709.5" width="335" height="16.5"/>
+                                        <rect key="frame" x="20" y="713" width="335" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -683,19 +683,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-results" translatesAutoresizingMaskIntoConstraints="NO" id="h6E-8z-ucs">
-                                <rect key="frame" x="0.0" y="88" width="375" height="154"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="154"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="h6E-8z-ucs" secondAttribute="height" multiplier="207:85" id="m3M-uZ-3gE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmf-fz-TfI">
-                                <rect key="frame" x="24" y="64" width="211.5" height="24"/>
+                                <rect key="frame" x="24" y="74" width="211.5" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BcB-Gw-1ua">
-                                <rect key="frame" x="192.5" y="422" width="158.5" height="152"/>
+                                <rect key="frame" x="192.5" y="432" width="158.5" height="152"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for high blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-RP-swS">
                                         <rect key="frame" x="18" y="18" width="135.5" height="44"/>
@@ -729,7 +729,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4q-u7-cNn">
-                                <rect key="frame" x="24" y="252" width="327" height="152"/>
+                                <rect key="frame" x="24" y="262" width="327" height="152"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilf-f1-2OR">
                                         <rect key="frame" x="18" y="18" width="304" height="22"/>
@@ -766,7 +766,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWH-7z-3N3">
-                                <rect key="frame" x="24" y="422" width="158.5" height="152"/>
+                                <rect key="frame" x="24" y="432" width="158.5" height="152"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-DF-RzK">
                                         <rect key="frame" x="18" y="18" width="135.5" height="22"/>
@@ -801,7 +801,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8e-CV-EKi">
-                                <rect key="frame" x="24" y="624" width="327" height="48"/>
+                                <rect key="frame" x="24" y="634" width="327" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="dSG-LC-DP9"/>
                                 </constraints>
@@ -862,25 +862,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-2E-red">
-                                <rect key="frame" x="24" y="38" width="211.5" height="24"/>
+                                <rect key="frame" x="24" y="38" width="185" height="28"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsV-9y-v8f">
-                                <rect key="frame" x="24" y="83" width="139.5" height="18"/>
+                                <rect key="frame" x="24" y="87" width="120.5" height="21"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for high blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1o-w1-zqT">
-                                <rect key="frame" x="24" y="216" width="252" height="18"/>
+                                <rect key="frame" x="24" y="223" width="219" height="21"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcP-8F-s5j">
-                                <rect key="frame" x="24" y="132" width="124" height="54"/>
+                                <rect key="frame" x="24" y="139" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="P1z-Mx-zFM"/>
@@ -891,13 +891,13 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3w-JY-zld">
-                                <rect key="frame" x="24" y="111" width="72.5" height="17"/>
+                                <rect key="frame" x="24" y="118" width="72.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChV-aK-9cM">
-                                <rect key="frame" x="24" y="265" width="124" height="54"/>
+                                <rect key="frame" x="24" y="275" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="uoY-5I-RPm"/>
@@ -908,13 +908,13 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-4g-o1K">
-                                <rect key="frame" x="24" y="244" width="76.5" height="17"/>
+                                <rect key="frame" x="24" y="254" width="76.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qCz-Kh-E9n">
-                                <rect key="frame" x="227" y="265" width="124" height="54"/>
+                                <rect key="frame" x="227" y="275" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="MiL-cU-BF7"/>
@@ -925,19 +925,19 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfJ-7F-QHd">
-                                <rect key="frame" x="227" y="244" width="120.5" height="17"/>
+                                <rect key="frame" x="227" y="254" width="120.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxh-CF-aIK">
-                                <rect key="frame" x="227" y="333" width="124" height="17"/>
+                                <rect key="frame" x="227" y="343" width="124" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZs-iz-S3r">
-                                <rect key="frame" x="24" y="443" width="327" height="48"/>
+                                <rect key="frame" x="24" y="453" width="327" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="wGl-g5-uSr"/>
                                 </constraints>
@@ -951,16 +951,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGf-Pz-oae">
-                                <rect key="frame" x="0.0" y="519" width="375" height="148"/>
+                                <rect key="frame" x="0.0" y="529" width="375" height="138"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucu-vI-t0m">
-                                        <rect key="frame" x="24" y="35" width="122" height="20"/>
+                                        <rect key="frame" x="24" y="35" width="104.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcB-lY-Enk">
-                                        <rect key="frame" x="24" y="65" width="100" height="63"/>
+                                        <rect key="frame" x="24" y="68.5" width="100" height="49.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-ca-InE">
                                                 <rect key="frame" x="5" y="8" width="90" height="33.5"/>
@@ -969,7 +969,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lF-ue-rk4">
-                                                <rect key="frame" x="6" y="25" width="90" height="30"/>
+                                                <rect key="frame" x="6" y="6.5" width="90" height="35"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
@@ -992,7 +992,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0H-Oe-0TQ">
-                                        <rect key="frame" x="134" y="65" width="100" height="63"/>
+                                        <rect key="frame" x="134" y="68.5" width="100" height="49.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-PM-ZNJ">
                                                 <rect key="frame" x="5" y="8" width="90" height="33.5"/>
@@ -1001,7 +1001,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5J-4Q-k1U">
-                                                <rect key="frame" x="6" y="25" width="90" height="30"/>
+                                                <rect key="frame" x="6" y="6.5" width="90" height="35"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1024,7 +1024,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kff-C0-Doc">
-                                        <rect key="frame" x="244" y="65" width="107" height="63"/>
+                                        <rect key="frame" x="244" y="68.5" width="107" height="49.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCS-Hy-Wor">
                                                 <rect key="frame" x="5" y="8" width="97" height="17"/>
@@ -1033,7 +1033,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYB-2m-wqk">
-                                                <rect key="frame" x="24" y="25" width="79" height="30"/>
+                                                <rect key="frame" x="24" y="6.5" width="79" height="35"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1135,19 +1135,19 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cl-Ha-4IF">
-                                <rect key="frame" x="227" y="111" width="67" height="17"/>
+                                <rect key="frame" x="227" y="118" width="67" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGI-tc-2Zk">
-                                <rect key="frame" x="227" y="132" width="124" height="54"/>
+                                <rect key="frame" x="227" y="139" width="124" height="54"/>
                                 <color key="textColor" name="calculatorGreenColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYq-Sa-fWE">
-                                <rect key="frame" x="227" y="354" width="124" height="54"/>
+                                <rect key="frame" x="227" y="364" width="124" height="54"/>
                                 <color key="textColor" name="calculatorGreenColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1237,7 +1237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aTD-Ou-0iR"/>
+        <segue reference="Ipa-CJ-Loq"/>
         <segue reference="v97-e6-biO"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>
