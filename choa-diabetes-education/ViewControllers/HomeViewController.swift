@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
 
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
+    var highBloodSugarOnly = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,6 +224,7 @@ class HomeViewController: UIViewController {
 
 		insulinForFood = false
 		insulinForHighBloodSugar = true
+        highBloodSugarOnly = true
 
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
@@ -230,6 +232,7 @@ class HomeViewController: UIViewController {
 
 			destinationVC.insulinForFoodBoolean = insulinForFood
 			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+            destinationVC.highBloodSugarOnly = highBloodSugarOnly
 		}
 	}
 
@@ -239,6 +242,7 @@ class HomeViewController: UIViewController {
 
 		insulinForFood = true
 		insulinForHighBloodSugar = true
+        highBloodSugarOnly = false
 
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
 			destinationVC.hidesBottomBarWhenPushed = true

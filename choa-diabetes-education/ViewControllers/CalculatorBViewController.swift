@@ -38,6 +38,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
+    var highBloodSugarOnly = false
     
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(true)
@@ -69,7 +70,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         
         resultsView.isHidden = true
         
-        if mealsAndHighSugar {
+        if highBloodSugarOnly == false {
             nextButton.titleLabel?.text = "Next"
             nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
             nextButton.backgroundColor = .choaGreenColor
