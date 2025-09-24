@@ -29,7 +29,7 @@ class CalculatorCViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .diabetesBasicsLightColor
+        appearance.backgroundColor = .whiteColor
         appearance.shadowColor = .clear
         
         navigationController?.navigationBar.standardAppearance = appearance
@@ -47,7 +47,7 @@ class CalculatorCViewController: UIViewController {
         // Insulin for food
         if (insulinForFoodBoolean){
             foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
-            insulinForFood.text = String(foodInsulin)
+            insulinForFood.text = String(foodInsulin) + " units"
         } else {
             insulinForFood.text = "-"
         }
@@ -55,13 +55,13 @@ class CalculatorCViewController: UIViewController {
         // Insulin for blood sugar
         if (insulinForHighBloodSugarBoolean && bloodSugar >= 150){
             bloodInsulin = roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor)
-            insulinForBloodSugar.text = String(bloodInsulin)
+            insulinForBloodSugar.text = String(bloodInsulin) + " units"
         } else {
             insulinForBloodSugar.text = "-"
         }
         
         // Total insulin
-        totalInsulin.text = String(roundToOneDecimal(value:foodInsulin + bloodInsulin))
+        totalInsulin.text = String(roundToOneDecimal(value:foodInsulin + bloodInsulin)) + " units"
         PendoManager.shared().track("Calculator_results", properties: ["total":totalInsulin.text ?? "-","for_food":insulinForFood.text ?? "-","for_hbs":insulinForBloodSugar.text ?? "-"])
     }
     
@@ -71,10 +71,25 @@ class CalculatorCViewController: UIViewController {
     
     @IBAction func newCalculation(_ sender: UIButton){
         for controller in self.navigationController!.viewControllers as Array {
-            if controller.isKind(of: CalculatorHomeViewController.self) {
+            if controller.isKind(of: CalculatorAViewController.self) {
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }
+        }
+    }
+    
+    @IBAction func didExitCalculatorTap(_ sender: Any) {
+        
+        if let nav = self.navigationController {
+            for controller in nav.viewControllers {
+                if controller.isKind(of: HomeViewController.self) {
+                    nav.popToViewController(controller, animated: true)
+                    return
+                }
+            }
+            
+            // Fallback: pop to root if HomeViewController isn't found
+            nav.popToRootViewController(animated: true)
         }
     }
 }
