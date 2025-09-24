@@ -17,13 +17,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var correctionFactorField: UITextField!
     @IBOutlet weak var correctionFactorLine: UIView!
     @IBOutlet weak var correctionFactorLabel: UILabel!
-    @IBOutlet weak var bloodSugarAlert: UILabel!
-    @IBOutlet weak var bloodSugarAlertIcon: UIImageView!
+    @IBOutlet weak var bloodSugarLabelImage: UIButton!
+    
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var insulinForHighBloodSugar: UILabel!
+    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
     
     var totalCarbs: Float = 0
@@ -55,11 +59,40 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             txtField.delegate = self
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        
+        let mealsAndHighSugar = insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true
+        
+        resultsView.isHidden = true
+        
+        if mealsAndHighSugar {
+            nextButton.titleLabel?.text = "Next"
+            nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
+            nextButton.backgroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+            skipButton.isHidden = false
+        } else {
+            nextButton
+                .setTitleWithStyle(
+                    "Exit",
+                    font: .gothamRoundedMedium20,
+                    color: .choaGreenColor
+                )
+            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
+            nextButton.backgroundColor = .clear
+            nextButton.configuration?.baseForegroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+            skipButton.isHidden = true
+        }
+        
+        bloodSugarLabelImage.isHidden = true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -74,28 +107,37 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             bloodSugar = Float(textField.text ?? "0") ?? 0
             print(bloodSugar)
             if bloodSugar < 150 && bloodSugar != 0 {
-                bloodSugarAlertIcon.isHidden = false
-                bloodSugarAlert.isHidden = false
                 bloodSugarField.textColor = UIColor.orangeTextColor
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                bloodSugarLine.backgroundColor = .orangeTextColor
+                bloodSugarLabelImage.isHidden = false
+                bloodSugarLabelImage.tintColor = .orangeTextColor
+                bloodSugarLabel.textColor = .orangeTextColor
             } else {
-                bloodSugarAlertIcon.isHidden = true
-                bloodSugarAlert.isHidden = true
-                bloodSugarField.textColor = UIColor.choaGreenColor
+                bloodSugarField.textColor = .primaryBlue
+                insulinForHighBloodSugar.textColor = .primaryBlue
+                bloodSugarLine.backgroundColor = .primaryBlue
+                bloodSugarLabelImage.isHidden = true
+                bloodSugarLabel.textColor = .primaryBlue
             }
-            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
+//            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
         case 1:
             targetBloodSugar = Float(textField.text ?? "0") ?? 0
             print(targetBloodSugar)
-            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
+            targetBloodSugarLine.backgroundColor = .black
+            targetBloodSugarLabel.textColor = .black
+//            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
         case 2:
             correctionFactor = Float(textField.text ?? "0") ?? 0
             print(correctionFactor)
-            toggleError(state: false, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "")
+            correctionFactorLine.backgroundColor = .black
+            correctionFactorLabel.textColor = .black
+//            toggleError(state: false, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "")
         default:
             print("none of these")
         }
         
-        errorMessage.isHidden = true
+        errorView.isHidden = true
         //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
         //            nextButton.isEnabled = true
         //        } else {
@@ -108,34 +150,38 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             errorLine.backgroundColor = UIColor.red
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.red
-            errorMessage.isHidden = false
+            errorView.isHidden = false
         } else {
             errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
-            fieldLabel.textColor = UIColor.contentBlackColor
-            errorMessage.isHidden = true
+            fieldLabel.textColor = .primaryBlue
+            errorView.isHidden = true
         }
     }
     
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
-        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
-            PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
-            // Go to next page
-            performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
-        } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
-            // CarbRatio is not there
-            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
-        } else if (bloodSugar != 0 && correctionFactor != 0) {
-            // Target BG is not there
-            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
-        } else if (targetBloodSugar != 0 && correctionFactor != 0) {
-            // BG is not there
-            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
-            bloodSugarAlertIcon.isHidden = true
-        } else {
-            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
-            errorMessage.isHidden = false
+        
+        if insulinForFoodBoolean && insulinForHighBloodSugarBoolean {
+            if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
+                PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
+                // Go to next page
+                performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+            } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
+                // CarbRatio is not there
+                toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+            } else if (bloodSugar != 0 && correctionFactor != 0) {
+                // Target BG is not there
+                toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+            } else if (targetBloodSugar != 0 && correctionFactor != 0) {
+                // BG is not there
+                toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
+            } else {
+                errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
+                errorView.isHidden = false
+            }
+        } else if insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -205,8 +251,40 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
         self.view.endEditing(true)
+        calculateFoodInsulin()
     }
     
+    func roundToOneDecimal(value: Float)-> Float {
+        return (round(value*10)/10.0)
+    }
+    
+    func calculateFoodInsulin() {
+        if bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0 {
+            resultsView.isHidden = false
+
+            var bloodInsulin:Float = 0.0
+
+            // Insulin for blood sugar
+            if (insulinForHighBloodSugarBoolean && bloodSugar >= 150){
+                bloodInsulin = roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor)
+                bloodSugarLine.backgroundColor = .primaryBlue
+                bloodSugarLabel.textColor = .primaryBlue
+                bloodSugarField.textColor = .primaryBlue
+                
+                insulinForHighBloodSugar.text = String(bloodInsulin) + " units"
+                insulinForHighBloodSugar.font = .gothamRoundedMedium32
+                insulinForHighBloodSugar.textColor = .primaryBlue
+            } else {
+                insulinForHighBloodSugar.text = "No insulin needed if current blood sugar is below target."
+                insulinForHighBloodSugar.font = .gothamRoundedMedium18
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                bloodSugarLine.backgroundColor = .orangeTextColor
+                bloodSugarLabel.textColor = .orangeTextColor
+            }
+        } else {
+            resultsView.isHidden = true
+        }
+    }
     
     /*
      // MARK: - Navigation

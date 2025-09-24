@@ -21,7 +21,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
-    
     @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var insulinForFood: UILabel!
     
@@ -105,12 +104,14 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             totalCarbs = Float(textField.text ?? "0") ?? 0
             print(totalCarbs)
             carbLine.backgroundColor = .primaryBlue
-            toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
+//            toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
             carbLine.tintColor = UIColor.errorRedColor
         case 1:
             carbRatio = Float(textField.text ?? "0") ?? 0
             print(carbRatio)
-            toggleError(state: false, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "")
+            carbRatioLine.backgroundColor = .black
+            carbRatioLabel.textColor = .black
+//            toggleError(state: false, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "")
         default:
             print("none of these")
         }
@@ -207,6 +208,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
                 foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
                 insulinForFood.text = String(foodInsulin) + " units"
             }
+            
+            totalCarbsField.textColor = .primaryBlue
+            carbLine.backgroundColor = .primaryBlue
+            carbLabel.textColor = .primaryBlue
         } else {
             resultsView.isHidden = true
         }
@@ -236,10 +241,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
                 errorMessage.isHidden = false
             }
+        } else if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == false {
+            self.navigationController?.popViewController(animated: true)
         }
-//        else {
-//            self.navigationController?.popViewController(animated: true)
-//        }
     }
     
     
