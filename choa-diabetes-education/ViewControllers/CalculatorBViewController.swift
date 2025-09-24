@@ -35,8 +35,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(true)
         
         let appearance = UINavigationBarAppearance()
         
@@ -46,6 +46,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         for txtField in textFieldCollection {
             txtField.delegate = self

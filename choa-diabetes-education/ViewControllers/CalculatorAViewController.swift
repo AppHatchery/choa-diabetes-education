@@ -17,17 +17,21 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var carbRatioLine: UIView!
     @IBOutlet weak var carbRatioLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
+    
+    @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var insulinForFood: UILabel!
     
     var totalCarbs: Float = 0
     var carbRatio: Float = 0
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(true)
         
         let appearance = UINavigationBarAppearance()
         
@@ -37,6 +41,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         for txtField in textFieldCollection {
             txtField.delegate = self
@@ -47,6 +55,33 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        
+        let mealsAndHighSugar = insulinForFoodBoolean && insulinForHighBloodSugarBoolean
+        
+        resultsView.isHidden = true
+        
+        if mealsAndHighSugar {
+            nextButton.titleLabel?.text = "Next"
+            nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
+            nextButton.backgroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+            skipButton.isHidden = false
+        } else {
+            nextButton
+                .setTitleWithStyle(
+                    "Exit",
+                    font: .gothamRoundedMedium20,
+                    color: .choaGreenColor
+                )
+            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
+            nextButton.backgroundColor = .clear
+            nextButton.configuration?.baseForegroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+            skipButton.isHidden = true
+        }
     }
     
     deinit {
@@ -154,42 +189,86 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
         self.view.endEditing(true)
+        calculateFoodInsulin()
+    }
+    
+    func roundToOneDecimal(value: Float)-> Float {
+        return (round(value*10)/10.0)
+    }
+    
+    func calculateFoodInsulin() {
+        if totalCarbs > 0 && carbRatio > 0 {
+            resultsView.isHidden = false
+            
+            var foodInsulin:Float = 0.0
+
+            // Insulin for food
+            if (insulinForFoodBoolean){
+                foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
+                insulinForFood.text = String(foodInsulin) + " units"
+            }
+        } else {
+            resultsView.isHidden = true
+        }
     }
     
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
-        if (totalCarbs > 0 && carbRatio > 0){
-            PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs":totalCarbs,"ratio":carbRatio])
-            if insulinForHighBloodSugarBoolean {
-                performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
+        
+        insulinForFoodBoolean = true
+        
+        if insulinForFoodBoolean && insulinForHighBloodSugarBoolean == true {
+            if (totalCarbs > 0 && carbRatio > 0){
+                PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs":totalCarbs,"ratio":carbRatio])
+                if insulinForHighBloodSugarBoolean {
+                    performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
+                } else {
+                    performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+                }
+            } else if (totalCarbs > 0){
+                // CarbRatio is not there
+                toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
+            } else if (carbRatio > 0){
+                // Carbs are not there
+                toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
             } else {
-                performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+                // Nothing is there
+                errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
+                errorMessage.isHidden = false
             }
-        } else if (totalCarbs > 0){
-            // CarbRatio is not there
-            toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
-        } else if (carbRatio > 0){
-            // Carbs are not there
-            toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
-        } else {
-            // Nothing is there
-            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
-            errorMessage.isHidden = false
         }
+//        else {
+//            self.navigationController?.popViewController(animated: true)
+//        }
+    }
+    
+    
+    @IBAction func didSkipTap(_ sender: Any) {
+        insulinForFoodBoolean = false
+        insulinForHighBloodSugarBoolean = true
+        
+        performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorBViewController = segue.destination as? CalculatorBViewController {
             calculatorBViewController.insulinForFoodBoolean = insulinForFoodBoolean
             calculatorBViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
-            calculatorBViewController.totalCarbs = totalCarbs
-            calculatorBViewController.carbRatio = carbRatio
+            
+            if totalCarbs > 0 && carbRatio > 0 {
+                calculatorBViewController.totalCarbs = totalCarbs
+                calculatorBViewController.carbRatio = carbRatio
+            }
         }
+        
         if let calculatorCViewController = segue.destination as? CalculatorCViewController {
             calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
             calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
-            calculatorCViewController.totalCarbs = totalCarbs
-            calculatorCViewController.carbRatio = carbRatio
+            
+            if totalCarbs > 0 && carbRatio > 0 {
+                calculatorCViewController.totalCarbs = totalCarbs
+                calculatorCViewController.carbRatio = carbRatio
+            }
         }
     }
 }

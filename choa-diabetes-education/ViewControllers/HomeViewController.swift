@@ -106,6 +106,7 @@ class HomeViewController: UIViewController {
         
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
+        appearance.shadowColor = .clear
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
