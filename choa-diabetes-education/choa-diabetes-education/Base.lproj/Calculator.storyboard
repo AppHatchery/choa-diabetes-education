@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Gotham Rounded Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
         <array key="GothamRoundedBold.ttf">
             <string>GothamRounded-Bold</string>
-        </array>
-        <array key="GothamRoundedMedium.ttf">
-            <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
     <scenes>
@@ -264,6 +264,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="15" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-sr-bAo">
                                                         <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                                                        <color key="tintColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="7UY-XK-NdJ"/>
                                                             <constraint firstAttribute="width" constant="124" id="ij1-jY-hWF"/>
@@ -395,28 +396,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKv-bL-omf" userLabel="Navigation Stack View">
                                                 <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbq-nP-fmr" userLabel="Exit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="48"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="Vam-dA-ohb"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                                        <state key="normal" title="Next" image="leftArrow">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Skip">
-                                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                            <color key="baseForegroundColor" name="choaGreenColor"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="didSkipTap:" destination="I75-tA-DYU" eventType="touchUpInside" id="abU-py-G66"/>
-                                                            <action selector="nextButton:" destination="I75-tA-DYU" eventType="touchUpInside" id="8WK-Kv-VVM"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-1y-0RM">
-                                                        <rect key="frame" x="167.5" y="0.0" width="167.5" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                                         <color key="backgroundColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="cbC-WD-wG4"/>
@@ -473,17 +454,228 @@
                         <outlet property="insulinForFood" destination="cDg-1J-agr" id="Wof-NM-BsF"/>
                         <outlet property="nextButton" destination="xCs-1y-0RM" id="WIF-rt-T4o"/>
                         <outlet property="resultsView" destination="muN-D1-fcE" id="zex-l7-Y2l"/>
-                        <outlet property="skipButton" destination="Qbq-nP-fmr" id="1hS-id-6VG"/>
                         <outlet property="totalCarbsField" destination="kKr-Jy-xTq" id="TBF-hF-fSM"/>
                         <outletCollection property="textFieldCollection" destination="kKr-Jy-xTq" collectionClass="NSMutableArray" id="F9y-ZB-H4c"/>
                         <outletCollection property="textFieldCollection" destination="0Xu-sr-bAo" collectionClass="NSMutableArray" id="JD2-TC-TO5"/>
                         <segue destination="l7g-rs-uOg" kind="show" identifier="SegueToCalculatorBViewController" id="v97-e6-biO"/>
                         <segue destination="Ion-bU-PKM" kind="show" identifier="SegueToCalculatorCViewController" id="Ipa-CJ-Loq"/>
+                        <segue destination="yNH-kq-64d" kind="show" identifier="calculatorAToEditSegue" id="hEr-41-Qe8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeT-89-INA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4133.6000000000004" y="754.27286356821594"/>
+            <point key="canvasLocation" x="4276" y="752"/>
+        </scene>
+        <!--Calculator Edit View Controller-->
+        <scene sceneID="ewk-gr-Eqt">
+            <objects>
+                <viewController id="yNH-kq-64d" customClass="CalculatorEditViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S24-0S-ZmT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-zZ-BTX">
+                                <rect key="frame" x="20" y="94" width="335" height="264"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="epf-ID-Gg8" userLabel="Carb Ratio Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="72"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XNc-yc-Ku5">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="OHE-xG-SsA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="141.5" height="16"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZE-2H-Mj2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="16"/>
+                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G55-oM-l8w">
+                                                                <rect key="frame" x="97" y="0.0" width="44.5" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="Ph4-oY-dpU"/>
+                                                                </constraints>
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="15" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTr-5d-CaT">
+                                                <rect key="frame" x="0.0" y="24" width="335" height="48"/>
+                                                <color key="tintColor" name="choaGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="obf-q0-UFP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-v7-yJB" userLabel="Total Blood Sugar Stack View">
+                                        <rect key="frame" x="0.0" y="96" width="335" height="72"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="UK3-8c-OOg">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YXN-RS-0vE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="16"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="JXz-o8-wak">
+                                                                <rect key="frame" x="0.0" y="0.0" width="220" height="16"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-1l-N17">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="175.5" height="16"/>
+                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmM-mR-QMl">
+                                                                        <rect key="frame" x="175.5" y="0.0" width="44.5" height="16"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="16" id="lwD-Wh-5Je"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="150" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEB-tW-LrJ">
+                                                <rect key="frame" x="0.0" y="24" width="335" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="fOO-Xz-zvc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-6S-yFL" userLabel="Correction Ratio Stack View">
+                                        <rect key="frame" x="0.0" y="192" width="335" height="72"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-Q2-yNV">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Q1a-eg-hZz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EPS-Ai-bDB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="194" height="16"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="149.5" height="16"/>
+                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Ks-UI0">
+                                                                        <rect key="frame" x="149.5" y="0.0" width="44.5" height="16"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="16" id="0pL-Cu-jC8"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-wf-eof">
+                                                <rect key="frame" x="0.0" y="24" width="335" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="dkp-SH-wKj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
+                                <rect key="frame" x="20" y="533" width="335" height="114"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                        <color key="backgroundColor" name="choaGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="sRO-sY-CjQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="leftArrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="Save">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="nextButton:" destination="I75-tA-DYU" eventType="touchUpInside" id="U49-Pc-O3D"/>
+                                            <action selector="saveConstantsTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="GJ2-Is-9Fv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
+                                        <rect key="frame" x="0.0" y="66" width="335" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bwX-nN-HlT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="leftArrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cancel">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" name="choaGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="cancelTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="z9q-vP-D0r"/>
+                                            <action selector="nextButton:" destination="I75-tA-DYU" eventType="touchUpInside" id="rxR-R2-2Cy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RBP-Ki-KVB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="bottom" secondItem="PZ5-sG-E1L" secondAttribute="bottom" constant="20" id="Ew3-EH-A4D"/>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="PZ5-sG-E1L" secondAttribute="trailing" constant="20" id="RJo-jo-w3l"/>
+                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="top" secondItem="RBP-Ki-KVB" secondAttribute="top" constant="20" id="TB0-6x-bjh"/>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="O4s-zZ-BTX" secondAttribute="trailing" constant="20" id="Zfd-Ho-fzm"/>
+                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="elr-2i-7Ai"/>
+                            <constraint firstItem="PZ5-sG-E1L" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="npn-rN-2s8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="21y-Lk-Htm"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="jls-AL-oXU" id="Tva-Mr-HAq"/>
+                        <outlet property="carbRatioField" destination="WTr-5d-CaT" id="za2-eT-4Gw"/>
+                        <outlet property="correctionRatio" destination="oHK-wf-eof" id="m0l-ph-9kK"/>
+                        <outlet property="saveButton" destination="jHp-XQ-o5F" id="uaB-Pv-Bi5"/>
+                        <outlet property="targetBloodSugarField" destination="oEB-tW-LrJ" id="0Ix-Vl-7Ve"/>
+                        <outletCollection property="editTextFields" destination="WTr-5d-CaT" collectionClass="NSMutableArray" id="2pV-dA-inj"/>
+                        <outletCollection property="editTextFields" destination="oEB-tW-LrJ" collectionClass="NSMutableArray" id="Btk-pu-AZo"/>
+                        <outletCollection property="editTextFields" destination="oHK-wf-eof" collectionClass="NSMutableArray" id="zc0-QD-Ql3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVR-Tg-IWL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5422" y="1620"/>
         </scene>
         <!--Calculator Home View Controller-->
         <scene sceneID="oxI-sp-8tg">
@@ -682,6 +874,7 @@
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BER-a7-Jr6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                                                                <color key="tintColor" name="choaGreenColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="Myt-Rm-8Vc"/>
                                                                     <constraint firstAttribute="width" constant="124" id="zYX-Jc-335"/>
@@ -746,6 +939,7 @@
                                                 <subviews>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kp9-xv-07h">
                                                         <rect key="frame" x="18.5" y="0.0" width="124" height="50"/>
+                                                        <color key="tintColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="LWI-Oh-iXA"/>
                                                             <constraint firstAttribute="width" constant="124" id="jjh-jp-m5v"/>
@@ -873,28 +1067,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
                                                 <rect key="frame" x="0.0" y="148" width="335" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uM-se-zZ9" userLabel="Exit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="48"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="48" id="SZK-NO-Oi5"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                                        <state key="normal" title="Next" image="leftArrow">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Skip">
-                                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                            <color key="baseForegroundColor" name="choaGreenColor"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="didSkipTap:" destination="I75-tA-DYU" eventType="touchUpInside" id="X7r-6B-Yo3"/>
-                                                            <action selector="nextButton:" destination="I75-tA-DYU" eventType="touchUpInside" id="qiO-fF-Nm8"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                                        <rect key="frame" x="167.5" y="0.0" width="167.5" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                                         <color key="backgroundColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="oRm-Rh-hUU"/>
@@ -964,7 +1138,6 @@
                         <outlet property="insulinForHighBloodSugar" destination="foj-ZT-nso" id="fpe-Cc-aLv"/>
                         <outlet property="nextButton" destination="Vus-au-82B" id="41O-GR-zhk"/>
                         <outlet property="resultsView" destination="ejV-h9-hQY" id="uDs-kh-ANO"/>
-                        <outlet property="skipButton" destination="7uM-se-zZ9" id="RLz-K9-hck"/>
                         <outlet property="targetBloodSugarField" destination="BER-a7-Jr6" id="rnh-9Z-mPa"/>
                         <outlet property="targetBloodSugarLabel" destination="Cgv-xe-5BO" id="NyI-4b-eWy"/>
                         <outlet property="targetBloodSugarLine" destination="Zku-X7-GJx" id="h9B-4t-KNf"/>
@@ -972,11 +1145,12 @@
                         <outletCollection property="textFieldCollection" destination="bTa-hb-Glq" collectionClass="NSMutableArray" id="7KF-qr-w30"/>
                         <outletCollection property="textFieldCollection" destination="kp9-xv-07h" collectionClass="NSMutableArray" id="sTf-Pm-A2k"/>
                         <segue destination="Ion-bU-PKM" kind="show" identifier="SegueToCalculatorCViewController" id="aTD-Ou-0iR"/>
+                        <segue destination="yNH-kq-64d" kind="show" identifier="calculatorBToEditSegue" id="coK-uS-kQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tix-R3-wyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4133.6000000000004" y="1556.6716641679161"/>
+            <point key="canvasLocation" x="5423" y="752"/>
         </scene>
         <!--CalculatorC View Controller-->
         <scene sceneID="xI1-Nd-Lan">
@@ -1038,10 +1212,10 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4q-u7-cNn">
-                                <rect key="frame" x="24" y="364" width="327" height="216.5"/>
+                                <rect key="frame" x="24" y="364" width="327" height="217"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gUX-tp-vbR">
-                                        <rect key="frame" x="12" y="20" width="303" height="176.5"/>
+                                        <rect key="frame" x="12" y="20" width="303" height="177"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tr5-ac-wiC">
                                                 <rect key="frame" x="0.0" y="0.0" width="177.5" height="60"/>
@@ -1066,10 +1240,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ac-Ix-lEG" userLabel="Bolus View">
-                                                <rect key="frame" x="0.0" y="84" width="303" height="92.5"/>
+                                                <rect key="frame" x="0.0" y="84" width="303" height="93"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2dk-bH-bHF">
-                                                        <rect key="frame" x="12" y="12" width="279" height="68.5"/>
+                                                        <rect key="frame" x="12" y="12" width="279" height="69"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p5I-JM-GeT">
                                                                 <rect key="frame" x="0.0" y="12.5" width="101.5" height="44"/>
@@ -1190,7 +1364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kt-83-i3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5704.8000000000002" y="1076.311844077961"/>
+            <point key="canvasLocation" x="5422" y="9"/>
         </scene>
         <!--Calculator-->
         <scene sceneID="9RL-pR-5Ri">
@@ -1578,6 +1752,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="aTD-Ou-0iR"/>
         <segue reference="v97-e6-biO"/>
+        <segue reference="coK-uS-kQN"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>
     <resources>

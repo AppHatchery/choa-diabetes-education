@@ -22,7 +22,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultsView: UIView!
@@ -51,10 +50,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
+        
+        navigationItem.rightBarButtonItem = editButton
+
         
         for txtField in textFieldCollection {
             txtField.delegate = self
@@ -65,9 +71,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        
-        let mealsAndHighSugar = insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true
-        
+                
         resultsView.isHidden = true
         
         if highBloodSugarOnly == false {
@@ -76,7 +80,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             nextButton.backgroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
-            skipButton.isHidden = false
         } else {
             nextButton
                 .setTitleWithStyle(
@@ -90,10 +93,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
             nextButton.configuration?.baseForegroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
-            skipButton.isHidden = true
         }
         
         bloodSugarLabelImage.isHidden = true
+    }
+    
+    @objc private func editButtonTapped() {
+        performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -125,13 +131,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         case 1:
             targetBloodSugar = Float(textField.text ?? "0") ?? 0
             print(targetBloodSugar)
-            targetBloodSugarLine.backgroundColor = .black
+//            targetBloodSugarLine.backgroundColor = .black
             targetBloodSugarLabel.textColor = .black
 //            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
         case 2:
             correctionFactor = Float(textField.text ?? "0") ?? 0
             print(correctionFactor)
-            correctionFactorLine.backgroundColor = .black
+//            correctionFactorLine.backgroundColor = .black
             correctionFactorLabel.textColor = .black
 //            toggleError(state: false, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "")
         default:
@@ -163,7 +169,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
         
-        if insulinForFoodBoolean && insulinForHighBloodSugarBoolean {
+        if highBloodSugarOnly == false {
             if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
                 // Go to next page
@@ -181,7 +187,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
                 errorView.isHidden = false
             }
-        } else if insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true {
+        } else {
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -261,8 +267,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     
     func calculateFoodInsulin() {
         if bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0 {
-            resultsView.isHidden = false
-
+            UIView.animate(withDuration: 0.2, animations: {
+                self.resultsView.isHidden = false
+            })
+            
             var bloodInsulin:Float = 0.0
 
             // Insulin for blood sugar

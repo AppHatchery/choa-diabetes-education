@@ -17,7 +17,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var carbRatioLine: UIView!
     @IBOutlet weak var carbRatioLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var skipButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
@@ -40,10 +39,15 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
+        
+        navigationItem.rightBarButtonItem = editButton
         
         for txtField in textFieldCollection {
             txtField.delegate = self
@@ -65,7 +69,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             nextButton.backgroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
-            skipButton.isHidden = false
         } else {
             nextButton
                 .setTitleWithStyle(
@@ -79,13 +82,17 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             nextButton.configuration?.baseForegroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
-            skipButton.isHidden = true
         }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func editButtonTapped() {
+        // Handle edit action
+        performSegue(withIdentifier: "calculatorAToEditSegue", sender: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -109,7 +116,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         case 1:
             carbRatio = Float(textField.text ?? "0") ?? 0
             print(carbRatio)
-            carbRatioLine.backgroundColor = .black
             carbRatioLabel.textColor = .black
 //            toggleError(state: false, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "")
         default:
@@ -199,7 +205,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     
     func calculateFoodInsulin() {
         if totalCarbs > 0 && carbRatio > 0 {
-            resultsView.isHidden = false
+            UIView.animate(withDuration: 0.2, animations: {
+                self.resultsView.isHidden = false
+            })
             
             var foodInsulin:Float = 0.0
 
@@ -244,14 +252,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         } else if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == false {
             self.navigationController?.popViewController(animated: true)
         }
-    }
-    
-    
-    @IBAction func didSkipTap(_ sender: Any) {
-        insulinForFoodBoolean = false
-        insulinForHighBloodSugarBoolean = true
-        
-        performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
