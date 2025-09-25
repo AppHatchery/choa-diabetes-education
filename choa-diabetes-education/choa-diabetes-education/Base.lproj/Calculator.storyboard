@@ -245,6 +245,9 @@
                                                                 <color key="tintColor" name="primaryBlue"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                <connections>
+                                                                    <action selector="showTotalCarbsInfo:" destination="I75-tA-DYU" eventType="touchUpInside" id="lfD-Qz-S8J"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -303,6 +306,9 @@
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                <connections>
+                                                                    <action selector="showCarbRatioInfo:" destination="I75-tA-DYU" eventType="touchUpInside" id="Mpz-5i-3eN"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -328,18 +334,17 @@
                                                         <rect key="frame" x="12" y="12" width="311" height="84"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="k1q-cx-enz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="178" height="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="178" height="34"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0m-0W-92g">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="34"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSW-Wz-0LF">
-                                                                        <rect key="frame" x="162" y="0.0" width="16" height="16"/>
+                                                                        <rect key="frame" x="162" y="0.0" width="16" height="34"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="16" id="dPb-tL-ZAm"/>
                                                                             <constraint firstAttribute="width" constant="16" id="uQP-Wn-ywi"/>
                                                                         </constraints>
                                                                         <color key="tintColor" name="primaryBlue"/>
@@ -349,7 +354,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDg-1J-agr">
-                                                                <rect key="frame" x="0.0" y="31" width="89" height="53"/>
+                                                                <rect key="frame" x="0.0" y="49" width="89" height="35"/>
                                                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>
@@ -500,6 +505,9 @@
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                <connections>
+                                                                    <action selector="showCarbRatioInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="cOY-1g-Doj"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -542,6 +550,9 @@
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showTargetBloodSugarInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="ctl-p4-cDv"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -570,10 +581,10 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPS-Ai-bDB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="194" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="18"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="149.5" height="18"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160.5" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="18" id="Fef-wL-tru"/>
                                                                         </constraints>
@@ -582,10 +593,13 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Ks-UI0">
-                                                                        <rect key="frame" x="149.5" y="0.0" width="44.5" height="18"/>
+                                                                        <rect key="frame" x="160.5" y="0.0" width="44.5" height="18"/>
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showCorrectionFactorInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="36C-b6-UTe"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -912,6 +926,9 @@
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showTargetBloodSugarInfo:" destination="l7g-rs-uOg" eventType="touchUpInside" id="qve-mb-sQ4"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -979,6 +996,9 @@
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                <connections>
+                                                                    <action selector="showCorrectionFactorInfo:" destination="l7g-rs-uOg" eventType="touchUpInside" id="udM-a8-eNu"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -1000,19 +1020,18 @@
                                                         <rect key="frame" x="12" y="12" width="311" height="84"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Zm4-7d-p59">
-                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="34"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for High Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6j4-BB-1Pm">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="283" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBV-7P-bEf">
-                                                                        <rect key="frame" x="286" y="0.0" width="16" height="16"/>
+                                                                        <rect key="frame" x="286" y="0.0" width="16" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="16" id="IaG-Kp-HUf"/>
-                                                                            <constraint firstAttribute="height" constant="16" id="WCy-K1-gk8"/>
                                                                         </constraints>
                                                                         <color key="tintColor" name="primaryBlue"/>
                                                                         <state key="normal" title="Button"/>
@@ -1021,7 +1040,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foj-ZT-nso">
-                                                                <rect key="frame" x="0.0" y="31" width="89" height="53"/>
+                                                                <rect key="frame" x="0.0" y="49" width="89" height="35"/>
                                                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>

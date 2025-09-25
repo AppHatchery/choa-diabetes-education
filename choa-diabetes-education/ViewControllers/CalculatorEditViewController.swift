@@ -17,6 +17,8 @@ class CalculatorEditViewController: UIViewController {
     @IBOutlet weak var saveButton: PrimaryButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    let infoPopup = InfoPopUpViewController()
+    
     private let constantsManager = CalculatorConstantsManager.shared
     
     override func viewDidLoad() {
@@ -35,6 +37,11 @@ class CalculatorEditViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
         setupTrailingText()
+        loadStoredConstants()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         loadStoredConstants()
     }
     
@@ -148,6 +155,24 @@ class CalculatorEditViewController: UIViewController {
     
     @IBAction func cancelTap(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func showCarbRatioInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.CarbRatio.title".localized()
+                         , details: "PopupInfo.CarbRatio.text".localized())
+    }
+    
+    @IBAction func showTargetBloodSugarInfo(_ sender: Any) {
+        infoPopup
+            .appear(
+                sender: self,
+                title: "PopupInfo.TargetBloodSugar.title".localized()
+                , details: "PopupInfo.TargetBloodSugar.text".localized())
+    }
+    
+    @IBAction func showCorrectionFactorInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
+                         , details: "PopupInfo.CorrectionFactor.text".localized())
     }
     
     private func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {

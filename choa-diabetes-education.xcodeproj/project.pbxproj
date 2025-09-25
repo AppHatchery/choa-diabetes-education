@@ -37,6 +37,8 @@
 		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
 		B4A61F9A2E8550720079B276 /* CalculatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */; };
 		B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */; };
+		B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A61FA32E859FCF0079B276 /* InfoPopUpViewController.swift */; };
+		B4A61FA72E859FCF0079B276 /* InfoPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A61FA42E859FCF0079B276 /* InfoPopUpViewController.xib */; };
 		B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */; };
 		B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */; };
 		B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */; };
@@ -234,6 +236,8 @@
 		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
 		B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorEditViewController.swift; sourceTree = "<group>"; };
 		B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorConstantsManager.swift; sourceTree = "<group>"; };
+		B4A61FA32E859FCF0079B276 /* InfoPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopUpViewController.swift; sourceTree = "<group>"; };
+		B4A61FA42E859FCF0079B276 /* InfoPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPopUpViewController.xib; sourceTree = "<group>"; };
 		B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpView.xib; sourceTree = "<group>"; };
 		B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoFollowUpView.swift; sourceTree = "<group>"; };
 		B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsFollowUpQuestionView.swift; sourceTree = "<group>"; };
@@ -434,6 +438,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		B4A61FA52E859FCF0079B276 /* PopUps */ = {
+			isa = PBXGroup;
+			children = (
+				B4A61FA32E859FCF0079B276 /* InfoPopUpViewController.swift */,
+				B4A61FA42E859FCF0079B276 /* InfoPopUpViewController.xib */,
+			);
+			path = PopUps;
+			sourceTree = "<group>";
+		};
 		D48167C628AD02D3003B14A3 /* pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +614,7 @@
 		D48D8908289C006D001A61E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4A61FA52E859FCF0079B276 /* PopUps */,
 				FDC8E53F2A293809006FDFF0 /* QuestionnaireViews */,
 				D481679628ABBCCC003B14A3 /* OrientationHeader.swift */,
 				D481679828ABBCDE003B14A3 /* OrientationHeader.xib */,
@@ -929,6 +943,7 @@
 				D48167BB28ABF96C003B14A3 /* QuotesView.xib in Resources */,
 				D4684AA8290B0B6600E7311B /* fruit_and_fruit_juice.png in Resources */,
 				D450EC1728C1158A0015D823 /* check_for_ketones.html in Resources */,
+				B4A61FA72E859FCF0079B276 /* InfoPopUpViewController.xib in Resources */,
 				D492A8982901D67900B98CA3 /* SearchResultTableViewCell.xib in Resources */,
 				D4684AA2290B0B6600E7311B /* biscuits.png in Resources */,
 				D4684AAB290B0B6600E7311B /* pasta.png in Resources */,
@@ -1052,6 +1067,7 @@
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
+				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,

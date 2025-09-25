@@ -29,6 +29,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
     
+    let infoPopup = InfoPopUpViewController()
+    
     var totalCarbs: Float = 0
     var bloodSugar: Float = 0
     var targetBloodSugar: Float = 0
@@ -220,6 +222,19 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @IBAction func showTargetBloodSugarInfo(_ sender: Any) {
+        infoPopup
+            .appear(
+                sender: self,
+                title: "PopupInfo.TargetBloodSugar.title".localized()
+                , details: "PopupInfo.TargetBloodSugar.text".localized())
+    }
+    
+    @IBAction func showCorrectionFactorInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
+                         , details: "PopupInfo.CorrectionFactor.text".localized())
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {

@@ -28,6 +28,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = true
     
+    let infoPopup = InfoPopUpViewController()
+    
     private let constantsManager = CalculatorConstantsManager.shared
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -42,6 +44,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.backButtonDisplayMode = .minimal
+        loadStoredConstants()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -274,6 +277,20 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    @IBAction func showTotalCarbsInfo(_ sender: Any) {
+        infoPopup
+            .appear(
+                sender: self,
+                title: "PopupInfo.TotalCarbs.title".localized()
+                , details: "PopupInfo.TotalCarbs.text".localized())
+    }
+    
+    @IBAction func showCarbRatioInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.CarbRatio.title".localized()
+                         , details: "PopupInfo.CarbRatio.text".localized())
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorBViewController = segue.destination as? CalculatorBViewController {
