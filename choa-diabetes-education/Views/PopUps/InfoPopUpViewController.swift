@@ -32,6 +32,18 @@ class InfoPopUpViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         configView()
+        setupGestureRecognizer()
+    }
+    
+    private func setupGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        
+        backgroundView.addGestureRecognizer(tapGesture)
+        backgroundView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func backgroundTapped() {
+        hide()
     }
     
     func configView() {
@@ -46,15 +58,14 @@ class InfoPopUpViewController: UIViewController {
         self.popupTitleText = title
         self.popupDetailsText = details
         
-        sender.present(self, animated: true) {
+        sender.present(self, animated: false) {
             self.show()
         }
     }
     
     private func show() {
-        self.backgroundView.alpha = 1
-
-        UIView.animate(withDuration: 0.1, delay: 0) {
+        UIView.animate(withDuration: 0.2, delay: 0) {
+            self.backgroundView.alpha = 1
             self.contentView.alpha = 1
             
             self.popupTitle.text = self.popupTitleText
@@ -75,16 +86,13 @@ class InfoPopUpViewController: UIViewController {
     }
     
     func hide() {
-        self.backgroundView.alpha = 0
-        self.contentView.alpha = 0
-        
-//        UIView.animate(withDuration: 0.2, delay: 0) {
-//            self.backgroundView.alpha = 0
-//            self.contentView.alpha = 0
-//        } completion: { _ in
-//            self.dismiss(animated: true)
-//            self.removeFromParent()
-//        }
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
+            self.backgroundView.alpha = 0
+            self.contentView.alpha = 0
+        } completion: { _ in
+            self.dismiss(animated: true)
+            self.removeFromParent()
+        }
     }
 
     

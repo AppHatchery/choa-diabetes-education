@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CalculatorEditDelegate: AnyObject {
+    func calculatorDidUpdateConstants()
+}
+
 class CalculatorEditViewController: UIViewController {
     @IBOutlet weak var carbRatioField: UITextField!
     @IBOutlet weak var targetBloodSugarField: UITextField!
@@ -20,6 +24,8 @@ class CalculatorEditViewController: UIViewController {
     let infoPopup = InfoPopUpViewController()
     
     private let constantsManager = CalculatorConstantsManager.shared
+    
+    weak var delegate: CalculatorEditDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,6 +152,9 @@ class CalculatorEditViewController: UIViewController {
             targetBloodSugar: targetBloodSugar,
             correctionFactor: correctionFactor
         )
+        
+        // Notify delegate before popping
+        delegate?.calculatorDidUpdateConstants()
         
         // Show success message
         showAlert(title: "Success", message: "Constants saved successfully!") { _ in

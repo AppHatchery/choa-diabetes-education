@@ -8,7 +8,7 @@
 import UIKit
 import Pendo
 
-class CalculatorAViewController: UIViewController, UITextFieldDelegate {
+class CalculatorAViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
     
     @IBOutlet weak var totalCarbsField: UITextField!
     @IBOutlet weak var carbLine: UIView!
@@ -44,12 +44,12 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.backButtonDisplayMode = .minimal
-        loadStoredConstants()
+        calculatorDidUpdateConstants()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadStoredConstants()
+        calculatorDidUpdateConstants()
     }
     
     override func viewDidLoad() {
@@ -94,7 +94,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             nextButton.layer.cornerRadius = 12
         }
         
-        loadStoredConstants()
+        calculatorDidUpdateConstants()
     }
     
     deinit {
@@ -108,15 +108,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func loadStoredConstants() {
-        if constantsManager.hasStoredConstants {
-            let constants = constantsManager.getConstants()
-            
-            // Pre-fill carb ratio if available and current field is empty
-            if constants.carbRatio > 0 && (carbRatio == 0 || carbRatioField.text?.isEmpty != false) {
-                carbRatio = constants.carbRatio
-                carbRatioField.text = String(constants.carbRatio)
+            if constantsManager.hasStoredConstants {
+                let constants = constantsManager.getConstants()
+                print("Loaded constants - carbRatio: \(constants.carbRatio)")
+                
+                // NOTE: This updates the UI (text fields to be exact) with stored constants
+                if constants.carbRatio > 0 {
+                    carbRatio = constants.carbRatio
+                    carbRatioField.text = String(constants.carbRatio)
+                    
+                    calculateFoodInsulin()
+                }
             }
-        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -291,6 +294,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
                          , details: "PopupInfo.CarbRatio.text".localized())
     }
     
+    func calculatorDidUpdateConstants() {
+        loadStoredConstants()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorBViewController = segue.destination as? CalculatorBViewController {
@@ -311,6 +317,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
                 calculatorCViewController.totalCarbs = totalCarbs
                 calculatorCViewController.carbRatio = carbRatio
             }
+        }
+        
+        if let editViewController = segue.destination as? CalculatorEditViewController {
+            editViewController.delegate = self
         }
     }
 }

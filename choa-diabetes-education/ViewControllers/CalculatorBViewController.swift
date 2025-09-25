@@ -8,7 +8,7 @@
 import UIKit
 import Pendo
 
-class CalculatorBViewController: UIViewController, UITextFieldDelegate {
+class CalculatorBViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
     
     @IBOutlet weak var bloodSugarField: UITextField!
     @IBOutlet weak var targetBloodSugarField: UITextField!
@@ -56,11 +56,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         navigationItem.backButtonDisplayMode = .minimal
+        
+        calculatorDidUpdateConstants()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadStoredConstants()
+        calculatorDidUpdateConstants()
     }
     
     override func viewDidLoad() {
@@ -105,7 +107,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         }
         
         bloodSugarLabelImage.isHidden = true
-        loadStoredConstants()
+        calculatorDidUpdateConstants()
     }
     
     @objc private func editButtonTapped() {
@@ -116,20 +118,21 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         if constantsManager.hasStoredConstants {
             let constants = constantsManager.getConstants()
             
-            // Pre-fill carb ratio if available and current field is empty
-            if constants.targetBloodSugar > 0 && (
-                targetBloodSugar == 0 || targetBloodSugarField.text?.isEmpty != false
-            ) {
+            // NOTE: This updates the UI (text fields to be exact) with stored constants
+            
+            if constants.targetBloodSugar > 0 {
                 targetBloodSugar = constants.targetBloodSugar
                 targetBloodSugarField.text = String(constants.targetBloodSugar)
             }
             
-            // Pre-fill correction factor if available and current field is empty
-            if constants.correctionFactor > 0 && (
-                correctionFactor == 0 || correctionFactorField.text?.isEmpty != false
-            ) {
+            if constants.correctionFactor > 0 {
                 correctionFactor = constants.correctionFactor
                 correctionFactorField.text = String(constants.correctionFactor)
+            }
+            
+            // Call calculateFoodInsulin if all required values are present
+            if constants.carbRatio > 0 || constants.targetBloodSugar > 0 || constants.correctionFactor > 0 {
+                calculateFoodInsulin()
             }
         }
     }
@@ -288,6 +291,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         view.frame.origin.y = 0
     }
     
+    func calculatorDidUpdateConstants() {
+        loadStoredConstants()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let calculatorCViewController = segue.destination as? CalculatorCViewController else { return }
         calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
@@ -298,6 +305,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         calculatorCViewController.bloodSugar = bloodSugar
         calculatorCViewController.targetBloodSugar = targetBloodSugar
         calculatorCViewController.correctionFactor = correctionFactor
+        
+        if let editViewController = segue.destination as? CalculatorEditViewController {
+            editViewController.delegate = self
+        }
     }
     
     @objc func dismissKeyboard() {
