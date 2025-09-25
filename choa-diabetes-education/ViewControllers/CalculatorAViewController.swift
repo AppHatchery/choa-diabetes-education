@@ -28,6 +28,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = true
     
+    private let constantsManager = CalculatorConstantsManager.shared
+    
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(true)
         
@@ -40,6 +42,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadStoredConstants()
     }
     
     override func viewDidLoad() {
@@ -83,6 +90,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
         }
+        
+        loadStoredConstants()
     }
     
     deinit {
@@ -93,6 +102,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate {
     @objc private func editButtonTapped() {
         // Handle edit action
         performSegue(withIdentifier: "calculatorAToEditSegue", sender: nil)
+    }
+    
+    private func loadStoredConstants() {
+        if constantsManager.hasStoredConstants {
+            let constants = constantsManager.getConstants()
+            
+            // Pre-fill carb ratio if available and current field is empty
+            if constants.carbRatio > 0 && (carbRatio == 0 || carbRatioField.text?.isEmpty != false) {
+                carbRatio = constants.carbRatio
+                carbRatioField.text = String(constants.carbRatio)
+            }
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

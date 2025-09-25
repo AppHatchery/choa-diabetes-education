@@ -39,6 +39,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     var insulinForFoodBoolean = false
     var highBloodSugarOnly = false
     
+    private let constantsManager = CalculatorConstantsManager.shared
+    
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(true)
         
@@ -52,6 +54,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadStoredConstants()
     }
     
     override func viewDidLoad() {
@@ -96,10 +103,33 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         }
         
         bloodSugarLabelImage.isHidden = true
+        loadStoredConstants()
     }
     
     @objc private func editButtonTapped() {
         performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
+    }
+    
+    private func loadStoredConstants() {
+        if constantsManager.hasStoredConstants {
+            let constants = constantsManager.getConstants()
+            
+            // Pre-fill carb ratio if available and current field is empty
+            if constants.targetBloodSugar > 0 && (
+                targetBloodSugar == 0 || targetBloodSugarField.text?.isEmpty != false
+            ) {
+                targetBloodSugar = constants.targetBloodSugar
+                targetBloodSugarField.text = String(constants.targetBloodSugar)
+            }
+            
+            // Pre-fill correction factor if available and current field is empty
+            if constants.correctionFactor > 0 && (
+                correctionFactor == 0 || correctionFactorField.text?.isEmpty != false
+            ) {
+                correctionFactor = constants.correctionFactor
+                correctionFactorField.text = String(constants.correctionFactor)
+            }
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

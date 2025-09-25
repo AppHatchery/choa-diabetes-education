@@ -35,6 +35,8 @@
 		B48409C22E4FCF47009171DA /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48409C12E4FCF47009171DA /* UIStackView+Extensions.swift */; };
 		B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */; };
 		B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */; };
+		B4A61F9A2E8550720079B276 /* CalculatorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */; };
+		B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */; };
 		B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */; };
 		B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */; };
 		B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */; };
@@ -231,6 +233,7 @@
 		B49BDE6C2E16CE4500A09DA5 /* FiveOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveOptionsView.xib; sourceTree = "<group>"; };
 		B49BDE6E2E16CE5D00A09DA5 /* FiveOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveOptionsView.swift; sourceTree = "<group>"; };
 		B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorEditViewController.swift; sourceTree = "<group>"; };
+		B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorConstantsManager.swift; sourceTree = "<group>"; };
 		B4B3CEAD2E3A461100622C13 /* YesOrNoFollowUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YesOrNoFollowUpView.xib; sourceTree = "<group>"; };
 		B4B3CEAF2E3A499100622C13 /* YesOrNoFollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoFollowUpView.swift; sourceTree = "<group>"; };
 		B4B788D12E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptionsFollowUpQuestionView.swift; sourceTree = "<group>"; };
@@ -425,6 +428,7 @@
 		B44D1F1B2E5CA24200DE4E3A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */,
 				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
 			);
 			path = Managers;
@@ -1047,6 +1051,7 @@
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
+				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
