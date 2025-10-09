@@ -54,10 +54,7 @@ class CalculatorEditViewController: UIViewController {
     private func setupTrailingText() {
         setupTrailingText(for: carbRatioField, text: "g/unit")
         setupTrailingText(for: targetBloodSugarField, text: "mg/dL")
-        
-        editTextFields.forEach {
-            $0.layer.cornerRadius = 8
-        }
+        setupTrailingText(for: correctionRatio, text: "")
     }
 
     private func setupTrailingText(for textField: UITextField, text: String) {
@@ -72,9 +69,17 @@ class CalculatorEditViewController: UIViewController {
         
         trailingLabel.center = containerView.center
         
-        textField.borderStyle = .roundedRect
+        let textFieldPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: textField.frame.height))
         textField.rightView = containerView
         textField.rightViewMode = .always
+        
+        textField.layer.cornerRadius = 8
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.clear.cgColor
+        textField.layer.masksToBounds = true
+        textField.leftView = textFieldPaddingView
+        textField.leftViewMode = .always
+        containerView.layer.cornerRadius = 8
     }
         
     private func loadStoredConstants() {

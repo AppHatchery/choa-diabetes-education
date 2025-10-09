@@ -71,7 +71,11 @@ class CalculatorCViewController: UIViewController {
     
     @IBAction func newCalculation(_ sender: UIButton){
         for controller in self.navigationController!.viewControllers as Array {
-            if controller.isKind(of: CalculatorAViewController.self) || controller.isKind(of: CalculatorBViewController.self) {
+            if let calcA = controller as? CalculatorAViewController {
+                calcA.resetCalculatorFields()
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            } else if controller.isKind(of: CalculatorBViewController.self) {
                 self.navigationController!.popToViewController(controller, animated: true)
                 break
             }

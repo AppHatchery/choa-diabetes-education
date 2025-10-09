@@ -8,6 +8,10 @@
 import UIKit
 import Pendo
 
+protocol CalculatorResetDelegate: AnyObject {
+    func resetCalculatorFields()
+}
+
 class CalculatorAViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
     
     @IBOutlet weak var totalCarbsField: UITextField!
@@ -22,6 +26,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var insulinForFood: UILabel!
+    @IBOutlet weak var step1Label: UILabel!
     
     var totalCarbs: Float = 0
     var carbRatio: Float = 0
@@ -32,13 +37,15 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     
     private let constantsManager = CalculatorConstantsManager.shared
     
+    weak var resetDelegate: CalculatorResetDelegate?
+    
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(true)
         
         let appearance = UINavigationBarAppearance()
         
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .diabetesBasicsLightColor
+        appearance.backgroundColor = .diabetesBasicsColor050
         appearance.shadowColor = .clear
         
         navigationController?.navigationBar.standardAppearance = appearance
@@ -71,15 +78,22 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         let mealsAndHighSugar = insulinForFoodBoolean && insulinForHighBloodSugarBoolean
         
+        carbLine.layer.cornerRadius = 3
+        carbRatioLine.layer.cornerRadius = 3
+        
         resultsView.isHidden = true
         
         if mealsAndHighSugar {
+            step1Label.isHidden = false
+
             nextButton.titleLabel?.text = "Next"
             nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
             nextButton.backgroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
         } else {
+            step1Label.isHidden = true
+
             nextButton
                 .setTitleWithStyle(
                     "Exit",
@@ -95,6 +109,21 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         
         calculatorDidUpdateConstants()
+    }
+    
+    func resetCalculatorFields() {
+        totalCarbs = 0
+        carbRatio = 0
+        
+        totalCarbsField.text = ""
+        carbRatioField.text = ""
+        
+        carbRatioLine.backgroundColor = .errorRedColor
+        carbRatioLabel.textColor = .contentBlackColor
+        totalCarbsField.textColor = .black
+        
+        resultsView.isHidden = true
+        errorMessage.isHidden = true
     }
     
     deinit {
@@ -231,19 +260,30 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     }
     
     func calculateFoodInsulin() {
-        if totalCarbs > 0 && carbRatio > 0 {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.resultsView.isHidden = false
-            })
-            
-            var foodInsulin:Float = 0.0
+        var currentTotalCarbs = totalCarbs
+        var currentCarbRatio = carbRatio
 
-            // Insulin for food
-            if (insulinForFoodBoolean){
-                foodInsulin = roundToOneDecimal(value: (totalCarbs / carbRatio))
-                insulinForFood.text = String(foodInsulin) + " units"
+        // If carb ratio is not entered manually, try to load from stored constants
+        if currentCarbRatio == 0, constantsManager.hasStoredConstants {
+            let constants = constantsManager.getConstants()
+            if constants.carbRatio > 0 {
+                currentCarbRatio = constants.carbRatio
+                carbRatio = constants.carbRatio // Keep in sync
+                carbRatioField.text = String(constants.carbRatio)
             }
-            
+        }
+
+        // Only calculate if both values are present
+        if currentTotalCarbs > 0 && currentCarbRatio > 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.resultsView.isHidden = false
+            }
+
+            if insulinForFoodBoolean {
+                let foodInsulin = roundToOneDecimal(value: currentTotalCarbs / currentCarbRatio)
+                insulinForFood.text = "\(foodInsulin) units"
+            }
+
             totalCarbsField.textColor = .primaryBlue
             carbLine.backgroundColor = .primaryBlue
             carbLabel.textColor = .primaryBlue

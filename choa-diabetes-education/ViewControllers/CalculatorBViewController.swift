@@ -28,6 +28,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForHighBloodSugar: UILabel!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var step2Label: UILabel!
     
     let infoPopup = InfoPopUpViewController()
     
@@ -49,7 +50,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         let appearance = UINavigationBarAppearance()
         
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .diabetesBasicsLightColor
+        appearance.backgroundColor = .diabetesBasicsColor050
         appearance.shadowColor = .clear
         
         navigationController?.navigationBar.standardAppearance = appearance
@@ -82,16 +83,24 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        
+        bloodSugarLine.layer.cornerRadius = 3
+        targetBloodSugarLine.layer.cornerRadius = 3
+        correctionFactorLine.layer.cornerRadius = 3
                 
         resultsView.isHidden = true
         
         if highBloodSugarOnly == false {
+            step2Label.isHidden = false
+
             nextButton.titleLabel?.text = "Next"
             nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
             nextButton.backgroundColor = .choaGreenColor
             nextButton.tintColor = .choaGreenColor
             nextButton.layer.cornerRadius = 12
         } else {
+            step2Label.isHidden = true
+
             nextButton
                 .setTitleWithStyle(
                     "Exit",
@@ -148,7 +157,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         case 0:
             bloodSugar = Float(textField.text ?? "0") ?? 0
             print(bloodSugar)
-            if bloodSugar < 150 && bloodSugar != 0 {
+            if bloodSugar < constantsManager.targetBloodSugar && bloodSugar != 0 {
                 bloodSugarField.textColor = UIColor.orangeTextColor
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
@@ -322,21 +331,45 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     }
     
     func calculateFoodInsulin() {
-        if bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0 {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.resultsView.isHidden = false
-            })
-            
-            var bloodInsulin:Float = 0.0
+        var currentBloodSugar = bloodSugar
+        var currentTargetBloodSugar = targetBloodSugar
+        var currentCorrectionFactor = correctionFactor
 
-            // Insulin for blood sugar
-            if (insulinForHighBloodSugarBoolean && bloodSugar >= 150){
-                bloodInsulin = roundToOneDecimal(value: (bloodSugar - targetBloodSugar) / correctionFactor)
+        // Fallback to stored constants if fields are empty
+        if constantsManager.hasStoredConstants {
+            let constants = constantsManager.getConstants()
+
+            if currentTargetBloodSugar == 0, constants.targetBloodSugar > 0 {
+                currentTargetBloodSugar = constants.targetBloodSugar
+                targetBloodSugar = constants.targetBloodSugar
+                targetBloodSugarField.text = String(constants.targetBloodSugar)
+            }
+
+            if currentCorrectionFactor == 0, constants.correctionFactor > 0 {
+                currentCorrectionFactor = constants.correctionFactor
+                correctionFactor = constants.correctionFactor
+                correctionFactorField.text = String(constants.correctionFactor)
+            }
+        }
+
+        // Only calculate if all required values are present
+        if currentBloodSugar != 0 && currentTargetBloodSugar != 0 && currentCorrectionFactor != 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.resultsView.isHidden = false
+            }
+
+            var bloodInsulin: Float = 0.0
+
+            if insulinForHighBloodSugarBoolean && currentBloodSugar >= constantsManager.targetBloodSugar {
+                bloodInsulin = roundToOneDecimal(
+                    value: (currentBloodSugar - currentTargetBloodSugar) / currentCorrectionFactor
+                )
+
                 bloodSugarLine.backgroundColor = .primaryBlue
                 bloodSugarLabel.textColor = .primaryBlue
                 bloodSugarField.textColor = .primaryBlue
-                
-                insulinForHighBloodSugar.text = String(bloodInsulin) + " units"
+
+                insulinForHighBloodSugar.text = "\(bloodInsulin) units"
                 insulinForHighBloodSugar.font = .gothamRoundedMedium32
                 insulinForHighBloodSugar.textColor = .primaryBlue
             } else {
