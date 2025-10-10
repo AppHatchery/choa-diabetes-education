@@ -17,7 +17,8 @@ class FinalStepCallChoaView: UIView {
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet var insulinPumpStackView: UIStackView!
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet var insulinPumpStackView: UIStackView!
 	@IBOutlet var injectionStackView: UIStackView!
 
 	@IBOutlet var callView: UIView!
@@ -33,6 +34,12 @@ class FinalStepCallChoaView: UIView {
 	@IBOutlet var replacePumpLabel: UILabel!
 	@IBOutlet var repeatCorrections2: UILabel!
 	@IBOutlet var switchBackLabel: UILabel!
+    
+    @IBOutlet weak var replaceStackView: UIStackView!
+    @IBOutlet weak var correctionsStackView: UIStackView!
+    @IBOutlet weak var switchBackStackView: UIStackView!
+    @IBOutlet weak var stayHydratedStack: UIStackView!
+    
 
 	@IBOutlet var hydrationExampleInfoTextView: UITextView!
 
@@ -121,8 +128,31 @@ class FinalStepCallChoaView: UIView {
 		} else {
 			insulinPumpStackView.isHidden = false
 			injectionStackView.isHidden = true
+            
+            setupPumpRecheck()
 		}
 	}
+    
+    func setupPumpRecheck() {
+        if QuestionnaireManager.instance.yesOver2hours {
+            removePumpLabel
+                .setText(
+                    "Final.CallChoa.ChangePumpSite.text".localized(),
+                    boldPhrases: ["Change pump site", "correction dose"]
+                )
+            
+            calculateAndCorrectLabel
+                .setText(
+                    "Final.CallChoa.Recheck.text".localized(),
+                    boldPhrases: ["Recheck blood sugar", "ketones"]
+                )
+            
+            replaceStackView.isHidden = true
+            correctionsStackView.isHidden = true
+            switchBackStackView.isHidden = true
+            stayHydratedStack.isHidden = true
+        }
+    }
 
 	@IBAction func didCallChoaButtonTap(_ sender: Any) {
 		guard let url = URL(string: "tel://+404-785-5437") else { return }

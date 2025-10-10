@@ -59,7 +59,7 @@ class FiveOptionsView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 		questionLabel.font = .gothamRoundedMedium
-		questionLabel.numberOfLines = 5
+		questionLabel.numberOfLines = 0
 		questionLabel.textColor = .headingGreenColor
 		questionLabel.text = currentQuestion.question
 		questionLabel.textAlignment = .left

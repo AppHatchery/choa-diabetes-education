@@ -170,7 +170,11 @@ extension QuestionnaireManager {
         case YesOrNoQuestionId.pumpBloodSugarCheck.id:
             triggerBloodSugarActionFlow(currentQuestion)
         case YesOrNoQuestionId.bloodSugarCheck.id:
-			triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+            if bloodSugarOver300For3Hours == false {
+                triggerOtherSymptomsActionFlow(currentQuestion)
+            } else if bloodSugarOver300For3Hours == true {
+                triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+            }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
 			triggerCallChoaActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
@@ -191,7 +195,9 @@ extension QuestionnaireManager {
             saveCGM(false)
             triggerBloodSugarCheckActionFlow(currentQuestion)
         case YesOrNoQuestionId.bloodSugarCheck.id:
-			triggerOtherSymptomsActionFlow(currentQuestion)
+            if bloodSugarOver300 == false || bloodSugarOver300For3Hours == false {
+                triggerOtherSymptomsActionFlow(currentQuestion)
+            }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
 			triggerCallChoaEmergencyActionFlow(currentQuestion)
         case YesOrNoQuestionId.shotTwentyFourHours.id:
@@ -286,12 +292,27 @@ extension QuestionnaireManager {
 	) {
 		switch urineLevel {
 				// Low/negative urine OR low blood
-		case .negative, .zeroPointFive:
+		case .negative:
 			if bloodSugarOver300 && currentTestType == .pump {
 				showFinalStage(stage: .callChoa, calculation: nil)
 			}	else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
 			}
+            
+        case .zeroPointFive:
+            if bloodSugarOver300 && currentTestType == .pump {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() : "Calculator.Que.BloodSugarRecheckPump.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+                
+                actionsDelegate?.showNextQuestion(createQue)
+            }    else {
+                showFinalStage(stage: .continueRegularCare, calculation: nil)
+            }
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
 		case .onePointFive, .four, .eight, .sixteen:

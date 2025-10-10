@@ -291,15 +291,32 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 	}
 
 		// For checking if blood sugar is over 300 for 3 hours or 90 minutes (for iLet Pump)
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
+        
+        switch selectedAnswer {
+        case .yes:
+            self.questionnaireManager.saveBloodSugarOver300(true)
+            if let followUp = followUpAnswer {
+                switch followUp {
+                case .yes:
+                    self.questionnaireManager.saveBloodSugarOver300For3Hours(true)
+                    print("Saved: over 300 for 3 hours = TRUE")
+                case .no:
+                    self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+                    print("Saved: over 300 for 3 hours = FALSE")
+                }
+            } else {
+                print("🔍 WARNING: followUpAnswer is nil!")
+            }
+            self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+        case .no:
+            self.questionnaireManager.saveBloodSugarOver300(false)
+            self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+            print("🔍 Saved: both FALSE")
+            self.questionnaireManager.triggerNoActionFlow(currentQuestion)
 
-		switch selectedAnswer {
-		case .yes:
-			questionnaireManager.saveBloodSugarOver300For3Hours(true)
-		case .no:
-			questionnaireManager.saveBloodSugarOver300For3Hours(false)
-		}
-	}
+        }
+    }
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
 

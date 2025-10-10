@@ -137,14 +137,34 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if yesButton.isSelected {
-			if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
-				
-				guard followUpAnswer != 0 else { return }
-			}
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
-        } else if noButton.isSelected {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
-        }
+                if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+                    guard followUpAnswer != 0 else { return }
+                    
+                    // Convert Int to YesOrNo enum
+                    let followUp: YesOrNo = (followUpAnswer == 1) ? .yes : .no
+                    
+                    // Call the delegate method WITH followUpAnswer
+                    delegate?.didSelectNextAction(
+                        currentQuestion: currentQuestion,
+                        selectedAnswer: .yes,
+                        followUpAnswer: followUp
+                    )
+                } else {
+                    // For other questions without follow-up
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
+                }
+            } else if noButton.isSelected {
+                if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+                    // No follow-up needed when answer is no
+                    delegate?.didSelectNextAction(
+                        currentQuestion: currentQuestion,
+                        selectedAnswer: .no,
+                        followUpAnswer: nil
+                    )
+                } else {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
+                }
+            }
     }
 
 

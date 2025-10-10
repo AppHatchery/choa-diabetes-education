@@ -162,6 +162,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
                 bloodSugarLabelImage.isHidden = false
+                bloodSugarLabelImage.isUserInteractionEnabled = false
                 bloodSugarLabelImage.tintColor = .orangeTextColor
                 bloodSugarLabel.textColor = .orangeTextColor
             } else {
@@ -188,7 +189,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             print("none of these")
         }
         
-        errorView.isHidden = true
+        errorMessage.isHidden = true
         //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
         //            nextButton.isEnabled = true
         //        } else {
@@ -201,12 +202,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             errorLine.backgroundColor = UIColor.red
             errorMessage.text = errorMessageText
             fieldLabel.textColor = UIColor.red
-            errorView.isHidden = false
+            errorMessage.isHidden = false
         } else {
             errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
             fieldLabel.textColor = .primaryBlue
-            errorView.isHidden = true
+            errorMessage.isHidden = true
         }
     }
     
@@ -229,7 +230,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
             } else {
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
-                errorView.isHidden = false
+                errorMessage.isHidden = false
             }
         } else {
             self.navigationController?.popViewController(animated: true)

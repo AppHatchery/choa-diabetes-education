@@ -7,12 +7,14 @@
 
 import UIKit
 import Pendo
+import Lottie
 
 class CalculatorCViewController: UIViewController {
     
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var insulinForBloodSugar: UILabel!
     @IBOutlet weak var totalInsulin: UILabel!
+    @IBOutlet weak var animationView: LottieAnimationView!
     
     var totalCarbs: Float = 0
     var bloodSugar: Float = 0
@@ -34,6 +36,9 @@ class CalculatorCViewController: UIViewController {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        animationView.loopMode = .loop
+        animationView.play()
         
         calculateInsulin()
         // Do any additional setup after loading the view.

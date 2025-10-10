@@ -1,4 +1,5 @@
 {
+  "originHash" : "c035bae18574a412616bcdfc90b67cbc87545c4754123e69f32f88f86205b6c2",
   "pins" : [
     {
       "identity" : "abseil-cpp-swiftpm",
@@ -82,6 +83,15 @@
       }
     },
     {
+      "identity" : "lottie-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-spm",
+      "state" : {
+        "revision" : "04f2fd18cc9404a0a0917265a449002674f24ec9",
+        "version" : "4.5.2"
+      }
+    },
+    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
@@ -118,5 +128,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
