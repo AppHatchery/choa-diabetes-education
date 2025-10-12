@@ -140,7 +140,7 @@ class FinalStepWithReminderView: UIView {
 				.setText("Final.ConfirmPumpIsSecure.text".localized(), boldPhrases: ["pump site is securely connected"])
 			hopeImage.isHidden = true
 
-			flipHydrationAndReminder()
+//			flipHydrationAndReminder()
 		}
 
 			// iLet Pump View Conditions
@@ -173,7 +173,7 @@ class FinalStepWithReminderView: UIView {
 
 			hopeImage.isHidden = true
 
-			flipHydrationAndReminder()
+//			flipHydrationAndReminder()
 		} else {
 			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
 

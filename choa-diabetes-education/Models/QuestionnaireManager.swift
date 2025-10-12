@@ -199,7 +199,11 @@ extension QuestionnaireManager {
                 triggerOtherSymptomsActionFlow(currentQuestion)
             }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-            triggerContinueActionFlow(currentQuestion)
+            if yesOver2hours == false {
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            } else {
+                triggerContinueActionFlow(currentQuestion)
+            }
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
         default:
@@ -291,8 +295,8 @@ extension QuestionnaireManager {
 		urineLevel: UrineKetoneLevel,
 	) {
 		switch urineLevel {
-				// Low urine OR low blood
-		case .negative:
+				// Negative/Trace
+		case .negative, .zeroPointFive:
 			if bloodSugarOver300 && currentTestType == .pump {
 //				showFinalStage(stage: .callChoa, calculation: nil)
                 
@@ -325,7 +329,7 @@ extension QuestionnaireManager {
 //            }
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
-        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+        case .onePointFive, .four, .eight, .sixteen:
 			let createQue = createYesOrNoQuestion(
 				questionId: .bloodSugarRecheck,
 				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
@@ -343,10 +347,18 @@ extension QuestionnaireManager {
 		bloodLevel: BloodKetoneLevel,
 	) {
 		switch bloodLevel {
-				// Low/negative urine OR low blood
+				// Low urine OR low blood
 		case .low:
 			if bloodSugarOver300 && currentTestType == .pump {
-				showFinalStage(stage: .callChoa, calculation: nil)
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() : "Calculator.Que.BloodSugarRecheckPump.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+                
+                actionsDelegate?.showNextQuestion(createQue)
 			} else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
 			}
