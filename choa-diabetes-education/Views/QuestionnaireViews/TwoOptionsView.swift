@@ -110,7 +110,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
 
-		nextButton.titleLabel?.font = .gothamRoundedMedium20
+//		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8

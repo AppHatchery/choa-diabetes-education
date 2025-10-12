@@ -199,7 +199,7 @@ extension QuestionnaireManager {
                 triggerOtherSymptomsActionFlow(currentQuestion)
             }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-            if yesOver2hours == false {
+            if yesOver2hours == true {
                 triggerCallChoaEmergencyActionFlow(currentQuestion)
             } else {
                 triggerContinueActionFlow(currentQuestion)
