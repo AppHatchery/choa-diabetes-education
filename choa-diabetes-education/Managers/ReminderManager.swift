@@ -189,24 +189,69 @@ class ReminderManager: NSObject {
 		/// - Parameter identifier: The reminder identifier to resume
 		/// - Returns: True if countdown was resumed, false if reminder not found or expired
 	@discardableResult
-	func resumeCountdown(for identifier: String) -> Bool {
-		guard let scheduledTime = reminderScheduleTimes[identifier] else { return false }
+    func resumeCountdown(for identifier: String) -> Bool {
+        // First check if we have the scheduled time
+        if let scheduledTime = reminderScheduleTimes[identifier] {
+            let currentTime = Date()
+            let timeRemaining = scheduledTime.timeIntervalSince(currentTime)
 
-		let currentTime = Date()
-		let timeRemaining = scheduledTime.timeIntervalSince(currentTime)
-
-		if timeRemaining > 0 {
-				// Restart countdown timer if it's not already running
-			if countdownTimers[identifier] == nil {
-				startCountdown(for: identifier, duration: timeRemaining)
-			}
-			return true
-		} else {
-				// Reminder has expired, clean up
-			stopCountdown(for: identifier)
-			return false
-		}
-	}
+            if timeRemaining > 0 {
+                // Restart countdown timer if it's not already running
+                if countdownTimers[identifier] == nil {
+                    startCountdown(for: identifier, duration: timeRemaining)
+                }
+                return true
+            } else {
+                // Reminder has expired, clean up
+                stopCountdown(for: identifier)
+                return false
+            }
+        }
+        
+        // If not in memory, try to restore from persistence
+        if let persistedState = ReminderPersistence.loadReminderState(),
+           persistedState.reminderId == identifier {
+            let currentTime = Date()
+            let timeRemaining = persistedState.scheduledTime.timeIntervalSince(currentTime)
+            
+            if timeRemaining > 0 {
+                // Restore the scheduled time to memory
+                reminderScheduleTimes[identifier] = persistedState.scheduledTime
+                
+                // Start the countdown
+                startCountdown(for: identifier, duration: timeRemaining)
+                return true
+            } else {
+                // Reminder has expired
+                ReminderPersistence.clearReminderState()
+                return false
+            }
+        }
+        
+        return false
+    }
+    
+    func restoreReminderFromPersistence() -> Bool {
+        guard let persistedState = ReminderPersistence.loadReminderState() else {
+            return false
+        }
+        
+        let currentTime = Date()
+        let timeRemaining = persistedState.scheduledTime.timeIntervalSince(currentTime)
+        
+        if timeRemaining > 0 {
+            // Restore the scheduled time
+            reminderScheduleTimes[persistedState.reminderId] = persistedState.scheduledTime
+            
+            // Start countdown
+            startCountdown(for: persistedState.reminderId, duration: timeRemaining)
+            return true
+        } else {
+            // Reminder expired
+            ReminderPersistence.clearReminderState()
+            return false
+        }
+    }
 
 		// MARK: - Private Methods
 

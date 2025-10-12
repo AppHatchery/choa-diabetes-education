@@ -14,6 +14,13 @@ import FirebaseAnalytics
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        func handleReminderRestoration() {
+            // Reset the check flag so HomeViewController checks again
+            HomeViewController.resetReminderCheck()
+        }
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
 //		let appearance = UINavigationBarAppearance()

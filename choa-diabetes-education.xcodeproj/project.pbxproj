@@ -47,6 +47,7 @@
 		B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */; };
 		B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */; };
 		B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B4DA9DC72E98F82900C415CE /* Lottie */; };
+		B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */; };
 		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
 		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
 		B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */; };
@@ -247,6 +248,7 @@
 		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
 		B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecheckKetoneLevelView.swift; sourceTree = "<group>"; };
 		B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecheckKetoneLevelView.xib; sourceTree = "<group>"; };
+		B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPersistence.swift; sourceTree = "<group>"; };
 		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
 		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
 		B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithReminderView.swift; sourceTree = "<group>"; };
@@ -459,6 +461,14 @@
 			path = PopUps;
 			sourceTree = "<group>";
 		};
+		B4E144312E9C2CA8009A5589 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		D48167C628AD02D3003B14A3 /* pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +585,7 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
+				B4E144312E9C2CA8009A5589 /* Helpers */,
 				B44D1F1B2E5CA24200DE4E3A /* Managers */,
 				B438F6BB2E44C570005CBD49 /* Fonts */,
 				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
@@ -1067,6 +1078,7 @@
 				FD99F3982A1948EB009F3C30 /* UIString+Extensions.swift in Sources */,
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */,
+				B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,

@@ -120,7 +120,30 @@ class FinalStepWithReminderView: UIView {
             }
         }
 
-        updateReminderButtonTitle()
+        // IMPORTANT: Restore reminder state AFTER UI setup
+        // but check if we need to restore or use current state
+        print("🔍 Checking for reminder state...")
+            
+        if let persistedState = ReminderPersistence.loadReminderState() {
+            let remainingTime = persistedState.scheduledTime.timeIntervalSince(Date())
+            print("📱 Found persisted state, remaining: \(Int(remainingTime))s")
+            if remainingTime > 0 {
+                // Restore from persisted state
+                restoreReminderState()
+            } else {
+                // Expired, clean up and show default
+                ReminderPersistence.clearReminderState()
+                updateReminderButtonTitle()
+            }
+        } else if ReminderManager.shared.hasActiveReminder {
+            // Has active reminder in memory (user navigated back)
+            print("💾 Found active reminder in memory")
+            restoreReminderState()
+        } else {
+            // No active reminder at all
+            print("🆕 No active reminder, showing default state")
+            updateReminderButtonTitle()
+        }
     }
 
     // MARK: - Common UI Setup
@@ -360,18 +383,58 @@ class FinalStepWithReminderView: UIView {
 		viewController.present(alert, animated: true)
 	}
 
-	private func restoreReminderState() {
-		guard ReminderManager.shared.hasActiveReminder,
-			  let reminderId = ReminderManager.shared.currentReminderId,
-			  let remainingTime = ReminderManager.shared.currentReminderRemainingTime else {
-			currentReminderId = nil
-			updateReminderButtonTitle()
-			return
-		}
+    private func restoreReminderState() {
+        // First check if we have a persisted reminder state
+        if let persistedState = ReminderPersistence.loadReminderState() {
+            // Calculate remaining time
+            let remainingTime = persistedState.scheduledTime.timeIntervalSince(Date())
+            
+            if remainingTime > 0 {
+                // Set the current reminder ID
+                currentReminderId = persistedState.reminderId
+                reminderIsActive = true
+                
+                // Make sure ReminderManager has this reminder
+                let resumed = ReminderManager.shared.resumeCountdown(for: persistedState.reminderId)
+                
+                if resumed {
+                    // Start the local countdown timer with the remaining time
+                    startCountdownTimer(with: Int(remainingTime))
+                    
+                    print("✅ Restored reminder: \(persistedState.reminderId), remaining: \(Int(remainingTime))s")
+                } else {
+                    // Reminder expired during restore
+                    print("⚠️ Failed to resume reminder: \(persistedState.reminderId)")
+                    currentReminderId = nil
+                    reminderIsActive = false
+                    updateReminderButtonTitle()
+                    ReminderPersistence.clearReminderState()
+                }
+                
+                return
+            } else {
+                // Reminder has expired, clean up
+                print("⏰ Reminder expired")
+                ReminderPersistence.clearReminderState()
+            }
+        }
+        
+        // Fallback: check ReminderManager directly (in case user just navigated back)
+        guard ReminderManager.shared.hasActiveReminder,
+              let reminderId = ReminderManager.shared.currentReminderId,
+              let remainingTime = ReminderManager.shared.currentReminderRemainingTime else {
+            print("ℹ️ No active reminder found")
+            currentReminderId = nil
+            reminderIsActive = false
+            updateReminderButtonTitle()
+            return
+        }
 
-		currentReminderId = reminderId
-		startCountdownTimer(with: Int(remainingTime))
-	}
+        print("✅ Found active reminder in memory: \(reminderId)")
+        currentReminderId = reminderId
+        reminderIsActive = true
+        startCountdownTimer(with: Int(remainingTime))
+    }
 
 	private func startCountdownTimer(with seconds: Int) {
 			// Invalidate any existing timer
@@ -417,6 +480,8 @@ class FinalStepWithReminderView: UIView {
 			countdownTimer = nil
 			questionnaireManagerInstance.clearActiveReminder()
 			ReminderManager.shared.cancelAllReminders()
+            
+            ReminderPersistence.clearReminderState()
 
 			reminderView.backgroundColor = .veryLightBlue
 			return
@@ -441,6 +506,8 @@ class FinalStepWithReminderView: UIView {
 			questionnaireManagerInstance.saveYesOver2hours(true)
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
+            
+            ReminderPersistence.clearReminderState()
 		} else {
 			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 7200
 
@@ -451,6 +518,14 @@ class FinalStepWithReminderView: UIView {
 			currentReminderId = newReminderId
 
 			questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+            
+            // Save reminder state to persist across app restarts
+            ReminderPersistence.saveReminderState(
+                reminderId: newReminderId,
+                scheduledTime: scheduledTime,
+                questionId: currentQuestion.questionId,
+                manager: questionnaireManagerInstance
+            )
 
 			startCountdownTimer(with: Int(duration))
 		}
@@ -459,6 +534,7 @@ class FinalStepWithReminderView: UIView {
 
 	@IBAction func yesOverButtonTapped(_ sender: Any) {
 		questionnaireManagerInstance.saveYesOver2hours(true)
+        ReminderPersistence.clearReminderState()
 		delegate?.didSelectYesOverAction(
 			currentQuestion)
 	}
@@ -501,6 +577,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		countdownTimer?.invalidate()
 		countdownTimer = nil
 		questionnaireManagerInstance.clearActiveReminder()
+        ReminderPersistence.clearReminderState()
 
 		showAlert(
 			title: "Error",
@@ -515,6 +592,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		countdownTimer?.invalidate()
 		countdownTimer = nil
 		questionnaireManagerInstance.clearActiveReminder()
+        ReminderPersistence.clearReminderState()
 
 		showAlert(
 			title: "Permission Required",

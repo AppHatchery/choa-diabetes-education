@@ -114,6 +114,11 @@ class HomeViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAndRestoreActiveReminder()
+    }
 
     private func addTapRecognizersToResourceCards() {
         // Ensure the views can receive touches
@@ -286,3 +291,42 @@ class HomeViewController: UIViewController {
 	}
 }
 
+extension HomeViewController {
+    func checkAndRestoreActiveReminder() {
+        // Only check once per app launch to avoid repeated navigation
+        guard !hasCheckedForReminder else { return }
+        hasCheckedForReminder = true
+        
+        // Check if there's a saved reminder state
+        guard let reminderState = ReminderPersistence.loadReminderState() else {
+            return
+        }
+        
+        // Check if the reminder is still valid
+        let timeRemaining = reminderState.scheduledTime.timeIntervalSince(Date())
+        guard timeRemaining > 0 else {
+            // Reminder expired, clean up
+            ReminderPersistence.clearReminderState()
+            return
+        }
+        
+        // Navigate to the FinalStepWithReminder page after a short delay
+        // to allow the view to fully appear
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else { return }
+            ReminderPersistence.navigateToReminderPage(from: self, state: reminderState)
+        }
+    }
+    
+    // Add this property to HomeViewController to track if we've checked
+    private static var hasCheckedForReminder = false
+    private var hasCheckedForReminder: Bool {
+        get { HomeViewController.hasCheckedForReminder }
+        set { HomeViewController.hasCheckedForReminder = newValue }
+    }
+    
+    // Reset the check flag when app becomes active
+    static func resetReminderCheck() {
+        hasCheckedForReminder = false
+    }
+}

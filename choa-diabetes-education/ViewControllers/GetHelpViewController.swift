@@ -466,6 +466,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	@objc func didSelectExitAction() {
+        ReminderPersistence.clearReminderState()
+        ReminderManager.shared.cancelAllReminders()
+            
 		QuestionnaireManager.resetInstance()
 		self.navVC.popToRootViewController(animated: true)
 	}
@@ -475,6 +478,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol, RecheckKetoneLevelViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
+        ReminderPersistence.clearReminderState()
+        
         for controller in self.navVC.viewControllers as Array {
 			if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
