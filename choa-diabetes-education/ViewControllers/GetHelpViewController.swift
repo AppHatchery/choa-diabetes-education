@@ -348,7 +348,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
+            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerUrineKetoneForILetActionFlow(currentQuestion, level: level) : self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
 		}
 	}
 
@@ -357,7 +357,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
+            self.questionnaireManager.iLetPump ?
+                self.questionnaireManager.triggerBloodKetoneForILetActionFlow(currentQuestion, level: level) :
+                self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
 		}
 	}
 
@@ -493,7 +495,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level) : self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
 		}
 	}
 
@@ -504,8 +506,10 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-			self.questionnaireManager
-				.triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+            self.questionnaireManager.iLetPump ?
+            self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level) :
+            self.questionnaireManager
+                .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
 		}
 	}
 }

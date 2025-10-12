@@ -42,11 +42,15 @@ protocol QuestionnaireManagerProvider: AnyObject {
     var currentMethod: CalculationType { get set }
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
+    func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
 	func triggerFirstEmergencyActionFlow(_ currentQuestion: Questionnaire)
 	func triggerContinueActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckUrineKetoneActionFlow(_ currentQuestion: Questionnaire, urineLevel: UrineKetoneLevel)
+    func triggerRecheckUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, urineLevel: UrineKetoneLevel)
 	func triggerRecheckBloodKetoneActionFlow(_ currentQuestion: Questionnaire, bloodLevel: BloodKetoneLevel)
+    func triggerRecheckBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, bloodLevel: BloodKetoneLevel)
 
 		// Reminder management
 	func saveActiveReminder(id: String, scheduledTime: Date)
@@ -176,7 +180,11 @@ extension QuestionnaireManager {
                 triggerKetoneMeasuringTypeActionFlow(currentQuestion)
             }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
-			triggerCallChoaActionFlow(currentQuestion)
+            if iLetPump {
+                showFinalStage(stage: .reminder, calculation: nil)
+            } else {
+                triggerCallChoaActionFlow(currentQuestion)
+            }
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerFullDoseActionFlow()
         default:
@@ -341,6 +349,36 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
+    
+    func triggerRecheckUrineKetoneForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        urineLevel: UrineKetoneLevel
+    ) {
+        switch urineLevel {
+        case .negative:
+            triggerContinueActionFlow(currentQuestion)
+        case .zeroPointFive, .onePointFive, .four:
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                    .localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+
+            actionsDelegate?.showNextQuestion(createQue)
+        case .eight, .sixteen:
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                    .localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+
+            actionsDelegate?.showNextQuestion(createQue)
+        }
+    }
 
 	func triggerRecheckBloodKetoneActionFlow(
 		_ currentQuestion: Questionnaire,
@@ -375,6 +413,39 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
+    
+    func triggerRecheckBloodKetoneForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        bloodLevel: BloodKetoneLevel,
+    ) {
+        switch bloodLevel {
+                // Low urine OR low blood
+        case .low:
+            triggerContinueActionFlow(currentQuestion)
+                // Moderate/Large risk (urine 1.5 or 4) OR blood moderate
+        case .moderate:
+            showFinalStage(stage: .reminder, calculation: nil)
+        case .large:
+            showFinalStage(stage: .reminder, calculation: nil)
+        }
+    }
+    
+    func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
+        switch level {
+        case .negative:
+            showFinalStage(stage: .reminder, calculation: nil)
+        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                    .localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+
+            actionsDelegate?.showNextQuestion(createQue)
+        }
+    }
 
 
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
@@ -441,6 +512,35 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
+    
+    func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
+        switch level {
+        case .low:
+            showFinalStage(stage: .reminder, calculation: nil)
+        case .moderate:
+            // Moderate blood ketones - show warning
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                    .localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+
+            actionsDelegate?.showNextQuestion(createQue)
+        case .large:
+            // Large blood ketones - emergency situation
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                    .localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+
+            actionsDelegate?.showNextQuestion(createQue)
+        }
+    }
     
     
     

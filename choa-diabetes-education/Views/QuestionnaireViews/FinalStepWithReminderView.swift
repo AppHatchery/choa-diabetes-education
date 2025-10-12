@@ -105,91 +105,146 @@ class FinalStepWithReminderView: UIView {
 		ReminderManager.shared.requestPermissions()
 	}
 
-	func setupView(currentQuestion: Questionnaire) {
-		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold20
-		titleLabel.numberOfLines = 0
+    func setupView(currentQuestion: Questionnaire) {
+        self.currentQuestion = currentQuestion
+        setupCommonUI(currentQuestion: currentQuestion)
 
-		titleLabel.text = questionnaireManagerInstance.currentTestType == .insulinShots ? "Calculator.Final.ContinueRegularCare.title"
-			.localized().capitalizedFirstLetter : currentQuestion.finalStep?.title
+        switch questionnaireManagerInstance.currentTestType {
+        case .insulinShots:
+            setupForInsulinShots()
+        case .pump:
+            if questionnaireManagerInstance.iLetPump {
+                setupForPumpWithIlet()
+            } else {
+                setupForPump()
+            }
+        }
 
-		titleLabel.textAlignment = .natural
+        updateReminderButtonTitle()
+    }
 
-		reminderView.layer.cornerRadius = 12
-		reminderButton.layer.cornerRadius = 12
+    // MARK: - Common UI Setup
+    private func setupCommonUI(currentQuestion: Questionnaire) {
+        titleLabel.font = .gothamRoundedBold20
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .natural
 
-		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
+        titleLabel.text = questionnaireManagerInstance.currentTestType == .insulinShots
+            ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
+            : currentQuestion.finalStep?.title
 
-		yesOver2hoursButton.layer.cornerRadius = 12
-		yesOver2hoursButton.layer.borderWidth = 0
-		yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
+        reminderView.layer.cornerRadius = 12
+        reminderButton.layer.cornerRadius = 12
+        doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
 
-		let yesOverText = questionnaireManagerInstance.iLetPump ?
-		"Yes, Over 90 mins" : "Yes, Over 2hrs"
+        yesOver2hoursButton.layer.cornerRadius = 12
+        yesOver2hoursButton.layer.borderWidth = 0
+        yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
 
-		giveRecommendedDoseLabel.setText(
-			"Final.GiveRecommendedDose.text".localized(),
-			boldPhrases: ["correction dose through", "pump site"]
-		)
+        let yesOverText = questionnaireManagerInstance.iLetPump
+            ? "Yes, Over 90 mins"
+            : "Yes, Over 2hrs"
+        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
 
-		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
+        giveRecommendedDoseLabel.setText(
+            "Final.GiveRecommendedDose.text".localized(),
+            boldPhrases: ["correction dose through", "pump site"]
+        )
 
-		if questionnaireManagerInstance.currentTestType == .pump {
+        hydrationExampleInfoTextView.setText(
+            "Final.HydrationExampleInfo.text".localized(),
+            boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
+        )
+    }
 
-			confirmChangeDisconnectLabel
-				.setText("Final.ConfirmPumpIsSecure.text".localized(), boldPhrases: ["pump site is securely connected"])
-			hopeImage.isHidden = true
+    // MARK: - Insulin Shots
+    private func setupForInsulinShots() {
+        confirmChangeDisconnectStackView.isHidden = true
+        giveRecommendedDoseStackView.isHidden = true
 
-//			flipHydrationAndReminder()
-		}
+        reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescription.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "2 hours"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheck.text".localized(),
+            boldPhrases: ["2 hours"]
+        )
+    }
 
-			// iLet Pump View Conditions
-		if questionnaireManagerInstance.iLetPump {
-			confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
+    // MARK: - Pump (Non-iLet)
+    private func setupForPump() {
+        confirmChangeDisconnectLabel.setText(
+            "Final.ConfirmPumpIsSecure.text".localized(),
+            boldPhrases: ["pump site is securely connected"]
+        )
+        hopeImage.isHidden = true
 
-			if questionnaireManagerInstance.bloodKetones ==
-				.moderate || (
-					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
-				) {
-				confirmChangeDisconnectLabel.setText("Final.ChangeIletPumpSite.text".localized(), boldPhrases: ["Change", "pump site"])
-				giveRecommendedDoseStackView.isHidden = true
-			} else if questionnaireManagerInstance.bloodKetones ==
-				.moderate || (
-					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
-				) {
-				confirmChangeDisconnectLabel.setText("Final.DisconnectIletPump.text".localized(), boldPhrases: ["Disconnect", "pump"])
+        reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescription.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "2 hours"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheck.text".localized(),
+            boldPhrases: ["2 hours"]
+        )
 
-				giveRecommendedDoseStackView.isHidden = false
+    //    flipHydrationAndReminder()
+    }
 
-				giveRecommendedDoseLabel.setText(
-					"Final.CalculateAndGiveCorrectionDose.text".localized(),
-					boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
-				)
-			}
+    // MARK: - Pump + iLet
+    private func setupForPumpWithIlet() {
+        confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
+        
+        confirmChangeDisconnectLabel.setText(
+            "Final.ConfirmPumpIsSecure.text".localized(),
+            boldPhrases: ["pump site is securely connected"]
+        )
 
-			reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
-			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-			reminderTimeCheckLabel.setText("Final.ReminderTimeCheckForIlet.text".localized(), boldPhrases: ["90 minutes"])
+        if questionnaireManagerInstance.bloodKetones == .moderate ||
+            (questionnaireManagerInstance.urineKetones == .zeroPointFive || questionnaireManagerInstance.urineKetones == .onePointFive ||
+             questionnaireManagerInstance.urineKetones == .four) {
 
-			hopeImage.isHidden = true
+            // Change iLet pump site
+            confirmChangeDisconnectLabel.setText(
+                "Final.ChangeIletPumpSite.text".localized(),
+                boldPhrases: ["Change", "pump site"]
+            )
+            giveRecommendedDoseStackView.isHidden = true
 
-//			flipHydrationAndReminder()
-		} else {
-			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        } else if questionnaireManagerInstance.bloodKetones == .large ||
+                    (questionnaireManagerInstance.urineKetones == .eight ||
+                     questionnaireManagerInstance.urineKetones == .sixteen) {
 
-			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-			reminderTimeCheckLabel.setText("Final.ReminderTimeCheck.text".localized(), boldPhrases: ["2 hours"])
-		}
+            // Disconnect iLet pump
+            confirmChangeDisconnectLabel.setText(
+                "Final.DisconnectIletPump.text".localized(),
+                boldPhrases: ["Disconnect", "pump"]
+            )
+            giveRecommendedDoseStackView.isHidden = false
 
-		if questionnaireManagerInstance.currentTestType == .insulinShots {
-			confirmChangeDisconnectStackView.isHidden = true
-			giveRecommendedDoseStackView.isHidden = true
-		}
+            giveRecommendedDoseLabel.setText(
+                "Final.CalculateAndGiveCorrectionDose.text".localized(),
+                boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
+            )
+        }
 
-		yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
+        reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescriptionForIlet.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "90 mins"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheckForIlet.text".localized(),
+            boldPhrases: ["90 minutes"]
+        )
+        hopeImage.isHidden = true
 
-		updateReminderButtonTitle()
-	}
+    //    flipHydrationAndReminder()
+    }
+
 
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)

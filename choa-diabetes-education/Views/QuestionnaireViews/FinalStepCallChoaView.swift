@@ -134,6 +134,18 @@ class FinalStepCallChoaView: UIView {
 		}
 	}
     
+    func setupILetPump() {
+        if questionnaireManager.yesOver2hours {
+            setupILetPumpRecheck()
+        } else {
+            
+        }
+    }
+    
+    func setupILetPumpRecheck() {
+        
+    }
+    
     func setupPumpRecheck() {
         if questionnaireManager.yesOver2hours && (questionnaireManager.urineKetones == .negative || questionnaireManager.bloodKetones == .low) {
             removePumpLabel
