@@ -101,8 +101,19 @@ class GetHelpViewController: UIViewController {
 			resetBackgroundColor()
 			finalStepWithReminderView?.cleanup()
             
-//            questionnaireManager.saveYesOver2hours(false)
-		}
+            // Check if we are popping back from FinalStepWithReminderView to TwoOptionsView
+            if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
+               let previousVC = navigationController?.viewControllers.last {
+                
+                // Check if the previous view controller has TwoOptionsView visible
+                if let getHelpVC = previousVC as? GetHelpViewController,
+                   !getHelpVC.twoOptionsView.isHidden {
+                    questionnaireManager.saveYesOver2hours(false)
+                    
+                    print("Reset yesOver2hours to false when popping to TwoOptionsView")
+                }
+            }
+        }
 	}
 
     
