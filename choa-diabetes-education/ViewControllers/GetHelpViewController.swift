@@ -100,6 +100,8 @@ class GetHelpViewController: UIViewController {
 		if isMovingFromParent {
 			resetBackgroundColor()
 			finalStepWithReminderView?.cleanup()
+            
+//            questionnaireManager.saveYesOver2hours(false)
 		}
 	}
 
@@ -149,31 +151,43 @@ class GetHelpViewController: UIViewController {
             openEndedQueView.delegate = self
             openEndedQueView.setupView(currentQuestion: questionObj, multiple: true)
         case .finalStep:
+            navigationItem.rightBarButtonItem = nil
+
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .finalStepNoDesc:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepNoDescView.isHidden = false
 			finalStepNoDescView.delegate = self
 			finalStepNoDescView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .finalStepWithDesc:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepWithDescView.isHidden = false
 			finalStepWithDescView.delegate = self
 			finalStepWithDescView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .firstEmergency:
+            navigationItem.rightBarButtonItem = nil
+
 			firstEmergencyView.isHidden = false
 			firstEmergencyView.delegate = self
 			firstEmergencyView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .callChoa:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepCallChoaView.isHidden = false
 			finalStepCallChoaView.delegate = self
 			finalStepCallChoaView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .callChoaEmergency:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepCallChoaEmergencyView.isHidden = false
 			finalStepCallChoaEmergencyView.delegate = self
 			finalStepCallChoaEmergencyView.setupView(currentQuestion: questionObj)

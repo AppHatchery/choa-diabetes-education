@@ -45,7 +45,8 @@ class FinalStepCallChoaView: UIView {
 
 	@IBOutlet var doneButton: UIButton!
 
-	private var currentQuestion: Questionnaire!
+	private let questionnaireManager = QuestionnaireManager.instance
+    private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepCallChoaViewProtocol?
 
 	weak var viewController: UIViewController?
@@ -122,7 +123,7 @@ class FinalStepCallChoaView: UIView {
 
 
 
-		if QuestionnaireManager.instance.currentTestType == .insulinShots {
+		if questionnaireManager.currentTestType == .insulinShots {
 			insulinPumpStackView.isHidden = true
 			injectionStackView.isHidden = false
 		} else {
@@ -134,7 +135,7 @@ class FinalStepCallChoaView: UIView {
 	}
     
     func setupPumpRecheck() {
-        if QuestionnaireManager.instance.yesOver2hours {
+        if questionnaireManager.yesOver2hours && (questionnaireManager.urineKetones == .negative || questionnaireManager.bloodKetones == .low) {
             removePumpLabel
                 .setText(
                     "Final.CallChoa.ChangePumpSite.text".localized(),
@@ -151,6 +152,11 @@ class FinalStepCallChoaView: UIView {
             correctionsStackView.isHidden = true
             switchBackStackView.isHidden = true
             stayHydratedStack.isHidden = true
+        } else {
+            replaceStackView.isHidden = false
+            correctionsStackView.isHidden = false
+            switchBackStackView.isHidden = false
+            stayHydratedStack.isHidden = false
         }
     }
 
