@@ -42,10 +42,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uks-JJ-022" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="40" width="353" height="542.5"/>
+                    <rect key="frame" x="20" y="40" width="353" height="576.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="47"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                             <attributedString key="attributedText">
                                 <fragment content="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd">
                                     <attributes>
@@ -58,16 +58,16 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DFd-k1-lXc" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="75" width="353" height="467.5"/>
+                            <rect key="frame" x="0.0" y="88" width="353" height="488.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YUM-TP-cjd">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="226.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="237"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7h9-kM-YCL" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="226.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="237"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctc-65-3hs">
-                                                    <rect key="frame" x="10" y="173" width="150.5" height="37.5"/>
+                                                    <rect key="frame" x="10" y="173" width="150.5" height="48"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Diabetic ketoacidosis (DKA)">
                                                             <attributes>
@@ -96,10 +96,10 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="may-qB-D4g" userLabel="Button View">
-                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="226.5"/>
+                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="237"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-xT-3eR">
-                                                    <rect key="frame" x="10" y="173" width="150.5" height="37.5"/>
+                                                    <rect key="frame" x="10" y="173" width="150.5" height="48"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -136,13 +136,13 @@
                                     </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ab8-Ho-LUK">
-                                    <rect key="frame" x="0.0" y="238.5" width="353" height="229"/>
+                                    <rect key="frame" x="0.0" y="249" width="353" height="239.5"/>
                                     <subviews>
                                         <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJQ-SA-R3j" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="239.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zi7-Jo-ghv">
-                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="37.5"/>
+                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="48"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -172,10 +172,10 @@
                                             </constraints>
                                         </view>
                                         <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2f-Yt-es7" userLabel="Button View">
-                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="229"/>
+                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="239.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIm-6s-wck">
-                                                    <rect key="frame" x="10" y="10" width="150.5" height="209"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="219.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -216,17 +216,10 @@
                                 <constraint firstAttribute="height" constant="48" id="pT8-Da-PNI"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="8" titleAlignment="center">
+                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Next" imagePadding="8" titleAlignment="center">
                                 <imageReference key="image" image="leftArrow" symbolScale="large"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                <attributedString key="attributedTitle">
-                                    <fragment content="Next">
-                                        <attributes>
-                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
-                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="ddz-is-5EO"/>

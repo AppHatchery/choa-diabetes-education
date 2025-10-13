@@ -19,7 +19,8 @@ class HomeViewController: UIViewController {
 	@IBOutlet var highSugarButton: UIButton!
 
 	@IBOutlet var getHelpView: UIView!
-	@IBOutlet var getHelpButton: UIButton!
+    @IBOutlet weak var getHelpViewImage: UIImageView!
+    @IBOutlet var getHelpButton: UIButton!
     
     @IBOutlet var resourceCards: [UIView]!
     
@@ -88,8 +89,10 @@ class HomeViewController: UIViewController {
 		highSugarButton.layer.cornerRadius = 12
 		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
-
+        
 		getHelpView.layer.cornerRadius = 12
+        getHelpView.clipsToBounds = true
+        getHelpViewImage.clipsToBounds = true
 		getHelpButton.layer.cornerRadius = 12
 		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
         
@@ -98,6 +101,15 @@ class HomeViewController: UIViewController {
         }
 
         addTapRecognizersToResourceCards()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Get Help Gradient
+        getHelpView.setGradientBackground(
+            colors: [.gradientRedColor, .gradientRedColor2]
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
