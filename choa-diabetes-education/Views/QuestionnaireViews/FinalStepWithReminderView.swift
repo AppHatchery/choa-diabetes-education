@@ -63,10 +63,21 @@ class FinalStepWithReminderView: UIView {
 	private var reminderIsActive = ReminderManager.shared.hasActiveReminder
 
 	private var countdownFinished: Bool = false
+    
+    private var isObservingNotifications = false
 
 	override func didMoveToWindow() {
 		super.didMoveToWindow()
 		if window != nil {
+            if !isObservingNotifications {
+                NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(handleReminderNotificationTapped),
+                    name: NSNotification.Name("ReminderNotificationTapped"),
+                    object: nil
+                )
+                isObservingNotifications = true
+            }
 				// View is being added to hierarchy - restore state
 			restoreReminderState()
 		} else {
@@ -75,6 +86,19 @@ class FinalStepWithReminderView: UIView {
 			countdownTimer = nil
 		}
 	}
+    
+    @objc private func handleReminderNotificationTapped(_ notification: Notification) {
+        guard let reminderId = notification.object as? String,
+              reminderId == currentReminderId else {
+            return
+        }
+        
+        print("🔔 Notification tapped while on reminder page")
+        
+        // Update UI to show "Time to Check" state
+        countdownFinished = true
+        updateViewsWhenCountdownFinished()
+    }
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -89,6 +113,9 @@ class FinalStepWithReminderView: UIView {
 	}
 
 	deinit {
+        if isObservingNotifications {
+            NotificationCenter.default.removeObserver(self)
+        }
 		cleanup()
 	}
 
@@ -129,6 +156,16 @@ class FinalStepWithReminderView: UIView {
             print("📱 Found persisted state, remaining: \(Int(remainingTime))s")
             if remainingTime > 0 {
                 // Restore from persisted state
+                if !isObservingNotifications {
+                    NotificationCenter.default.addObserver(
+                        self,
+                        selector: #selector(handleReminderNotificationTapped),
+                        name: NSNotification.Name("ReminderNotificationTapped"),
+                        object: nil
+                    )
+                    isObservingNotifications = true
+                }
+                
                 restoreReminderState()
             } else {
                 // Expired, clean up and show default
@@ -509,11 +546,11 @@ class FinalStepWithReminderView: UIView {
             
             ReminderPersistence.clearReminderState()
 		} else {
-			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 7200
+			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 30
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
-			let newReminderId = questionnaireManagerInstance.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
+            let newReminderId = questionnaireManagerInstance.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTestReminder()
 
 			currentReminderId = newReminderId
 
