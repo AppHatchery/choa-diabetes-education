@@ -62,7 +62,7 @@ class FiveOptionsView: UIView {
 		questionLabel.numberOfLines = 0
 		questionLabel.textColor = .headingGreenColor
 		questionLabel.text = currentQuestion.question
-        questionLabel.textAlignment = .justified
+        questionLabel.textAlignment = .left
 		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
 		optionButtonImages.forEach {

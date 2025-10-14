@@ -16,7 +16,8 @@ class FinalStepWithDescView: UIView {
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var hydrationExampleInfoTextView: UITextView!
+    @IBOutlet weak var exitButton: UIButton!
 	@IBOutlet var iLetPumpInfoStackView: UIStackView!
 
 	private var currentQuestion: Questionnaire!
@@ -54,14 +55,11 @@ class FinalStepWithDescView: UIView {
 		} else {
 			iLetPumpInfoStackView.isHidden = true
 		}
-
-
-		if currentQuestion.questionId == FinalQuestionId.shot.id {
-			doneButton.setTitle("Next", for: .normal)
-		} else {
-				// Understand if users click done and then have to come back through the calculator to review the insulin dose
-			doneButton.setTitle("Exit", for: .normal)
-		}
+        
+        hydrationExampleInfoTextView.setText(
+            "Final.HydrationExampleInfo.text".localized(),
+            boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
+        )
 	}
 
 	@IBAction func didTapExitButton(_ sender: UIButton) {

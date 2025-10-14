@@ -15,7 +15,7 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -483,317 +483,6 @@
             </objects>
             <point key="canvasLocation" x="4276" y="752"/>
         </scene>
-        <!--Calculator Edit View Controller-->
-        <scene sceneID="ewk-gr-Eqt">
-            <objects>
-                <viewController id="yNH-kq-64d" customClass="CalculatorEditViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="S24-0S-ZmT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-zZ-BTX">
-                                <rect key="frame" x="20" y="94" width="335" height="270"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="epf-ID-Gg8" userLabel="Carb Ratio Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="74"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XNc-yc-Ku5">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHE-xG-SsA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="141.5" height="18"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZE-2H-Mj2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="18"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="18" id="zLh-mo-lbY"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G55-oM-l8w">
-                                                                <rect key="frame" x="97" y="0.0" width="44.5" height="18"/>
-                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
-                                                                <connections>
-                                                                    <action selector="showCarbRatioInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="cOY-1g-Doj"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="15" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTr-5d-CaT">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
-                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
-                                                <color key="tintColor" name="choaGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="obf-q0-UFP"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-v7-yJB" userLabel="Total Blood Sugar Stack View">
-                                        <rect key="frame" x="0.0" y="98" width="335" height="74"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="UK3-8c-OOg">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YXN-RS-0vE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXz-o8-wak">
-                                                                <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-1l-N17">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="175.5" height="18"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="18" id="hGg-k4-YG0"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmM-mR-QMl">
-                                                                        <rect key="frame" x="175.5" y="0.0" width="44.5" height="18"/>
-                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
-                                                                        <connections>
-                                                                            <action selector="showTargetBloodSugarInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="ctl-p4-cDv"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="150" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEB-tW-LrJ">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
-                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
-                                                <color key="tintColor" name="choaGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="fOO-Xz-zvc"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-6S-yFL" userLabel="Correction Ratio Stack View">
-                                        <rect key="frame" x="0.0" y="196" width="335" height="74"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-Q2-yNV">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Q1a-eg-hZz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPS-Ai-bDB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="18"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160.5" height="18"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="18" id="Fef-wL-tru"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Ks-UI0">
-                                                                        <rect key="frame" x="160.5" y="0.0" width="44.5" height="18"/>
-                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
-                                                                        <connections>
-                                                                            <action selector="showCorrectionFactorInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="36C-b6-UTe"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-wf-eof">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
-                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
-                                                <color key="tintColor" name="choaGreenColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="dkp-SH-wKj"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
-                                <rect key="frame" x="20" y="533" width="335" height="114"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
-                                        <color key="backgroundColor" name="choaGreenColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="sRO-sY-CjQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                        <state key="normal" title="Next" image="leftArrow">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <buttonConfiguration key="configuration" style="plain" title="Save">
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="saveConstantsTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="bN4-2d-4Zf"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
-                                        <rect key="frame" x="0.0" y="66" width="335" height="48"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="bwX-nN-HlT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                        <state key="normal" title="Next" image="leftArrow">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <buttonConfiguration key="configuration" style="plain" title="Cancel">
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                            <color key="baseForegroundColor" name="choaGreenColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="cancelTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="csI-iW-bfk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="RBP-Ki-KVB"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="bottom" secondItem="PZ5-sG-E1L" secondAttribute="bottom" constant="20" id="Ew3-EH-A4D"/>
-                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="PZ5-sG-E1L" secondAttribute="trailing" constant="20" id="RJo-jo-w3l"/>
-                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="top" secondItem="RBP-Ki-KVB" secondAttribute="top" constant="20" id="TB0-6x-bjh"/>
-                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="O4s-zZ-BTX" secondAttribute="trailing" constant="20" id="Zfd-Ho-fzm"/>
-                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="elr-2i-7Ai"/>
-                            <constraint firstItem="PZ5-sG-E1L" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="npn-rN-2s8"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="21y-Lk-Htm"/>
-                    <connections>
-                        <outlet property="cancelButton" destination="jls-AL-oXU" id="Tva-Mr-HAq"/>
-                        <outlet property="carbRatioField" destination="WTr-5d-CaT" id="za2-eT-4Gw"/>
-                        <outlet property="correctionRatio" destination="oHK-wf-eof" id="m0l-ph-9kK"/>
-                        <outlet property="saveButton" destination="jHp-XQ-o5F" id="uaB-Pv-Bi5"/>
-                        <outlet property="targetBloodSugarField" destination="oEB-tW-LrJ" id="0Ix-Vl-7Ve"/>
-                        <outletCollection property="editTextFields" destination="WTr-5d-CaT" collectionClass="NSMutableArray" id="2pV-dA-inj"/>
-                        <outletCollection property="editTextFields" destination="oEB-tW-LrJ" collectionClass="NSMutableArray" id="Btk-pu-AZo"/>
-                        <outletCollection property="editTextFields" destination="oHK-wf-eof" collectionClass="NSMutableArray" id="zc0-QD-Ql3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVR-Tg-IWL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5422" y="1620"/>
-        </scene>
-        <!--Calculator Home View Controller-->
-        <scene sceneID="oxI-sp-8tg">
-            <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="GmT-0u-0WF" customClass="CalculatorHomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="qCT-qN-lfL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="zeH-06-LVj">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="368" id="Ygc-ha-bAD">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="368"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ygc-ha-bAD" id="NUq-Gx-t4g">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-main" translatesAutoresizingMaskIntoConstraints="NO" id="fTm-9K-AZz">
-                                                    <rect key="frame" x="-6.5" y="3" width="388" height="362"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="ggi-3a-Dmt"/>
-                                                        <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="lDb-AO-Rqd"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqk-74-1hp">
-                                                    <rect key="frame" x="16" y="89" width="211.5" height="24"/>
-                                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
-                                                    <color key="textColor" name="headingGreenColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="centerX" secondItem="NUq-Gx-t4g" secondAttribute="centerX" id="1ac-V4-54q"/>
-                                                <constraint firstItem="Eqk-74-1hp" firstAttribute="leading" secondItem="NUq-Gx-t4g" secondAttribute="leadingMargin" id="8ht-ow-E3g"/>
-                                                <constraint firstItem="Eqk-74-1hp" firstAttribute="top" secondItem="NUq-Gx-t4g" secondAttribute="topMargin" constant="74" id="Biq-3j-7GX"/>
-                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="top" secondItem="NUq-Gx-t4g" secondAttribute="topMargin" constant="-12" id="ClM-1B-8ap"/>
-                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="centerY" secondItem="NUq-Gx-t4g" secondAttribute="centerY" id="DUg-k2-Bvh"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Eqk-74-1hp" secondAttribute="trailing" constant="20" symbolic="YES" id="RUC-0U-RkA"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="akL-hN-bnS">
-                                        <rect key="frame" x="0.0" y="418" width="375" height="98"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="akL-hN-bnS" id="d2m-Vz-5o4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axb-xY-mi6">
-                                                    <rect key="frame" x="27.5" y="11.5" width="320" height="75"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="320" id="P6f-ZH-gWE"/>
-                                                        <constraint firstAttribute="height" constant="75" id="xX7-Ab-HPd"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="High Blood Sugar" imagePadding="20">
-                                                        <backgroundConfiguration key="background" cornerRadius="15"/>
-                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
-                                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
-                                                        <color key="baseForegroundColor" name="headingGreenColor"/>
-                                                        <color key="baseBackgroundColor" name="backgroundColor"/>
-                                                    </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="calculateBloodSugarWithSymptoms:" destination="GmT-0u-0WF" eventType="touchUpInside" id="A28-ys-pyz"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Axb-xY-mi6" firstAttribute="centerY" secondItem="d2m-Vz-5o4" secondAttribute="centerY" id="88s-uK-w0n"/>
-                                                <constraint firstItem="Axb-xY-mi6" firstAttribute="centerX" secondItem="d2m-Vz-5o4" secondAttribute="centerX" id="BSn-Fl-Azx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="GmT-0u-0WF" id="T3v-ki-sGF"/>
-                            <outlet property="delegate" destination="GmT-0u-0WF" id="rwx-DW-9q3"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="wcp-fG-IwP"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7xJ-Hs-sBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2390" y="1805"/>
-        </scene>
         <!--CalculatorB View Controller-->
         <scene sceneID="dDD-Y0-FYK">
             <objects>
@@ -1036,8 +725,8 @@
                                             <constraint firstAttribute="trailing" secondItem="nBO-pm-9pW" secondAttribute="trailing" id="hKd-cO-gy8"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
-                                        <rect key="frame" x="20" y="397" width="335" height="196"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
+                                        <rect key="frame" x="20" y="400.5" width="335" height="192.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejV-h9-hQY" userLabel="Results View">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="108"/>
@@ -1090,10 +779,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-3M-GRB" userLabel="Error View">
-                                                <rect key="frame" x="0.0" y="118" width="335" height="20"/>
+                                                <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1105,12 +794,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="VDM-Ze-XZ1" secondAttribute="trailing" id="QPD-gV-xyz"/>
                                                     <constraint firstAttribute="bottom" secondItem="VDM-Ze-XZ1" secondAttribute="bottom" id="S1h-7s-EDI"/>
                                                     <constraint firstItem="VDM-Ze-XZ1" firstAttribute="leading" secondItem="5LM-3M-GRB" secondAttribute="leading" id="ivw-gQ-GBn"/>
-                                                    <constraint firstAttribute="height" constant="20" id="oi4-Ao-plm"/>
+                                                    <constraint firstAttribute="height" constant="16.5" id="oi4-Ao-plm"/>
                                                     <constraint firstItem="VDM-Ze-XZ1" firstAttribute="top" secondItem="5LM-3M-GRB" secondAttribute="top" id="zTf-4A-4J1"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
-                                                <rect key="frame" x="0.0" y="148" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
@@ -1435,6 +1124,317 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kt-83-i3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5422" y="9"/>
+        </scene>
+        <!--Calculator Edit View Controller-->
+        <scene sceneID="ewk-gr-Eqt">
+            <objects>
+                <viewController id="yNH-kq-64d" customClass="CalculatorEditViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S24-0S-ZmT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-zZ-BTX">
+                                <rect key="frame" x="20" y="94" width="335" height="270"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="epf-ID-Gg8" userLabel="Carb Ratio Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="74"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XNc-yc-Ku5">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHE-xG-SsA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="141.5" height="18"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZE-2H-Mj2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="18"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="18" id="zLh-mo-lbY"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G55-oM-l8w">
+                                                                <rect key="frame" x="97" y="0.0" width="44.5" height="18"/>
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                <connections>
+                                                                    <action selector="showCarbRatioInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="cOY-1g-Doj"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="15" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTr-5d-CaT">
+                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
+                                                <color key="tintColor" name="choaGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="obf-q0-UFP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-v7-yJB" userLabel="Total Blood Sugar Stack View">
+                                        <rect key="frame" x="0.0" y="98" width="335" height="74"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="UK3-8c-OOg">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YXN-RS-0vE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXz-o8-wak">
+                                                                <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-1l-N17">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="175.5" height="18"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="18" id="hGg-k4-YG0"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmM-mR-QMl">
+                                                                        <rect key="frame" x="175.5" y="0.0" width="44.5" height="18"/>
+                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showTargetBloodSugarInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="ctl-p4-cDv"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="150" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEB-tW-LrJ">
+                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
+                                                <color key="tintColor" name="choaGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="fOO-Xz-zvc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-6S-yFL" userLabel="Correction Ratio Stack View">
+                                        <rect key="frame" x="0.0" y="196" width="335" height="74"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-Q2-yNV">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Q1a-eg-hZz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPS-Ai-bDB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="18"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="160.5" height="18"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="18" id="Fef-wL-tru"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Ks-UI0">
+                                                                        <rect key="frame" x="160.5" y="0.0" width="44.5" height="18"/>
+                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showCorrectionFactorInfo:" destination="yNH-kq-64d" eventType="touchUpInside" id="36C-b6-UTe"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-wf-eof">
+                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <color key="backgroundColor" name="textFieldBackgroundColor"/>
+                                                <color key="tintColor" name="choaGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="dkp-SH-wKj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
+                                <rect key="frame" x="20" y="533" width="335" height="114"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                        <color key="backgroundColor" name="choaGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="sRO-sY-CjQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="leftArrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="Save">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveConstantsTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="bN4-2d-4Zf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
+                                        <rect key="frame" x="0.0" y="66" width="335" height="48"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bwX-nN-HlT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="leftArrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cancel">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" name="choaGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="cancelTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="csI-iW-bfk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RBP-Ki-KVB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="bottom" secondItem="PZ5-sG-E1L" secondAttribute="bottom" constant="20" id="Ew3-EH-A4D"/>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="PZ5-sG-E1L" secondAttribute="trailing" constant="20" id="RJo-jo-w3l"/>
+                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="top" secondItem="RBP-Ki-KVB" secondAttribute="top" constant="20" id="TB0-6x-bjh"/>
+                            <constraint firstItem="RBP-Ki-KVB" firstAttribute="trailing" secondItem="O4s-zZ-BTX" secondAttribute="trailing" constant="20" id="Zfd-Ho-fzm"/>
+                            <constraint firstItem="O4s-zZ-BTX" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="elr-2i-7Ai"/>
+                            <constraint firstItem="PZ5-sG-E1L" firstAttribute="leading" secondItem="RBP-Ki-KVB" secondAttribute="leading" constant="20" id="npn-rN-2s8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="21y-Lk-Htm"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="jls-AL-oXU" id="Tva-Mr-HAq"/>
+                        <outlet property="carbRatioField" destination="WTr-5d-CaT" id="za2-eT-4Gw"/>
+                        <outlet property="correctionRatio" destination="oHK-wf-eof" id="m0l-ph-9kK"/>
+                        <outlet property="saveButton" destination="jHp-XQ-o5F" id="uaB-Pv-Bi5"/>
+                        <outlet property="targetBloodSugarField" destination="oEB-tW-LrJ" id="0Ix-Vl-7Ve"/>
+                        <outletCollection property="editTextFields" destination="WTr-5d-CaT" collectionClass="NSMutableArray" id="2pV-dA-inj"/>
+                        <outletCollection property="editTextFields" destination="oEB-tW-LrJ" collectionClass="NSMutableArray" id="Btk-pu-AZo"/>
+                        <outletCollection property="editTextFields" destination="oHK-wf-eof" collectionClass="NSMutableArray" id="zc0-QD-Ql3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVR-Tg-IWL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5422" y="1620"/>
+        </scene>
+        <!--Calculator Home View Controller-->
+        <scene sceneID="oxI-sp-8tg">
+            <objects>
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="GmT-0u-0WF" customClass="CalculatorHomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="qCT-qN-lfL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="zeH-06-LVj">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="368" id="Ygc-ha-bAD">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="368"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ygc-ha-bAD" id="NUq-Gx-t4g">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calculator-main" translatesAutoresizingMaskIntoConstraints="NO" id="fTm-9K-AZz">
+                                                    <rect key="frame" x="-6.5" y="3" width="388" height="362"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="ggi-3a-Dmt"/>
+                                                        <constraint firstAttribute="width" secondItem="fTm-9K-AZz" secondAttribute="height" multiplier="207:193" id="lDb-AO-Rqd"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqk-74-1hp">
+                                                    <rect key="frame" x="16" y="89" width="211.5" height="24"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                                                    <color key="textColor" name="headingGreenColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="centerX" secondItem="NUq-Gx-t4g" secondAttribute="centerX" id="1ac-V4-54q"/>
+                                                <constraint firstItem="Eqk-74-1hp" firstAttribute="leading" secondItem="NUq-Gx-t4g" secondAttribute="leadingMargin" id="8ht-ow-E3g"/>
+                                                <constraint firstItem="Eqk-74-1hp" firstAttribute="top" secondItem="NUq-Gx-t4g" secondAttribute="topMargin" constant="74" id="Biq-3j-7GX"/>
+                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="top" secondItem="NUq-Gx-t4g" secondAttribute="topMargin" constant="-12" id="ClM-1B-8ap"/>
+                                                <constraint firstItem="fTm-9K-AZz" firstAttribute="centerY" secondItem="NUq-Gx-t4g" secondAttribute="centerY" id="DUg-k2-Bvh"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Eqk-74-1hp" secondAttribute="trailing" constant="20" symbolic="YES" id="RUC-0U-RkA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="akL-hN-bnS">
+                                        <rect key="frame" x="0.0" y="418" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="akL-hN-bnS" id="d2m-Vz-5o4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axb-xY-mi6">
+                                                    <rect key="frame" x="27.5" y="11.5" width="320" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="P6f-ZH-gWE"/>
+                                                        <constraint firstAttribute="height" constant="75" id="xX7-Ab-HPd"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="High Blood Sugar" imagePadding="20">
+                                                        <backgroundConfiguration key="background" cornerRadius="15"/>
+                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
+                                                        <color key="baseForegroundColor" name="headingGreenColor"/>
+                                                        <color key="baseBackgroundColor" name="backgroundColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="calculateBloodSugarWithSymptoms:" destination="GmT-0u-0WF" eventType="touchUpInside" id="A28-ys-pyz"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Axb-xY-mi6" firstAttribute="centerY" secondItem="d2m-Vz-5o4" secondAttribute="centerY" id="88s-uK-w0n"/>
+                                                <constraint firstItem="Axb-xY-mi6" firstAttribute="centerX" secondItem="d2m-Vz-5o4" secondAttribute="centerX" id="BSn-Fl-Azx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="GmT-0u-0WF" id="T3v-ki-sGF"/>
+                            <outlet property="delegate" destination="GmT-0u-0WF" id="rwx-DW-9q3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wcp-fG-IwP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7xJ-Hs-sBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2390" y="1805"/>
         </scene>
         <!--Calculator-->
         <scene sceneID="9RL-pR-5Ri">
@@ -1820,9 +1820,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aTD-Ou-0iR"/>
+        <segue reference="hEr-41-Qe8"/>
+        <segue reference="Ipa-CJ-Loq"/>
         <segue reference="v97-e6-biO"/>
-        <segue reference="coK-uS-kQN"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>
     <resources>

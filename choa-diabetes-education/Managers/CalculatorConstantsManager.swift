@@ -21,9 +21,9 @@ class CalculatorConstantsManager {
     }
     
     // Carb Ratio
-    var carbRatio: Float {
+    var carbRatio: Int {
         get {
-            return UserDefaults.standard.float(forKey: Keys.carbRatio)
+            return UserDefaults.standard.integer(forKey: Keys.carbRatio)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.carbRatio)
@@ -32,9 +32,9 @@ class CalculatorConstantsManager {
     }
     
     // Target Blood Sugar
-    var targetBloodSugar: Float {
+    var targetBloodSugar: Int {
         get {
-            return UserDefaults.standard.float(forKey: Keys.targetBloodSugar)
+            return UserDefaults.standard.integer(forKey: Keys.targetBloodSugar)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.targetBloodSugar)
@@ -43,9 +43,9 @@ class CalculatorConstantsManager {
     }
     
     // Correction Factor
-    var correctionFactor: Float {
+    var correctionFactor: Int {
         get {
-            return UserDefaults.standard.float(forKey: Keys.correctionFactor)
+            return UserDefaults.standard.integer(forKey: Keys.correctionFactor)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.correctionFactor)
@@ -60,7 +60,7 @@ class CalculatorConstantsManager {
     }
     
     // Save all constants at once
-    func saveConstants(carbRatio: Float, targetBloodSugar: Float, correctionFactor: Float) {
+    func saveConstants(carbRatio: Int, targetBloodSugar: Int, correctionFactor: Int) {
         self.carbRatio = carbRatio
         self.targetBloodSugar = targetBloodSugar
         self.correctionFactor = correctionFactor
@@ -75,7 +75,7 @@ class CalculatorConstantsManager {
     }
     
     // Get constants as tuple
-    func getConstants() -> (carbRatio: Float, targetBloodSugar: Float, correctionFactor: Float) {
+    func getConstants() -> (carbRatio: Int, targetBloodSugar: Int, correctionFactor: Int) {
         return (carbRatio, targetBloodSugar, correctionFactor)
     }
 }

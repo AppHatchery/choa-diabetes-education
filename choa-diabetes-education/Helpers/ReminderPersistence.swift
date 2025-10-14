@@ -31,6 +31,7 @@ class ReminderPersistence {
         let cgm: Bool
         let bloodSugar: Int
         let correctionFactor: Int
+        let reminderPageVisitCount: Int
     }
     
     /// Save the current reminder and questionnaire state
@@ -38,7 +39,7 @@ class ReminderPersistence {
         reminderId: String,
         scheduledTime: Date,
         questionId: Int,
-        manager: QuestionnaireManager
+        manager: QuestionnaireManager,
     ) {
         let state = ReminderState(
             reminderId: reminderId,
@@ -87,7 +88,8 @@ class ReminderPersistence {
             yesOver2hours: manager.yesOver2hours,
             cgm: manager.cgm,
             bloodSugar: manager.bloodSugar,
-            correctionFactor: manager.correctionFactor
+            correctionFactor: manager.correctionFactor,
+            reminderPageVisitCount: manager.getReminderPageVisitCount(),
         )
         
         if let encoded = try? JSONEncoder().encode(state) {

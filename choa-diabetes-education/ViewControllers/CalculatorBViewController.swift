@@ -32,11 +32,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     
     let infoPopup = InfoPopUpViewController()
     
-    var totalCarbs: Float = 0
-    var bloodSugar: Float = 0
-    var targetBloodSugar: Float = 0
-    var carbRatio: Float = 0
-    var correctionFactor: Float = 0
+    var totalCarbs: Int = 0
+    var bloodSugar: Int = 0
+    var targetBloodSugar: Int = 0
+    var carbRatio: Int = 0
+    var correctionFactor: Int = 0
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
@@ -69,8 +69,21 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        
+        var config = UIButton.Configuration.plain()
+        config.title = "Edit"
+        config.image = UIImage(named: "edit_pencil")
+
+        config.imagePlacement = .trailing
+        config.imagePadding = 2
+
+        // Remove default padding
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+            self?.editButtonTapped()
+        })
+
+        let editButton = UIBarButtonItem(customView: button)
         navigationItem.rightBarButtonItem = editButton
 
         
@@ -155,7 +168,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
         switch textField.tag {
         case 0:
-            bloodSugar = Float(textField.text ?? "0") ?? 0
+            bloodSugar = Int(textField.text ?? "0") ?? 0
             print(bloodSugar)
             if bloodSugar < constantsManager.targetBloodSugar && bloodSugar != 0 {
                 bloodSugarField.textColor = UIColor.orangeTextColor
@@ -174,13 +187,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 //            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
         case 1:
-            targetBloodSugar = Float(textField.text ?? "0") ?? 0
+            targetBloodSugar = Int(textField.text ?? "0") ?? 0
             print(targetBloodSugar)
 //            targetBloodSugarLine.backgroundColor = .black
             targetBloodSugarLabel.textColor = .black
 //            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
         case 2:
-            correctionFactor = Float(textField.text ?? "0") ?? 0
+            correctionFactor = Int(textField.text ?? "0") ?? 0
             print(correctionFactor)
 //            correctionFactorLine.backgroundColor = .black
             correctionFactorLabel.textColor = .black
@@ -327,8 +340,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculateFoodInsulin()
     }
     
-    func roundToOneDecimal(value: Float)-> Float {
-        return (round(value*10)/10.0)
+    func roundDownToNearestHalf(value: Float) -> Float {
+        let integerPart = floor(value)
+        let decimalPart = value - integerPart
+
+        if decimalPart >= 0.5 {
+            return integerPart + 0.5
+        } else {
+            return integerPart
+        }
     }
     
     func calculateFoodInsulin() {
@@ -362,15 +382,19 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             var bloodInsulin: Float = 0.0
 
             if insulinForHighBloodSugarBoolean && currentBloodSugar >= constantsManager.targetBloodSugar {
-                bloodInsulin = roundToOneDecimal(
-                    value: (currentBloodSugar - currentTargetBloodSugar) / currentCorrectionFactor
+                bloodInsulin = roundDownToNearestHalf(
+                    value: Float(
+                        (
+                            currentBloodSugar - currentTargetBloodSugar
+                        ) / currentCorrectionFactor
+                    )
                 )
 
                 bloodSugarLine.backgroundColor = .primaryBlue
                 bloodSugarLabel.textColor = .primaryBlue
                 bloodSugarField.textColor = .primaryBlue
 
-                insulinForHighBloodSugar.text = "\(bloodInsulin) units"
+                insulinForHighBloodSugar.text = "\(bloodInsulin.cleanString) units"
                 insulinForHighBloodSugar.font = .gothamRoundedMedium32
                 insulinForHighBloodSugar.textColor = .primaryBlue
             } else {

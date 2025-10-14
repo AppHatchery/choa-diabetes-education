@@ -54,6 +54,16 @@ class GetHelpViewController: UIViewController {
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Track reminder page visits for iLet pump users
+        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
+           questionnaireManager.iLetPump {
+            questionnaireManager.incrementReminderPageVisitCount()
+        }
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -466,8 +476,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	@objc func didSelectExitAction() {
-        ReminderPersistence.clearReminderState()
-        ReminderManager.shared.cancelAllReminders()
+//        ReminderPersistence.clearReminderState()
+//        ReminderManager.shared.cancelAllReminders()
             
 		QuestionnaireManager.resetInstance()
 		self.navVC.popToRootViewController(animated: true)

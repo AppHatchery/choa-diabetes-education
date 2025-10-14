@@ -28,8 +28,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     
-    var totalCarbs: Float = 0
-    var carbRatio: Float = 0
+    var totalCarbs: Int = 0
+    var carbRatio: Int = 0
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = true
     
@@ -62,8 +62,21 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        
+        var config = UIButton.Configuration.plain()
+        config.title = "Edit"
+        config.image = UIImage(named: "edit_pencil")
+
+        config.imagePlacement = .trailing
+        config.imagePadding = 2
+
+        // Remove default padding
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+            self?.editButtonTapped()
+        })
+
+        let editButton = UIBarButtonItem(customView: button)
         navigationItem.rightBarButtonItem = editButton
         
         for txtField in textFieldCollection {
@@ -164,13 +177,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         switch textField.tag {
         case 0:
-            totalCarbs = Float(textField.text ?? "0") ?? 0
+            totalCarbs = Int(textField.text ?? "0") ?? 0
             print(totalCarbs)
             carbLine.backgroundColor = .primaryBlue
 //            toggleError(state: false, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "")
             carbLine.tintColor = UIColor.errorRedColor
         case 1:
-            carbRatio = Float(textField.text ?? "0") ?? 0
+            carbRatio = Int(textField.text ?? "0") ?? 0
             print(carbRatio)
             carbRatioLabel.textColor = .black
 //            toggleError(state: false, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "")
@@ -255,12 +268,19 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         calculateFoodInsulin()
     }
     
-    func roundToOneDecimal(value: Float)-> Float {
-        return (round(value*10)/10.0)
+    func roundDownToNearestHalf(value: Float) -> Float {
+        let integerPart = floor(value)
+        let decimalPart = value - integerPart
+
+        if decimalPart >= 0.5 {
+            return integerPart + 0.5
+        } else {
+            return integerPart
+        }
     }
     
     func calculateFoodInsulin() {
-        var currentTotalCarbs = totalCarbs
+        let currentTotalCarbs = totalCarbs
         var currentCarbRatio = carbRatio
 
         // If carb ratio is not entered manually, try to load from stored constants
@@ -280,8 +300,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 
             if insulinForFoodBoolean {
-                let foodInsulin = roundToOneDecimal(value: currentTotalCarbs / currentCarbRatio)
-                insulinForFood.text = "\(foodInsulin) units"
+                let foodInsulin = roundDownToNearestHalf(
+                    value: Float(currentTotalCarbs) / Float(currentCarbRatio)
+                )
+                
+                insulinForFood.text = "\(foodInsulin.cleanString) units"
             }
 
             totalCarbsField.textColor = .primaryBlue

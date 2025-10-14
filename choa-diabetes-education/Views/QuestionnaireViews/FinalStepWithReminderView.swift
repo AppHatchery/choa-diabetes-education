@@ -49,7 +49,7 @@ class FinalStepWithReminderView: UIView {
 
 	private var currentQuestion: Questionnaire!
 
-	private let questionnaireManagerInstance: QuestionnaireManager = QuestionnaireManager.instance
+	private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
 
 	weak var delegate: FinalStepWithReminderViewProtocol?
 
@@ -136,11 +136,11 @@ class FinalStepWithReminderView: UIView {
         self.currentQuestion = currentQuestion
         setupCommonUI(currentQuestion: currentQuestion)
 
-        switch questionnaireManagerInstance.currentTestType {
+        switch questionnaireManager.currentTestType {
         case .insulinShots:
             setupForInsulinShots()
         case .pump:
-            if questionnaireManagerInstance.iLetPump {
+            if questionnaireManager.iLetPump {
                 setupForPumpWithIlet()
             } else {
                 setupForPump()
@@ -189,7 +189,7 @@ class FinalStepWithReminderView: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .natural
 
-        titleLabel.text = questionnaireManagerInstance.currentTestType == .insulinShots
+        titleLabel.text = questionnaireManager.currentTestType == .insulinShots
             ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
             : currentQuestion.finalStep?.title
 
@@ -201,7 +201,7 @@ class FinalStepWithReminderView: UIView {
         yesOver2hoursButton.layer.borderWidth = 0
         yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
 
-        let yesOverText = questionnaireManagerInstance.iLetPump
+        let yesOverText = questionnaireManager.iLetPump
             ? "Yes, Over 90 mins"
             : "Yes, Over 2hrs"
         yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
@@ -256,6 +256,9 @@ class FinalStepWithReminderView: UIView {
 
     // MARK: - Pump + iLet
     private func setupForPumpWithIlet() {
+        let visitCount = questionnaireManager.getReminderPageVisitCount()
+        print("User has visited reminder page \(visitCount) times")
+        
         confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
         
         confirmChangeDisconnectLabel.setText(
@@ -263,9 +266,9 @@ class FinalStepWithReminderView: UIView {
             boldPhrases: ["pump site is securely connected"]
         )
 
-        if questionnaireManagerInstance.bloodKetones == .moderate ||
-            (questionnaireManagerInstance.urineKetones == .zeroPointFive || questionnaireManagerInstance.urineKetones == .onePointFive ||
-             questionnaireManagerInstance.urineKetones == .four) {
+        if questionnaireManager.bloodKetones == .moderate ||
+            (questionnaireManager.urineKetones == .zeroPointFive || questionnaireManager.urineKetones == .onePointFive ||
+             questionnaireManager.urineKetones == .four) {
 
             // Change iLet pump site
             confirmChangeDisconnectLabel.setText(
@@ -274,9 +277,9 @@ class FinalStepWithReminderView: UIView {
             )
             giveRecommendedDoseStackView.isHidden = true
 
-        } else if questionnaireManagerInstance.bloodKetones == .large ||
-                    (questionnaireManagerInstance.urineKetones == .eight ||
-                     questionnaireManagerInstance.urineKetones == .sixteen) {
+        } else if questionnaireManager.bloodKetones == .large ||
+                    (questionnaireManager.urineKetones == .eight ||
+                     questionnaireManager.urineKetones == .sixteen) || questionnaireManager.getReminderPageVisitCount() > 2 {
 
             // Disconnect iLet pump
             confirmChangeDisconnectLabel.setText(
@@ -334,7 +337,7 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.textColor = .black
 			reminderNextCheckDescriptionLabel.font = .gothamRoundedMedium20
 		} else {
-			if questionnaireManagerInstance.iLetPump {
+			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
 
 				reminderNextCheckDescriptionLabel.textColor = .black
@@ -496,7 +499,7 @@ class FinalStepWithReminderView: UIView {
 				self.currentReminderId = nil
 				self.updateViewsWhenCountdownFinished()
 				self.countdownFinished = true
-				questionnaireManagerInstance.clearActiveReminder()
+				questionnaireManager.clearActiveReminder()
 			} else {
 				self.updateReminderViewsWithCountdown(remainingSeconds)
 			}
@@ -506,7 +509,7 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-			questionnaireManagerInstance.saveYesOver2hours(true)
+			questionnaireManager.saveYesOver2hours(true)
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
 
@@ -515,7 +518,7 @@ class FinalStepWithReminderView: UIView {
 			updateReminderButtonTitle()
 			countdownTimer?.invalidate()
 			countdownTimer = nil
-			questionnaireManagerInstance.clearActiveReminder()
+			questionnaireManager.clearActiveReminder()
 			ReminderManager.shared.cancelAllReminders()
             
             ReminderPersistence.clearReminderState()
@@ -534,34 +537,34 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.font = .systemFont(ofSize: 14)
 			reminderNextCheckDescriptionLabel.textColor = .black
 
-			if questionnaireManagerInstance.iLetPump {
+			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
 			} else {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
 			}
 
-			questionnaireManagerInstance.saveYesOver2hours(true)
+			questionnaireManager.saveYesOver2hours(true)
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
             
             ReminderPersistence.clearReminderState()
 		} else {
-			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 30
+			let duration: TimeInterval = questionnaireManager.iLetPump ? 5400 : 7200
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
-            let newReminderId = questionnaireManagerInstance.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTestReminder()
+            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 
-			questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+			questionnaireManager.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
             
             // Save reminder state to persist across app restarts
             ReminderPersistence.saveReminderState(
                 reminderId: newReminderId,
                 scheduledTime: scheduledTime,
                 questionId: currentQuestion.questionId,
-                manager: questionnaireManagerInstance
+                manager: questionnaireManager
             )
 
 			startCountdownTimer(with: Int(duration))
@@ -570,7 +573,7 @@ class FinalStepWithReminderView: UIView {
 
 
 	@IBAction func yesOverButtonTapped(_ sender: Any) {
-		questionnaireManagerInstance.saveYesOver2hours(true)
+		questionnaireManager.saveYesOver2hours(true)
         ReminderPersistence.clearReminderState()
 		delegate?.didSelectYesOverAction(
 			currentQuestion)
@@ -587,7 +590,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 
 //		showAlert(
 //			title: "Reminder Set",
-//			message: questionnaireManagerInstance.iLetPump ? "You'll get a notification in 90 minutes to recheck your blood sugar and ketones." : "You'll get a notification in 2 hours to recheck your blood sugar and ketones."
+//			message: questionnaireManager.iLetPump ? "You'll get a notification in 90 minutes to recheck your blood sugar and ketones." : "You'll get a notification in 2 hours to recheck your blood sugar and ketones."
 //		)
 	}
 
@@ -603,7 +606,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
 		reminderIsActive = false
 	}
 
@@ -613,7 +616,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
         ReminderPersistence.clearReminderState()
 
 		showAlert(
@@ -628,7 +631,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
         ReminderPersistence.clearReminderState()
 
 		showAlert(

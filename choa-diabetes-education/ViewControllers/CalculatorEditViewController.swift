@@ -142,9 +142,9 @@ class CalculatorEditViewController: UIViewController {
             return
         }
         
-        let carbRatio = Float(carbRatioText) ?? 0
-        let targetBloodSugar = Float(targetBloodSugarText) ?? 0
-        let correctionFactor = Float(correctionFactorText) ?? 0
+        let carbRatio = Int(carbRatioText) ?? 0
+        let targetBloodSugar = Int(targetBloodSugarText) ?? 0
+        let correctionFactor = Int(correctionFactorText) ?? 0
         
         guard carbRatio > 0 && targetBloodSugar > 0 && correctionFactor > 0 else {
             showAlert(title: "Invalid Values", message: "Please enter valid positive numbers for all fields.")

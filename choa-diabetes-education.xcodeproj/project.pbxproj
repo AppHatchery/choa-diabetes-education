@@ -17,6 +17,7 @@
 		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
 		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
 		B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */; };
+		B42E24332E9EC45E002ACFF6 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */; };
 		B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */; };
 		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
 		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
@@ -220,6 +221,7 @@
 		B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEmergencyView.xib; sourceTree = "<group>"; };
 		B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutKetoneMeasurementsViewController.swift; sourceTree = "<group>"; };
 		B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutKetoneMeasurementsView.storyboard; sourceTree = "<group>"; };
+		B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extensions.swift"; sourceTree = "<group>"; };
 		B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
 		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 		D48D890A289C007D001A61E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */,
 				D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */,
 				D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */,
 				D481679C28ABE1F4003B14A3 /* UILabel+Extensions.swift */,
@@ -1100,6 +1103,7 @@
 				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
+				B42E24332E9EC45E002ACFF6 /* Float+Extensions.swift in Sources */,
 				B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
