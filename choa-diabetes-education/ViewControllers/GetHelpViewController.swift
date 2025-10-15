@@ -54,6 +54,16 @@ class GetHelpViewController: UIViewController {
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Track reminder page visits for iLet pump users
+        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
+           questionnaireManager.iLetPump {
+            questionnaireManager.incrementReminderPageVisitCount()
+        }
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -100,7 +110,20 @@ class GetHelpViewController: UIViewController {
 		if isMovingFromParent {
 			resetBackgroundColor()
 			finalStepWithReminderView?.cleanup()
-		}
+            
+            // Check if we are popping back from FinalStepWithReminderView to TwoOptionsView
+            if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
+               let previousVC = navigationController?.viewControllers.last {
+                
+                // Check if the previous view controller has TwoOptionsView visible
+                if let getHelpVC = previousVC as? GetHelpViewController,
+                   !getHelpVC.twoOptionsView.isHidden {
+                    questionnaireManager.saveYesOver2hours(false)
+                    
+                    print("Reset yesOver2hours to false when popping to TwoOptionsView")
+                }
+            }
+        }
 	}
 
     
@@ -149,31 +172,43 @@ class GetHelpViewController: UIViewController {
             openEndedQueView.delegate = self
             openEndedQueView.setupView(currentQuestion: questionObj, multiple: true)
         case .finalStep:
+            navigationItem.rightBarButtonItem = nil
+
             finalStepView.isHidden = false
             finalStepView.delegate = self
             finalStepView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .finalStepNoDesc:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepNoDescView.isHidden = false
 			finalStepNoDescView.delegate = self
 			finalStepNoDescView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .finalStepWithDesc:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepWithDescView.isHidden = false
 			finalStepWithDescView.delegate = self
 			finalStepWithDescView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .firstEmergency:
+            navigationItem.rightBarButtonItem = nil
+
 			firstEmergencyView.isHidden = false
 			firstEmergencyView.delegate = self
 			firstEmergencyView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .callChoa:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepCallChoaView.isHidden = false
 			finalStepCallChoaView.delegate = self
 			finalStepCallChoaView.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
 		case .callChoaEmergency:
+            navigationItem.rightBarButtonItem = nil
+
 			finalStepCallChoaEmergencyView.isHidden = false
 			finalStepCallChoaEmergencyView.delegate = self
 			finalStepCallChoaEmergencyView.setupView(currentQuestion: questionObj)
@@ -291,22 +326,39 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 	}
 
 		// For checking if blood sugar is over 300 for 3 hours or 90 minutes (for iLet Pump)
-	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
+    func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: YesOrNo, followUpAnswer: YesOrNo?) {
+        
+        switch selectedAnswer {
+        case .yes:
+            self.questionnaireManager.saveBloodSugarOver300(true)
+            if let followUp = followUpAnswer {
+                switch followUp {
+                case .yes:
+                    self.questionnaireManager.saveBloodSugarOver300For3Hours(true)
+                    print("Saved: over 300 for 3 hours = TRUE")
+                case .no:
+                    self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+                    print("Saved: over 300 for 3 hours = FALSE")
+                }
+            } else {
+                print("🔍 WARNING: followUpAnswer is nil!")
+            }
+            self.questionnaireManager.triggerYesActionFlow(currentQuestion)
+        case .no:
+            self.questionnaireManager.saveBloodSugarOver300(false)
+            self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+            print("🔍 Saved: both FALSE")
+            self.questionnaireManager.triggerNoActionFlow(currentQuestion)
 
-		switch selectedAnswer {
-		case .yes:
-			questionnaireManager.saveBloodSugarOver300For3Hours(true)
-		case .no:
-			questionnaireManager.saveBloodSugarOver300For3Hours(false)
-		}
-	}
+        }
+    }
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?) {
 
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
+            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerUrineKetoneForILetActionFlow(currentQuestion, level: level) : self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
 		}
 	}
 
@@ -315,7 +367,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-			self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
+            self.questionnaireManager.iLetPump ?
+                self.questionnaireManager.triggerBloodKetoneForILetActionFlow(currentQuestion, level: level) :
+                self.questionnaireManager.triggerBloodKetoneLevelActionFlow(currentQuestion, level: level)
 		}
 	}
 
@@ -422,6 +476,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	@objc func didSelectExitAction() {
+//        ReminderPersistence.clearReminderState()
+//        ReminderManager.shared.cancelAllReminders()
+            
 		QuestionnaireManager.resetInstance()
 		self.navVC.popToRootViewController(animated: true)
 	}
@@ -431,6 +488,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol, RecheckKetoneLevelViewProtocol {
 
     func didSelectGotItAction(_ question: Questionnaire) {
+        ReminderPersistence.clearReminderState()
+        
         for controller in self.navVC.viewControllers as Array {
 			if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
@@ -451,7 +510,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-			self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level) : self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
 		}
 	}
 
@@ -462,8 +521,10 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-			self.questionnaireManager
-				.triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+            self.questionnaireManager.iLetPump ?
+            self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level) :
+            self.questionnaireManager
+                .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
 		}
 	}
 }

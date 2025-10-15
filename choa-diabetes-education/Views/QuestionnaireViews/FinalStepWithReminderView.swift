@@ -49,7 +49,7 @@ class FinalStepWithReminderView: UIView {
 
 	private var currentQuestion: Questionnaire!
 
-	private let questionnaireManagerInstance: QuestionnaireManager = QuestionnaireManager.instance
+	private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
 
 	weak var delegate: FinalStepWithReminderViewProtocol?
 
@@ -63,10 +63,21 @@ class FinalStepWithReminderView: UIView {
 	private var reminderIsActive = ReminderManager.shared.hasActiveReminder
 
 	private var countdownFinished: Bool = false
+    
+    private var isObservingNotifications = false
 
 	override func didMoveToWindow() {
 		super.didMoveToWindow()
 		if window != nil {
+            if !isObservingNotifications {
+                NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(handleReminderNotificationTapped),
+                    name: NSNotification.Name("ReminderNotificationTapped"),
+                    object: nil
+                )
+                isObservingNotifications = true
+            }
 				// View is being added to hierarchy - restore state
 			restoreReminderState()
 		} else {
@@ -75,6 +86,19 @@ class FinalStepWithReminderView: UIView {
 			countdownTimer = nil
 		}
 	}
+    
+    @objc private func handleReminderNotificationTapped(_ notification: Notification) {
+        guard let reminderId = notification.object as? String,
+              reminderId == currentReminderId else {
+            return
+        }
+        
+        print("🔔 Notification tapped while on reminder page")
+        
+        // Update UI to show "Time to Check" state
+        countdownFinished = true
+        updateViewsWhenCountdownFinished()
+    }
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -89,6 +113,9 @@ class FinalStepWithReminderView: UIView {
 	}
 
 	deinit {
+        if isObservingNotifications {
+            NotificationCenter.default.removeObserver(self)
+        }
 		cleanup()
 	}
 
@@ -105,91 +132,182 @@ class FinalStepWithReminderView: UIView {
 		ReminderManager.shared.requestPermissions()
 	}
 
-	func setupView(currentQuestion: Questionnaire) {
-		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold20
-		titleLabel.numberOfLines = 0
+    func setupView(currentQuestion: Questionnaire) {
+        self.currentQuestion = currentQuestion
+        setupCommonUI(currentQuestion: currentQuestion)
 
-		titleLabel.text = questionnaireManagerInstance.currentTestType == .insulinShots ? "Calculator.Final.ContinueRegularCare.title"
-			.localized().capitalizedFirstLetter : currentQuestion.finalStep?.title
+        switch questionnaireManager.currentTestType {
+        case .insulinShots:
+            setupForInsulinShots()
+        case .pump:
+            if questionnaireManager.iLetPump {
+                setupForPumpWithIlet()
+            } else {
+                setupForPump()
+            }
+        }
 
-		titleLabel.textAlignment = .natural
+        // IMPORTANT: Restore reminder state AFTER UI setup
+        // but check if we need to restore or use current state
+        print("🔍 Checking for reminder state...")
+            
+        if let persistedState = ReminderPersistence.loadReminderState() {
+            let remainingTime = persistedState.scheduledTime.timeIntervalSince(Date())
+            print("📱 Found persisted state, remaining: \(Int(remainingTime))s")
+            if remainingTime > 0 {
+                // Restore from persisted state
+                if !isObservingNotifications {
+                    NotificationCenter.default.addObserver(
+                        self,
+                        selector: #selector(handleReminderNotificationTapped),
+                        name: NSNotification.Name("ReminderNotificationTapped"),
+                        object: nil
+                    )
+                    isObservingNotifications = true
+                }
+                
+                restoreReminderState()
+            } else {
+                // Expired, clean up and show default
+                ReminderPersistence.clearReminderState()
+                updateReminderButtonTitle()
+            }
+        } else if ReminderManager.shared.hasActiveReminder {
+            // Has active reminder in memory (user navigated back)
+            print("💾 Found active reminder in memory")
+            restoreReminderState()
+        } else {
+            // No active reminder at all
+            print("🆕 No active reminder, showing default state")
+            updateReminderButtonTitle()
+        }
+    }
 
-		reminderView.layer.cornerRadius = 12
-		reminderButton.layer.cornerRadius = 12
+    // MARK: - Common UI Setup
+    private func setupCommonUI(currentQuestion: Questionnaire) {
+        titleLabel.font = .gothamRoundedBold20
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .natural
 
-		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
+        titleLabel.text = questionnaireManager.currentTestType == .insulinShots
+            ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
+            : currentQuestion.finalStep?.title
 
-		yesOver2hoursButton.layer.cornerRadius = 12
-		yesOver2hoursButton.layer.borderWidth = 0
-		yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
+        reminderView.layer.cornerRadius = 12
+        reminderButton.layer.cornerRadius = 12
+        doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
 
-		let yesOverText = questionnaireManagerInstance.iLetPump ?
-		"Yes, Over 90 mins" : "Yes, Over 2hrs"
+        yesOver2hoursButton.layer.cornerRadius = 12
+        yesOver2hoursButton.layer.borderWidth = 0
+        yesOver2hoursButton.layer.borderColor = UIColor.primaryBlue.cgColor
 
-		giveRecommendedDoseLabel.setText(
-			"Final.GiveRecommendedDose.text".localized(),
-			boldPhrases: ["correction dose through", "pump site"]
-		)
+        let yesOverText = questionnaireManager.iLetPump
+            ? "Yes, Over 90 mins"
+            : "Yes, Over 2hrs"
+        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
 
-		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
+        giveRecommendedDoseLabel.setText(
+            "Final.GiveRecommendedDose.text".localized(),
+            boldPhrases: ["correction dose through", "pump site"]
+        )
 
-		if questionnaireManagerInstance.currentTestType == .pump {
+        hydrationExampleInfoTextView.setText(
+            "Final.HydrationExampleInfo.text".localized(),
+            boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
+        )
+    }
 
-			confirmChangeDisconnectLabel
-				.setText("Final.ConfirmPumpIsSecure.text".localized(), boldPhrases: ["pump site is securely connected"])
-			hopeImage.isHidden = true
+    // MARK: - Insulin Shots
+    private func setupForInsulinShots() {
+        confirmChangeDisconnectStackView.isHidden = true
+        giveRecommendedDoseStackView.isHidden = true
 
-			flipHydrationAndReminder()
-		}
+        reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescription.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "2 hours"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheck.text".localized(),
+            boldPhrases: ["2 hours"]
+        )
+    }
 
-			// iLet Pump View Conditions
-		if questionnaireManagerInstance.iLetPump {
-			confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
+    // MARK: - Pump (Non-iLet)
+    private func setupForPump() {
+        confirmChangeDisconnectLabel.setText(
+            "Final.ConfirmPumpIsSecure.text".localized(),
+            boldPhrases: ["pump site is securely connected"]
+        )
+        hopeImage.isHidden = true
 
-			if questionnaireManagerInstance.bloodKetones ==
-				.moderate || (
-					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
-				) {
-				confirmChangeDisconnectLabel.setText("Final.ChangeIletPumpSite.text".localized(), boldPhrases: ["Change", "pump site"])
-				giveRecommendedDoseStackView.isHidden = true
-			} else if questionnaireManagerInstance.bloodKetones ==
-				.moderate || (
-					questionnaireManagerInstance.urineKetones == .onePointFive || questionnaireManagerInstance.urineKetones == .four
-				) {
-				confirmChangeDisconnectLabel.setText("Final.DisconnectIletPump.text".localized(), boldPhrases: ["Disconnect", "pump"])
+        reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescription.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "2 hours"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheck.text".localized(),
+            boldPhrases: ["2 hours"]
+        )
 
-				giveRecommendedDoseStackView.isHidden = false
+    //    flipHydrationAndReminder()
+    }
 
-				giveRecommendedDoseLabel.setText(
-					"Final.CalculateAndGiveCorrectionDose.text".localized(),
-					boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
-				)
-			}
+    // MARK: - Pump + iLet
+    private func setupForPumpWithIlet() {
+        let visitCount = questionnaireManager.getReminderPageVisitCount()
+        print("User has visited reminder page \(visitCount) times")
+        
+        confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
+        
+        confirmChangeDisconnectLabel.setText(
+            "Final.ConfirmPumpIsSecure.text".localized(),
+            boldPhrases: ["pump site is securely connected"]
+        )
 
-			reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
-			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-			reminderTimeCheckLabel.setText("Final.ReminderTimeCheckForIlet.text".localized(), boldPhrases: ["90 minutes"])
+        if questionnaireManager.bloodKetones == .moderate ||
+            (questionnaireManager.urineKetones == .zeroPointFive || questionnaireManager.urineKetones == .onePointFive ||
+             questionnaireManager.urineKetones == .four) {
 
-			hopeImage.isHidden = true
+            // Change iLet pump site
+            confirmChangeDisconnectLabel.setText(
+                "Final.ChangeIletPumpSite.text".localized(),
+                boldPhrases: ["Change", "pump site"]
+            )
+            giveRecommendedDoseStackView.isHidden = true
 
-			flipHydrationAndReminder()
-		} else {
-			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+        } else if questionnaireManager.bloodKetones == .large ||
+                    (questionnaireManager.urineKetones == .eight ||
+                     questionnaireManager.urineKetones == .sixteen) || questionnaireManager.getReminderPageVisitCount() > 2 {
 
-			reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-			reminderTimeCheckLabel.setText("Final.ReminderTimeCheck.text".localized(), boldPhrases: ["2 hours"])
-		}
+            // Disconnect iLet pump
+            confirmChangeDisconnectLabel.setText(
+                "Final.DisconnectIletPump.text".localized(),
+                boldPhrases: ["Disconnect", "pump"]
+            )
+            giveRecommendedDoseStackView.isHidden = false
 
-		if questionnaireManagerInstance.currentTestType == .insulinShots {
-			confirmChangeDisconnectStackView.isHidden = true
-			giveRecommendedDoseStackView.isHidden = true
-		}
+            giveRecommendedDoseLabel.setText(
+                "Final.CalculateAndGiveCorrectionDose.text".localized(),
+                boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
+            )
+        }
 
-		yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
+        reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
+        reminderNextCheckDescriptionLabel.setText(
+            "Final.ReminderNextCheckDescriptionForIlet.text".localized(),
+            boldPhrases: ["blood sugar", "ketones", "90 mins"]
+        )
+        reminderTimeCheckLabel.setText(
+            "Final.ReminderTimeCheckForIlet.text".localized(),
+            boldPhrases: ["90 minutes"]
+        )
+        hopeImage.isHidden = true
 
-		updateReminderButtonTitle()
-	}
+    //    flipHydrationAndReminder()
+    }
+
 
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
@@ -219,7 +337,7 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.textColor = .black
 			reminderNextCheckDescriptionLabel.font = .gothamRoundedMedium20
 		} else {
-			if questionnaireManagerInstance.iLetPump {
+			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
 
 				reminderNextCheckDescriptionLabel.textColor = .black
@@ -305,18 +423,58 @@ class FinalStepWithReminderView: UIView {
 		viewController.present(alert, animated: true)
 	}
 
-	private func restoreReminderState() {
-		guard ReminderManager.shared.hasActiveReminder,
-			  let reminderId = ReminderManager.shared.currentReminderId,
-			  let remainingTime = ReminderManager.shared.currentReminderRemainingTime else {
-			currentReminderId = nil
-			updateReminderButtonTitle()
-			return
-		}
+    private func restoreReminderState() {
+        // First check if we have a persisted reminder state
+        if let persistedState = ReminderPersistence.loadReminderState() {
+            // Calculate remaining time
+            let remainingTime = persistedState.scheduledTime.timeIntervalSince(Date())
+            
+            if remainingTime > 0 {
+                // Set the current reminder ID
+                currentReminderId = persistedState.reminderId
+                reminderIsActive = true
+                
+                // Make sure ReminderManager has this reminder
+                let resumed = ReminderManager.shared.resumeCountdown(for: persistedState.reminderId)
+                
+                if resumed {
+                    // Start the local countdown timer with the remaining time
+                    startCountdownTimer(with: Int(remainingTime))
+                    
+                    print("✅ Restored reminder: \(persistedState.reminderId), remaining: \(Int(remainingTime))s")
+                } else {
+                    // Reminder expired during restore
+                    print("⚠️ Failed to resume reminder: \(persistedState.reminderId)")
+                    currentReminderId = nil
+                    reminderIsActive = false
+                    updateReminderButtonTitle()
+                    ReminderPersistence.clearReminderState()
+                }
+                
+                return
+            } else {
+                // Reminder has expired, clean up
+                print("⏰ Reminder expired")
+                ReminderPersistence.clearReminderState()
+            }
+        }
+        
+        // Fallback: check ReminderManager directly (in case user just navigated back)
+        guard ReminderManager.shared.hasActiveReminder,
+              let reminderId = ReminderManager.shared.currentReminderId,
+              let remainingTime = ReminderManager.shared.currentReminderRemainingTime else {
+            print("ℹ️ No active reminder found")
+            currentReminderId = nil
+            reminderIsActive = false
+            updateReminderButtonTitle()
+            return
+        }
 
-		currentReminderId = reminderId
-		startCountdownTimer(with: Int(remainingTime))
-	}
+        print("✅ Found active reminder in memory: \(reminderId)")
+        currentReminderId = reminderId
+        reminderIsActive = true
+        startCountdownTimer(with: Int(remainingTime))
+    }
 
 	private func startCountdownTimer(with seconds: Int) {
 			// Invalidate any existing timer
@@ -341,7 +499,7 @@ class FinalStepWithReminderView: UIView {
 				self.currentReminderId = nil
 				self.updateViewsWhenCountdownFinished()
 				self.countdownFinished = true
-				questionnaireManagerInstance.clearActiveReminder()
+				questionnaireManager.clearActiveReminder()
 			} else {
 				self.updateReminderViewsWithCountdown(remainingSeconds)
 			}
@@ -351,7 +509,7 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-			questionnaireManagerInstance.saveYesOver2hours(true)
+			questionnaireManager.saveYesOver2hours(true)
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
 
@@ -360,8 +518,10 @@ class FinalStepWithReminderView: UIView {
 			updateReminderButtonTitle()
 			countdownTimer?.invalidate()
 			countdownTimer = nil
-			questionnaireManagerInstance.clearActiveReminder()
+			questionnaireManager.clearActiveReminder()
 			ReminderManager.shared.cancelAllReminders()
+            
+            ReminderPersistence.clearReminderState()
 
 			reminderView.backgroundColor = .veryLightBlue
 			return
@@ -377,25 +537,35 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.font = .systemFont(ofSize: 14)
 			reminderNextCheckDescriptionLabel.textColor = .black
 
-			if questionnaireManagerInstance.iLetPump {
+			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
 			} else {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
 			}
 
-			questionnaireManagerInstance.saveYesOver2hours(true)
+			questionnaireManager.saveYesOver2hours(true)
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
+            
+            ReminderPersistence.clearReminderState()
 		} else {
-			let duration: TimeInterval = questionnaireManagerInstance.iLetPump ? 5400 : 7200
+			let duration: TimeInterval = questionnaireManager.iLetPump ? 5400 : 7200
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
-			let newReminderId = questionnaireManagerInstance.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
+            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 
-			questionnaireManagerInstance.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+			questionnaireManager.saveActiveReminder(id: newReminderId, scheduledTime: scheduledTime)
+            
+            // Save reminder state to persist across app restarts
+            ReminderPersistence.saveReminderState(
+                reminderId: newReminderId,
+                scheduledTime: scheduledTime,
+                questionId: currentQuestion.questionId,
+                manager: questionnaireManager
+            )
 
 			startCountdownTimer(with: Int(duration))
 		}
@@ -403,7 +573,8 @@ class FinalStepWithReminderView: UIView {
 
 
 	@IBAction func yesOverButtonTapped(_ sender: Any) {
-		questionnaireManagerInstance.saveYesOver2hours(true)
+		questionnaireManager.saveYesOver2hours(true)
+        ReminderPersistence.clearReminderState()
 		delegate?.didSelectYesOverAction(
 			currentQuestion)
 	}
@@ -419,7 +590,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 
 //		showAlert(
 //			title: "Reminder Set",
-//			message: questionnaireManagerInstance.iLetPump ? "You'll get a notification in 90 minutes to recheck your blood sugar and ketones." : "You'll get a notification in 2 hours to recheck your blood sugar and ketones."
+//			message: questionnaireManager.iLetPump ? "You'll get a notification in 90 minutes to recheck your blood sugar and ketones." : "You'll get a notification in 2 hours to recheck your blood sugar and ketones."
 //		)
 	}
 
@@ -435,7 +606,7 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
 		reminderIsActive = false
 	}
 
@@ -445,7 +616,8 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
+        ReminderPersistence.clearReminderState()
 
 		showAlert(
 			title: "Error",
@@ -459,7 +631,8 @@ extension FinalStepWithReminderView: ReminderManagerDelegate {
 		updateReminderButtonTitle()
 		countdownTimer?.invalidate()
 		countdownTimer = nil
-		questionnaireManagerInstance.clearActiveReminder()
+		questionnaireManager.clearActiveReminder()
+        ReminderPersistence.clearReminderState()
 
 		showAlert(
 			title: "Permission Required",

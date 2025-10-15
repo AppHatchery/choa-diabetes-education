@@ -19,7 +19,8 @@ class HomeViewController: UIViewController {
 	@IBOutlet var highSugarButton: UIButton!
 
 	@IBOutlet var getHelpView: UIView!
-	@IBOutlet var getHelpButton: UIButton!
+    @IBOutlet weak var getHelpViewImage: UIImageView!
+    @IBOutlet var getHelpButton: UIButton!
     
     @IBOutlet var resourceCards: [UIView]!
     
@@ -37,9 +38,11 @@ class HomeViewController: UIViewController {
 
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
+    var highBloodSugarOnly = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
 		appearance.backgroundColor = UIColor.white
@@ -72,6 +75,9 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.standardAppearance = tabBarAppearance
         tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
         tabBarController?.tabBar.tintColor = UIColor.black
+        
+        // Hide the tab bar entirely
+        tabBarController?.tabBar.isHidden = true
 
 		insulinCalculatorView.layer.cornerRadius = 12
 		mealsAndHighSugarButton.layer.cornerRadius = 12
@@ -83,8 +89,10 @@ class HomeViewController: UIViewController {
 		highSugarButton.layer.cornerRadius = 12
 		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
-
+        
 		getHelpView.layer.cornerRadius = 12
+        getHelpView.clipsToBounds = true
+        getHelpViewImage.clipsToBounds = true
 		getHelpButton.layer.cornerRadius = 12
 		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
         
@@ -93,6 +101,35 @@ class HomeViewController: UIViewController {
         }
 
         addTapRecognizersToResourceCards()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Get Help Gradient
+        getHelpView.setGradientBackground(
+            colors: [.gradientRedColor, .gradientRedColor2]
+        )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        appearance.shadowColor = .clear
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAndRestoreActiveReminder()
     }
 
     private func addTapRecognizersToResourceCards() {
@@ -204,6 +241,7 @@ class HomeViewController: UIViewController {
 
 		insulinForFood = false
 		insulinForHighBloodSugar = true
+        highBloodSugarOnly = true
 
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
@@ -211,6 +249,7 @@ class HomeViewController: UIViewController {
 
 			destinationVC.insulinForFoodBoolean = insulinForFood
 			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+            destinationVC.highBloodSugarOnly = highBloodSugarOnly
 		}
 	}
 
@@ -220,6 +259,7 @@ class HomeViewController: UIViewController {
 
 		insulinForFood = true
 		insulinForHighBloodSugar = true
+        highBloodSugarOnly = false
 
 		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
 			destinationVC.hidesBottomBarWhenPushed = true
@@ -233,9 +273,12 @@ class HomeViewController: UIViewController {
 		insulinForFood = true
 		insulinForHighBloodSugar = true
 		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+        
 
 		let manager = QuestionnaireManager.instance
 			//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
+        
+        QuestionnaireManager.resetInstance()
 
 		let firstQues = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,
@@ -261,4 +304,44 @@ class HomeViewController: UIViewController {
 
 		self.navigationController?.pushViewController(getHelpViewController, animated: true)
 	}
+}
+
+extension HomeViewController {
+    func checkAndRestoreActiveReminder() {
+        // Only check once per app launch to avoid repeated navigation
+        guard !hasCheckedForReminder else { return }
+        hasCheckedForReminder = true
+        
+        // Check if there's a saved reminder state
+        guard let reminderState = ReminderPersistence.loadReminderState() else {
+            return
+        }
+        
+        // Check if the reminder is still valid
+        let timeRemaining = reminderState.scheduledTime.timeIntervalSince(Date())
+        guard timeRemaining > 0 else {
+            // Reminder expired, clean up
+            ReminderPersistence.clearReminderState()
+            return
+        }
+        
+        // Navigate to the FinalStepWithReminder page after a short delay
+        // to allow the view to fully appear
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else { return }
+            ReminderPersistence.navigateToReminderPage(from: self, state: reminderState)
+        }
+    }
+    
+    // Add this property to HomeViewController to track if we've checked
+    private static var hasCheckedForReminder = false
+    private var hasCheckedForReminder: Bool {
+        get { HomeViewController.hasCheckedForReminder }
+        set { HomeViewController.hasCheckedForReminder = newValue }
+    }
+    
+    // Reset the check flag when app becomes active
+    static func resetReminderCheck() {
+        hasCheckedForReminder = false
+    }
 }

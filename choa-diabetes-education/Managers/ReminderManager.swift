@@ -189,24 +189,69 @@ class ReminderManager: NSObject {
 		/// - Parameter identifier: The reminder identifier to resume
 		/// - Returns: True if countdown was resumed, false if reminder not found or expired
 	@discardableResult
-	func resumeCountdown(for identifier: String) -> Bool {
-		guard let scheduledTime = reminderScheduleTimes[identifier] else { return false }
+    func resumeCountdown(for identifier: String) -> Bool {
+        // First check if we have the scheduled time
+        if let scheduledTime = reminderScheduleTimes[identifier] {
+            let currentTime = Date()
+            let timeRemaining = scheduledTime.timeIntervalSince(currentTime)
 
-		let currentTime = Date()
-		let timeRemaining = scheduledTime.timeIntervalSince(currentTime)
-
-		if timeRemaining > 0 {
-				// Restart countdown timer if it's not already running
-			if countdownTimers[identifier] == nil {
-				startCountdown(for: identifier, duration: timeRemaining)
-			}
-			return true
-		} else {
-				// Reminder has expired, clean up
-			stopCountdown(for: identifier)
-			return false
-		}
-	}
+            if timeRemaining > 0 {
+                // Restart countdown timer if it's not already running
+                if countdownTimers[identifier] == nil {
+                    startCountdown(for: identifier, duration: timeRemaining)
+                }
+                return true
+            } else {
+                // Reminder has expired, clean up
+                stopCountdown(for: identifier)
+                return false
+            }
+        }
+        
+        // If not in memory, try to restore from persistence
+        if let persistedState = ReminderPersistence.loadReminderState(),
+           persistedState.reminderId == identifier {
+            let currentTime = Date()
+            let timeRemaining = persistedState.scheduledTime.timeIntervalSince(currentTime)
+            
+            if timeRemaining > 0 {
+                // Restore the scheduled time to memory
+                reminderScheduleTimes[identifier] = persistedState.scheduledTime
+                
+                // Start the countdown
+                startCountdown(for: identifier, duration: timeRemaining)
+                return true
+            } else {
+                // Reminder has expired
+                ReminderPersistence.clearReminderState()
+                return false
+            }
+        }
+        
+        return false
+    }
+    
+    func restoreReminderFromPersistence() -> Bool {
+        guard let persistedState = ReminderPersistence.loadReminderState() else {
+            return false
+        }
+        
+        let currentTime = Date()
+        let timeRemaining = persistedState.scheduledTime.timeIntervalSince(currentTime)
+        
+        if timeRemaining > 0 {
+            // Restore the scheduled time
+            reminderScheduleTimes[persistedState.reminderId] = persistedState.scheduledTime
+            
+            // Start countdown
+            startCountdown(for: persistedState.reminderId, duration: timeRemaining)
+            return true
+        } else {
+            // Reminder expired
+            ReminderPersistence.clearReminderState()
+            return false
+        }
+    }
 
 		// MARK: - Private Methods
 
@@ -311,25 +356,47 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
 		willPresent notification: UNNotification,
 		withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
 	) {
+        print("📢 Notification will present (foreground)")
 			// Show notification even when app is in foreground
 		completionHandler([.banner, .sound, .badge])
 	}
 
 		/// Called when user interacts with a notification
-	func userNotificationCenter(
-		_ center: UNUserNotificationCenter,
-		didReceive response: UNNotificationResponse,
-		withCompletionHandler completionHandler: @escaping () -> Void
-	) {
-		let identifier = response.notification.request.identifier
+    func userNotificationCenter(
+            _ center: UNUserNotificationCenter,
+            didReceive response: UNNotificationResponse,
+            withCompletionHandler completionHandler: @escaping () -> Void
+        ) {
+            let identifier = response.notification.request.identifier
 
-			// Handle notification tap - you can customize this behavior
-		print("User tapped on reminder with ID: \(identifier)")
+            print("🔔 ========================================")
+            print("🔔 ReminderManager: User tapped notification")
+            print("🔔 Identifier: \(identifier)")
+            print("🔔 Action: \(response.actionIdentifier)")
+            print("🔔 ========================================")
 
-		UIApplication.shared.applicationIconBadgeNumber = 0
+            // Clear badge
+            DispatchQueue.main.async {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            }
+            
+            // Post notification for views that might be listening
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("ReminderNotificationTapped"),
+                    object: identifier
+                )
+                print("✅ Posted NotificationCenter notification")
+            }
 
-		completionHandler()
-	}
+            // Handle the notification tap - navigate to reminder page
+            DispatchQueue.main.async {
+                print("🚀 Calling NotificationHandler...")
+                NotificationHandler.shared.handleNotificationTap(identifier: identifier)
+            }
+
+            completionHandler()
+        }
 
 		/// Computed property to check if there's an active reminder
 	var hasActiveReminder: Bool {

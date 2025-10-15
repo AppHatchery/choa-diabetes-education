@@ -79,5 +79,21 @@ extension UIView {
     class func instantiateFromNibWithOwner(owner: AnyObject!) -> Self {
         return instantiateFromNib(viewType: self, owner: owner)!
     }
+    
+    func setGradientBackground(colors: [UIColor],
+                                   startPoint: CGPoint = CGPoint(x: 0.0, y: 0.5),
+                                   endPoint: CGPoint = CGPoint(x: 1.0, y: 0.5),
+                                   cornerRadius: CGFloat = 12) {
+            // Remove any existing gradient layer to avoid stacking
+            layer.sublayers?.removeAll(where: { $0 is CAGradientLayer })
+
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = bounds
+            gradientLayer.colors = colors.map { $0.cgColor }
+            gradientLayer.startPoint = startPoint
+            gradientLayer.endPoint = endPoint
+            gradientLayer.cornerRadius = cornerRadius
+            layer.insertSublayer(gradientLayer, at: 0)
+        }
 }
 

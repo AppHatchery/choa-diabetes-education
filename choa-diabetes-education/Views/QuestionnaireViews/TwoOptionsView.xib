@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -76,7 +76,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="94.5" width="353" height="263.5"/>
+                            <rect key="frame" x="0.0" y="94.5" width="353" height="264"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
@@ -85,19 +85,19 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
-                                    <rect key="frame" x="0.0" y="52" width="353" height="211.5"/>
+                                    <rect key="frame" x="0.0" y="52" width="353" height="212"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
-                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="211.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="212"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
-                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="16"/>
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="16"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-V4-WiZ">
-                                                    <rect key="frame" x="10" y="10" width="150.5" height="155.5"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -113,16 +113,16 @@
                                             </constraints>
                                         </view>
                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O44-N8-JUe" userLabel="Button View">
-                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="211.5"/>
+                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="212"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
-                                                    <rect key="frame" x="10" y="175.5" width="150.5" height="16"/>
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="16"/>
                                                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-ak-o7C">
-                                                    <rect key="frame" x="10" y="10" width="150.5" height="155.5"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -138,11 +138,15 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mSD-GN-g7J" firstAttribute="height" secondItem="PtT-ZT-c86" secondAttribute="height" id="d48-hk-Zfa"/>
+                                        <constraint firstItem="hvd-V4-WiZ" firstAttribute="height" secondItem="p5L-ak-o7C" secondAttribute="height" id="nTH-Ri-lFO"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                            <rect key="frame" x="0.0" y="370" width="353" height="329"/>
+                            <rect key="frame" x="0.0" y="370.5" width="353" height="328.5"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -161,15 +165,8 @@
                                 <constraint firstAttribute="height" constant="48" id="jni-24-ZeU"/>
                             </constraints>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" imagePadding="8">
-                                <attributedString key="attributedTitle">
-                                    <fragment content="Next">
-                                        <attributes>
-                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
-                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
+                                <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="l26-J7-mDo"/>

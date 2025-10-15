@@ -39,6 +39,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     private var currentQuestion: Questionnaire!
     weak var delegate: YesOrNoQueViewProtocol?
 
+    private var selectedAnswer: YesOrNo? = nil
 	private var followUpAnswer = 0
 
     override init(frame: CGRect) {
@@ -84,6 +85,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     @IBAction func didYesButtonTap(_ sender: UIButton) {
         noButton.updateButtonForDeselection()
         yesButton.updateButtonForSelection()
+        selectedAnswer = .yes
 
 		switch currentQuestion.questionId {
 		case YesOrNoQuestionId.bloodSugarCheck.id:
@@ -123,6 +125,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     @IBAction func didNoButtonTap(_ sender: UIButton) {
         noButton.updateButtonForSelection()
         yesButton.updateButtonForDeselection()
+        selectedAnswer = .no
 
 		followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
@@ -136,15 +139,35 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
     }
     
     @IBAction func didNextButtonTap(_ sender: UIButton) {
-        if yesButton.isSelected {
-			if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
-				
-				guard followUpAnswer != 0 else { return }
-			}
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
-        } else if noButton.isSelected {
-            delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
-        }
+        if selectedAnswer == .yes {
+                if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+                    guard followUpAnswer != 0 else { return }
+                    
+                    // Convert Int to YesOrNo enum
+                    let followUp: YesOrNo = (followUpAnswer == 1) ? .yes : .no
+                    
+                    // Call the delegate method WITH followUpAnswer
+                    delegate?.didSelectNextAction(
+                        currentQuestion: currentQuestion,
+                        selectedAnswer: .yes,
+                        followUpAnswer: followUp
+                    )
+                } else {
+                    // For other questions without follow-up
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .yes)
+                }
+        } else if selectedAnswer == .no {
+                if currentQuestion.questionId == YesOrNoQuestionId.bloodSugarCheck.id {
+                    // No follow-up needed when answer is no
+                    delegate?.didSelectNextAction(
+                        currentQuestion: currentQuestion,
+                        selectedAnswer: .no,
+                        followUpAnswer: nil
+                    )
+                } else {
+                    delegate?.didSelectNextAction(currentQuestion: currentQuestion, userSelectedType: .no)
+                }
+            }
     }
 
 

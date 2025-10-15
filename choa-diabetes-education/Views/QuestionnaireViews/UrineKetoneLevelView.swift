@@ -40,7 +40,14 @@ class UrineKetoneLevelView: UIView {
 			return
 		}
 
-		addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
 
 		ketoneLevelButtons.forEach {
 			$0.layer.cornerRadius = 4

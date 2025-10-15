@@ -52,6 +52,8 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        segmentedControl.isHidden = true
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ChapterListTableViewCell", bundle: nil), forCellReuseIdentifier: "chapterCell")

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,16 +24,21 @@
                 <outlet property="callView" destination="OKG-UU-IT1" id="2gX-Zk-s40"/>
                 <outlet property="checkBloodSugarLabel" destination="jFm-eF-YUg" id="qvn-rh-EZF"/>
                 <outlet property="contentView" destination="e7o-fC-reN" id="RIn-oV-hjv"/>
+                <outlet property="correctionsStackView" destination="8g0-RL-273" id="WUS-hL-m2o"/>
                 <outlet property="doneButton" destination="6do-CM-QoM" id="waH-ia-jiC"/>
                 <outlet property="giveNormalDoseLabel" destination="dF4-tM-2GQ" id="qCe-bq-Qbe"/>
                 <outlet property="hydrationExampleInfoTextView" destination="aIG-T6-kdM" id="PKy-lx-G4M"/>
                 <outlet property="injectionStackView" destination="Uyt-JY-8Ri" id="fYm-s9-WhA"/>
                 <outlet property="insulinPumpStackView" destination="7Ht-MT-Xmp" id="Afg-t5-6dh"/>
+                <outlet property="mainStackView" destination="pt7-eK-NKm" id="0hP-yc-gvQ"/>
                 <outlet property="removePumpLabel" destination="54M-FS-n20" id="6OC-PD-vaB"/>
                 <outlet property="repeatCorrectionLabel" destination="2bC-gi-ypM" id="A1K-8H-CQK"/>
                 <outlet property="repeatCorrections2" destination="rHU-OS-uhr" id="HvK-uv-8PK"/>
                 <outlet property="replacePumpLabel" destination="I7U-nM-x3l" id="XYc-lr-1F3"/>
+                <outlet property="replaceStackView" destination="mAb-gl-L0w" id="nHw-mB-c9i"/>
+                <outlet property="stayHydratedStack" destination="4O6-VR-VKv" id="Z9K-Bs-pT9"/>
                 <outlet property="switchBackLabel" destination="gJd-bX-7F0" id="SaY-fd-STk"/>
+                <outlet property="switchBackStackView" destination="UzD-EX-U9u" id="TCR-dY-6Ck"/>
                 <outlet property="titleLabel" destination="riu-5H-yGt" id="gNM-4y-BWn"/>
             </connections>
         </placeholder>
@@ -166,7 +171,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-gl-L0w">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-gl-L0w" userLabel="Replace Stack View">
                                                     <rect key="frame" x="0.0" y="153" width="353" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-vv-cZ4">
@@ -184,7 +189,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-RL-273">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-RL-273" userLabel="Corrections Stack View">
                                                     <rect key="frame" x="0.0" y="228.99999999999997" width="353" height="101.66666666666666"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-P1-C9f">
@@ -205,7 +210,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UzD-EX-U9u">
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UzD-EX-U9u" userLabel="Switch Back Stack View">
                                                     <rect key="frame" x="0.0" y="346.66666666666663" width="353" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="mxg-gL-edi">
@@ -224,9 +229,6 @@ Blood ketones are below 0.6 mmol/L</string>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="DIW-N7-OcJ"/>
-                                            </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Call View">
                                             <rect key="frame" x="0.0" y="776.66666666666663" width="353" height="217"/>
@@ -247,13 +249,13 @@ Blood ketones are below 0.6 mmol/L</string>
                                                                     <rect key="frame" x="72" y="0.0" width="241" height="137"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="35.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="69.666666666666671"/>
                                                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
-                                                                            <rect key="frame" x="0.0" y="35.333333333333378" width="205" height="101.66666666666669"/>
+                                                                            <rect key="frame" x="0.0" y="69.666666666666742" width="205" height="67.333333333333314"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections">
                                                                                     <attributes>
@@ -301,7 +303,7 @@ Blood ketones are below 0.6 mmol/L</string>
                                                 <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="srs-4Q-NQt"/>
                                             </constraints>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-VR-VKv" userLabel="Stay Hydrated Stack View">
                                             <rect key="frame" x="0.0" y="1013.6666666666667" width="353" height="138"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-80-Ije">
