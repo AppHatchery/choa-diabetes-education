@@ -279,7 +279,7 @@ class FinalStepWithReminderView: UIView {
 
         } else if questionnaireManager.bloodKetones == .large ||
                     (questionnaireManager.urineKetones == .eight ||
-                     questionnaireManager.urineKetones == .sixteen) || questionnaireManager.getReminderPageVisitCount() > 2 {
+                     questionnaireManager.urineKetones == .sixteen) || (questionnaireManager.skipFirstReminder == false && questionnaireManager.getReminderPageVisitCount() >= 2) {
 
             // Disconnect iLet pump
             confirmChangeDisconnectLabel.setText(

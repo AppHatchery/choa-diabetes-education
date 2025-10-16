@@ -147,7 +147,11 @@ class FinalStepCallChoaView: UIView {
     }
     
     func setupPumpRecheck() {
-        if questionnaireManager.yesOver2hours && (questionnaireManager.urineKetones == .negative || questionnaireManager.bloodKetones == .low) {
+        if questionnaireManager.yesOver2hours && (
+            questionnaireManager.urineKetones == .negative ||
+            questionnaireManager.urineKetones == .zeroPointFive ||
+            questionnaireManager.bloodKetones == .low
+        ) {
             removePumpLabel
                 .setText(
                     "Final.CallChoa.ChangePumpSite.text".localized(),
