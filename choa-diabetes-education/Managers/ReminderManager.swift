@@ -324,7 +324,6 @@ class ReminderManager: NSObject {
 		content.title = title
 		content.body = body
 		content.sound = UNNotificationSound.default
-		content.badge = 1
 
 			// Create time interval trigger
 		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)

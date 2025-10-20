@@ -55,13 +55,26 @@ class GetHelpViewController: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
+    private var isReminderPageFirstAppearance = true
+    private var hasAppearedFromPush = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationItem.backButtonDisplayMode = .minimal
+        
+        if isMovingToParent {
+            hasAppearedFromPush = true
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Track reminder page visits for iLet pump users
-        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
-           questionnaireManager.iLetPump {
+        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)), questionnaireManager.iLetPump,
+           hasAppearedFromPush {
             questionnaireManager.incrementReminderPageVisitCount()
+            hasAppearedFromPush = false
         }
     }
 
@@ -98,27 +111,28 @@ class GetHelpViewController: UIViewController {
 		hideAllViews()
 		setupViews()
 	}
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(true)
-		navigationItem.backButtonDisplayMode = .minimal
-	}
-
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(true)
-
-		if isMovingFromParent {
-			resetBackgroundColor()
-			finalStepWithReminderView?.cleanup()
+        if isMovingFromParent {
+            resetBackgroundColor()
+            finalStepWithReminderView?.cleanup()
             
-            // Check if we are popping back from FinalStepWithReminderView to TwoOptionsView
+            // Check if we are popping back from FinalStepWithReminderView
             if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
-               let previousVC = navigationController?.viewControllers.last {
+               let previousVC = navigationController?.viewControllers.last as? GetHelpViewController {
                 
-                // Check if the previous view controller has TwoOptionsView visible
-                if let getHelpVC = previousVC as? GetHelpViewController,
-                   !getHelpVC.twoOptionsView.isHidden {
+                // Check if popping to bloodSugarRecheck question
+                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                    questionnaireManager.decrementReminderPageVisitCount()
+                    print("📊 Decremented reminder count when popping to bloodSugarRecheck")
+                }
+                
+                // Check if popping to TwoOptionsView
+                if !previousVC.twoOptionsView.isHidden {
                     questionnaireManager.saveYesOver2hours(false)
+                    questionnaireManager.resetReminderPageVisitCount()
                     
                     print("Reset yesOver2hours to false when popping to TwoOptionsView")
                 }
@@ -358,7 +372,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		switch selectedAnswer {
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerUrineKetoneForILetActionFlow(currentQuestion, level: level) : self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
+            self.questionnaireManager.iLetPump ?
+            self.questionnaireManager.triggerUrineKetoneForILetActionFlow(currentQuestion, level: level) : self.questionnaireManager.triggerUrineKetoneLevelActionFlow(currentQuestion, level: level)
 		}
 	}
 
