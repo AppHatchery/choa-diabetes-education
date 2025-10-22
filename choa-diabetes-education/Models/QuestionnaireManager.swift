@@ -197,10 +197,16 @@ extension QuestionnaireManager {
                 let visitCount = getReminderPageVisitCount()
                 let skippedFirst = skipFirstReminder
                 
+                let hasModerateUrineKetones = urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four
+                let hasModerateBloodKetones = bloodKetones == .moderate
+                
                 let hasHighUrineKetones = urineKetones == .eight || urineKetones == .sixteen
                 let hasHighBloodKetones = bloodKetones == .large
                 
-                if (hasHighBloodKetones || hasHighUrineKetones) && (skippedFirst && visitCount == 1) {
+                if skippedFirst == false && visitCount > 2 && (
+                    hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
+                    triggerRecheckKetonesActionFlow(currentQuestion)
+                } else if (hasHighBloodKetones || hasHighUrineKetones) && (skippedFirst && visitCount == 1) {
                     triggerRecheckKetonesActionFlow(currentQuestion)
                 } else if skippedFirst == false && visitCount == 1 {
                     showFinalStage(
