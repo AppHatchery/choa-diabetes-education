@@ -178,6 +178,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 bloodSugarLabelImage.isUserInteractionEnabled = false
                 bloodSugarLabelImage.tintColor = .orangeTextColor
                 bloodSugarLabel.textColor = .orangeTextColor
+            } else if bloodSugar < targetBloodSugar && bloodSugar != 0 {
+                bloodSugarField.textColor = UIColor.orangeTextColor
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                bloodSugarLine.backgroundColor = .orangeTextColor
+                bloodSugarLabelImage.isHidden = false
+                bloodSugarLabelImage.isUserInteractionEnabled = false
+                bloodSugarLabelImage.tintColor = .orangeTextColor
+                bloodSugarLabel.textColor = .orangeTextColor
             } else {
                 bloodSugarField.textColor = .primaryBlue
                 insulinForHighBloodSugar.textColor = .primaryBlue
@@ -262,6 +270,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
                          , details: "PopupInfo.CorrectionFactor.text".localized())
     }
+    
+    @IBAction func showInsulinForHighBloodSugarInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.InsulinForHighBloodSugar.title".localized()
+                         , details: "PopupInfo.InsulinForHighBloodSugar.text".localized())
+    }
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
@@ -381,13 +395,9 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
 
             var bloodInsulin: Float = 0.0
 
-            if insulinForHighBloodSugarBoolean && currentBloodSugar >= constantsManager.targetBloodSugar {
+            if insulinForHighBloodSugarBoolean && currentBloodSugar >= currentTargetBloodSugar {
                 bloodInsulin = roundDownToNearestHalf(
-                    value: Float(
-                        (
-                            currentBloodSugar - currentTargetBloodSugar
-                        ) / currentCorrectionFactor
-                    )
+                    value: Float(currentBloodSugar - currentTargetBloodSugar) / Float(currentCorrectionFactor)
                 )
 
                 bloodSugarLine.backgroundColor = .primaryBlue

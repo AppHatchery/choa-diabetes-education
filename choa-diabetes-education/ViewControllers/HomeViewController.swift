@@ -96,6 +96,10 @@ class HomeViewController: UIViewController {
 		getHelpButton.layer.cornerRadius = 12
 		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
         
+        getHelpView.isUserInteractionEnabled = true
+        let getHelpTap = UITapGestureRecognizer(target: self, action: #selector(didTapGetHelpView))
+        getHelpView.addGestureRecognizer(getHelpTap)
+        
         resourceCards.forEach {
             $0.layer.cornerRadius = 8
         }
@@ -268,6 +272,10 @@ class HomeViewController: UIViewController {
 			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
 		}
 	}
+    
+    @objc private func didTapGetHelpView() {
+        tappedGetHelpButton(self)
+    }
 
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
 		insulinForFood = true

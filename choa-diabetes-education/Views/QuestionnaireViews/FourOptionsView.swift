@@ -146,7 +146,12 @@ class FourOptionsView: UIView {
 					currentQuestion: currentQuestion,
 					selectedAnswer: .LowBloodSugar(ChildIssue(id: selected))
 				)
-			}
+			} else if selected == 4 {
+                delegate?.didSelectNextAction(
+                    currentQuestion: currentQuestion,
+                    selectedAnswer: .NotSure(ChildIssue(id: selected))
+                )
+            }
 		case FourOptionsQuestionId.otherSymptom.id:
 			if selected == 1 {
 				delegate?.didSelectNextAction(

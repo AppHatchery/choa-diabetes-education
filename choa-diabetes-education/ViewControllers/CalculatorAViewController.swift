@@ -357,6 +357,12 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                          , details: "PopupInfo.CarbRatio.text".localized())
     }
     
+    @IBAction func showInsulinForFoodInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.InsulinForFood.title".localized()
+                         , details: "PopupInfo.InsulinForFood.text".localized())
+    }
+    
+    
     func calculatorDidUpdateConstants() {
         loadStoredConstants()
     }

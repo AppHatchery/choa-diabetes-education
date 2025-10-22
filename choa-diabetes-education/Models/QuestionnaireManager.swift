@@ -22,6 +22,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerTestActionFlow(_ currentQuestion: Questionnaire)
     func triggerBloodSugarActionFlow(_ currentQuestion: Questionnaire)
     func triggerBloodSugarCheckActionFlow(_ currentQuestion: Questionnaire)
+    func triggerBloodSugarRecheckActionFlow(_ currentQuestion: Questionnaire)
     func triggerResultsActionFlow(_ currentQuestion: Questionnaire)
     func triggerDisclaimerActionFlow(_ currentQuestion: Questionnaire)
 	func triggerCallChoaActionFlow(_ currentQuestion: Questionnaire)
@@ -44,6 +45,13 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
     func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    
+    func triggerSkippedUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    func triggerSkippedBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
+    
+    func triggerSkippedUrineKetoneModerateForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    func triggerSkippedBloodKetoneModerateForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
+    
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
     func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
     func triggerSkipReminderActionFlow(_ currentQuestion: Questionnaire)
@@ -191,9 +199,32 @@ extension QuestionnaireManager {
             }
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
             if iLetPump {
-                if skipFirstReminder && getReminderPageVisitCount() >= 1 {
+                let visitCount = getReminderPageVisitCount()
+                let skippedFirst = skipFirstReminder
+                
+                let hasModerateUrineKetones = urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four
+                let hasModerateBloodKetones = bloodKetones == .moderate
+                
+                let hasHighUrineKetones = urineKetones == .eight || urineKetones == .sixteen
+                let hasHighBloodKetones = bloodKetones == .large
+                
+                if skippedFirst == false && visitCount > 2 && (
+                    hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
+                    triggerRecheckKetonesActionFlow(currentQuestion)
+                } else if (hasModerateUrineKetones || hasModerateBloodKetones) && (
+                    skippedFirst && visitCount >= 2
+                ) {
+                    triggerRecheckKetonesActionFlow(currentQuestion)
+                } else if (hasHighBloodKetones || hasHighUrineKetones) && (skippedFirst && visitCount == 1) {
+                    triggerRecheckKetonesActionFlow(currentQuestion)
+                } else if skippedFirst == false && visitCount == 1 {
                     showFinalStage(
-                        stage: .continueRegularCareWithDescription,
+                        stage: .reminder,
+                        calculation: nil
+                    )
+                } else if skipFirstReminder == false && visitCount >= 2 {
+                    showFinalStage(
+                        stage: .reminder,
                         calculation: nil
                     )
                 } else {
@@ -226,12 +257,23 @@ extension QuestionnaireManager {
 		case YesOrNoQuestionId.bloodSugarRecheck.id:
             if iLetPump {
                 let visitCount = getReminderPageVisitCount()
+                let skippedFirst = skipFirstReminder
+                let hasHighUrineKetones = urineKetones == .eight || urineKetones == .sixteen
+                let hasHighBloodKetones = bloodKetones == .large
                 
-                if visitCount == 1 && skipFirstReminder == false {
+                print("🔍 Blood sugar recheck - NO (≤180)")
+                print("   - Visit count: \(visitCount)")
+                print("   - Skipped first: \(skippedFirst)")
+                
+                if (hasHighBloodKetones || hasHighUrineKetones) && (skippedFirst && visitCount == 1) {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
+                } else if skippedFirst == false && visitCount == 1 {
                     triggerContinueActionFlow(currentQuestion)
-                } else if visitCount > 2 {
+                }else if visitCount >= 2 {
+                    print("   → Call CHOA emergency (multiple visits)")
                     triggerCallChoaEmergencyActionFlow(currentQuestion)
                 } else {
+                    print("   → Call CHOA emergency (default)")
                     triggerCallChoaEmergencyActionFlow(currentQuestion)
                 }
             } else if currentTestType == .pump && yesOver2hours && (
@@ -240,12 +282,13 @@ extension QuestionnaireManager {
             } else {
                 triggerCallChoaEmergencyActionFlow(currentQuestion)
             }
+            
         case YesOrNoQuestionId.shotTwentyFourHours.id:
             triggerNextDoseActionFlow()
+            
         default:
             return
         }
-        
     }
     
     func saveTestType(_ testType: TestType) {
@@ -329,6 +372,20 @@ extension QuestionnaireManager {
 	func getActiveReminderId() -> String? {
 		return activeReminderId
 	}
+    
+    func triggerBloodSugarRecheckActionFlow(
+        _ currentQuestion: Questionnaire,
+    ) {
+        let createQue = createYesOrNoQuestion(
+            questionId: .bloodSugarRecheck,
+            question: "Calculator.Que.BloodSugarRecheckILetPump.title"
+                .localized(),
+            description: nil,
+            showDescriptionAtBottom: false
+        )
+        
+        actionsDelegate?.showNextQuestion(createQue)
+    }
 
 	func triggerRecheckUrineKetoneActionFlow(
 		_ currentQuestion: Questionnaire,
@@ -338,7 +395,6 @@ extension QuestionnaireManager {
 				// Negative/Trace
 		case .negative, .zeroPointFive:
 			if bloodSugarOver300 && currentTestType == .pump {
-//				showFinalStage(stage: .callChoa, calculation: nil)
                 
                 let createQue = createYesOrNoQuestion(
                     questionId: .bloodSugarRecheck,
@@ -352,21 +408,6 @@ extension QuestionnaireManager {
 			}	else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
 			}
-            
-//        case .zeroPointFive:
-//            if bloodSugarOver300 && currentTestType == .pump {
-//                let createQue = createYesOrNoQuestion(
-//                    questionId: .bloodSugarRecheck,
-//                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-//                        .localized() : "Calculator.Que.BloodSugarRecheckPump.title".localized(),
-//                    description: nil,
-//                    showDescriptionAtBottom: false
-//                )
-//                
-//                actionsDelegate?.showNextQuestion(createQue)
-//            }    else {
-//                showFinalStage(stage: .continueRegularCare, calculation: nil)
-//            }
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
         case .onePointFive, .four, .eight, .sixteen:
@@ -382,50 +423,119 @@ extension QuestionnaireManager {
 		}
 	}
     
-    func triggerRecheckUrineKetoneForILetActionFlow(
+    func triggerSkippedUrineKetoneModerateForILetActionFlow(
         _ currentQuestion: Questionnaire,
-        urineLevel: UrineKetoneLevel
+        level: UrineKetoneLevel,
     ) {
-        let reminderPageVisitCount = getReminderPageVisitCount()
-        
-        switch urineLevel {
+        switch level {
         case .negative:
-            if reminderPageVisitCount > 2 {
+            if getReminderPageVisitCount() >= 2 {
                 triggerContinueWithDescriptionActionFlow(currentQuestion)
             } else {
                 triggerContinueActionFlow(currentQuestion)
             }
-        case .zeroPointFive, .onePointFive, .four:
-            if reminderPageVisitCount > 2 {
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
-            } else {
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
-                actionsDelegate?.showNextQuestion(createQue)
-            }
-        case .eight, .sixteen:
-            if reminderPageVisitCount > 2 {
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
-            } else {
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
-                actionsDelegate?.showNextQuestion(createQue)
-            }
+        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+            triggerBloodSugarRecheckActionFlow(currentQuestion)
         }
     }
-
+    
+    func triggerSkippedBloodKetoneModerateForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        level: BloodKetoneLevel,
+    ) {
+        switch level {
+        case .low:
+            if getReminderPageVisitCount() >= 2 {
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                triggerContinueActionFlow(currentQuestion)
+            }
+        case .moderate, .large:
+            triggerBloodSugarRecheckActionFlow(currentQuestion)
+        }
+    }
+    
+    func triggerRecheckUrineKetoneForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        urineLevel: UrineKetoneLevel
+    ) {
+        let visitCount = getReminderPageVisitCount()
+        let skippedFirst = skipFirstReminder
+        
+        print("🧪 Recheck Urine Ketone")
+        print("   - Visit count: \(visitCount)")
+        print("   - Skipped first: \(skippedFirst)")
+        print("   - Level: \(urineLevel)")
+        
+        switch urineLevel {
+        case .negative:
+            // Negative ketones - continue care
+            if visitCount >= 2 {
+                print("   → Continue with description (visited ≥2 times)")
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                print("   → Continue regular care")
+                triggerContinueActionFlow(currentQuestion)
+            }
+            
+        case .zeroPointFive, .onePointFive, .four:
+            // Moderate ketones
+            // If skipped first and this is visit 1, OR didn't skip and this is visit 2+
+            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
+            
+            if shouldEscalate {
+                print("   → Call CHOA emergency (escalation criteria met)")
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            } else {
+                print("   → Recheck blood sugar")
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+                
+                actionsDelegate?.showNextQuestion(createQue)
+            }
+            
+//            print("   → Recheck blood sugar")
+//            let createQue = createYesOrNoQuestion(
+//                questionId: .bloodSugarRecheck,
+//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+//                description: nil,
+//                showDescriptionAtBottom: false
+//            )
+//            actionsDelegate?.showNextQuestion(createQue)
+            
+        case .eight, .sixteen:
+            // High ketones
+            let shouldEscalate = (skippedFirst && visitCount >= 1) || (skippedFirst == false && visitCount >= 2)
+            
+            if shouldEscalate {
+                print("   → Call CHOA emergency (escalation criteria met)")
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            } else {
+                print("   → Recheck blood sugar")
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+                actionsDelegate?.showNextQuestion(createQue)
+            }
+//            
+//            print("   → Recheck blood sugar")
+//            let createQue = createYesOrNoQuestion(
+//                questionId: .bloodSugarRecheck,
+//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+//                description: nil,
+//                showDescriptionAtBottom: false
+//            )
+//            actionsDelegate?.showNextQuestion(createQue)
+        }
+    }
+    
 	func triggerRecheckBloodKetoneActionFlow(
 		_ currentQuestion: Questionnaire,
 		bloodLevel: BloodKetoneLevel,
@@ -462,62 +572,109 @@ extension QuestionnaireManager {
     
     func triggerRecheckBloodKetoneForILetActionFlow(
         _ currentQuestion: Questionnaire,
-        bloodLevel: BloodKetoneLevel,
+        bloodLevel: BloodKetoneLevel
     ) {
-        let reminderPageVisitCount = getReminderPageVisitCount()
+        let visitCount = getReminderPageVisitCount()
+        let skippedFirst = skipFirstReminder
+        
+        print("🩸 Recheck Blood Ketone")
+        print("   - Visit count: \(visitCount)")
+        print("   - Skipped first: \(skippedFirst)")
+        print("   - Level: \(bloodLevel)")
         
         switch bloodLevel {
-                // Low urine OR low blood
         case .low:
-            triggerContinueActionFlow(currentQuestion)
-                // Moderate/Large risk (urine 1.5 or 4) OR blood moderate
-        case .moderate:
-            if reminderPageVisitCount > 2 {
+            // Low ketones - continue care
+            if visitCount >= 2 {
+                print("   → Continue with description")
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                print("   → Continue regular care")
+                triggerContinueActionFlow(currentQuestion)
+            }
+            
+        case .moderate, .large:
+            // Moderate or high ketones
+            let shouldEscalate = (skippedFirst && visitCount >= 1) || (skippedFirst == false && visitCount >= 2)
+            
+            if shouldEscalate {
+                print("   → Call CHOA emergency (escalation criteria met)")
                 triggerCallChoaEmergencyActionFlow(currentQuestion)
             } else {
+                print("   → Recheck blood sugar")
                 let createQue = createYesOrNoQuestion(
                     questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized(),
+                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
                     description: nil,
                     showDescriptionAtBottom: false
                 )
-                
                 actionsDelegate?.showNextQuestion(createQue)
             }
-        case .large:
-            if reminderPageVisitCount > 2 {
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
-            } else {
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
-                actionsDelegate?.showNextQuestion(createQue)
-            }
+            
+//            print("   → Recheck blood sugar")
+//            let createQue = createYesOrNoQuestion(
+//                questionId: .bloodSugarRecheck,
+//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+//                description: nil,
+//                showDescriptionAtBottom: false
+//            )
+//            actionsDelegate?.showNextQuestion(createQue)
         }
     }
     
     func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
+        print("🧪 Initial Urine Ketone Check - Level: \(level)")
+        
         switch level {
         case .negative:
+            // Low ketones - show reminder page
+            skipFirstReminder(false)
+            print("   → Show reminder (negative ketones)")
             showFinalStage(stage: .reminder, calculation: nil)
-        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
             
+        case .zeroPointFive, .onePointFive, .four:
+            // Moderate ketones - skip reminder, go straight to blood sugar check
             skipFirstReminder(true)
+            print("   → Skip reminder (moderate ketones)")
             let createQue = createYesOrNoQuestion(
                 questionId: .bloodSugarRecheck,
-                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                    .localized(),
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
                 description: nil,
                 showDescriptionAtBottom: false
             )
-
             actionsDelegate?.showNextQuestion(createQue)
+            
+        case .eight, .sixteen:
+            // High ketones - skip reminder, go straight to blood sugar check
+            skipFirstReminder(true)
+            print("   → Skip reminder (high ketones)")
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
+            actionsDelegate?.showNextQuestion(createQue)
+        }
+    }
+    
+    func triggerSkippedUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
+        print("🧪 Final/Skipped Urine Ketone Check - Level: \(level)")
+        
+        switch level {
+        case .negative:
+            triggerContinueWithDescriptionActionFlow(currentQuestion)
+        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+            triggerCallChoaEmergencyActionFlow(currentQuestion)
+        }
+    }
+    
+    func triggerSkippedBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
+        switch level {
+        case .low:
+            triggerContinueWithDescriptionActionFlow(currentQuestion)
+        case .moderate, .large:
+            triggerCallChoaEmergencyActionFlow(currentQuestion)
         }
     }
 
@@ -588,46 +745,40 @@ extension QuestionnaireManager {
 	}
     
     func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
-        let reminderPageVisitCount = getReminderPageVisitCount()
-
+        print("🩸 Initial Blood Ketone Check - Level: \(level)")
+        
         switch level {
         case .low:
-            if reminderPageVisitCount > 2 {
-                triggerContinueWithDescriptionActionFlow(currentQuestion)
-            } else {
-                triggerContinueActionFlow(currentQuestion)
-            }
+            // Low ketones - show reminder page
+            skipFirstReminder(false)
+            print("   → Show reminder (low ketones)")
+            showFinalStage(stage: .reminder, calculation: nil)
+            
         case .moderate:
-            // Moderate blood ketones - show warning
-            if reminderPageVisitCount > 2 {
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
-            } else {
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
-                actionsDelegate?.showNextQuestion(createQue)
-            }
-        case .large:
-            // Large blood ketones - emergency situation
+            // Moderate ketones - skip reminder, go to blood sugar check
+            skipFirstReminder(true)
+            print("   → Skip reminder (moderate ketones)")
             let createQue = createYesOrNoQuestion(
                 questionId: .bloodSugarRecheck,
-                question: "Calculator.Que.BloodSugarRecheckILetPump.title"
-                    .localized(),
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
                 description: nil,
                 showDescriptionAtBottom: false
             )
-
+            actionsDelegate?.showNextQuestion(createQue)
+            
+        case .large:
+            // High ketones - skip reminder, go to blood sugar check
+            skipFirstReminder(true)
+            print("   → Skip reminder (high ketones)")
+            let createQue = createYesOrNoQuestion(
+                questionId: .bloodSugarRecheck,
+                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+                description: nil,
+                showDescriptionAtBottom: false
+            )
             actionsDelegate?.showNextQuestion(createQue)
         }
     }
-    
-    
-    
     
     func triggerTestActionFlow(_ currentQuestion: Questionnaire) {
 		if currentTestType == .insulinShots {
@@ -696,11 +847,8 @@ extension QuestionnaireManager {
 	}
 
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        if (iLetPump && skipFirstReminder && (
-            urineKetones == .eight || urineKetones == .sixteen || bloodKetones == .large)) ||
-            (iLetPump && skipFirstReminder == false && (
-                urineKetones == .eight || urineKetones == .sixteen || bloodKetones == .large) && getReminderPageVisitCount() >= 1)  {
-            triggerSkipReminderActionFlow(currentQuestion)
+        if (iLetPump && skipFirstReminder && getReminderPageVisitCount() == 1)  {
+            showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
         } else {
             showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
         }

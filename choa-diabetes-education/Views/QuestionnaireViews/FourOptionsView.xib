@@ -79,7 +79,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_smile" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-ZJ-ukL">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_repeated_vomiting" translatesAutoresizingMaskIntoConstraints="NO" id="Vhk-ZJ-ukL">
                                                     <rect key="frame" x="10" y="10" width="150.5" height="153"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
@@ -111,7 +111,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_smile" translatesAutoresizingMaskIntoConstraints="NO" id="OM9-hk-WFk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_high_blood_sugar" translatesAutoresizingMaskIntoConstraints="NO" id="OM9-hk-WFk">
                                                     <rect key="frame" x="10" y="10" width="150.5" height="153"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
@@ -154,7 +154,7 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_smile" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-n0-wdb">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_low_blood_sugar" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-n0-wdb">
                                                     <rect key="frame" x="10" y="10" width="150.5" height="155.5"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
@@ -243,8 +243,10 @@
         </view>
     </objects>
     <resources>
+        <image name="hope_high_blood_sugar" width="153" height="153"/>
+        <image name="hope_low_blood_sugar" width="153" height="153"/>
+        <image name="hope_repeated_vomiting" width="153" height="153"/>
         <image name="leftArrow" width="20" height="20"/>
-        <image name="will_smile" width="153" height="153"/>
         <namedColor name="lightGrayColor">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

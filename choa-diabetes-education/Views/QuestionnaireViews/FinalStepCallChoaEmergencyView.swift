@@ -18,7 +18,7 @@ class FinalStepCallChoaEmergencyView: UIView {
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet var doneButton: UIButton!
-	@IBOutlet var callView: UIView!
+	@IBOutlet var callInstructionsView: UIView!
 	@IBOutlet var callChoaButton: UIButton!
 	@IBOutlet var callYourCareTeamLabel: UILabel!
 	@IBOutlet var mainStackView: UIStackView!
@@ -47,17 +47,17 @@ class FinalStepCallChoaEmergencyView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold20
+		titleLabel.font = .gothamRoundedBold24
 		titleLabel.numberOfLines = 0
 		titleLabel.text = currentQuestion.finalStep?.title
-		titleLabel.textAlignment = .natural
-
 
 		callChoaButton.layer.cornerRadius = 12
 		callChoaButton.titleLabel?.font = .gothamRoundedBold20
 
-		callYourCareTeamLabel.isHidden = true
-		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
+        callInstructionsView.isHidden = true
+        mainStackView.removeArrangedSubview(callInstructionsView)
+        
+//		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
 	}
 
 	@IBAction func didCallChoaButtonTap(_ sender: Any) {

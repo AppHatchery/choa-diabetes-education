@@ -77,8 +77,6 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 
-		nextButton.titleLabel?.font = .gothamRoundedMedium20
-
 		setupLearnHowLabel()
 		setupSwitchToLabel()
 

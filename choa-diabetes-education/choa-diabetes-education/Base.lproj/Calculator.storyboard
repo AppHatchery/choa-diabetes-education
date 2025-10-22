@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
+        <array key="GothamRoundedBold.ttf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -361,6 +361,9 @@
                                                                         <color key="tintColor" name="primaryBlue"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showInsulinForFoodInfo:" destination="I75-tA-DYU" eventType="touchUpInside" id="Gdx-0r-qt9"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -751,6 +754,9 @@
                                                                         <color key="tintColor" name="primaryBlue"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
+                                                                        <connections>
+                                                                            <action selector="showInsulinForHighBloodSugarInfo:" destination="l7g-rs-uOg" eventType="touchUpInside" id="wLb-s0-6QT"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -1820,8 +1826,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hEr-41-Qe8"/>
-        <segue reference="Ipa-CJ-Loq"/>
+        <segue reference="coK-uS-kQN"/>
+        <segue reference="aTD-Ou-0iR"/>
         <segue reference="v97-e6-biO"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>

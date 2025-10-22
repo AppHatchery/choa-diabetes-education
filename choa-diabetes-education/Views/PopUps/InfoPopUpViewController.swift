@@ -72,13 +72,19 @@ class InfoPopUpViewController: UIViewController {
             
             switch self.popupTitleText {
             case "PopupInfo.CorrectionFactor.title".localized():
-                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["correction factor", "1 unit of insulin lowers blood glucose", "50 mg/dL","blood sugar", "200 mg/dL","target","100 mg/dL","(200-100) ÷ 50 = 2 units of insulin", "Example"])
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["correction factor", "1 unit of insulin","blood sugar", "200 mg/dL","target","100 mg/dL","(200-100) ÷ 50 = 2 units of insulin", "Example"])
             case "PopupInfo.CarbRatio.title".localized():
-                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates that one unit of insulin", "Example", "1 unit of insulin per 10 grams", "50 ÷ 10 = 5 units"])
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates that 1 unit of insulin", "Example", "1 unit of insulin per 10 grams", "50 ÷ 10 = 5 units"])
             case "PopupInfo.TargetBloodSugar.title".localized():
-                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["optimal blood glucose level", "Example"])
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["optimal blood sugar level", "Example"])
             case "PopupInfo.TotalCarbs.title".localized():
-                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates in a meal", "Example", "60 grams", "60 ÷ 15 = 4 units"])
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates", "Example", "60 ÷ 15 = 4 units"])
+            case "PopupInfo.InsulinForFood.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates", "Example", "60 ÷ 15 = 4 units"])
+            case "PopupInfo.InsulinForFood.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: [""])
+            case "PopupInfo.InsulinForHighBloodSugar.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: [""])
             default:
                 print("Unknown fruit")
             }
