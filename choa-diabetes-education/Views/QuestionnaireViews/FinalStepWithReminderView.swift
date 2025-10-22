@@ -287,38 +287,32 @@ class FinalStepWithReminderView: UIView {
         
         // CRITICAL: Check more specific conditions FIRST (higher visit counts before lower)
         
-        // Path 1: Visit 2+ with any elevated ketones (didn't skip first reminder)
         if !skippedFirst && visitCount >= 2 && hasAnyElevatedKetones {
             shouldDisconnect = true
             shouldChangeSite = false
             print("   → Path 1: DISCONNECT (didn't skip + visit ≥2 + elevated ketones)")
-        }
-        // Path 2: Skipped first reminder with high ketones
-        else if skippedFirst && (hasHighUrineKetones || hasHighBloodKetones) {
+        } else if skippedFirst && (hasHighUrineKetones || hasHighBloodKetones) {
             shouldDisconnect = true
             shouldChangeSite = false
             print("   → Path 2: DISCONNECT (skipped first + high ketones)")
-        }
-        // Path 3: Skipped first reminder with moderate ketones
-        else if skippedFirst && (hasModerateUrineKetones || hasModerateBloodKetones) {
+        } else if skippedFirst && visitCount >= 1 && (
+            hasModerateUrineKetones || hasModerateBloodKetones
+        ) {
+            shouldDisconnect = true
+            shouldChangeSite = false
+        } else if skippedFirst && (hasModerateUrineKetones || hasModerateBloodKetones) {
             shouldDisconnect = false
             shouldChangeSite = true
             print("   → Path 3: CHANGE SITE (skipped first + moderate ketones)")
-        }
-        // Path 4: Visit 1 with high ketones (didn't skip)
-        else if !skippedFirst && visitCount >= 1 && (hasHighUrineKetones || hasHighBloodKetones) {
+        } else if !skippedFirst && visitCount >= 1 && (hasHighUrineKetones || hasHighBloodKetones) {
             shouldDisconnect = true
             shouldChangeSite = false
             print("   → Path 4: DISCONNECT (visit ≥1 + high ketones)")
-        }
-        // Path 5: Visit 1 with moderate ketones (didn't skip) - change site first
-        else if !skippedFirst && visitCount >= 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
+        } else if !skippedFirst && visitCount >= 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
             shouldDisconnect = false
             shouldChangeSite = true
             print("   → Path 5: CHANGE SITE (visit ≥1 + moderate ketones)")
-        }
-        // Path 6: Default - no elevated ketones or first visit
-        else {
+        } else {
             shouldDisconnect = false
             shouldChangeSite = false
             print("   → Path 6: CONFIRM SECURE (default/negative ketones)")

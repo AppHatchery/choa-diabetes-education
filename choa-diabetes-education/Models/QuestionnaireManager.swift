@@ -45,8 +45,13 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
     func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    
     func triggerSkippedUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
     func triggerSkippedBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
+    
+    func triggerSkippedUrineKetoneModerateForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
+    func triggerSkippedBloodKetoneModerateForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
+    
 	func triggerBloodKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
     func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel)
     func triggerSkipReminderActionFlow(_ currentQuestion: Questionnaire)
@@ -205,6 +210,10 @@ extension QuestionnaireManager {
                 
                 if skippedFirst == false && visitCount > 2 && (
                     hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
+                    triggerRecheckKetonesActionFlow(currentQuestion)
+                } else if (hasModerateUrineKetones || hasModerateBloodKetones) && (
+                    skippedFirst && visitCount >= 2
+                ) {
                     triggerRecheckKetonesActionFlow(currentQuestion)
                 } else if (hasHighBloodKetones || hasHighUrineKetones) && (skippedFirst && visitCount == 1) {
                     triggerRecheckKetonesActionFlow(currentQuestion)
@@ -386,7 +395,6 @@ extension QuestionnaireManager {
 				// Negative/Trace
 		case .negative, .zeroPointFive:
 			if bloodSugarOver300 && currentTestType == .pump {
-//				showFinalStage(stage: .callChoa, calculation: nil)
                 
                 let createQue = createYesOrNoQuestion(
                     questionId: .bloodSugarRecheck,
@@ -400,21 +408,6 @@ extension QuestionnaireManager {
 			}	else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
 			}
-            
-//        case .zeroPointFive:
-//            if bloodSugarOver300 && currentTestType == .pump {
-//                let createQue = createYesOrNoQuestion(
-//                    questionId: .bloodSugarRecheck,
-//                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-//                        .localized() : "Calculator.Que.BloodSugarRecheckPump.title".localized(),
-//                    description: nil,
-//                    showDescriptionAtBottom: false
-//                )
-//                
-//                actionsDelegate?.showNextQuestion(createQue)
-//            }    else {
-//                showFinalStage(stage: .continueRegularCare, calculation: nil)
-//            }
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
         case .onePointFive, .four, .eight, .sixteen:
@@ -429,6 +422,38 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(createQue)
 		}
 	}
+    
+    func triggerSkippedUrineKetoneModerateForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        level: UrineKetoneLevel,
+    ) {
+        switch level {
+        case .negative:
+            if getReminderPageVisitCount() >= 2 {
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                triggerContinueActionFlow(currentQuestion)
+            }
+        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+            triggerBloodSugarRecheckActionFlow(currentQuestion)
+        }
+    }
+    
+    func triggerSkippedBloodKetoneModerateForILetActionFlow(
+        _ currentQuestion: Questionnaire,
+        level: BloodKetoneLevel,
+    ) {
+        switch level {
+        case .low:
+            if getReminderPageVisitCount() >= 2 {
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                triggerContinueActionFlow(currentQuestion)
+            }
+        case .moderate, .large:
+            triggerBloodSugarRecheckActionFlow(currentQuestion)
+        }
+    }
     
     func triggerRecheckUrineKetoneForILetActionFlow(
         _ currentQuestion: Questionnaire,
@@ -445,7 +470,7 @@ extension QuestionnaireManager {
         switch urineLevel {
         case .negative:
             // Negative ketones - continue care
-            if visitCount > 2 {
+            if visitCount >= 2 {
                 print("   → Continue with description (visited ≥2 times)")
                 triggerContinueWithDescriptionActionFlow(currentQuestion)
             } else {
@@ -560,7 +585,7 @@ extension QuestionnaireManager {
         switch bloodLevel {
         case .low:
             // Low ketones - continue care
-            if visitCount > 2 {
+            if visitCount >= 2 {
                 print("   → Continue with description")
                 triggerContinueWithDescriptionActionFlow(currentQuestion)
             } else {

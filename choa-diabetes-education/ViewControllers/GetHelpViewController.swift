@@ -545,13 +545,18 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
             
             if skippedFirst == false && visitCount > 2 && (
                 hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(
-                    question
-                )
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
             } else if skippedFirst == false && (visitCount == 1 || visitCount == 2) {
                 self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
-            } else if skippedFirst && visitCount == 1 {
+            } else if skippedFirst && visitCount == 2 && (
+                hasModerateUrineKetones || hasModerateBloodKetones
+            ) {
                 self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+            } else if skippedFirst && visitCount == 1 && (hasHighUrineKetones || hasHighBloodKetones) {
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+            } else if skippedFirst && visitCount == 1 && (
+                hasModerateUrineKetones || hasModerateBloodKetones) {
+                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
             }
         } else {
             self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
@@ -566,6 +571,14 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
         let visitCount = self.questionnaireManager
                 .getReminderPageVisitCount()
         let skippedFirst = self.questionnaireManager.skipFirstReminder
+        
+        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
+        
+        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
+        
+        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
+        
+        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
 
 		switch selectedAnswer {
             
@@ -573,12 +586,24 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
             
             if iLetPump {
-                if (skippedFirst && visitCount == 1) {
+                if skippedFirst && visitCount == 1 && (
+                    hasHighUrineKetones || hasHighBloodKetones
+                ) {
                     self.questionnaireManager
                         .triggerSkippedUrineKetoneForILetActionFlow(
                             currentQuestion,
                             level: level
                         )
+                } else if skippedFirst && visitCount == 1 && (
+                    hasModerateUrineKetones || hasModerateBloodKetones
+                ) {
+                    self.questionnaireManager
+                        .triggerSkippedUrineKetoneModerateForILetActionFlow(
+                            currentQuestion,
+                            level: level
+                        )
+                    
+                    print("SHOULD YOU MODERATE TRIGGER!!!!")
                 } else {
                     self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
                 }
@@ -594,6 +619,14 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
         let visitCount = self.questionnaireManager
                 .getReminderPageVisitCount()
         let skippedFirst = self.questionnaireManager.skipFirstReminder
+        
+        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
+        
+        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
+        
+        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
+        
+        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
 
 		print("Selected Answer: \(selectedAnswer)")
 
@@ -602,12 +635,21 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
             
             if iLetPump {
-                if (skippedFirst && visitCount == 1) {
+                if skippedFirst && visitCount == 1 && (
+                    hasHighBloodKetones || hasHighUrineKetones
+                ){
                     self.questionnaireManager
                         .triggerSkippedBloodKetoneForILetActionFlow(
                             currentQuestion,
                             level: level
                         )
+                } else if skippedFirst && visitCount == 1 && (
+                    hasModerateUrineKetones || hasModerateBloodKetones
+                ) {
+                    self.questionnaireManager
+                        .triggerSkippedBloodKetoneModerateForILetActionFlow(
+                            currentQuestion, level: level)
+                    print("SHOULD YOU MODERATE TRIGGER!!!!")
                 } else {
                     self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
                 }
