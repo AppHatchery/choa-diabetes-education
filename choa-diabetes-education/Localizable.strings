@@ -224,21 +224,37 @@ If blood sugar is over 150, drink without sugar (e.g., Water, Gatorade Zero)";
 
 // Pop Up Info
 "PopupInfo.CorrectionFactor.title" = "Correction Factor";
-"PopupInfo.CorrectionFactor.text" = "The correction factor is the amount 1 unit of insulin lowers blood glucose.
+"PopupInfo.CorrectionFactor.text" = "The correction factor shows how much 1 unit of insulin lowers your blood sugar to help reach your target range.
 
-Example: If your correction factor is 50 mg/dL and your blood sugar is 200 mg/dL with a target of 100 mg/dL, you’d take (200-100) ÷ 50 = 2 units of insulin to correct it.";
+Example: 
+If your correction factor is 50 mg/dL and your blood sugar is 200 with a target of 100. 
+
+You calculate (200 - 100) ÷ 50 = 2, so take 2 units of insulin.";
 
 "PopupInfo.CarbRatio.title" = "Carb Ratio";
-"PopupInfo.CarbRatio.text" = "Is the amount of carbohydrates that one unit of insulin can cover.
+"PopupInfo.CarbRatio.text" = "Is the amount of carbohydrates that 1 unit of insulin can cover.
 
-Example: If your carbohydrate ratio is 1 unit of insulin per 10 grams of carbohydrates, and you eat a meal with 50 grams of carbs, you’d take 50 ÷ 10 = 5 units of insulin to cover it.";
+Example: 
+If your carb ratio is 1 unit of insulin per 10 grams of carbs and your meal has 50 grams of carbs.
+
+You calculate 50 ÷ 10 = 5, so take 5 units of insulin to cover the meal.";
 
 "PopupInfo.TargetBloodSugar.title" = "Target Blood Sugar";
-"PopupInfo.TargetBloodSugar.text" = "It is the optimal blood glucose level a person aims to maintain for good health and diabetes management.
+"PopupInfo.TargetBloodSugar.text" = "It’s the optimal blood sugar level your doctor recommends for you to keep for good health and diabetes management.
 
-Example: If your target blood sugar is 100 mg/dL and your current blood sugar is 200 mg/dL, you may need to take insulin or adjust your diet to bring it back to the target range.";
+Example: 
+If your target blood sugar is 100 mg/dL and your current blood sugar is 200 mg/dL, you may need insulin or a food adjustment to reach your target.";
 
-"PopupInfo.TotalCarbs.title" = "Carbohydrate Count";
-"PopupInfo.TotalCarbs.text" = "Is the total amount of carbohydrates in a meal, which helps people with diabetes determine how much insulin they need.
+"PopupInfo.TotalCarbs.title" = "Total Carbs";
+"PopupInfo.TotalCarbs.text" = "Total carbs are the total amount of carbohydrates in a meal, which helps you know how much insulin you need.
 
-Example: If your meal contains 60 grams of carbohydrates and your insulin-to-carb ratio is 1 unit per 15 grams of carbs, you’d take 60 ÷ 15 = 4 units of insulin to cover the meal.";
+Example: 
+If your meal contains 60 grams of carbohydrates and your insulin-to-carb ratio is 1 unit per 15 grams of carbs.
+
+You’d calculate 60 ÷ 15 = 4, so take 4 units of insulin to cover the meal.";
+
+"PopupInfo.InsulinForFood.title" = "Insulin for Food";
+"PopupInfo.InsulinForFood.text" = "The purpose of insulin for food is to help the body use or store the sugar from the carbohydrates we eat so blood sugar levels stay in a healthy range.";
+
+"PopupInfo.InsulinForHighBloodSugar.title" = "Insulin for Food";
+"PopupInfo.InsulinForHighBloodSugar.text" = "Insulin for high blood sugar helps lower blood sugar that’s too high by helping your body use sugar for energy and keep levels in a healthy range.";

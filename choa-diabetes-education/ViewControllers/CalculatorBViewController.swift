@@ -263,6 +263,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                          , details: "PopupInfo.CorrectionFactor.text".localized())
     }
     
+    @IBAction func showInsulinForHighBloodSugarInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.InsulinForHighBloodSugar.title".localized()
+                         , details: "PopupInfo.InsulinForHighBloodSugar.text".localized())
+    }
+    
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         
