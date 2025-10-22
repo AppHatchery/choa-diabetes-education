@@ -30,7 +30,10 @@ class GetHelpViewController: UIViewController {
 
 
 	private let questionObj: Questionnaire
-    private let questionnaireManager: QuestionnaireManagerProvider = QuestionnaireManager.instance
+    private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
+    
+    private let manager = QuestionnaireManager.instance
+    
     private let navVC: UINavigationController
     
     init(navVC: UINavigationController, currentQuestion: Questionnaire) {
@@ -514,32 +517,104 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
     }
 
 	func didSelectYesOverAction(_ question: Questionnaire) {
-		self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+        let iLetPump = self.questionnaireManager.iLetPump
+        let visitCount = self.questionnaireManager
+                .getReminderPageVisitCount()
+        let skippedFirst = self.questionnaireManager.skipFirstReminder
+        
+        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
+        
+        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
+        
+        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
+        
+        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
+        
+        if iLetPump {
+            print("""
+            🧩 DEBUG (iLetPump flow)
+            skippedFirst = \(skippedFirst)
+            visitCount = \(visitCount)
+            urineKetones = \(String(describing: questionnaireManager.urineKetones))
+            bloodKetones = \(String(describing: questionnaireManager.bloodKetones))
+            hasHighUrineKetones = \(hasHighUrineKetones)
+            hasModerateUrineKetones = \(hasModerateUrineKetones)
+            hasHighBloodKetones = \(hasHighBloodKetones)
+            hasModerateBloodKetones = \(hasModerateBloodKetones)
+            """)
+            
+            if skippedFirst == false && visitCount > 2 && (
+                hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(
+                    question
+                )
+            } else if skippedFirst == false && (visitCount == 1 || visitCount == 2) {
+                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+            } else if skippedFirst && visitCount == 1 {
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+            }
+        } else {
+            self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+        }
 	}
 
 		// Recheck Ketone Level Functions
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
 
 		print("Selected Answer: \(selectedAnswer)")
+        let iLetPump = self.questionnaireManager.iLetPump
+        let visitCount = self.questionnaireManager
+                .getReminderPageVisitCount()
+        let skippedFirst = self.questionnaireManager.skipFirstReminder
 
 		switch selectedAnswer {
+            
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-            self.questionnaireManager.iLetPump ? self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level) : self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+            
+            if iLetPump {
+                if (skippedFirst && visitCount == 1) {
+                    self.questionnaireManager
+                        .triggerSkippedUrineKetoneForILetActionFlow(
+                            currentQuestion,
+                            level: level
+                        )
+                } else {
+                    self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
+                }
+            } else {
+                self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+            }
 		}
 	}
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
+        
+        let iLetPump = self.questionnaireManager.iLetPump
+        let visitCount = self.questionnaireManager
+                .getReminderPageVisitCount()
+        let skippedFirst = self.questionnaireManager.skipFirstReminder
 
 		print("Selected Answer: \(selectedAnswer)")
 
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-            self.questionnaireManager.iLetPump ?
-            self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level) :
-            self.questionnaireManager
-                .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+            
+            if iLetPump {
+                if (skippedFirst && visitCount == 1) {
+                    self.questionnaireManager
+                        .triggerSkippedBloodKetoneForILetActionFlow(
+                            currentQuestion,
+                            level: level
+                        )
+                } else {
+                    self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
+                }
+            } else {
+                self.questionnaireManager
+                    .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+            }
 		}
 	}
 }

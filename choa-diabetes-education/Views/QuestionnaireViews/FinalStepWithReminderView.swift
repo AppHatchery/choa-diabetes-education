@@ -257,43 +257,104 @@ class FinalStepWithReminderView: UIView {
     // MARK: - Pump + iLet
     private func setupForPumpWithIlet() {
         let visitCount = questionnaireManager.getReminderPageVisitCount()
-        print("User has visited reminder page \(visitCount) times")
+        let skippedFirst = questionnaireManager.skipFirstReminder
+        
+        print("🏥 Setting up iLet pump view")
+        print("   - Visit count: \(visitCount)")
+        print("   - Skipped first reminder: \(skippedFirst)")
+        print("   - Blood ketones: \(String(describing: questionnaireManager.bloodKetones))")
+        print("   - Urine ketones: \(String(describing: questionnaireManager.urineKetones))")
         
         confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
         
-        confirmChangeDisconnectLabel.setText(
-            "Final.ConfirmPumpIsSecure.text".localized(),
-            boldPhrases: ["pump site is securely connected"]
-        )
-
-        if questionnaireManager.bloodKetones == .moderate ||
-            (questionnaireManager.urineKetones == .zeroPointFive || questionnaireManager.urineKetones == .onePointFive ||
-             questionnaireManager.urineKetones == .four) {
-
-            // Change iLet pump site
-            confirmChangeDisconnectLabel.setText(
-                "Final.ChangeIletPumpSite.text".localized(),
-                boldPhrases: ["Change", "pump site"]
-            )
-            giveRecommendedDoseStackView.isHidden = true
-
-        } else if questionnaireManager.bloodKetones == .large ||
-                    (questionnaireManager.urineKetones == .eight ||
-                     questionnaireManager.urineKetones == .sixteen) || (questionnaireManager.skipFirstReminder == false && questionnaireManager.getReminderPageVisitCount() >= 2) {
-
-            // Disconnect iLet pump
+        // Ketone level checks
+        let hasModerateUrineKetones = questionnaireManager.urineKetones == .zeroPointFive ||
+        questionnaireManager.urineKetones == .onePointFive ||
+        questionnaireManager.urineKetones == .four
+        
+        let hasHighUrineKetones = questionnaireManager.urineKetones == .eight ||
+        questionnaireManager.urineKetones == .sixteen
+        
+        let hasModerateBloodKetones = questionnaireManager.bloodKetones == .moderate
+        let hasHighBloodKetones = questionnaireManager.bloodKetones == .large
+        
+        let hasAnyElevatedKetones = hasModerateUrineKetones || hasHighUrineKetones ||
+                                    hasModerateBloodKetones || hasHighBloodKetones
+        
+        // Decision tree for what action to show
+        var shouldDisconnect = false
+        var shouldChangeSite = false
+        
+        // CRITICAL: Check more specific conditions FIRST (higher visit counts before lower)
+        
+        // Path 1: Visit 2+ with any elevated ketones (didn't skip first reminder)
+        if !skippedFirst && visitCount >= 2 && hasAnyElevatedKetones {
+            shouldDisconnect = true
+            shouldChangeSite = false
+            print("   → Path 1: DISCONNECT (didn't skip + visit ≥2 + elevated ketones)")
+        }
+        // Path 2: Skipped first reminder with high ketones
+        else if skippedFirst && (hasHighUrineKetones || hasHighBloodKetones) {
+            shouldDisconnect = true
+            shouldChangeSite = false
+            print("   → Path 2: DISCONNECT (skipped first + high ketones)")
+        }
+        // Path 3: Skipped first reminder with moderate ketones
+        else if skippedFirst && (hasModerateUrineKetones || hasModerateBloodKetones) {
+            shouldDisconnect = false
+            shouldChangeSite = true
+            print("   → Path 3: CHANGE SITE (skipped first + moderate ketones)")
+        }
+        // Path 4: Visit 1 with high ketones (didn't skip)
+        else if !skippedFirst && visitCount >= 1 && (hasHighUrineKetones || hasHighBloodKetones) {
+            shouldDisconnect = true
+            shouldChangeSite = false
+            print("   → Path 4: DISCONNECT (visit ≥1 + high ketones)")
+        }
+        // Path 5: Visit 1 with moderate ketones (didn't skip) - change site first
+        else if !skippedFirst && visitCount >= 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
+            shouldDisconnect = false
+            shouldChangeSite = true
+            print("   → Path 5: CHANGE SITE (visit ≥1 + moderate ketones)")
+        }
+        // Path 6: Default - no elevated ketones or first visit
+        else {
+            shouldDisconnect = false
+            shouldChangeSite = false
+            print("   → Path 6: CONFIRM SECURE (default/negative ketones)")
+        }
+        
+        // Apply the decision
+        if shouldDisconnect {
             confirmChangeDisconnectLabel.setText(
                 "Final.DisconnectIletPump.text".localized(),
                 boldPhrases: ["Disconnect", "pump"]
             )
             giveRecommendedDoseStackView.isHidden = false
-
+            
             giveRecommendedDoseLabel.setText(
                 "Final.CalculateAndGiveCorrectionDose.text".localized(),
                 boldPhrases: ["correction dose", "rapid-acting", "insulin pen", "syringe"]
             )
+            print("   ✅ Action: DISCONNECT PUMP")
+        } else if shouldChangeSite {
+            confirmChangeDisconnectLabel.setText(
+                "Final.ChangeIletPumpSite.text".localized(),
+                boldPhrases: ["Change", "pump site"]
+            )
+            giveRecommendedDoseStackView.isHidden = true
+            print("   ✅ Action: CHANGE PUMP SITE")
+        } else {
+            // Default: confirm pump is secure (low/negative ketones)
+            confirmChangeDisconnectLabel.setText(
+                "Final.ConfirmPumpIsSecure.text".localized(),
+                boldPhrases: ["pump site is securely connected"]
+            )
+            giveRecommendedDoseStackView.isHidden = false
+            print("   ✅ Action: CONFIRM PUMP SECURE")
         }
-
+        
+        // Set reminder text
         reminderNextCheckLabel.text = "Final.ReminderNextCheckForIlet.text".localized()
         reminderNextCheckDescriptionLabel.setText(
             "Final.ReminderNextCheckDescriptionForIlet.text".localized(),
@@ -304,10 +365,16 @@ class FinalStepWithReminderView: UIView {
             boldPhrases: ["90 minutes"]
         )
         hopeImage.isHidden = true
-
-    //    flipHydrationAndReminder()
     }
-
+    
+    func refreshUIForVisitCount() {
+        guard questionnaireManager.iLetPump else { return }
+        
+        let visitCount = questionnaireManager.getReminderPageVisitCount()
+        print("🔄 Refreshing UI for visit count: \(visitCount)")
+        
+        setupForPumpWithIlet()
+    }
 
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
