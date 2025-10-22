@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -32,16 +32,16 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-Wy-Aey">
-                    <rect key="frame" x="0.0" y="158" width="393" height="161"/>
+                    <rect key="frame" x="0.0" y="158" width="393" height="158"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are the ketone test results?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk6-kn-pK5">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="21"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="18"/>
                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8yg-zB-Cch">
-                            <rect key="frame" x="0.0" y="33" width="393" height="128"/>
+                            <rect key="frame" x="0.0" y="30" width="393" height="128"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="any-I0-ZL3">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
@@ -53,8 +53,8 @@
                                                 <constraint firstAttribute="height" constant="60" id="ydO-ub-2Bf"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Urine ketone level mmol/l" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWS-tL-5e3">
-                                            <rect key="frame" x="72" y="0.0" width="321" height="23.333333333333332"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Urine Ketone Level (mg/dL)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWS-tL-5e3">
+                                            <rect key="frame" x="72" y="0.0" width="321" height="20"/>
                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                             <color key="textColor" name="primaryBlue"/>
                                             <nil key="highlightedColor"/>
@@ -69,15 +69,8 @@
                                             <color key="backgroundColor" name="ketoneLowNegative"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Neg">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="Neg">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Bub-oZ-Jco"/>
@@ -88,15 +81,8 @@
                                             <color key="backgroundColor" name="ketoneLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="0.5">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="0.5">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="8hb-3j-kwG"/>
@@ -107,15 +93,8 @@
                                             <color key="backgroundColor" name="ketoneMidLow"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="1.5">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="1.5">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="oAP-3C-xoH"/>
@@ -126,15 +105,8 @@
                                             <color key="backgroundColor" name="ketoneMidHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="4.0">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="4.0">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="Iab-zq-iwi"/>
@@ -145,15 +117,8 @@
                                             <color key="backgroundColor" name="ketoneHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="8.0">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="8.0">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="E2a-jN-JU7"/>
@@ -164,15 +129,8 @@
                                             <color key="backgroundColor" name="KetoneHighVeryHigh"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="16">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="GothamRounded-Medium"/>
-                                                            <font key="NSOriginalFont" size="12" name="Helvetica"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="16">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="14"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="ketoneLevelButtonTapped:" destination="-1" eventType="touchUpInside" id="MV0-KZ-hsl"/>

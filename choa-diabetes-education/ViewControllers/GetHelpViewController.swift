@@ -402,8 +402,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 		case .LowBloodSugar(let childIssue):
 			print("Four options selected answer: \(selectedAnswer)")
-			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
-		case .NotSure(_):
+            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
+        case .NotSure(let childIssue):
+            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
 			print("Four options selected answer: \(selectedAnswer)")
 
 		case .Nausea(_):
