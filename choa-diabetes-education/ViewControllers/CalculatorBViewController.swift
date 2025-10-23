@@ -25,6 +25,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var insulinForHighBloodSugarTitleLabel: UILabel!
     @IBOutlet weak var insulinForHighBloodSugar: UILabel!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
@@ -130,6 +131,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
         bloodSugarLabelImage.isHidden = true
         calculatorDidUpdateConstants()
+        setupTappableInfoButtons()
     }
     
     @objc private func editButtonTapped() {
@@ -258,6 +260,35 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
     }
     
+    func setupTappableInfoButtons() {
+        let showTargetBloodSugarInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowTargetBloodSugarInfo))
+        targetBloodSugarLabel.addGestureRecognizer(showTargetBloodSugarInfoTap)
+        targetBloodSugarLabel.isUserInteractionEnabled = true
+        
+        let showCorrectionFactorInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowCorrectionFactorInfo))
+        correctionFactorLabel.addGestureRecognizer(showCorrectionFactorInfoTap)
+        correctionFactorLabel.isUserInteractionEnabled = true
+
+        
+        let showInsulinForHighBloodSugarInfoTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapShowInsulinForHighBloodSugarInfo))
+        insulinForHighBloodSugarTitleLabel.addGestureRecognizer(showInsulinForHighBloodSugarInfoTap)
+        insulinForHighBloodSugarTitleLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc private func didTapShowTargetBloodSugarInfo() {
+        showTargetBloodSugarInfo(self)
+    }
+    
+    @objc private func didTapShowCorrectionFactorInfo() {
+        showCorrectionFactorInfo(self)
+    }
+    
+    @objc private func didTapShowInsulinForHighBloodSugarInfo() {
+        showInsulinForHighBloodSugarInfo(self)
+    }
+    
     @IBAction func showTargetBloodSugarInfo(_ sender: Any) {
         infoPopup
             .appear(
@@ -282,9 +313,9 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
         
         // In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.
-        guard let screen = notification.object as? UIScreen,
+        guard let _ = notification.object as? UIScreen,
               // Get the keyboard’s frame at the end of its animation.
-              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+              let _ = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         
         
         // Use that screen to get the coordinate space to convert from.
@@ -366,7 +397,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     }
     
     func calculateFoodInsulin() {
-        var currentBloodSugar = bloodSugar
+        let currentBloodSugar = bloodSugar
         var currentTargetBloodSugar = targetBloodSugar
         var currentCorrectionFactor = correctionFactor
 

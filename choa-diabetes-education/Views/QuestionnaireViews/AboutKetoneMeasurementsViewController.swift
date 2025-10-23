@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class AboutKetoneMeasurementsViewController: UIViewController {
+    
+    @IBOutlet weak var mainStackView: UIStackView!
 
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var urineMeasurementTitle: UILabel!
@@ -24,6 +26,23 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        if let sheet = sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [
+                    .custom { context in
+                        return context.maximumDetentValue * 0.75
+                    }
+                ]
+            } else {
+                sheet.detents = [.medium(), .large()]
+                sheet.selectedDetentIdentifier = .large
+            }
+            
+            sheet.prefersGrabberVisible = false
+            sheet.preferredCornerRadius = 24
+            sheet.largestUndimmedDetentIdentifier = nil
+        }
 
 		titleLabel.text = "About.KetoneMeasurements.title".localized()
 		titleLabel.textColor = .choaGreenColor

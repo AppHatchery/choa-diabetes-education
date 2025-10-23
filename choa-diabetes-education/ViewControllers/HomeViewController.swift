@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var resourceCards: [UIView]!
     
+    @IBOutlet weak var educationalResourcesLabel: UILabel!
     @IBOutlet weak var diabetesBasicsResourceCard: UIView!
     @IBOutlet weak var nutritionResourceCard: UIView!
     @IBOutlet weak var diabetesSelfManagementResourceCard: UIView!
@@ -138,9 +139,15 @@ class HomeViewController: UIViewController {
 
     private func addTapRecognizersToResourceCards() {
         // Ensure the views can receive touches
+        educationalResourcesLabel.isUserInteractionEnabled = true
         diabetesBasicsResourceCard.isUserInteractionEnabled = true
         nutritionResourceCard.isUserInteractionEnabled = true
         diabetesSelfManagementResourceCard.isUserInteractionEnabled = true
+        
+        let educationalResourcesTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapEducationalResourcesLabel))
+        educationalResourcesLabel.addGestureRecognizer(educationalResourcesTap)
 
         let basicsTap = UITapGestureRecognizer(target: self, action: #selector(didTapDiabetesBasicsCard))
         diabetesBasicsResourceCard.addGestureRecognizer(basicsTap)
@@ -201,6 +208,10 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Tap handlers for resource cards
+    
+    @objc private func didTapEducationalResourcesLabel() {
+        performSegue(withIdentifier: "SegueToResources", sender: nil)
+    }
 
     @objc private func didTapDiabetesBasicsCard() {
         chapterContent = ContentChapter().sectionOne.count

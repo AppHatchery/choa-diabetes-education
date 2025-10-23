@@ -47,7 +47,7 @@ class CalculatorCViewController: UIViewController {
     }
     
     func calculateInsulin() {
-        let targetBloodSugarConstant = constantsManager.hasStoredConstants ? constantsManager.targetBloodSugar : 150
+        let targetBloodSugarValue = targetBloodSugar > 0 ? targetBloodSugar : (constantsManager.hasStoredConstants ? constantsManager.targetBloodSugar : 0)
         
         // Algorithm operations to calculate each block
         var foodInsulin:Float = 0.0
@@ -63,10 +63,10 @@ class CalculatorCViewController: UIViewController {
             insulinForFood.text = "0"
         }
         
-        // Insulin for blood sugar
-        if (insulinForHighBloodSugarBoolean && bloodSugar >= targetBloodSugarConstant){
+        // Insulin for blood sugar - use the same value for both condition and calculation
+        if (insulinForHighBloodSugarBoolean && bloodSugar > 0 && targetBloodSugarValue > 0 && bloodSugar >= targetBloodSugarValue){
             bloodInsulin = roundDownToNearestHalf(
-                value: Float(bloodSugar - targetBloodSugar) / Float(correctionFactor)
+                value: Float(bloodSugar - targetBloodSugarValue) / Float(correctionFactor)
             )
             insulinForBloodSugar.text = String(
                 bloodInsulin.cleanString

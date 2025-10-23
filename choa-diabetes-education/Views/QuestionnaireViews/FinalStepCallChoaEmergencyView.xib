@@ -32,13 +32,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="158" width="353" height="670"/>
+                    <rect key="frame" x="20" y="168" width="353" height="670"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1m-l4-9xZ">
                             <rect key="frame" x="0.0" y="0.0" width="353" height="96"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3j-ih-gcl" userLabel="Call your care team or doctor for further instructions">
-                                    <rect key="frame" x="40" y="0.0" width="273" height="96"/>
+                                    <rect key="frame" x="20" y="0.0" width="313" height="96"/>
                                     <string key="text">Call your 
 care team or doctor for further instructions</string>
                                     <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
@@ -48,9 +48,9 @@ care team or doctor for further instructions</string>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="L3j-ih-gcl" secondAttribute="trailing" constant="40" id="3Qq-rq-hfr"/>
+                                <constraint firstAttribute="trailing" secondItem="L3j-ih-gcl" secondAttribute="trailing" constant="20" id="3Qq-rq-hfr"/>
                                 <constraint firstItem="L3j-ih-gcl" firstAttribute="top" secondItem="F1m-l4-9xZ" secondAttribute="top" id="UEK-96-70a"/>
-                                <constraint firstItem="L3j-ih-gcl" firstAttribute="leading" secondItem="F1m-l4-9xZ" secondAttribute="leading" constant="40" id="mY9-Qm-NK6"/>
+                                <constraint firstItem="L3j-ih-gcl" firstAttribute="leading" secondItem="F1m-l4-9xZ" secondAttribute="leading" constant="20" id="mY9-Qm-NK6"/>
                                 <constraint firstAttribute="bottom" secondItem="L3j-ih-gcl" secondAttribute="bottom" id="nsU-bh-Am6"/>
                             </constraints>
                         </view>
@@ -154,7 +154,7 @@ care team or doctor for further instructions</string>
                 <constraint firstItem="o1S-mO-jTY" firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="2wq-Ln-OW0"/>
                 <constraint firstItem="6do-CM-QoM" firstAttribute="bottom" secondItem="o1S-mO-jTY" secondAttribute="bottom" id="6T3-SD-GWC"/>
                 <constraint firstItem="o1S-mO-jTY" firstAttribute="trailing" secondItem="6do-CM-QoM" secondAttribute="trailing" constant="20" id="eDK-LY-xNY"/>
-                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="o1S-mO-jTY" secondAttribute="top" constant="40" id="q2V-18-13P"/>
+                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="o1S-mO-jTY" secondAttribute="top" constant="50" id="q2V-18-13P"/>
                 <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" constant="20" id="tyb-bA-6bZ"/>
                 <constraint firstItem="6do-CM-QoM" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" constant="20" id="wWj-Jb-aQC"/>
             </constraints>

@@ -173,7 +173,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 	}
 
 	@objc private func learnHowLabelTapped() {
-		print("Learn How label tapped!")
 		delegate?.didSelectLearnHowAction()
 	}
 

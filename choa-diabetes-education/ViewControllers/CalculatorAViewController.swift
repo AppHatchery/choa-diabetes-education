@@ -25,6 +25,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var insulinForFoodTitleLabel: UILabel!
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     
@@ -122,6 +123,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         
         calculatorDidUpdateConstants()
+        setupTappableInfoButtons()
     }
     
     func resetCalculatorFields() {
@@ -342,6 +344,35 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         } else if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == false {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func setupTappableInfoButtons() {
+        let showTotalCarbsInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowTotalCarbsInfo))
+        carbLabel.addGestureRecognizer(showTotalCarbsInfoTap)
+        carbLabel.isUserInteractionEnabled = true
+        
+        let showCarbRatioInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowCarbRatioInfo))
+        carbRatioLabel.addGestureRecognizer(showCarbRatioInfoTap)
+        carbRatioLabel.isUserInteractionEnabled = true
+
+        
+        let showInsulinForFoodInfoTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapShowInsulinForFoodInfo))
+        insulinForFoodTitleLabel.addGestureRecognizer(showInsulinForFoodInfoTap)
+        insulinForFoodTitleLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc private func didTapShowTotalCarbsInfo() {
+        showTotalCarbsInfo(self)
+    }
+    
+    @objc private func didTapShowCarbRatioInfo() {
+        showCarbRatioInfo(self)
+    }
+    
+    @objc private func didTapShowInsulinForFoodInfo() {
+        showInsulinForFoodInfo(self)
     }
     
     @IBAction func showTotalCarbsInfo(_ sender: Any) {

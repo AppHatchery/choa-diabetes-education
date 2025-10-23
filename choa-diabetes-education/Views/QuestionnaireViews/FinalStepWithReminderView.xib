@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -220,13 +220,13 @@
                                                                             <rect key="frame" x="0.0" y="60.333333333333258" width="353" height="48"/>
                                                                             <subviews>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
-                                                                                    <rect key="frame" x="179.33333333333337" y="0.0" width="173.66666666666663" height="48"/>
+                                                                                    <rect key="frame" x="151.33333333333337" y="0.0" width="201.66666666666663" height="48"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="48" id="4ts-oB-Nb7"/>
                                                                                     </constraints>
                                                                                     <color key="tintColor" name="primaryBlue"/>
                                                                                     <state key="normal" title="Button"/>
-                                                                                    <buttonConfiguration key="configuration" style="plain">
+                                                                                    <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" imagePadding="8">
                                                                                         <attributedString key="attributedTitle">
                                                                                             <fragment content="Yes, Over 2hrs ">
                                                                                                 <attributes>
@@ -312,6 +312,7 @@
         <image name="ic_alarm" width="17.333333969116211" height="16.333333969116211"/>
         <image name="injection_insulin_pen" width="153" height="153"/>
         <image name="insulin_pump" width="153" height="153"/>
+        <image name="leftArrow" width="20" height="20"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
