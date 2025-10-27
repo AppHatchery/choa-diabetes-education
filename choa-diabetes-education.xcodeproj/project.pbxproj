@@ -28,6 +28,8 @@
 		B44D1F1A2E5C7A1500DE4E3A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */; };
 		B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */; };
 		B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */; };
+		B454251C2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */; };
+		B454251E2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */; };
 		B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */; };
 		B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */; };
 		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
@@ -232,6 +234,8 @@
 		B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
+		B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
 		B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodKetoneLevelView.swift; sourceTree = "<group>"; };
 		B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BloodKetoneLevelView.xib; sourceTree = "<group>"; };
 		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
@@ -642,6 +646,8 @@
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
 				B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */,
 				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
+				B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */,
+				B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1060,6 +1066,7 @@
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,
+				B454251E2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
 				B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */,
@@ -1084,6 +1091,7 @@
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
 				B4A61F9A2E8550720079B276 /* CalculatorEditViewController.swift in Sources */,
 				8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */,
+				B454251C2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */,
 				B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,

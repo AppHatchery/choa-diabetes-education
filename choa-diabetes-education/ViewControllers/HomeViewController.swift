@@ -40,6 +40,8 @@ class HomeViewController: UIViewController {
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
     var highBloodSugarOnly = false
+    
+    private let constantsManager = CalculatorConstantsManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -243,12 +245,21 @@ class HomeViewController: UIViewController {
 
 		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
 
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-			destinationVC.insulinForFoodBoolean = insulinForFood
-		}
+        if constantsManager.hasStoredConstants {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        } else {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        }
 	}
 
 	@IBAction func tappedHighSugarButton(_ sender: Any) {
@@ -258,14 +269,22 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = true
 
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-
-			destinationVC.insulinForFoodBoolean = insulinForFood
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-            destinationVC.highBloodSugarOnly = highBloodSugarOnly
-		}
+        if constantsManager.hasStoredConstants {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                destinationVC.highBloodSugarOnly = highBloodSugarOnly
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        } else {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        }
 	}
 
 
@@ -276,12 +295,21 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = false
 
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-			destinationVC.insulinForFoodBoolean = insulinForFood
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-		}
+        if constantsManager.hasStoredConstants {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        } else {
+            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
+                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+                destinationVC.insulinForFoodBoolean = insulinForFood
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+        }
 	}
     
     @objc private func didTapGetHelpView() {
