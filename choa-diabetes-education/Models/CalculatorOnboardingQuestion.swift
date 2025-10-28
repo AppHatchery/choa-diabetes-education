@@ -46,4 +46,12 @@ enum CalculatorOnboardingQuestion: Int {
     var next: CalculatorOnboardingQuestion? {
         return CalculatorOnboardingQuestion(rawValue: self.rawValue + 1)
     }
+    
+    var previous: CalculatorOnboardingQuestion? {
+        switch self {
+        case .carbRatio: return nil
+        case .targetBloodSugar: return .carbRatio
+        case .correctionFactor: return .targetBloodSugar
+        }
+    }
 }

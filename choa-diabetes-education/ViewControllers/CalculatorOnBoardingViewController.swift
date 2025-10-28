@@ -13,6 +13,8 @@ class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var nextButton: PrimaryButton!
+    
+    private let progressView = UIProgressView(progressViewStyle: .bar)
 
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
@@ -29,6 +31,7 @@ class CalculatorOnBoardingViewController: UIViewController {
         super.viewIsAppearing(animated)
         
         setupNavigationBar()
+        updateProgressBar()
     }
     
     override func viewDidLoad() {
@@ -64,6 +67,34 @@ class CalculatorOnBoardingViewController: UIViewController {
             action: #selector(didSelectExitAction)
         )
         navigationItem.rightBarButtonItem = rightButton
+        
+        setupProgressBarInNavigationBar()
+    }
+    
+    private func setupProgressBarInNavigationBar() {
+        let navBarWidth = UIScreen.main.bounds.width - 150
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: navBarWidth, height: 20))
+        
+        // Configure progress view
+        progressView.frame = CGRect(x: 0, y: 5, width: navBarWidth, height: 20)
+        progressView.progressTintColor = .progressBarColor
+        progressView.trackTintColor = UIColor.lightGray.withAlphaComponent(0.3)
+        progressView.layer.cornerRadius = 2
+        progressView.clipsToBounds = true
+        
+        containerView.addSubview(progressView)
+        navigationItem.titleView = containerView
+    }
+    
+    private func updateProgressBar() {
+        let totalQuestions: Float = 3.0
+        let currentQuestionNumber: Float = Float(currentQuestion.rawValue + 1)
+        let progress = currentQuestionNumber / totalQuestions
+        
+        // Animate progress update
+        UIView.animate(withDuration: 0.3) {
+            self.progressView.setProgress(progress, animated: true)
+        }
     }
     
     private func setupTextField() {
@@ -108,7 +139,7 @@ class CalculatorOnBoardingViewController: UIViewController {
         }
         
         private func setupUI() {
-            bottomView.layer.cornerRadius = 12
+            bottomView.layer.cornerRadius = 24
 
             questionLabel.text = currentQuestion.title
             questionImage.image = UIImage(named: currentQuestion.imageName)
