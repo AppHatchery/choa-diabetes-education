@@ -29,6 +29,7 @@ extension UIColor {
     public static let diabetesBasicsLightColor = UIColor(named: "secondaryMeadowGreen100")!
     public static let nutritionAndCarbColor = UIColor(named: "secondarySunsetOrange300")!
     public static let diabetesSelfManagementColor = UIColor(named: "secondaryRoyalPurple300")!
+    public static let textFieldBackgroundColor = UIColor(named: "textFieldBackgroundColor")!
     public static let shadowColor = UIColor(red: 41/255, green: 28/255, blue: 46/255, alpha: 1.0)
     public static let quotesViewBorderColor = UIColor(red: 163/255, green: 218/255, blue: 195/255, alpha: 1)
     public static let errorRedColor = UIColor(red: 244/255, green: 239/255, blue: 249/255, alpha: 1.0)

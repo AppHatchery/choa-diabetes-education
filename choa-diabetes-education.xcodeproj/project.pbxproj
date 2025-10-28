@@ -22,6 +22,7 @@
 		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
 		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
 		B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */; };
+		B44BAEE52EB0D73B006E6001 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */; };
 		B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */; };
 		B44D1F172E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */; };
 		B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */; };
@@ -228,6 +229,7 @@
 		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
 		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
 		B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
+		B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
 		B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaEmergencyView.swift; sourceTree = "<group>"; };
 		B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaEmergencyView.xib; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 		D48D8914289C02E3001A61E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */,
 				D48167C428ACFB40003B14A3 /* Content.swift */,
 				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
 				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
@@ -1131,6 +1134,7 @@
 				B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */,
 				B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */,
 				D48167A728ABE73E003B14A3 /* AgendaView.swift in Sources */,
+				B44BAEE52EB0D73B006E6001 /* CalculatorOnboardingQuestion.swift in Sources */,
 				D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */,
 				D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */,
 				D48167A328ABE4B2003B14A3 /* HomeViewController.swift in Sources */,

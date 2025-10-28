@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
-        </array>
         <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
+        </array>
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
     <scenes>
@@ -1854,8 +1854,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="didTapNextButton:" destination="ngS-A5-dbE" eventType="touchUpInside" id="Wbz-Zd-nuu"/>
-                                            <segue destination="IRb-es-m9y" kind="show" id="vem-DK-87b"/>
+                                            <segue destination="IRb-es-m9y" kind="show" identifier="segueToOnboarding" id="vem-DK-87b"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXb-NA-xyn">
@@ -1900,7 +1899,7 @@
         <!--Calculator On Boarding View Controller-->
         <scene sceneID="CjU-u9-M1v">
             <objects>
-                <viewController id="IRb-es-m9y" customClass="CalculatorOnBoardingViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calculatorOnboarding" id="IRb-es-m9y" customClass="CalculatorOnBoardingViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n2e-hC-15Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1924,7 +1923,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="UlS-1g-0sd"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-Se-2Ow">
@@ -1942,6 +1941,9 @@
                                                     <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="nextButtonTapped:" destination="IRb-es-m9y" eventType="touchUpInside" id="9oY-UJ-kvf"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can adjust it later if needed." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzX-YC-Jkf">
                                                 <rect key="frame" x="0.0" y="60" width="335" height="19.5"/>

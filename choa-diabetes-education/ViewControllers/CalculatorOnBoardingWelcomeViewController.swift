@@ -13,9 +13,34 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupNavigationBar()
+    }
 
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        setupNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white
+        appearance.shadowColor = UIColor.white
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.black
         
         navigationItem.backButtonDisplayMode = .minimal
         
@@ -27,18 +52,12 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
             action: #selector(didSelectExitAction)
         )
         navigationItem.rightBarButtonItem = rightButton
-        
-        // Do any additional setup after loading the view.
     }
     
     @objc func didSelectExitAction() {
         navigationController?.popViewController(animated: true)
     }
-    
-    @IBAction func didTapNextButton(_ sender: Any) {
         
-    }
-    
     @IBAction func didTapSkipButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
         
@@ -72,14 +91,17 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "segueToOnboarding",
+           let destinationVC = segue.destination as? CalculatorOnBoardingViewController {
+            // Pass the booleans to the onboarding VC
+            destinationVC.insulinForHighBloodSugarBoolean = self.insulinForHighBloodSugarBoolean
+            destinationVC.insulinForFoodBoolean = self.insulinForFoodBoolean
+            destinationVC.currentQuestion = .carbRatio
+        }
     }
-    */
-
 }
