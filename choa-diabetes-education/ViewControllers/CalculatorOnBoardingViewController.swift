@@ -99,7 +99,7 @@ class CalculatorOnBoardingViewController: UIViewController {
     
     private func setupTextField() {
             questionTextField.delegate = self
-            questionTextField.keyboardType = .decimalPad
+            questionTextField.keyboardType = .numberPad
             questionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             
             questionTextField.layer.cornerRadius = 8
