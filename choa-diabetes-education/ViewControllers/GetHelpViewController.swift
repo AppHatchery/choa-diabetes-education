@@ -65,19 +65,28 @@ class GetHelpViewController: UIViewController {
         super.viewWillAppear(true)
         navigationItem.backButtonDisplayMode = .minimal
         
+        questionnaireManager.loadPersistedKetoneState()
+        
         if isMovingToParent {
             hasAppearedFromPush = true
         }
+        
+        questionnaireManager.printCurrentKetoneState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Track reminder page visits for iLet pump users
-        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)), questionnaireManager.iLetPump,
+        // Only count when pushed (not when appearing from back navigation initially)
+        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
+           questionnaireManager.iLetPump,
            hasAppearedFromPush {
             questionnaireManager.incrementReminderPageVisitCount()
             hasAppearedFromPush = false
+            
+            print("✅ Reminder page appeared - visit tracked")
+            questionnaireManager.printCurrentKetoneState()
         }
     }
 
@@ -122,24 +131,47 @@ class GetHelpViewController: UIViewController {
             resetBackgroundColor()
             finalStepWithReminderView?.cleanup()
             
+            print("⬅️ Popping from: \(questionObj.questionType)")
+            
             // Check if we are popping back from FinalStepWithReminderView
             if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
                let previousVC = navigationController?.viewControllers.last as? GetHelpViewController {
                 
+                print("   → Going back to: \(previousVC.questionObj.questionType)")
+                
                 // Check if popping to bloodSugarRecheck question
                 if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
                     questionnaireManager.decrementReminderPageVisitCount()
-                    print("📊 Decremented reminder count when popping to bloodSugarRecheck")
+                    print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
                 }
                 
-                // Check if popping to TwoOptionsView
+                // Check if popping to TwoOptionsView (test type selection)
+                // This means user is going way back - clear everything
                 if !previousVC.twoOptionsView.isHidden {
                     questionnaireManager.saveYesOver2hours(false)
                     questionnaireManager.resetReminderPageVisitCount()
+                    questionnaireManager.clearAllKetoneData()
                     
-                    print("Reset yesOver2hours to false when popping to TwoOptionsView")
+                    print("   🗑️ Full reset: popping back to test type selection")
                 }
             }
+            
+            // Special case: Popping from recheckKetoneLevel view
+            // Should NOT clear ketones as they need to persist for next check
+            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) {
+                print("   ⚠️ Popping from recheck - ketones PRESERVED")
+                // Ketones intentionally NOT cleared
+            }
+            
+            // Clear ketone data when exiting the flow completely (back to home)
+            if let navControllers = navigationController?.viewControllers,
+               navControllers.last is HomeViewController {
+                questionnaireManager.clearAllKetoneData()
+                questionnaireManager.resetReminderPageVisitCount()
+                print("   🏠 Returning to home - all data cleared")
+            }
+            
+            questionnaireManager.printCurrentKetoneState()
         }
 	}
 
@@ -495,12 +527,35 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
     }
 
 	@objc func didSelectExitAction() {
-//        ReminderPersistence.clearReminderState()
-//        ReminderManager.shared.cancelAllReminders()
-            
-		QuestionnaireManager.resetInstance()
-		self.navVC.popToRootViewController(animated: true)
+        print("🚪 Exit button pressed - clearing all state")
+        
+        // Clear all persisted state
+        questionnaireManager.clearAllKetoneData()
+        questionnaireManager.resetReminderPageVisitCount()
+        
+        // Reset the instance
+        QuestionnaireManager.resetInstance()
+        
+        questionnaireManager.printCurrentKetoneState()
+        
+        self.navVC.popToRootViewController(animated: true)
 	}
+    
+    func logNavigationState() {
+        guard let navControllers = navigationController?.viewControllers else { return }
+        
+        print("""
+        🗺️ Navigation Stack:
+        """)
+        
+        for (index, vc) in navControllers.enumerated() {
+            if let getHelpVC = vc as? GetHelpViewController {
+                print("   [\(index)] GetHelpVC: \(getHelpVC.questionObj.questionType)")
+            } else {
+                print("   [\(index)] \(type(of: vc))")
+            }
+        }
+    }
 
 }
 

@@ -129,6 +129,9 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
+    private static let urineKetoneKey = "persistedUrineKetoneLevel"
+    private static let bloodKetoneKey = "persistedBloodKetoneLevel"
+
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue) {
 		switch currentQuestion.questionId {
 			case FourOptionsQuestionId.childIssue.id:
@@ -337,14 +340,95 @@ extension QuestionnaireManager {
     func saveKetones(type: KetonesMeasurements) {
         self.ketones = type
     }
+    
+    // MARK: - Urine Ketone Persistence
 
-	func saveUrineKetoneLevel(level: UrineKetoneLevel) {
-		self.urineKetones = level
-	}
+    func saveUrineKetoneLevel(level: UrineKetoneLevel) {
+        self.urineKetones = level
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.urineKetoneKey)
+        print("💾 Saved urine ketone level: \(level) (id: \(level.id))")
+    }
+    
+    func getPersistedUrineKetoneLevel() -> UrineKetoneLevel? {
+        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.urineKetoneKey)
+        guard storedId != 0 else {
+            print("📖 No persisted urine ketone level found")
+            return nil
+        }
+        let level = UrineKetoneLevel(id: storedId)
+        print("📖 Retrieved urine ketone level: id=\(storedId) -> \(level)")
+        return level
+    }
+    
+    func clearUrineKetoneLevel() {
+        self.urineKetones = nil
+        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.urineKetoneKey)
+        print("🗑️ Cleared urine ketone level")
+    }
 
-	func saveBloodKetoneLevel(level: BloodKetoneLevel) {
-		self.bloodKetones = level
-	}
+    // MARK: - Blood Ketone Persistence
+    
+    func saveBloodKetoneLevel(level: BloodKetoneLevel) {
+        self.bloodKetones = level
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.bloodKetoneKey)
+        print("💾 Saved blood ketone level: \(level) (id: \(level.id))")
+    }
+    
+    func getPersistedBloodKetoneLevel() -> BloodKetoneLevel? {
+        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.bloodKetoneKey)
+        guard storedId != 0 else {
+            print("📖 No persisted blood ketone level found")
+            return nil
+        }
+        let level = BloodKetoneLevel(id: storedId)
+        print("📖 Retrieved blood ketone level: id=\(storedId) -> \(level)")
+        return level
+    }
+    
+    func clearBloodKetoneLevel() {
+        self.bloodKetones = nil
+        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.bloodKetoneKey)
+        print("🗑️ Cleared blood ketone level")
+    }
+    
+    // MARK: - Load Persisted State
+        
+    /// Call this when you need to restore ketone levels (e.g., after view pops)
+    func loadPersistedKetoneState() {
+        if let urineLevel = getPersistedUrineKetoneLevel() {
+            self.urineKetones = urineLevel
+            print("🔄 Restored urine ketone: \(urineLevel)")
+        }
+        if let bloodLevel = getPersistedBloodKetoneLevel() {
+            self.bloodKetones = bloodLevel
+            print("🔄 Restored blood ketone: \(bloodLevel)")
+        }
+        
+        if urineKetones == nil && bloodKetones == nil {
+            print("🔄 No ketone state to restore")
+        }
+    }
+    
+    // MARK: - Clear All Ketone Data
+    
+    func clearAllKetoneData() {
+        clearUrineKetoneLevel()
+        clearBloodKetoneLevel()
+        print("🗑️ Cleared all ketone data")
+    }
+    
+    func printCurrentKetoneState() {
+        print("""
+        📊 Current Ketone State:
+           - Urine Ketones: \(String(describing: urineKetones))
+           - Blood Ketones: \(String(describing: bloodKetones))
+           - Persisted Urine: \(String(describing: getPersistedUrineKetoneLevel()))
+           - Persisted Blood: \(String(describing: getPersistedBloodKetoneLevel()))
+           - iLetPump: \(iLetPump)
+           - skipFirstReminder: \(skipFirstReminder)
+           - Visit Count: \(getReminderPageVisitCount())
+        """)
+    }
 
 		//	Reminder Functions
 	func saveActiveReminder(id: String, scheduledTime: Date) {
@@ -470,7 +554,9 @@ extension QuestionnaireManager {
         switch urineLevel {
         case .negative:
             // Negative ketones - continue care
-            if visitCount >= 2 {
+            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
+
+            if shouldEscalate {
                 print("   → Continue with description (visited ≥2 times)")
                 triggerContinueWithDescriptionActionFlow(currentQuestion)
             } else {
@@ -498,15 +584,6 @@ extension QuestionnaireManager {
                 actionsDelegate?.showNextQuestion(createQue)
             }
             
-//            print("   → Recheck blood sugar")
-//            let createQue = createYesOrNoQuestion(
-//                questionId: .bloodSugarRecheck,
-//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
-//                description: nil,
-//                showDescriptionAtBottom: false
-//            )
-//            actionsDelegate?.showNextQuestion(createQue)
-            
         case .eight, .sixteen:
             // High ketones
             let shouldEscalate = (skippedFirst && visitCount >= 1) || (skippedFirst == false && visitCount >= 2)
@@ -524,15 +601,6 @@ extension QuestionnaireManager {
                 )
                 actionsDelegate?.showNextQuestion(createQue)
             }
-//            
-//            print("   → Recheck blood sugar")
-//            let createQue = createYesOrNoQuestion(
-//                questionId: .bloodSugarRecheck,
-//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
-//                description: nil,
-//                showDescriptionAtBottom: false
-//            )
-//            actionsDelegate?.showNextQuestion(createQue)
         }
     }
     
@@ -584,17 +652,34 @@ extension QuestionnaireManager {
         
         switch bloodLevel {
         case .low:
-            // Low ketones - continue care
-            if visitCount >= 2 {
-                print("   → Continue with description")
+            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
+
+            if shouldEscalate {
+                print("   → Continue with description (escalation criteria met)")
                 triggerContinueWithDescriptionActionFlow(currentQuestion)
             } else {
                 print("   → Continue regular care")
                 triggerContinueActionFlow(currentQuestion)
             }
             
-        case .moderate, .large:
-            // Moderate or high ketones
+        case .moderate:
+            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
+            
+            if shouldEscalate {
+                print("   → Call CHOA emergency (escalation criteria met)")
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            } else {
+                print("   → Recheck blood sugar")
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+                
+                actionsDelegate?.showNextQuestion(createQue)
+            }
+        case .large:
             let shouldEscalate = (skippedFirst && visitCount >= 1) || (skippedFirst == false && visitCount >= 2)
             
             if shouldEscalate {
@@ -610,15 +695,6 @@ extension QuestionnaireManager {
                 )
                 actionsDelegate?.showNextQuestion(createQue)
             }
-            
-//            print("   → Recheck blood sugar")
-//            let createQue = createYesOrNoQuestion(
-//                questionId: .bloodSugarRecheck,
-//                question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
-//                description: nil,
-//                showDescriptionAtBottom: false
-//            )
-//            actionsDelegate?.showNextQuestion(createQue)
         }
     }
     
@@ -627,13 +703,11 @@ extension QuestionnaireManager {
         
         switch level {
         case .negative:
-            // Low ketones - show reminder page
             skipFirstReminder(false)
             print("   → Show reminder (negative ketones)")
             showFinalStage(stage: .reminder, calculation: nil)
             
         case .zeroPointFive, .onePointFive, .four:
-            // Moderate ketones - skip reminder, go straight to blood sugar check
             skipFirstReminder(true)
             print("   → Skip reminder (moderate ketones)")
             let createQue = createYesOrNoQuestion(
@@ -645,7 +719,6 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createQue)
             
         case .eight, .sixteen:
-            // High ketones - skip reminder, go straight to blood sugar check
             skipFirstReminder(true)
             print("   → Skip reminder (high ketones)")
             let createQue = createYesOrNoQuestion(
@@ -661,20 +734,24 @@ extension QuestionnaireManager {
     func triggerSkippedUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
         print("🧪 Final/Skipped Urine Ketone Check - Level: \(level)")
         
-        switch level {
-        case .negative:
-            triggerContinueWithDescriptionActionFlow(currentQuestion)
-        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
-            triggerCallChoaEmergencyActionFlow(currentQuestion)
+        if skipFirstReminder {
+            switch level {
+            case .negative:
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
         }
     }
     
     func triggerSkippedBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
-        switch level {
-        case .low:
-            triggerContinueWithDescriptionActionFlow(currentQuestion)
-        case .moderate, .large:
-            triggerCallChoaEmergencyActionFlow(currentQuestion)
+        if skipFirstReminder {
+            switch level {
+            case .low:
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            case .moderate, .large:
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
         }
     }
 
@@ -749,13 +826,11 @@ extension QuestionnaireManager {
         
         switch level {
         case .low:
-            // Low ketones - show reminder page
             skipFirstReminder(false)
             print("   → Show reminder (low ketones)")
             showFinalStage(stage: .reminder, calculation: nil)
             
         case .moderate:
-            // Moderate ketones - skip reminder, go to blood sugar check
             skipFirstReminder(true)
             print("   → Skip reminder (moderate ketones)")
             let createQue = createYesOrNoQuestion(
@@ -767,7 +842,6 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createQue)
             
         case .large:
-            // High ketones - skip reminder, go to blood sugar check
             skipFirstReminder(true)
             print("   → Skip reminder (high ketones)")
             let createQue = createYesOrNoQuestion(
@@ -1152,12 +1226,16 @@ extension QuestionnaireManager {
 	static func resetInstance() {
 		instance = QuestionnaireManager()
         instance.resetReminderPageVisitCount()
-	}
+        instance.clearAllKetoneData()
+        print("🔄 QuestionnaireManager instance completely reset")
+    }
 }
 
 extension QuestionnaireManager {
     
     private static let reminderPageVisitCountKey = "reminderPageVisitCount"
+    
+    // MARK: - Reminder Page Visit Count
     
     func incrementReminderPageVisitCount() {
         guard iLetPump || currentTestType == .pump else { return }
@@ -1166,19 +1244,22 @@ extension QuestionnaireManager {
         let newCount = currentCount + 1
         UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.reminderPageVisitCountKey)
         
-        print("📊 Reminder page visit count incremented: \(newCount)")
+        print("📊 Reminder page visit count incremented: \(currentCount) -> \(newCount)")
     }
     
     func decrementReminderPageVisitCount() {
         guard iLetPump else { return }
         
         let currentCount = getReminderPageVisitCount()
-        guard currentCount > 0 else { return }
+        guard currentCount > 0 else {
+            print("📊 Cannot decrement - count already at 0")
+            return
+        }
         
         let newCount = currentCount - 1
         UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.reminderPageVisitCountKey)
         
-        print("📊 Reminder page visit count decremented: \(newCount)")
+        print("📊 Reminder page visit count decremented: \(currentCount) -> \(newCount)")
     }
     
     func getReminderPageVisitCount() -> Int {
@@ -1187,6 +1268,51 @@ extension QuestionnaireManager {
     
     func resetReminderPageVisitCount() {
         UserDefaults.standard.set(0, forKey: QuestionnaireManager.reminderPageVisitCountKey)
-        print("📊 Reminder page visit count reset")
+        print("📊 Reminder page visit count reset to 0")
+    }
+}
+
+
+// MARK: - Add description for debugging (add to UrineKetoneLevel enum)
+extension UrineKetoneLevel: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .negative: return "Negative"
+        case .zeroPointFive: return "0.5"
+        case .onePointFive: return "1.5"
+        case .four: return "4.0"
+        case .eight: return "8.0"
+        case .sixteen: return "16.0"
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .negative: return 1
+        case .zeroPointFive: return 2
+        case .onePointFive: return 3
+        case .four: return 4
+        case .eight: return 5
+        case .sixteen: return 6
+        }
+    }
+}
+
+// MARK: - Add description for debugging (add to BloodKetoneLevel enum)
+extension BloodKetoneLevel: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .low: return "Low (<0.6)"
+        case .moderate: return "Moderate (0.6-1.5)"
+        case .large: return "Large (>1.5)"
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .low: return 1
+        case .moderate: return 2
+        case .large: return 3
+        }
     }
 }
