@@ -154,62 +154,73 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 		nextButton.isEnabled = false
 	}
 
-	func switchToUrineKetoneButtonTap() {
-		selected = 1
-		questionnaireManager.saveMeasuringMethod(.urineKetone)
+    func switchToUrineKetoneButtonTap() {
+        selected = 1
+        followUpAnswer = 0 // Reset selection when switching
+        
+        // Save method and clear opposite ketone type
+        questionnaireManager.saveMeasuringMethod(.urineKetone)
+        
+        if selected == 1 {
+            // Guard against adding duplicate UrineKetoneLevelView
+            if ketoneMeasuringTypeStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
+                return
+            }
 
-		if selected == 1 {
-				// Guard against adding duplicate UrineKetoneLevelView
-			if ketoneMeasuringTypeStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
-				return
-			}
+            // Clear any existing subviews
+            ketoneMeasuringTypeStackView.subviews.forEach { $0.removeFromSuperview() }
 
-				// Clear any existing subviews
-			ketoneMeasuringTypeStackView.subviews.forEach { $0.removeFromSuperview() }
+            // Show urine ketone level view
+            let followUpSubview = UrineKetoneLevelView()
 
-				// Show urine ketone level view
-			let followUpSubview = UrineKetoneLevelView()
+            followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+            ketoneMeasuringTypeStackView.addArrangedSubview(followUpSubview)
 
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			ketoneMeasuringTypeStackView.addArrangedSubview(followUpSubview)
+            NSLayoutConstraint.activate([
+                followUpSubview.leadingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.leadingAnchor),
+                followUpSubview.trailingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.trailingAnchor)
+            ])
 
-			NSLayoutConstraint.activate([
-				followUpSubview.leadingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.trailingAnchor)
-			])
+            followUpSubview.delegate = self
+        }
+        
+        print("🔄 Switched to urine ketone in recheck view")
+        questionnaireManager.printCurrentKetoneState()
+    }
 
-			followUpSubview.delegate = self
-		}
-	}
+    func switchToBloodKetoneButtonTap() {
+        selected = 2
+        followUpAnswer = 0 // Reset selection when switching
+        
+        // Save method and clear opposite ketone type
+        questionnaireManager.saveMeasuringMethod(.bloodKetone)
 
-	func switchToBloodKetoneButtonTap() {
-			// Guard against adding duplicate BloodKetoneLevelView
-		selected = 2
-		questionnaireManager.saveMeasuringMethod(.bloodKetone)
+        if selected == 2 {
+            // Guard against adding duplicate BloodKetoneLevelView
+            if ketoneMeasuringTypeStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
+                return
+            }
 
-		if selected == 2 {
-			if ketoneMeasuringTypeStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
-				return
-			}
+            // Clear any existing subviews
+            ketoneMeasuringTypeStackView.subviews.forEach { $0.removeFromSuperview() }
 
+            // Show blood ketone level view
+            let followUpSubview = BloodKetoneLevelView()
 
-				// Clear any existing subviews
-			ketoneMeasuringTypeStackView.subviews.forEach { $0.removeFromSuperview() }
+            followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+            ketoneMeasuringTypeStackView.addArrangedSubview(followUpSubview)
 
-				// Show blood ketone level view
-			let followUpSubview = BloodKetoneLevelView()
+            NSLayoutConstraint.activate([
+                followUpSubview.leadingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.leadingAnchor),
+                followUpSubview.trailingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.trailingAnchor)
+            ])
 
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			ketoneMeasuringTypeStackView.addArrangedSubview(followUpSubview)
-
-			NSLayoutConstraint.activate([
-				followUpSubview.leadingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: ketoneMeasuringTypeStackView.trailingAnchor)
-			])
-
-			followUpSubview.delegate = self
-		}
-	}
+            followUpSubview.delegate = self
+        }
+        
+        print("🔄 Switched to blood ketone in recheck view")
+        questionnaireManager.printCurrentKetoneState()
+    }
 
 	@IBAction func didNextButtonTap(_ sender: UIButton) {
 

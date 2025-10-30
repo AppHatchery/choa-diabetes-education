@@ -298,9 +298,23 @@ extension QuestionnaireManager {
         currentTestType = testType
     }
 
-	func saveMeasuringMethod(_ method: MeasuringType) {
-		currentMeasuringMethod = method
-	}
+    func saveMeasuringMethod(_ method: MeasuringType) {
+        let previousMethod = currentMeasuringMethod
+        currentMeasuringMethod = method
+        
+        // Clear ketones when switching methods
+        if previousMethod != method {
+            if method == .urineKetone {
+                // Switching to urine - clear blood ketones
+                clearBloodKetoneLevel()
+                print("🔄 Switched to urine ketone measurement")
+            } else if method == .bloodKetone {
+                // Switching to blood - clear urine ketones
+                clearUrineKetoneLevel()
+                print("🔄 Switched to blood ketone measurement")
+            }
+        }
+    }
 
     func saveCalculationType(_ calculationType: CalculationType) {
         currentMethod = calculationType
@@ -345,8 +359,11 @@ extension QuestionnaireManager {
 
     func saveUrineKetoneLevel(level: UrineKetoneLevel) {
         self.urineKetones = level
+        // Clear blood ketones when saving urine ketones
+        clearBloodKetoneLevel()
         UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.urineKetoneKey)
         print("💾 Saved urine ketone level: \(level) (id: \(level.id))")
+        print("🗑️ Cleared blood ketones (switched to urine)")
     }
     
     func getPersistedUrineKetoneLevel() -> UrineKetoneLevel? {
@@ -365,7 +382,7 @@ extension QuestionnaireManager {
         UserDefaults.standard.removeObject(forKey: QuestionnaireManager.urineKetoneKey)
         print("🗑️ Cleared urine ketone level")
     }
-
+    
     // MARK: - Blood Ketone Persistence
     
     func saveBloodKetoneLevel(level: BloodKetoneLevel) {
@@ -392,7 +409,7 @@ extension QuestionnaireManager {
     }
     
     // MARK: - Load Persisted State
-        
+    
     /// Call this when you need to restore ketone levels (e.g., after view pops)
     func loadPersistedKetoneState() {
         if let urineLevel = getPersistedUrineKetoneLevel() {
@@ -417,9 +434,31 @@ extension QuestionnaireManager {
         print("🗑️ Cleared all ketone data")
     }
     
+    // MARK: - Helper to check which ketone type is active
+        
+    func hasUrineKetones() -> Bool {
+        return urineKetones != nil
+    }
+    
+    func hasBloodKetones() -> Bool {
+        return bloodKetones != nil
+    }
+    
+    func getActiveKetoneType() -> MeasuringType? {
+        if urineKetones != nil {
+            return .urineKetone
+        } else if bloodKetones != nil {
+            return .bloodKetone
+        }
+        return nil
+    }
+    
     func printCurrentKetoneState() {
+        let activeType = getActiveKetoneType()
         print("""
         📊 Current Ketone State:
+           - Active Method: \(currentMeasuringMethod)
+           - Active Ketone Type: \(activeType?.description ?? "None")
            - Urine Ketones: \(String(describing: urineKetones))
            - Blood Ketones: \(String(describing: bloodKetones))
            - Persisted Urine: \(String(describing: getPersistedUrineKetoneLevel()))

@@ -574,8 +574,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 
 	func didSelectYesOverAction(_ question: Questionnaire) {
         let iLetPump = self.questionnaireManager.iLetPump
-        let visitCount = self.questionnaireManager
-                .getReminderPageVisitCount()
+        let visitCount = self.questionnaireManager.getReminderPageVisitCount()
         let skippedFirst = self.questionnaireManager.skipFirstReminder
         
         let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
@@ -599,25 +598,67 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
             hasModerateBloodKetones = \(hasModerateBloodKetones)
             """)
             
-            if skippedFirst == false && visitCount > 2 && (
-                hasHighUrineKetones || hasHighBloodKetones || hasModerateUrineKetones || hasModerateBloodKetones) {
+            // Priority 1: High ketones with multiple visits (escalation path)
+            if skippedFirst && visitCount >= 2 && (hasHighUrineKetones || hasHighBloodKetones) {
+                print("   → Condition 1 matched: High ketones + skipped first + visit >= 2")
+                print("   → ACTION: Blood sugar recheck")
                 self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-            } else if skippedFirst == false && (visitCount == 1 || visitCount == 2) {
-                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
-            } else if skippedFirst && visitCount == 2 && (
-                hasModerateUrineKetones || hasModerateBloodKetones
-            ) {
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-            } else if skippedFirst && visitCount == 1 && (hasHighUrineKetones || hasHighBloodKetones) {
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-            } else if skippedFirst && visitCount == 1 && (
-                hasModerateUrineKetones || hasModerateBloodKetones) {
-                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+                return
             }
+            
+            // Priority 2: High ketones on first recheck (after skipping initial reminder)
+            if skippedFirst && visitCount == 1 && (hasHighUrineKetones || hasHighBloodKetones) {
+                print("   → Condition 2 matched: High ketones + skipped first + visit = 1")
+                print("   → ACTION: Blood sugar recheck")
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+                return
+            }
+            
+            // Priority 3: Moderate ketones with multiple visits (escalation path)
+            if skippedFirst && visitCount >= 2 && (hasModerateUrineKetones || hasModerateBloodKetones) {
+                print("   → Condition 3 matched: Moderate ketones + skipped first + visit >= 2")
+                print("   → ACTION: Blood sugar recheck")
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+                return
+            }
+            
+            // Priority 4: Moderate ketones on first recheck (after skipping initial reminder)
+            if skippedFirst && visitCount == 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
+                print("   → Condition 4 matched: Moderate ketones + skipped first + visit = 1")
+                print("   → ACTION: Recheck ketones")
+                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+                return
+            }
+            
+            // Priority 5: Did not skip first reminder - high/moderate ketones with multiple visits
+            if skippedFirst == false && visitCount > 2 && (
+                hasHighUrineKetones || hasHighBloodKetones ||
+                hasModerateUrineKetones || hasModerateBloodKetones) {
+                print("   → Condition 5 matched: Any ketones + did not skip + visit > 2")
+                print("   → ACTION: Blood sugar recheck")
+                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
+                return
+            }
+            
+            // Priority 6: Did not skip first reminder - early visits
+            if skippedFirst == false && (visitCount == 1 || visitCount == 2) {
+                print("   → Condition 6 matched: Did not skip + visit 1 or 2")
+                print("   → ACTION: Recheck ketones")
+                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+                return
+            }
+            
+            // Fallback - should not reach here
+            print("   ⚠️ WARNING: No condition matched! Using fallback.")
+            print("   → FALLBACK ACTION: Recheck ketones")
+            self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+            
         } else {
+            // Non-iLet pump flow
+            print("   → Non-iLet flow: Recheck ketones")
             self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
         }
-	}
+    }
 
 		// Recheck Ketone Level Functions
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
