@@ -215,6 +215,8 @@ class FinalStepWithReminderView: UIView {
             "Final.HydrationExampleInfo.text".localized(),
             boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
         )
+        
+        doneButton.isHidden = true
     }
 
     // MARK: - Insulin Shots
