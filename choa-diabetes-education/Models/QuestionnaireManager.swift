@@ -226,6 +226,14 @@ extension QuestionnaireManager {
                     } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
                         triggerRecheckKetonesActionFlow(currentQuestion)
                     }
+                } else {
+                    if visitCount == 0 && ketoneCheckVisitCount == 1 {
+                        showFinalStage(stage: .reminder, calculation: nil)
+                    } else if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                        showFinalStage(stage: .reminder, calculation: nil)
+                    } else if visitCount == 2 && ketoneCheckVisitCount == 2 {
+                        triggerRecheckKetonesActionFlow(currentQuestion)
+                    }
                 }
             } else {
                 triggerCallChoaActionFlow(currentQuestion)
@@ -270,6 +278,14 @@ extension QuestionnaireManager {
                     } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                         triggerCallChoaEmergencyActionFlow(currentQuestion)
                     } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
+                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                    }
+                } else {
+                    if visitCount == 0 && ketoneCheckVisitCount == 1 {
+                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                    } else if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                    } else if visitCount == 2 && ketoneCheckVisitCount == 2 {
                         triggerCallChoaEmergencyActionFlow(currentQuestion)
                     }
                 }
@@ -600,6 +616,14 @@ extension QuestionnaireManager {
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
                     triggerContinueWithDescriptionActionFlow(currentQuestion)
                 }
+            } else {
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Skipped First Reminder")
+                    print("   → Continue regular care (first visit after 2 ketone checks)")
+                    triggerContinueActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerContinueWithDescriptionActionFlow(currentQuestion)
+                }
             }
             
         case .zeroPointFive, .onePointFive, .four:
@@ -619,6 +643,8 @@ extension QuestionnaireManager {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
                 }
             }
             
@@ -639,6 +665,8 @@ extension QuestionnaireManager {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
                 }
             }
         }
