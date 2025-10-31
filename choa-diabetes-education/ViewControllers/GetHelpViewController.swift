@@ -88,6 +88,16 @@ class GetHelpViewController: UIViewController {
             print("✅ Reminder page appeared - visit tracked")
             questionnaireManager.printCurrentKetoneState()
         }
+        
+        // Track ketone recheck visits when RecheckKetoneLevelView appears from push
+        if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)),
+           hasAppearedFromPush {
+            questionnaireManager.incrementKetoneVisitCount()
+            hasAppearedFromPush = false
+            
+            print("✅ Ketone recheck page appeared - visit tracked")
+            questionnaireManager.printCurrentKetoneState()
+        }
     }
 
 	override func viewDidLoad() {
@@ -150,24 +160,65 @@ class GetHelpViewController: UIViewController {
                 if !previousVC.twoOptionsView.isHidden {
                     questionnaireManager.saveYesOver2hours(false)
                     questionnaireManager.resetReminderPageVisitCount()
+                    questionnaireManager.resetKetoneVisitCount()
                     questionnaireManager.clearAllKetoneData()
                     
                     print("   🗑️ Full reset: popping back to test type selection")
                 }
             }
             
+                // Handle popping from RecheckKetoneLevelView
+            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)),
+               let previousVC = navigationController?.viewControllers.last as? GetHelpViewController {
+                
+                print("   → Going back from recheck to: \(previousVC.questionObj.questionType)")
+                
+                // Decrement ketone count when going back to reminder page
+                if previousVC.questionObj.questionType == .reminder(FinalQuestionId(id: previousVC.questionObj.questionId)) {
+                    questionnaireManager.decrementKetoneVisitCount()
+                    print("   🧪 Decremented ketone count (popping to reminder page)")
+                }
+                
+                // Decrement ketone count when going back to blood sugar recheck
+                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                    questionnaireManager.decrementKetoneVisitCount()
+                    print("   🧪 Decremented ketone count (popping to blood sugar recheck)")
+                }
+                
+                if previousVC.questionObj.questionType ==
+                    .twoOptions(.measuringType) {
+                    questionnaireManager.decrementKetoneVisitCount()
+                    print("   🔧 Decremented ketone count (popping to Two Option: Measuring type)")
+                }
+                
+                // Full reset if going back to test type selection
+                if !previousVC.twoOptionsView.isHidden {
+                    questionnaireManager.saveYesOver2hours(false)
+                    questionnaireManager.resetReminderPageVisitCount()
+                    questionnaireManager.resetKetoneVisitCount()
+                    questionnaireManager.clearAllKetoneData()
+                    
+                    print("   🗑️ Full reset: popping back to test type selection from recheck")
+                }
+                
+                // Note: Ketones are intentionally preserved when popping from recheck
+                // as they need to persist for the next check
+                print("   ⚠️ Popping from recheck - ketones PRESERVED")
+            }
+            
             // Special case: Popping from recheckKetoneLevel view
             // Should NOT clear ketones as they need to persist for next check
-            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) {
-                print("   ⚠️ Popping from recheck - ketones PRESERVED")
-                // Ketones intentionally NOT cleared
-            }
+//            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) {
+//                print("   ⚠️ Popping from recheck - ketones PRESERVED")
+//                // Ketones intentionally NOT cleared
+//            }
             
             // Clear ketone data when exiting the flow completely (back to home)
             if let navControllers = navigationController?.viewControllers,
                navControllers.last is HomeViewController {
                 questionnaireManager.clearAllKetoneData()
                 questionnaireManager.resetReminderPageVisitCount()
+                questionnaireManager.resetKetoneVisitCount()
                 print("   🏠 Returning to home - all data cleared")
             }
             
@@ -532,6 +583,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         // Clear all persisted state
         questionnaireManager.clearAllKetoneData()
         questionnaireManager.resetReminderPageVisitCount()
+        questionnaireManager.resetKetoneVisitCount()
         
         // Reset the instance
         QuestionnaireManager.resetInstance()
@@ -560,103 +612,84 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 }
 
 extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProtocol, FinalStepWithDescViewProtocol, FirstEmergencyViewProtocol, FinalStepWithReminderViewProtocol, FinalStepCallChoaViewProtocol, FinalStepCallChoaEmergencyViewProtocol, RecheckKetoneLevelViewProtocol {
-
+    
     func didSelectGotItAction(_ question: Questionnaire) {
         ReminderPersistence.clearReminderState()
         
         for controller in self.navVC.viewControllers as Array {
-			if controller.isKind(of: HomeViewController.self) {
+            if controller.isKind(of: HomeViewController.self) {
                 self.navVC.popToViewController(controller, animated: true)
                 break
             }
         }
     }
-
-	func didSelectYesOverAction(_ question: Questionnaire) {
-        let iLetPump = self.questionnaireManager.iLetPump
-        let visitCount = self.questionnaireManager.getReminderPageVisitCount()
-        let skippedFirst = self.questionnaireManager.skipFirstReminder
+    
+    private func performIf(_ condition: Bool, message: String, action: () -> Void) -> Bool {
+        if condition {
+            print("   → \(message)")
+            action()
+            return true
+        }
+        return false
+    }
+    
+    func didSelectYesOverAction(_ question: Questionnaire) {
+        let q = questionnaireManager
+        let iLetPump = q.iLetPump
+        let reminderPageVisitCount = q.getReminderPageVisitCount()
+        let ketoneCheckPageVisitCount = q.getKetoneVisitCount()
+        let skippedFirst = q.skipFirstReminder
         
-        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
+        let hasModerateUrine = [.zeroPointFive, .onePointFive, .four].contains(q.urineKetones)
+        let hasModerateBlood = q.bloodKetones == .moderate
+        let hasHighUrine = [.eight, .sixteen].contains(q.urineKetones)
+        let hasHighBlood = q.bloodKetones == .large
         
-        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
-        
-        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
-        
-        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
-        
-        if iLetPump {
-            print("""
-            🧩 DEBUG (iLetPump flow)
-            skippedFirst = \(skippedFirst)
-            visitCount = \(visitCount)
-            urineKetones = \(String(describing: questionnaireManager.urineKetones))
-            bloodKetones = \(String(describing: questionnaireManager.bloodKetones))
-            hasHighUrineKetones = \(hasHighUrineKetones)
-            hasModerateUrineKetones = \(hasModerateUrineKetones)
-            hasHighBloodKetones = \(hasHighBloodKetones)
-            hasModerateBloodKetones = \(hasModerateBloodKetones)
-            """)
-            
-            // Priority 1: High ketones with multiple visits (escalation path)
-            if skippedFirst && visitCount >= 2 && (hasHighUrineKetones || hasHighBloodKetones) {
-                print("   → Condition 1 matched: High ketones + skipped first + visit >= 2")
-                print("   → ACTION: Blood sugar recheck")
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-                return
-            }
-            
-            // Priority 2: High ketones on first recheck (after skipping initial reminder)
-            if skippedFirst && visitCount == 1 && (hasHighUrineKetones || hasHighBloodKetones) {
-                print("   → Condition 2 matched: High ketones + skipped first + visit = 1")
-                print("   → ACTION: Blood sugar recheck")
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-                return
-            }
-            
-            // Priority 3: Moderate ketones with multiple visits (escalation path)
-            if skippedFirst && visitCount >= 2 && (hasModerateUrineKetones || hasModerateBloodKetones) {
-                print("   → Condition 3 matched: Moderate ketones + skipped first + visit >= 2")
-                print("   → ACTION: Blood sugar recheck")
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-                return
-            }
-            
-            // Priority 4: Moderate ketones on first recheck (after skipping initial reminder)
-            if skippedFirst && visitCount == 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
-                print("   → Condition 4 matched: Moderate ketones + skipped first + visit = 1")
-                print("   → ACTION: Recheck ketones")
-                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
-                return
-            }
-            
-            // Priority 5: Did not skip first reminder - high/moderate ketones with multiple visits
-            if skippedFirst == false && visitCount > 2 && (
-                hasHighUrineKetones || hasHighBloodKetones ||
-                hasModerateUrineKetones || hasModerateBloodKetones) {
-                print("   → Condition 5 matched: Any ketones + did not skip + visit > 2")
-                print("   → ACTION: Blood sugar recheck")
-                self.questionnaireManager.triggerBloodSugarRecheckActionFlow(question)
-                return
-            }
-            
-            // Priority 6: Did not skip first reminder - early visits
-            if skippedFirst == false && (visitCount == 1 || visitCount == 2) {
-                print("   → Condition 6 matched: Did not skip + visit 1 or 2")
-                print("   → ACTION: Recheck ketones")
-                self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
-                return
-            }
-            
-            // Fallback - should not reach here
-            print("   ⚠️ WARNING: No condition matched! Using fallback.")
-            print("   → FALLBACK ACTION: Recheck ketones")
-            self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
-            
-        } else {
-            // Non-iLet pump flow
+        guard iLetPump else {
             print("   → Non-iLet flow: Recheck ketones")
-            self.questionnaireManager.triggerRecheckKetonesActionFlow(question)
+            q.triggerRecheckKetonesActionFlow(question)
+            return
+        }
+        
+        print("""
+        🧩 DEBUG (iLetPump flow)
+        skippedFirst = \(skippedFirst)
+        reminderPageVisitCount = \(reminderPageVisitCount)
+        urineKetones = \(String(describing: q.urineKetones))
+        bloodKetones = \(String(describing: q.bloodKetones))
+        """)
+        
+        let matched =
+        performIf(skippedFirst && reminderPageVisitCount >= 2 && (hasHighUrine || hasHighBlood),
+                  message: "Condition 1 matched: High ketones + skipped first + visit ≥ 2 → Blood sugar recheck") {
+            q.triggerBloodSugarRecheckActionFlow(question)
+        } ||
+        performIf(skippedFirst && reminderPageVisitCount == 1 && (hasHighUrine || hasHighBlood),
+                  message: "Condition 2 matched: High ketones + skipped first + visit = 1 → Blood sugar recheck") {
+            q.triggerBloodSugarRecheckActionFlow(question)
+        } ||
+        performIf(skippedFirst && reminderPageVisitCount >= 2 && (hasModerateUrine || hasModerateBlood),
+                  message: "Condition 3 matched: Moderate ketones + skipped first + visit ≥ 2 → Blood sugar recheck") {
+            q.triggerBloodSugarRecheckActionFlow(question)
+        } ||
+        performIf(skippedFirst && reminderPageVisitCount == 1 && (hasModerateUrine || hasModerateBlood),
+                  message: "Condition 4 matched: Moderate ketones + skipped first + visit = 1 → Recheck ketones") {
+            q.triggerRecheckKetonesActionFlow(question)
+        } ||
+        performIf(!skippedFirst && reminderPageVisitCount > 2 && (hasHighUrine || hasHighBlood || hasModerateUrine || hasModerateBlood),
+                  message: "Condition 5 matched: Any ketones + did not skip + visit > 2 → Blood sugar recheck") {
+            q.triggerBloodSugarRecheckActionFlow(question)
+        } ||
+        performIf(
+            !skippedFirst && (reminderPageVisitCount == 1 || reminderPageVisitCount == 2) && (
+                ketoneCheckPageVisitCount == 1 || ketoneCheckPageVisitCount == 2),
+                  message: "Condition 6 matched: Did not skip + reminder visit 1 or 2 + ketoneCheck visit 1 or 2 → Recheck ketones") {
+            q.triggerRecheckKetonesActionFlow(question)
+        }
+
+        if !matched {
+            print("⚠️ WARNING: No condition matched! Using fallback.")
+            q.triggerRecheckKetonesActionFlow(question)
         }
     }
 
@@ -665,7 +698,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 
 		print("Selected Answer: \(selectedAnswer)")
         let iLetPump = self.questionnaireManager.iLetPump
-        let visitCount = self.questionnaireManager
+        let reminderPageVisitCount = self.questionnaireManager
                 .getReminderPageVisitCount()
         let skippedFirst = self.questionnaireManager.skipFirstReminder
         
@@ -683,27 +716,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
             
             if iLetPump {
-                if skippedFirst && visitCount == 1 && (
-                    hasHighUrineKetones || hasHighBloodKetones
-                ) {
-                    self.questionnaireManager
-                        .triggerSkippedUrineKetoneForILetActionFlow(
-                            currentQuestion,
-                            level: level
-                        )
-                } else if skippedFirst && visitCount == 1 && (
-                    hasModerateUrineKetones || hasModerateBloodKetones
-                ) {
-                    self.questionnaireManager
-                        .triggerSkippedUrineKetoneModerateForILetActionFlow(
-                            currentQuestion,
-                            level: level
-                        )
-                    
-                    print("SHOULD YOU MODERATE TRIGGER!!!!")
-                } else {
-                    self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
-                }
+                self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
             } else {
                 self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
             }
@@ -713,7 +726,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
         
         let iLetPump = self.questionnaireManager.iLetPump
-        let visitCount = self.questionnaireManager
+        let reminderPageVisitCount = self.questionnaireManager
                 .getReminderPageVisitCount()
         let skippedFirst = self.questionnaireManager.skipFirstReminder
         
@@ -732,24 +745,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
             
             if iLetPump {
-                if skippedFirst && visitCount == 1 && (
-                    hasHighBloodKetones || hasHighUrineKetones
-                ){
-                    self.questionnaireManager
-                        .triggerSkippedBloodKetoneForILetActionFlow(
-                            currentQuestion,
-                            level: level
-                        )
-                } else if skippedFirst && visitCount == 1 && (
-                    hasModerateUrineKetones || hasModerateBloodKetones
-                ) {
-                    self.questionnaireManager
-                        .triggerSkippedBloodKetoneModerateForILetActionFlow(
-                            currentQuestion, level: level)
-                    print("SHOULD YOU MODERATE TRIGGER!!!!")
-                } else {
-                    self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
-                }
+                self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
             } else {
                 self.questionnaireManager
                     .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
