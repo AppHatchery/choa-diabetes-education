@@ -141,13 +141,17 @@ class GetHelpViewController: UIViewController {
             resetBackgroundColor()
             finalStepWithReminderView?.cleanup()
             
-            print("⬅️ Popping from: \(questionObj.questionType)")
+            print(
+                "⬅️ Popping from: \(String(describing: questionObj.questionType))"
+            )
             
             // Check if we are popping back from FinalStepWithReminderView
             if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
                let previousVC = navigationController?.viewControllers.last as? GetHelpViewController {
                 
-                print("   → Going back to: \(previousVC.questionObj.questionType)")
+                print(
+                    "   → Going back to: \(String(describing: previousVC.questionObj.questionType))"
+                )
                 
                 // Check if popping to bloodSugarRecheck question
                 if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
@@ -171,11 +175,15 @@ class GetHelpViewController: UIViewController {
             if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)),
                let previousVC = navigationController?.viewControllers.last as? GetHelpViewController {
                 
-                print("   → Going back from recheck to: \(previousVC.questionObj.questionType)")
+                print(
+                    "   → Going back from recheck to: \(String(describing: previousVC.questionObj.questionType))"
+                )
                 
                 // Decrement ketone count when going back to reminder page
                 if previousVC.questionObj.questionType == .reminder(FinalQuestionId(id: previousVC.questionObj.questionId)) {
                     questionnaireManager.decrementKetoneVisitCount()
+                    questionnaireManager.resetKetoneVisitCount()
+                    
                     print("   🧪 Decremented ketone count (popping to reminder page)")
                 }
                 
@@ -204,6 +212,21 @@ class GetHelpViewController: UIViewController {
                 // Note: Ketones are intentionally preserved when popping from recheck
                 // as they need to persist for the next check
                 print("   ⚠️ Popping from recheck - ketones PRESERVED")
+            }
+            
+            if let previousVC = navigationController?.viewControllers.last as? GetHelpViewController,
+               !previousVC.twoOptionsView.isHidden,
+               questionObj.questionType != .twoOptions(.testType) {  // Don't reset if we ARE the TwoOptionsView
+                
+                questionnaireManager.saveYesOver2hours(false)
+                questionnaireManager.resetReminderPageVisitCount()
+                questionnaireManager.resetKetoneVisitCount()
+                questionnaireManager.clearAllKetoneData()
+                questionnaireManager.clearFirstKetoneValues()
+                
+                print(
+                    "   🗑️ Full reset: popping back to test type selection from \(String(describing: questionObj.questionType))"
+                )
             }
             
             // Special case: Popping from recheckKetoneLevel view
