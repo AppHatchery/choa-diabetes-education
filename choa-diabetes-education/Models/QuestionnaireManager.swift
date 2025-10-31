@@ -719,7 +719,6 @@ extension QuestionnaireManager {
             
         case .zeroPointFive, .onePointFive, .four:
             // Moderate ketones
-            // If skipped first and this is visit 1, OR didn't skip and this is visit 2+
             
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
@@ -810,57 +809,95 @@ extension QuestionnaireManager {
         bloodLevel: BloodKetoneLevel
     ) {
         let visitCount = getReminderPageVisitCount()
+        let ketoneCheckVisitCount = getKetoneVisitCount()
         let skippedFirst = skipFirstReminder
+        
+        let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
+        (firstBloodKetoneValue == .large)
         
         print("🩸 Recheck Blood Ketone")
         print("   - Visit count: \(visitCount)")
+        print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
         print("   - Skipped first: \(skippedFirst)")
         print("   - Level: \(bloodLevel)")
+        print("   - First ketone value: \(String(describing: firstBloodKetoneValue))")
         
         switch bloodLevel {
         case .low:
-            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
-
-            if shouldEscalate {
-                print("   → Continue with description (escalation criteria met)")
-                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            
+            if skippedFirst == false {
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Continue regular care (first visit after 2 ketone checks)")
+                    triggerContinueActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerContinueActionFlow(currentQuestion)
+                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
+                    triggerContinueWithDescriptionActionFlow(currentQuestion)
+                }
             } else {
-                print("   → Continue regular care")
-                triggerContinueActionFlow(currentQuestion)
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Skipped First Reminder")
+                    print("   → Continue regular care (first visit after 2 ketone checks)")
+                    
+                    if hasHighFirstKetone {
+                        print("   → Has High First Ketone")
+                        triggerContinueWithDescriptionActionFlow(currentQuestion)
+                    } else {
+                        triggerContinueActionFlow(currentQuestion)
+                    }
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerContinueWithDescriptionActionFlow(currentQuestion)
+                }
             }
             
         case .moderate:
-            let shouldEscalate = (skippedFirst && visitCount >= 2) || (skippedFirst == false && visitCount >= 3)
+            // Moderate ketones
             
-            if shouldEscalate {
-                print("   → Call CHOA emergency (escalation criteria met)")
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            if skippedFirst == false {
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
+                }
             } else {
-                print("   → Recheck blood sugar")
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
-                actionsDelegate?.showNextQuestion(createQue)
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
+                    if hasHighFirstKetone {
+                        print("   → Has High First Ketone")
+                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                    } else {
+                        triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    }
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
+                }
             }
         case .large:
-            let shouldEscalate = (skippedFirst && visitCount >= 1) || (skippedFirst == false && visitCount >= 2)
+            // High ketones
             
-            if shouldEscalate {
-                print("   → Call CHOA emergency (escalation criteria met)")
-                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            if skippedFirst == false {
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
+                }
             } else {
-                print("   → Recheck blood sugar")
-                let createQue = createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckILetPump.title".localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                actionsDelegate?.showNextQuestion(createQue)
+                if visitCount == 1 && ketoneCheckVisitCount == 2 {
+                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
+                    if hasHighFirstKetone {
+                        print("   → Has High First Ketone")
+                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                    } else {
+                        triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    }                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
+                    triggerCallChoaEmergencyActionFlow(currentQuestion)
+                }
             }
         }
     }
