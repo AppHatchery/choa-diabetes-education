@@ -41,7 +41,8 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 	@IBOutlet var ketoneMeasuringTypeStackView: UIStackView!
 
 	@IBOutlet var resourcesStackView: UIStackView!
-	@IBOutlet var learnHowLabel: UILabel!
+    @IBOutlet weak var instructionsLabel: UILabel!
+    @IBOutlet var learnHowLabel: UILabel!
 
 	@IBOutlet var switchToLabel: UILabel!
 
@@ -77,6 +78,8 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 
+        instructionsLabel.text = "GetHelp.Que.CheckChildsKetoneLevel.title"
+            .localized()
 		setupLearnHowLabel()
 		setupSwitchToLabel()
 

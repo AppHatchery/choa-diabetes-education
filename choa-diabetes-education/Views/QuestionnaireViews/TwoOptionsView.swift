@@ -53,6 +53,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
     static let nibName = "TwoOptionsView"
     
+    @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
@@ -109,6 +110,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
+        
+        instructionsLabel.text = "GetHelp.Que.CheckChildsKetoneLevel.title"
+            .localized()
 
 //		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
