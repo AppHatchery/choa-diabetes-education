@@ -53,6 +53,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
     static let nibName = "TwoOptionsView"
     
+    @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nextButton: PrimaryButton!
@@ -109,6 +110,9 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
+        
+        instructionsLabel.text = "GetHelp.Que.CheckChildsKetoneLevel.title"
+            .localized()
 
 //		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
@@ -211,96 +215,105 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		}
 	}
 
-	func didFirstButtonTap() {
-		switch currentQuestion.questionId {
-		case TwoOptionsQuestionId.testType.id:
-			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+    func didFirstButtonTap() {
+        switch currentQuestion.questionId {
+        case TwoOptionsQuestionId.testType.id:
+            followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-		case TwoOptionsQuestionId.measuringType.id:
+        case TwoOptionsQuestionId.measuringType.id:
+            // Guard against adding duplicate UrineKetoneLevelView
+            if followUpQuestionStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
+                return
+            }
+            
+            // Save method first - this will clear blood ketones
+            questionnaireManager.saveMeasuringMethod(.urineKetone)
+            followUpAnswer = 0 // Reset selection
 
-				// Guard against adding duplicate UrineKetoneLevelView
-			if followUpQuestionStackView.subviews.contains(where: { $0 is UrineKetoneLevelView }) {
-				return
-			}
+            // Clear any existing subviews
+            followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-				// Clear any existing subviews
-			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+            // Show urine ketone level view (first option)
+            let followUpSubview = UrineKetoneLevelView()
 
-				// Show urine ketone level view (first option)
-			let followUpSubview = UrineKetoneLevelView()
+            followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+            followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+            NSLayoutConstraint.activate([
+                followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+                followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+            ])
 
-			NSLayoutConstraint.activate([
-				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
-			])
+            followUpSubview.delegate = self
+            
+            print("🔄 Selected urine ketone measurement")
+            questionnaireManager.printCurrentKetoneState()
 
-			followUpSubview.delegate = self
+        default:
+            break
+        }
+    }
 
-		default:
-			break
-		}
-	}
+    func didSecondButtonTap() {
+        switch currentQuestion.questionId {
 
-	func didSecondButtonTap() {
-		switch currentQuestion.questionId {
+        case TwoOptionsQuestionId.testType.id:
+            // Guard against adding duplicate YesOrNoFollowUpView
+            if followUpQuestionStackView.subviews.contains(where: { $0 is YesOrNoFollowUpView }) {
+                return
+            }
 
-		case TwoOptionsQuestionId.testType.id:
+            questionnaireManager.saveMeasuringMethod(.urineKetone)
 
-				// Guard against adding duplicate YesOrNoFollowUpView
-			if followUpQuestionStackView.subviews.contains(where: { $0 is YesOrNoFollowUpView }) {
-				return
-			}
+            // Clear any existing subviews first
+            followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-			questionnaireManager.saveMeasuringMethod(.urineKetone)
+            let followUpSubview = YesOrNoFollowUpView()
 
-				// Clear any existing subviews first
-			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+            followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+            followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
-			let followUpSubview = YesOrNoFollowUpView()
+            NSLayoutConstraint.activate([
+                followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+                followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+            ])
 
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpQuestionStackView.addArrangedSubview(followUpSubview)
+            followUpSubview.delegate = self
+            followUpSubview.setupView(currentQuestion: currentQuestion)
 
-			NSLayoutConstraint.activate([
-				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
-			])
+        case TwoOptionsQuestionId.measuringType.id:
+            // Guard against adding duplicate BloodKetoneLevelView
+            if followUpQuestionStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
+                return
+            }
 
-			followUpSubview.delegate = self
-			followUpSubview.setupView(currentQuestion: currentQuestion)
+            // Save method first - this will clear urine ketones
+            questionnaireManager.saveMeasuringMethod(.bloodKetone)
+            followUpAnswer = 0 // Reset selection
 
-		case TwoOptionsQuestionId.measuringType.id:
+            // Clear any existing subviews
+            followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
 
-				// Guard against adding duplicate BloodKetoneLevelView
-			if followUpQuestionStackView.subviews.contains(where: { $0 is BloodKetoneLevelView }) {
-				return
-			}
+            // Show blood ketone level view (second option)
+            let followUpSubview = BloodKetoneLevelView()
 
-			questionnaireManager.saveMeasuringMethod(.bloodKetone)
+            followUpSubview.translatesAutoresizingMaskIntoConstraints = false
+            followUpQuestionStackView.addArrangedSubview(followUpSubview)
 
-				// Clear any existing subviews
-			followUpQuestionStackView.subviews.forEach { $0.removeFromSuperview() }
+            NSLayoutConstraint.activate([
+                followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
+                followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
+            ])
 
-				// Show blood ketone level view (second option)
-			let followUpSubview = BloodKetoneLevelView()
+            followUpSubview.delegate = self
+            
+            print("🔄 Selected blood ketone measurement")
+            questionnaireManager.printCurrentKetoneState()
 
-			followUpSubview.translatesAutoresizingMaskIntoConstraints = false
-			followUpQuestionStackView.addArrangedSubview(followUpSubview)
-
-			NSLayoutConstraint.activate([
-				followUpSubview.leadingAnchor.constraint(equalTo: followUpQuestionStackView.leadingAnchor),
-				followUpSubview.trailingAnchor.constraint(equalTo: followUpQuestionStackView.trailingAnchor)
-			])
-
-			followUpSubview.delegate = self
-
-		default:
-			break
-		}
-	}
+        default:
+            break
+        }
+    }
 
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         
@@ -331,6 +344,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						// Urine ketones selected
 					let answerEnum = UrineKetoneLevel(id: followUpAnswer)
 					questionnaireManager.saveMeasuringMethod(.urineKetone)
+                    questionnaireManager.incrementKetoneVisitCount()
 
 					delegate?.didSelectNextAction(
 						currentQuestion: currentQuestion,
@@ -341,6 +355,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						// Blood ketones selected
 					let answerEnum = BloodKetoneLevel(id: followUpAnswer)
 					questionnaireManager.saveMeasuringMethod(.bloodKetone)
+                    questionnaireManager.incrementKetoneVisitCount()
 
 					delegate?.didSelectNextAction(
 						currentQuestion: currentQuestion,
