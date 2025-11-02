@@ -17,10 +17,10 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRoundedLight.ttf">
+        <array key="Gotham Rounded Light.otf">
             <string>GothamRounded-Light</string>
         </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
@@ -1364,7 +1364,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="KfG-Kg-eqO"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Meals + Correction">
@@ -1374,21 +1374,15 @@
                                                             <action selector="tappedMealsAndHighSugarButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="NSB-DO-C7g"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ASG-8s-BbA">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASG-8s-BbA">
                                                         <rect key="frame" x="19" y="174" width="143" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="OHO-63-oiV"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="Meals">
-                                                                    <attributes>
-                                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="16" name="GothamRounded-Medium"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
+                                                        <state key="normal" title="Meals">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="tappedMealsButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="mWp-U9-XSg"/>
@@ -1399,7 +1393,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="uad-li-zjt"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Correction">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

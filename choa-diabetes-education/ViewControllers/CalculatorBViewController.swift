@@ -17,8 +17,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var correctionFactorField: UITextField!
     @IBOutlet weak var correctionFactorLine: UIView!
     @IBOutlet weak var correctionFactorLabel: UILabel!
-    @IBOutlet weak var bloodSugarLabelImage: UIButton!
-    
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
@@ -129,7 +127,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             nextButton.layer.cornerRadius = 12
         }
         
-        bloodSugarLabelImage.isHidden = true
         calculatorDidUpdateConstants()
         setupTappableInfoButtons()
     }
@@ -176,23 +173,16 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 bloodSugarField.textColor = UIColor.orangeTextColor
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
-                bloodSugarLabelImage.isHidden = false
-                bloodSugarLabelImage.isUserInteractionEnabled = false
-                bloodSugarLabelImage.tintColor = .orangeTextColor
                 bloodSugarLabel.textColor = .orangeTextColor
             } else if bloodSugar < targetBloodSugar && bloodSugar != 0 {
                 bloodSugarField.textColor = UIColor.orangeTextColor
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
-                bloodSugarLabelImage.isHidden = false
-                bloodSugarLabelImage.isUserInteractionEnabled = false
-                bloodSugarLabelImage.tintColor = .orangeTextColor
                 bloodSugarLabel.textColor = .orangeTextColor
             } else {
                 bloodSugarField.textColor = .primaryBlue
                 insulinForHighBloodSugar.textColor = .primaryBlue
                 bloodSugarLine.backgroundColor = .primaryBlue
-                bloodSugarLabelImage.isHidden = true
                 bloodSugarLabel.textColor = .primaryBlue
             }
 //            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
