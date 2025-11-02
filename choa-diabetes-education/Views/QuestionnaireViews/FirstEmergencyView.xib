@@ -55,14 +55,8 @@
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Call 911">
-                                                        <attributes>
-                                                            <font key="NSFont" size="20" name="GothamRounded-Bold"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <buttonConfiguration key="configuration" style="plain" title="Call 911">
+                                                <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="call911:" destination="-1" eventType="touchUpInside" id="sCQ-s6-kyi"/>
