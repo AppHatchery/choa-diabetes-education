@@ -539,13 +539,13 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-CC-8Fi">
-                                        <rect key="frame" x="20" y="170" width="335" height="256"/>
+                                        <rect key="frame" x="20" y="170" width="335" height="254"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="V5i-52-edF">
-                                                <rect key="frame" x="2.5" y="0.0" width="330" height="109"/>
+                                                <rect key="frame" x="2.5" y="0.0" width="330" height="107"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1i9-eT-3Fh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="109"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-hb-Glq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="54"/>
@@ -573,23 +573,14 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="UZY-IT-BUO">
-                                                                <rect key="frame" x="2.5" y="75" width="119" height="34"/>
+                                                                <rect key="frame" x="12" y="75" width="100" height="32"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Blood Sugar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGr-Ab-4uo">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrF-7Y-IjI">
-                                                                        <rect key="frame" x="103" y="0.0" width="16" height="34"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="16" id="AfZ-TS-COG"/>
-                                                                        </constraints>
-                                                                        <color key="tintColor" name="secondarySunsetOrange300"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
-                                                                    </button>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
@@ -598,13 +589,13 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-fU-cfe">
-                                                        <rect key="frame" x="154" y="24.5" width="22" height="60"/>
+                                                        <rect key="frame" x="154" y="23.5" width="22" height="60"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PnY-v3-7Md">
-                                                        <rect key="frame" x="206" y="2" width="124" height="105"/>
+                                                        <rect key="frame" x="206" y="1" width="124" height="105"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BER-a7-Jr6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
@@ -660,7 +651,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBO-pm-9pW">
-                                                <rect key="frame" x="0.0" y="129" width="335" height="2"/>
+                                                <rect key="frame" x="0.0" y="127" width="335" height="2"/>
                                                 <color key="backgroundColor" name="darkGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="EUL-yf-3nN"/>
@@ -672,7 +663,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zno-JU-DjE">
-                                                <rect key="frame" x="87" y="151" width="161.5" height="105"/>
+                                                <rect key="frame" x="87" y="149" width="161.5" height="105"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kp9-xv-07h">
                                                         <rect key="frame" x="18.5" y="0.0" width="124" height="50"/>
@@ -869,7 +860,6 @@
                     <connections>
                         <outlet property="bloodSugarField" destination="bTa-hb-Glq" id="19y-dx-18e"/>
                         <outlet property="bloodSugarLabel" destination="OGr-Ab-4uo" id="uTu-gy-XqY"/>
-                        <outlet property="bloodSugarLabelImage" destination="JrF-7Y-IjI" id="i25-9T-bwu"/>
                         <outlet property="bloodSugarLine" destination="ZJI-IW-mMV" id="LHz-yX-5QN"/>
                         <outlet property="contentView" destination="OAy-nL-hOb" id="ZWb-zf-PaF"/>
                         <outlet property="correctionFactorField" destination="kp9-xv-07h" id="Pqe-i4-anf"/>
@@ -2049,9 +2039,6 @@
         </namedColor>
         <namedColor name="secondaryMeadowGreen050">
             <color red="0.94901960784313721" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="secondarySunsetOrange300">
-            <color red="0.96078431372549022" green="0.50980392156862742" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textFieldBackgroundColor">
             <color red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
