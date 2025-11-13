@@ -87,7 +87,7 @@ class FinalStepCallChoaView: UIView {
 
 		callInstructions.setText(
 			"Final.CallChoa.CallInstructions.text".localized(),
-			boldPhrases: ["Call 404-785-5437", "blood sugar", "ketones", "after 2 corrections"]
+			boldPhrases: ["blood sugar", "ketones", "after 2 corrections"]
 		)
 
 			// Insulin Pump Text

@@ -283,20 +283,15 @@ Blood ketones are below 0.6 mmol/L</string>
                                                                     <rect key="frame" x="72" y="0.0" width="241" height="137"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="35.333333333333336"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="56.333333333333336"/>
                                                                             <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
-                                                                            <rect key="frame" x="0.0" y="35.333333333333378" width="205" height="101.66666666666669"/>
-                                                                            <attributedString key="attributedText">
-                                                                                <fragment content="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections">
-                                                                                    <attributes>
-                                                                                        <font key="NSFont" metaFont="system" size="16"/>
-                                                                                    </attributes>
-                                                                                </fragment>
-                                                                            </attributedString>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="If blood sugar or ketones do not decrease after 2 corrections call your care team." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                            <rect key="frame" x="0.0" y="56.333333333333378" width="239.66666666666666" height="80.666666666666686"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
