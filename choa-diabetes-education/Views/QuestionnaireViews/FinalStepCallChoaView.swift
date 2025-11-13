@@ -107,7 +107,7 @@ class FinalStepCallChoaView: UIView {
 
 		switchBackLabel.setText("Final.CallChoa.SwitchBack.text".localized(), boldPhrases: ["Switch back to automated mode"])
 
-		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
+		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 mg/dL or lower", "blood sugar is over 150 mg/dL"])
 
 		self.currentQuestion = currentQuestion
 		titleLabel.font = .gothamRoundedBold20

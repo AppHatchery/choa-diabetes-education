@@ -58,7 +58,7 @@ class FinalStepWithDescView: UIView {
         
         hydrationExampleInfoTextView.setText(
             "Final.HydrationExampleInfo.text".localized(),
-            boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
+            boldPhrases: ["blood sugar is 150 mg/dL or lower", "blood sugar is over 150 mg/dL"]
         )
 	}
 
