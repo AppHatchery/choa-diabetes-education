@@ -139,7 +139,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
-			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
 
 		for (index, view) in optionButtons.enumerated() {
