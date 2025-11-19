@@ -14,14 +14,14 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
+        <array key="Gotham Rounded Light.otf">
+            <string>GothamRounded-Light</string>
         </array>
         <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
-        <array key="GothamRoundedLight.ttf">
-            <string>GothamRounded-Light</string>
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
             <string>IrishGrover-Regular</string>
@@ -444,11 +444,7 @@
                             <constraint firstItem="Dmy-mB-eP8" firstAttribute="top" secondItem="Oaw-cK-E2L" secondAttribute="top" id="hM5-1r-2hr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h9g-sI-HV2">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="asz-6q-Fz4">
-                            <color key="tintColor" name="choaGreenColor"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="h9g-sI-HV2"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="bOZ-tT-GCV" id="xeL-yp-ewv"/>
