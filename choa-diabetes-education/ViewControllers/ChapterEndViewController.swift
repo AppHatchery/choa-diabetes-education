@@ -9,13 +9,18 @@ import UIKit
 
 class ChapterEndViewController: UIViewController {
     
-    @IBOutlet weak var nextChapterLabel: UILabel!
-    @IBOutlet weak var nextChapterButton: UIButton!
-    @IBOutlet weak var quizLabel: UILabel!
-    @IBOutlet weak var quizButton: UIView!
+    @IBOutlet weak var mainView: UIView!
     
+    @IBOutlet weak var nextChapterButton: UIButton!
     @IBOutlet weak var congratsLabel: UILabel!
-    @IBOutlet weak var congratsMessage: UILabel!
+    
+    @IBOutlet weak var textBubbleImage: UIImageView!
+    @IBOutlet weak var hopeOrWillImage: UIImageView!
+    
+    @IBOutlet weak var bottomStarsView: UIView!
+    
+    @IBOutlet weak var chaptersCompletedLabel: UILabel!
+    
     
     var contentIndex = 0
     var chapterEndTitle = ""
@@ -23,11 +28,42 @@ class ChapterEndViewController: UIViewController {
     var nextChapterURL = ""
     var quizIndex = 0
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = UIColor.clear
+        
+        if contentIndex == 0 {
+            appearance.backgroundColor = .diabetesBasicsColor
+            mainView.backgroundColor = .diabetesBasicsColor
+        } else if contentIndex == 1 {
+            appearance.backgroundColor = .nutritionAndCarbColor
+            mainView.backgroundColor = .nutritionAndCarbColor
+            hopeOrWillImage.image = UIImage(named: "will_nutrition")
+        } else {
+            appearance.backgroundColor = .diabetesSelfManagementColor
+            mainView.backgroundColor = .diabetesSelfManagementColor
+            hopeOrWillImage.image = UIImage(named: "hope_clock")
+        }
+        
+        appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         congratsLabel.text = "Congrats".localized()
-        congratsMessage.text = "Result.Chapter.End".localized()
-        nextChapterButton.detailedDropShadow(color: UIColor.errorRedColor.cgColor, blur: 16, offset: 8, opacity: 1)
+        
+        bottomStarsView.layer.cornerRadius = 12
+        nextChapterButton.layer.cornerRadius = 12
         
         switch contentIndex {
         case 0:
@@ -49,8 +85,8 @@ class ChapterEndViewController: UIViewController {
                 //                print(chapterEndTitleIndex)
                 // Extra logic for section 2 with chapters that don't contain a quiz
                 if chapterEndTitleIndex == 1 || chapterEndTitleIndex == 3 {
-                    quizLabel.isHidden = true
-                    quizButton.isHidden = true
+//                    quizLabel.isHidden = true
+//                    quizButton.isHidden = true
                 }
             }
         case 2:
@@ -75,9 +111,9 @@ class ChapterEndViewController: UIViewController {
         
         // Hide next button if the end of the section
         if nextChapter != "" {
-            nextChapterLabel.text = nextChapter
+//            nextChapterLabel.text = nextChapter
         } else {
-            nextChapterLabel.isHidden = true
+//            nextChapterLabel.isHidden = true
             nextChapterButton.isHidden = true
         }
     }

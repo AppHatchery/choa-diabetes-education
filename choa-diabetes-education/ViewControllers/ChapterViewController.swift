@@ -44,6 +44,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationItem.backButtonDisplayMode = .minimal
         
         // Create WebView Content
         let config = WKWebViewConfiguration()
