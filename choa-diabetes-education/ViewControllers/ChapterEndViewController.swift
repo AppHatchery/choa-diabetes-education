@@ -18,6 +18,7 @@ class ChapterEndViewController: UIViewController {
     @IBOutlet weak var hopeOrWillImage: UIImageView!
     
     @IBOutlet weak var bottomStarsView: UIView!
+    @IBOutlet weak var starsStackView: UIStackView!
     
     @IBOutlet weak var chaptersCompletedLabel: UILabel!
     
@@ -48,9 +49,6 @@ class ChapterEndViewController: UIViewController {
             hopeOrWillImage.image = UIImage(named: "hope_clock")
         }
         
-        appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -67,33 +65,30 @@ class ChapterEndViewController: UIViewController {
         
         switch contentIndex {
         case 0:
-            if let chapterEndTitleIndex = ContentChapter().sectionOne.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
-                if chapterEndTitleIndex < ContentChapter().sectionOne.count-1 {
-                    nextChapter = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentTitle
-                    nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex+1].contentHTML
+            if let chapterEndTitleIndex = ContentChapter().sectionOne.firstIndex(where: { $0.contentTitle == chapterEndTitle }) {
+                if chapterEndTitleIndex < ContentChapter().sectionOne.count - 1 {
+                    nextChapter = ContentChapter().sectionOne[chapterEndTitleIndex + 1].contentTitle
+                    nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
             }
         case 1:
-            if let chapterEndTitleIndex = ContentChapter().sectionTwo.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
-                if chapterEndTitleIndex < ContentChapter().sectionTwo.count-1 {
-                    nextChapter = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentTitle
-                    nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex+1].contentHTML
+            if let chapterEndTitleIndex = ContentChapter().sectionTwo.firstIndex(where: { $0.contentTitle == chapterEndTitle }) {
+                if chapterEndTitleIndex < ContentChapter().sectionTwo.count - 1 {
+                    nextChapter = ContentChapter().sectionTwo[chapterEndTitleIndex + 1].contentTitle
+                    nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
-                //
-                //                print(chapterEndTitleIndex)
                 // Extra logic for section 2 with chapters that don't contain a quiz
                 if chapterEndTitleIndex == 1 || chapterEndTitleIndex == 3 {
-//                    quizLabel.isHidden = true
-//                    quizButton.isHidden = true
+                    // quiz disabled for these indices
                 }
             }
         case 2:
-            if let chapterEndTitleIndex = ContentChapter().sectionThree.firstIndex(where: {$0.contentTitle == chapterEndTitle}){
-                if chapterEndTitleIndex < ContentChapter().sectionThree.count-1 {
-                    nextChapter = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentTitle
-                    nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex+1].contentHTML
+            if let chapterEndTitleIndex = ContentChapter().sectionThree.firstIndex(where: { $0.contentTitle == chapterEndTitle }) {
+                if chapterEndTitleIndex < ContentChapter().sectionThree.count - 1 {
+                    nextChapter = ContentChapter().sectionThree[chapterEndTitleIndex + 1].contentTitle
+                    nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
             }
@@ -101,9 +96,7 @@ class ChapterEndViewController: UIViewController {
             print("error where index doesn't match")
         }
         
-        // If there is no quiz assigned for this chapter hide the quiz related section
-        
-        // Do any additional setup after loading the view.
+        updateStarsUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,11 +104,14 @@ class ChapterEndViewController: UIViewController {
         
         // Hide next button if the end of the section
         if nextChapter != "" {
-//            nextChapterLabel.text = nextChapter
+            // nextChapterLabel.text = nextChapter
         } else {
-//            nextChapterLabel.isHidden = true
+            // nextChapterLabel.isHidden = true
             nextChapterButton.isHidden = true
         }
+        
+        // Refresh stars in case the view reappears
+        updateStarsUI()
     }
     
     @IBAction func nextChapter(_ sender: UIButton){
@@ -128,7 +124,6 @@ class ChapterEndViewController: UIViewController {
     
     @IBAction func backToChapterList(_ sender: UIButton){
         // Go back to the list view controller
-        // Some function of pop to view controller - https://stackoverflow.com/questions/30003814/how-can-i-pop-specific-view-controller-in-swift
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: HandbookViewController.self) {
                 self.navigationController!.popToViewController(controller, animated: true)
@@ -148,5 +143,54 @@ class ChapterEndViewController: UIViewController {
             quizViewController.quizChapter = contentIndex
             quizViewController.quizTitle = chapterEndTitle
         }
+    }
+}
+
+// MARK: - Stars helpers
+private extension ChapterEndViewController {
+    func totalChaptersCount(for section: Int) -> Int {
+        switch section {
+        case 0: return ContentChapter().sectionOne.count
+        case 1: return ContentChapter().sectionTwo.count
+        case 2: return ContentChapter().sectionThree.count
+        default: return 0
+        }
+    }
+    
+    func updateStarsUI() {
+        // Compute totals based on the current section and the current chapter index
+        let totalCount = totalChaptersCount(for: contentIndex)
+        let completedCount = max(0, min(totalCount, quizIndex + 1))
+        
+        chaptersCompletedLabel.text = "\(completedCount) of \(totalCount) completed"
+        
+        // Clear existing stars
+        starsStackView.arrangedSubviews.forEach { sub in
+            starsStackView.removeArrangedSubview(sub)
+            sub.removeFromSuperview()
+        }
+        
+        starsStackView.alignment = .center
+        starsStackView.distribution = .equalSpacing
+        starsStackView.spacing = 8
+        
+        for i in 0..<totalCount {
+            let isCompleted = i < completedCount
+            let starView = makeStarImageView(completed: isCompleted)
+            starsStackView.addArrangedSubview(starView)
+        }
+    }
+    
+    func makeStarImageView(completed: Bool) -> UIImageView {
+        let assetName = completed ? "star_completed" : "star_uncompleted"
+        let image = UIImage(named: assetName)?.withRenderingMode(.alwaysOriginal)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 40),
+            imageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        return imageView
     }
 }

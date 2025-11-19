@@ -33,8 +33,8 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     var flagiframe = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         
         let appearance = UINavigationBarAppearance()
         
@@ -44,7 +44,12 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .choaGreenColor
         navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         // Create WebView Content
         let config = WKWebViewConfiguration()
