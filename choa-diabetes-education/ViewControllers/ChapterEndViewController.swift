@@ -36,29 +36,32 @@ class ChapterEndViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.shadowColor = UIColor.clear
         
+        appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
         if contentIndex == 0 {
             appearance.backgroundColor = .diabetesBasicsColor
             mainView.backgroundColor = .diabetesBasicsColor
         } else if contentIndex == 1 {
             appearance.backgroundColor = .nutritionAndCarbColor
             mainView.backgroundColor = .nutritionAndCarbColor
-            hopeOrWillImage.image = UIImage(named: "will_nutrition")
         } else {
             appearance.backgroundColor = .diabetesSelfManagementColor
             mainView.backgroundColor = .diabetesSelfManagementColor
-            hopeOrWillImage.image = UIImage(named: "hope_clock")
         }
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.compactAppearance = appearance
         
+        navigationController?.navigationBar.tintColor = .white
         navigationItem.backButtonDisplayMode = .minimal
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        congratsLabel.text = "Congrats".localized()
+        
+        navigationController?.navigationBar.tintColor = .white
+        navigationItem.backButtonDisplayMode = .minimal
         
         bottomStarsView.layer.cornerRadius = 12
         nextChapterButton.layer.cornerRadius = 12
@@ -71,6 +74,28 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                
+                // Update text bubble image for Section One based on the completed chapter index
+                if chapterEndTitleIndex == 0 {
+                    congratsLabel.text = "Congratulatory1".localized()
+                    textBubbleImage.image = UIImage(named: "diabetes_basics_text_bubble_1")
+                } else if chapterEndTitleIndex == 1 {
+                    congratsLabel.text = "Congratulatory2".localized()
+                    textBubbleImage.image = UIImage(named: "diabetes_basics_text_bubble_2")
+                    hopeOrWillImage.image = UIImage(named: "will_pump")
+                } else if chapterEndTitleIndex == 2 {
+                    congratsLabel.text = "Congratulatory3".localized()
+                    textBubbleImage.image = UIImage(named: "diabetes_basics_text_bubble_3")
+                    hopeOrWillImage.image = UIImage(named: "hope_basics")
+                } else if chapterEndTitleIndex == 3 {
+                    congratsLabel.text = "Congratulatory4".localized()
+                    textBubbleImage.image = UIImage(named: "diabetes_basics_text_bubble_4")
+                    hopeOrWillImage.image = UIImage(named: "will_pen")
+                } else {
+                    congratsLabel.text = "Congratulatory5".localized()
+                    textBubbleImage.image = UIImage(named: "diabetes_basics_text_bubble_5")
+                    hopeOrWillImage.image = UIImage(named: "will_pen")
+                }
             }
         case 1:
             if let chapterEndTitleIndex = ContentChapter().sectionTwo.firstIndex(where: { $0.contentTitle == chapterEndTitle }) {
@@ -79,6 +104,21 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                
+                if chapterEndTitleIndex == 0 {
+                    congratsLabel.text = "Congratulatory1".localized()
+                    textBubbleImage.image = UIImage(named: "nutrition_carb_text_bubble_1")
+                    hopeOrWillImage.image = UIImage(named: "will_nutrition_food")
+                } else if chapterEndTitleIndex == 1 {
+                    congratsLabel.text = "Congratulatory2".localized()
+                    textBubbleImage.image = UIImage(named: "nutrition_carb_text_bubble_2")
+                    hopeOrWillImage.image = UIImage(named: "hope_burger")
+                } else {
+                    congratsLabel.text = "Congratulatory6".localized()
+                    textBubbleImage.image = UIImage(named: "nutrition_carb_text_bubble_3")
+                    hopeOrWillImage.image = UIImage(named: "will_nutrition")
+                }
+                
                 // Extra logic for section 2 with chapters that don't contain a quiz
                 if chapterEndTitleIndex == 1 || chapterEndTitleIndex == 3 {
                     // quiz disabled for these indices
@@ -91,6 +131,16 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                
+                if chapterEndTitleIndex == 0 {
+                    congratsLabel.text = "Congratulatory1".localized()
+                    textBubbleImage.image = UIImage(named: "self_managment_text_bubble_1")
+                    hopeOrWillImage.image = UIImage(named: "will_nutrition_food")
+                } else {
+                    congratsLabel.text = "Congratulatory6".localized()
+                    textBubbleImage.image = UIImage(named: "self_managment_text_bubble_2")
+                    hopeOrWillImage.image = UIImage(named: "hope_on_call")
+                }
             }
         default:
             print("error where index doesn't match")
@@ -101,6 +151,9 @@ class ChapterEndViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.tintColor = .white
+        navigationItem.backButtonDisplayMode = .minimal
         
         // Hide next button if the end of the section
         if nextChapter != "" {
@@ -162,7 +215,7 @@ private extension ChapterEndViewController {
         let totalCount = totalChaptersCount(for: contentIndex)
         let completedCount = max(0, min(totalCount, quizIndex + 1))
         
-        chaptersCompletedLabel.text = "\(completedCount) of \(totalCount) completed"
+        chaptersCompletedLabel.text = "\(completedCount) of \(totalCount) chapters completed"
         
         // Clear existing stars
         starsStackView.arrangedSubviews.forEach { sub in
@@ -188,7 +241,6 @@ private extension ChapterEndViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 40),
             imageView.heightAnchor.constraint(equalToConstant: 40)
         ])
         return imageView
