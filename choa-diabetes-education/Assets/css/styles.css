@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: GothamRoundedMedium;
+    src: url("Gotham Rounded Medium.otf");
+}
+
+@font-face {
     font-family: NunitoRegular;
     src: url("Nunito-Regular.ttf");
 }
@@ -45,12 +50,22 @@ a{
 }
 
 .uk-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     text-transform: none !important;
-    width: 147px;
+    width: 100%;
+    height: 48px;
     padding-vertical: 20px;
     background-color: #00A94F;
     color: #ffffff;
-    border-radius: 52px;
+    border-radius: 12px;
+    font-family: GothamRoundedMedium;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.408px;
 }
 
 .uk-button:hover {

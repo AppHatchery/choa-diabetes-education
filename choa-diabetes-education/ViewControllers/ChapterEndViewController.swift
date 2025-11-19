@@ -63,7 +63,9 @@ class ChapterEndViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationItem.backButtonDisplayMode = .minimal
         
-        bottomStarsView.layer.cornerRadius = 12
+        bottomStarsView.layer.cornerRadius = 20
+        bottomStarsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
         nextChapterButton.layer.cornerRadius = 12
         
         switch contentIndex {
@@ -157,10 +159,10 @@ class ChapterEndViewController: UIViewController {
         
         // Hide next button if the end of the section
         if nextChapter != "" {
-            // nextChapterLabel.text = nextChapter
+            // there is a next chapter, keep button as-is
         } else {
-            // nextChapterLabel.isHidden = true
-            nextChapterButton.isHidden = true
+            // final chapter in section
+            nextChapterButton.setTitleWithStyle("Done", font: .gothamRoundedMedium20, image: nil)
         }
         
         // Refresh stars in case the view reappears
@@ -168,7 +170,17 @@ class ChapterEndViewController: UIViewController {
     }
     
     @IBAction func nextChapter(_ sender: UIButton){
-        performSegue(withIdentifier: "SegueToChapterViewController", sender: nil)
+        // If this is the final chapter in the section, launch the quiz instead of going to next chapter
+        if nextChapter.isEmpty {
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: HomeViewController.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            }
+        } else {
+            performSegue(withIdentifier: "SegueToChapterViewController", sender: nil)
+        }
     }
     
     @IBAction func launchQuiz(_ sender: UIButton){
