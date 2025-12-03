@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -19,7 +19,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepCallChoaView" customModule="choa_diabetes_education" customModuleProvider="target">
             <connections>
                 <outlet property="calculateAndCorrectLabel" destination="CGh-PY-Tbs" id="7SV-SC-m9p"/>
-                <outlet property="callChoaButton" destination="eJE-eD-Qs5" id="NQX-5I-apS"/>
                 <outlet property="callInstructions" destination="UuX-ze-NFt" id="hVz-Tt-sc8"/>
                 <outlet property="callView" destination="OKG-UU-IT1" id="2gX-Zk-s40"/>
                 <outlet property="checkBloodSugarLabel" destination="jFm-eF-YUg" id="qvn-rh-EZF"/>
@@ -51,10 +50,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="1511"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8D-EZ-mKS">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1278.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1201.6666666666667"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
-                                    <rect key="frame" x="20" y="20" width="353" height="1258.6666666666667"/>
+                                    <rect key="frame" x="20" y="20" width="353" height="1181.6666666666667"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
@@ -265,66 +264,45 @@ Blood ketones are below 0.6 mmol/L</string>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Call View">
-                                            <rect key="frame" x="0.0" y="973.66666666666652" width="353" height="217"/>
+                                            <rect key="frame" x="0.0" y="973.66666666666652" width="353" height="140"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
-                                                    <rect key="frame" x="20" y="10" width="313" height="197"/>
+                                                    <rect key="frame" x="20" y="10" width="313" height="120"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="137"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="120"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_normal_call" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="137"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="120"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="60" id="eu4-HE-Oqa"/>
+                                                                        <constraint firstAttribute="height" constant="120" id="YuT-pH-aLK"/>
+                                                                        <constraint firstAttribute="width" constant="70" id="eu4-HE-Oqa"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
-                                                                    <rect key="frame" x="72" y="0.0" width="241" height="137"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
+                                                                    <rect key="frame" x="82" y="0.0" width="231" height="120"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="After Two Corrections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="35.333333333333336"/>
-                                                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                                                            <color key="textColor" name="primaryBlue"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
-                                                                            <rect key="frame" x="0.0" y="35.333333333333378" width="205" height="101.66666666666669"/>
-                                                                            <attributedString key="attributedText">
-                                                                                <fragment content="Call 404-785-5437 if blood sugar or ketones do not decrease after 2 corrections">
-                                                                                    <attributes>
-                                                                                        <font key="NSFont" metaFont="system" size="16"/>
-                                                                                    </attributes>
-                                                                                </fragment>
-                                                                            </attributedString>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3Os-A5-zA4">
+                                                                            <rect key="frame" x="0.0" y="22.666666666666629" width="231" height="75"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="732" text="After Two Corrections" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="221.66666666666666" height="20"/>
+                                                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                                    <color key="textColor" name="primaryBlue"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="If blood sugar or ketones do not decrease after 2 corrections call your care team." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                                    <rect key="frame" x="0.0" y="32" width="215" height="43"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
-                                                            <rect key="frame" x="0.0" y="149.00000000000011" width="313" height="48"/>
-                                                            <color key="backgroundColor" name="primaryBlue"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
-                                                            </constraints>
-                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="ic_phone" imagePlacement="leading" imagePadding="8" cornerStyle="fixed">
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                                                <attributedString key="attributedTitle">
-                                                                    <fragment content="Call CHOA">
-                                                                        <attributes>
-                                                                            <font key="NSFont" size="20" name="GothamRounded-Medium"/>
-                                                                        </attributes>
-                                                                    </fragment>
-                                                                </attributedString>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="didCallChoaButtonTap:" destination="-1" eventType="touchUpInside" id="vJV-Hq-kts"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -333,12 +311,11 @@ Blood ketones are below 0.6 mmol/L</string>
                                                 <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="20" id="468-q6-SCW"/>
                                                 <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" constant="10" id="SQd-9a-wzL"/>
                                                 <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" constant="20" id="fZ0-Rg-A9G"/>
-                                                <constraint firstAttribute="height" constant="217" id="hbg-KE-DJ7"/>
                                                 <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="srs-4Q-NQt"/>
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6do-CM-QoM">
-                                            <rect key="frame" x="0.0" y="1210.6666666666667" width="353" height="48"/>
+                                            <rect key="frame" x="0.0" y="1133.6666666666667" width="353" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Fe2-Pf-Hsv"/>
                                             </constraints>
@@ -389,7 +366,6 @@ Blood ketones are below 0.6 mmol/L</string>
     </objects>
     <resources>
         <image name="hope_normal_call" width="67" height="137"/>
-        <image name="ic_phone" width="15" height="15.333333015441895"/>
         <image name="injection_insulin_pen" width="153" height="153"/>
         <image name="insulin_pump" width="153" height="153"/>
         <image name="monitor" width="52" height="52"/>

@@ -52,7 +52,7 @@ class FinalStepCallChoaEmergencyView: UIView {
 		titleLabel.text = currentQuestion.finalStep?.title
 
 		callChoaButton.layer.cornerRadius = 12
-		callChoaButton.titleLabel?.font = .gothamRoundedBold20
+//		callChoaButton.titleLabel?.font = .gothamRoundedBold20
 
         callInstructionsView.isHidden = true
         mainStackView.removeArrangedSubview(callInstructionsView)
