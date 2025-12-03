@@ -97,6 +97,8 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 	private(set) var bloodKetones: BloodKetoneLevel?
     private(set) var firstUrineKetoneValue: UrineKetoneLevel?
     private(set) var firstBloodKetoneValue: BloodKetoneLevel?
+    private(set) var secondUrineKetoneValue: UrineKetoneLevel?
+    private(set) var secondBloodKetoneValue: BloodKetoneLevel?
 	private(set) var yesOver2hours: Bool = false
     private(set) var skipFirstReminder: Bool = false
 
@@ -135,6 +137,9 @@ extension QuestionnaireManager {
 
     private static let firstUrineKetoneKey = "firstUrineKetoneValue"
     private static let firstBloodKetoneKey = "firstBloodKetoneValue"
+    
+    private static let secondUrineKetoneKey = "secondUrineKetoneValue"
+    private static let secondBloodKetoneKey = "secondBloodKetoneValue"
 
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue) {
 		switch currentQuestion.questionId {
@@ -210,6 +215,9 @@ extension QuestionnaireManager {
                 let ketoneCheckVisitCount = getKetoneVisitCount()
                 let skippedFirst = skipFirstReminder
                 
+                let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
+                (secondBloodKetoneValue == .large)
+                
                 print("🔍 Blood sugar recheck - Yes (≥180)")
                 print("   - Reminder page visit count: \(visitCount)")
                 print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
@@ -219,7 +227,15 @@ extension QuestionnaireManager {
                     if visitCount == 1 && ketoneCheckVisitCount == 2 {
                         showFinalStage(stage: .reminder, calculation: nil)
                     } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                        showFinalStage(stage: .reminder, calculation: nil)
+                        if urineKetones == .negative || bloodKetones == .low {
+                            if hasHighSecondKetone {
+                                triggerContinueWithDescriptionActionFlow(currentQuestion)
+                            } else {
+                                triggerContinueActionFlow(currentQuestion)
+                            }
+                        } else {
+                            triggerCallChoaEmergencyActionFlow(currentQuestion)
+                        }
                     } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
                         triggerRecheckKetonesActionFlow(currentQuestion)
                     }
@@ -264,6 +280,9 @@ extension QuestionnaireManager {
                 let ketoneCheckVisitCount = getKetoneVisitCount()
                 let skippedFirst = skipFirstReminder
                 
+                let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
+                (secondBloodKetoneValue == .large)
+                
                 print("🔍 Blood sugar recheck - NO (≤180)")
                 print("   - Reminder page visit count: \(visitCount)")
                 print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
@@ -273,7 +292,15 @@ extension QuestionnaireManager {
                     if visitCount == 1 && ketoneCheckVisitCount == 2 {
                         triggerContinueActionFlow(currentQuestion)
                     } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                        triggerCallChoaEmergencyActionFlow(currentQuestion)
+                        if urineKetones == .negative || bloodKetones == .low {
+                            if hasHighSecondKetone {
+                                triggerContinueWithDescriptionActionFlow(currentQuestion)
+                            } else {
+                                triggerContinueActionFlow(currentQuestion)
+                            }
+                        } else {
+                            triggerCallChoaEmergencyActionFlow(currentQuestion)
+                        }
                     } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
                         triggerCallChoaEmergencyActionFlow(currentQuestion)
                     }
@@ -387,6 +414,20 @@ extension QuestionnaireManager {
         self.firstBloodKetoneValue = level
         UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstBloodKetoneKey)
         print("💾 Saved FIRST blood ketone value: \(level) (id: \(level.id))")
+    }
+    
+    // Save second urine ketone value
+    func saveSecondUrineKetoneValue(_ level: UrineKetoneLevel) {
+        self.secondUrineKetoneValue = level
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstUrineKetoneKey)
+        print("💾 Saved SECOND urine ketone value: \(level) (id: \(level.id))")
+    }
+
+    // Save first blood ketone value
+    func saveSecondBloodKetoneValue(_ level: BloodKetoneLevel) {
+        self.secondBloodKetoneValue = level
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstBloodKetoneKey)
+        print("💾 Saved SECOND blood ketone value: \(level) (id: \(level.id))")
     }
     
     func getPersistedUrineKetoneLevel() -> UrineKetoneLevel? {
@@ -678,8 +719,15 @@ extension QuestionnaireManager {
         let ketoneCheckVisitCount = getKetoneVisitCount()
         let skippedFirst = skipFirstReminder
         
+        if ketoneCheckVisitCount == 2 {
+            saveSecondUrineKetoneValue(urineLevel)
+        }
+        
         let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
         (firstBloodKetoneValue == .large)
+        
+        let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
+        (secondBloodKetoneValue == .large)
         
         print("🧪 Recheck Urine Ketone")
         print("   - Visit count: \(visitCount)")
@@ -687,6 +735,7 @@ extension QuestionnaireManager {
         print("   - Skipped first: \(skippedFirst)")
         print("   - Level: \(urineLevel)")
         print("   - First ketone value: \(String(describing: firstUrineKetoneValue))")
+        print("   - Second ketone value: \(String(describing: secondUrineKetoneValue))")
         
         switch urineLevel {
         case .negative:
@@ -697,7 +746,7 @@ extension QuestionnaireManager {
                     print("   → Continue regular care (first visit after 2 ketone checks)")
                     triggerContinueActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerContinueActionFlow(currentQuestion)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
                     triggerContinueWithDescriptionActionFlow(currentQuestion)
                 }
@@ -722,8 +771,7 @@ extension QuestionnaireManager {
             
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    showFinalStage(stage: .reminder, calculation: nil)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -748,8 +796,7 @@ extension QuestionnaireManager {
             
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    showFinalStage(stage: .reminder, calculation: nil)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -812,8 +859,15 @@ extension QuestionnaireManager {
         let ketoneCheckVisitCount = getKetoneVisitCount()
         let skippedFirst = skipFirstReminder
         
+        if ketoneCheckVisitCount == 2 {
+            saveSecondBloodKetoneValue(bloodLevel)
+        }
+        
         let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
         (firstBloodKetoneValue == .large)
+        
+        let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
+        (secondBloodKetoneValue == .large)
         
         print("🩸 Recheck Blood Ketone")
         print("   - Visit count: \(visitCount)")
@@ -821,6 +875,7 @@ extension QuestionnaireManager {
         print("   - Skipped first: \(skippedFirst)")
         print("   - Level: \(bloodLevel)")
         print("   - First ketone value: \(String(describing: firstBloodKetoneValue))")
+        print("   - Second ketone value: \(String(describing: secondBloodKetoneValue))")
         
         switch bloodLevel {
         case .low:
@@ -830,7 +885,7 @@ extension QuestionnaireManager {
                     print("   → Continue regular care (first visit after 2 ketone checks)")
                     triggerContinueActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerContinueActionFlow(currentQuestion)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
                     triggerContinueWithDescriptionActionFlow(currentQuestion)
                 }
@@ -856,7 +911,7 @@ extension QuestionnaireManager {
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    showFinalStage(stage: .reminder, calculation: nil)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {

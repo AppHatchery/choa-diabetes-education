@@ -161,6 +161,13 @@ class GetHelpViewController: UIViewController {
                     print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
                 }
                 
+                // Handle popping from reminder back to recheck ketone level
+                if previousVC.questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: previousVC.questionObj.questionId)) {
+                    // Going back to recheck ketone level
+                    questionnaireManager.decrementReminderPageVisitCount()
+                    print("   📊 Decremented reminder count (popping to recheckKetoneLevel)")
+                }
+                
                 if !previousVC.twoOptionsView.isHidden {
                     // Going back to test type selection - full reset
                     questionnaireManager.saveYesOver2hours(false)
