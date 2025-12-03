@@ -705,15 +705,19 @@ extension QuestionnaireManager {
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
         case .onePointFive, .four, .eight, .sixteen:
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		}
 	}
     
@@ -1004,26 +1008,34 @@ extension QuestionnaireManager {
 			showFinalStage(stage: .reminder, calculation: nil)
 		case .onePointFive, .four:
 			// Moderate ketones - show warning and contact endocrinologist
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		case .eight, .sixteen:
 			// High ketones - emergency situation
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		}
 	}
 
@@ -1038,26 +1050,34 @@ extension QuestionnaireManager {
 			}
 		case .moderate:
 			// Moderate blood ketones - show warning
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		case .large:
 			// Large blood ketones - emergency situation
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :				"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		}
 	}
     
