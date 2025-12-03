@@ -832,15 +832,19 @@ extension QuestionnaireManager {
 			}
 				// Moderate/Large risk (urine 1.5 or 4) OR blood moderate
 		case .moderate, .large:
-			let createQue = createYesOrNoQuestion(
-				questionId: .bloodSugarRecheck,
-				question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-					.localized() :	"Calculator.Que.BloodSugarRecheck.title".localized(),
-				description: nil,
-				showDescriptionAtBottom: false
-			)
+            if bloodSugarOver300 {
+                triggerCallChoaActionFlow(currentQuestion)
+            } else {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :    "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
 
-			actionsDelegate?.showNextQuestion(createQue)
+                actionsDelegate?.showNextQuestion(createQue)
+            }
 		}
 	}
     
