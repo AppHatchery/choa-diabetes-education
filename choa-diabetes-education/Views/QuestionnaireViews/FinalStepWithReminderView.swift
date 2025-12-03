@@ -346,7 +346,7 @@ class FinalStepWithReminderView: UIView {
                 "Final.ConfirmPumpIsSecure.text".localized(),
                 boldPhrases: ["pump site is securely connected"]
             )
-            giveRecommendedDoseStackView.isHidden = false
+            giveRecommendedDoseStackView.isHidden = true
             print("   ✅ Action: CONFIRM PUMP SECURE")
         }
         
