@@ -275,6 +275,9 @@ extension QuestionnaireManager {
                 let ketoneCheckVisitCount = getKetoneVisitCount()
                 let skippedFirst = skipFirstReminder
                 
+                let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
+                (firstBloodKetoneValue == .large)
+                
                 let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
                 (secondBloodKetoneValue == .large)
                 
@@ -306,7 +309,11 @@ extension QuestionnaireManager {
                         triggerCallChoaEmergencyActionFlow(currentQuestion)
                     } else if visitCount == 1 && ketoneCheckVisitCount == 2 {
                         if urineKetones == .negative || bloodKetones == .low {
-                            triggerContinueActionFlow(currentQuestion)
+                            if hasHighFirstKetone {
+                                triggerContinueWithDescriptionActionFlow(currentQuestion)
+                            } else {
+                                triggerContinueActionFlow(currentQuestion)
+                            }
                         } else {
                             triggerCallChoaEmergencyActionFlow(currentQuestion)
                         }
@@ -875,16 +882,7 @@ extension QuestionnaireManager {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Skipped First Reminder")
                     print("   → Continue regular care (first visit after 2 ketone checks)")
-                    
-                    if urineKetones == .negative || bloodKetones == .low {
-                        if hasHighFirstKetone {
-                            triggerContinueWithDescriptionActionFlow(currentQuestion)
-                        } else {
-                            triggerBloodSugarRecheckActionFlow(currentQuestion)
-                        }
-                    } else {
-                        triggerCallChoaEmergencyActionFlow(currentQuestion)
-                    }
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerContinueWithDescriptionActionFlow(currentQuestion)
                 }
