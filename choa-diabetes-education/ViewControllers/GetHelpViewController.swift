@@ -711,7 +711,7 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
         } ||
         performIf(skippedFirst && reminderPageVisitCount == 1 && (hasHighUrine || hasHighBlood),
                   message: "Condition 2 matched: High ketones + skipped first + visit = 1 → Blood sugar recheck") {
-            q.triggerBloodSugarRecheckActionFlow(question)
+            q.triggerRecheckKetonesActionFlow(question)
         } ||
         performIf(skippedFirst && reminderPageVisitCount >= 2 && (hasModerateUrine || hasModerateBlood),
                   message: "Condition 3 matched: Moderate ketones + skipped first + visit ≥ 2 → Blood sugar recheck") {
