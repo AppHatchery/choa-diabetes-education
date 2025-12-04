@@ -922,7 +922,7 @@ extension QuestionnaireManager {
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
+                    showFinalStage(stage: .reminder, calculation: nil)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
