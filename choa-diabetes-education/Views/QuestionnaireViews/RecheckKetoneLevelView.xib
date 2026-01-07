@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
+        <array key="GothamRoundedBold.ttf">
             <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
@@ -31,29 +31,32 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
-                    <rect key="frame" x="20" y="188.33333333333337" width="353" height="254"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-23-qes" userLabel="Main Stack View">
+                    <rect key="frame" x="20" y="188.33333333333334" width="353" height="283.33333333333326"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fN1-7x-I34" userLabel="Resources Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="235"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Dv-HP8">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="209.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="235"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="209.66999999999999" id="fOZ-f0-QDB"/>
+                                        <constraint firstAttribute="height" constant="235" id="6wk-YX-iuy"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-uR-3lj">
-                            <rect key="frame" x="0.0" y="221.66666666666666" width="353" height="0.0"/>
+                            <rect key="frame" x="0.0" y="248.99999999999997" width="353" height="0.0"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="iLT-6L-nxG"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-la-Zrs">
-                            <rect key="frame" x="0.0" y="233.66666666666666" width="353" height="20.333333333333343"/>
+                            <rect key="frame" x="0.0" y="263" width="353" height="20.333333333333314"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20.329999999999998" id="D2A-fU-dFR"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
@@ -90,7 +93,7 @@
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-Z2-aXk">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-Z2-aXk">
                             <rect key="frame" x="0.0" y="30" width="233" height="20.333333333333329"/>
                             <attributedString key="attributedText">
                                 <fragment content="Learn how to measure ketones">
@@ -107,6 +110,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Bey-Z2-aXk" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="L41-pQ-HmT"/>
+                        <constraint firstAttribute="height" constant="50.329999999999998" id="Oxa-Zl-MLK"/>
                         <constraint firstItem="DQL-VA-Fmu" firstAttribute="top" secondItem="VeU-je-s2v" secondAttribute="top" id="USm-KD-s7X"/>
                         <constraint firstItem="Bey-Z2-aXk" firstAttribute="top" secondItem="DQL-VA-Fmu" secondAttribute="bottom" constant="12" id="jus-Xi-C8i"/>
                         <constraint firstItem="DQL-VA-Fmu" firstAttribute="leading" secondItem="VeU-je-s2v" secondAttribute="leading" id="m70-An-gpC"/>

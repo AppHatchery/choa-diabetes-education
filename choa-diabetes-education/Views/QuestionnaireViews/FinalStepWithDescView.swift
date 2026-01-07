@@ -20,7 +20,9 @@ class FinalStepWithDescView: UIView {
     @IBOutlet weak var exitButton: UIButton!
 	@IBOutlet var iLetPumpInfoStackView: UIStackView!
 
-	private var currentQuestion: Questionnaire!
+    @IBOutlet weak var stayHydratedStackView: UIStackView!
+    
+    private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepWithDescViewProtocol?
 
 	weak var viewController: UIViewController?
@@ -52,6 +54,7 @@ class FinalStepWithDescView: UIView {
 
 		if QuestionnaireManager.instance.iLetPump {
 			iLetPumpInfoStackView.isHidden = false
+            stayHydratedStackView.isHidden = true
 		} else {
 			iLetPumpInfoStackView.isHidden = true
 		}
