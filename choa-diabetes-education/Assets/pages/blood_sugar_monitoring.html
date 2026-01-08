@@ -1,92 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-    <meta charset="utf-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="dark light" name="color-scheme">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="stylesheet" href="uikit.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div class="uk-container">
-    <br>
-    <div>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="dark light" name="color-scheme" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="uikit.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="uk-container">
+      <br />
+      <div>
         <h3>When to check blood sugar</h3>
-        <p>Checking blood sugar is important because it gives us a “roadmarker” of what to do for our blood sugar
-            next—do I need a correction? Do I need to treat a low blood sugar? Is it safe to exercise?
+        <p>
+          Checking blood sugar is important because it gives us a “roadmarker”
+          of what to do for our blood sugar next—do I need a correction? Do I
+          need to treat a low blood sugar? Is it safe to exercise?
+        </p>
+
         <ul class="uk-list uk-list-bullet">
-            <li>Before meals</li>
-            <li>Bedtime</li>
-            <li>2 am (for a little while when first diagnosed—your diabetes doctor will tell you when to stop checking
-                at 2am)
-            </li>
-            <li>Before exercising</li>
-            <li>When experiencing symptoms of low or high blood sugar</li>
-            <li>When sick</li>
+          <li>Before meals</li>
+          <li>Bedtime</li>
+          <li>
+            2 am (for a little while when first diagnosed—your diabetes doctor
+            will tell you when to stop checking at 2am)
+          </li>
+          <li>Before exercising</li>
+          <li>When experiencing symptoms of low or high blood sugar</li>
+          <li>When sick</li>
         </ul>
-    </div>
+      </div>
 
-    <div>
+      <div>
+        <img
+          alt="Image of when to check for sugar"
+          class="uk-responsive-width uk-margin-small"
+          src="when_to_check_blood_sugar.png"
+        />
+      </div>
 
-        <img alt="Image of when to check for sugar"
-             class="uk-responsive-width uk-margin-small" src="when_to_check_blood_sugar.png">
-    </div>
-
-
-    <div>
+      <div>
         <h3>Steps to check blood sugar</h3>
         <ul class="uk-list uk-list-decimal">
-            <li>Gather supplies
-                <ul class="uk-list uk-list-bullet">
-                    <li>Glucose Meter</li>
-                    <li>Lancets</li>
-                    <li>Lancing device</li>
-                    <li>Test strips</li>
-                </ul>
-            </li>
-            <li>Wash hands with soap and water, then dry</li>
-            <li>Place new lancet in lancing device</li>
-            <li>Place test strip in meter</li>
-            <li>Hold the lancing device to side of finger; press button to stick</li>
-            <li>Apply blood to test strips according to meter directions</li>
-            <li>Remove used lancet from lancing device and dispose in appropriate sharps</li>
+          <li>
+            Gather supplies
+            <ul class="uk-list uk-list-bullet">
+              <li>Glucose Meter</li>
+              <li>Lancets</li>
+              <li>Lancing device</li>
+              <li>Test strips</li>
+            </ul>
+          </li>
+          <li>Wash hands with soap and water, then dry</li>
+          <li>Place new lancet in lancing device</li>
+          <li>Place test strip in meter</li>
+          <li>
+            Hold the lancing device to side of finger; press button to stick
+          </li>
+          <li>Apply blood to test strips according to meter directions</li>
+          <li>
+            Remove used lancet from lancing device and dispose in appropriate
+            sharps
+          </li>
         </ul>
 
         <div>
-
-            <img alt="Image of when to check for sugar"
-                 class="uk-responsive-width uk-margin-small" src="steps_to_test_blood_sugar.png">
+          <img
+            alt="Image of when to check for sugar"
+            class="uk-responsive-width uk-margin-small"
+            src="steps_to_test_blood_sugar.png"
+          />
         </div>
-        <br>
+        <br />
 
         <div>
-            <a href="https://youtu.be/eOjCUI6OXlM">TRUE METRIX Self Monitoring Blood Glucose Meter - YouTube</a>
+          <a href="https://youtu.be/eOjCUI6OXlM"
+            >TRUE METRIX Self Monitoring Blood Glucose Meter - YouTube</a
+          >
         </div>
 
         <div class="uk-position-relative">
-            <iframe class="uk-width-1-1" height="315" src="https://www.youtube.com/embed/eOjCUI6OXlM"
-                    title="YouTube video player"
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-                    picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            class="uk-width-1-1"
+            height="315"
+            src="https://www.youtube.com/embed/eOjCUI6OXlM"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                    picture-in-picture"
+            allowfullscreen
+          ></iframe>
 
-            <div class="uk-position-absolute uk-position-center" id="loader" uk-spinner="ratio:1.5"></div>
+          <div
+            class="uk-position-absolute uk-position-center"
+            id="loader"
+            uk-spinner="ratio:1.5"
+          ></div>
         </div>
-
-    </div>
-    <div class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom">
+      </div>
+      <div
+        class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom"
+      >
         <a class="uk-button" href="next">Next</a>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 
-<script>
+  <script>
     window.onload = function () {
-        document.getElementById('loader').style.display = "none";
-    }
-</script>
-<script src="uikit.js"></script>
-<script src="uikit-icons.js"></script>
+      document.getElementById("loader").style.display = "none";
+    };
+  </script>
+  <script src="uikit.js"></script>
+  <script src="uikit-icons.js"></script>
 </html>
