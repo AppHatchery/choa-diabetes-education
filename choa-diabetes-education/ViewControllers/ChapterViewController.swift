@@ -16,7 +16,9 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     
     @IBOutlet weak var contentView: UIView!
-    private var navProgressView = UIProgressView(progressViewStyle: .default)
+    
+    private var navProgressBar = UIProgressView(progressViewStyle: .default)
+    private var navProgressWidthConstraint: NSLayoutConstraint?
     
     var webView: WKWebView!
     var webViewTopConstraint: NSLayoutConstraint!
@@ -67,14 +69,14 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         webView.scrollView.delegate = self
         
         // Configure a progress bar in the navigation bar titleView
-        navProgressView.translatesAutoresizingMaskIntoConstraints = false
-        navProgressView.progressTintColor = .orangeTextColor
-        navProgressView.trackTintColor = .systemGray5
-        navProgressView.setProgress(0.0, animated: false)
+        navProgressBar.translatesAutoresizingMaskIntoConstraints = false
+        navProgressBar.progressTintColor = .orangeTextColor
+        navProgressBar.trackTintColor = .systemGray5
+        navProgressBar.setProgress(0.0, animated: false)
         
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(navProgressView)
+        container.addSubview(navProgressBar)
         
         let icon = UIImage(named: "close_black")
         let rightButton = UIBarButtonItem(
@@ -87,19 +89,48 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         navigationItem.rightBarButtonItem = rightButton
         
         NSLayoutConstraint.activate([
-            navProgressView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            navProgressView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            navProgressView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            // Provide a minimum width to be readable in the nav bar
-            container.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
-            // Keep the container reasonably small to fit the nav bar
+            navProgressBar.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
+            navProgressBar.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
+            navProgressBar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            navProgressBar.heightAnchor.constraint(equalToConstant: 8),
             container.heightAnchor.constraint(equalToConstant: 20)
         ])
+        
+        // Set an initial width; this will be updated to 80% of the nav bar in viewDidLayoutSubviews
+        let initialWidth: CGFloat = 200
+        navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: initialWidth)
+        navProgressWidthConstraint?.isActive = true
         
         self.navigationItem.titleView = container
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
+        
+        navProgressBar.layer.cornerRadius = 20
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Update the titleView width to 70% of the navigation bar’s width, accounting for back and close buttons implicitly
+        if let navBar = self.navigationController?.navigationBar, let container = self.navigationItem.titleView {
+            let availableWidth = navBar.bounds.width
+            
+            var targetWidth = availableWidth * 0.7
+            
+            let maxWidth: CGFloat = availableWidth - 120 // approximate space for back + close + margins
+            if targetWidth > maxWidth {
+                targetWidth = max(160, maxWidth)
+            }
+            if navProgressWidthConstraint == nil {
+                navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: targetWidth)
+                navProgressWidthConstraint?.isActive = true
+            } else {
+                navProgressWidthConstraint?.constant = targetWidth
+            }
+            // Force layout of the titleView to apply width change immediately
+            container.setNeedsLayout()
+            container.layoutIfNeeded()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,7 +194,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(javascript) { (response, error) in
                 //                print("changed the font size to \(self.fontSize)")
             }
-            self.navProgressView.setProgress(0.0, animated: false)
+            self.navProgressBar.setProgress(0.0, animated: false)
             
         } else {
             print("outside the app, don't apply styling")
@@ -220,7 +251,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         let percentageOfFullHeight = offset.y / (webView.scrollView.contentSize.height - scrollView.frame.height)
         
         if (percentageOfFullHeight >= 0 && percentageOfFullHeight <= 1){
-            navProgressView.setProgress(Float(percentageOfFullHeight), animated: true)
+            navProgressBar.setProgress(Float(percentageOfFullHeight), animated: true)
         } /// subtract the height of the scroll view, because the bottom of the content won't scroll all the way to the top
         
     }
