@@ -14,14 +14,14 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
-        <array key="Gotham Rounded Light.otf">
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
+        <array key="GothamRoundedLight.ttf">
             <string>GothamRounded-Light</string>
         </array>
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
-        </array>
-        <array key="GothamRoundedBold.ttf">
-            <string>GothamRounded-Bold</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
             <string>IrishGrover-Regular</string>
@@ -360,78 +360,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmy-mB-eP8">
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHT-ag-ctt">
-                                        <rect key="frame" x="20" y="36" width="266" height="24"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
-                                        <color key="textColor" name="headingGreenColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds9-L6-B8A">
-                                        <rect key="frame" x="20" y="66" width="15" height="15"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="HWY-sR-fip"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-tT-GCV">
-                                        <rect key="frame" x="0.0" y="101" width="375" height="492"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="l1o-EM-oYF">
-                                        <rect key="frame" x="43" y="71.5" width="308" height="4"/>
-                                        <color key="tintColor" red="0.94117647058823528" green="0.70980392156862748" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="progressTintColor" red="0.94117647058823528" green="0.70980392156862748" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="trackTintColor" name="backgroundColor"/>
-                                    </progressView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsY-S5-dAT">
-                                        <rect key="frame" x="333" y="37" width="22" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="22" id="eyy-Sz-hpX"/>
-                                            <constraint firstAttribute="height" constant="22" id="mDg-8c-4I6"/>
-                                        </constraints>
-                                        <color key="tintColor" name="choaGreenColor"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="fontSize"/>
-                                        <connections>
-                                            <action selector="sliderControl:" destination="r19-N5-KJf" eventType="touchUpInside" id="djF-tc-eEh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVR-Kv-Q8A">
-                                        <rect key="frame" x="296" y="37" width="22" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="M6S-zM-hrg"/>
-                                            <constraint firstAttribute="width" constant="22" id="Sec-b3-nTx"/>
-                                        </constraints>
-                                        <color key="tintColor" name="choaGreenColor"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal">
-                                            <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="openSearch:" destination="r19-N5-KJf" eventType="touchUpInside" id="hff-xW-oxN"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="bOZ-tT-GCV" secondAttribute="bottom" id="1Rw-EK-ZR2"/>
-                                    <constraint firstItem="bOZ-tT-GCV" firstAttribute="top" secondItem="ds9-L6-B8A" secondAttribute="bottom" constant="20" id="5G4-eO-Wxq"/>
-                                    <constraint firstItem="cHT-ag-ctt" firstAttribute="top" secondItem="Dmy-mB-eP8" secondAttribute="top" constant="36" id="Aal-n8-Mcx"/>
                                     <constraint firstItem="bOZ-tT-GCV" firstAttribute="leading" secondItem="Dmy-mB-eP8" secondAttribute="leading" id="Grk-or-ACc"/>
-                                    <constraint firstItem="nsY-S5-dAT" firstAttribute="leading" secondItem="MVR-Kv-Q8A" secondAttribute="trailing" constant="15" id="NAa-68-N7w"/>
-                                    <constraint firstItem="nsY-S5-dAT" firstAttribute="centerY" secondItem="MVR-Kv-Q8A" secondAttribute="centerY" id="PoU-EC-qvv"/>
+                                    <constraint firstItem="bOZ-tT-GCV" firstAttribute="top" secondItem="Dmy-mB-eP8" secondAttribute="top" id="ISB-is-e1c"/>
                                     <constraint firstAttribute="trailing" secondItem="bOZ-tT-GCV" secondAttribute="trailing" id="SSu-Bg-l0P"/>
-                                    <constraint firstItem="MVR-Kv-Q8A" firstAttribute="leading" secondItem="cHT-ag-ctt" secondAttribute="trailing" constant="10" id="Z08-o0-nEg"/>
-                                    <constraint firstAttribute="trailing" secondItem="l1o-EM-oYF" secondAttribute="trailing" constant="24" id="bvK-xX-ayU"/>
-                                    <constraint firstItem="MVR-Kv-Q8A" firstAttribute="centerY" secondItem="cHT-ag-ctt" secondAttribute="centerY" id="d30-ef-2Yc"/>
-                                    <constraint firstItem="cHT-ag-ctt" firstAttribute="leading" secondItem="Dmy-mB-eP8" secondAttribute="leading" constant="20" id="gLE-93-NgV"/>
-                                    <constraint firstAttribute="trailing" secondItem="nsY-S5-dAT" secondAttribute="trailing" constant="20" id="izK-Xa-nZk"/>
-                                    <constraint firstItem="l1o-EM-oYF" firstAttribute="centerY" secondItem="ds9-L6-B8A" secondAttribute="centerY" id="noe-fW-Cud"/>
-                                    <constraint firstItem="l1o-EM-oYF" firstAttribute="leading" secondItem="ds9-L6-B8A" secondAttribute="trailing" constant="8" id="o3w-tS-Ht7"/>
-                                    <constraint firstItem="ds9-L6-B8A" firstAttribute="top" secondItem="cHT-ag-ctt" secondAttribute="bottom" constant="6" id="vd2-JK-eAj"/>
-                                    <constraint firstItem="ds9-L6-B8A" firstAttribute="leading" secondItem="cHT-ag-ctt" secondAttribute="leading" id="wSY-h2-JEj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -444,19 +383,18 @@
                             <constraint firstItem="Dmy-mB-eP8" firstAttribute="top" secondItem="Oaw-cK-E2L" secondAttribute="top" id="hM5-1r-2hr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h9g-sI-HV2"/>
+                    <navigationItem key="navigationItem" id="h9g-sI-HV2">
+                        <nil key="title"/>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="bOZ-tT-GCV" id="xeL-yp-ewv"/>
-                        <outlet property="headerTitle" destination="cHT-ag-ctt" id="30e-u6-zxq"/>
-                        <outlet property="progressBar" destination="l1o-EM-oYF" id="rXa-qf-7by"/>
-                        <outlet property="progressPercentage" destination="ds9-L6-B8A" id="Juv-Bd-ApR"/>
                         <segue destination="Avd-Xd-AEL" kind="show" identifier="SegueToEndChapterViewController" id="NqP-KY-tQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BfJ-gb-n8F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5193" y="-240"/>
+            <point key="canvasLocation" x="5192.8000000000002" y="-240.62968515742131"/>
         </scene>
         <!--Chapter End View Controller-->
         <scene sceneID="2pv-65-eYH">
@@ -773,7 +711,7 @@
                                 <rect key="frame" x="24" y="56" width="327" height="446"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q1: What is Diabetes?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sU-kF-DEv">
-                                        <rect key="frame" x="20" y="32" width="219.5" height="20"/>
+                                        <rect key="frame" x="20" y="32" width="220" height="20"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -783,7 +721,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check all that apply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSn-nV-nc6">
-                                        <rect key="frame" x="20" y="70" width="219.5" height="16.5"/>
+                                        <rect key="frame" x="20" y="70" width="220" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -2064,7 +2002,6 @@ Self-Management</string>
         <image name="close_black" width="28" height="28"/>
         <image name="diabetes_basics_text_bubble_1" width="308" height="103"/>
         <image name="directions-icon" width="150" height="138"/>
-        <image name="fontSize" width="21" height="21"/>
         <image name="homeFilled" width="30.5" height="30"/>
         <image name="homeOutline" width="30.5" height="30"/>
         <image name="hope_basics" width="132" height="121"/>
@@ -2075,7 +2012,6 @@ Self-Management</string>
         <image name="insulinCalculatorBg" width="1086" height="771"/>
         <image name="leftArrow" width="20" height="20"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="quizEnd" width="978" height="561"/>
         <image name="quizStart" width="978" height="561"/>
         <image name="quizTableIcon" width="138" height="138"/>
@@ -2088,7 +2024,7 @@ Self-Management</string>
         <image name="will_nutrition" width="132" height="121"/>
         <image name="will_sliding" width="154" height="153"/>
         <namedColor name="backgroundColor">
-            <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91764705882352937" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -16,9 +16,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var headerTitle: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var progressPercentage: UILabel!
+    private var navProgressView = UIProgressView(progressViewStyle: .default)
     
     var webView: WKWebView!
     var webViewTopConstraint: NSLayoutConstraint!
@@ -44,8 +42,10 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .choaGreenColor
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
+        
+        // Title view will be managed in viewDidLoad to host the progress bar
     }
     
     override func viewDidLoad() {
@@ -65,8 +65,38 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         webView.load( URLRequest( url: Bundle.main.url(forResource: contentURL, withExtension: "html")! ))
         
         webView.scrollView.delegate = self
-        progressBar.setProgress(Float(0), animated: false)
-        headerTitle.text = titleURL
+        
+        // Configure a progress bar in the navigation bar titleView
+        navProgressView.translatesAutoresizingMaskIntoConstraints = false
+        navProgressView.progressTintColor = .orangeTextColor
+        navProgressView.trackTintColor = .systemGray5
+        navProgressView.setProgress(0.0, animated: false)
+        
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(navProgressView)
+        
+        let icon = UIImage(named: "close_black")
+        let rightButton = UIBarButtonItem(
+            image: icon,
+            style: .plain,
+            target: self,
+            action: #selector(didSelectExitAction)
+        )
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
+        NSLayoutConstraint.activate([
+            navProgressView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            navProgressView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            navProgressView.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            // Provide a minimum width to be readable in the nav bar
+            container.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            // Keep the container reasonably small to fit the nav bar
+            container.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        
+        self.navigationItem.titleView = container
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
@@ -87,7 +117,13 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         navigationController?.navigationBar.tintColor = .white
         navigationItem.backButtonDisplayMode = .minimal
         
+        self.navigationItem.titleView = nil
+        
         closeSearch()
+    }
+    
+    @objc func didSelectExitAction() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func setupUI() {
@@ -127,6 +163,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(javascript) { (response, error) in
                 //                print("changed the font size to \(self.fontSize)")
             }
+            self.navProgressView.setProgress(0.0, animated: false)
             
         } else {
             print("outside the app, don't apply styling")
@@ -183,8 +220,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         let percentageOfFullHeight = offset.y / (webView.scrollView.contentSize.height - scrollView.frame.height)
         
         if (percentageOfFullHeight >= 0 && percentageOfFullHeight <= 1){
-            progressBar.setProgress(Float(percentageOfFullHeight), animated: true)
-            progressPercentage.text = "\(Int(percentageOfFullHeight*100))%"
+            navProgressView.setProgress(Float(percentageOfFullHeight), animated: true)
         } /// subtract the height of the scroll view, because the bottom of the content won't scroll all the way to the top
         
     }
@@ -368,3 +404,4 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
     
 }
+
