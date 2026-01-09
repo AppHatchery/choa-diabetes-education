@@ -16,6 +16,18 @@ class ResourcesViewController: UIViewController {
     var quizContent = 0
     var chapterName = ""
     var chapterSubName = ""
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
