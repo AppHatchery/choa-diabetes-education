@@ -39,7 +39,7 @@ class ContentChapter {
     ]
     
     let sectionThree = [
-        Content(contentTitle: "Managing Low Blood Sugar", contentParent: "Diabetes Self-Management", contentHTML: "treatment_for_low_blood_sugar", contentSubheader: "Symptoms, step-by-step treatment, and glucagon use.", quizQuestions:["How is routine hypoglycemia best treated?"], quizAnswers: [["Rapid acting carbohydrates","Complex carbohydrates","You should not eat carbs until BG resolved","Glucagon"]],quizCorrectAnswer: [[0]]),
-        Content(contentTitle: "When to Call the Doctor", contentParent: "Diabetes Self-Management", contentHTML: "when_to_call_diabetes_doctor", contentSubheader: "Situations for urgent or routine doctor contact.", quizQuestions:["When should you call the doctor?"], quizAnswers: [["Daily","Ketones are small","Consistently high or low BG","When sick"]],quizCorrectAnswer: [[2,3]])
+        Content(contentTitle: "Managing Low Blood Sugar", contentParent: "Diabetes Self-Management", contentHTML: "3_1_1_managing_low_blood_sugar", contentSubheader: "Symptoms, step-by-step treatment, and glucagon use.", quizQuestions:["How is routine hypoglycemia best treated?"], quizAnswers: [["Rapid acting carbohydrates","Complex carbohydrates","You should not eat carbs until BG resolved","Glucagon"]],quizCorrectAnswer: [[0]]),
+        Content(contentTitle: "When to Call the Doctor", contentParent: "Diabetes Self-Management", contentHTML: "3_2_1_when_to_call_a_doctor", contentSubheader: "Situations for urgent or routine doctor contact.", quizQuestions:["When should you call the doctor?"], quizAnswers: [["Daily","Ketones are small","Consistently high or low BG","When sick"]],quizCorrectAnswer: [[2,3]])
     ]
 }
