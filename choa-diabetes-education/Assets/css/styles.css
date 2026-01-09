@@ -222,3 +222,10 @@ tr > td:nth-last-child(2) {
   width: 20px;
   height: 20px;
 }
+
+.vertical-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
