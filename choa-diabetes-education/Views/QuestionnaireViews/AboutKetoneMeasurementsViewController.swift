@@ -32,7 +32,10 @@ class AboutKetoneMeasurementsViewController: UIViewController {
                 sheet.detents = [
                     .custom { context in
                         return context.maximumDetentValue * 0.75
-                    }
+                    },
+                    .custom { context in
+                        return context.maximumDetentValue * 0.95
+                    },
                 ]
             } else {
                 sheet.detents = [.medium(), .large()]
