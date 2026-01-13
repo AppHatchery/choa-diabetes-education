@@ -192,7 +192,6 @@
 		D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */ = {isa = PBXBuildFile; fileRef = D492A89929088C9A00B98CA3 /* Irish_Grover */; };
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
 		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
-		D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
 		D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2928B7D9D7003CCA14 /* styles.css */; };
 		D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */; };
@@ -484,7 +483,6 @@
 			files = (
 				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
 				D432FDD02981CFF8003D2657 /* Pendo in Frameworks */,
-				D4A5116B2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,7 +940,6 @@
 			packageProductDependencies = (
 				D432FDCF2981CFF8003D2657 /* Pendo */,
 				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
-				D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				B4DA9DC72E98F82900C415CE /* Lottie */,
 			);
 			productName = "choa-diabetes-education";
@@ -1423,7 +1420,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1461,7 +1458,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -1535,8 +1532,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1556,11 +1553,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
-		};
-		D4A5116A2982F8C00049A8D8 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
