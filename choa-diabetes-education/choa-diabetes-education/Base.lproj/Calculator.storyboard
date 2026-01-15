@@ -15,7 +15,7 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -152,6 +152,9 @@
                             <color key="tintColor" name="choaGreenColor"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="ngS-A5-dbE" kind="show" id="c6R-TG-5pG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXF-hw-BPQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1812,14 +1815,187 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcl-Gv-hbz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3373" y="330"/>
+            <point key="canvasLocation" x="2390" y="105"/>
+        </scene>
+        <!--Calculator On Boarding Welcome View Controller-->
+        <scene sceneID="VyI-Lz-NQL">
+            <objects>
+                <viewController storyboardIdentifier="calculatorOnboardingWelcome" id="ngS-A5-dbE" customClass="CalculatorOnBoardingWelcomeViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tid-Y5-y0e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_three_quick_questions" translatesAutoresizingMaskIntoConstraints="NO" id="5Wj-q3-duA">
+                                <rect key="frame" x="0.0" y="144" width="375" height="373"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rfe-m4-SX4">
+                                <rect key="frame" x="20" y="559" width="335" height="108"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUX-lR-8hh" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                        <color key="backgroundColor" name="choaGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="JCR-KV-gF9"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="IRb-es-m9y" kind="show" identifier="segueToOnboarding" id="vem-DK-87b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXb-NA-xyn">
+                                        <rect key="frame" x="0.0" y="60" width="335" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="oLw-W4-uXO"/>
+                                        </constraints>
+                                        <color key="tintColor" name="choaGreenColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="baseForegroundColor" name="choaGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapSkipButton:" destination="ngS-A5-dbE" eventType="touchUpInside" id="qWh-0U-Sty"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pKJ-Qf-8BB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pKJ-Qf-8BB" firstAttribute="bottom" secondItem="rfe-m4-SX4" secondAttribute="bottom" id="F6n-r7-dDS"/>
+                            <constraint firstItem="5Wj-q3-duA" firstAttribute="leading" secondItem="pKJ-Qf-8BB" secondAttribute="leading" id="TIm-V1-FNc"/>
+                            <constraint firstItem="pKJ-Qf-8BB" firstAttribute="trailing" secondItem="rfe-m4-SX4" secondAttribute="trailing" constant="20" id="WHZ-pZ-aDe"/>
+                            <constraint firstItem="5Wj-q3-duA" firstAttribute="trailing" secondItem="pKJ-Qf-8BB" secondAttribute="trailing" id="Z7H-ow-LTY"/>
+                            <constraint firstItem="rfe-m4-SX4" firstAttribute="leading" secondItem="pKJ-Qf-8BB" secondAttribute="leading" constant="20" id="iKj-ah-hio"/>
+                            <constraint firstItem="5Wj-q3-duA" firstAttribute="top" secondItem="pKJ-Qf-8BB" secondAttribute="top" constant="70" id="rWn-cs-lZH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aws-NG-CIL"/>
+                    <connections>
+                        <outlet property="nextButton" destination="SUX-lR-8hh" id="EIS-Kz-ccQ"/>
+                        <outlet property="skipButton" destination="aXb-NA-xyn" id="Qjm-Zv-hSP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Df9-oc-bUm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3372" y="245.12743628185908"/>
+        </scene>
+        <!--Calculator On Boarding View Controller-->
+        <scene sceneID="CjU-u9-M1v">
+            <objects>
+                <viewController storyboardIdentifier="calculatorOnboarding" id="IRb-es-m9y" customClass="CalculatorOnBoardingViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n2e-hC-15Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oW0-4J-NbR" userLabel="Upper View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="249"/>
+                                <color key="backgroundColor" name="secondaryMeadowGreen050"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhD-3p-9Qa" userLabel="Bottom View">
+                                <rect key="frame" x="0.0" y="247.5" width="375" height="419.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your carb ratio?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ic-9d-CMK">
+                                        <rect key="frame" x="20" y="40" width="335" height="18"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gC-Td-1xZ">
+                                        <rect key="frame" x="20" y="70" width="335" height="48"/>
+                                        <color key="backgroundColor" name="textFieldBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="UlS-1g-0sd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-Se-2Ow">
+                                        <rect key="frame" x="20" y="340" width="335" height="79.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qN-bs-iCD" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                                <color key="backgroundColor" name="choaGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="Z6U-Ht-pBM"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
+                                                    <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="nextButtonTapped:" destination="IRb-es-m9y" eventType="touchUpInside" id="9oY-UJ-kvf"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can adjust it later if needed." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzX-YC-Jkf">
+                                                <rect key="frame" x="0.0" y="60" width="335" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="contentBlackColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="1gC-Td-1xZ" firstAttribute="top" secondItem="4Ic-9d-CMK" secondAttribute="bottom" constant="12" id="2gA-1m-2ke"/>
+                                    <constraint firstItem="1gC-Td-1xZ" firstAttribute="leading" secondItem="PhD-3p-9Qa" secondAttribute="leading" constant="20" id="3Hu-Ma-9nW"/>
+                                    <constraint firstAttribute="trailing" secondItem="1gC-Td-1xZ" secondAttribute="trailing" constant="20" id="MuB-Pp-IPX"/>
+                                    <constraint firstAttribute="bottom" secondItem="RcK-Se-2Ow" secondAttribute="bottom" id="PZJ-74-wkS"/>
+                                    <constraint firstItem="4Ic-9d-CMK" firstAttribute="top" secondItem="PhD-3p-9Qa" secondAttribute="top" constant="40" id="X2e-ur-hhA"/>
+                                    <constraint firstItem="4Ic-9d-CMK" firstAttribute="leading" secondItem="PhD-3p-9Qa" secondAttribute="leading" constant="20" id="YQy-UU-MMF"/>
+                                    <constraint firstItem="RcK-Se-2Ow" firstAttribute="leading" secondItem="PhD-3p-9Qa" secondAttribute="leading" constant="20" id="ZJc-35-hz4"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Ic-9d-CMK" secondAttribute="trailing" constant="20" id="hjZ-cU-pIg"/>
+                                    <constraint firstAttribute="trailing" secondItem="RcK-Se-2Ow" secondAttribute="trailing" constant="20" id="p0U-lf-C3c"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_carb_ratio_question" translatesAutoresizingMaskIntoConstraints="NO" id="cL0-rQ-Qli">
+                                <rect key="frame" x="8" y="90" width="359" height="157.5"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9yg-mK-ilm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9yg-mK-ilm" firstAttribute="bottom" secondItem="oW0-4J-NbR" secondAttribute="bottom" constant="418" id="B9V-vH-g7M"/>
+                            <constraint firstItem="cL0-rQ-Qli" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" constant="8" id="Cn0-ex-CGS"/>
+                            <constraint firstItem="PhD-3p-9Qa" firstAttribute="bottom" secondItem="9yg-mK-ilm" secondAttribute="bottom" id="DyH-tU-6At"/>
+                            <constraint firstItem="PhD-3p-9Qa" firstAttribute="top" secondItem="cL0-rQ-Qli" secondAttribute="bottom" id="E7i-IM-cKw"/>
+                            <constraint firstItem="cL0-rQ-Qli" firstAttribute="top" secondItem="9yg-mK-ilm" secondAttribute="top" constant="16" id="MHe-fG-nDX"/>
+                            <constraint firstItem="PhD-3p-9Qa" firstAttribute="trailing" secondItem="9yg-mK-ilm" secondAttribute="trailing" id="MrK-Em-TqL"/>
+                            <constraint firstItem="oW0-4J-NbR" firstAttribute="top" secondItem="n2e-hC-15Y" secondAttribute="top" id="QHc-kf-OcE"/>
+                            <constraint firstItem="PhD-3p-9Qa" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" id="WV9-sQ-rRN"/>
+                            <constraint firstItem="oW0-4J-NbR" firstAttribute="trailing" secondItem="9yg-mK-ilm" secondAttribute="trailing" id="ewE-aB-Rbp"/>
+                            <constraint firstItem="oW0-4J-NbR" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" id="fdM-vQ-u9e"/>
+                            <constraint firstItem="9yg-mK-ilm" firstAttribute="trailing" secondItem="cL0-rQ-Qli" secondAttribute="trailing" constant="8" id="xxA-nB-c59"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xKR-sL-aFm"/>
+                    <connections>
+                        <outlet property="bottomView" destination="PhD-3p-9Qa" id="U0D-9d-41Z"/>
+                        <outlet property="nextButton" destination="5qN-bs-iCD" id="dHo-4E-ISZ"/>
+                        <outlet property="questionImage" destination="cL0-rQ-Qli" id="eHG-6X-CFr"/>
+                        <outlet property="questionLabel" destination="4Ic-9d-CMK" id="kfI-qy-i5Q"/>
+                        <outlet property="questionTextField" destination="1gC-Td-1xZ" id="GWi-3f-Wjb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcy-pS-AUl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4276" y="8.5457271364317844"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="coK-uS-kQN"/>
-        <segue reference="aTD-Ou-0iR"/>
+        <segue reference="hEr-41-Qe8"/>
+        <segue reference="Ipa-CJ-Loq"/>
         <segue reference="v97-e6-biO"/>
-        <segue reference="FF6-D1-5Yz"/>
+        <segue reference="sKM-go-Es6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
@@ -1835,8 +2011,10 @@
         <image name="ic_info" width="20.333333969116211" height="20"/>
         <image name="leftArrow" width="20" height="20"/>
         <image name="will_calculator" width="150" height="155"/>
+        <image name="will_carb_ratio_question" width="362" height="157.66667175292969"/>
         <image name="will_food" width="150" height="155"/>
         <image name="will_nutrition" width="132" height="121"/>
+        <image name="will_three_quick_questions" width="260" height="373"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="backgroundColor">
             <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1846,6 +2024,9 @@
         </namedColor>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="contentBlackColor">
+            <color red="0.34099999070167542" green="0.3449999988079071" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="darkGrayColor">
             <color red="0.35294117647058826" green="0.35294117647058826" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

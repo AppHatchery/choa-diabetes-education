@@ -246,7 +246,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 errorMessage.isHidden = false
             }
         } else {
-            self.navigationController?.popViewController(animated: true)
+            if let viewControllers = self.navigationController?.viewControllers {
+                for vc in viewControllers {
+                    if vc is HomeViewController {
+                        self.navigationController?.popToViewController(vc, animated: true)
+                        return
+                    }
+                }
+            }
         }
     }
     
