@@ -223,6 +223,7 @@ class FinalStepWithReminderView: UIView {
     private func setupForInsulinShots() {
         confirmChangeDisconnectStackView.isHidden = true
         giveRecommendedDoseStackView.isHidden = true
+        hydrationInfoStackView.isHidden = true
 
         reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
         reminderNextCheckDescriptionLabel.setText(
