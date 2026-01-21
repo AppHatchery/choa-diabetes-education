@@ -425,15 +425,17 @@ extension QuestionnaireManager {
     // Save second urine ketone value
     func saveSecondUrineKetoneValue(_ level: UrineKetoneLevel) {
         self.secondUrineKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstUrineKetoneKey)
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.secondUrineKetoneKey)
         print("💾 Saved SECOND urine ketone value: \(level) (id: \(level.id))")
+        print("💾 Persisted SECOND urine ketone id: \(level.id) -> key: \(QuestionnaireManager.secondUrineKetoneKey)")
     }
 
     // Save first blood ketone value
     func saveSecondBloodKetoneValue(_ level: BloodKetoneLevel) {
         self.secondBloodKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstBloodKetoneKey)
+        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.secondBloodKetoneKey)
         print("💾 Saved SECOND blood ketone value: \(level) (id: \(level.id))")
+        print("💾 Persisted SECOND blood ketone id: \(level.id) -> key: \(QuestionnaireManager.secondBloodKetoneKey)")
     }
     
     func getPersistedUrineKetoneLevel() -> UrineKetoneLevel? {
@@ -965,6 +967,7 @@ extension QuestionnaireManager {
         print("🧪 Initial Urine Ketone Check - Level: \(level)")
         
         saveFirstUrineKetoneValue(level)
+        saveUrineKetoneLevel(level: level)
         
         let hasModerateKetones = (urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four) || (bloodKetones == .moderate)
         
@@ -1104,6 +1107,7 @@ extension QuestionnaireManager {
         if firstBloodKetoneValue == nil {
             saveFirstBloodKetoneValue(level)
         }
+        saveBloodKetoneLevel(level: level)
         
         let hasModerateKetones = (urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four) ||
         (bloodKetones == .moderate)
@@ -1658,3 +1662,4 @@ extension BloodKetoneLevel: CustomStringConvertible {
         }
     }
 }
+

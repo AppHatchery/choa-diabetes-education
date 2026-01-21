@@ -10,7 +10,7 @@ import UserNotifications
 import UIKit
 
 
-let twoHourDuration: TimeInterval = 20
+let twoHourDuration: TimeInterval = 7200
 let oneHour30Duration: TimeInterval = 5400
 
 protocol ReminderManagerDelegate: AnyObject {

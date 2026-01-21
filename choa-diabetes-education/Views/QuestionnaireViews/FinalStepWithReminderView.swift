@@ -622,7 +622,7 @@ class FinalStepWithReminderView: UIView {
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
-            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
+            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() : ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 
