@@ -705,7 +705,18 @@ extension QuestionnaireManager {
 
 				// Moderate risk (urine 1.5 or 4) OR blood moderate
         case .onePointFive, .four, .eight, .sixteen:
-            if bloodSugarOver300 {
+            if bloodSugarOver300 && yesOver2hours {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() :                "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+
+                actionsDelegate?.showNextQuestion(createQue)
+
+            } else if bloodSugarOver300 {
                 triggerCallChoaActionFlow(currentQuestion)
             } else {
                 let createQue = createYesOrNoQuestion(
@@ -832,13 +843,24 @@ extension QuestionnaireManager {
 			}
 				// Moderate/Large risk (urine 1.5 or 4) OR blood moderate
 		case .moderate, .large:
-            if bloodSugarOver300 {
+            if bloodSugarOver300 && yesOver2hours {
+                let createQue = createYesOrNoQuestion(
+                    questionId: .bloodSugarRecheck,
+                    question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
+                        .localized() : "Calculator.Que.BloodSugarRecheck.title".localized(),
+                    description: nil,
+                    showDescriptionAtBottom: false
+                )
+
+                actionsDelegate?.showNextQuestion(createQue)
+
+            } else if bloodSugarOver300 {
                 triggerCallChoaActionFlow(currentQuestion)
             } else {
                 let createQue = createYesOrNoQuestion(
                     questionId: .bloodSugarRecheck,
                     question: iLetPump ? "Calculator.Que.BloodSugarRecheckILetPump.title"
-                        .localized() :    "Calculator.Que.BloodSugarRecheck.title".localized(),
+                        .localized() : "Calculator.Que.BloodSugarRecheck.title".localized(),
                     description: nil,
                     showDescriptionAtBottom: false
                 )

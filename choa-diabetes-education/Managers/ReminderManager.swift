@@ -9,6 +9,10 @@ import Foundation
 import UserNotifications
 import UIKit
 
+
+let twoHourDuration: TimeInterval = 20
+let oneHour30Duration: TimeInterval = 5400
+
 protocol ReminderManagerDelegate: AnyObject {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String)
 	func reminderManager(_ manager: ReminderManager, didFailWithError error: Error)
@@ -119,7 +123,12 @@ class ReminderManager: NSObject {
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
 	func scheduleTwoHourReminder(title: String = "Time to check!", body: String = "Time to test your blood sugar and ketones.", enableCountdown: Bool = true) -> String {
-		return scheduleReminder(in: 7200, title: title, body: body, enableCountdown: enableCountdown) // 2 hours = 7200 seconds
+        return scheduleReminder(
+            in: twoHourDuration,
+            title: title,
+            body: body,
+            enableCountdown: enableCountdown
+        ) // 2 hours = 7200 seconds
 	}
 
 		/// Schedule a 90-minute reminder (convenience method)
@@ -130,7 +139,12 @@ class ReminderManager: NSObject {
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
 	func schedule90MinuteReminder(title: String = "Time to check!", body: String = "Time to test your blood sugar and ketones.", enableCountdown: Bool = true) -> String {
-		return scheduleReminder(in: 5400, title: title, body: body, enableCountdown: enableCountdown) // 90 minutes = 5400 seconds
+        return scheduleReminder(
+            in: oneHour30Duration,
+            title: title,
+            body: body,
+            enableCountdown: enableCountdown
+        ) // 90 minutes = 5400 seconds
 	}
 
 		/// Schedule a 30-second test reminder (convenience method for testing)

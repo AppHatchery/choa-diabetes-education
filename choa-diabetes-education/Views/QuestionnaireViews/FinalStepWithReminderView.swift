@@ -573,7 +573,12 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-			questionnaireManager.saveYesOver2hours(true)
+            if questionnaireManager.iLetPump {
+                questionnaireManager.saveYesOver2hours(true)
+            }
+            
+            questionnaireManager.skipFirstReminder(true)
+            
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
 
@@ -613,7 +618,7 @@ class FinalStepWithReminderView: UIView {
             
             ReminderPersistence.clearReminderState()
 		} else {
-			let duration: TimeInterval = questionnaireManager.iLetPump ? 5400 : 7200
+            let duration: TimeInterval = questionnaireManager.iLetPump ? oneHour30Duration : twoHourDuration
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
