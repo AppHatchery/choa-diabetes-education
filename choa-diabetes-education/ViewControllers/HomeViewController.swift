@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
 
 	@IBOutlet var mealsButton: UIButton!
 	@IBOutlet var highSugarButton: UIButton!
+    @IBOutlet var insulinButtons: [UIButton]!
 
 	@IBOutlet var getHelpView: UIView!
     @IBOutlet weak var getHelpViewImage: UIImageView!
@@ -104,6 +105,8 @@ class HomeViewController: UIViewController {
             $0.layer.cornerRadius = 8
         }
 
+        
+//        setupButtonConfigs()
         addTapRecognizersToResourceCards()
     }
     
@@ -134,6 +137,44 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkAndRestoreActiveReminder()
+    }
+    
+    private func setupButtonConfigs() {
+        var insulinButtonsConfig = UIButton.Configuration.plain()
+        
+        insulinButtonsConfig.titleTextAttributesTransformer =
+            UIConfigurationTextAttributesTransformer { incoming in
+                var out = incoming
+                out.font = .gothamRoundedMedium16
+                return out
+            }
+        
+        for button in insulinButtons {
+            
+            insulinButtonsConfig.background.cornerRadius = 8
+            insulinButtonsConfig.background.strokeWidth = 1
+            insulinButtonsConfig.background.strokeColor = .whiteColor
+            
+            button.configuration = insulinButtonsConfig
+        }
+        
+//        var getHelpButtonConfig = UIButton.Configuration.filled()
+//        
+//        insulinButtonsConfig.titleTextAttributesTransformer =
+//            UIConfigurationTextAttributesTransformer { incoming in
+//                var out = incoming
+//                out.font = .gothamRoundedMedium16
+//                out.foregroundColor = UIColor.secondaryRedColor
+//                out.backgroundColor = UIColor.whiteColor
+//                return out
+//            }
+//        
+//        getHelpButtonConfig.background.cornerRadius = 8
+//        getHelpButtonConfig.background.strokeWidth = 0
+//        getHelpButtonConfig.baseBackgroundColor = .whiteColor
+//        getHelpButtonConfig.baseForegroundColor = UIColor.secondaryRedColor
+//        
+//        getHelpButton.configuration = getHelpButtonConfig
     }
 
     private func addTapRecognizersToResourceCards() {

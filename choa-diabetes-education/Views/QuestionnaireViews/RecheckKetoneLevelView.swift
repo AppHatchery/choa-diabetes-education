@@ -87,6 +87,8 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 			nextButton.alpha = 0.3
 			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
+        
+
 
 		if questionnaireManager.currentMeasuringMethod == .urineKetone {
 			selected = 1

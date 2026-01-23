@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,7 +21,7 @@
                 <outlet property="firstButtonImage" destination="Vhk-ZJ-ukL" id="evE-qT-31H"/>
                 <outlet property="firstButtonLabel" destination="Ctc-65-3hs" id="0aV-eC-cez"/>
                 <outlet property="fourthButtonLabel" destination="ZIm-6s-wck" id="R2h-Du-9xM"/>
-                <outlet property="nextButton" destination="EaT-UF-v5D" id="rt0-KZ-SfY"/>
+                <outlet property="nextButton" destination="YcS-rM-kZu" id="1zG-0n-HKN"/>
                 <outlet property="questionLabel" destination="hKg-mK-vs6" id="cZN-sK-BPh"/>
                 <outlet property="secondButtonImage" destination="OM9-hk-WFk" id="mKG-hq-9wd"/>
                 <outlet property="secondButtonLabel" destination="Jqq-xT-3eR" id="glT-g1-VeA"/>
@@ -223,30 +222,28 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6e-b7-hSs">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaT-UF-v5D" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcS-rM-kZu" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                     <rect key="frame" x="20" y="0.0" width="335" height="48"/>
                                     <color key="backgroundColor" name="choaGreenColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="pT8-Da-PNI"/>
+                                        <constraint firstAttribute="height" constant="48" id="Ntp-Ns-qjP"/>
                                     </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Next" imagePadding="8" titleAlignment="center">
-                                        <imageReference key="image" image="leftArrow" symbolScale="large"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
                                         <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
                                     <connections>
-                                        <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="ddz-is-5EO"/>
+                                        <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="6kD-N6-M2p"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="EaT-UF-v5D" secondAttribute="bottom" id="KJx-r8-xxm"/>
-                                <constraint firstAttribute="trailing" secondItem="EaT-UF-v5D" secondAttribute="trailing" constant="20" id="LVm-dz-V0s"/>
-                                <constraint firstItem="EaT-UF-v5D" firstAttribute="top" secondItem="w6e-b7-hSs" secondAttribute="top" id="kEz-vt-buu"/>
-                                <constraint firstItem="EaT-UF-v5D" firstAttribute="leading" secondItem="w6e-b7-hSs" secondAttribute="leading" constant="20" id="sBL-Cx-FQ6"/>
+                                <constraint firstAttribute="bottom" secondItem="YcS-rM-kZu" secondAttribute="bottom" id="2e6-Ex-8sS"/>
+                                <constraint firstAttribute="trailing" secondItem="YcS-rM-kZu" secondAttribute="trailing" constant="20" id="Hev-KE-1ej"/>
+                                <constraint firstItem="YcS-rM-kZu" firstAttribute="leading" secondItem="w6e-b7-hSs" secondAttribute="leading" constant="20" id="c1y-Bl-k8U"/>
+                                <constraint firstItem="YcS-rM-kZu" firstAttribute="top" secondItem="w6e-b7-hSs" secondAttribute="top" id="om0-mP-UAW"/>
                             </constraints>
                         </view>
                     </subviews>

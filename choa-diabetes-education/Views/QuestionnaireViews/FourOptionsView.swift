@@ -97,6 +97,9 @@ class FourOptionsView: UIView {
 			nextButton.alpha = 0.3
 //			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
+        
+        nextButton.layer.cornerRadius = 12
+
     }
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {

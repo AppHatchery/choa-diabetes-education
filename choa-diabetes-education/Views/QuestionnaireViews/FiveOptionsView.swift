@@ -92,6 +92,9 @@ class FiveOptionsView: UIView {
 		if selected == 0 {
 			nextButton.alpha = 0.3
 		}
+        
+        nextButton.layer.cornerRadius = 12
+
 	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {

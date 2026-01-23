@@ -17,11 +17,11 @@
         <array key="Gotham Rounded Bold.otf">
             <string>GothamRounded-Bold</string>
         </array>
+        <array key="Gotham Rounded Medium.otf">
+            <string>GothamRounded-Medium</string>
+        </array>
         <array key="GothamRoundedLight.ttf">
             <string>GothamRounded-Light</string>
-        </array>
-        <array key="GothamRoundedMedium.ttf">
-            <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
             <string>IrishGrover-Regular</string>
@@ -358,10 +358,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmy-mB-eP8">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-tT-GCV">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -405,10 +405,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU1-IJ-eUy">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kqT-rW-dag">
-                                        <rect key="frame" x="20" y="-24" width="335" height="409"/>
+                                        <rect key="frame" x="20" y="30" width="335" height="409"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Woohoo! You did it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZQ-FX-1gi">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="32"/>
@@ -436,7 +436,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaP-bM-2yw" userLabel="Bottom Stars View">
-                                        <rect key="frame" x="0.0" y="385" width="375" height="208"/>
+                                        <rect key="frame" x="0.0" y="439" width="375" height="208"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="3Lt-TL-KM9">
                                                 <rect key="frame" x="20" y="50" width="335" height="158"/>
@@ -448,13 +448,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rw3-8y-eNJ" userLabel="Stars Stack View">
-                                                                        <rect key="frame" x="50" y="0.0" width="235" height="40"/>
+                                                                        <rect key="frame" x="100" y="0.0" width="135" height="40"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_completed" translatesAutoresizingMaskIntoConstraints="NO" id="xcK-Cu-nRR">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="117.5" height="40"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="67.5" height="40"/>
                                                                             </imageView>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncompleted" translatesAutoresizingMaskIntoConstraints="NO" id="44L-SK-9wv">
-                                                                                <rect key="frame" x="117.5" y="0.0" width="117.5" height="40"/>
+                                                                                <rect key="frame" x="67.5" y="0.0" width="67.5" height="40"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <constraints>
@@ -464,10 +464,10 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="Rw3-8y-eNJ" secondAttribute="trailing" constant="50" id="2U5-oC-bQc"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Rw3-8y-eNJ" secondAttribute="trailing" constant="100" id="2U5-oC-bQc"/>
                                                                     <constraint firstItem="Rw3-8y-eNJ" firstAttribute="top" secondItem="FfZ-Ij-QQc" secondAttribute="top" id="3JO-5Q-hAz"/>
                                                                     <constraint firstAttribute="bottom" secondItem="Rw3-8y-eNJ" secondAttribute="bottom" id="Ztz-Ut-z8V"/>
-                                                                    <constraint firstItem="Rw3-8y-eNJ" firstAttribute="leading" secondItem="FfZ-Ij-QQc" secondAttribute="leading" constant="50" id="rsE-Fo-ccH"/>
+                                                                    <constraint firstItem="Rw3-8y-eNJ" firstAttribute="leading" secondItem="FfZ-Ij-QQc" secondAttribute="leading" constant="100" id="rsE-Fo-ccH"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types of diabetes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnh-cS-wfG">
@@ -481,7 +481,7 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELn-aA-jKH">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELn-aA-jKH" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="110" width="335" height="48"/>
                                                         <color key="backgroundColor" name="primaryGreen"/>
                                                         <constraints>
@@ -489,7 +489,7 @@
                                                         </constraints>
                                                         <color key="tintColor" name="whiteColor"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="tinted" image="leftArrow" imagePlacement="trailing" title="Next Chapter" imagePadding="8">
+                                                        <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next Chapter" imagePadding="8">
                                                             <backgroundConfiguration key="background" cornerRadius="12" strokeWidth="0.0">
                                                                 <color key="backgroundColor" name="primaryGreen"/>
                                                             </backgroundConfiguration>
@@ -573,8 +573,10 @@
                         <outlet property="chaptersCompletedLabel" destination="Cnh-cS-wfG" id="P73-Dr-QcK"/>
                         <outlet property="congratsLabel" destination="OZQ-FX-1gi" id="UKD-kB-h64"/>
                         <outlet property="hopeOrWillImage" destination="rJK-K9-dgu" id="rCR-mw-lwz"/>
+                        <outlet property="leftStarsStackConstraint" destination="2U5-oC-bQc" id="cKn-ME-foc"/>
                         <outlet property="mainView" destination="ZU1-IJ-eUy" id="tPm-5R-I65"/>
                         <outlet property="nextChapterButton" destination="ELn-aA-jKH" id="8Pp-5a-pG0"/>
+                        <outlet property="rightStarsStackConstraint" destination="rsE-Fo-ccH" id="JlQ-up-ZBv"/>
                         <outlet property="starsStackView" destination="Rw3-8y-eNJ" id="qLx-3a-FmP"/>
                         <outlet property="textBubbleImage" destination="toL-7Q-Hrw" id="I7N-EJ-PbJ"/>
                         <segue destination="qTj-Ax-wBy" kind="show" identifier="SegueToQuizIntroViewController" id="Y7U-dD-p04"/>
@@ -599,23 +601,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erX-ET-2GE">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
-                                <rect key="frame" x="20" y="130" width="335" height="24"/>
+                                <rect key="frame" x="20" y="76" width="335" height="24"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes basics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY5-RB-pUo">
-                                <rect key="frame" x="20" y="104" width="335" height="22"/>
+                                <rect key="frame" x="20" y="50" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizStart" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-sa-na4">
-                                <rect key="frame" x="24" y="194" width="327" height="187"/>
+                                <rect key="frame" x="24" y="140" width="327" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="187" id="TYr-ne-jZL"/>
                                 </constraints>
@@ -637,13 +639,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 questions, 2mins" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtj-aW-WrN">
-                                <rect key="frame" x="20" y="168" width="335" height="22"/>
+                                <rect key="frame" x="20" y="114" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="textColor" name="contentBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished the quiz." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyW-Bw-RUj">
-                                <rect key="frame" x="20" y="158" width="335" height="20"/>
+                                <rect key="frame" x="20" y="104" width="335" height="20"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                 <color key="textColor" name="choaGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -1484,17 +1486,22 @@ Self-Management</string>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-qi-WLr" userLabel="Get Help View">
                                                 <rect key="frame" x="20" y="258" width="336" height="187"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xL-XH-zFX">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xL-XH-zFX">
                                                         <rect key="frame" x="19" y="120" width="127.5" height="45"/>
                                                         <color key="backgroundColor" name="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="127.67" id="3Fa-z1-sI6"/>
                                                             <constraint firstAttribute="height" constant="45" id="yz4-bp-wS2"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="17"/>
                                                         <color key="tintColor" name="secondaryFireRed300"/>
-                                                        <state key="normal" title="Button"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                        <state key="normal" title="Get Help" image="leftArrow">
+                                                            <color key="titleColor" name="secondaryFireRed300"/>
+                                                        </state>
                                                         <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Get Help" imagePadding="8">
                                                             <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="17"/>
+                                                            <color key="baseForegroundColor" name="secondaryFireRed300"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="tappedGetHelpButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="Gq8-iv-24N"/>
@@ -1768,6 +1775,9 @@ Self-Management</string>
                         <outletCollection property="resourceCards" destination="g5a-EM-bgg" collectionClass="NSMutableArray" id="tcx-7J-Ude"/>
                         <outletCollection property="resourceCards" destination="uuN-JU-7lD" collectionClass="NSMutableArray" id="eS2-f5-Ae7"/>
                         <outletCollection property="resourceCards" destination="agd-QZ-Gud" collectionClass="NSMutableArray" id="94u-Jq-Okx"/>
+                        <outletCollection property="insulinButtons" destination="R23-lN-sve" collectionClass="NSMutableArray" id="FXT-Lq-Wwz"/>
+                        <outletCollection property="insulinButtons" destination="ASG-8s-BbA" collectionClass="NSMutableArray" id="Dxs-x3-vge"/>
+                        <outletCollection property="insulinButtons" destination="5yr-9n-Doi" collectionClass="NSMutableArray" id="Ahb-da-x9a"/>
                         <segue destination="8Ad-bW-OKf" kind="show" identifier="SegueToGetHelp" id="PGI-iE-Hc8"/>
                     </connections>
                 </viewController>
@@ -1991,9 +2001,9 @@ Self-Management</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="3yE-9v-cRW"/>
-        <segue reference="L1W-07-Vpb"/>
-        <segue reference="CS3-6i-fi4"/>
-        <segue reference="ted-C5-uD1"/>
+        <segue reference="Y7U-dD-p04"/>
+        <segue reference="crK-tC-FpQ"/>
+        <segue reference="bnL-Lw-gUg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>

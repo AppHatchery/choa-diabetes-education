@@ -11,7 +11,7 @@ class ChapterEndViewController: UIViewController {
     
     @IBOutlet weak var mainView: UIView!
     
-    @IBOutlet weak var nextChapterButton: UIButton!
+    @IBOutlet weak var nextChapterButton: PrimaryButton!
     @IBOutlet weak var congratsLabel: UILabel!
     
     @IBOutlet weak var textBubbleImage: UIImageView!
@@ -21,6 +21,10 @@ class ChapterEndViewController: UIViewController {
     @IBOutlet weak var starsStackView: UIStackView!
     
     @IBOutlet weak var chaptersCompletedLabel: UILabel!
+    
+    @IBOutlet weak var rightStarsStackConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftStarsStackConstraint: NSLayoutConstraint!
+    
     
     
     var contentIndex = 0
@@ -162,7 +166,13 @@ class ChapterEndViewController: UIViewController {
             // there is a next chapter, keep button as-is
         } else {
             // final chapter in section
-            nextChapterButton.setTitleWithStyle("Done", font: .gothamRoundedMedium20, image: nil)
+            nextChapterButton
+                .setTitleWithStyle(
+                    "Done",
+                    font: .gothamRoundedMedium20,
+                    image: nil
+                )
+            nextChapterButton.setImage(nil, for: .normal)
         }
         
         // Refresh stars in case the view reappears
@@ -236,8 +246,19 @@ private extension ChapterEndViewController {
         }
         
         starsStackView.alignment = .center
-        starsStackView.distribution = .equalSpacing
-        starsStackView.spacing = 8
+        
+        if totalCount == 5 {
+            starsStackView.distribution = .fillEqually
+            starsStackView.spacing = 8
+            
+            rightStarsStackConstraint.constant = 50
+            leftStarsStackConstraint.constant = 50
+        } else {
+            starsStackView.spacing = 0
+            starsStackView.distribution = .fillEqually
+            rightStarsStackConstraint.constant = 100
+            leftStarsStackConstraint.constant = 100
+        }
         
         for i in 0..<totalCount {
             let isCompleted = i < completedCount
@@ -253,6 +274,7 @@ private extension ChapterEndViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 40),
             imageView.heightAnchor.constraint(equalToConstant: 40)
         ])
         return imageView
