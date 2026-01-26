@@ -92,6 +92,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
+        bloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        correctionFactorField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
@@ -129,6 +133,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
         calculatorDidUpdateConstants()
         setupTappableInfoButtons()
+        updateSeeResultAccessoryIfNeeded()
     }
     
     @objc private func editButtonTapped() {
@@ -208,6 +213,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         //        } else {
         //            nextButton.isEnabled = false
         //        }
+        updateSeeResultAccessoryIfNeeded()
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -221,6 +227,70 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             errorMessage.text = errorMessageText
             fieldLabel.textColor = .primaryBlue
             errorMessage.isHidden = true
+        }
+    }
+    
+    func seeCalculationViewSetup() {
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+
+        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
+        doneButton.setTitle( "Calculate", for: .normal )
+        doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
+        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
+        customView.addSubview( doneButton )
+        bloodSugarField.inputAccessoryView = customView
+        targetBloodSugarField.inputAccessoryView = customView
+        correctionFactorField.inputAccessoryView = customView
+    }
+    
+    private func updateSeeResultAccessoryIfNeeded() {
+        // Ensure both fields have text and their numeric values are > 0
+        let hasBloodSugarText = !(bloodSugarField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+        let hasTargetBloodSugarText = !(targetBloodSugarField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+        let hasCorrectionFactorText = !(correctionFactorField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+
+        let bloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let targetBloodSugarValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        let correctionFactorValue = Int(correctionFactorField.text ?? "") ?? 0
+
+        let shouldShowAccessory = hasBloodSugarText && hasTargetBloodSugarText && hasCorrectionFactorText && bloodSugarValue > 0 && targetBloodSugarValue > 0 && correctionFactorValue > 0
+
+        if shouldShowAccessory {
+            seeCalculationViewSetup()
+        } else {
+            bloodSugarField.inputAccessoryView = nil
+            targetBloodSugarField.inputAccessoryView = nil
+        }
+
+        // Reload input views of the current first responder so changes take effect immediately
+        if bloodSugarField.isFirstResponder {
+            bloodSugarField.reloadInputViews()
+        } else if targetBloodSugarField.isFirstResponder {
+            targetBloodSugarField.reloadInputViews()
+        } else if correctionFactorField.isFirstResponder {
+            correctionFactorField.reloadInputViews()
+        }
+    }
+    
+    @objc private func textFieldsDidChange(_ sender: UITextField) {
+        // Update backing values in real time
+        if sender == bloodSugarField {
+            bloodSugar = Int(sender.text ?? "") ?? 0
+        } else if sender == targetBloodSugarField {
+            targetBloodSugar = Int(sender.text ?? "") ?? 0
+        }
+        // Reflect UI/accessory state as user types
+        updateSeeResultAccessoryIfNeeded()
+        
+        if totalCarbs > 0 && carbRatio > 0 {
+            calculateFoodInsulin()
         }
     }
     
@@ -246,7 +316,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 errorMessage.isHidden = false
             }
         } else {
-            self.navigationController?.popViewController(animated: true)
+            if let viewControllers = self.navigationController?.viewControllers {
+                for vc in viewControllers {
+                    if vc is HomeViewController {
+                        self.navigationController?.popToViewController(vc, animated: true)
+                        return
+                    }
+                }
+            }
         }
     }
     
@@ -310,31 +387,31 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         
         // Use that screen to get the coordinate space to convert from.
 //        let fromCoordinateSpace = screen.coordinateSpace
-//        
-//        
+//
+//
 //        // Get your view's coordinate space.
 //        let toCoordinateSpace: UICoordinateSpace = view
-//        
-//        
+//
+//
 //        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
 //        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
-//        
+//
 //        // Get the safe area insets when the keyboard is offscreen.
 //        var bottomOffset = view.safeAreaInsets.bottom
-//        
+//
 //        // Get the intersection between the keyboard's frame and the view's bounds to work with the
 //        // part of the keyboard that overlaps your view.
 //        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
-//        
+//
 //        // Check whether the keyboard intersects your view before adjusting your offset.
 //        if !viewIntersection.isEmpty {
-//            
+//
 //            // Adjust the offset by the difference between the view's height and the height of the
 //            // intersection rectangle.
 //            bottomOffset = view.bounds.maxY - viewIntersection.minY
 //        }
-//        
-//        
+//
+//
 //        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
 //        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
 //        // your view, changing a scroll inset, and so on. This example uses the new offset to update
@@ -372,6 +449,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
         self.view.endEditing(true)
+        updateSeeResultAccessoryIfNeeded()
         calculateFoodInsulin()
     }
     
@@ -435,6 +513,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 bloodSugarLine.backgroundColor = .orangeTextColor
                 bloodSugarLabel.textColor = .orangeTextColor
             }
+            
+            updateSeeResultAccessoryIfNeeded()
         } else {
             resultsView.isHidden = true
         }
