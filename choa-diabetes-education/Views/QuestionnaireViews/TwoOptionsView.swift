@@ -139,9 +139,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
-			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
+        
+        nextButton.layer.cornerRadius = 12
 
+        
 		for (index, view) in optionButtons.enumerated() {
 			view.isUserInteractionEnabled = true
 			let tap = UITapGestureRecognizer(target: self, action: #selector(optionButtonViewTapped(_:)))

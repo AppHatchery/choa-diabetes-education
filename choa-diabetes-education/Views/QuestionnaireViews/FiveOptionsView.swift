@@ -63,7 +63,6 @@ class FiveOptionsView: UIView {
 		questionLabel.textColor = .headingGreenColor
 		questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
-		nextButton.titleLabel?.font = .gothamRoundedMedium20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8
@@ -92,8 +91,10 @@ class FiveOptionsView: UIView {
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
-			nextButton.titleLabel?.font = .gothamRoundedMedium20
 		}
+        
+        nextButton.layer.cornerRadius = 12
+
 	}
 
 	@objc private func optionButtonViewTapped(_ sender: UITapGestureRecognizer) {

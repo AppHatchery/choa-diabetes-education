@@ -23,7 +23,7 @@ class FinalStepCallChoaView: UIView {
 
 	@IBOutlet var callView: UIView!
 	@IBOutlet var callInstructions: UILabel!
-	@IBOutlet var callChoaButton: UIButton!
+//	@IBOutlet var callChoaButton: UIButton!
 
 	@IBOutlet var giveNormalDoseLabel: UILabel!
 	@IBOutlet var checkBloodSugarLabel: UILabel!
@@ -87,7 +87,7 @@ class FinalStepCallChoaView: UIView {
 
 		callInstructions.setText(
 			"Final.CallChoa.CallInstructions.text".localized(),
-			boldPhrases: ["Call 404-785-5437", "blood sugar", "ketones", "after 2 corrections"]
+			boldPhrases: ["blood sugar", "ketones", "after 2 corrections"]
 		)
 
 			// Insulin Pump Text
@@ -107,7 +107,7 @@ class FinalStepCallChoaView: UIView {
 
 		switchBackLabel.setText("Final.CallChoa.SwitchBack.text".localized(), boldPhrases: ["Switch back to automated mode"])
 
-		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"])
+		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 mg/dL or lower", "blood sugar is over 150 mg/dL"])
 
 		self.currentQuestion = currentQuestion
 		titleLabel.font = .gothamRoundedBold20
@@ -116,10 +116,12 @@ class FinalStepCallChoaView: UIView {
 		titleLabel.textAlignment = .natural
 
 		doneButton.titleLabel?.font = .gothamRoundedMedium20
-		callChoaButton.titleLabel?.font = .gothamRoundedMedium20
+//		callChoaButton.titleLabel?.font = .gothamRoundedMedium20
+        
+//        callChoaButton.isHidden = true
 
 		callView.layer.cornerRadius = 12
-		callChoaButton.layer.cornerRadius = 12
+//		callChoaButton.layer.cornerRadius = 12
 
 
 
@@ -176,13 +178,13 @@ class FinalStepCallChoaView: UIView {
         }
     }
 
-	@IBAction func didCallChoaButtonTap(_ sender: Any) {
-		guard let url = URL(string: "tel://+404-785-5437") else { return }
-
-		if UIApplication.shared.canOpenURL(url) {
-			UIApplication.shared.open(url, options: [:], completionHandler: nil)
-		}
-	}
+//	@IBAction func didCallChoaButtonTap(_ sender: Any) {
+//		guard let url = URL(string: "tel://+404-785-5437") else { return }
+//
+//		if UIApplication.shared.canOpenURL(url) {
+//			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//		}
+//	}
 
 	@IBAction func didDoneButtonTap(_ sender: UIButton) {
 		delegate?.didSelectGotItAction(currentQuestion)

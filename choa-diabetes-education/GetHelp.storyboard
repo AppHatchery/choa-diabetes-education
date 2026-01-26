@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -170,11 +170,11 @@
             <objects>
                 <viewController storyboardIdentifier="AboutKetoneMeasurementsViewController" id="HGN-Y1-cXL" customClass="AboutKetoneMeasurementsViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wXk-MV-mty">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="657"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
-                                <rect key="frame" x="20" y="50" width="335" height="596"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
+                                <rect key="frame" x="20" y="20" width="335" height="648"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-kf-DaX">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
@@ -182,8 +182,14 @@
                                         <color key="textColor" name="choaGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚠️ Make sure your ketone strips have not expired!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-pV-FoT">
+                                        <rect key="frame" x="0.0" y="40" width="335" height="40"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <color key="textColor" name="secondarySunsetOrange300"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-Z1-GD4">
-                                        <rect key="frame" x="0.0" y="44" width="335" height="480"/>
+                                        <rect key="frame" x="0.0" y="100" width="335" height="480"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zNu-ps-ZLt">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="228"/>
@@ -232,7 +238,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="548" width="335" height="48"/>
+                                        <rect key="frame" x="0.0" y="600" width="335" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
                                         </constraints>
@@ -250,7 +256,7 @@
                         <viewLayoutGuide key="safeArea" id="ru1-eJ-dZH"/>
                         <color key="backgroundColor" name="lightGreenColor"/>
                         <constraints>
-                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" constant="50" id="UMj-9C-pRN"/>
+                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" constant="20" id="UMj-9C-pRN"/>
                             <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="Fs0-Yy-ZkI" secondAttribute="trailing" constant="20" id="bkD-gu-t2s"/>
                             <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" constant="20" id="oPz-f0-3qQ"/>
                         </constraints>
@@ -259,6 +265,7 @@
                         <outlet property="bloodMeasurementDescription" destination="Btq-7x-yFu" id="5k1-hc-RkX"/>
                         <outlet property="bloodMeasurementTitle" destination="D3a-xr-Q99" id="2FT-9l-9as"/>
                         <outlet property="closeButton" destination="FUb-b0-qjs" id="raN-D2-w7E"/>
+                        <outlet property="mainStackView" destination="Fs0-Yy-ZkI" id="uoq-b3-wGP"/>
                         <outlet property="titleLabel" destination="Z2h-kf-DaX" id="3eX-r8-ymM"/>
                         <outlet property="urineMeasurementDescription" destination="Oyd-dh-l91" id="uw9-kd-0VL"/>
                         <outlet property="urineMeasurementTitle" destination="M98-Yg-k0B" id="Ciq-nL-v3c"/>
@@ -280,6 +287,9 @@
         </namedColor>
         <namedColor name="lightGreenColor">
             <color red="0.95294117647058818" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondarySunsetOrange300">
+            <color red="0.96078431372549022" green="0.50980392156862742" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

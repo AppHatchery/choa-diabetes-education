@@ -20,7 +20,9 @@ class FinalStepWithDescView: UIView {
     @IBOutlet weak var exitButton: UIButton!
 	@IBOutlet var iLetPumpInfoStackView: UIStackView!
 
-	private var currentQuestion: Questionnaire!
+    @IBOutlet weak var stayHydratedStackView: UIStackView!
+    
+    private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepWithDescViewProtocol?
 
 	weak var viewController: UIViewController?
@@ -52,13 +54,14 @@ class FinalStepWithDescView: UIView {
 
 		if QuestionnaireManager.instance.iLetPump {
 			iLetPumpInfoStackView.isHidden = false
+            stayHydratedStackView.isHidden = true
 		} else {
 			iLetPumpInfoStackView.isHidden = true
 		}
         
         hydrationExampleInfoTextView.setText(
             "Final.HydrationExampleInfo.text".localized(),
-            boldPhrases: ["blood sugar is 150 or lower", "blood sugar is over 150"]
+            boldPhrases: ["blood sugar is 150 mg/dL or lower", "blood sugar is over 150 mg/dL"]
         )
 	}
 

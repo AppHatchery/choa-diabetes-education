@@ -8,44 +8,100 @@ import UIKit
 
 open class RoundedButton: UIButton {
 
-	required public override init(frame: CGRect) {
-		super.init(frame: frame)
-		commonInit()
-	}
+    private var baseTitle: String?
 
-	required public init?(coder: NSCoder) {
-		super.init(coder: coder)
-		commonInit()
-	}
+    required public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
 
-	override public func layoutSubviews() {
-		super.layoutSubviews()
-		titleLabel?.font = .gothamRoundedBold16
-	}
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
 
-	func commonInit() {
-		setupComponents()
-	}
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+    }
 
-	func setupComponents() {
-		self.layer.masksToBounds = true
-		self.layer.backgroundColor = UIColor.whiteColor.cgColor
-		self.tintColor = UIColor.primaryBlue
-		self.layer.cornerRadius = 8
-		self.layer.borderColor = UIColor.highlightedBlueColor.cgColor
-		self.layer.borderWidth = 1
-	}
+    private func commonInit() {
+        configureButton()
+        self.automaticallyUpdatesConfiguration = true
+    }
 
-	public func updateButtonForSelection() {
-		self.layer.masksToBounds = true
-		self.layer.backgroundColor = UIColor.primaryBlue.cgColor
-		self.tintColor = UIColor.white
-		self.layer.cornerRadius = 8
-		self.layer.borderColor = UIColor.primaryBlue.cgColor
-		self.layer.borderWidth = 0
-	}
+    private func configureButton() {
+        var config = UIButton.Configuration.filled()
+        // Title handling via configuration
+        let currentTitle = self.title(for: .normal) ?? baseTitle
+        config.title = currentTitle
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .gothamRoundedMedium16
+            return out
+        }
 
-	public func updateButtonForDeselection() {
-		setupComponents()
-	}
+        config.baseBackgroundColor = UIColor.whiteColor
+        config.baseForegroundColor = UIColor.primaryBlue
+
+        config.cornerStyle = .fixed
+        config.background.cornerRadius = 8
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
+
+        config.background.strokeColor = UIColor.highlightedBlueColor
+        config.background.strokeWidth = 1
+
+        self.configuration = config
+
+        self.tintColor = UIColor.primaryBlue
+
+        // Update configuration for states (selected vs. normal)
+        self.configurationUpdateHandler = { [weak self] button in
+            guard let self = self else { return }
+            var updated = button.configuration ?? UIButton.Configuration.filled()
+
+            if button.isSelected {
+                updated.baseBackgroundColor = UIColor.primaryBlue
+                updated.baseForegroundColor = UIColor.white
+                updated.background.strokeColor = UIColor.primaryBlue
+                updated.background.strokeWidth = 0
+            } else {
+                updated.baseBackgroundColor = UIColor.whiteColor
+                updated.baseForegroundColor = UIColor.primaryBlue
+                updated.background.strokeColor = UIColor.highlightedBlueColor
+                updated.background.strokeWidth = 1
+            }
+
+            updated.cornerStyle = .fixed
+            updated.background.cornerRadius = 8
+
+            if updated.title == nil {
+                updated.title = (button as? RoundedButton)?.baseTitle ?? button.title(for: .normal)
+            }
+
+            button.configuration = updated
+        }
+    }
+
+    open override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        if state == .normal {
+            baseTitle = title
+        }
+        // Keep configuration's title in sync
+        if var cfg = self.configuration {
+            cfg.title = title ?? baseTitle
+            self.configuration = cfg
+        }
+        setNeedsUpdateConfiguration()
+    }
+
+    // Public API maintained for callers
+    public func updateButtonForSelection() {
+        // Toggle to selected appearance using configuration
+        isSelected = true
+    }
+
+    public func updateButtonForDeselection() {
+        isSelected = false
+    }
 }

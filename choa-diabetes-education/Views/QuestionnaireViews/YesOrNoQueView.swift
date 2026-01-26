@@ -78,8 +78,12 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 		if followUpAnswer == 0 {
 			nextButton.alpha = 0.3
 		}
-
-		nextButton.titleLabel?.font = .gothamRoundedMedium20
+        
+        yesButton.setTitle("Yes", for: .normal)
+        noButton.setTitle("No", for: .normal)
+        
+        nextButton.layer.cornerRadius = 12
+        
     }
     
     @IBAction func didYesButtonTap(_ sender: UIButton) {

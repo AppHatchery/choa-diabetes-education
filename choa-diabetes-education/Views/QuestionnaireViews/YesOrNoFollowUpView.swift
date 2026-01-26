@@ -46,6 +46,9 @@ class YesOrNoFollowUpView: UIView {
 		addSubview(view)
 		view.frame = self.bounds
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        yesButton.setTitle("Yes", for: .normal)
+        noButton.setTitle("No", for: .normal)
 	}
 
 		// MARK: - Actions
