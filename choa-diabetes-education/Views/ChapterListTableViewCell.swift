@@ -14,6 +14,7 @@ class ChapterListTableViewCell: UITableViewCell {
     @IBOutlet weak var cardTitle: UILabel!
     @IBOutlet weak var cardSubtitle: UILabel!
     @IBOutlet weak var cardImage: UIImageView!
+    @IBOutlet weak var chapterCompleteCheck: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
