@@ -84,6 +84,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             txtField.delegate = self
         }
         
+        totalCarbsField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        carbRatioField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -124,6 +127,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         calculatorDidUpdateConstants()
         setupTappableInfoButtons()
+        updateSeeResultAccessoryIfNeeded()
     }
     
     func resetCalculatorFields() {
@@ -194,6 +198,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         
         errorMessage.isHidden = true
+        updateSeeResultAccessoryIfNeeded()
         //        toggleNextButton()
     }
     
@@ -267,6 +272,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
         self.view.endEditing(true)
+        updateSeeResultAccessoryIfNeeded()
         calculateFoodInsulin()
     }
     
@@ -312,8 +318,63 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             totalCarbsField.textColor = .primaryBlue
             carbLine.backgroundColor = .primaryBlue
             carbLabel.textColor = .primaryBlue
+            
+            updateSeeResultAccessoryIfNeeded()
         } else {
             resultsView.isHidden = true
+        }
+    }
+    
+    func seeCalculationViewSetup() {
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+
+        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
+        doneButton.setTitle( "Calculate", for: .normal )
+        doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
+        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
+        customView.addSubview( doneButton )
+        totalCarbsField.inputAccessoryView = customView
+        carbRatioField.inputAccessoryView = customView
+    }
+    
+    private func updateSeeResultAccessoryIfNeeded() {
+        // Ensure both fields have text and their numeric values are > 0
+        let hasCarbsText = !(totalCarbsField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        let hasRatioText = !(carbRatioField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+
+        let carbsValue = Int(totalCarbsField.text ?? "") ?? 0
+        let ratioValue = Int(carbRatioField.text ?? "") ?? 0
+
+        let shouldShowAccessory = hasCarbsText && hasRatioText && carbsValue > 0 && ratioValue > 0
+
+        if shouldShowAccessory {
+            seeCalculationViewSetup()
+        } else {
+            totalCarbsField.inputAccessoryView = nil
+            carbRatioField.inputAccessoryView = nil
+        }
+
+        // Reload input views of the current first responder so changes take effect immediately
+        if totalCarbsField.isFirstResponder {
+            totalCarbsField.reloadInputViews()
+        } else if carbRatioField.isFirstResponder {
+            carbRatioField.reloadInputViews()
+        }
+    }
+    
+    @objc private func textFieldsDidChange(_ sender: UITextField) {
+        // Update backing values in real time
+        if sender == totalCarbsField {
+            totalCarbs = Int(sender.text ?? "") ?? 0
+        } else if sender == carbRatioField {
+            carbRatio = Int(sender.text ?? "") ?? 0
+        }
+        // Reflect UI/accessory state as user types
+        updateSeeResultAccessoryIfNeeded()
+        
+        if totalCarbs > 0 && carbRatio > 0 {
+            calculateFoodInsulin()
         }
     }
     
@@ -432,3 +493,4 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
     }
 }
+
