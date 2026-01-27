@@ -5,6 +5,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="dark light" name="color-scheme" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://*.ytimg.com https://img.youtube.com; img-src 'self' data: https://*.ytimg.com https://img.youtube.com; style-src 'self' 'unsafe-inline';">
     <title>Title</title>
     <link rel="stylesheet" href="uikit.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -33,21 +34,17 @@
               stream.
             </li>
           </ul>
-          <div class="uk-position-relative">
-            <iframe
-              id="i-frame"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              src="https://www.youtube.com/embed/cHuyxbYG26g"
-              height="300"
-              class="uk-width-1-1"
-            >
-            </iframe>
-            <div
-              class="uk-position-absolute uk-position-center"
-              id="loader"
-              uk-spinner="ratio:1.5"
-            ></div>
-          </div>
+          <a href="https://www.youtube.com/watch?v=cHuyxbYG26g" class="video-thumbnail-link" style="display: block; position: relative; width: 100%; border-radius: 12px; overflow: hidden;">
+            <img 
+              src="https://img.youtube.com/vi/cHuyxbYG26g/hqdefault.jpg" 
+              alt="Watch: How to use glucagon"
+              style="width: 100%; height: auto; display: block;"
+            />
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background-color: rgba(255, 0, 0, 0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+              <div style="width: 0; height: 0; border-left: 18px solid white; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 8px; color: #065fd4; font-size: 14px;">Tap to watch on YouTube</p>
+          </a>
           <p>
             <strong>ALWAYS</strong> turn your child on their side and call 911
             after glucagon is given. Call your provider's office after the blood
