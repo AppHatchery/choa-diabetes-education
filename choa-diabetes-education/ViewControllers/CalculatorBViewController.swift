@@ -41,6 +41,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     var insulinForFoodBoolean = false
     var highBloodSugarOnly = false
     
+    private var isUserEditingFields = false
+    private var didEditTargetDuringSession = false
+    private var didEditCorrectionDuringSession = false
+    private var originalTargetText: String?
+    private var originalCorrectionText: String?
+    
     private let constantsManager = CalculatorConstantsManager.shared
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -90,6 +96,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             txtField.delegate = self
         }
         
+        bloodSugarField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        correctionFactorField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        
+        bloodSugarField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        correctionFactorField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        
+        targetBloodSugarField.addTarget(self, action: #selector(trackTargetEditingChanged(_:)), for: .editingChanged)
+        correctionFactorField.addTarget(self, action: #selector(trackCorrectionEditingChanged(_:)), for: .editingChanged)
+        
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         bloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
@@ -136,36 +153,96 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         updateSeeResultAccessoryIfNeeded()
     }
     
+    @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
+        isUserEditingFields = true
+        if sender === targetBloodSugarField {
+            originalTargetText = targetBloodSugarField.text
+            didEditTargetDuringSession = false
+            targetBloodSugarField.text = ""
+        } else if sender === correctionFactorField {
+            originalCorrectionText = correctionFactorField.text
+            didEditCorrectionDuringSession = false
+            correctionFactorField.text = ""
+        }
+    }
+
+    @objc private func textFieldEditingDidEnd(_ sender: UITextField) {
+        isUserEditingFields = false
+        if sender === targetBloodSugarField {
+            // If nothing was edited, restore stored constant if available, else original text
+            if didEditTargetDuringSession == false {
+                if constantsManager.hasStoredConstants {
+                    let constants = constantsManager.getConstants()
+                    if constants.targetBloodSugar > 0 {
+                        targetBloodSugar = constants.targetBloodSugar
+                        targetBloodSugarField.text = String(constants.targetBloodSugar)
+                    } else {
+                        targetBloodSugarField.text = originalTargetText
+                    }
+                } else {
+                    targetBloodSugarField.text = originalTargetText
+                }
+            }
+        } else if sender === correctionFactorField {
+            if didEditCorrectionDuringSession == false {
+                if constantsManager.hasStoredConstants {
+                    let constants = constantsManager.getConstants()
+                    if constants.correctionFactor > 0 {
+                        correctionFactor = constants.correctionFactor
+                        correctionFactorField.text = String(constants.correctionFactor)
+                    } else {
+                        correctionFactorField.text = originalCorrectionText
+                    }
+                } else {
+                    correctionFactorField.text = originalCorrectionText
+                }
+            }
+        }
+    }
+    
+    @objc private func trackTargetEditingChanged(_ sender: UITextField) {
+        didEditTargetDuringSession = true
+    }
+
+    @objc private func trackCorrectionEditingChanged(_ sender: UITextField) {
+        didEditCorrectionDuringSession = true
+    }
+    
     @objc private func editButtonTapped() {
         performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
     }
     
     private func loadStoredConstants() {
-        if constantsManager.hasStoredConstants {
-            let constants = constantsManager.getConstants()
-            
-            // NOTE: This updates the UI (text fields to be exact) with stored constants
-            
-            if constants.targetBloodSugar > 0 {
-                targetBloodSugar = constants.targetBloodSugar
-                targetBloodSugarField.text = String(constants.targetBloodSugar)
-            }
-            
-            if constants.correctionFactor > 0 {
-                correctionFactor = constants.correctionFactor
-                correctionFactorField.text = String(constants.correctionFactor)
-            }
-            
-            // Call calculateFoodInsulin if all required values are present
-            if constants.carbRatio > 0 || constants.targetBloodSugar > 0 || constants.correctionFactor > 0 {
-                calculateFoodInsulin()
-            }
+        // Do not auto-fill while the user is actively editing/clearing
+        if isUserEditingFields || targetBloodSugarField.isFirstResponder || correctionFactorField.isFirstResponder {
+            return
+        }
+
+        guard constantsManager.hasStoredConstants else { return }
+        let constants = constantsManager.getConstants()
+
+        // Only populate if the field is currently empty AND not previously set by the user in this session
+        if (targetBloodSugarField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+           constants.targetBloodSugar > 0 {
+            targetBloodSugar = constants.targetBloodSugar
+            targetBloodSugarField.text = String(constants.targetBloodSugar)
+        }
+
+        if (correctionFactorField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+           constants.correctionFactor > 0 {
+            correctionFactor = constants.correctionFactor
+            correctionFactorField.text = String(constants.correctionFactor)
+        }
+
+        // Recalculate if we have enough info
+        if totalCarbs > 0 && carbRatio > 0 {
+            calculateFoodInsulin()
         }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("should begin tediting")
-        textField.text = ""
+        // Removed clearing text to respect user input
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -469,23 +546,46 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         var currentTargetBloodSugar = targetBloodSugar
         var currentCorrectionFactor = correctionFactor
 
-        // Fallback to stored constants if fields are empty
-        if constantsManager.hasStoredConstants {
+        // Fallback to stored constants only when user is not editing AND fields are empty
+        if !isUserEditingFields,
+           !targetBloodSugarField.isFirstResponder,
+           !correctionFactorField.isFirstResponder,
+           constantsManager.hasStoredConstants {
             let constants = constantsManager.getConstants()
 
-            if currentTargetBloodSugar == 0, constants.targetBloodSugar > 0 {
+            if currentTargetBloodSugar == 0,
+               (targetBloodSugarField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+               constants.targetBloodSugar > 0 {
                 currentTargetBloodSugar = constants.targetBloodSugar
                 targetBloodSugar = constants.targetBloodSugar
                 targetBloodSugarField.text = String(constants.targetBloodSugar)
             }
 
-            if currentCorrectionFactor == 0, constants.correctionFactor > 0 {
+            if currentCorrectionFactor == 0,
+               (correctionFactorField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+               constants.correctionFactor > 0 {
                 currentCorrectionFactor = constants.correctionFactor
                 correctionFactor = constants.correctionFactor
                 correctionFactorField.text = String(constants.correctionFactor)
             }
         }
 
+        // If current blood sugar is below target, show warning and do not calculate
+        if currentBloodSugar > 0 && currentTargetBloodSugar > 0 && currentBloodSugar < currentTargetBloodSugar {
+            // Show results container with warning state
+            UIView.animate(withDuration: 0.2) {
+                self.resultsView.isHidden = false
+            }
+            insulinForHighBloodSugar.text = "No insulin needed if current blood sugar is below target."
+            insulinForHighBloodSugar.font = .gothamRoundedMedium18
+            insulinForHighBloodSugar.textColor = .orangeTextColor
+            bloodSugarLine.backgroundColor = .orangeTextColor
+            bloodSugarLabel.textColor = .orangeTextColor
+            bloodSugarField.textColor = .orangeTextColor
+            updateSeeResultAccessoryIfNeeded()
+            return
+        }
+        
         // Only calculate if all required values are present
         if currentBloodSugar != 0 && currentTargetBloodSugar != 0 && currentCorrectionFactor != 0 {
             UIView.animate(withDuration: 0.2) {
@@ -506,15 +606,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.text = "\(bloodInsulin.cleanString) units"
                 insulinForHighBloodSugar.font = .gothamRoundedMedium32
                 insulinForHighBloodSugar.textColor = .primaryBlue
-            } else {
-                insulinForHighBloodSugar.text = "No insulin needed if current blood sugar is below target."
-                insulinForHighBloodSugar.font = .gothamRoundedMedium18
-                insulinForHighBloodSugar.textColor = .orangeTextColor
-                bloodSugarLine.backgroundColor = .orangeTextColor
-                bloodSugarLabel.textColor = .orangeTextColor
             }
-            
-            updateSeeResultAccessoryIfNeeded()
         } else {
             resultsView.isHidden = true
         }
@@ -531,3 +623,4 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
      */
     
 }
+
