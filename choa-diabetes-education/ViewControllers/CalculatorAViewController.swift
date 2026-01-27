@@ -63,6 +63,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = .black
+        
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
         config.image = UIImage(named: "edit_pencil")
