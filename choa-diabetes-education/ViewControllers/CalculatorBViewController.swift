@@ -151,6 +151,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculatorDidUpdateConstants()
         setupTappableInfoButtons()
         updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
     }
     
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
@@ -291,6 +292,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         //            nextButton.isEnabled = false
         //        }
         updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -356,6 +358,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
     }
     
+    private func updateNextButtonState() {
+        // Disable Next if both values are present and blood sugar is below target
+        let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let currentTargetValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        let shouldDisable = currentBloodSugarValue > 0 && currentTargetValue > 0 && currentBloodSugarValue < currentTargetValue
+        nextButton.isEnabled = !shouldDisable
+        nextButton.alpha = shouldDisable ? 0.5 : 1.0
+    }
+    
     @objc private func textFieldsDidChange(_ sender: UITextField) {
         // Update backing values in real time
         if sender == bloodSugarField {
@@ -365,6 +376,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
         
         if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
@@ -583,6 +595,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             bloodSugarLabel.textColor = .orangeTextColor
             bloodSugarField.textColor = .orangeTextColor
             updateSeeResultAccessoryIfNeeded()
+            updateNextButtonState()
             return
         }
         
@@ -606,6 +619,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.text = "\(bloodInsulin.cleanString) units"
                 insulinForHighBloodSugar.font = .gothamRoundedMedium32
                 insulinForHighBloodSugar.textColor = .primaryBlue
+                updateNextButtonState()
             }
         } else {
             resultsView.isHidden = true

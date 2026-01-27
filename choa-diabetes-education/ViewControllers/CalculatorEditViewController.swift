@@ -27,6 +27,8 @@ class CalculatorEditViewController: UIViewController {
     
     weak var delegate: CalculatorEditDelegate?
     
+    private var originalViewHeight: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +46,11 @@ class CalculatorEditViewController: UIViewController {
         
         setupTrailingText()
         loadStoredConstants()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        originalViewHeight = view.frame.height
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,6 +205,61 @@ class CalculatorEditViewController: UIViewController {
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+              let window = view.window else { return }
+
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
+
+        // Convert keyboard frame to view's coordinate space
+        let keyboardFrameInView = view.convert(keyboardFrameEnd, from: window.screen.coordinateSpace)
+        let intersection = view.bounds.intersection(keyboardFrameInView)
+        let overlapHeight = intersection.height
+
+        if originalViewHeight == 0 { originalViewHeight = view.frame.height }
+
+        if overlapHeight > 0 {
+            var newFrame = view.frame
+            newFrame.size.height = max(originalViewHeight - overlapHeight, 0)
+            UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
+                self.view.frame = newFrame
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            if originalViewHeight > 0 {
+                var restored = view.frame
+                restored.size.height = originalViewHeight
+                view.frame = restored
+            }
+            return
+        }
+        
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
+
+        if originalViewHeight > 0 {
+            var restored = view.frame
+            restored.size.height = originalViewHeight
+            UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
+                self.view.frame = restored
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -209,3 +271,4 @@ class CalculatorEditViewController: UIViewController {
     }
     */
 }
+
