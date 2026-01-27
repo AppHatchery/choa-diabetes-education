@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Pendo
 
 protocol FinalStepWithReminderViewProtocol: AnyObject {
 	func didSelectExitAction()
@@ -578,6 +579,18 @@ class FinalStepWithReminderView: UIView {
             }
             
             questionnaireManager.skipFirstReminder(true)
+            
+            // Pendo: Track when user skips an existing reminder before it elapses
+            PendoManager.shared().track(
+                "Reminder Skip",
+                properties: [
+                    "source": "FinalStepWithReminderView",
+                    "action": "Skip This Reminder",
+                    "reminderId": existingId,
+                    "testType": questionnaireManager.currentTestType == .insulinShots ? "insulinShots" : (questionnaireManager.iLetPump ? "pump_iLet" : "pump"),
+                    "iLetPump": questionnaireManager.iLetPump
+                ]
+            )
             
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
