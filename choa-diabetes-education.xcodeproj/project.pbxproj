@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
+		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
+		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
 		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
@@ -140,15 +142,6 @@
 		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
 		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
-		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
-		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
-		8EEF57802A900E98009BF5E7 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */; };
-		D41D46902984172300825100 /* blood_units.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D46892984172300825100 /* blood_units.png */; };
-		D41D46912984172300825100 /* dairy_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468A2984172300825100 /* dairy_2.png */; };
-		D41D46922984172300825100 /* dairy_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468B2984172300825100 /* dairy_2x.png */; };
-		D41D46942984172300825100 /* dairy.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468D2984172300825100 /* dairy.png */; };
-		D41D46952984172300825100 /* additional_foods.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468E2984172300825100 /* additional_foods.png */; };
-		D41D46962984172300825100 /* correctionFormulaBox.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D468F2984172300825100 /* correctionFormulaBox.png */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -159,44 +152,12 @@
 		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
 		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
 		D432FDD02981CFF8003D2657 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D432FDCF2981CFF8003D2657 /* Pendo */; };
-		D450EC0D28C1158A0015D823 /* blood_sugar_monitoring.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */; };
-		D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */; };
-		D450EC0F28C1158A0015D823 /* how_to_count_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0028C115880015D823 /* how_to_count_carbs.html */; };
-		D450EC1028C1158A0015D823 /* insulin.png in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0128C115880015D823 /* insulin.png */; };
-		D450EC1128C1158A0015D823 /* types_of_food.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0228C115880015D823 /* types_of_food.html */; };
-		D450EC1328C1158A0015D823 /* treatment_for_low_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0428C115880015D823 /* treatment_for_low_blood_sugar.html */; };
-		D450EC1428C1158A0015D823 /* insulin.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0528C115890015D823 /* insulin.html */; };
 		D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0628C115890015D823 /* cabs_counting_apps.html */; };
-		D450EC1628C1158A0015D823 /* blood_sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0728C115890015D823 /* blood_sugar.png */; };
-		D450EC1728C1158A0015D823 /* check_for_ketones.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0828C115890015D823 /* check_for_ketones.html */; };
 		D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */; };
-		D450EC1928C1158A0015D823 /* youtube_video.png in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0A28C115890015D823 /* youtube_video.png */; };
-		D450EC1A28C1158A0015D823 /* nutrition_facts.png in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0B28C1158A0015D823 /* nutrition_facts.png */; };
-		D450EC1B28C1158A0015D823 /* how_to_give_insulin_shot.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0C28C1158A0015D823 /* how_to_give_insulin_shot.html */; };
-		D4684AA2290B0B6600E7311B /* biscuits.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A8E290B0B6400E7311B /* biscuits.png */; };
-		D4684AA3290B0B6600E7311B /* rice.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A8F290B0B6500E7311B /* rice.png */; };
-		D4684AA4290B0B6600E7311B /* low_carbs.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A90290B0B6500E7311B /* low_carbs.png */; };
-		D4684AA5290B0B6600E7311B /* fats_and_oils.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A91290B0B6500E7311B /* fats_and_oils.png */; };
 		D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A92290B0B6500E7311B /* dessert_and_treats.png */; };
-		D4684AA7290B0B6600E7311B /* maffin.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A93290B0B6500E7311B /* maffin.png */; };
-		D4684AA8290B0B6600E7311B /* fruit_and_fruit_juice.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A94290B0B6500E7311B /* fruit_and_fruit_juice.png */; };
-		D4684AA9290B0B6600E7311B /* non-starchy_veggetables.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A95290B0B6500E7311B /* non-starchy_veggetables.png */; };
-		D4684AAA290B0B6600E7311B /* taco.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A96290B0B6500E7311B /* taco.png */; };
-		D4684AAB290B0B6600E7311B /* pasta.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A97290B0B6500E7311B /* pasta.png */; };
-		D4684AAD290B0B6600E7311B /* milk_and_yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A99290B0B6500E7311B /* milk_and_yogurt.png */; };
-		D4684AAE290B0B6600E7311B /* pizza.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9A290B0B6500E7311B /* pizza.png */; };
-		D4684AAF290B0B6600E7311B /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9B290B0B6600E7311B /* bread.png */; };
-		D4684AB0290B0B6600E7311B /* burger.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9C290B0B6600E7311B /* burger.png */; };
-		D4684AB1290B0B6600E7311B /* meat_and_proteins.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9D290B0B6600E7311B /* meat_and_proteins.png */; };
-		D4684AB2290B0B6600E7311B /* bread,_cereal_rice_pasta.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9E290B0B6600E7311B /* bread,_cereal_rice_pasta.png */; };
-		D4684AB3290B0B6600E7311B /* know_your_carbs.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A9F290B0B6600E7311B /* know_your_carbs.png */; };
-		D4684AB4290B0B6600E7311B /* cheese_and_eggs.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684AA0290B0B6600E7311B /* cheese_and_eggs.png */; };
-		D4684AB5290B0B6600E7311B /* cereal.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684AA1290B0B6600E7311B /* cereal.png */; };
 		D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */; };
 		D4684ABB290B0B7B00E7311B /* low_carb_snack_combinations.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */; };
 		D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB8290B0B7B00E7311B /* know_your_carbs.html */; };
-		D4684ABD290B0B7B00E7311B /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB9290B0B7B00E7311B /* foods_that_raise_blood_sugar.html */; };
-		D4684AC1290B208000E7311B /* starchy_vegetables.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684AC0290B208000E7311B /* starchy_vegetables.png */; };
 		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
@@ -223,7 +184,6 @@
 		D48167C328AC00C8003B14A3 /* QuizTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48167C128AC00C8003B14A3 /* QuizTableViewCell.xib */; };
 		D48167C528ACFB40003B14A3 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48167C428ACFB40003B14A3 /* Content.swift */; };
 		D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48167C728AD0396003B14A3 /* ChapterViewController.swift */; };
-		D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */ = {isa = PBXBuildFile; fileRef = D48167F328AD38FF003B14A3 /* gotham-rounded */; };
 		D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F0289C0043001A61E2 /* AppDelegate.swift */; };
 		D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F2289C0043001A61E2 /* SceneDelegate.swift */; };
 		D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88F6289C0043001A61E2 /* Main.storyboard */; };
@@ -231,9 +191,6 @@
 		D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */; };
 		D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */; };
 		D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */; };
-		D48D891E289C1A30001A61E2 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */; };
-		D48D891F289C1A30001A61E2 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */; };
-		D48D8920289C1A30001A61E2 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */; };
 		D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */; };
 		D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8923289C214F001A61E2 /* HandbookViewController.swift */; };
 		D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8925289C215C001A61E2 /* CalculatorViewController.swift */; };
@@ -260,7 +217,6 @@
 		D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */; };
 		D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */; };
 		D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */; };
-		D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */; };
 		D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
 		D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */; };
 		D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
@@ -296,6 +252,8 @@
 /* Begin PBXFileReference section */
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
+		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
+		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
 		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
@@ -426,9 +384,6 @@
 		B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithReminderView.xib; sourceTree = "<group>"; };
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
-		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
-		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
-		8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GothamRoundedMedium.ttf; path = "font/gotham-rounded/GothamRoundedMedium.ttf"; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -445,20 +400,12 @@
 		D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMultipleAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizMultipleAnswer.xib; sourceTree = "<group>"; };
 		D432FDD12981D055003D2657 /* -Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "-Bridging-Header.h"; sourceTree = "<group>"; };
-		D450EBFE28C115880015D823 /* blood_sugar_monitoring.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = blood_sugar_monitoring.html; sourceTree = "<group>"; };
-		D450EBFF28C115880015D823 /* when_to_call_diabetes_doctor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = when_to_call_diabetes_doctor.html; sourceTree = "<group>"; };
-		D450EC0028C115880015D823 /* how_to_count_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_count_carbs.html; sourceTree = "<group>"; };
 		D450EC0128C115880015D823 /* insulin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = insulin.png; sourceTree = "<group>"; };
-		D450EC0228C115880015D823 /* types_of_food.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = types_of_food.html; sourceTree = "<group>"; };
-		D450EC0428C115880015D823 /* treatment_for_low_blood_sugar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = treatment_for_low_blood_sugar.html; sourceTree = "<group>"; };
-		D450EC0528C115890015D823 /* insulin.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = insulin.html; sourceTree = "<group>"; };
 		D450EC0628C115890015D823 /* cabs_counting_apps.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cabs_counting_apps.html; sourceTree = "<group>"; };
 		D450EC0728C115890015D823 /* blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_sugar.png; sourceTree = "<group>"; };
-		D450EC0828C115890015D823 /* check_for_ketones.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = check_for_ketones.html; sourceTree = "<group>"; };
 		D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_calculate_insulin_dosing.html; sourceTree = "<group>"; };
 		D450EC0A28C115890015D823 /* youtube_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_video.png; sourceTree = "<group>"; };
 		D450EC0B28C1158A0015D823 /* nutrition_facts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nutrition_facts.png; sourceTree = "<group>"; };
-		D450EC0C28C1158A0015D823 /* how_to_give_insulin_shot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_give_insulin_shot.html; sourceTree = "<group>"; };
 		D4684A8E290B0B6400E7311B /* biscuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biscuits.png; sourceTree = "<group>"; };
 		D4684A8F290B0B6500E7311B /* rice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rice.png; sourceTree = "<group>"; };
 		D4684A90290B0B6500E7311B /* low_carbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_carbs.png; sourceTree = "<group>"; };
@@ -481,7 +428,6 @@
 		D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "foods_that_don't_raise_blood_sugar.html"; sourceTree = "<group>"; };
 		D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = low_carb_snack_combinations.html; sourceTree = "<group>"; };
 		D4684AB8290B0B7B00E7311B /* know_your_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = know_your_carbs.html; sourceTree = "<group>"; };
-		D4684AB9290B0B7B00E7311B /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		D4684AC0290B208000E7311B /* starchy_vegetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starchy_vegetables.png; sourceTree = "<group>"; };
 		D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treatment-low-blood-sugar.png"; sourceTree = "<group>"; };
 		D481679628ABBCCC003B14A3 /* OrientationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHeader.swift; sourceTree = "<group>"; };
@@ -509,7 +455,6 @@
 		D48167C128AC00C8003B14A3 /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
 		D48167C428ACFB40003B14A3 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		D48167C728AD0396003B14A3 /* ChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewController.swift; sourceTree = "<group>"; };
-		D48167F328AD38FF003B14A3 /* gotham-rounded */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "gotham-rounded"; sourceTree = "<group>"; };
 		D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "choa-diabetes-education.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48D88F0289C0043001A61E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48D88F2289C0043001A61E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -549,7 +494,6 @@
 		D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
 		D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium.otf"; sourceTree = "<group>"; };
 		D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
 		D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
 		D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
@@ -743,9 +687,6 @@
 				B4DBE86F2F10F3150075C7F3 /* will_nutrition_food.png */,
 				B4DBE8702F10F3150075C7F3 /* will_taking_pill.png */,
 				D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */,
-				D42E16C529CA15C6002D623E /* storage-of-insulin.png */,
-				D4E4954829B78D720016552D /* when_to_check_blood_sugar.png */,
-				D4E4954929B78D720016552D /* steps_to_test_blood_sugar.png */,
 				D41D468E2984172300825100 /* additional_foods.png */,
 				D41D46892984172300825100 /* blood_units.png */,
 				D41D468F2984172300825100 /* correctionFormulaBox.png */,
@@ -757,17 +698,12 @@
 				D4684A9E290B0B6600E7311B /* bread,_cereal_rice_pasta.png */,
 				D4684A9B290B0B6600E7311B /* bread.png */,
 				D4684A9C290B0B6600E7311B /* burger.png */,
-				D4EEB6A529142EAE001E05A2 /* carbs_image.png */,
 				D4684AA1290B0B6600E7311B /* cereal.png */,
 				D4684AA0290B0B6600E7311B /* cheese_and_eggs.png */,
 				D4684A92290B0B6500E7311B /* dessert_and_treats.png */,
-				D4EEB6A829142EF3001E05A2 /* diabetes-type-1.png */,
-				D4EEB6A729142EF2001E05A2 /* diabetes-type-2.png */,
-				D4EEB6A129142E74001E05A2 /* nutritionscroll.png */,
 				D4684AC0290B208000E7311B /* starchy_vegetables.png */,
 				D4684A91290B0B6500E7311B /* fats_and_oils.png */,
 				D4684A94290B0B6500E7311B /* fruit_and_fruit_juice.png */,
-				D48167F728AD394C003B14A3 /* glucose.png */,
 				D450EC0128C115880015D823 /* insulin.png */,
 				D4684A9F290B0B6600E7311B /* know_your_carbs.png */,
 				D4684A90290B0B6500E7311B /* low_carbs.png */,
@@ -809,7 +745,6 @@
 				D4DFF2F52A8E734000CAEEF7 /* Nunito */,
 				D492A89B29088CA700B98CA3 /* Acme */,
 				D492A89929088C9A00B98CA3 /* Irish_Grover */,
-				D48167F328AD38FF003B14A3 /* gotham-rounded */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -820,6 +755,7 @@
 				D48D88EF289C0043001A61E2 /* choa-diabetes-education */,
 				D48D88EE289C0043001A61E2 /* Products */,
 				D4A511692982F8C00049A8D8 /* Frameworks */,
+				D498B7722F32AA6300A80478 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -976,14 +912,12 @@
 				D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */,
 				D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */,
 				D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */,
-				D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */,
 				D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */,
 				D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */,
 				D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */,
 				D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */,
 				D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */,
 				D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */,
-				8EEF577F2A900E98009BF5E7 /* GothamRoundedMedium.ttf */,
 				D48D88FC289C0045001A61E2 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -998,6 +932,18 @@
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D498B7722F32AA6300A80478 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D450EC0628C115890015D823 /* cabs_counting_apps.html */,
+				D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */,
+				D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */,
+				D4684AB8290B0B7B00E7311B /* know_your_carbs.html */,
+				D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		D4A511692982F8C00049A8D8 /* Frameworks */ = {
@@ -1199,7 +1145,6 @@
 				B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */,
 				B4DBE8632F10E75F0075C7F3 /* will_insulin_meter_standing.png in Resources */,
 				B4AB10D22F0EDBF300F74329 /* will_eating_carbs.png in Resources */,
-				D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */,
 				B4AB10D62F0EDC1900F74329 /* hope_thinking.png in Resources */,
 				D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */,
 				B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */,
@@ -1225,9 +1170,6 @@
 				B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */,
 				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
 				D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */,
-				D42E16C629CA15C6002D623E /* storage-of-insulin.png in Resources */,
-				D450EC0E28C1158A0015D823 /* when_to_call_diabetes_doctor.html in Resources */,
-				D4C39B3128B7DA22003CCA14 /* whatisdiabetes.html in Resources */,
 				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
 				D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
@@ -1255,8 +1197,6 @@
 				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
 				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				B4AB10B42F0E90AB00F74329 /* hope_excessive_thirst.png in Resources */,
-				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
-				8EEF57802A900E98009BF5E7 /* GothamRoundedMedium.ttf in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				B4DBE83D2F1024590075C7F3 /* 1_5_2_steps_to_check_ketones.html in Resources */,
 				B4DBE85B2F105D340075C7F3 /* 2_2_1_how_to_count_carbs.html in Resources */,
@@ -1308,7 +1248,6 @@
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
 				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
-				D4EEB6A629142EAE001E05A2 /* carbs_image.png in Resources */,
 				D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
