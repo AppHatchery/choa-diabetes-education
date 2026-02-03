@@ -185,7 +185,6 @@
 		D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88FE289C0045001A61E2 /* LaunchScreen.storyboard */; };
 		D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */; };
 		D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */; };
-		D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */; };
 		D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8923289C214F001A61E2 /* HandbookViewController.swift */; };
 		D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8925289C215C001A61E2 /* CalculatorViewController.swift */; };
 		D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492A88F28F8E2A000B98CA3 /* SearchView.swift */; };
@@ -212,11 +211,7 @@
 		D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */; };
 		D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */; };
 		D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
-		D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */; };
 		D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
-		D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */; };
-		D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */; };
-		D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */; };
 		D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */; };
 		D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC906E28BFB9ED00CD2831 /* AppsView.swift */; };
 		D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EC907028BFB9F800CD2831 /* AppsView.xib */; };
@@ -450,10 +445,6 @@
 		D48D88FC289C0045001A61E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48D88FF289C0045001A61E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48D8901289C0045001A61E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
-		D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
-		D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
-		D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
 		D48D8915289C0365001A61E2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8923289C214F001A61E2 /* HandbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbookViewController.swift; sourceTree = "<group>"; };
@@ -482,10 +473,6 @@
 		D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
 		D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
-		D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
-		D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
-		D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
 		D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4EC906E28BFB9ED00CD2831 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		D4EC907028BFB9F800CD2831 /* AppsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsView.xib; sourceTree = "<group>"; };
@@ -894,16 +881,8 @@
 				D48167DA28AD35F1003B14A3 /* css */,
 				D48167D528AD35BB003B14A3 /* images */,
 				D48167C628AD02D3003B14A3 /* pages */,
-				D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */,
-				D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */,
-				D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */,
-				D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */,
 				D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */,
 				D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */,
-				D48D8910289C02D0001A61E2 /* Gotham Rounded Bold.otf */,
-				D48D8913289C02D0001A61E2 /* Gotham Rounded Light Italic.otf */,
-				D48D890F289C02D0001A61E2 /* Gotham Rounded Light.otf */,
-				D48D8911289C02D0001A61E2 /* Gotham Rounded Medium Italic.otf */,
 				D48D88FC289C0045001A61E2 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -1139,7 +1118,6 @@
 				D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */,
 				D4C39B3128B7DA22003CCA14 /* 1_1_1_whatisdiabetes.html in Resources */,
 				B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */,
-				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
 				B4DBE7FD2F0FD6B10075C7F3 /* 1_2_2_steps_to_check_bg.html in Resources */,
 				B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */,
@@ -1175,7 +1153,6 @@
 				B4A61FA72E859FCF0079B276 /* InfoPopUpViewController.xib in Resources */,
 				D492A8982901D67900B98CA3 /* SearchResultTableViewCell.xib in Resources */,
 				D492A89228F8E2A900B98CA3 /* SearchView.xib in Resources */,
-				D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */,
 				B4DBE87F2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html in Resources */,
 				B4AB10CE2F0E976C00F74329 /* hope_frequent_urination.png in Resources */,
 				D48D88FD289C0045001A61E2 /* Assets.xcassets in Resources */,
@@ -1186,13 +1163,11 @@
 				B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */,
 				B4DBE8012F0FD8000075C7F3 /* will_sleeping.png in Resources */,
 				B4DBE8372F1012C40075C7F3 /* 1_4_2_with_syringe_and_vial.html in Resources */,
-				D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */,
 				B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */,
 				B4DBE8032F0FD8240075C7F3 /* will_basketball.png in Resources */,
 				B4DBE8352F100F290075C7F3 /* 1_4_1_with_pen.html in Resources */,
 				B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
-				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */,
 				B4AB10DA2F0EDC3D00F74329 /* hope_steroids.png in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,

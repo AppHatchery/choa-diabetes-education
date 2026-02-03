@@ -14,13 +14,13 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
-        </array>
         <array key="Gotham Rounded Light.otf">
             <string>GothamRounded-Light</string>
         </array>
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedBold.ttf">
+            <string>GothamRounded-Bold</string>
+        </array>
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
@@ -560,7 +560,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mRv-Cw-I5N">
-                        <barButtonItem key="rightBarButtonItem" image="close_black" style="plain" id="PbW-xZ-1J7">
+                        <barButtonItem key="rightBarButtonItem" image="close_black" style="done" id="PbW-xZ-1J7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backToChapterList:" destination="Avd-Xd-AEL" id="Nmw-5J-6cI"/>
@@ -713,7 +713,7 @@
                                 <rect key="frame" x="24" y="56" width="327" height="446"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q1: What is Diabetes?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sU-kF-DEv">
-                                        <rect key="frame" x="20" y="32" width="220" height="20"/>
+                                        <rect key="frame" x="20" y="32" width="219.5" height="20"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -723,7 +723,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check all that apply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSn-nV-nc6">
-                                        <rect key="frame" x="20" y="70" width="220" height="16.5"/>
+                                        <rect key="frame" x="20" y="70" width="219.5" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
@@ -875,11 +875,11 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6X-Wt-jw2">
-                                <rect key="frame" x="0.0" y="88" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="132" width="375" height="511"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4s-g3-KKK">
-                                <rect key="frame" x="48" y="66" width="318" height="39"/>
+                                <rect key="frame" x="48" y="86" width="279" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="O3e-vC-u5b"/>
                                 </constraints>
@@ -914,6 +914,12 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="a8F-CO-kRR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="FkA-Qo-2Fz"/>
+                                <exclude reference="Mbn-YL-mCs"/>
+                                <exclude reference="U6Q-Dh-zK4"/>
+                                <exclude reference="Uqn-aO-Lb6"/>
                             </mask>
                         </variation>
                     </view>
@@ -1995,6 +2001,14 @@ Self-Management</string>
                                 <exclude reference="TEr-c2-lpd"/>
                                 <exclude reference="Vcu-YA-KxU"/>
                             </mask>
+                            <mask key="constraints">
+                                <exclude reference="HHT-4O-qcb"/>
+                                <exclude reference="r2t-oH-f5g"/>
+                                <exclude reference="n6j-Ee-4DS"/>
+                                <exclude reference="y98-fi-F8b"/>
+                                <exclude reference="xWQ-Ba-G44"/>
+                                <exclude reference="Rds-LA-Ync"/>
+                            </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
@@ -2022,7 +2036,7 @@ Self-Management</string>
         <segue reference="3yE-9v-cRW"/>
         <segue reference="L1W-07-Vpb"/>
         <segue reference="CS3-6i-fi4"/>
-        <segue reference="bnL-Lw-gUg"/>
+        <segue reference="ted-C5-uD1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>

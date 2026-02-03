@@ -32,9 +32,8 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
         
         // TEST: Probably could set up unit tests to make sure the content loads properly
         if let htmlURL = Bundle.main.url(forResource: contentURL, withExtension: "html") {
-            // Grant read access to the Assets directory so CSS, JS, and other resources can be loaded
-            let assetsURL = Bundle.main.bundleURL.appendingPathComponent("Assets")
-            webView.loadFileURL(htmlURL, allowingReadAccessTo: assetsURL)
+            // Grant read access to the entire bundle so CSS, JS, fonts, and other resources can be loaded
+            webView.loadFileURL(htmlURL, allowingReadAccessTo: Bundle.main.bundleURL)
         }
         // Potentially opening up a webview to display the AboutPage
     }
