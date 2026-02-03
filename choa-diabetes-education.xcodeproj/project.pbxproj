@@ -152,12 +152,6 @@
 		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
 		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
 		D432FDD02981CFF8003D2657 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D432FDCF2981CFF8003D2657 /* Pendo */; };
-		D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0628C115890015D823 /* cabs_counting_apps.html */; };
-		D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */ = {isa = PBXBuildFile; fileRef = D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */; };
-		D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */ = {isa = PBXBuildFile; fileRef = D4684A92290B0B6500E7311B /* dessert_and_treats.png */; };
-		D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */; };
-		D4684ABB290B0B7B00E7311B /* low_carb_snack_combinations.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */; };
-		D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */ = {isa = PBXBuildFile; fileRef = D4684AB8290B0B7B00E7311B /* know_your_carbs.html */; };
 		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
@@ -401,16 +395,13 @@
 		D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizMultipleAnswer.xib; sourceTree = "<group>"; };
 		D432FDD12981D055003D2657 /* -Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "-Bridging-Header.h"; sourceTree = "<group>"; };
 		D450EC0128C115880015D823 /* insulin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = insulin.png; sourceTree = "<group>"; };
-		D450EC0628C115890015D823 /* cabs_counting_apps.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = cabs_counting_apps.html; sourceTree = "<group>"; };
 		D450EC0728C115890015D823 /* blood_sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_sugar.png; sourceTree = "<group>"; };
-		D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = how_to_calculate_insulin_dosing.html; sourceTree = "<group>"; };
 		D450EC0A28C115890015D823 /* youtube_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube_video.png; sourceTree = "<group>"; };
 		D450EC0B28C1158A0015D823 /* nutrition_facts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nutrition_facts.png; sourceTree = "<group>"; };
 		D4684A8E290B0B6400E7311B /* biscuits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biscuits.png; sourceTree = "<group>"; };
 		D4684A8F290B0B6500E7311B /* rice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rice.png; sourceTree = "<group>"; };
 		D4684A90290B0B6500E7311B /* low_carbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_carbs.png; sourceTree = "<group>"; };
 		D4684A91290B0B6500E7311B /* fats_and_oils.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fats_and_oils.png; sourceTree = "<group>"; };
-		D4684A92290B0B6500E7311B /* dessert_and_treats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dessert_and_treats.png; sourceTree = "<group>"; };
 		D4684A93290B0B6500E7311B /* maffin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maffin.png; sourceTree = "<group>"; };
 		D4684A94290B0B6500E7311B /* fruit_and_fruit_juice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_and_fruit_juice.png; sourceTree = "<group>"; };
 		D4684A95290B0B6500E7311B /* non-starchy_veggetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "non-starchy_veggetables.png"; sourceTree = "<group>"; };
@@ -425,9 +416,6 @@
 		D4684A9F290B0B6600E7311B /* know_your_carbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = know_your_carbs.png; sourceTree = "<group>"; };
 		D4684AA0290B0B6600E7311B /* cheese_and_eggs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheese_and_eggs.png; sourceTree = "<group>"; };
 		D4684AA1290B0B6600E7311B /* cereal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cereal.png; sourceTree = "<group>"; };
-		D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "foods_that_don't_raise_blood_sugar.html"; sourceTree = "<group>"; };
-		D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = low_carb_snack_combinations.html; sourceTree = "<group>"; };
-		D4684AB8290B0B7B00E7311B /* know_your_carbs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = know_your_carbs.html; sourceTree = "<group>"; };
 		D4684AC0290B208000E7311B /* starchy_vegetables.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starchy_vegetables.png; sourceTree = "<group>"; };
 		D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treatment-low-blood-sugar.png"; sourceTree = "<group>"; };
 		D481679628ABBCCC003B14A3 /* OrientationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHeader.swift; sourceTree = "<group>"; };
@@ -700,7 +688,6 @@
 				D4684A9C290B0B6600E7311B /* burger.png */,
 				D4684AA1290B0B6600E7311B /* cereal.png */,
 				D4684AA0290B0B6600E7311B /* cheese_and_eggs.png */,
-				D4684A92290B0B6500E7311B /* dessert_and_treats.png */,
 				D4684AC0290B208000E7311B /* starchy_vegetables.png */,
 				D4684A91290B0B6500E7311B /* fats_and_oils.png */,
 				D4684A94290B0B6500E7311B /* fruit_and_fruit_juice.png */,
@@ -755,7 +742,6 @@
 				D48D88EF289C0043001A61E2 /* choa-diabetes-education */,
 				D48D88EE289C0043001A61E2 /* Products */,
 				D4A511692982F8C00049A8D8 /* Frameworks */,
-				D498B7722F32AA6300A80478 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -932,18 +918,6 @@
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		D498B7722F32AA6300A80478 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				D450EC0628C115890015D823 /* cabs_counting_apps.html */,
-				D4684AB7290B0B7B00E7311B /* low_carb_snack_combinations.html */,
-				D450EC0928C115890015D823 /* how_to_calculate_insulin_dosing.html */,
-				D4684AB8290B0B7B00E7311B /* know_your_carbs.html */,
-				D4684AB6290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		D4A511692982F8C00049A8D8 /* Frameworks */ = {
@@ -1150,9 +1124,6 @@
 				B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */,
 				D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */,
 				B4DBE8532F1058D20075C7F3 /* 2_1_1_nutritonal_food_groups.html in Resources */,
-				D4684AA6290B0B6600E7311B /* dessert_and_treats.png in Resources */,
-				D450EC1528C1158A0015D823 /* cabs_counting_apps.html in Resources */,
-				D4684ABB290B0B7B00E7311B /* low_carb_snack_combinations.html in Resources */,
 				8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */,
 				FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */,
 				D48167C328AC00C8003B14A3 /* QuizTableViewCell.xib in Resources */,
@@ -1169,9 +1140,6 @@
 				D4C39B3128B7DA22003CCA14 /* 1_1_1_whatisdiabetes.html in Resources */,
 				B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */,
 				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
-				D450EC1828C1158A0015D823 /* how_to_calculate_insulin_dosing.html in Resources */,
-				D4684ABC290B0B7B00E7311B /* know_your_carbs.html in Resources */,
-				D48D8921289C1A30001A61E2 /* Gotham Rounded Light Italic.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
 				B4DBE7FD2F0FD6B10075C7F3 /* 1_2_2_steps_to_check_bg.html in Resources */,
 				B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */,
@@ -1247,7 +1215,6 @@
 				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
-				D4684ABA290B0B7B00E7311B /* foods_that_don't_raise_blood_sugar.html in Resources */,
 				D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
