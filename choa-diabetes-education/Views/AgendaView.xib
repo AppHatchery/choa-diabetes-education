@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
+        <array key="GothamRoundedBold.ttf">
             <string>GothamRounded-Bold</string>
         </array>
     </customFonts>
@@ -87,8 +87,8 @@
         </view>
     </objects>
     <resources>
-        <image name="agendaFirstDay" width="327" height="440"/>
-        <image name="agendaSecondDay" width="327" height="241"/>
+        <image name="agendaFirstDay" width="981" height="1320"/>
+        <image name="agendaSecondDay" width="981" height="723"/>
         <namedColor name="headingGreenColor">
             <color red="0.030999999493360519" green="0.3059999942779541" blue="0.024000000208616257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="dark light" name="color-scheme">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Title</title>
+    <link href="uikit.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="uk-container">
+    <br>
+    <div>
+        <h3>Symptoms</h3>
+        <ul class="uk-list uk-list-bullet">
+            <li>Low blood sugars can occur suddenly and need to be treated quickly. Be sure to always be prepared and carry your diabetes supplies with you including your blood sugar meter, fast acting carbohydrates and glucagon emergency kit
+            </li>
+            <li>Caregivers should always roll child on their side after glucagon administration because this medicine can induce vomiting
+            </li>
+            <li>Symptoms- shakiness, sweating, dizziness, weakness</li>
+        </ul>
+    </div>
+    <div>
+        <h3>How to treat low blood sugar</h3>
+        <p>When blood sugar is under 70mg/dL ( for younger kids less than 6 it is 80), you need to consume rapid acting carbohydrates to raise blood sugars
+        <ul class="uk-list uk-list-decimal">
+            <li>Treat with 15 grams of rapid acting carbohydrates (examples: 4oz juice, ½ can of
+                regular soda, glucose
+                tabs, gel)
+                <br>
+<!--                <span><a href="#">See food list</a></span></li>-->
+            <li>Recheck blood sugar in 15 minutes- even if your child feels better</li>
+            <li>Eat another 15 grams of rapid acting carbohydrate if blood sugar is still not above
+                70
+            </li>
+            <li>If the blood sugar is above 70, resume you regular routine</li>
+            <li>If after 3 checks your blood sugar level is still below 70, call your doctor</li>
+        </ul>
+        <img alt="how to treat low blood sugar"
+             class="uk-responsive-width uk-margin-small" src="treatment-low-blood-sugar.png">
+    </div>
+    <div>
+        <h3>Glucagon</h3>
+        <ul class="uk-list uk-list-bullet">
+            <li> Used ONLY for severe low blood sugar leading to loss of consciousness or seizure
+            </li>
+            <li> Glucagon isn’t something that is used often, so it’s important to check the
+                expiration of the glucagon
+                you keep in your home and get a new prescription every 12 months to ensure it is
+                within expiration date
+            </li>
+            <li>Natural hormone that signals liver to release sugar into the blood stream<br>
+                <span><a href="https://www.youtube.com/watch?v=cHuyxbYG26g">
+                Demo Video: How to Use a Glucagon Emergency Kit | Cincinnati Children's - YouTube</a></span>
+            </li>
+        </ul>
+        <div class="uk-position-relative">
+            <iframe id="i-frame"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    src="https://www.youtube.com/embed/cHuyxbYG26g"
+                    height="300"
+                    class="uk-width-1-1">
+            </iframe>
+            <div class="uk-position-absolute uk-position-center" id="loader"
+                 uk-spinner="ratio:1.5"></div>
+        </div>
+        <ul class="uk-list uk-list-bullet">
+            <li>ALWAYS turn your child on their side and call 911 after glucagon is given. Call your provider's office after the blood sugar has risen and your child is safe, so your care team can review blood sugars and make insulin adjustments as needed
+            </li>
+        </ul>
+    </div>
+    <div class="uk-flex uk-flex-center uk-margin-xlarge-top uk-margin-xlarge-bottom">
+        <a class="uk-button" href="next">Next</a>
+    </div>
+</div>
+</body>
+<script>
+    window.onload = function () {
+        document.getElementById('loader').style.display = "none";
+    }
+
+</script>
+
+<script src="uikit.js"></script>
+<script src="uikit-icons.js"></script>
+</html>

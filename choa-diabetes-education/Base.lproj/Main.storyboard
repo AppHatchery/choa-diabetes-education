@@ -878,20 +878,38 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="555"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4s-g3-KKK">
+                                <rect key="frame" x="48" y="66" width="318" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="O3e-vC-u5b"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Content"/>
+                                    <segment title="Team"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="choaGreenColor"/>
+                                <connections>
+                                    <action selector="valueChanged:" destination="grA-36-m0Y" eventType="valueChanged" id="VKW-rJ-zEy"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uf6-or-Tqg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="centerX" secondItem="Uf6-or-Tqg" secondAttribute="centerX" id="AMw-zI-Gx4"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="i6X-Wt-jw2" secondAttribute="trailing" id="B52-Xm-1DE"/>
+                            <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="u4s-g3-KKK" secondAttribute="trailing" constant="48" id="Ees-TN-AL5"/>
                             <constraint firstItem="a8F-CO-kRR" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="FkA-Qo-2Fz"/>
+                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="u4s-g3-KKK" secondAttribute="bottom" constant="8" symbolic="YES" id="GBC-mM-YHn"/>
                             <constraint firstItem="GT4-g9-i9q" firstAttribute="top" secondItem="Uf6-or-Tqg" secondAttribute="top" constant="24" id="GYh-0s-mfU"/>
                             <constraint firstItem="GT4-g9-i9q" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="24" id="Gvc-Q9-wXz"/>
                             <constraint firstItem="a8F-CO-kRR" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="24" id="Mbn-YL-mCs"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="bottom" secondItem="i6X-Wt-jw2" secondAttribute="bottom" constant="24" id="Opw-q6-wj4"/>
-                            <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="20" id="TOa-Ow-jVN"/>
                             <constraint firstItem="Uf6-or-Tqg" firstAttribute="trailing" secondItem="a8F-CO-kRR" secondAttribute="trailing" constant="24" id="U6Q-Dh-zK4"/>
                             <constraint firstItem="i6X-Wt-jw2" firstAttribute="top" secondItem="a8F-CO-kRR" secondAttribute="bottom" constant="32" id="Uqn-aO-Lb6"/>
                             <constraint firstItem="i6X-Wt-jw2" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" id="Vht-wY-lQO"/>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="leading" secondItem="Uf6-or-Tqg" secondAttribute="leading" constant="48" id="u2y-cR-5U2"/>
+                            <constraint firstItem="u4s-g3-KKK" firstAttribute="top" secondItem="GT4-g9-i9q" secondAttribute="bottom" constant="18" id="vBV-ZL-QtU"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -902,11 +920,12 @@
                     <connections>
                         <outlet property="aboutTitle" destination="GT4-g9-i9q" id="v51-0O-E8o"/>
                         <outlet property="contentView" destination="i6X-Wt-jw2" id="txd-rs-NaP"/>
+                        <outlet property="segment" destination="u4s-g3-KKK" id="hBB-44-e40"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5R-qk-Sru" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4306" y="-1315"/>
+            <point key="canvasLocation" x="4305.7971014492759" y="-1315.1785714285713"/>
         </scene>
         <!--Resources-->
         <scene sceneID="Ida-lQ-Ok3">

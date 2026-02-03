@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutTeam" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutDescriptionLabel" destination="fgD-xb-aNi" id="9el-3d-Ymx"/>
+                <outlet property="aboutTitle" destination="nK5-qv-5WC" id="cLO-cE-Ppj"/>
+                <outlet property="collaboratorsTextView" destination="6av-R0-n8N" id="57y-WC-ln9"/>
+                <outlet property="collaboratorsTitle" destination="PBg-KZ-C08" id="vOA-LY-Z3D"/>
+                <outlet property="versionNumber" destination="79k-TZ-h6m" id="lSL-QK-xPG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="991"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the AppHatchery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK5-qv-5WC">
+                    <rect key="frame" x="24" y="72" width="345" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="qoz-1I-oqL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collaborators" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBg-KZ-C08">
+                    <rect key="frame" x="24" y="619" width="345" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNT-kL-dRQ">
+                    <rect key="frame" x="24" y="114" width="345" height="117"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="117" id="RnI-PJ-3D6"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="hatchery"/>
+                    <connections>
+                        <action selector="openLink:" destination="-1" eventType="touchUpInside" id="hvf-V9-f1m"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6av-R0-n8N">
+                    <rect key="frame" x="19" y="641" width="350" height="150"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="1ji-6C-GtE"/>
+                    </constraints>
+                    <string key="text">We’d like to give a special mention to the following individuals for contributing their time and expertise in the creation of this app.
+1. Dina Alsalih (scientific illustrations) 
+2. The whole Diabetes Education Team at CHOA led by Anna Albritton</string>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgD-xb-aNi">
+                    <rect key="frame" x="24" y="239" width="345" height="350"/>
+                    <string key="text">The AppHatchery is an interdisciplinary team of researchers, designers, and software developers from Emory University, Georgia Tech, and the Global Health Informatics Institute (in Malawi) funded by the Georgia Clinical and Traslational Science Alliance (Georgia CTSA). They work on bringing research ideas into the general public via mobile and web apps.
+
+The team that built this app includes: Freja Zhang, Innocent Kumwenda, Wiza Munthali, Kennedy Linzie, Naomi Nyama, Comfort Mwalija, Tanishk Deo, Rasika Punde, Morgan Greenleaf, Maren Parsell, and Santiago Arconada Alvarez. </string>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="textColor" name="contentBlackColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emory" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-hb-Ckw">
+                    <rect key="frame" x="19" y="799" width="190" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="190" id="Bbe-eO-b4B"/>
+                        <constraint firstAttribute="height" constant="60" id="KeW-MF-Sjq"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="choa" translatesAutoresizingMaskIntoConstraints="NO" id="TgH-8k-uod">
+                    <rect key="frame" x="19" y="875" width="210" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="1Mr-wO-qRu"/>
+                        <constraint firstAttribute="width" constant="210" id="yLB-K7-BCl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79k-TZ-h6m">
+                    <rect key="frame" x="184" y="943" width="25" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                    <color key="textColor" red="0.3411764706" green="0.34509803919999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="TgH-8k-uod" firstAttribute="leading" secondItem="pSZ-hb-Ckw" secondAttribute="leading" id="0B6-be-a9t"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="top" secondItem="nK5-qv-5WC" secondAttribute="bottom" constant="8" symbolic="YES" id="21m-rh-yHI"/>
+                <constraint firstItem="6av-R0-n8N" firstAttribute="top" secondItem="PBg-KZ-C08" secondAttribute="bottom" id="2I6-qU-pb0"/>
+                <constraint firstItem="nK5-qv-5WC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="2jL-d4-jcI"/>
+                <constraint firstItem="79k-TZ-h6m" firstAttribute="top" secondItem="TgH-8k-uod" secondAttribute="bottom" constant="8" symbolic="YES" id="5jm-GE-igt"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="leading" secondItem="nK5-qv-5WC" secondAttribute="leading" id="AxH-2t-1K5"/>
+                <constraint firstItem="79k-TZ-h6m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DdA-V2-LsS"/>
+                <constraint firstItem="pSZ-hb-Ckw" firstAttribute="leading" secondItem="6av-R0-n8N" secondAttribute="leading" id="J5j-Ii-IRJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" constant="24" id="KlR-Tm-KLG"/>
+                <constraint firstItem="PBg-KZ-C08" firstAttribute="top" secondItem="fgD-xb-aNi" secondAttribute="bottom" constant="30" id="PO5-DT-MDe"/>
+                <constraint firstItem="sNT-kL-dRQ" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="PyA-5u-wME"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="top" secondItem="sNT-kL-dRQ" secondAttribute="bottom" constant="8" symbolic="YES" id="RdD-e7-Sel"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="trailing" secondItem="nK5-qv-5WC" secondAttribute="trailing" id="azz-Nx-hX1"/>
+                <constraint firstItem="pSZ-hb-Ckw" firstAttribute="top" secondItem="6av-R0-n8N" secondAttribute="bottom" constant="8" symbolic="YES" id="hKa-jf-c8K"/>
+                <constraint firstItem="TgH-8k-uod" firstAttribute="top" secondItem="pSZ-hb-Ckw" secondAttribute="bottom" constant="16" id="l4M-yl-lCM"/>
+                <constraint firstItem="PBg-KZ-C08" firstAttribute="leading" secondItem="fgD-xb-aNi" secondAttribute="leading" id="phq-oI-jky"/>
+                <constraint firstItem="nK5-qv-5WC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="s4h-Jl-Vmp"/>
+                <constraint firstItem="6av-R0-n8N" firstAttribute="trailing" secondItem="PBg-KZ-C08" secondAttribute="trailing" id="si9-PH-azC"/>
+                <constraint firstItem="6av-R0-n8N" firstAttribute="leading" secondItem="PBg-KZ-C08" secondAttribute="leading" constant="-5" id="w64-bd-eoc"/>
+                <constraint firstItem="fgD-xb-aNi" firstAttribute="leading" secondItem="nK5-qv-5WC" secondAttribute="leading" id="xJP-Vc-doy"/>
+                <constraint firstItem="PBg-KZ-C08" firstAttribute="trailing" secondItem="fgD-xb-aNi" secondAttribute="trailing" id="ymf-s9-awr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="55.797101449275367" y="-9.7098214285714288"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="choa" width="206" height="58"/>
+        <image name="emory" width="185" height="63"/>
+        <image name="hatchery" width="193" height="89"/>
+        <namedColor name="contentBlackColor">
+            <color red="0.34099999070167542" green="0.3449999988079071" blue="0.3529999852180481" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
