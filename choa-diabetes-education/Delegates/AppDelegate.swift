@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 import Pendo
 import FirebaseCore
-import FirebaseAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

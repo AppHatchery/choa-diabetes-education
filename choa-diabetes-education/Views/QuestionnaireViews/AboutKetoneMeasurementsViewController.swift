@@ -31,9 +31,18 @@ class AboutKetoneMeasurementsViewController: UIViewController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [
                     .custom { context in
-                        return context.maximumDetentValue * 0.75
+                        return context.maximumDetentValue * 0.85
                     }
                 ]
+                
+                if view.frame.height <= 800 {
+                    sheet.detents = [
+                        .custom { context in
+                            return context.maximumDetentValue * 0.85
+                        },
+                        .large()
+                    ]
+                }
             } else {
                 sheet.detents = [.medium(), .large()]
                 sheet.selectedDetentIdentifier = .large

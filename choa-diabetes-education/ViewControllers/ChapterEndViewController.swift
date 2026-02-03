@@ -9,9 +9,32 @@ import UIKit
 
 class ChapterEndViewController: UIViewController {
     
+    // MARK: - Completion Tracking
+    private struct CompletionStore {
+        static let defaults = UserDefaults.standard
+        static func key(for section: Int) -> String { "completed_chapters_section_\(section)" }
+        
+        static func completedIndices(for section: Int) -> Set<Int> {
+            let key = key(for: section)
+            let array = defaults.array(forKey: key) as? [Int] ?? []
+            return Set(array)
+        }
+        
+        static func markCompleted(section: Int, index: Int) {
+            var set = completedIndices(for: section)
+            set.insert(index)
+            let array = Array(set).sorted()
+            defaults.set(array, forKey: key(for: section))
+        }
+        
+        static func completedCount(for section: Int) -> Int {
+            return completedIndices(for: section).count
+        }
+    }
+    
     @IBOutlet weak var mainView: UIView!
     
-    @IBOutlet weak var nextChapterButton: UIButton!
+    @IBOutlet weak var nextChapterButton: PrimaryButton!
     @IBOutlet weak var congratsLabel: UILabel!
     
     @IBOutlet weak var textBubbleImage: UIImageView!
@@ -21,6 +44,10 @@ class ChapterEndViewController: UIViewController {
     @IBOutlet weak var starsStackView: UIStackView!
     
     @IBOutlet weak var chaptersCompletedLabel: UILabel!
+    
+    @IBOutlet weak var rightStarsStackConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftStarsStackConstraint: NSLayoutConstraint!
+    
     
     
     var contentIndex = 0
@@ -60,6 +87,9 @@ class ChapterEndViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Track current chapter index for completion persistence
+        var currentChapterIndex: Int? = nil
+        
         navigationController?.navigationBar.tintColor = .white
         navigationItem.backButtonDisplayMode = .minimal
         
@@ -76,6 +106,7 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionOne[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                currentChapterIndex = chapterEndTitleIndex
                 
                 // Update text bubble image for Section One based on the completed chapter index
                 if chapterEndTitleIndex == 0 {
@@ -106,6 +137,7 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionTwo[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                currentChapterIndex = chapterEndTitleIndex
                 
                 if chapterEndTitleIndex == 0 {
                     congratsLabel.text = "Congratulatory1".localized()
@@ -133,6 +165,7 @@ class ChapterEndViewController: UIViewController {
                     nextChapterURL = ContentChapter().sectionThree[chapterEndTitleIndex + 1].contentHTML
                 }
                 quizIndex = chapterEndTitleIndex
+                currentChapterIndex = chapterEndTitleIndex
                 
                 if chapterEndTitleIndex == 0 {
                     congratsLabel.text = "Congratulatory1".localized()
@@ -148,6 +181,11 @@ class ChapterEndViewController: UIViewController {
             print("error where index doesn't match")
         }
         
+        // Persist completion for this chapter (idempotent)
+        if let idx = currentChapterIndex {
+            CompletionStore.markCompleted(section: contentIndex, index: idx)
+        }
+        
         updateStarsUI()
     }
     
@@ -160,9 +198,28 @@ class ChapterEndViewController: UIViewController {
         // Hide next button if the end of the section
         if nextChapter != "" {
             // there is a next chapter, keep button as-is
+            nextChapterButton
+                .setTitleWithStyle(
+                    "Next Chapter",
+                    font: .gothamRoundedMedium20,
+                    image: nil
+                )
         } else {
             // final chapter in section
-            nextChapterButton.setTitleWithStyle("Done", font: .gothamRoundedMedium20, image: nil)
+            nextChapterButton
+                .setTitleWithStyle(
+                    "Done",
+                    font: .gothamRoundedMedium20,
+                    image: nil
+                )
+            
+            nextChapterButton.setImage(nil, for: .normal)
+            nextChapterButton.setImage(nil, for: .highlighted)
+            nextChapterButton.setImage(nil, for: .selected)
+            nextChapterButton.setImage(nil, for: .disabled)
+            if #available(iOS 15.0, *) {
+                nextChapterButton.configuration?.image = nil
+            }
         }
         
         // Refresh stars in case the view reappears
@@ -223,9 +280,9 @@ private extension ChapterEndViewController {
     }
     
     func updateStarsUI() {
-        // Compute totals based on the current section and the current chapter index
         let totalCount = totalChaptersCount(for: contentIndex)
-        let completedCount = max(0, min(totalCount, quizIndex + 1))
+        let completedSet = CompletionStore.completedIndices(for: contentIndex)
+        let completedCount = min(totalCount, completedSet.count)
         
         chaptersCompletedLabel.text = "\(completedCount) of \(totalCount) chapters completed"
         
@@ -236,11 +293,22 @@ private extension ChapterEndViewController {
         }
         
         starsStackView.alignment = .center
-        starsStackView.distribution = .equalSpacing
-        starsStackView.spacing = 8
+        
+        if totalCount == 5 {
+            starsStackView.distribution = .fillEqually
+            starsStackView.spacing = 8
+            
+            rightStarsStackConstraint.constant = 50
+            leftStarsStackConstraint.constant = 50
+        } else {
+            starsStackView.spacing = 0
+            starsStackView.distribution = .fillEqually
+            rightStarsStackConstraint.constant = 100
+            leftStarsStackConstraint.constant = 100
+        }
         
         for i in 0..<totalCount {
-            let isCompleted = i < completedCount
+            let isCompleted = completedSet.contains(i)
             let starView = makeStarImageView(completed: isCompleted)
             starsStackView.addArrangedSubview(starView)
         }
@@ -253,8 +321,10 @@ private extension ChapterEndViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 40),
             imageView.heightAnchor.constraint(equalToConstant: 40)
         ])
         return imageView
     }
 }
+

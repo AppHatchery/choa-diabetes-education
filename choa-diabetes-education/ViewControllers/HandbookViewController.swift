@@ -8,6 +8,16 @@
 import UIKit
 
 class HandbookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    // MARK: - Completion Tracking
+    private struct CompletionStore {
+        static let defaults = UserDefaults.standard
+        static func key(for section: Int) -> String { "completed_chapters_section_\(section)" }
+        static func completedIndices(for section: Int) -> Set<Int> {
+            let key = key(for: section)
+            let array = defaults.array(forKey: key) as? [Int] ?? []
+            return Set(array)
+        }
+    }
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -145,6 +155,15 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
                 } else {
                     cell.cardImage.image = nil
                 }
+            }
+            
+            // Set completion check image based on stored progress
+            if let sectionIndex = ContentChapter().sectionTitles.firstIndex(of: chapterName) {
+                let completed = CompletionStore.completedIndices(for: sectionIndex).contains(indexPath.row)
+                let imageName = completed ? "check_read" : "check_unread"
+                cell.chapterCompleteCheck.image = UIImage(named: imageName)
+            } else {
+                cell.chapterCompleteCheck.image = UIImage(named: "check_unread")
             }
             
             return cell

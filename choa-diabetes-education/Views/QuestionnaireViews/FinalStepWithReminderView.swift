@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Pendo
 
 protocol FinalStepWithReminderViewProtocol: AnyObject {
 	func didSelectExitAction()
@@ -223,6 +224,7 @@ class FinalStepWithReminderView: UIView {
     private func setupForInsulinShots() {
         confirmChangeDisconnectStackView.isHidden = true
         giveRecommendedDoseStackView.isHidden = true
+        hydrationInfoStackView.isHidden = true
 
         reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
         reminderNextCheckDescriptionLabel.setText(
@@ -572,7 +574,24 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-			questionnaireManager.saveYesOver2hours(true)
+            if questionnaireManager.iLetPump {
+                questionnaireManager.saveYesOver2hours(true)
+            }
+            
+            questionnaireManager.skipFirstReminder(true)
+            
+            // Pendo: Track when user skips an existing reminder before it elapses
+            PendoManager.shared().track(
+                "Reminder Skip",
+                properties: [
+                    "source": "FinalStepWithReminderView",
+                    "action": "Skip This Reminder",
+                    "reminderId": existingId,
+                    "testType": questionnaireManager.currentTestType == .insulinShots ? "insulinShots" : (questionnaireManager.iLetPump ? "pump_iLet" : "pump"),
+                    "iLetPump": questionnaireManager.iLetPump
+                ]
+            )
+            
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
 
@@ -612,11 +631,11 @@ class FinalStepWithReminderView: UIView {
             
             ReminderPersistence.clearReminderState()
 		} else {
-			let duration: TimeInterval = questionnaireManager.iLetPump ? 5400 : 7200
+            let duration: TimeInterval = questionnaireManager.iLetPump ? oneHour30Duration : twoHourDuration
 
 			let scheduledTime = Date().addingTimeInterval(duration)
 
-            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() :ReminderManager.shared.scheduleTwoHourReminder()
+            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() : ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 
