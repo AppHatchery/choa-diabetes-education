@@ -8,11 +8,21 @@
 import UIKit
 
 class HandbookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    // MARK: - Completion Tracking
+    private struct CompletionStore {
+        static let defaults = UserDefaults.standard
+        static func key(for section: Int) -> String { "completed_chapters_section_\(section)" }
+        static func completedIndices(for section: Int) -> Set<Int> {
+            let key = key(for: section)
+            let array = defaults.array(forKey: key) as? [Int] ?? []
+            return Set(array)
+        }
+    }
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chapterTitle: UILabel!
-    @IBOutlet weak var chapterSubtitle: UILabel!
+    @IBOutlet weak var sectionImage: UIImageView!
     
     var chapterName = ""
     var chapterSubName = ""
@@ -23,8 +33,36 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
     var quizURL = 0
     var quizChapter = 0
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = UIColor.clear
+        
+        if chapterName == "Home.SectionOne.Subtitle".localized() {
+            appearance.backgroundColor = .diabetesBasicsColor
+        } else if chapterName == "Home.SectionTwo.Subtitle".localized() {
+            appearance.backgroundColor = .nutritionAndCarbColor
+            view.backgroundColor = .nutritionAndCarbColor
+            sectionImage.image = UIImage(named: "will_nutrition")
+        } else {
+            appearance.backgroundColor = .diabetesSelfManagementColor
+            view.backgroundColor = .diabetesSelfManagementColor
+            sectionImage.image = UIImage(named: "hope_clock")
+        }
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        segmentedControl.isHidden = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -34,9 +72,20 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = UITableView.automaticDimension
         
         chapterTitle.text = chapterName
-        chapterSubtitle.text = chapterSubName
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = UIColor.clear
+        
+        appearance.backgroundColor = .white
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = UIColor.black
     }
     
     
@@ -62,18 +111,59 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
             if chapterName == ContentChapter().sectionTitles[0] {
                 cell.cardTitle.text = ContentChapter().sectionOne[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionOne[indexPath.row].contentSubheader
+                
+                let imageNames = [
+                    "basics_will_what_is_diabetes",
+                    "basics_hope_diabetes_check",
+                    "basics_types_of_insulin",
+                    "basics_insulin_admin",
+                    "basics_check_for_ketones"
+                ]
+                
+                if indexPath.row < imageNames.count {
+                    cell.cardImage.image = UIImage(named: imageNames[indexPath.row])
+                } else {
+                    cell.cardImage.image = nil
+                }
+                
             } else if chapterName == ContentChapter().sectionTitles[1] {
                 cell.cardTitle.text = ContentChapter().sectionTwo[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionTwo[indexPath.row].contentSubheader
+                
+                let imageNames = [
+                    "nutritional_food_groups",
+                    "nutrition_count",
+                    "nutrition_dosages"
+                ]
+                
+                if indexPath.row < imageNames.count {
+                    cell.cardImage.image = UIImage(named: imageNames[indexPath.row])
+                } else {
+                    cell.cardImage.image = nil
+                }
             } else if chapterName == ContentChapter().sectionTitles[2] {
                 cell.cardTitle.text = ContentChapter().sectionThree[indexPath.row].contentTitle
                 cell.cardSubtitle.text = ContentChapter().sectionThree[indexPath.row].contentSubheader
+                
+                let imageNames = [
+                    "diabetes_treatment",
+                    "diabetes_doctor",
+                ]
+                
+                if indexPath.row < imageNames.count {
+                    cell.cardImage.image = UIImage(named: imageNames[indexPath.row])
+                } else {
+                    cell.cardImage.image = nil
+                }
             }
             
-            if indexPath.row == 0 {
-                cell.topLineConnector.isHidden = true
-            } else if indexPath.row == chapterContent-1 {
-                cell.bottomLineConnector.isHidden = true
+            // Set completion check image based on stored progress
+            if let sectionIndex = ContentChapter().sectionTitles.firstIndex(of: chapterName) {
+                let completed = CompletionStore.completedIndices(for: sectionIndex).contains(indexPath.row)
+                let imageName = completed ? "check_read" : "check_unread"
+                cell.chapterCompleteCheck.image = UIImage(named: imageName)
+            } else {
+                cell.chapterCompleteCheck.image = UIImage(named: "check_unread")
             }
             
             return cell
@@ -81,12 +171,6 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "quizCell", for: indexPath) as! QuizTableViewCell
             
             cell.quizNumber.text = "Quiz \(indexPath.row+1)"
-            
-            if indexPath.row == 0 {
-                cell.topLineConnector.isHidden = true
-            } else if indexPath.row == quizContent-1 {
-                cell.bottomLineConnector.isHidden = true
-            }
             
             return cell
         }

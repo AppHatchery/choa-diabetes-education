@@ -9,8 +9,6 @@ import UIKit
 
 class QuizTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var topLineConnector: UIView!
-    @IBOutlet weak var bottomLineConnector: UIView!
     @IBOutlet weak var completionCircle: UIView!
     @IBOutlet weak var quizNumber: UILabel!
     

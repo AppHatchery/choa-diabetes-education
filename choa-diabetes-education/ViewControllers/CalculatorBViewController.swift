@@ -8,7 +8,7 @@
 import UIKit
 import Pendo
 
-class CalculatorBViewController: UIViewController, UITextFieldDelegate {
+class CalculatorBViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
     
     @IBOutlet weak var bloodSugarField: UITextField!
     @IBOutlet weak var targetBloodSugarField: UITextField!
@@ -17,67 +17,270 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var correctionFactorField: UITextField!
     @IBOutlet weak var correctionFactorLine: UIView!
     @IBOutlet weak var correctionFactorLabel: UILabel!
-    @IBOutlet weak var bloodSugarAlert: UILabel!
-    @IBOutlet weak var bloodSugarAlertIcon: UIImageView!
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var resultsView: UIView!
+    @IBOutlet weak var insulinForHighBloodSugarTitleLabel: UILabel!
+    @IBOutlet weak var insulinForHighBloodSugar: UILabel!
+    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var step2Label: UILabel!
     
-    var totalCarbs: Float = 0
-    var bloodSugar: Float = 0
-    var targetBloodSugar: Float = 0
-    var carbRatio: Float = 0
-    var correctionFactor: Float = 0
+    let infoPopup = InfoPopUpViewController()
+    
+    var totalCarbs: Int = 0
+    var bloodSugar: Int = 0
+    var targetBloodSugar: Int = 0
+    var carbRatio: Int = 0
+    var correctionFactor: Int = 0
     
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
+    var highBloodSugarOnly = false
+    
+    private var isUserEditingFields = false
+    private var didEditTargetDuringSession = false
+    private var didEditCorrectionDuringSession = false
+    private var originalTargetText: String?
+    private var originalCorrectionText: String?
+    
+    private let constantsManager = CalculatorConstantsManager.shared
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(true)
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .diabetesBasicsColor050
+        appearance.shadowColor = .clear
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        navigationItem.backButtonDisplayMode = .minimal
+        
+        calculatorDidUpdateConstants()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        calculatorDidUpdateConstants()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var config = UIButton.Configuration.plain()
+        config.title = "Edit"
+        config.image = UIImage(named: "edit_pencil")
+
+        config.imagePlacement = .trailing
+        config.imagePadding = 2
+
+        // Remove default padding
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+            self?.editButtonTapped()
+        })
+
+        let editButton = UIBarButtonItem(customView: button)
+        navigationItem.rightBarButtonItem = editButton
+
         
         for txtField in textFieldCollection {
             txtField.delegate = self
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        bloodSugarField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        correctionFactorField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+        
+        bloodSugarField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        correctionFactorField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        
+        targetBloodSugarField.addTarget(self, action: #selector(trackTargetEditingChanged(_:)), for: .editingChanged)
+        correctionFactorField.addTarget(self, action: #selector(trackCorrectionEditingChanged(_:)), for: .editingChanged)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        bloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        targetBloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
+        correctionFactorField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        
+        bloodSugarLine.layer.cornerRadius = 3
+        targetBloodSugarLine.layer.cornerRadius = 3
+        correctionFactorLine.layer.cornerRadius = 3
+                
+        resultsView.isHidden = true
+        
+        if highBloodSugarOnly == false {
+            step2Label.isHidden = false
+
+            nextButton.titleLabel?.text = "Next"
+            nextButton.setImage(UIImage(named: "leftArrow"), for: .normal)
+            nextButton.backgroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+        } else {
+            step2Label.isHidden = true
+
+            nextButton
+                .setTitleWithStyle(
+                    "Exit",
+                    font: .gothamRoundedMedium20,
+                    color: .choaGreenColor
+                )
+            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
+            nextButton.backgroundColor = .clear
+            nextButton.configuration?.baseForegroundColor = .choaGreenColor
+            nextButton.tintColor = .choaGreenColor
+            nextButton.layer.cornerRadius = 12
+        }
+        
+        calculatorDidUpdateConstants()
+        setupTappableInfoButtons()
+        updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
+    }
+    
+    @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
+        isUserEditingFields = true
+        if sender === targetBloodSugarField {
+            originalTargetText = targetBloodSugarField.text
+            didEditTargetDuringSession = false
+            targetBloodSugarField.text = ""
+        } else if sender === correctionFactorField {
+            originalCorrectionText = correctionFactorField.text
+            didEditCorrectionDuringSession = false
+            correctionFactorField.text = ""
+        }
+    }
+
+    @objc private func textFieldEditingDidEnd(_ sender: UITextField) {
+        isUserEditingFields = false
+        if sender === targetBloodSugarField {
+            // If nothing was edited, restore stored constant if available, else original text
+            if didEditTargetDuringSession == false {
+                if constantsManager.hasStoredConstants {
+                    let constants = constantsManager.getConstants()
+                    if constants.targetBloodSugar > 0 {
+                        targetBloodSugar = constants.targetBloodSugar
+                        targetBloodSugarField.text = String(constants.targetBloodSugar)
+                    } else {
+                        targetBloodSugarField.text = originalTargetText
+                    }
+                } else {
+                    targetBloodSugarField.text = originalTargetText
+                }
+            }
+        } else if sender === correctionFactorField {
+            if didEditCorrectionDuringSession == false {
+                if constantsManager.hasStoredConstants {
+                    let constants = constantsManager.getConstants()
+                    if constants.correctionFactor > 0 {
+                        correctionFactor = constants.correctionFactor
+                        correctionFactorField.text = String(constants.correctionFactor)
+                    } else {
+                        correctionFactorField.text = originalCorrectionText
+                    }
+                } else {
+                    correctionFactorField.text = originalCorrectionText
+                }
+            }
+        }
+    }
+    
+    @objc private func trackTargetEditingChanged(_ sender: UITextField) {
+        didEditTargetDuringSession = true
+    }
+
+    @objc private func trackCorrectionEditingChanged(_ sender: UITextField) {
+        didEditCorrectionDuringSession = true
+    }
+    
+    @objc private func editButtonTapped() {
+        performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
+    }
+    
+    private func loadStoredConstants() {
+        // Do not auto-fill while the user is actively editing/clearing
+        if isUserEditingFields || targetBloodSugarField.isFirstResponder || correctionFactorField.isFirstResponder {
+            return
+        }
+
+        guard constantsManager.hasStoredConstants else { return }
+        let constants = constantsManager.getConstants()
+
+        // Only populate if the field is currently empty AND not previously set by the user in this session
+        if (targetBloodSugarField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+           constants.targetBloodSugar > 0 {
+            targetBloodSugar = constants.targetBloodSugar
+            targetBloodSugarField.text = String(constants.targetBloodSugar)
+        }
+
+        if (correctionFactorField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+           constants.correctionFactor > 0 {
+            correctionFactor = constants.correctionFactor
+            correctionFactorField.text = String(constants.correctionFactor)
+        }
+
+        // Recalculate if we have enough info
+        if totalCarbs > 0 && carbRatio > 0 {
+            calculateFoodInsulin()
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("should begin tediting")
-        textField.text = ""
+        // Removed clearing text to respect user input
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         switch textField.tag {
         case 0:
-            bloodSugar = Float(textField.text ?? "0") ?? 0
+            bloodSugar = Int(textField.text ?? "0") ?? 0
             print(bloodSugar)
-            if bloodSugar < 150 && bloodSugar != 0 {
-                bloodSugarAlertIcon.isHidden = false
-                bloodSugarAlert.isHidden = false
+            if bloodSugar < constantsManager.targetBloodSugar && bloodSugar != 0 {
                 bloodSugarField.textColor = UIColor.orangeTextColor
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                bloodSugarLine.backgroundColor = .orangeTextColor
+                bloodSugarLabel.textColor = .orangeTextColor
+            } else if bloodSugar < targetBloodSugar && bloodSugar != 0 {
+                bloodSugarField.textColor = UIColor.orangeTextColor
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                bloodSugarLine.backgroundColor = .orangeTextColor
+                bloodSugarLabel.textColor = .orangeTextColor
             } else {
-                bloodSugarAlertIcon.isHidden = true
-                bloodSugarAlert.isHidden = true
-                bloodSugarField.textColor = UIColor.choaGreenColor
+                bloodSugarField.textColor = .primaryBlue
+                insulinForHighBloodSugar.textColor = .primaryBlue
+                bloodSugarLine.backgroundColor = .primaryBlue
+                bloodSugarLabel.textColor = .primaryBlue
             }
-            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
+//            toggleError(state: false, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "")
         case 1:
-            targetBloodSugar = Float(textField.text ?? "0") ?? 0
+            targetBloodSugar = Int(textField.text ?? "0") ?? 0
             print(targetBloodSugar)
-            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
+//            targetBloodSugarLine.backgroundColor = .black
+            targetBloodSugarLabel.textColor = .black
+//            toggleError(state: false, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "")
         case 2:
-            correctionFactor = Float(textField.text ?? "0") ?? 0
+            correctionFactor = Int(textField.text ?? "0") ?? 0
             print(correctionFactor)
-            toggleError(state: false, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "")
+//            correctionFactorLine.backgroundColor = .black
+            correctionFactorLabel.textColor = .black
+//            toggleError(state: false, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "")
         default:
             print("none of these")
         }
@@ -88,6 +291,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         //        } else {
         //            nextButton.isEnabled = false
         //        }
+        updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
     }
     
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
@@ -99,82 +304,219 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         } else {
             errorLine.backgroundColor = UIColor.errorRedColor
             errorMessage.text = errorMessageText
-            fieldLabel.textColor = UIColor.contentBlackColor
+            fieldLabel.textColor = .primaryBlue
             errorMessage.isHidden = true
+        }
+    }
+    
+    func seeCalculationViewSetup() {
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+
+        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
+        doneButton.setTitle( "Calculate", for: .normal )
+        doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
+        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
+        customView.addSubview( doneButton )
+        bloodSugarField.inputAccessoryView = customView
+        targetBloodSugarField.inputAccessoryView = customView
+        correctionFactorField.inputAccessoryView = customView
+    }
+    
+    private func updateSeeResultAccessoryIfNeeded() {
+        // Ensure both fields have text and their numeric values are > 0
+        let hasBloodSugarText = !(bloodSugarField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+        let hasTargetBloodSugarText = !(targetBloodSugarField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+        let hasCorrectionFactorText = !(correctionFactorField.text ?? "").trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+
+        let bloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let targetBloodSugarValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        let correctionFactorValue = Int(correctionFactorField.text ?? "") ?? 0
+
+        let shouldShowAccessory = hasBloodSugarText && hasTargetBloodSugarText && hasCorrectionFactorText && bloodSugarValue > 0 && targetBloodSugarValue > 0 && correctionFactorValue > 0
+
+        if shouldShowAccessory {
+            seeCalculationViewSetup()
+        } else {
+            bloodSugarField.inputAccessoryView = nil
+            targetBloodSugarField.inputAccessoryView = nil
+        }
+
+        // Reload input views of the current first responder so changes take effect immediately
+        if bloodSugarField.isFirstResponder {
+            bloodSugarField.reloadInputViews()
+        } else if targetBloodSugarField.isFirstResponder {
+            targetBloodSugarField.reloadInputViews()
+        } else if correctionFactorField.isFirstResponder {
+            correctionFactorField.reloadInputViews()
+        }
+    }
+    
+    private func updateNextButtonState() {
+        // Disable Next if both values are present and blood sugar is below target
+        let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let currentTargetValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        let shouldDisable = currentBloodSugarValue > 0 && currentTargetValue > 0 && currentBloodSugarValue < currentTargetValue
+        nextButton.isEnabled = !shouldDisable
+        nextButton.alpha = shouldDisable ? 0.5 : 1.0
+    }
+    
+    @objc private func textFieldsDidChange(_ sender: UITextField) {
+        // Update backing values in real time
+        if sender == bloodSugarField {
+            bloodSugar = Int(sender.text ?? "") ?? 0
+        } else if sender == targetBloodSugarField {
+            targetBloodSugar = Int(sender.text ?? "") ?? 0
+        }
+        // Reflect UI/accessory state as user types
+        updateSeeResultAccessoryIfNeeded()
+        updateNextButtonState()
+        
+        if totalCarbs > 0 && carbRatio > 0 {
+            calculateFoodInsulin()
         }
     }
     
     @IBAction func nextButton(_ sender: UIButton){
         self.view.endEditing(true)
-        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
-            PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
-            // Go to next page
-            performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
-        } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
-            // CarbRatio is not there
-            toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
-        } else if (bloodSugar != 0 && correctionFactor != 0) {
-            // Target BG is not there
-            toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
-        } else if (targetBloodSugar != 0 && correctionFactor != 0) {
-            // BG is not there
-            toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
-            bloodSugarAlertIcon.isHidden = true
+        
+        if highBloodSugarOnly == false {
+            if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
+                PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar":bloodSugar,"target_blood_sugar":targetBloodSugar,"correction_factor":correctionFactor])
+                // Go to next page
+                performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
+            } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
+                // CarbRatio is not there
+                toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+            } else if (bloodSugar != 0 && correctionFactor != 0) {
+                // Target BG is not there
+                toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+            } else if (targetBloodSugar != 0 && correctionFactor != 0) {
+                // BG is not there
+                toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
+            } else {
+                errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
+                errorMessage.isHidden = false
+            }
         } else {
-            errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
-            errorMessage.isHidden = false
+            if let viewControllers = self.navigationController?.viewControllers {
+                for vc in viewControllers {
+                    if vc is HomeViewController {
+                        self.navigationController?.popToViewController(vc, animated: true)
+                        return
+                    }
+                }
+            }
         }
     }
+    
+    func setupTappableInfoButtons() {
+        let showTargetBloodSugarInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowTargetBloodSugarInfo))
+        targetBloodSugarLabel.addGestureRecognizer(showTargetBloodSugarInfoTap)
+        targetBloodSugarLabel.isUserInteractionEnabled = true
+        
+        let showCorrectionFactorInfoTap = UITapGestureRecognizer(target: self, action: #selector(didTapShowCorrectionFactorInfo))
+        correctionFactorLabel.addGestureRecognizer(showCorrectionFactorInfoTap)
+        correctionFactorLabel.isUserInteractionEnabled = true
+
+        
+        let showInsulinForHighBloodSugarInfoTap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapShowInsulinForHighBloodSugarInfo))
+        insulinForHighBloodSugarTitleLabel.addGestureRecognizer(showInsulinForHighBloodSugarInfoTap)
+        insulinForHighBloodSugarTitleLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc private func didTapShowTargetBloodSugarInfo() {
+        showTargetBloodSugarInfo(self)
+    }
+    
+    @objc private func didTapShowCorrectionFactorInfo() {
+        showCorrectionFactorInfo(self)
+    }
+    
+    @objc private func didTapShowInsulinForHighBloodSugarInfo() {
+        showInsulinForHighBloodSugarInfo(self)
+    }
+    
+    @IBAction func showTargetBloodSugarInfo(_ sender: Any) {
+        infoPopup
+            .appear(
+                sender: self,
+                title: "PopupInfo.TargetBloodSugar.title".localized()
+                , details: "PopupInfo.TargetBloodSugar.text".localized())
+    }
+    
+    @IBAction func showCorrectionFactorInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
+                         , details: "PopupInfo.CorrectionFactor.text".localized())
+    }
+    
+    @IBAction func showInsulinForHighBloodSugarInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.InsulinForHighBloodSugar.title".localized()
+                         , details: "PopupInfo.InsulinForHighBloodSugar.text".localized())
+    }
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         
         
         // In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.
-        guard let screen = notification.object as? UIScreen,
+        guard let _ = notification.object as? UIScreen,
               // Get the keyboard’s frame at the end of its animation.
-              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+              let _ = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         
         
         // Use that screen to get the coordinate space to convert from.
-        let fromCoordinateSpace = screen.coordinateSpace
-        
-        
-        // Get your view's coordinate space.
-        let toCoordinateSpace: UICoordinateSpace = view
-        
-        
-        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
-        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
-        
-        // Get the safe area insets when the keyboard is offscreen.
-        var bottomOffset = view.safeAreaInsets.bottom
-        
-        // Get the intersection between the keyboard's frame and the view's bounds to work with the
-        // part of the keyboard that overlaps your view.
-        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
-        
-        // Check whether the keyboard intersects your view before adjusting your offset.
-        if !viewIntersection.isEmpty {
-            
-            // Adjust the offset by the difference between the view's height and the height of the
-            // intersection rectangle.
-            bottomOffset = view.bounds.maxY - viewIntersection.minY
-        }
-        
-        
-        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
-        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
-        // your view, changing a scroll inset, and so on. This example uses the new offset to update
-        // the value of an existing Auto Layout constraint on the view.
-        if view.frame.origin.y == 0 {
-            view.frame.origin.y -= bottomOffset
-        }
+//        let fromCoordinateSpace = screen.coordinateSpace
+//
+//
+//        // Get your view's coordinate space.
+//        let toCoordinateSpace: UICoordinateSpace = view
+//
+//
+//        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
+//        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
+//
+//        // Get the safe area insets when the keyboard is offscreen.
+//        var bottomOffset = view.safeAreaInsets.bottom
+//
+//        // Get the intersection between the keyboard's frame and the view's bounds to work with the
+//        // part of the keyboard that overlaps your view.
+//        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
+//
+//        // Check whether the keyboard intersects your view before adjusting your offset.
+//        if !viewIntersection.isEmpty {
+//
+//            // Adjust the offset by the difference between the view's height and the height of the
+//            // intersection rectangle.
+//            bottomOffset = view.bounds.maxY - viewIntersection.minY
+//        }
+//
+//
+//        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
+//        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
+//        // your view, changing a scroll inset, and so on. This example uses the new offset to update
+//        // the value of an existing Auto Layout constraint on the view.
+//        if view.frame.origin.y == 0 {
+//            view.frame.origin.y -= bottomOffset
+//        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         // move back the root view origin to zero
         view.frame.origin.y = 0
+    }
+    
+    func calculatorDidUpdateConstants() {
+        loadStoredConstants()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,13 +529,102 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
         calculatorCViewController.bloodSugar = bloodSugar
         calculatorCViewController.targetBloodSugar = targetBloodSugar
         calculatorCViewController.correctionFactor = correctionFactor
+        
+        if let editViewController = segue.destination as? CalculatorEditViewController {
+            editViewController.delegate = self
+        }
     }
     
     @objc func dismissKeyboard() {
         // To hide the keyboard when the user clicks search
         self.view.endEditing(true)
+        updateSeeResultAccessoryIfNeeded()
+        calculateFoodInsulin()
     }
     
+    func roundDownToNearestHalf(value: Float) -> Float {
+        let integerPart = floor(value)
+        let decimalPart = value - integerPart
+
+        if decimalPart >= 0.5 {
+            return integerPart + 0.5
+        } else {
+            return integerPart
+        }
+    }
+    
+    func calculateFoodInsulin() {
+        let currentBloodSugar = bloodSugar
+        var currentTargetBloodSugar = targetBloodSugar
+        var currentCorrectionFactor = correctionFactor
+
+        // Fallback to stored constants only when user is not editing AND fields are empty
+        if !isUserEditingFields,
+           !targetBloodSugarField.isFirstResponder,
+           !correctionFactorField.isFirstResponder,
+           constantsManager.hasStoredConstants {
+            let constants = constantsManager.getConstants()
+
+            if currentTargetBloodSugar == 0,
+               (targetBloodSugarField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+               constants.targetBloodSugar > 0 {
+                currentTargetBloodSugar = constants.targetBloodSugar
+                targetBloodSugar = constants.targetBloodSugar
+                targetBloodSugarField.text = String(constants.targetBloodSugar)
+            }
+
+            if currentCorrectionFactor == 0,
+               (correctionFactorField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+               constants.correctionFactor > 0 {
+                currentCorrectionFactor = constants.correctionFactor
+                correctionFactor = constants.correctionFactor
+                correctionFactorField.text = String(constants.correctionFactor)
+            }
+        }
+
+        // If current blood sugar is below target, show warning and do not calculate
+        if currentBloodSugar > 0 && currentTargetBloodSugar > 0 && currentBloodSugar < currentTargetBloodSugar {
+            // Show results container with warning state
+            UIView.animate(withDuration: 0.2) {
+                self.resultsView.isHidden = false
+            }
+            insulinForHighBloodSugar.text = "No insulin needed if current blood sugar is below target."
+            insulinForHighBloodSugar.font = .gothamRoundedMedium18
+            insulinForHighBloodSugar.textColor = .orangeTextColor
+            bloodSugarLine.backgroundColor = .orangeTextColor
+            bloodSugarLabel.textColor = .orangeTextColor
+            bloodSugarField.textColor = .orangeTextColor
+            updateSeeResultAccessoryIfNeeded()
+            updateNextButtonState()
+            return
+        }
+        
+        // Only calculate if all required values are present
+        if currentBloodSugar != 0 && currentTargetBloodSugar != 0 && currentCorrectionFactor != 0 {
+            UIView.animate(withDuration: 0.2) {
+                self.resultsView.isHidden = false
+            }
+
+            var bloodInsulin: Float = 0.0
+
+            if insulinForHighBloodSugarBoolean && currentBloodSugar >= currentTargetBloodSugar {
+                bloodInsulin = roundDownToNearestHalf(
+                    value: Float(currentBloodSugar - currentTargetBloodSugar) / Float(currentCorrectionFactor)
+                )
+
+                bloodSugarLine.backgroundColor = .primaryBlue
+                bloodSugarLabel.textColor = .primaryBlue
+                bloodSugarField.textColor = .primaryBlue
+
+                insulinForHighBloodSugar.text = "\(bloodInsulin.cleanString) units"
+                insulinForHighBloodSugar.font = .gothamRoundedMedium32
+                insulinForHighBloodSugar.textColor = .primaryBlue
+                updateNextButtonState()
+            }
+        } else {
+            resultsView.isHidden = true
+        }
+    }
     
     /*
      // MARK: - Navigation
@@ -206,3 +637,4 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate {
      */
     
 }
+

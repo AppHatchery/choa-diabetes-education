@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwoOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="mcN-wV-Tt9" id="lVW-ud-aVY"/>
+                <outlet property="firstButtonImage" destination="hvd-V4-WiZ" id="h1h-dc-CBY"/>
+                <outlet property="firstButtonLabel" destination="PtT-ZT-c86" id="oPs-vu-SES"/>
+                <outlet property="followUpQuestionStackView" destination="gta-fH-YWH" id="YYe-2h-Zbw"/>
+                <outlet property="instructionsLabel" destination="f2O-Xw-owa" id="9eK-f2-QXs"/>
+                <outlet property="learnHowLabel" destination="L8W-Q0-crO" id="Rgt-Za-XZM"/>
+                <outlet property="nextButton" destination="kuU-rn-CP1" id="WMC-2h-7Tx"/>
+                <outlet property="optionsStackView" destination="f3L-Mi-67V" id="laJ-WA-PNq"/>
+                <outlet property="questionLabel" destination="SKw-ag-lAw" id="VOg-aA-dqZ"/>
+                <outlet property="resourcesStackView" destination="Wq1-sI-pDY" id="TwH-ni-v78"/>
+                <outlet property="secondButtonImage" destination="p5L-ak-o7C" id="90V-gk-Ikc"/>
+                <outlet property="secondButtonLabel" destination="mSD-GN-g7J" id="osn-W1-AZe"/>
+                <outletCollection property="optionButtons" destination="aXH-GO-ZrE" collectionClass="NSMutableArray" id="lpE-H1-Czh"/>
+                <outletCollection property="optionButtons" destination="O44-N8-JUe" collectionClass="NSMutableArray" id="yyf-By-xXU"/>
+                <outletCollection property="optionButtonLabels" destination="PtT-ZT-c86" collectionClass="NSMutableArray" id="I3p-yp-0wU"/>
+                <outletCollection property="optionButtonLabels" destination="mSD-GN-g7J" collectionClass="NSMutableArray" id="mFi-Cy-al4"/>
+                <outletCollection property="optionButtonImages" destination="hvd-V4-WiZ" collectionClass="NSMutableArray" id="zy9-n7-REg"/>
+                <outletCollection property="optionButtonImages" destination="p5L-ak-o7C" collectionClass="NSMutableArray" id="bKc-fK-1Al"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="mcN-wV-Tt9">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-23-bqq" userLabel="Main Stack View">
+                    <rect key="frame" x="20" y="40" width="353" height="699"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-sI-pDY" userLabel="Resources Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="82.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2O-Xw-owa">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
+                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
+                                    <color key="textColor" name="primaryBlue"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8W-Q0-crO">
+                                    <rect key="frame" x="0.0" y="30" width="353" height="20.5"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Learn how to measure ketones">
+                                            <attributes>
+                                                <color key="NSColor" name="primaryBlue"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnZ-jN-izc">
+                                    <rect key="frame" x="0.0" y="62.5" width="353" height="20"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="YZ1-Mf-vff"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
+                            <rect key="frame" x="0.0" y="94.5" width="353" height="264"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
+                                    <rect key="frame" x="0.0" y="52" width="353" height="212"/>
+                                    <subviews>
+                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
+                                            <rect key="frame" x="0.0" y="0.0" width="170.5" height="212"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                    <color key="textColor" name="primaryBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-V4-WiZ">
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
+                                                    <color key="backgroundColor" name="lightGrayColor"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="hvd-V4-WiZ" firstAttribute="top" secondItem="aXH-GO-ZrE" secondAttribute="top" constant="10" id="1h1-kP-rCR"/>
+                                                <constraint firstAttribute="trailing" secondItem="PtT-ZT-c86" secondAttribute="trailing" constant="10" id="DBy-6V-MqJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="hvd-V4-WiZ" secondAttribute="trailing" constant="10" id="O6t-U4-KBn"/>
+                                                <constraint firstItem="PtT-ZT-c86" firstAttribute="leading" secondItem="aXH-GO-ZrE" secondAttribute="leading" constant="10" id="Zu8-Kn-MfE"/>
+                                                <constraint firstAttribute="bottom" secondItem="PtT-ZT-c86" secondAttribute="bottom" constant="20" id="jJn-jA-gP0"/>
+                                                <constraint firstItem="PtT-ZT-c86" firstAttribute="top" secondItem="hvd-V4-WiZ" secondAttribute="bottom" constant="10" id="oOc-dW-HhG"/>
+                                                <constraint firstItem="hvd-V4-WiZ" firstAttribute="leading" secondItem="aXH-GO-ZrE" secondAttribute="leading" constant="10" id="xlB-3n-yoN"/>
+                                            </constraints>
+                                        </view>
+                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O44-N8-JUe" userLabel="Button View">
+                                            <rect key="frame" x="182.5" y="0.0" width="170.5" height="212"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                    <color key="textColor" name="primaryBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-ak-o7C">
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
+                                                    <color key="backgroundColor" name="lightGrayColor"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="mSD-GN-g7J" firstAttribute="top" secondItem="p5L-ak-o7C" secondAttribute="bottom" priority="999" constant="10" id="58A-fT-cj7"/>
+                                                <constraint firstAttribute="trailing" secondItem="mSD-GN-g7J" secondAttribute="trailing" constant="10" id="5qI-Yf-5rK"/>
+                                                <constraint firstAttribute="bottom" secondItem="mSD-GN-g7J" secondAttribute="bottom" constant="20" id="DdR-3m-Qko"/>
+                                                <constraint firstItem="p5L-ak-o7C" firstAttribute="leading" secondItem="O44-N8-JUe" secondAttribute="leading" constant="10" id="LxN-wF-EWJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="p5L-ak-o7C" secondAttribute="trailing" constant="10" id="QX0-Y1-84z"/>
+                                                <constraint firstItem="p5L-ak-o7C" firstAttribute="top" secondItem="O44-N8-JUe" secondAttribute="top" constant="10" id="VpI-Ff-sZF"/>
+                                                <constraint firstItem="mSD-GN-g7J" firstAttribute="leading" secondItem="O44-N8-JUe" secondAttribute="leading" constant="10" id="ZQJ-ml-CeY"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mSD-GN-g7J" firstAttribute="height" secondItem="PtT-ZT-c86" secondAttribute="height" id="d48-hk-Zfa"/>
+                                        <constraint firstItem="hvd-V4-WiZ" firstAttribute="height" secondItem="p5L-ak-o7C" secondAttribute="height" id="nTH-Ri-lFO"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
+                            <rect key="frame" x="0.0" y="370.5" width="353" height="328.5"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="2lP-nq-I9H"/>
+                        <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="CKU-tn-KKY"/>
+                        <constraint firstItem="gta-fH-YWH" firstAttribute="leading" secondItem="tGn-23-bqq" secondAttribute="leading" id="DUu-Jn-cXj"/>
+                        <constraint firstAttribute="trailing" secondItem="gta-fH-YWH" secondAttribute="trailing" id="IY1-be-iJa"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-GV-ImM" userLabel="Nav Buttons Stack View">
+                    <rect key="frame" x="20" y="804" width="353" height="48"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuU-rn-CP1" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="jni-24-ZeU"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
+                                <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="didNextButtonTap:" destination="-1" eventType="touchUpInside" id="l26-J7-mDo"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Jc5-Vg-BvI"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="trailing" secondItem="bXi-GV-ImM" secondAttribute="trailing" constant="20" id="IA6-dN-vCn"/>
+                <constraint firstItem="tGn-23-bqq" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="20" id="KL3-nN-No3"/>
+                <constraint firstItem="tGn-23-bqq" firstAttribute="top" secondItem="Jc5-Vg-BvI" secondAttribute="top" constant="20" id="TFr-ry-D6E"/>
+                <constraint firstItem="bXi-GV-ImM" firstAttribute="top" secondItem="tGn-23-bqq" secondAttribute="bottom" priority="999" constant="65" id="j3N-rS-FbT"/>
+                <constraint firstItem="Jc5-Vg-BvI" firstAttribute="bottom" secondItem="bXi-GV-ImM" secondAttribute="bottom" id="nRy-VA-Ogp"/>
+                <constraint firstItem="bXi-GV-ImM" firstAttribute="leading" secondItem="Jc5-Vg-BvI" secondAttribute="leading" constant="20" id="oPq-U5-oba"/>
+                <constraint firstAttribute="trailing" secondItem="tGn-23-bqq" secondAttribute="trailing" constant="20" id="ugh-al-rhT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="49.618320610687022" y="-143.66197183098592"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="injection_insulin_pen" width="153" height="153"/>
+        <image name="insulin_pump" width="153" height="153"/>
+        <image name="leftArrow" width="20" height="20"/>
+        <namedColor name="lightGrayColor">
+            <color red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

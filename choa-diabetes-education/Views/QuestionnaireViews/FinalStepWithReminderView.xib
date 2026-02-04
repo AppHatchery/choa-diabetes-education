@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRoundedMedium.ttf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FinalStepWithReminderView" customModule="choa_diabetes_education" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmChangeDisconnectImage" destination="mcN-tC-mwc" id="ZaC-tq-Ead"/>
+                <outlet property="confirmChangeDisconnectLabel" destination="dF4-tM-2GQ" id="cu9-XH-m9t"/>
+                <outlet property="confirmChangeDisconnectStackView" destination="d23-fR-Zxm" id="ipr-EE-lBJ"/>
+                <outlet property="contentView" destination="e7o-fC-reN" id="Wc3-YW-mHj"/>
+                <outlet property="doneButton" destination="VLg-8e-GOb" id="UrF-Jk-Krx"/>
+                <outlet property="giveRecommendedDoseLabel" destination="jFm-eF-YUg" id="jzW-Ab-825"/>
+                <outlet property="giveRecommendedDoseStackView" destination="qgr-3P-FBu" id="FYn-3I-ajx"/>
+                <outlet property="hopeImage" destination="9V5-nP-Gy8" id="eB4-YP-lHy"/>
+                <outlet property="hydrationExampleInfoTextView" destination="6dN-9x-gkd" id="enF-tn-sqF"/>
+                <outlet property="hydrationInfoStackView" destination="RjE-5L-D4F" id="9Ii-yT-Mgw"/>
+                <outlet property="rearrangeableStackView" destination="vpb-oV-3ek" id="ceh-3k-ZY9"/>
+                <outlet property="reminderButton" destination="eJE-eD-Qs5" id="g2N-zy-Gc9"/>
+                <outlet property="reminderContainerView" destination="OKG-UU-IT1" id="lyN-Ii-yQ8"/>
+                <outlet property="reminderNextCheckDescriptionLabel" destination="UuX-ze-NFt" id="T6O-GR-3xi"/>
+                <outlet property="reminderNextCheckLabel" destination="fGK-TG-kaF" id="xah-ee-4nA"/>
+                <outlet property="reminderTimeCheckLabel" destination="5sX-Sk-Bpx" id="oxV-LI-Ww8"/>
+                <outlet property="reminderView" destination="iCq-Bg-56s" id="zBf-K3-sPo"/>
+                <outlet property="titleLabel" destination="riu-5H-yGt" id="y4o-kh-tKd"/>
+                <outlet property="yesOver2hoursButton" destination="5FW-iM-jIZ" id="Bbu-ak-dOo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="e7o-fC-reN">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="1275"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fX7-QZ-Zzx">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="1207"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z94-fI-lxz">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1047.6666666666667"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pt7-eK-NKm" userLabel="Main Stack View">
+                                    <rect key="frame" x="20" y="20" width="353" height="1027.6666666666667"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="You can manage this at home by following these steps:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riu-5H-yGt">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
+                                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <color key="textColor" name="primaryBlue"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d23-fR-Zxm" userLabel="Confirm Change Disconnect Stack View">
+                                            <rect key="frame" x="0.0" y="56" width="353" height="60"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-tC-mwc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="1Ek-1E-eQw"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Bcy-RI-QAh"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm that your pump site is securely connected and not leaking." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dF4-tM-2GQ">
+                                                    <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-3P-FBu" userLabel="Give Recommended Dose Stack View">
+                                            <rect key="frame" x="0.0" y="132" width="353" height="60"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Q5-Bsp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="UBY-VU-6ZZ"/>
+                                                        <constraint firstAttribute="height" constant="60" id="djJ-MG-iaf"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give the recommended correction dose through the pump site." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFm-eF-YUg">
+                                                    <rect key="frame" x="72" y="0.0" width="281" height="60"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_alarm" translatesAutoresizingMaskIntoConstraints="NO" id="9V5-nP-Gy8">
+                                            <rect key="frame" x="0.0" y="208" width="353" height="250"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="250" id="j92-Pj-2YV"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="vpb-oV-3ek" userLabel="Rearrangable Stack View">
+                                            <rect key="frame" x="0.0" y="474" width="353" height="489.66666666666674"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-5L-D4F" userLabel="Hydration Info Stack View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="138"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUe-Dk-Icc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Stay hydrated, Drink fluids based on age">
+                                                                    <attributes>
+                                                                        <color key="NSColor" name="primaryBlue"/>
+                                                                        <font key="NSFont" size="18" name="GothamRounded-Medium"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dN-9x-gkd" userLabel="Hydration Example Info Text View">
+                                                            <rect key="frame" x="0.0" y="36" width="353" height="102"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="102" id="aVX-pY-cw7"/>
+                                                            </constraints>
+                                                            <string key="text">Example: A 2-year-old drinks 2 oz per hour 
+- If blood sugar is 150 or lower, drink with sugar (e.g., Gatorade, Sprite)
+- If blood sugar is over 150, drink without sugar (e.g., Water, Gatorade Zero)</string>
+                                                            <color key="textColor" systemColor="labelColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                    </subviews>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-UU-IT1" userLabel="Reminder Container View">
+                                                    <rect key="frame" x="0.0" y="162.00000000000003" width="353" height="327.66666666666674"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="lim-S9-yuw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="327.66666666666669"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCq-Bg-56s" userLabel="Reminder View">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="179.33333333333334"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="nSF-03-c9g">
+                                                                            <rect key="frame" x="12" y="10" width="329" height="159.33333333333334"/>
+                                                                            <subviews>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ROF-k6-dGZ">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="87.333333333333329"/>
+                                                                                    <subviews>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="alarm_clock" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-fn-bww">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="87.333333333333329"/>
+                                                                                            <constraints>
+                                                                                                <constraint firstAttribute="width" constant="87" id="94z-sO-qhv"/>
+                                                                                            </constraints>
+                                                                                        </imageView>
+                                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-5q-KBk">
+                                                                                            <rect key="frame" x="99" y="0.0" width="230" height="87.333333333333329"/>
+                                                                                            <subviews>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Next Check in 2 Hours" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-TG-kaF">
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="36"/>
+                                                                                                    <constraints>
+                                                                                                        <constraint firstAttribute="height" priority="999" constant="36" id="I5X-Ss-eps"/>
+                                                                                                    </constraints>
+                                                                                                    <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                                                    <color key="textColor" name="primaryBlue"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="You’ll need to check your blood sugar and ketones in 2 hours." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-ze-NFt">
+                                                                                                    <rect key="frame" x="0.0" y="36" width="230" height="51.333333333333343"/>
+                                                                                                    <constraints>
+                                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="TPN-wm-gX1"/>
+                                                                                                    </constraints>
+                                                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                                    <nil key="textColor"/>
+                                                                                                    <nil key="highlightedColor"/>
+                                                                                                </label>
+                                                                                            </subviews>
+                                                                                        </stackView>
+                                                                                    </subviews>
+                                                                                </stackView>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eJE-eD-Qs5">
+                                                                                    <rect key="frame" x="0.0" y="111.33333333333337" width="329" height="48"/>
+                                                                                    <color key="backgroundColor" name="primaryBlue"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="48" id="fP3-Ql-fsg"/>
+                                                                                    </constraints>
+                                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="plain" image="ic_alarm" imagePlacement="leading" title="Remind Me" imagePadding="8" cornerStyle="fixed">
+                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                                                                                    </buttonConfiguration>
+                                                                                    <connections>
+                                                                                        <action selector="remindMeButtonTapped:" destination="-1" eventType="touchUpInside" id="Hdo-hd-yZ0"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="veryLightBlue"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="nSF-03-c9g" secondAttribute="trailing" constant="12" id="2DA-zb-wDv"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="nSF-03-c9g" secondAttribute="bottom" constant="10" id="7pD-ov-VoS"/>
+                                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="leading" secondItem="iCq-Bg-56s" secondAttribute="leading" constant="12" id="A6P-oR-XbW"/>
+                                                                        <constraint firstItem="nSF-03-c9g" firstAttribute="top" secondItem="iCq-Bg-56s" secondAttribute="top" constant="10" id="j2G-ax-mI3"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="cff-7E-G1M" userLabel="Over 2 Hours Stack View">
+                                                                    <rect key="frame" x="0.0" y="219.3333333333334" width="353" height="108.33333333333334"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Has it been more than 2 hours since your last ketone test?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-Sk-Bpx">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="51.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="v4Z-Ml-9cg">
+                                                                            <rect key="frame" x="0.0" y="60.333333333333258" width="353" height="48"/>
+                                                                            <subviews>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
+                                                                                    <rect key="frame" x="151.33333333333337" y="0.0" width="201.66666666666663" height="48"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="48" id="4ts-oB-Nb7"/>
+                                                                                    </constraints>
+                                                                                    <color key="tintColor" name="primaryBlue"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" imagePadding="8">
+                                                                                        <attributedString key="attributedTitle">
+                                                                                            <fragment content="Yes, Over 2hrs ">
+                                                                                                <attributes>
+                                                                                                    <font key="NSFont" size="20" name="GothamRounded-Medium"/>
+                                                                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                                                                </attributes>
+                                                                                            </fragment>
+                                                                                        </attributedString>
+                                                                                    </buttonConfiguration>
+                                                                                    <connections>
+                                                                                        <action selector="yesOverButtonTapped:" destination="-1" eventType="touchUpInside" id="xk3-zk-ndS"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="lim-S9-yuw" firstAttribute="top" secondItem="OKG-UU-IT1" secondAttribute="top" id="PXm-Xb-ByW"/>
+                                                        <constraint firstItem="lim-S9-yuw" firstAttribute="leading" secondItem="OKG-UU-IT1" secondAttribute="leading" id="e5y-js-Hak"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lim-S9-yuw" secondAttribute="bottom" id="ej5-bQ-Eud"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lim-S9-yuw" secondAttribute="trailing" id="nW4-E7-cAE"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLg-8e-GOb">
+                                            <rect key="frame" x="0.0" y="979.66666666666663" width="353" height="47.999999999999886"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="4w9-Wj-6Jr"/>
+                                            </constraints>
+                                            <color key="tintColor" name="choaGreenColor"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Button" imagePadding="8">
+                                                <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="didTapExitButton:" destination="-1" eventType="touchUpInside" id="chw-aD-CgM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="leading" secondItem="Z94-fI-lxz" secondAttribute="leading" constant="20" id="91U-H1-nSj"/>
+                                <constraint firstAttribute="trailing" secondItem="pt7-eK-NKm" secondAttribute="trailing" constant="20" id="Dof-vm-M6P"/>
+                                <constraint firstAttribute="bottom" secondItem="pt7-eK-NKm" secondAttribute="bottom" id="bdd-Va-QKU"/>
+                                <constraint firstItem="pt7-eK-NKm" firstAttribute="top" secondItem="Z94-fI-lxz" secondAttribute="top" constant="20" id="hrY-4n-c67"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Z94-fI-lxz" firstAttribute="width" secondItem="fX7-QZ-Zzx" secondAttribute="width" id="040-T3-597"/>
+                        <constraint firstItem="Z94-fI-lxz" firstAttribute="top" secondItem="fX7-QZ-Zzx" secondAttribute="top" id="3Z8-nG-zDq"/>
+                        <constraint firstAttribute="bottom" secondItem="Z94-fI-lxz" secondAttribute="bottom" constant="118" id="UpH-gD-Zga"/>
+                        <constraint firstItem="Z94-fI-lxz" firstAttribute="leading" secondItem="fX7-QZ-Zzx" secondAttribute="leading" id="u1k-S4-jss"/>
+                        <constraint firstAttribute="trailing" secondItem="Z94-fI-lxz" secondAttribute="trailing" id="wgx-Io-96n"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="9s9-L5-g4D"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="LcP-oo-jQU"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="o1S-mO-jTY"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="bottom" secondItem="o1S-mO-jTY" secondAttribute="bottom" id="MiP-t7-oZA"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="leading" secondItem="o1S-mO-jTY" secondAttribute="leading" id="TQs-0Y-6fR"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="top" secondItem="e7o-fC-reN" secondAttribute="top" id="kNg-oF-huv"/>
+                <constraint firstItem="fX7-QZ-Zzx" firstAttribute="trailing" secondItem="o1S-mO-jTY" secondAttribute="trailing" id="oHg-he-FfY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="100" y="270.77464788732397"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alarm_clock" width="87" height="87.333335876464844"/>
+        <image name="hope_alarm" width="250" height="364"/>
+        <image name="ic_alarm" width="17.333333969116211" height="16.333333969116211"/>
+        <image name="injection_insulin_pen" width="153" height="153"/>
+        <image name="insulin_pump" width="153" height="153"/>
+        <image name="leftArrow" width="20" height="20"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="choaGreenColor">
+            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryBlue">
+            <color red="0.0" green="0.36470588235294116" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightBlue">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

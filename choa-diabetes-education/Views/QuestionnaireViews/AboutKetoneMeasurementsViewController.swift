@@ -1,0 +1,81 @@
+//
+//  AboutKetoneMeasurementsViewController.swift
+//  choa-diabetes-education
+//
+//  Created by Maxwell Kapezi Jr on 20/08/2025.
+//
+
+import Foundation
+import UIKit
+
+class AboutKetoneMeasurementsViewController: UIViewController {
+    
+    @IBOutlet weak var mainStackView: UIStackView!
+
+	@IBOutlet var titleLabel: UILabel!
+	@IBOutlet var urineMeasurementTitle: UILabel!
+	@IBOutlet var urineMeasurementDescription: UITextView!
+
+	@IBOutlet var bloodMeasurementDescription: UITextView!
+	@IBOutlet var bloodMeasurementTitle: UILabel!
+
+	@IBOutlet var measurementTitles: [UILabel]!
+	@IBOutlet var measurementDescriptions: [UITextView]!
+
+	@IBOutlet var closeButton: PrimaryButton!
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+        
+        if let sheet = sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [
+                    .custom { context in
+                        return context.maximumDetentValue * 0.85
+                    }
+                ]
+                
+                if view.frame.height <= 800 {
+                    sheet.detents = [
+                        .custom { context in
+                            return context.maximumDetentValue * 0.85
+                        },
+                        .large()
+                    ]
+                }
+            } else {
+                sheet.detents = [.medium(), .large()]
+                sheet.selectedDetentIdentifier = .large
+            }
+            
+            sheet.prefersGrabberVisible = false
+            sheet.preferredCornerRadius = 24
+            sheet.largestUndimmedDetentIdentifier = nil
+        }
+
+		titleLabel.text = "About.KetoneMeasurements.title".localized()
+		titleLabel.textColor = .choaGreenColor
+		titleLabel.numberOfLines = 0
+
+		measurementTitles.enumerated().forEach { index, label in
+			label.textColor = .choaGreenColor
+			label.numberOfLines = 0
+		}
+		
+		measurementDescriptions.enumerated().forEach { index, description in
+			description.textColor = .black
+			description.font = .systemFont(ofSize: 16, weight: .regular)
+		}
+
+		urineMeasurementTitle.text = "About.KetoneMeasurements.Urine.title".localized()
+		urineMeasurementDescription.text = "About.KetoneMeasurements.Urine.description".localized()
+		
+		bloodMeasurementTitle.text = "About.KetoneMeasurements.Blood.title".localized()
+		bloodMeasurementDescription.text = "About.KetoneMeasurements.Blood.description".localized()
+		closeButton.setTitleWithStyle("Close", font: .gothamRoundedMedium20)
+	}
+
+	@IBAction func closeButtonTapped(_ sender: PrimaryButton) {
+		dismiss(animated: true)
+	}
+}

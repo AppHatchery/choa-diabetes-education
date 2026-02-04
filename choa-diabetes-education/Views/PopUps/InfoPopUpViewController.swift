@@ -1,0 +1,119 @@
+//
+//  InfoPopUpViewController.swift
+//  choa-diabetes-education
+//
+//  Created by Maxwell Kapezi Jr on 25/09/2025.
+//
+
+import UIKit
+
+class InfoPopUpViewController: UIViewController {
+    
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var popupTitle: UILabel!
+    @IBOutlet weak var popupDetails: UITextView!
+    @IBOutlet weak var closeButton: PrimaryButton!
+    
+    var popupTitleText: String = ""
+    var popupDetailsText: String = ""
+    
+    init() {
+        super.init(nibName: "InfoPopUpViewController", bundle: nil)
+        self.modalPresentationStyle = .overFullScreen
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        configView()
+        setupGestureRecognizer()
+    }
+    
+    private func setupGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        
+        backgroundView.addGestureRecognizer(tapGesture)
+        backgroundView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func backgroundTapped() {
+        hide()
+    }
+    
+    func configView() {
+        self.view.backgroundColor = .clear
+        self.backgroundView.backgroundColor = .black.withAlphaComponent(0.6)
+        self.contentView.alpha = 0
+        self.contentView.layer.cornerRadius = 12
+    }
+    
+    func appear(sender: UIViewController, title: String, details: String) {
+        
+        self.popupTitleText = title
+        self.popupDetailsText = details
+        
+        sender.present(self, animated: false) {
+            self.show()
+        }
+    }
+    
+    private func show() {
+        UIView.animate(withDuration: 0.2, delay: 0) {
+            self.backgroundView.alpha = 1
+            self.contentView.alpha = 1
+            
+            self.popupTitle.text = self.popupTitleText
+            
+            switch self.popupTitleText {
+            case "PopupInfo.CorrectionFactor.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["correction factor", "1 unit of insulin","blood sugar", "200 mg/dL","target","100 mg/dL","(200-100) ÷ 50 = 2 units of insulin", "Example"])
+            case "PopupInfo.CarbRatio.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates that 1 unit of insulin", "Example", "1 unit of insulin per 10 grams", "50 ÷ 10 = 5 units"])
+            case "PopupInfo.TargetBloodSugar.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["optimal blood sugar level", "Example"])
+            case "PopupInfo.TotalCarbs.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates", "Example", "60 ÷ 15 = 4 units"])
+            case "PopupInfo.InsulinForFood.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates", "Example", "60 ÷ 15 = 4 units"])
+            case "PopupInfo.InsulinForFood.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: [""])
+            case "PopupInfo.InsulinForHighBloodSugar.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: [""])
+            default:
+                print("Unknown fruit")
+            }
+        }
+    }
+    
+    func hide() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
+            self.backgroundView.alpha = 0
+            self.contentView.alpha = 0
+        } completion: { _ in
+            self.dismiss(animated: true)
+            self.removeFromParent()
+        }
+    }
+
+    
+    @IBAction func closeButtonTap(_ sender: Any) {
+        hide()
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

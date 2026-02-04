@@ -8,14 +8,18 @@
 import UIKit
 
 class CalculatorHomeViewController: UIViewController {
-    
+
     var insulinForHighBloodSugar = false
     var insulinForFood = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+//        self.tableView.sectionHeaderTopPadding = 0.0
+//        self.tableView.sectionHeaderHeight = 0.0
+//        self.tableView.estimatedSectionHeaderHeight = 0.0
+//        self.tableView.contentInsetAdjustmentBehavior = .never
     }
     
     @IBAction func calculateInsulinForFood(_ sender: UIButton){
@@ -32,7 +36,7 @@ class CalculatorHomeViewController: UIViewController {
         insulinForFood = true
         insulinForHighBloodSugar = true
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let calculatorAViewController = segue.destination as? CalculatorAViewController {
             calculatorAViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
@@ -42,6 +46,12 @@ class CalculatorHomeViewController: UIViewController {
             calculatorBViewController.insulinForFoodBoolean = insulinForFood
             calculatorBViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
         }
+        
+//        if let calculatorBaseVC = segue.destination as? CalculatorBaseVC {
+//            let manager = QuestionnaireManager.instance
+//            let firstQues = manager.createQuestion(questionId: 1, questionType: .yesOrNoWithDescription, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), answerOptions: ["Yes", "No"])
+//            calculatorBaseVC.questionObj = firstQues
+//        }
     }
     
     /*

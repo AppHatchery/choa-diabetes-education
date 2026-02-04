@@ -7,99 +7,84 @@
 
 import UIKit
 
-class ResourcesViewController: UIViewController, FoodDiaryDelegate {
+class ResourcesViewController: UIViewController {
+    @IBOutlet weak var diabetesBasicsView: UIView!
+    @IBOutlet weak var nutritionAndCarbCountingView: UIView!
+    @IBOutlet weak var diabetesSelfManagementView: UIView!
+        
+    var chapterContent = 0
+    var quizContent = 0
+    var chapterName = ""
+    var chapterSubName = ""
     
-    @IBOutlet weak var contentView: UIView!
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
     
-    var scrollView: UIScrollView!
-    var contentFrame: CGRect!
-    var contentURL = ""
-    var contentTitle = ""
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        diabetesBasicsView.layer.cornerRadius = 24
+        nutritionAndCarbCountingView.layer.cornerRadius = 24
+        diabetesSelfManagementView.layer.cornerRadius = 24
+        
+        addTapRecognizersToResourceCards()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        updateView()
+    @objc private func didTapDiabetesBasicsCard() {
+        chapterContent = ContentChapter().sectionOne.count
+        quizContent = ContentChapter().sectionOne.count
+        chapterName = ContentChapter().sectionTitles[0]
+        chapterSubName = ContentChapter().sectionSubtitles[0]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
+    }
+
+    @objc private func didTapNutritionCard() {
+        chapterContent = ContentChapter().sectionTwo.count
+        quizContent = 2
+        chapterName = ContentChapter().sectionTitles[1]
+        chapterSubName = ContentChapter().sectionSubtitles[1]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
+    }
+
+    @objc private func didTapManagementCard() {
+        chapterContent = ContentChapter().sectionThree.count
+        quizContent = ContentChapter().sectionThree.count
+        chapterName = ContentChapter().sectionTitles[2]
+        chapterSubName = ContentChapter().sectionSubtitles[2]
+        performSegue(withIdentifier: "SegueToHandbook", sender: nil)
     }
     
-    func updateView() {
-        if scrollView != nil {
-            scrollView.removeFromSuperview()
-        }
+    private func addTapRecognizersToResourceCards() {
+        // Ensure the views can receive touches
+        diabetesBasicsView.isUserInteractionEnabled = true
+        nutritionAndCarbCountingView.isUserInteractionEnabled = true
+        diabetesSelfManagementView.isUserInteractionEnabled = true
         
-        contentFrame = self.view.bounds
-        scrollView = UIScrollView(frame: contentFrame)
-        contentView.addSubview(scrollView)
-        
-        var y = 0
-        let recommendedAppsView = AppsView(frame: CGRect(x: 20, y: y, width: Int(contentFrame.width)-40, height: 295))
-        scrollView.addSubview(recommendedAppsView)
-        y += 295
-        y += 30
-        
-        let foodDiaryView = FoodDiary(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 420), delegate: self)
-        scrollView.addSubview(foodDiaryView)
-        y += 420
-        
-        let communitiesView = Communities(frame: CGRect(x: 0, y: y, width: Int(contentFrame.width), height: 870))
-        scrollView.addSubview(communitiesView)
-        y += 900
-        
-        scrollView.contentSize = CGSize(width: Int(scrollView.frame.width), height: y)
+        let basicsTap = UITapGestureRecognizer(target: self, action: #selector(didTapDiabetesBasicsCard))
+        diabetesBasicsView.addGestureRecognizer(basicsTap)
+
+        let nutritionTap = UITapGestureRecognizer(target: self, action: #selector(didTapNutritionCard))
+        nutritionAndCarbCountingView.addGestureRecognizer(nutritionTap)
+
+        let managementTap = UITapGestureRecognizer(target: self, action: #selector(didTapManagementCard))
+        diabetesSelfManagementView.addGestureRecognizer(managementTap)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let resourceDetailViewController = segue.destination as? ChapterViewController {
-            resourceDetailViewController.contentURL = contentURL
-            resourceDetailViewController.titleURL = contentTitle
+        if let handbookViewController = segue.destination as? HandbookViewController {
+            handbookViewController.chapterName = chapterName
+            handbookViewController.chapterSubName = chapterSubName
+            handbookViewController.chapterContent = chapterContent
+            handbookViewController.quizContent = quizContent
         }
-    }
-    
-    func loadResource() {
-        // load relevant resource
-        performSegue(withIdentifier: "SegueToDetailResourceViewController", sender: nil )
-    }
-    
-    func loadLowCarbsButton(){
-        contentURL = "low_carb_snack_combinations"
-        contentTitle = "What can I eat?"
-        loadResource()
-    }
-    func loadKnowYourCarbsButton(){
-        contentURL = "know_your_carbs"
-        contentTitle = "What can I eat?"
-        loadResource()
-    }
-    func loadFoodsRaiseBloodSugarButton(){
-        contentURL = "foods_that_raise_blood_sugar"
-        contentTitle = "What can I eat?"
-        loadResource()
-    }
-    func loadFoodsDontRaiseBloodSugarButton(){
-        contentURL = "foods_that_don't_raise_blood_sugar"
-        contentTitle = "What can I eat?"
-        loadResource()
-    }
-    
-    @IBAction func openapps(_ sender: UIButton) {
-        var appURL: URL?
-        switch sender.tag {
-        case 0:
-            appURL = URLs.mySugarDiabetesApp
-        case 1:
-            appURL = URLs.colorieKingApp
-        case 2:
-            appURL = URLs.myFitnessPalApp
-        default:
-            // Error
-            print("there was an error loading the url")
-        }
-        guard let url = appURL else { return }
-        UIApplication.shared.open(url)
     }
 }
