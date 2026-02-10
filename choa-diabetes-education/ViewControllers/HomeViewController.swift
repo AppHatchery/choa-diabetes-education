@@ -108,6 +108,7 @@ class HomeViewController: UIViewController {
         
 //        setupButtonConfigs()
         addTapRecognizersToResourceCards()
+        addMedicalReferencesRow()
     }
     
     override func viewDidLayoutSubviews() {
@@ -247,6 +248,74 @@ class HomeViewController: UIViewController {
         //        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
     }
 
+    // MARK: - Medical References
+    
+    private func addMedicalReferencesRow() {
+        // The Educational Resources label is inside the Educational Resources View,
+        // which is inside the scroll content view
+        guard let educationalResourcesView = educationalResourcesLabel.superview,
+              let contentView = educationalResourcesView.superview else { return }
+        
+        // Label matching Educational Resources header style (GothamRounded-Medium 20pt, primaryBlue)
+        // Low hugging priority (249) so it stretches, matching the storyboard label
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = "Medical References"
+        titleLabel.font = .gothamRoundedMedium20
+        titleLabel.textColor = UIColor(named: "primaryBlue") ?? .label
+        titleLabel.isUserInteractionEnabled = true
+        titleLabel.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(748), for: .horizontal)
+        
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(didTapMedicalReferences))
+        titleLabel.addGestureRecognizer(labelTap)
+        
+        // Arrow button — exact same setup as the Educational Resources arrow in storyboard:
+        // plain config, leftArrow image, primaryBlue tint, 28pt height, intrinsic width (~44pt)
+        let arrowButton = UIButton(type: .system)
+        arrowButton.translatesAutoresizingMaskIntoConstraints = false
+        arrowButton.tintColor = UIColor(named: "primaryBlue") ?? .label
+        
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.image = UIImage(named: "leftArrow")
+        buttonConfig.imagePadding = 0
+        arrowButton.configuration = buttonConfig
+        
+        arrowButton.addTarget(self, action: #selector(didTapMedicalReferences), for: .touchUpInside)
+        
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(arrowButton)
+        
+        // Increase the content view's fixed height enough so the row is fully inside bounds
+        // (this is critical — views outside superview bounds don't receive touch events)
+        for constraint in contentView.constraints {
+            if constraint.firstAttribute == .height && constraint.secondItem == nil {
+                constraint.constant += 120
+                break
+            }
+        }
+        
+        NSLayoutConstraint.activate([
+            // Label — same leading as Educational Resources (19pt)
+            titleLabel.topAnchor.constraint(equalTo: educationalResourcesView.bottomAnchor, constant: 24),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 19),
+            titleLabel.heightAnchor.constraint(equalToConstant: 28),
+            
+            // Arrow button — leading pinned to label trailing, trailing pinned to content edge
+            // Button keeps its intrinsic width (~44pt); label stretches to fill the rest
+            arrowButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            arrowButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            arrowButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -13.5),
+            arrowButton.heightAnchor.constraint(equalToConstant: 28)
+        ])
+    }
+    
+    @objc private func didTapMedicalReferences() {
+        let medicalReferencesVC = MedicalReferencesViewController()
+        medicalReferencesVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(medicalReferencesVC, animated: true)
+    }
+    
     // MARK: - Tap handlers for resource cards
     
     @objc private func didTapEducationalResourcesLabel() {
