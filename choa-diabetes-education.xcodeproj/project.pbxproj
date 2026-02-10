@@ -16,6 +16,7 @@
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
+		B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = B40B5DA72F3BA68F0028CCB0 /* Pendo */; };
 		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
 		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
 		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
@@ -152,7 +153,6 @@
 		D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FA9002991723E009C51C3 /* AboutViewController.swift */; };
 		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
 		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
-		D432FDD02981CFF8003D2657 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D432FDCF2981CFF8003D2657 /* Pendo */; };
 		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
@@ -506,8 +506,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */,
 				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
-				D432FDD02981CFF8003D2657 /* Pendo in Frameworks */,
 				B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -990,9 +990,9 @@
 			);
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
-				D432FDCF2981CFF8003D2657 /* Pendo */,
 				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
 				B4DA9DC72E98F82900C415CE /* Lottie */,
+				B40B5DA72F3BA68F0028CCB0 /* Pendo */,
 			);
 			productName = "choa-diabetes-education";
 			productReference = D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */;
@@ -1031,9 +1031,9 @@
 			);
 			mainGroup = D48D88E4289C0043001A61E2;
 			packageReferences = (
-				D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
 				D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
 			);
 			productRefGroup = D48D88EE289C0043001A61E2 /* Products */;
 			projectDirPath = "";
@@ -1562,20 +1562,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pendo-io/pendo-mobile-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.11.2;
+			};
+		};
 		B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.2;
-			};
-		};
-		D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pendo-io/pendo-mobile-ios";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1589,15 +1589,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B40B5DA72F3BA68F0028CCB0 /* Pendo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
+			productName = Pendo;
+		};
 		B4DA9DC72E98F82900C415CE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
-		};
-		D432FDCF2981CFF8003D2657 /* Pendo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
-			productName = Pendo;
 		};
 		D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
