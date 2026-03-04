@@ -37,19 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PendoManager.shared().setup(appKey)
 
         // Set up Pendo
-        let accountId = "TypeU-Test"
+        let accountId = "TypeU-Test" // Pilot
         let visitorIdKey = "visitorId"
+        // Update with each release so new visitors are tagged with the cohort they joined on.
+        // Version number alone doesn’t tell you when they joined; this does.
+        let releaseCohort = "Mar26"
         
         // Get or create visitor ID
-        // Existing users keep their past ID, new users get tagged with current month/year
+        // Existing users keep their past ID; new users get tagged with this release’s cohort
         let visitorId: String
         if let existingId = UserDefaults.standard.string(forKey: visitorIdKey) {
             visitorId = existingId
         } else {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMyy" // e.g., "Feb26"
-            let dateTag = dateFormatter.string(from: Date())
-            visitorId = "Pilot-\(dateTag)-\(UUID())"
+            visitorId = "Pilot-\(releaseCohort)-\(UUID())"
             UserDefaults.standard.set(visitorId, forKey: visitorIdKey)
         }
         
