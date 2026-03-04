@@ -315,6 +315,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                 )
                 
                 insulinForFood.text = "\(foodInsulin.cleanString) units"
+                PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs": currentTotalCarbs, "ratio": currentCarbRatio])
             }
 
             totalCarbsField.textColor = .primaryBlue
@@ -387,7 +388,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         if insulinForFoodBoolean && insulinForHighBloodSugarBoolean == true {
             if (totalCarbs > 0 && carbRatio > 0){
-                PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs":totalCarbs,"ratio":carbRatio])
                 if insulinForHighBloodSugarBoolean {
                     performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
                 } else {
