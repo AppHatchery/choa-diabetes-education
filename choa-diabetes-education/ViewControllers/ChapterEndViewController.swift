@@ -308,7 +308,7 @@ private extension ChapterEndViewController {
         }
         
         for i in 0..<totalCount {
-            let isCompleted = completedSet.contains(i)
+            let isCompleted = i < completedCount
             let starView = makeStarImageView(completed: isCompleted)
             starsStackView.addArrangedSubview(starView)
         }
