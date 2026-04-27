@@ -55,8 +55,10 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.tintColor = UIColor.white
-        
+
         navigationItem.backButtonDisplayMode = .minimal
+
+        tableView?.reloadData()
     }
     
     override func viewDidLoad() {
@@ -70,7 +72,9 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(UINib(nibName: "QuizTableViewCell", bundle: nil), forCellReuseIdentifier: "quizCell")
         tableView.estimatedRowHeight = 100
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+
         chapterTitle.text = chapterName
         
         // Do any additional setup after loading the view.
