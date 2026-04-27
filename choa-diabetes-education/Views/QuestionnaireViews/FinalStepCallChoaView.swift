@@ -115,8 +115,8 @@ class FinalStepCallChoaView: UIView {
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .natural
 
-		doneButton.titleLabel?.font = .nunitoMedium20
-//		callChoaButton.titleLabel?.font = .nunitoMedium20
+		doneButton.titleLabel?.font = .nunitoBold20
+//		callChoaButton.titleLabel?.font = .nunitoBold20
         
 //        callChoaButton.isHidden = true
 

@@ -61,7 +61,7 @@ class FourOptionsView: UIView {
 		questionLabel.textColor = .primaryBlue
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
-//		nextButton.titleLabel?.font = .nunitoMedium20
+//		nextButton.titleLabel?.font = .nunitoBold20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8
@@ -95,7 +95,7 @@ class FourOptionsView: UIView {
 
 		if selected == 0 {
 			nextButton.alpha = 0.3
-//			nextButton.titleLabel?.font = .nunitoMedium20
+//			nextButton.titleLabel?.font = .nunitoBold20
 		}
         
         nextButton.layer.cornerRadius = 12
@@ -129,7 +129,7 @@ class FourOptionsView: UIView {
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         if selected == 0 { return }
 
-//		nextButton.titleLabel?.font = .nunitoMedium20
+//		nextButton.titleLabel?.font = .nunitoBold20
 
 		switch currentQuestion.questionId {
 		case FourOptionsQuestionId.childIssue.id:

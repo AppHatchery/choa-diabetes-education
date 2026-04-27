@@ -88,6 +88,8 @@ class InfoPopUpViewController: UIViewController {
             default:
                 print("Unknown fruit")
             }
+            
+            self.popupTitle.font = .nunitoBold20
         }
     }
     

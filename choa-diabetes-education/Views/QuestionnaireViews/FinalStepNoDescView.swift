@@ -50,7 +50,7 @@ class FinalStepNoDescView: UIView {
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
 
-		doneButton.setTitleWithStyle("Exit", font: .nunitoMedium20)
+		doneButton.setTitleWithStyle("Exit", font: .nunitoBold20)
 	}
 
 	@IBAction func didSelectExitAction(_ sender: UIButton) {

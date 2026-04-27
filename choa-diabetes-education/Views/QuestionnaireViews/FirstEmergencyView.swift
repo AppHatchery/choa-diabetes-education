@@ -70,7 +70,7 @@ class FirstEmergencyView: UIView {
 		call911Button.titleLabel?.font = .nunitoBold20
 		call911Button.layer.cornerRadius = 12
         
-        exitButton.titleLabel?.font = .nunitoMedium20
+        exitButton.titleLabel?.font = .nunitoBold20
 	}
 
 	@IBAction func call911(_ sender: UIButton) {

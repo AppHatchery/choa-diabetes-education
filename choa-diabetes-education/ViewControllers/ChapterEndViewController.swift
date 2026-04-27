@@ -201,7 +201,7 @@ class ChapterEndViewController: UIViewController {
             nextChapterButton
                 .setTitleWithStyle(
                     "Next Chapter",
-                    font: .nunitoMedium20,
+                    font: .nunitoBold20,
                     image: nil
                 )
         } else {
@@ -209,7 +209,7 @@ class ChapterEndViewController: UIViewController {
             nextChapterButton
                 .setTitleWithStyle(
                     "Done",
-                    font: .nunitoMedium20,
+                    font: .nunitoBold20,
                     image: nil
                 )
             

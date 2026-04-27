@@ -196,7 +196,7 @@ class FinalStepWithReminderView: UIView {
 
         reminderView.layer.cornerRadius = 12
         reminderButton.layer.cornerRadius = 12
-        doneButton.setTitleWithStyle("Exit", font: .nunitoMedium20)
+        doneButton.setTitleWithStyle("Exit", font: .nunitoBold20)
 
         yesOver2hoursButton.layer.cornerRadius = 12
         yesOver2hoursButton.layer.borderWidth = 0
@@ -205,7 +205,7 @@ class FinalStepWithReminderView: UIView {
         let yesOverText = questionnaireManager.iLetPump
             ? "Yes, Over 90 mins"
             : "Yes, Over 2hrs"
-        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .nunitoMedium20)
+        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .nunitoBold20)
 
         giveRecommendedDoseLabel.setText(
             "Final.GiveRecommendedDose.text".localized(),
@@ -386,7 +386,7 @@ class FinalStepWithReminderView: UIView {
 		reminderButton
 			.setTitleWithStyle(
 				"Remind Me",
-				font: .nunitoMedium20,
+				font: .nunitoBold20,
 				color: .white,
 				image: UIImage(named: "ic_alarm"),
 				imagePlacement: .left
@@ -400,7 +400,7 @@ class FinalStepWithReminderView: UIView {
 		if reminderIsActive {
 			reminderNextCheckDescriptionLabel.text = "Final.ReminderNextCheckDescription.text".localized()
 			reminderNextCheckDescriptionLabel.textColor = .black
-			reminderNextCheckDescriptionLabel.font = .nunitoMedium20
+			reminderNextCheckDescriptionLabel.font = .nunitoBold20
 		} else {
 			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
@@ -419,7 +419,7 @@ class FinalStepWithReminderView: UIView {
 
 		reminderView.backgroundColor = .veryLightGreen
 
-		reminderButton.setTitleWithStyle("Skip This Reminder", font: .nunitoMedium20, color: .primaryBlue)
+		reminderButton.setTitleWithStyle("Skip This Reminder", font: .nunitoBold20, color: .primaryBlue)
 		reminderButton.backgroundColor = .clear
 		reminderButton.tintColor = .primaryBlue
 		reminderButton.layer.borderWidth = 1
@@ -442,7 +442,7 @@ class FinalStepWithReminderView: UIView {
 		reminderButton
 			.setTitleWithStyle(
 				"Start Test",
-				font: .nunitoMedium20,
+				font: .nunitoBold20,
 				color: .whiteColor,
 				image: UIImage(named: "leftArrow"),
 				imagePlacement: .right

@@ -146,7 +146,7 @@ class HomeViewController: UIViewController {
         insulinButtonsConfig.titleTextAttributesTransformer =
             UIConfigurationTextAttributesTransformer { incoming in
                 var out = incoming
-                out.font = .nunitoMedium16
+                out.font = .nunitoBold16
                 return out
             }
         
@@ -164,7 +164,7 @@ class HomeViewController: UIViewController {
 //        insulinButtonsConfig.titleTextAttributesTransformer =
 //            UIConfigurationTextAttributesTransformer { incoming in
 //                var out = incoming
-//                out.font = .nunitoMedium16
+//                out.font = .nunitoBold16
 //                out.foregroundColor = UIColor.secondaryRedColor
 //                out.backgroundColor = UIColor.whiteColor
 //                return out
@@ -400,7 +400,7 @@ class HomeViewController: UIViewController {
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
 		insulinForFood = true
 		insulinForHighBloodSugar = true
-		getHelpButton.titleLabel?.font = .nunitoMedium16
+		getHelpButton.titleLabel?.font = .nunitoBold16
         
 
 		let manager = QuestionnaireManager.instance

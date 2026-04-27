@@ -14,13 +14,13 @@
         <array key="Acme-Regular.ttf">
             <string>Acme-Regular</string>
         </array>
+        <array key="Gotham Rounded Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
         <array key="Gotham Rounded Light.otf">
             <string>GothamRounded-Light</string>
         </array>
-        <array key="GothamRoundedBold.ttf">
-            <string>GothamRounded-Bold</string>
-        </array>
-        <array key="GothamRoundedMedium.ttf">
+        <array key="Gotham Rounded Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
         <array key="IrishGrover-Regular.ttf">
@@ -279,7 +279,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NyV-F8-ML0">
-                                <rect key="frame" x="0.0" y="189.5" width="375" height="527.5"/>
+                                <rect key="frame" x="0.0" y="193.5" width="375" height="523.5"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lMk-bm-Jil">
                                         <rect key="frame" x="24" y="0.0" width="327" height="39"/>
@@ -297,7 +297,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="120" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-hf-u2y">
-                                        <rect key="frame" x="24" y="38" width="327" height="409.5"/>
+                                        <rect key="frame" x="24" y="38" width="327" height="405.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -318,8 +318,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes Basics" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4A-Yh-lnh">
-                                <rect key="frame" x="16" y="144" width="213" height="23.5"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                <rect key="frame" x="16" y="144" width="213" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                 <color key="textColor" name="whiteColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -361,10 +361,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmy-mB-eP8">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-tT-GCV">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -408,19 +408,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU1-IJ-eUy">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kqT-rW-dag">
-                                        <rect key="frame" x="20" y="-29.5" width="335" height="414.5"/>
+                                        <rect key="frame" x="20" y="18" width="335" height="421"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Woohoo! You did it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZQ-FX-1gi">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="37.5"/>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                                                 <color key="textColor" name="whiteColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-Nd-JtE" userLabel="Images Stack View">
-                                                <rect key="frame" x="0.0" y="61.5" width="335" height="353"/>
+                                                <rect key="frame" x="0.0" y="68" width="335" height="353"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diabetes_basics_text_bubble_1" translatesAutoresizingMaskIntoConstraints="NO" id="toL-7Q-Hrw">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="103"/>
@@ -439,7 +439,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaP-bM-2yw" userLabel="Bottom Stars View">
-                                        <rect key="frame" x="0.0" y="385" width="375" height="208"/>
+                                        <rect key="frame" x="0.0" y="439" width="375" height="208"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="3Lt-TL-KM9">
                                                 <rect key="frame" x="20" y="50" width="335" height="158"/>
@@ -496,7 +496,7 @@
                                                             <backgroundConfiguration key="background" cornerRadius="12" strokeWidth="0.0">
                                                                 <color key="backgroundColor" name="primaryGreen"/>
                                                             </backgroundConfiguration>
-                                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                             <color key="baseForegroundColor" name="whiteColor"/>
                                                         </buttonConfiguration>
                                                         <connections>
@@ -604,23 +604,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erX-ET-2GE">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Diabetes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-Dm-uQI">
-                                <rect key="frame" x="20" y="130" width="335" height="28"/>
+                                <rect key="frame" x="20" y="76" width="335" height="28"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes basics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EY5-RB-pUo">
-                                <rect key="frame" x="20" y="104" width="335" height="22"/>
+                                <rect key="frame" x="20" y="50" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="quizStart" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-sa-na4">
-                                <rect key="frame" x="24" y="198" width="327" height="187"/>
+                                <rect key="frame" x="24" y="144" width="327" height="187"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="187" id="TYr-ne-jZL"/>
                                 </constraints>
@@ -642,13 +642,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 questions, 2mins" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtj-aW-WrN">
-                                <rect key="frame" x="20" y="172" width="335" height="22"/>
+                                <rect key="frame" x="20" y="118" width="335" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="textColor" name="contentBlackColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished the quiz." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyW-Bw-RUj">
-                                <rect key="frame" x="20" y="162" width="335" height="23.5"/>
+                                <rect key="frame" x="20" y="108" width="335" height="23.5"/>
                                 <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                 <color key="textColor" name="choaGreenColor"/>
                                 <nil key="highlightedColor"/>
@@ -945,8 +945,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beyond Basics Class Recap" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
-                                <rect key="frame" x="20" y="74" width="253" height="20"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                <rect key="frame" x="20" y="74" width="252.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                 <color key="textColor" name="primaryBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -960,8 +960,8 @@
                                                 <rect key="frame" x="20" y="20" width="335" height="150"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Diabetes Basics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-ed-Y3g">
-                                                        <rect key="frame" x="20" y="20" width="178" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <rect key="frame" x="20" y="20" width="178" height="27.5"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -996,10 +996,10 @@
                                                 <rect key="frame" x="20" y="182" width="335" height="150"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0z-Jk-HEQ">
-                                                        <rect key="frame" x="20" y="20" width="178" height="47"/>
+                                                        <rect key="frame" x="20" y="20" width="178" height="55"/>
                                                         <string key="text">Nutrition and 
 Carb Counting</string>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1034,10 +1034,10 @@ Carb Counting</string>
                                                 <rect key="frame" x="20" y="344" width="335" height="150"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwO-pr-yHk">
-                                                        <rect key="frame" x="20" y="20" width="178" height="47"/>
+                                                        <rect key="frame" x="20" y="20" width="178" height="55"/>
                                                         <string key="text">Diabetes 
 Self-Management</string>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -1602,12 +1602,12 @@ Self-Management</string>
                                                         <rect key="frame" x="0.0" y="45" width="375" height="180"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dix-VG-0Pp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="483" height="181"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5a-EM-bgg" userLabel="Resouce Card View">
-                                                                        <rect key="frame" x="19" y="0.0" width="140" height="181"/>
+                                                                        <rect key="frame" x="19" y="0.0" width="140" height="180"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-O5-cm5">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Diabetes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-O5-cm5">
                                                                                 <rect key="frame" x="8" y="8" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
@@ -1615,14 +1615,14 @@ Self-Management</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxq-qD-vIg">
-                                                                                <rect key="frame" x="8" y="32.5" width="124" height="19.5"/>
+                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
                                                                                 <color key="textColor" name="secondaryMeadowGreen300"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="2XY-ZE-QYu">
-                                                                                <rect key="frame" x="8" y="64" width="124" height="121"/>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="2XY-ZE-QYu">
+                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="secondaryMeadowGreen100"/>
@@ -1635,15 +1635,16 @@ Self-Management</string>
                                                                             <constraint firstAttribute="bottom" secondItem="2XY-ZE-QYu" secondAttribute="bottom" constant="-4" id="LMe-Zh-idt"/>
                                                                             <constraint firstItem="2XY-ZE-QYu" firstAttribute="top" secondItem="Zxq-qD-vIg" secondAttribute="bottom" constant="12" id="QXM-QT-RDd"/>
                                                                             <constraint firstAttribute="width" constant="140" id="UqS-nW-zcK"/>
-                                                                            <constraint firstItem="Zxq-qD-vIg" firstAttribute="top" secondItem="JB8-O5-cm5" secondAttribute="bottom" constant="5" id="Y6z-yv-s2r"/>
+                                                                            <constraint firstItem="Zxq-qD-vIg" firstAttribute="top" secondItem="JB8-O5-cm5" secondAttribute="bottom" id="Y6z-yv-s2r"/>
                                                                             <constraint firstAttribute="trailing" secondItem="JB8-O5-cm5" secondAttribute="trailing" constant="8" id="bKU-zL-VtN"/>
+                                                                            <constraint firstAttribute="height" constant="180" id="dwj-fn-LKg"/>
                                                                             <constraint firstItem="JB8-O5-cm5" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="l5m-Mi-iQm"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuN-JU-7lD" userLabel="Resouce Card View">
-                                                                        <rect key="frame" x="171" y="0.0" width="140" height="181"/>
+                                                                        <rect key="frame" x="171" y="0.0" width="140" height="180"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nutrition and " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vva-PV-0cP">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Nutrition and " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vva-PV-0cP">
                                                                                 <rect key="frame" x="8" y="8" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
@@ -1651,14 +1652,14 @@ Self-Management</string>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Counting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6e-Yq-UOv">
-                                                                                <rect key="frame" x="8" y="32.5" width="124" height="19.5"/>
+                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
                                                                                 <color key="textColor" name="secondarySunsetOrange300"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="gTi-4w-diV">
-                                                                                <rect key="frame" x="8" y="64" width="124" height="121"/>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="gTi-4w-diV">
+                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="secondarySunsetOrange100"/>
@@ -1671,42 +1672,44 @@ Self-Management</string>
                                                                             <constraint firstItem="t6e-Yq-UOv" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="ZqJ-Ex-kSt"/>
                                                                             <constraint firstAttribute="trailing" secondItem="gTi-4w-diV" secondAttribute="trailing" constant="8" id="gpw-MZ-NWM"/>
                                                                             <constraint firstAttribute="bottom" secondItem="gTi-4w-diV" secondAttribute="bottom" constant="-4" id="grb-lx-ot4"/>
+                                                                            <constraint firstAttribute="height" constant="180" id="jOw-3m-tG1"/>
                                                                             <constraint firstItem="gTi-4w-diV" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="lEB-1b-CtY"/>
-                                                                            <constraint firstItem="t6e-Yq-UOv" firstAttribute="top" secondItem="Vva-PV-0cP" secondAttribute="bottom" constant="5" id="sfl-Kn-RQ2"/>
+                                                                            <constraint firstItem="t6e-Yq-UOv" firstAttribute="top" secondItem="Vva-PV-0cP" secondAttribute="bottom" id="sfl-Kn-RQ2"/>
                                                                             <constraint firstAttribute="width" constant="140" id="uim-h1-AuD"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agd-QZ-Gud" userLabel="Resouce Card View">
-                                                                        <rect key="frame" x="323" y="0.0" width="140" height="181"/>
+                                                                        <rect key="frame" x="323" y="0.0" width="140" height="180"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diabetes Self" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4s-km-Enb">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Diabetes Self" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4s-km-Enb">
                                                                                 <rect key="frame" x="8" y="8" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
                                                                                 <color key="textColor" name="secondaryRoyalPurple300"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIl-vD-ZJX">
-                                                                                <rect key="frame" x="8" y="32.5" width="124" height="19.5"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIl-vD-ZJX">
+                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
                                                                                 <color key="tintColor" name="secondaryMeadowGreen300"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
                                                                                 <color key="textColor" name="secondaryRoyalPurple300"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="hope_clock" translatesAutoresizingMaskIntoConstraints="NO" id="mlt-nD-aji">
-                                                                                <rect key="frame" x="8" y="64" width="124" height="121"/>
+                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="secondaryRoyalPurple100"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="mlt-nD-aji" secondAttribute="bottom" constant="-4" id="0Fq-Z3-pot"/>
                                                                             <constraint firstAttribute="trailing" secondItem="DIl-vD-ZJX" secondAttribute="trailing" constant="8" id="0y4-ms-I3p"/>
-                                                                            <constraint firstItem="DIl-vD-ZJX" firstAttribute="top" secondItem="J4s-km-Enb" secondAttribute="bottom" constant="5" id="7N2-89-GNY"/>
+                                                                            <constraint firstItem="DIl-vD-ZJX" firstAttribute="top" secondItem="J4s-km-Enb" secondAttribute="bottom" id="7N2-89-GNY"/>
                                                                             <constraint firstItem="J4s-km-Enb" firstAttribute="top" secondItem="agd-QZ-Gud" secondAttribute="top" constant="8" id="CVv-N3-ZFW"/>
                                                                             <constraint firstItem="J4s-km-Enb" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Ob0-yE-jp1"/>
                                                                             <constraint firstAttribute="width" constant="140" id="RDP-EK-ReF"/>
                                                                             <constraint firstItem="DIl-vD-ZJX" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="W0O-ri-Bhs"/>
                                                                             <constraint firstItem="mlt-nD-aji" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Y7t-t9-yk2"/>
+                                                                            <constraint firstAttribute="height" constant="180" id="a72-Yg-e2w"/>
                                                                             <constraint firstItem="mlt-nD-aji" firstAttribute="top" secondItem="DIl-vD-ZJX" secondAttribute="bottom" constant="12" id="i10-XO-0N5"/>
                                                                             <constraint firstAttribute="trailing" secondItem="mlt-nD-aji" secondAttribute="trailing" constant="8" id="iZ2-Ai-WFd"/>
                                                                             <constraint firstAttribute="trailing" secondItem="J4s-km-Enb" secondAttribute="trailing" constant="8" id="t1a-dt-ujZ"/>
@@ -1732,6 +1735,7 @@ Self-Management</string>
                                                             <constraint firstAttribute="trailing" secondItem="Dix-VG-0Pp" secondAttribute="trailing" constant="19" id="d7V-5f-Nox"/>
                                                             <constraint firstAttribute="bottom" secondItem="Dix-VG-0Pp" secondAttribute="bottom" id="eWJ-VP-5Qr"/>
                                                             <constraint firstItem="Dix-VG-0Pp" firstAttribute="leading" secondItem="f7l-eP-W8C" secondAttribute="leading" id="hOD-gA-fXC"/>
+                                                            <constraint firstAttribute="height" constant="180" id="uYd-Iv-Fkh"/>
                                                         </constraints>
                                                     </scrollView>
                                                 </subviews>
@@ -1816,7 +1820,7 @@ Self-Management</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3193.636363636364" y="-592.46861924686198"/>
+            <point key="canvasLocation" x="3192.8000000000002" y="-593.25337331334333"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NcY-S3-RBW">
@@ -2037,8 +2041,8 @@ Self-Management</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="3yE-9v-cRW"/>
-        <segue reference="L1W-07-Vpb"/>
-        <segue reference="CS3-6i-fi4"/>
+        <segue reference="Y7U-dD-p04"/>
+        <segue reference="crK-tC-FpQ"/>
         <segue reference="bnL-Lw-gUg"/>
     </inferredMetricsTieBreakers>
     <resources>
