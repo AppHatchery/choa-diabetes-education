@@ -45,7 +45,7 @@ class MultipleOptionsView: UIView {
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        questionLabel.font = .gothamRoundedBold16
+        questionLabel.font = .nunitoBold16
         questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question

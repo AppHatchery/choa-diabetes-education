@@ -44,13 +44,13 @@ class FinalStepNoDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold26
+		titleLabel.font = .nunitoBold26
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = .choaGreenColor
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
 
-		doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
+		doneButton.setTitleWithStyle("Exit", font: .nunitoMedium20)
 	}
 
 	@IBAction func didSelectExitAction(_ sender: UIButton) {

@@ -186,7 +186,7 @@ class FinalStepWithReminderView: UIView {
 
     // MARK: - Common UI Setup
     private func setupCommonUI(currentQuestion: Questionnaire) {
-        titleLabel.font = .gothamRoundedBold20
+        titleLabel.font = .nunitoBold20
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .natural
 
@@ -196,7 +196,7 @@ class FinalStepWithReminderView: UIView {
 
         reminderView.layer.cornerRadius = 12
         reminderButton.layer.cornerRadius = 12
-        doneButton.setTitleWithStyle("Exit", font: .gothamRoundedMedium20)
+        doneButton.setTitleWithStyle("Exit", font: .nunitoMedium20)
 
         yesOver2hoursButton.layer.cornerRadius = 12
         yesOver2hoursButton.layer.borderWidth = 0
@@ -205,7 +205,7 @@ class FinalStepWithReminderView: UIView {
         let yesOverText = questionnaireManager.iLetPump
             ? "Yes, Over 90 mins"
             : "Yes, Over 2hrs"
-        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .gothamRoundedMedium20)
+        yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .nunitoMedium20)
 
         giveRecommendedDoseLabel.setText(
             "Final.GiveRecommendedDose.text".localized(),
@@ -386,7 +386,7 @@ class FinalStepWithReminderView: UIView {
 		reminderButton
 			.setTitleWithStyle(
 				"Remind Me",
-				font: .gothamRoundedMedium20,
+				font: .nunitoMedium20,
 				color: .white,
 				image: UIImage(named: "ic_alarm"),
 				imagePlacement: .left
@@ -400,7 +400,7 @@ class FinalStepWithReminderView: UIView {
 		if reminderIsActive {
 			reminderNextCheckDescriptionLabel.text = "Final.ReminderNextCheckDescription.text".localized()
 			reminderNextCheckDescriptionLabel.textColor = .black
-			reminderNextCheckDescriptionLabel.font = .gothamRoundedMedium20
+			reminderNextCheckDescriptionLabel.font = .nunitoMedium20
 		} else {
 			if questionnaireManager.iLetPump {
 				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
@@ -419,7 +419,7 @@ class FinalStepWithReminderView: UIView {
 
 		reminderView.backgroundColor = .veryLightGreen
 
-		reminderButton.setTitleWithStyle("Skip This Reminder", font: .gothamRoundedMedium20, color: .primaryBlue)
+		reminderButton.setTitleWithStyle("Skip This Reminder", font: .nunitoMedium20, color: .primaryBlue)
 		reminderButton.backgroundColor = .clear
 		reminderButton.tintColor = .primaryBlue
 		reminderButton.layer.borderWidth = 1
@@ -429,7 +429,7 @@ class FinalStepWithReminderView: UIView {
 
 		reminderNextCheckDescriptionLabel.text = timeText
 		reminderNextCheckDescriptionLabel.textColor = .choaGreenColor
-		reminderNextCheckDescriptionLabel.font = .gothamRoundedBold32
+		reminderNextCheckDescriptionLabel.font = .nunitoBold32
 	}
 
 	private func updateViewsWhenCountdownFinished() {
@@ -437,12 +437,12 @@ class FinalStepWithReminderView: UIView {
 		reminderNextCheckLabel.isHidden = true
 		reminderNextCheckDescriptionLabel.text = "Final.ReminderTimeToCheck.text".localized()
 		reminderNextCheckDescriptionLabel.textColor = .choaGreenColor
-		reminderNextCheckDescriptionLabel.font = .gothamRoundedBold32
+		reminderNextCheckDescriptionLabel.font = .nunitoBold32
 
 		reminderButton
 			.setTitleWithStyle(
 				"Start Test",
-				font: .gothamRoundedMedium20,
+				font: .nunitoMedium20,
 				color: .whiteColor,
 				image: UIImage(named: "leftArrow"),
 				imagePlacement: .right

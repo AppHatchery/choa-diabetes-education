@@ -110,13 +110,13 @@ class FinalStepCallChoaView: UIView {
 		hydrationExampleInfoTextView.setText("Final.HydrationExampleInfo.text".localized(), boldPhrases: ["blood sugar is 150 mg/dL or lower", "blood sugar is over 150 mg/dL"])
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold20
+		titleLabel.font = .nunitoBold20
 		titleLabel.numberOfLines = 0
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .natural
 
-		doneButton.titleLabel?.font = .gothamRoundedMedium20
-//		callChoaButton.titleLabel?.font = .gothamRoundedMedium20
+		doneButton.titleLabel?.font = .nunitoMedium20
+//		callChoaButton.titleLabel?.font = .nunitoMedium20
         
 //        callChoaButton.isHidden = true
 

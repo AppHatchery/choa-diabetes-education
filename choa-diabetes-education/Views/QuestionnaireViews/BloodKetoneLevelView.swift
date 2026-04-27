@@ -57,7 +57,7 @@ class BloodKetoneLevelView: UIView {
 		self.currentQuestion = currentQuestion
 		
 		// Configure the title label
-		titleLabel.font = .gothamRoundedBold16
+		titleLabel.font = .nunitoBold16
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = .headingGreenColor
 		titleLabel.text = "Blood Ketone Level"

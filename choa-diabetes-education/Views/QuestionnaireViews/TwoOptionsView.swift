@@ -105,7 +105,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-		questionLabel.font = .gothamRoundedMedium
+		questionLabel.font = .nunitoMedium
         questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
@@ -114,7 +114,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         instructionsLabel.text = "GetHelp.Que.CheckChildsKetoneLevel.title"
             .localized()
 
-//		nextButton.titleLabel?.font = .gothamRoundedMedium20
+//		nextButton.titleLabel?.font = .nunitoMedium20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8

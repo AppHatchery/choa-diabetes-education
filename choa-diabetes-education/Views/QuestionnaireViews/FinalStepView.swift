@@ -42,7 +42,7 @@ class FinalStepView: UIView {
     func setupView(currentQuestion: Questionnaire) {
         
         self.currentQuestion = currentQuestion
-        titleLabel.font = .gothamRoundedBold16
+        titleLabel.font = .nunitoBold16
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .headingGreenColor
         titleLabel.text = currentQuestion.finalStep?.title

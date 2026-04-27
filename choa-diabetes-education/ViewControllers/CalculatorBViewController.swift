@@ -137,7 +137,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             nextButton
                 .setTitleWithStyle(
                     "Exit",
-                    font: .gothamRoundedMedium20,
+                    font: .nunitoMedium20,
                     color: .choaGreenColor
                 )
             nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -588,7 +588,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 self.resultsView.isHidden = false
             }
             insulinForHighBloodSugar.text = "No insulin needed if current blood sugar is below target."
-            insulinForHighBloodSugar.font = .gothamRoundedMedium18
+            insulinForHighBloodSugar.font = .nunitoMedium18
             insulinForHighBloodSugar.textColor = .orangeTextColor
             bloodSugarLine.backgroundColor = .orangeTextColor
             bloodSugarLabel.textColor = .orangeTextColor
@@ -616,7 +616,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 bloodSugarField.textColor = .primaryBlue
 
                 insulinForHighBloodSugar.text = "\(bloodInsulin.cleanString) units"
-                insulinForHighBloodSugar.font = .gothamRoundedMedium32
+                insulinForHighBloodSugar.font = .nunitoMedium32
                 insulinForHighBloodSugar.textColor = .primaryBlue
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar": currentBloodSugar, "target_blood_sugar": currentTargetBloodSugar, "correction_factor": currentCorrectionFactor])
                 updateNextButtonState()
