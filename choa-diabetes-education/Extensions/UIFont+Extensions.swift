@@ -14,6 +14,7 @@ extension UIFont {
 	public static let nunitoBold26 = UIFont(name: "Nunito-Bold", size: 26.0)!
 	public static let nunitoBold24 = UIFont(name: "Nunito-Bold", size: 24.0)!
 	public static let nunitoBold20 = UIFont(name: "Nunito-Bold", size: 20.0)!
+    public static let nunitoBold18 = UIFont(name: "Nunito-Bold", size: 18.0)!
 	public static let nunitoBold = UIFont(name: "Nunito-Bold", size: 14.0)!
 	public static let nunitoMedium = UIFont(name: "Nunito-Medium", size: 18.0)!
     public static let nunitoMedium16 = UIFont(name: "Nunito-Medium", size: 16.0)!

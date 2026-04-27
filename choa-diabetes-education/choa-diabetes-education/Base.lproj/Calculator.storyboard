@@ -723,25 +723,25 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
-                                        <rect key="frame" x="20" y="400.5" width="335" height="192.5"/>
+                                        <rect key="frame" x="20" y="304.5" width="335" height="288.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejV-h9-hQY" userLabel="Results View">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="108"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="204"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0uo-cg-T9T">
-                                                        <rect key="frame" x="12" y="12" width="311" height="84"/>
+                                                        <rect key="frame" x="12" y="12" width="311" height="180"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Zm4-7d-p59">
-                                                                <rect key="frame" x="0.0" y="0.0" width="283.5" height="27.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="283.5" height="34"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for High Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6j4-BB-1Pm">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="264.5" height="27.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="264.5" height="34"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBV-7P-bEf">
-                                                                        <rect key="frame" x="267.5" y="0.0" width="16" height="27.5"/>
+                                                                        <rect key="frame" x="267.5" y="0.0" width="16" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="16" id="IaG-Kp-HUf"/>
                                                                         </constraints>
@@ -755,7 +755,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foj-ZT-nso">
-                                                                <rect key="frame" x="0.0" y="42.5" width="82.5" height="41.5"/>
+                                                                <rect key="frame" x="0.0" y="49" width="82.5" height="131"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>
@@ -770,7 +770,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="0uo-cg-T9T" secondAttribute="trailing" constant="12" id="brI-xg-XQc"/>
                                                     <constraint firstAttribute="bottom" secondItem="0uo-cg-T9T" secondAttribute="bottom" constant="12" id="cWB-os-hL6"/>
                                                     <constraint firstItem="0uo-cg-T9T" firstAttribute="leading" secondItem="ejV-h9-hQY" secondAttribute="leading" constant="12" id="gmt-ei-CaW"/>
-                                                    <constraint firstAttribute="height" constant="108" id="syc-h1-Xaj"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -779,7 +778,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-3M-GRB" userLabel="Error View">
-                                                <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="214" width="335" height="16.5"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
@@ -799,7 +798,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
-                                                <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="240.5" width="335" height="48"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
