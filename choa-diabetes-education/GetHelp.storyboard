@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,8 +11,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
+        <array key="GothamRoundedMedium.ttf">
             <string>GothamRounded-Medium</string>
+        </array>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
+        </array>
+        <array key="Nunito-Medium.ttf">
+            <string>Nunito-Medium</string>
         </array>
     </customFonts>
     <scenes>
@@ -174,22 +180,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
-                                <rect key="frame" x="20" y="20" width="335" height="648"/>
+                                <rect key="frame" x="20" y="20" width="335" height="668.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-kf-DaX">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                         <color key="textColor" name="choaGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚠️ Make sure your ketone strips have not expired!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-pV-FoT">
-                                        <rect key="frame" x="0.0" y="40" width="335" height="40"/>
+                                        <rect key="frame" x="0.0" y="47.5" width="335" height="47"/>
                                         <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <color key="textColor" name="secondarySunsetOrange300"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-Z1-GD4">
-                                        <rect key="frame" x="0.0" y="100" width="335" height="480"/>
+                                        <rect key="frame" x="0.0" y="114.5" width="335" height="486"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zNu-ps-ZLt">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="228"/>
@@ -199,7 +205,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="43W-HS-c4Y"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="choaGreenColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -217,16 +223,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tJ-OHv">
-                                                <rect key="frame" x="0.0" y="252" width="335" height="228"/>
+                                                <rect key="frame" x="0.0" y="252" width="335" height="234"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-xr-Q99">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="choaGreenColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-7x-yFu">
-                                                        <rect key="frame" x="0.0" y="28" width="335" height="200"/>
+                                                        <rect key="frame" x="0.0" y="34" width="335" height="200"/>
                                                         <color key="backgroundColor" name="lightGreenColor"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
@@ -237,14 +243,17 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="600" width="335" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="620.5" width="335" height="48"/>
+                                        <color key="backgroundColor" name="choaGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Close" imagePadding="8">
                                             <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="HGN-Y1-cXL" eventType="touchUpInside" id="0HV-sm-LN6"/>
