@@ -48,7 +48,7 @@ class FinalStepView: UIView {
         titleLabel.text = currentQuestion.finalStep?.title
         titleLabel.textAlignment = .center
         
-        descriptionLabel.font = .avenirLight14
+        descriptionLabel.font = .arial14
         descriptionLabel.isScrollEnabled = false
         
         descriptionLabel.textColor = .headingGreenColor

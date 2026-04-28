@@ -72,7 +72,7 @@ class OpenEndedQueView: UIView {
             secondInputField.text = "0"
         }
         
-        unitLabel.font = .avenirLight14
+        unitLabel.font = .arial14
         unitLabel.textColor = .headingGreenColor
         unitLabel.text = currentQuestion.inputUnit
         unitLabel.textAlignment = .left
@@ -86,7 +86,7 @@ class OpenEndedQueView: UIView {
         
         
         descriptionLabel.isHidden = false
-        descriptionLabel.font = .avenirLight14
+        descriptionLabel.font = .arial14
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = description

@@ -21,9 +21,8 @@ extension UIFont {
     public static let nunitoMedium18 = UIFont(name: "Nunito-Medium", size: 18.0)!
 	public static let nunitoMedium20 = UIFont(name: "Nunito-Medium", size: 20.0)!
     public static let nunitoMedium32 = UIFont(name: "Nunito-Medium", size: 32.0)!
-    public static let avenirLight14 = UIFont(name: "Avenir-Light", size: 16.0)!
-    public static let avenir17 = UIFont(name: "Avenir", size: 17)
-    public static let avenirMedium20 = UIFont(name: "Avenir-Medium", size: 20.0)!
-    public static let avenir14 = UIFont(name: "Avenir", size: 14)
+    public static let arial14 = UIFont(name: "Arial", size: 16.0)!
+    public static let arial17 = UIFont(name: "Arial", size: 17)
+    public static let arialMedium20 = UIFont(name: "Arial", size: 20.0)!
 //    public static let inter14 = UIFont(name: "Inter", size: 14.0)!
 }

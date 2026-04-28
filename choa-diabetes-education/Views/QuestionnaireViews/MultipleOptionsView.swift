@@ -57,7 +57,7 @@ class MultipleOptionsView: UIView {
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
         }
         
-        descriptionLabel.font = .avenirLight14
+        descriptionLabel.font = .arial14
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = currentQuestion.description
