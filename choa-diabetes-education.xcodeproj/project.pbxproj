@@ -69,7 +69,6 @@
 		B4D40D432FA0017000C12FC5 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */; };
 		B4D40D442FA0017000C12FC5 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */; };
 		B4D40D452FA0017000C12FC5 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */; };
-		B4D40D472FA01E8A00C12FC5 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D462FA01E8A00C12FC5 /* Arial.ttf */; };
 		B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B4DA9DC72E98F82900C415CE /* Lottie */; };
 		B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE7FA2F0FD6710075C7F3 /* 1_2_1_when_to_check_bg.html */; };
 		B4DBE7FD2F0FD6B10075C7F3 /* 1_2_2_steps_to_check_bg.html in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE7FC2F0FD6A50075C7F3 /* 1_2_2_steps_to_check_bg.html */; };
@@ -302,7 +301,6 @@
 		B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		B4D40D462FA01E8A00C12FC5 /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
 		B4DBE7FA2F0FD6710075C7F3 /* 1_2_1_when_to_check_bg.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 1_2_1_when_to_check_bg.html; sourceTree = "<group>"; };
 		B4DBE7FC2F0FD6A50075C7F3 /* 1_2_2_steps_to_check_bg.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 1_2_2_steps_to_check_bg.html; sourceTree = "<group>"; };
 		B4DBE7FE2F0FD7D60075C7F3 /* will_pyjamas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = will_pyjamas.png; sourceTree = "<group>"; };
@@ -520,7 +518,6 @@
 		B438F6BB2E44C570005CBD49 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B4D40D462FA01E8A00C12FC5 /* Arial.ttf */,
 				B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */,
 				B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */,
 				B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */,
@@ -1120,7 +1117,6 @@
 				D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */,
 				B4D40D422FA0017000C12FC5 /* Nunito-Light.ttf in Resources */,
 				B4D40D432FA0017000C12FC5 /* Nunito-Regular.ttf in Resources */,
-				B4D40D472FA01E8A00C12FC5 /* Arial.ttf in Resources */,
 				B4D40D442FA0017000C12FC5 /* Nunito-Medium.ttf in Resources */,
 				B4D40D452FA0017000C12FC5 /* Nunito-Bold.ttf in Resources */,
 				B4AB10CB2F0E975D00F74329 /* hope_fatigue.png in Resources */,
@@ -1474,7 +1470,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1491,7 +1487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1512,7 +1508,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -1528,7 +1524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
