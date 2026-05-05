@@ -114,7 +114,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
         instructionsLabel.text = "GetHelp.Que.CheckChildsKetoneLevel.title"
             .localized()
 
-//		nextButton.titleLabel?.font = .nunitoBold20
+		nextButton.titleLabel?.font = .nunitoBold20
 
 		optionButtonImages.forEach {
 			$0.layer.cornerRadius = 8

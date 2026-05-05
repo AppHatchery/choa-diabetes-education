@@ -216,7 +216,7 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="v4Z-Ml-9cg">
                                                                             <rect key="frame" x="0.0" y="60.333333333333371" width="353" height="48"/>
                                                                             <subviews>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-iM-jIZ">
                                                                                     <rect key="frame" x="162.33333333333337" y="0.0" width="190.66666666666663" height="48"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="48" id="4ts-oB-Nb7"/>
@@ -225,6 +225,7 @@
                                                                                     <state key="normal" title="Button"/>
                                                                                     <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Yes, Over 2hrs " imagePadding="8">
                                                                                         <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                        <color key="baseForegroundColor" name="primaryBlue"/>
                                                                                     </buttonConfiguration>
                                                                                     <connections>
                                                                                         <action selector="yesOverButtonTapped:" destination="-1" eventType="touchUpInside" id="xk3-zk-ndS"/>
