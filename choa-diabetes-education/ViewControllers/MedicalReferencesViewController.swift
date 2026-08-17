@@ -76,7 +76,7 @@ class MedicalReferencesViewController: UIViewController {
         ]
         
         let headerAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "GothamRounded-Medium", size: 16) ?? UIFont.boldSystemFont(ofSize: 16),
+            .font: UIFont(name: "Nunito-Bold", size: 16) ?? UIFont.boldSystemFont(ofSize: 16),
             .foregroundColor: UIColor(named: "primaryBlue") ?? UIColor.label,
             .paragraphStyle: paragraphStyle
         ]

@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
         </array>
     </customFonts>
     <objects>
@@ -22,7 +22,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What can I eat?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-He-b35">
                     <rect key="frame" x="20" y="48" width="414" height="24"/>
-                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                    <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                     <color key="textColor" name="headingGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -41,14 +41,14 @@
                             <fragment content="Low Carb Snack Combinations">
                                 <attributes>
                                     <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <font key="NSFont" size="14" name="Nunito-Medium"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
                         <attributedString key="attributedSubtitle">
                             <fragment content="A list of easy-to-make snacks with 5g or less of carbs">
                                 <attributes>
-                                    <font key="NSFont" size="12" name="Avenir-Roman"/>
+                                    <font key="NSFont" size="12" name="Arial"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
@@ -78,7 +78,7 @@
                             <fragment content="Know your carbs">
                                 <attributes>
                                     <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <font key="NSFont" size="14" name="Nunito-Medium"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -86,7 +86,7 @@
                         <attributedString key="attributedSubtitle">
                             <fragment content="A list of common foods with carb amounts per serving size">
                                 <attributes>
-                                    <font key="NSFont" size="12" name="Avenir-Roman"/>
+                                    <font key="NSFont" size="12" name="Arial"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
@@ -116,7 +116,7 @@
                             <fragment content="Foods that raise Blood Sugar">
                                 <attributes>
                                     <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <font key="NSFont" size="14" name="Nunito-Medium"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -124,7 +124,7 @@
                         <attributedString key="attributedSubtitle">
                             <fragment content="A list of foods that require insulin correction">
                                 <attributes>
-                                    <font key="NSFont" size="12" name="Avenir-Roman"/>
+                                    <font key="NSFont" size="12" name="Arial"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>
@@ -154,7 +154,7 @@
                             <fragment content="Foods that don't raise Blood Sugar">
                                 <attributes>
                                     <color key="NSColor" red="0.1291469932" green="0.3002276123" blue="0.078367359940000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    <font key="NSFont" size="14" name="GothamRounded-Medium"/>
+                                    <font key="NSFont" size="14" name="Nunito-Medium"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -162,7 +162,7 @@
                         <attributedString key="attributedSubtitle">
                             <fragment content="A list of foods that don't require insulin correction">
                                 <attributes>
-                                    <font key="NSFont" size="12" name="Avenir-Roman"/>
+                                    <font key="NSFont" size="12" name="Arial"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                         <tabStops/>

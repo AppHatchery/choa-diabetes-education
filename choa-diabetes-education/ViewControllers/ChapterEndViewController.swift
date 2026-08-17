@@ -201,7 +201,7 @@ class ChapterEndViewController: UIViewController {
             nextChapterButton
                 .setTitleWithStyle(
                     "Next Chapter",
-                    font: .gothamRoundedMedium20,
+                    font: .nunitoBold20,
                     image: nil
                 )
         } else {
@@ -209,7 +209,7 @@ class ChapterEndViewController: UIViewController {
             nextChapterButton
                 .setTitleWithStyle(
                     "Done",
-                    font: .gothamRoundedMedium20,
+                    font: .nunitoBold20,
                     image: nil
                 )
             
@@ -308,9 +308,29 @@ private extension ChapterEndViewController {
         }
         
         for i in 0..<totalCount {
-            let isCompleted = completedSet.contains(i)
+            let isCompleted = i < completedCount
             let starView = makeStarImageView(completed: isCompleted)
+            if isCompleted {
+                starView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            }
             starsStackView.addArrangedSubview(starView)
+        }
+
+        animateCompletedStars(count: completedCount)
+    }
+
+    func animateCompletedStars(count: Int) {
+        let starViews = starsStackView.arrangedSubviews
+        for i in 0..<count {
+            guard i < starViews.count else { break }
+            UIView.animate(
+                withDuration: 0.80,
+                delay: Double(i) * 0.15,
+                usingSpringWithDamping: 0.5,
+                initialSpringVelocity: 0.8,
+                options: [],
+                animations: { starViews[i].transform = .identity }
+            )
         }
     }
     

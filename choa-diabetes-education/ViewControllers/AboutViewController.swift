@@ -25,7 +25,7 @@ class AboutViewController: UIViewController {
         aboutTitle.text = "About.Title".localized()
         
         let selectedTitle = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        let normalTitle = [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.gothamRoundedMedium16]
+        let normalTitle = [NSAttributedString.Key.foregroundColor: UIColor.darkGray, NSAttributedString.Key.font: UIFont.nunitoBold16]
 
         segment.setTitleTextAttributes(selectedTitle, for: .selected)
         segment.setTitleTextAttributes(normalTitle, for: .normal)

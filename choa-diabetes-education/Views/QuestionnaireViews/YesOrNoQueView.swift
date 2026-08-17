@@ -64,7 +64,7 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
 
 		followUpAnswer = 0
 
-        questionLabel.font = .gothamRoundedMedium
+        questionLabel.font = .nunitoMedium
         questionLabel.numberOfLines = 5
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question

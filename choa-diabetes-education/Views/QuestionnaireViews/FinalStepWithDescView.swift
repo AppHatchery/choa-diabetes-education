@@ -47,7 +47,7 @@ class FinalStepWithDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold20
+		titleLabel.font = .nunitoBold20
 		titleLabel.numberOfLines = 0
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .natural

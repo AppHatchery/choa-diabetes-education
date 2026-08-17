@@ -72,7 +72,7 @@ class AboutKetoneMeasurementsViewController: UIViewController {
 		
 		bloodMeasurementTitle.text = "About.KetoneMeasurements.Blood.title".localized()
 		bloodMeasurementDescription.text = "About.KetoneMeasurements.Blood.description".localized()
-		closeButton.setTitleWithStyle("Close", font: .gothamRoundedMedium20)
+		closeButton.setTitleWithStyle("Close", font: .nunitoBold20)
 	}
 
 	@IBAction func closeButtonTapped(_ sender: PrimaryButton) {

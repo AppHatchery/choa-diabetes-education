@@ -47,7 +47,7 @@ class FirstEmergencyView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .gothamRoundedBold26
+		titleLabel.font = .nunitoBold26
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = .secondaryRedColor
 		titleLabel.text = currentQuestion.finalStep?.title
@@ -55,22 +55,22 @@ class FirstEmergencyView: UIView {
 
 
 		goToTheNearestLabel.text = "Calculator.Final.FirstEmergency.GoTo".localized()
-		goToTheNearestLabel.font = .gothamRoundedBold24
+		goToTheNearestLabel.font = .nunitoBold24
 		goToTheNearestLabel.numberOfLines = 0
 		goToTheNearestLabel.textColor = .black
 		goToTheNearestLabel.textAlignment = .center
 
 		emergencyDepartmentLabel.text = "Calculator.Final.FirstEmergency.EmergencyDepartment"
 			.localized()
-		emergencyDepartmentLabel.font = .gothamRoundedBold26
+		emergencyDepartmentLabel.font = .nunitoBold26
 		emergencyDepartmentLabel.numberOfLines = 0
 		emergencyDepartmentLabel.textColor = .secondaryRedColor
 		emergencyDepartmentLabel.textAlignment = .center
 
-		call911Button.titleLabel?.font = .gothamRoundedBold20
+		call911Button.titleLabel?.font = .nunitoBold20
 		call911Button.layer.cornerRadius = 12
         
-        exitButton.titleLabel?.font = .gothamRoundedMedium20
+        exitButton.titleLabel?.font = .nunitoBold20
 	}
 
 	@IBAction func call911(_ sender: UIButton) {

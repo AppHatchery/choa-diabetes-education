@@ -116,7 +116,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             nextButton
                 .setTitleWithStyle(
                     "Exit",
-                    font: .gothamRoundedMedium20,
+                    font: .nunitoBold20,
                     color: .choaGreenColor
                 )
             nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)

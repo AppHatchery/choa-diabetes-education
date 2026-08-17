@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Bold.otf">
-            <string>GothamRounded-Bold</string>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
         </array>
-        <array key="Gotham Rounded Medium.otf">
-            <string>GothamRounded-Medium</string>
+        <array key="Nunito-Medium.ttf">
+            <string>Nunito-Medium</string>
         </array>
     </customFonts>
     <scenes>
@@ -52,8 +52,8 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uw-I9-vFF">
-                                <rect key="frame" x="24" y="74" width="211.5" height="24"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                                <rect key="frame" x="24" y="74" width="177" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -65,7 +65,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button1" title="Insulin for Food" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="60"/>
                                     <color key="baseForegroundColor" name="headingGreenColor"/>
                                     <color key="baseBackgroundColor" name="backgroundColor"/>
@@ -80,7 +80,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for Food and High Blood Sugar" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
                                     <color key="baseForegroundColor" name="headingGreenColor"/>
                                     <color key="baseBackgroundColor" name="backgroundColor"/>
@@ -95,7 +95,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button2" title="Insulin for High Blood Sugar" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
                                     <color key="baseForegroundColor" name="headingGreenColor"/>
                                     <color key="baseBackgroundColor" name="backgroundColor"/>
@@ -110,7 +110,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="Insulin for High Blood Sugar with symptoms" imagePadding="20">
                                     <backgroundConfiguration key="background" cornerRadius="15"/>
-                                    <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
                                     <color key="baseForegroundColor" name="headingGreenColor"/>
                                     <color key="baseBackgroundColor" name="backgroundColor"/>
@@ -181,14 +181,14 @@
                                                 <rect key="frame" x="20" y="56" width="195" height="64"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Step 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="777-f9-pJw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="32.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ect-VD-gcp">
-                                                        <rect key="frame" x="0.0" y="44" width="195" height="20"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="36.5" width="195" height="27.5"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" name="primaryBlue"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -221,7 +221,7 @@
                                                             <constraint firstAttribute="height" constant="54" id="UJ1-QE-z35"/>
                                                         </constraints>
                                                         <color key="textColor" name="primaryBlue"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="48"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="48"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLl-fr-CoT">
@@ -239,16 +239,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Hq2-JW-t4g">
-                                                        <rect key="frame" x="7" y="95" width="110" height="34"/>
+                                                        <rect key="frame" x="10" y="95" width="104.5" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdn-jQ-VZ4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="91" height="34"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="34"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ie3-mA-6Fz">
-                                                                <rect key="frame" x="94" y="0.0" width="16" height="34"/>
+                                                                <rect key="frame" x="88.5" y="0.0" width="16" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="n7e-lb-NXA"/>
                                                                 </constraints>
@@ -282,7 +282,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="7UY-XK-NdJ"/>
                                                             <constraint firstAttribute="width" constant="124" id="ij1-jY-hWF"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="48"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="48"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ASx-0w-WBu">
@@ -299,16 +299,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="xRw-Yd-If2">
-                                                        <rect key="frame" x="9.5" y="91" width="105" height="34"/>
+                                                        <rect key="frame" x="13" y="91" width="98" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDP-q1-SIz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="86" height="34"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="79" height="34"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NM-NA-7gF">
-                                                                <rect key="frame" x="89" y="0.0" width="16" height="34"/>
+                                                                <rect key="frame" x="82" y="0.0" width="16" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="EZS-eG-tiP"/>
                                                                 </constraints>
@@ -343,16 +343,16 @@
                                                         <rect key="frame" x="12" y="12" width="311" height="84"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="k1q-cx-enz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="178" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="166" height="27.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0m-0W-92g">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="159" height="34"/>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="27.5"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSW-Wz-0LF">
-                                                                        <rect key="frame" x="162" y="0.0" width="16" height="34"/>
+                                                                        <rect key="frame" x="150" y="0.0" width="16" height="27.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="16" id="uQP-Wn-ywi"/>
                                                                         </constraints>
@@ -366,8 +366,8 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDg-1J-agr">
-                                                                <rect key="frame" x="0.0" y="49" width="89" height="35"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
+                                                                <rect key="frame" x="0.0" y="42.5" width="82.5" height="41.5"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -396,7 +396,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16.5" id="C7T-Ml-IEf"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -413,19 +413,18 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKv-bL-omf" userLabel="Navigation Stack View">
                                                 <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-1y-0RM">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-1y-0RM">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                                         <color key="backgroundColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="cbC-WD-wG4"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                                         <state key="normal" title="Next" image="leftArrow">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
-                                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
@@ -500,7 +499,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="x6w-2r-cMD">
-                                                <rect key="frame" x="20" y="56" width="195" height="74"/>
+                                                <rect key="frame" x="20" y="56" width="195" height="78.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Step 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOw-x8-fnF">
                                                         <rect key="frame" x="0.0" y="0.0" width="195" height="19.5"/>
@@ -509,8 +508,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Insulin for High Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdW-9B-XgL">
-                                                        <rect key="frame" x="0.0" y="23.5" width="195" height="50.5"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="23.5" width="195" height="55"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" name="primaryBlue"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -526,7 +525,6 @@
                                         <color key="backgroundColor" name="secondaryMeadowGreen050"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="JtY-JF-Wtl" secondAttribute="bottom" id="ER5-XU-NEd"/>
-                                            <constraint firstAttribute="bottom" secondItem="x6w-2r-cMD" secondAttribute="bottom" constant="20" id="UtA-M4-Xaw"/>
                                             <constraint firstItem="x6w-2r-cMD" firstAttribute="top" secondItem="kHh-vj-nCP" secondAttribute="top" constant="56" id="Ye3-0t-Svx"/>
                                             <constraint firstItem="JtY-JF-Wtl" firstAttribute="leading" secondItem="x6w-2r-cMD" secondAttribute="trailing" constant="10" id="Zyk-dt-RoX"/>
                                             <constraint firstAttribute="height" constant="150" id="bwx-V1-hsG"/>
@@ -536,13 +534,13 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-CC-8Fi">
-                                        <rect key="frame" x="20" y="170" width="335" height="254"/>
+                                        <rect key="frame" x="20" y="170" width="335" height="266"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="V5i-52-edF">
-                                                <rect key="frame" x="2.5" y="0.0" width="330" height="107"/>
+                                                <rect key="frame" x="2.5" y="0.0" width="330" height="119"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1i9-eT-3Fh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="107"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="119"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-hb-Glq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="54"/>
@@ -552,7 +550,7 @@
                                                                     <constraint firstAttribute="width" constant="124" id="eZi-If-CgC"/>
                                                                 </constraints>
                                                                 <color key="textColor" name="primaryBlue"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="48"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="48"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJI-IW-mMV">
@@ -570,11 +568,11 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="UZY-IT-BUO">
-                                                                <rect key="frame" x="12" y="75" width="100" height="32"/>
+                                                                <rect key="frame" x="16" y="75" width="92.5" height="44"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Blood Sugar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGr-Ab-4uo">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="44"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -586,13 +584,13 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-fU-cfe">
-                                                        <rect key="frame" x="154" y="23.5" width="22" height="60"/>
+                                                        <rect key="frame" x="154" y="29.5" width="22" height="60"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PnY-v3-7Md">
-                                                        <rect key="frame" x="206" y="1" width="124" height="105"/>
+                                                        <rect key="frame" x="206" y="2" width="124" height="115"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BER-a7-Jr6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
@@ -602,7 +600,7 @@
                                                                     <constraint firstAttribute="width" constant="124" id="zYX-Jc-335"/>
                                                                 </constraints>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="48"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="48"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zku-X7-GJx">
@@ -618,16 +616,16 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wsa-gd-BaQ">
-                                                                <rect key="frame" x="0.0" y="71" width="124" height="34"/>
+                                                                <rect key="frame" x="0.0" y="71" width="124" height="44"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgv-xe-5BO">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="34"/>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="44"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0z-if-pqh">
-                                                                        <rect key="frame" x="108" y="0.0" width="16" height="34"/>
+                                                                        <rect key="frame" x="108" y="0.0" width="16" height="44"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="16" id="dBl-hq-OAB"/>
                                                                         </constraints>
@@ -648,7 +646,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBO-pm-9pW">
-                                                <rect key="frame" x="0.0" y="127" width="335" height="2"/>
+                                                <rect key="frame" x="0.0" y="139" width="335" height="2"/>
                                                 <color key="backgroundColor" name="darkGrayColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="EUL-yf-3nN"/>
@@ -660,21 +658,21 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zno-JU-DjE">
-                                                <rect key="frame" x="87" y="149" width="161.5" height="105"/>
+                                                <rect key="frame" x="94" y="161" width="147.5" height="105"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kp9-xv-07h">
-                                                        <rect key="frame" x="18.5" y="0.0" width="124" height="50"/>
+                                                        <rect key="frame" x="11.5" y="0.0" width="124" height="50"/>
                                                         <color key="tintColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="LWI-Oh-iXA"/>
                                                             <constraint firstAttribute="width" constant="124" id="jjh-jp-m5v"/>
                                                         </constraints>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="48"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="48"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSq-de-jOX">
-                                                        <rect key="frame" x="20.5" y="58" width="120" height="5"/>
+                                                        <rect key="frame" x="13.5" y="58" width="120" height="5"/>
                                                         <color key="backgroundColor" red="0.95686274510000002" green="0.93725490199999995" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="5" id="BSj-mN-glp"/>
@@ -687,17 +685,17 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="vNC-cb-apY">
-                                                        <rect key="frame" x="0.0" y="71" width="161.5" height="34"/>
+                                                        <rect key="frame" x="0.0" y="71" width="147.5" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD6-CH-aav">
-                                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="128.5" height="34"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OV-vW-dn6">
-                                                                <rect key="frame" x="145.5" y="0.0" width="16" height="34"/>
+                                                                <rect key="frame" x="131.5" y="0.0" width="16" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="16" id="2Bm-n4-xWT"/>
                                                                 </constraints>
@@ -719,25 +717,25 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
-                                        <rect key="frame" x="20" y="400.5" width="335" height="192.5"/>
+                                        <rect key="frame" x="20" y="304.5" width="335" height="288.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejV-h9-hQY" userLabel="Results View">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="108"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="204"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0uo-cg-T9T">
-                                                        <rect key="frame" x="12" y="12" width="311" height="84"/>
+                                                        <rect key="frame" x="12" y="12" width="311" height="180"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Zm4-7d-p59">
-                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="283.5" height="34"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for High Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6j4-BB-1Pm">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="264.5" height="34"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                         <color key="textColor" name="primaryBlue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBV-7P-bEf">
-                                                                        <rect key="frame" x="286" y="0.0" width="16" height="34"/>
+                                                                        <rect key="frame" x="267.5" y="0.0" width="16" height="34"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="16" id="IaG-Kp-HUf"/>
                                                                         </constraints>
@@ -751,8 +749,8 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foj-ZT-nso">
-                                                                <rect key="frame" x="0.0" y="49" width="89" height="35"/>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
+                                                                <rect key="frame" x="0.0" y="49" width="82.5" height="131"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                                                                 <color key="textColor" name="primaryBlue"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -766,7 +764,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="0uo-cg-T9T" secondAttribute="trailing" constant="12" id="brI-xg-XQc"/>
                                                     <constraint firstAttribute="bottom" secondItem="0uo-cg-T9T" secondAttribute="bottom" constant="12" id="cWB-os-hL6"/>
                                                     <constraint firstItem="0uo-cg-T9T" firstAttribute="leading" secondItem="ejV-h9-hQY" secondAttribute="leading" constant="12" id="gmt-ei-CaW"/>
-                                                    <constraint firstAttribute="height" constant="108" id="syc-h1-Xaj"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -775,11 +772,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-3M-GRB" userLabel="Error View">
-                                                <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="214" width="335" height="16.5"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -795,21 +792,20 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
-                                                <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="240.5" width="335" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                                         <color key="backgroundColor" name="choaGreenColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="oRm-Rh-hUU"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="Next" image="arrow.right" catalog="system">
                                                             <color key="titleColor" name="choaGreenColor"/>
                                                         </state>
                                                         <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="Next" imagePadding="8">
-                                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
@@ -921,17 +917,17 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4q-u7-cNn">
-                                <rect key="frame" x="24" y="344" width="327" height="217"/>
+                                <rect key="frame" x="24" y="344" width="327" height="247"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gUX-tp-vbR">
-                                        <rect key="frame" x="12" y="20" width="303" height="177"/>
+                                        <rect key="frame" x="12" y="20" width="303" height="207"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tr5-ac-wiC">
-                                                <rect key="frame" x="0.0" y="0.0" width="177.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="79.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Insulin Dose" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilf-f1-2OR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177.5" height="20"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="27.5"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                         <color key="textColor" name="primaryBlue"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -941,34 +937,34 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="beY-zM-Pis">
-                                                        <rect key="frame" x="0.0" y="28" width="177.5" height="32"/>
-                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="32"/>
+                                                        <rect key="frame" x="0.0" y="35.5" width="167.5" height="44"/>
+                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                                                         <color key="textColor" name="calculatorGreenColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ac-Ix-lEG" userLabel="Bolus View">
-                                                <rect key="frame" x="0.0" y="84" width="303" height="93"/>
+                                                <rect key="frame" x="0.0" y="103.5" width="303" height="103.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="2dk-bH-bHF">
-                                                        <rect key="frame" x="12" y="12" width="279" height="69"/>
+                                                        <rect key="frame" x="12" y="12" width="279" height="79.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p5I-JM-GeT">
-                                                                <rect key="frame" x="0.0" y="12.5" width="101.5" height="44"/>
+                                                                <rect key="frame" x="0.0" y="11" width="101.5" height="57.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Bolus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IW-DF-RzK">
-                                                                        <rect key="frame" x="7" y="0.0" width="88" height="16"/>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                        <rect key="frame" x="11" y="0.0" width="80" height="22"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LDR-LU-f9x">
-                                                                        <rect key="frame" x="6" y="24" width="90" height="20"/>
+                                                                        <rect key="frame" x="6" y="30" width="90" height="27.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="2Aa-ip-iuO"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                         <color key="textColor" name="calculatorGreenColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -978,32 +974,32 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPB-wm-xG8">
-                                                                <rect key="frame" x="129.5" y="26.5" width="20" height="16"/>
+                                                                <rect key="frame" x="129.5" y="29" width="20" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="cKc-DE-J3N"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aSc-ya-xuA">
-                                                                <rect key="frame" x="177.5" y="4.5" width="101.5" height="60"/>
+                                                                <rect key="frame" x="177.5" y="0.0" width="101.5" height="79.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Bolus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-RP-swS">
-                                                                        <rect key="frame" x="6" y="0.0" width="90" height="32"/>
+                                                                        <rect key="frame" x="6" y="0.0" width="90" height="44"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="90" id="uLw-28-qDV"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="xX3-88-LkR">
-                                                                        <rect key="frame" x="6" y="40" width="90" height="20"/>
+                                                                        <rect key="frame" x="6" y="52" width="90" height="27.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="YTb-mF-Ozc"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                         <color key="textColor" name="calculatorGreenColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -1052,13 +1048,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ps7-93-8LY" userLabel="Navigation Stack View">
                                 <rect key="frame" x="20" y="559" width="335" height="108"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsC-Ui-2nc" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsC-Ui-2nc" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                         <color key="backgroundColor" name="choaGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="tcU-BJ-VSc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="New Calculation">
@@ -1066,26 +1061,25 @@
                                         </state>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8">
                                             <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="didExitCalculatorTap:" destination="Ion-bU-PKM" eventType="touchUpInside" id="wGF-0K-uzG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8e-CV-EKi">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8e-CV-EKi">
                                         <rect key="frame" x="0.0" y="60" width="335" height="48"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="dSG-LC-DP9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="New Calculation">
                                             <color key="titleColor" name="choaGreenColor"/>
                                         </state>
                                         <buttonConfiguration key="configuration" style="plain" title="New Calculation">
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                             <color key="baseForegroundColor" name="choaGreenColor"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -1130,28 +1124,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-zZ-BTX">
-                                <rect key="frame" x="20" y="94" width="335" height="270"/>
+                                <rect key="frame" x="20" y="94" width="335" height="282"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="epf-ID-Gg8" userLabel="Carb Ratio Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="74"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="78"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XNc-yc-Ku5">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHE-xG-SsA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="141.5" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="130.5" height="22"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZE-2H-Mj2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="86" height="22"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="18" id="zLh-mo-lbY"/>
+                                                                    <constraint firstAttribute="height" constant="22" id="zLh-mo-lbY"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G55-oM-l8w">
-                                                                <rect key="frame" x="97" y="0.0" width="44.5" height="18"/>
+                                                                <rect key="frame" x="86" y="0.0" width="44.5" height="22"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
@@ -1164,40 +1158,40 @@
                                                 </subviews>
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="15" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTr-5d-CaT">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="30" width="335" height="48"/>
                                                 <color key="backgroundColor" name="textFieldBackgroundColor"/>
                                                 <color key="tintColor" name="choaGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="obf-q0-UFP"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-v7-yJB" userLabel="Total Blood Sugar Stack View">
-                                        <rect key="frame" x="0.0" y="98" width="335" height="74"/>
+                                        <rect key="frame" x="0.0" y="102" width="335" height="78"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="UK3-8c-OOg">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YXN-RS-0vE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="22"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXz-o8-wak">
-                                                                <rect key="frame" x="0.0" y="0.0" width="220" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="202.5" height="22"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Target Blood Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-1l-N17">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="175.5" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="158" height="22"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="18" id="hGg-k4-YG0"/>
+                                                                            <constraint firstAttribute="height" constant="22" id="hGg-k4-YG0"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmM-mR-QMl">
-                                                                        <rect key="frame" x="175.5" y="0.0" width="44.5" height="18"/>
+                                                                        <rect key="frame" x="158" y="0.0" width="44.5" height="22"/>
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
@@ -1212,40 +1206,40 @@
                                                 </subviews>
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="150" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEB-tW-LrJ">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="30" width="335" height="48"/>
                                                 <color key="backgroundColor" name="textFieldBackgroundColor"/>
                                                 <color key="tintColor" name="choaGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="fOO-Xz-zvc"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-6S-yFL" userLabel="Correction Ratio Stack View">
-                                        <rect key="frame" x="0.0" y="196" width="335" height="74"/>
+                                        <rect key="frame" x="0.0" y="204" width="335" height="78"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-Q2-yNV">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Q1a-eg-hZz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPS-Ai-bDB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uso-Lz-nZg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160.5" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="139.5" height="22"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="18" id="Fef-wL-tru"/>
+                                                                            <constraint firstAttribute="height" constant="22" id="Fef-wL-tru"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="18"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Ks-UI0">
-                                                                        <rect key="frame" x="160.5" y="0.0" width="44.5" height="18"/>
+                                                                        <rect key="frame" x="139.5" y="0.0" width="44.5" height="22"/>
                                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="ic_info"/>
@@ -1260,13 +1254,13 @@
                                                 </subviews>
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-wf-eof">
-                                                <rect key="frame" x="0.0" y="26" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="30" width="335" height="48"/>
                                                 <color key="backgroundColor" name="textFieldBackgroundColor"/>
                                                 <color key="tintColor" name="choaGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="dkp-SH-wKj"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
@@ -1276,38 +1270,36 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
                                 <rect key="frame" x="20" y="533" width="335" height="114"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                         <color key="backgroundColor" name="choaGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="sRO-sY-CjQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                         <state key="normal" title="Next" image="leftArrow">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <buttonConfiguration key="configuration" style="plain" title="Save">
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="saveConstantsTap:" destination="yNH-kq-64d" eventType="touchUpInside" id="bN4-2d-4Zf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
                                         <rect key="frame" x="0.0" y="66" width="335" height="48"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="bwX-nN-HlT"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                         <state key="normal" title="Next" image="leftArrow">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <buttonConfiguration key="configuration" style="plain" title="Cancel">
-                                            <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                             <color key="baseForegroundColor" name="choaGreenColor"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -1370,8 +1362,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqk-74-1hp">
-                                                    <rect key="frame" x="16" y="89" width="211.5" height="24"/>
-                                                    <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                                                    <rect key="frame" x="16" y="89" width="177" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <color key="textColor" name="headingGreenColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1402,7 +1394,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" image="calculator-button3" title="High Blood Sugar" imagePadding="20">
                                                         <backgroundConfiguration key="background" cornerRadius="15"/>
-                                                        <fontDescription key="titleFontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="16"/>
+                                                        <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                         <directionalEdgeInsets key="contentInsets" top="0.0" leading="12" bottom="0.0" trailing="80"/>
                                                         <color key="baseForegroundColor" name="headingGreenColor"/>
                                                         <color key="baseBackgroundColor" name="backgroundColor"/>
@@ -1441,25 +1433,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin Calculator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-2E-red">
-                                <rect key="frame" x="24" y="38" width="211.5" height="24"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="24"/>
+                                <rect key="frame" x="24" y="38" width="196" height="33"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsV-9y-v8f">
-                                <rect key="frame" x="24" y="83" width="139.5" height="18"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
+                                <rect key="frame" x="24" y="92" width="127.5" height="25"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="18"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for high blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1o-w1-zqT">
-                                <rect key="frame" x="24" y="216" width="252" height="18"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="18"/>
+                                <rect key="frame" x="24" y="232" width="230.5" height="25"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="18"/>
                                 <color key="textColor" name="headingGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hcP-8F-s5j">
-                                <rect key="frame" x="24" y="132" width="124" height="54"/>
+                                <rect key="frame" x="24" y="148" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="P1z-Mx-zFM"/>
@@ -1470,13 +1462,13 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3w-JY-zld">
-                                <rect key="frame" x="24" y="111" width="72.5" height="17"/>
+                                <rect key="frame" x="24" y="127" width="72.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChV-aK-9cM">
-                                <rect key="frame" x="24" y="265" width="124" height="54"/>
+                                <rect key="frame" x="24" y="288" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="uoY-5I-RPm"/>
@@ -1487,13 +1479,13 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-4g-o1K">
-                                <rect key="frame" x="24" y="244" width="76.5" height="17"/>
+                                <rect key="frame" x="24" y="267" width="76.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="-" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qCz-Kh-E9n">
-                                <rect key="frame" x="227" y="265" width="124" height="54"/>
+                                <rect key="frame" x="227" y="288" width="124" height="54"/>
                                 <color key="tintColor" name="calculatorGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="124" id="MiL-cU-BF7"/>
@@ -1504,19 +1496,19 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfJ-7F-QHd">
-                                <rect key="frame" x="227" y="244" width="120.5" height="17"/>
+                                <rect key="frame" x="227" y="267" width="120.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxh-CF-aIK">
-                                <rect key="frame" x="227" y="333" width="124" height="17"/>
+                                <rect key="frame" x="227" y="356" width="124" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZs-iz-S3r">
-                                <rect key="frame" x="24" y="443" width="327" height="48"/>
+                                <rect key="frame" x="24" y="466" width="327" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="wGl-g5-uSr"/>
                                 </constraints>
@@ -1530,16 +1522,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGf-Pz-oae">
-                                <rect key="frame" x="0.0" y="519" width="375" height="148"/>
+                                <rect key="frame" x="0.0" y="542" width="375" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucu-vI-t0m">
-                                        <rect key="frame" x="24" y="35" width="122" height="20"/>
-                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="20"/>
+                                        <rect key="frame" x="24" y="35" width="114.5" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                         <color key="textColor" name="headingGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcB-lY-Enk">
-                                        <rect key="frame" x="24" y="65" width="100" height="63"/>
+                                        <rect key="frame" x="24" y="72.5" width="100" height="32.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for food" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-ca-InE">
                                                 <rect key="frame" x="5" y="8" width="90" height="33.5"/>
@@ -1548,8 +1540,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lF-ue-rk4">
-                                                <rect key="frame" x="6" y="25" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
+                                                <rect key="frame" x="6" y="-16.5" width="90" height="41"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1571,7 +1563,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0H-Oe-0TQ">
-                                        <rect key="frame" x="134" y="65" width="100" height="63"/>
+                                        <rect key="frame" x="134" y="72.5" width="100" height="32.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insulin for blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-PM-ZNJ">
                                                 <rect key="frame" x="5" y="8" width="90" height="33.5"/>
@@ -1580,8 +1572,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5J-4Q-k1U">
-                                                <rect key="frame" x="6" y="25" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
+                                                <rect key="frame" x="6" y="-16.5" width="90" height="41"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1603,7 +1595,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kff-C0-Doc">
-                                        <rect key="frame" x="244" y="65" width="107" height="63"/>
+                                        <rect key="frame" x="244" y="72.5" width="107" height="32.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total insulin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCS-Hy-Wor">
                                                 <rect key="frame" x="5" y="8" width="97" height="17"/>
@@ -1612,8 +1604,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYB-2m-wqk">
-                                                <rect key="frame" x="24" y="25" width="79" height="30"/>
-                                                <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="30"/>
+                                                <rect key="frame" x="24" y="-16.5" width="79" height="41"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="30"/>
                                                 <color key="textColor" name="headingGreenColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1714,19 +1706,19 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Ratio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cl-Ha-4IF">
-                                <rect key="frame" x="227" y="111" width="67" height="17"/>
+                                <rect key="frame" x="227" y="127" width="67" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGI-tc-2Zk">
-                                <rect key="frame" x="227" y="132" width="124" height="54"/>
+                                <rect key="frame" x="227" y="148" width="124" height="54"/>
                                 <color key="textColor" name="calculatorGreenColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="4" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QYq-Sa-fWE">
-                                <rect key="frame" x="227" y="354" width="124" height="54"/>
+                                <rect key="frame" x="227" y="377" width="124" height="54"/>
                                 <color key="textColor" name="calculatorGreenColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1788,13 +1780,13 @@
                                 <exclude reference="ynH-0X-z0a"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="CGT-YY-JV4"/>
-                                <exclude reference="cYf-Rg-jyZ"/>
-                                <exclude reference="n0M-0L-7tb"/>
-                                <exclude reference="Ruy-eY-m09"/>
-                                <exclude reference="S2B-ig-IxI"/>
                                 <exclude reference="uh3-1w-LnN"/>
+                                <exclude reference="S2B-ig-IxI"/>
                                 <exclude reference="xcI-dt-ghI"/>
+                                <exclude reference="Ruy-eY-m09"/>
+                                <exclude reference="cYf-Rg-jyZ"/>
+                                <exclude reference="CGT-YY-JV4"/>
+                                <exclude reference="n0M-0L-7tb"/>
                             </mask>
                         </variation>
                     </view>
@@ -1825,8 +1817,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="coK-uS-kQN"/>
-        <segue reference="aTD-Ou-0iR"/>
+        <segue reference="hEr-41-Qe8"/>
+        <segue reference="Ipa-CJ-Loq"/>
         <segue reference="v97-e6-biO"/>
         <segue reference="FF6-D1-5Yz"/>
     </inferredMetricsTieBreakers>
@@ -1848,7 +1840,7 @@
         <image name="will_nutrition" width="132" height="121"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="backgroundColor">
-            <color red="0.9179999828338623" green="0.95300000905990601" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91764705882352937" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="calculatorGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

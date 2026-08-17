@@ -51,11 +51,11 @@ class HomeViewController: UIViewController {
 
 		appearance.titleTextAttributes = [
 			.foregroundColor: UIColor.black,
-			.font: UIFont.gothamRoundedBold16
+            .font: UIFont.nunitoBold16
 		]
 		appearance.largeTitleTextAttributes = [
 			.foregroundColor: UIColor.black,
-			.font: UIFont.gothamRoundedBold16
+			.font: UIFont.nunitoBold16
 		]
 		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
 		appearance.backButtonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.clear]
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
         getHelpView.clipsToBounds = true
         getHelpViewImage.clipsToBounds = true
 		getHelpButton.layer.cornerRadius = 12
-		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+		getHelpButton.titleLabel?.font = .nunitoBold16
         
         getHelpView.isUserInteractionEnabled = true
         let getHelpTap = UITapGestureRecognizer(target: self, action: #selector(didTapGetHelpView))
@@ -146,7 +146,7 @@ class HomeViewController: UIViewController {
         insulinButtonsConfig.titleTextAttributesTransformer =
             UIConfigurationTextAttributesTransformer { incoming in
                 var out = incoming
-                out.font = .gothamRoundedMedium16
+                out.font = .nunitoBold16
                 return out
             }
         
@@ -164,7 +164,7 @@ class HomeViewController: UIViewController {
 //        insulinButtonsConfig.titleTextAttributesTransformer =
 //            UIConfigurationTextAttributesTransformer { incoming in
 //                var out = incoming
-//                out.font = .gothamRoundedMedium16
+//                out.font = .nunitoBold16
 //                out.foregroundColor = UIColor.secondaryRedColor
 //                out.backgroundColor = UIColor.whiteColor
 //                return out
@@ -256,12 +256,12 @@ class HomeViewController: UIViewController {
         guard let educationalResourcesView = educationalResourcesLabel.superview,
               let contentView = educationalResourcesView.superview else { return }
         
-        // Label matching Educational Resources header style (GothamRounded-Medium 20pt, primaryBlue)
+        // Label matching Educational Resources header style (Nunito-Medium 20pt, primaryBlue)
         // Low hugging priority (249) so it stretches, matching the storyboard label
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Medical References"
-        titleLabel.font = .gothamRoundedMedium20
+        titleLabel.font = .nunitoBold20
         titleLabel.textColor = UIColor(named: "primaryBlue") ?? .label
         titleLabel.isUserInteractionEnabled = true
         titleLabel.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
@@ -400,7 +400,7 @@ class HomeViewController: UIViewController {
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
 		insulinForFood = true
 		insulinForHighBloodSugar = true
-		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+		getHelpButton.titleLabel?.font = .nunitoBold16
         
 
 		let manager = QuestionnaireManager.instance
