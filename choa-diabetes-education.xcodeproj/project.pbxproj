@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */; };
+		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
+		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
@@ -144,6 +147,7 @@
 		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
 		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
+		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -240,6 +244,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
 		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
@@ -375,6 +380,8 @@
 		B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithReminderView.xib; sourceTree = "<group>"; };
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
+		C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodRowView.swift; sourceTree = "<group>"; };
+		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		D41D46892984172300825100 /* blood_units.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood_units.png; sourceTree = "<group>"; };
 		D41D468A2984172300825100 /* dairy_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2.png; sourceTree = "<group>"; };
 		D41D468B2984172300825100 /* dairy_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dairy_2x.png; sourceTree = "<group>"; };
@@ -479,6 +486,7 @@
 		D4EC906E28BFB9ED00CD2831 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		D4EC907028BFB9F800CD2831 /* AppsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsView.xib; sourceTree = "<group>"; };
 		D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterEndViewController.swift; sourceTree = "<group>"; };
+		E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodTableViewCell.swift; sourceTree = "<group>"; };
 		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
@@ -791,6 +799,7 @@
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
 				B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */,
 				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
+				CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -835,6 +844,8 @@
 				8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */,
 				8EBD52252A8DE3F200237C49 /* AboutTeam.xib */,
 				D42FA8FE29916B81009C51C3 /* AboutApp.xib */,
+				C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */,
+				E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -898,6 +909,7 @@
 				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
 				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
+				6BF08537DA126EA3BEB82D30 /* CarbFood.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1285,6 +1297,7 @@
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
+				CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */,
 				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
@@ -1308,6 +1321,9 @@
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
 				B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */,
+				1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */,
+				04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */,
+				6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

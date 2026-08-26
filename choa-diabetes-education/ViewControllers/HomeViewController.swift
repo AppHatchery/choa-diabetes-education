@@ -111,7 +111,12 @@ class HomeViewController: UIViewController {
         knowYourCarbsView.clipsToBounds = true
         knowYourCarbsImage.transform = CGAffineTransform(scaleX: -1, y: 1)
         knowYourCarbsButton.layer.cornerRadius = 12
-        
+
+        knowYourCarbsView.isUserInteractionEnabled = true
+        let knowYourCarbsTap = UITapGestureRecognizer(target: self, action: #selector(didTapKnowYourCarbsView))
+        knowYourCarbsView.addGestureRecognizer(knowYourCarbsTap)
+        knowYourCarbsButton.addTarget(self, action: #selector(didTapKnowYourCarbsView), for: .touchUpInside)
+
         resourceCards.forEach {
             $0.layer.cornerRadius = 8
         }
@@ -355,6 +360,12 @@ class HomeViewController: UIViewController {
     
     @objc private func didTapGetHelpView() {
         tappedGetHelpButton(self)
+    }
+
+    @objc private func didTapKnowYourCarbsView() {
+        let knowYourCarbsVC = KnowYourCarbsViewController()
+        knowYourCarbsVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(knowYourCarbsVC, animated: true)
     }
 
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
