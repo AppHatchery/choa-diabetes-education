@@ -7,11 +7,15 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class KnowYourCarbsViewController: UIViewController {
 
     private let searchController = UISearchController(searchResultsController: nil)
     private let tableView = UITableView(frame: .zero, style: .plain)
+    private let calculator = CarbsCalculatorManager.shared
+    private var cancellables: Set<AnyCancellable> = []
+    private weak var totalCarbsSheet: TotalCarbsSheetViewController?
 
     private let allCategories = KnowYourCarbsData.categories
     private var filteredCategories: [CarbCategory] = []
@@ -29,11 +33,25 @@ class KnowYourCarbsViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        navigationItem.backButtonDisplayMode = .minimal
 
         setupCategoryChips()
         setupDisclaimer()
         setupSearchController()
         setupTableView()
+        observeTotalCarbs()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Restore the sheet when returning from the results screen, reflecting
+        // any quantity changes made while away.
+        updateTotalCarbsSheet(totalCarbs: calculator.totalCarbs)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissTotalCarbsSheet()
     }
 
     // MARK: - Setup
@@ -102,6 +120,53 @@ class KnowYourCarbsViewController: UIViewController {
             controller.removeFromParent()
             self.disclaimerHostingController = nil
         })
+    }
+
+    private func observeTotalCarbs() {
+        calculator.$totalCarbs
+            .removeDuplicates()
+            .sink { [weak self] totalCarbs in
+                self?.updateTotalCarbsSheet(totalCarbs: totalCarbs)
+            }
+            .store(in: &cancellables)
+    }
+
+    /// The sheet belongs to this screen only — while another screen (e.g. the
+    /// results screen) is on top, totals keep updating silently in the background.
+    private var isCurrentlyVisible: Bool {
+        viewIfLoaded?.window != nil && navigationController?.topViewController === self
+    }
+
+    private func updateTotalCarbsSheet(totalCarbs: Int) {
+        guard totalCarbs > 0, isCurrentlyVisible else {
+            dismissTotalCarbsSheet()
+            return
+        }
+
+        guard totalCarbsSheet == nil, presentedViewController == nil else { return }
+
+        let sheet = TotalCarbsSheetViewController { [weak self] in
+            self?.presentResults()
+        }
+        totalCarbsSheet = sheet
+        present(sheet, animated: true)
+    }
+
+    private func dismissTotalCarbsSheet(completion: (() -> Void)? = nil) {
+        guard let sheet = totalCarbsSheet else {
+            completion?()
+            return
+        }
+        totalCarbsSheet = nil
+        sheet.dismiss(animated: true, completion: completion)
+    }
+
+    private func presentResults() {
+        dismissTotalCarbsSheet { [weak self] in
+            let resultsVC = KnowYourCarbsResultViewController()
+            resultsVC.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(resultsVC, animated: true)
+        }
     }
 
     private func scrollToCategory(at index: Int) {
@@ -178,7 +243,7 @@ extension KnowYourCarbsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CarbFoodTableViewCell.reuseIdentifier, for: indexPath) as! CarbFoodTableViewCell
         let food = displayedCategories[indexPath.section].foods[indexPath.row]
-        cell.configure(with: food)
+        cell.configure(with: food, parent: self)
         return cell
     }
 }
@@ -306,6 +371,95 @@ private struct DisclaimerBanner: View {
         .padding(16)
         .background(Color(.sunsetOrangeColor100))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+    }
+}
+
+// MARK: - Total Carbs Bottom Sheet
+
+final class TotalCarbsSheetViewController: UIViewController {
+    private let onCalculateInsulin: () -> Void
+
+    init(onCalculateInsulin: @escaping () -> Void) {
+        self.onCalculateInsulin = onCalculateInsulin
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .sunsetOrangeColor100
+
+        let contentView = TotalCarbsSheetContent(onCalculateInsulin: onCalculateInsulin)
+        let controller = UIHostingController(rootView: contentView)
+        controller.view.backgroundColor = .clear
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+
+        addChild(controller)
+        view.addSubview(controller.view)
+        controller.didMove(toParent: self)
+
+        NSLayoutConstraint.activate([
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+
+        if let sheet = sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                let totalCarbsDetentId = UISheetPresentationController.Detent.Identifier("totalCarbs")
+                sheet.detents = [.custom(identifier: totalCarbsDetentId) { _ in 100 }]
+                sheet.largestUndimmedDetentIdentifier = totalCarbsDetentId
+            } else {
+                sheet.detents = [.medium()]
+                sheet.largestUndimmedDetentIdentifier = .medium
+            }
+            sheet.prefersGrabberVisible = false
+            sheet.preferredCornerRadius = 24
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        isModalInPresentation = false
+    }
+}
+
+private struct TotalCarbsSheetContent: View {
+    @ObservedObject private var calculator = CarbsCalculatorManager.shared
+    let onCalculateInsulin: () -> Void
+
+    var body: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Total Carbs")
+                    .font(.custom("Nunito-Regular", size: 15))
+                    .foregroundColor(Color(.orangeTextColor))
+                Text("\(calculator.totalCarbs)g")
+                    .font(.custom("Nunito-Bold", size: 28))
+                    .foregroundColor(Color(.orangeTextColor))
+            }
+
+            Spacer()
+
+            Button(action: onCalculateInsulin) {
+                HStack(spacing: 8) {
+                    Text("Calculate insulin")
+                        .font(.custom("Nunito-Bold", size: 16))
+                    Image(systemName: "arrow.right")
+                        .font(.system(size: 14, weight: .bold))
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 14)
+                .background(Color(.sunsetOrangeColor400))
+                .cornerRadius(12)
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 0)
     }
 }
 

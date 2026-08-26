@@ -13,20 +13,27 @@ class CarbFoodTableViewCell: UITableViewCell {
 
     private var hostingController: UIHostingController<CarbFoodRowView>?
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        hostingController?.view.removeFromSuperview()
-        hostingController = nil
-    }
-
-    func configure(with food: CarbFood) {
+    /// Reuses a single hosting controller per cell and only swaps its `rootView`.
+    /// Rebuilding it on every reuse — and never parenting it — left SwiftUI's
+    /// update loop detached, so taps registered late or not at all.
+    func configure(with food: CarbFood, parent: UIViewController) {
         selectionStyle = .none
         backgroundColor = .clear
 
         let rowView = CarbFoodRowView(food: food)
+
+        if let controller = hostingController {
+            controller.rootView = rowView
+            if controller.parent !== parent {
+                attach(controller, to: parent)
+            }
+            return
+        }
+
         let controller = UIHostingController(rootView: rowView)
         controller.view.backgroundColor = .clear
         controller.view.translatesAutoresizingMaskIntoConstraints = false
+        hostingController = controller
 
         contentView.addSubview(controller.view)
         NSLayoutConstraint.activate([
@@ -36,6 +43,13 @@ class CarbFoodTableViewCell: UITableViewCell {
             controller.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
 
-        hostingController = controller
+        attach(controller, to: parent)
+    }
+
+    private func attach(_ controller: UIHostingController<CarbFoodRowView>, to parent: UIViewController) {
+        controller.willMove(toParent: nil)
+        controller.removeFromParent()
+        parent.addChild(controller)
+        controller.didMove(toParent: parent)
     }
 }

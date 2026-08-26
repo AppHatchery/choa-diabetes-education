@@ -10,7 +10,11 @@ import SwiftUI
 struct CarbFoodRowView: View {
     let food: CarbFood
 
-    @State private var quantity: Int = 0
+    @ObservedObject private var calculator = CarbsCalculatorManager.shared
+
+    private var quantity: Int {
+        calculator.quantity(for: food)
+    }
 
     private var controlBackground: Color {
         Color(.systemGray6)
@@ -45,7 +49,7 @@ struct CarbFoodRowView: View {
             if quantity > 0 {
                 HStack(spacing: 10) {
                     stepperButton(systemName: "minus") {
-                        quantity -= 1
+                        calculator.decrement(food)
                     }
 
                     Text("\(quantity)")
@@ -54,7 +58,7 @@ struct CarbFoodRowView: View {
                         .frame(minWidth: 16)
 
                     stepperButton(systemName: "plus") {
-                        quantity += 1
+                        calculator.increment(food)
                     }
                 }
                 .padding(.horizontal, 8)
@@ -63,7 +67,7 @@ struct CarbFoodRowView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
             } else {
                 stepperButton(systemName: "plus") {
-                    quantity += 1
+                    calculator.increment(food)
                 }
                 .padding(8)
                 .background(controlBackground)
@@ -83,6 +87,10 @@ struct CarbFoodRowView: View {
             Image(systemName: systemName)
                 .font(.system(size: 15, weight: .bold))
                 .foregroundColor(Color(.contentBlackColor))
+                // The glyphs (especially "minus") are far smaller than a usable
+                // tap target, so give every stepper button the same square area.
+                .frame(width: 24, height: 24)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }
