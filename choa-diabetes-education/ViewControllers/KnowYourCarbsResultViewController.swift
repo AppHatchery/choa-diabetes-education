@@ -42,6 +42,21 @@ class KnowYourCarbsResultViewController: UIViewController {
             controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        setupDismissKeyboardGesture()
+    }
+
+    private func setupDismissKeyboardGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        // The carb-ratio field uses a number pad, which has no return key. The
+        // touch is still delivered onward so the hosted SwiftUI buttons keep
+        // responding to the same tap.
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
