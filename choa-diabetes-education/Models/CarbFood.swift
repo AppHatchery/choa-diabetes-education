@@ -12,6 +12,8 @@ struct CarbFood {
     let servingSize: String
     let carbGrams: Int
     let imageName: String
+    /// User-created items are deletable and share a single icon.
+    var isCustom: Bool = false
 }
 
 struct CarbCategory {

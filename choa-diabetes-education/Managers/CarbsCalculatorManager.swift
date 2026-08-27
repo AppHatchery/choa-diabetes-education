@@ -24,7 +24,10 @@ final class CarbsCalculatorManager: ObservableObject {
     /// sink would always be one change behind.
     @Published private(set) var totalCarbs: Int = 0
 
-    private let allFoods: [CarbFood] = KnowYourCarbsData.categories.flatMap { $0.foods }
+    /// Read through the merged catalogue so user-created items count toward the total.
+    private var allFoods: [CarbFood] {
+        CustomFoodsManager.shared.categories.flatMap { $0.foods }
+    }
 
     private init() {}
 
@@ -61,6 +64,10 @@ final class CarbsCalculatorManager: ObservableObject {
 
     var totalCarbsFromFoods: Int {
         selectedFoods.reduce(0) { $0 + $1.food.carbGrams * $1.quantity }
+    }
+
+    func clearQuantity(forFoodNamed name: String) {
+        quantities.removeValue(forKey: name)
     }
 
     func reset() {

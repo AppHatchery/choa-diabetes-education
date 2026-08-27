@@ -17,8 +17,48 @@ class KnowYourCarbsViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private weak var totalCarbsSheet: TotalCarbsSheetViewController?
 
-    private let allCategories = KnowYourCarbsData.categories
+    private let customFoods = CustomFoodsManager.shared
     private var filteredCategories: [CarbCategory] = []
+
+    /// A row is one 64pt image plus 12pt of padding above and below.
+    private static let defaultRowHeight: CGFloat = 88
+
+    /// Exact row heights, measured once per food and keyed by name so they
+    /// survive filtering and reloads. Self-sizing cells cannot settle reliably
+    /// around a hosted SwiftUI view, so heights are computed up front instead.
+    private var rowHeightCache: [String: CGFloat] = [:]
+
+    /// Width the cached heights were measured against; they are void if it changes.
+    private var rowHeightCacheWidth: CGFloat = 0
+
+    private func rowHeight(for food: CarbFood) -> CGFloat {
+        let width = tableView.bounds.width
+        guard width > 0 else { return Self.defaultRowHeight }
+
+        if width != rowHeightCacheWidth {
+            rowHeightCache.removeAll()
+            rowHeightCacheWidth = width
+        }
+
+        if let cached = rowHeightCache[food.name] {
+            return cached
+        }
+
+        // Ask SwiftUI itself for the height at the width the row will actually
+        // get, rather than inferring it from font metrics.
+        let available = width - CarbFoodRowView.horizontalInset * 2
+        let measured = UIHostingController(rootView: CarbFoodRowView(food: food))
+            .sizeThatFits(in: CGSize(width: available, height: .greatestFiniteMagnitude))
+
+        let height = ceil(measured.height)
+        rowHeightCache[food.name] = height
+        return height
+    }
+
+    /// Built-in catalogue merged with the user's own items.
+    private var allCategories: [CarbCategory] {
+        customFoods.categories
+    }
 
     private var isSearching: Bool {
         let text = searchController.searchBar.text ?? ""
@@ -35,11 +75,13 @@ class KnowYourCarbsViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.backButtonDisplayMode = .minimal
 
+        setupAddButton()
         setupCategoryChips()
         setupDisclaimer()
         setupSearchController()
         setupTableView()
         observeTotalCarbs()
+        observeCustomFoods()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +102,53 @@ class KnowYourCarbsViewController: UIViewController {
     private var disclaimerContainer: UIView!
     private var disclaimerHostingController: UIHostingController<DisclaimerBanner>?
     private var tableViewTopConstraint: NSLayoutConstraint!
+
+    private func setupAddButton() {
+        var config = UIButton.Configuration.plain()
+        config.title = "Add"
+        config.image = UIImage(systemName: "plus")
+        config.imagePlacement = .trailing
+        config.imagePadding = 4
+        config.contentInsets = .zero
+        config.baseForegroundColor = .black
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .nunitoBold16
+            return out
+        }
+
+        let addButton = UIButton(configuration: config)
+        addButton
+            .setPreferredSymbolConfiguration(
+                UIImage.SymbolConfiguration(pointSize: 0, weight: .bold),
+                forImageIn: .normal
+            )
+        addButton.addTarget(self, action: #selector(addItemTapped), for: .touchUpInside)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+    }
+
+    @objc private func addItemTapped() {
+        dismissTotalCarbsSheet { [weak self] in
+            let addVC = AddFoodItemViewController()
+            addVC.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(addVC, animated: true)
+        }
+    }
+
+    private func observeCustomFoods() {
+        customFoods.$categories
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                if self.isSearching {
+                    self.filterContent(for: self.searchController.searchBar.text ?? "")
+                }
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
 
     private func setupCategoryChips() {
         let chipsView = CategoryChipsRow(categories: allCategories) { [weak self] index in
@@ -193,8 +282,14 @@ class KnowYourCarbsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.register(CarbFoodTableViewCell.self, forCellReuseIdentifier: CarbFoodTableViewCell.reuseIdentifier)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 68
+        tableView.register(
+            CarbCategorySectionHeader.self,
+            forHeaderFooterViewReuseIdentifier: CarbCategorySectionHeader.reuseIdentifier
+        )
+        tableView.estimatedRowHeight = Self.defaultRowHeight
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 44
+        tableView.sectionFooterHeight = 0
         tableView.sectionHeaderTopPadding = 0
 
         tableViewTopConstraint = tableView.topAnchor.constraint(equalTo: disclaimerContainer.bottomAnchor, constant: 12)
@@ -236,10 +331,6 @@ extension KnowYourCarbsViewController: UITableViewDataSource {
         displayedCategories[section].foods.count
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        displayedCategories[section].title
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CarbFoodTableViewCell.reuseIdentifier, for: indexPath) as! CarbFoodTableViewCell
         let food = displayedCategories[indexPath.section].foods[indexPath.row]
@@ -251,17 +342,40 @@ extension KnowYourCarbsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension KnowYourCarbsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let header = view as? UITableViewHeaderFooterView {
-            header.textLabel?.font = .nunitoMedium20
-            header.textLabel?.textColor = .primaryBlue
-            header.textLabel?.lineBreakMode = .byWordWrapping
-            header.contentView.backgroundColor = .white
-        }
+    /// A purpose-built header, rather than restyling the stock `textLabel` in
+    /// `willDisplayHeaderView` — that measures the header with the system font
+    /// and only then applies the larger one, so the height never matches.
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: CarbCategorySectionHeader.reuseIdentifier
+        ) as? CarbCategorySectionHeader
+        header?.configure(title: displayedCategories[section].title)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    /// Only user-created items can be removed; the built-in catalogue is fixed.
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let food = displayedCategories[indexPath.section].foods[indexPath.row]
+        guard food.isCustom else { return nil }
+
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+            CustomFoodsManager.shared.removeFood(named: food.name)
+            completion(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }
 
@@ -271,6 +385,43 @@ extension KnowYourCarbsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContent(for: searchController.searchBar.text ?? "")
         tableView.reloadData()
+    }
+}
+
+// MARK: - Section Header
+
+private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
+    static let reuseIdentifier = "CarbCategorySectionHeader"
+
+    private let titleLabel = UILabel()
+
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+
+        let background = UIView()
+        background.backgroundColor = .white
+        backgroundView = background
+
+        titleLabel.font = .nunitoMedium20
+        titleLabel.textColor = .primaryBlue
+        titleLabel.numberOfLines = 0
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(title: String) {
+        titleLabel.text = title
     }
 }
 

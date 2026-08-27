@@ -11,6 +11,7 @@
 		0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */; };
 		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
 		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
+		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
@@ -148,6 +149,7 @@
 		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
 		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
+		B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */; };
 		BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
@@ -248,6 +250,7 @@
 
 /* Begin PBXFileReference section */
 		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
+		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
 		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
 		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
@@ -493,6 +496,7 @@
 		D4EC907028BFB9F800CD2831 /* AppsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsView.xib; sourceTree = "<group>"; };
 		D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterEndViewController.swift; sourceTree = "<group>"; };
 		E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodTableViewCell.swift; sourceTree = "<group>"; };
+		EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomFoodsManager.swift; sourceTree = "<group>"; };
 		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
@@ -546,6 +550,7 @@
 				B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */,
 				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
 				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
+				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -808,6 +813,7 @@
 				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
 				CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */,
 				CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */,
+				32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1336,6 +1342,8 @@
 				6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */,
 				0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */,
 				BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */,
+				B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */,
+				85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

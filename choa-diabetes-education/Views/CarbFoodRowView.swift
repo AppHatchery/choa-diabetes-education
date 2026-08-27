@@ -43,42 +43,56 @@ struct CarbFoodRowView: View {
                     .font(.custom("Nunito-Bold", size: 20))
                     .foregroundColor(accentColor)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
 
-            Spacer()
-
-            if quantity > 0 {
-                HStack(spacing: 10) {
-                    stepperButton(systemName: "minus") {
-                        calculator.decrement(food)
-                    }
-
-                    Text("\(quantity)")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(accentColor)
-                        .frame(minWidth: 16)
-
-                    stepperButton(systemName: "plus") {
-                        calculator.increment(food)
-                    }
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 6)
-                .background(controlBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-            } else {
-                stepperButton(systemName: "plus") {
-                    calculator.increment(food)
-                }
-                .padding(8)
-                .background(controlBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-            }
+            // Reserved at a constant width: letting the control grow when a
+            // quantity appears would change how the name wraps, and with it the
+            // row's height.
+            stepper
+                .frame(width: Self.stepperWidth, alignment: .trailing)
         }
         .padding(.vertical, 12)
         .overlay(alignment: .bottom) {
             Rectangle()
                 .fill(Color(.systemGray5))
                 .frame(height: 1)
+        }
+    }
+
+    /// Width the stepper always occupies, whatever its state.
+    static let stepperWidth: CGFloat = 104
+
+    /// Horizontal inset applied to the row inside its cell, on each side.
+    static let horizontalInset: CGFloat = 16
+
+    @ViewBuilder
+    private var stepper: some View {
+        if quantity > 0 {
+            HStack(spacing: 10) {
+                stepperButton(systemName: "minus") {
+                    calculator.decrement(food)
+                }
+
+                Text("\(quantity)")
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(accentColor)
+                    .frame(minWidth: 16)
+
+                stepperButton(systemName: "plus") {
+                    calculator.increment(food)
+                }
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 6)
+            .background(controlBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        } else {
+            stepperButton(systemName: "plus") {
+                calculator.increment(food)
+            }
+            .padding(8)
+            .background(controlBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
         }
     }
 
@@ -89,7 +103,7 @@ struct CarbFoodRowView: View {
                 .foregroundColor(Color(.contentBlackColor))
                 // The glyphs (especially "minus") are far smaller than a usable
                 // tap target, so give every stepper button the same square area.
-                .frame(width: 24, height: 24)
+                .frame(width: 18 , height: 18)
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -112,5 +126,5 @@ struct CarbCategoryHeaderView: View {
 }
 
 #Preview {
-    CarbFoodRowView(food: .init(name: "Banana", servingSize: "1 medium", carbGrams: 27, imageName: "im_banana"))
+    CarbFoodRowView(food: .init(name: "Banana and mashed banana potatoes", servingSize: "1 medium", carbGrams: 27, imageName: "im_banana"))
 }
