@@ -36,9 +36,15 @@ struct CarbFoodRowView: View {
                 Text(food.name)
                     .font(.custom("Nunito-Bold", size: 16))
                     .foregroundColor(Color(.black))
+                    // The row lives in a fixed-height cell. Without this the
+                    // name is compressible, so it re-flows to a different line
+                    // count whenever the offered height is briefly wrong —
+                    // which is every reuse during a scroll.
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(food.servingSize)
                     .font(.custom("Nunito-Regular", size: 14))
                     .foregroundColor(Color(.contentBlack))
+                    .fixedSize(horizontal: false, vertical: true)
                 Text("\(food.carbGrams)g")
                     .font(.custom("Nunito-Bold", size: 20))
                     .foregroundColor(accentColor)

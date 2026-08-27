@@ -28,7 +28,7 @@ class AddFoodItemViewController: UIViewController {
             target: self,
             action: #selector(closeTapped)
         )
-        closeButton.tintColor = .choaGreenColor
+        closeButton.tintColor = .black
         navigationItem.rightBarButtonItem = closeButton
 
         let rootView = AddFoodItemForm { [weak self] name, carbGrams, portionSize, categoryTitle in
@@ -217,10 +217,9 @@ private struct AddFoodItemForm: View {
             )
         } label: {
             Text("Add item")
-                .font(.custom("Nunito-Bold", size: 18))
+                .font(.custom("Nunito-Bold", size: 20))
                 .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
+                .frame(maxWidth: .infinity, minHeight: 47)
                 .background(Color(.choaGreenColor))
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         }

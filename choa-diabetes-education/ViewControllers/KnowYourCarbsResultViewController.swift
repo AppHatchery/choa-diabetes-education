@@ -10,6 +10,8 @@ import SwiftUI
 
 class KnowYourCarbsResultViewController: UIViewController {
 
+    private let infoPopup = InfoPopUpViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,9 +19,15 @@ class KnowYourCarbsResultViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.backButtonDisplayMode = .minimal
 
-        let rootView = KnowYourCarbsResultView { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
-        }
+        let rootView = KnowYourCarbsResultView(
+            onExit: { [weak self] in
+                self?.navigationController?.popToRootViewController(animated: true)
+            },
+            onShowInfo: { [weak self] topic in
+                guard let self else { return }
+                self.infoPopup.appear(sender: self, title: topic.title, details: topic.details)
+            }
+        )
         let controller = UIHostingController(rootView: rootView)
         controller.view.backgroundColor = .clear
         controller.view.translatesAutoresizingMaskIntoConstraints = false
@@ -37,13 +45,40 @@ class KnowYourCarbsResultViewController: UIViewController {
     }
 }
 
+// MARK: - Info Topics
+
+/// Titles are matched by `InfoPopUpViewController` to pick its bold phrases,
+/// so they must stay the localized values it switches on.
+private enum CarbsInfoTopic {
+    case totalCarbs
+    case carbRatio
+    case insulinForFood
+
+    var title: String {
+        switch self {
+        case .totalCarbs: return "PopupInfo.TotalCarbs.title".localized()
+        case .carbRatio: return "PopupInfo.CarbRatio.title".localized()
+        case .insulinForFood: return "PopupInfo.InsulinForFood.title".localized()
+        }
+    }
+
+    var details: String {
+        switch self {
+        case .totalCarbs: return "PopupInfo.TotalCarbs.text".localized()
+        case .carbRatio: return "PopupInfo.CarbRatio.text".localized()
+        case .insulinForFood: return "PopupInfo.InsulinForFood.text".localized()
+        }
+    }
+}
+
 // MARK: - Result View
 
 private struct KnowYourCarbsResultView: View {
     @ObservedObject private var calculator = CarbsCalculatorManager.shared
     let onExit: () -> Void
+    let onShowInfo: (CarbsInfoTopic) -> Void
 
-    @State private var carbRatioText: String = ""
+    @State private var carbRatioText: String = "15"
     @State private var showBreakdown = true
 
     private var carbRatio: Int {
@@ -80,9 +115,7 @@ private struct KnowYourCarbsResultView: View {
 
     private func loadCarbRatio() {
         let constantsManager = CalculatorConstantsManager.shared
-        if constantsManager.hasStoredConstants, constantsManager.carbRatio > 0 {
-            carbRatioText = String(constantsManager.carbRatio)
-        }
+        carbRatioText = constantsManager.carbRatio > 0 ? String(constantsManager.carbRatio) : "15"
     }
 
     private func saveCarbRatio(_ newValue: String) {
@@ -93,7 +126,7 @@ private struct KnowYourCarbsResultView: View {
     private var additionalCarbsField: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Any additional carbs")
-                .font(.custom("Nunito-Bold", size: 16))
+                .font(.custom("Nunito-Medium", size: 16))
                 .foregroundColor(.black)
 
             HStack {
@@ -103,11 +136,15 @@ private struct KnowYourCarbsResultView: View {
 
                 Text("g")
                     .font(.custom("Nunito-Regular", size: 16))
-                    .foregroundColor(Color(.grayColor))
+                    .foregroundColor(Color(.black))
             }
             .padding(12)
-            .background(Color(.systemGray6))
-            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            .background(Color(.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .stroke(Color(.separator), lineWidth: 1)
+            )
         }
     }
 
@@ -134,12 +171,12 @@ private struct KnowYourCarbsResultView: View {
                             .font(.custom("Nunito-Medium", size: 32))
                             .foregroundColor(.black),
                         title: "Total Carbs",
-                        onInfoTap: nil
+                        onInfoTap: { onShowInfo(.totalCarbs) }
                     )
 
                     Text("/")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color(.grayColor))
+                        .font(.system(size: 32))
+                        .foregroundColor(Color(.black))
                         .padding(.top, 8)
 
                     carbRatioColumn(
@@ -147,25 +184,33 @@ private struct KnowYourCarbsResultView: View {
                             .keyboardType(.numberPad)
                             .font(.custom("Nunito-Medium", size: 32))
                             .foregroundColor(.black)
+                            .tint(Color(.choaGreenColor))
                             .fixedSize(),
                         title: "Carb Ratio",
-                        onInfoTap: nil
+                        onInfoTap: { onShowInfo(.carbRatio) }
                     )
 
                     Spacer()
                 }
                 .padding(.horizontal, 16)
-                .transition(.opacity.combined(with: .move(edge: .top)))
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 6) {
-                    Text("Insulin for food")
-                        .font(.custom("Nunito-Bold", size: 16))
-                    Image(systemName: "info.circle")
-                        .font(.system(size: 13))
+                Button {
+                    onShowInfo(.insulinForFood)
+                } label: {
+                    HStack(spacing: 6) {
+                        Text("Insulin for food")
+                            .font(.custom("Nunito-Bold", size: 16))
+                        Image("ic_info")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
+                    .foregroundColor(.white)
+                    .contentShape(Rectangle())
                 }
-                .foregroundColor(.white)
+                .buttonStyle(.plain)
                 Text("\(insulinUnits.cleanCarbString) units")
                     .font(.custom("Nunito-Bold", size: 32))
                     .foregroundColor(.white)
@@ -179,34 +224,50 @@ private struct KnowYourCarbsResultView: View {
             Button(action: onExit) {
                 HStack(spacing: 6) {
                     Text("Exit")
-                    Image(systemName: "xmark")
+                    Image("close_black")
+                        .resizable()
+                        .frame(width: 20, height: 20)
                 }
                 .font(.custom("Nunito-Bold", size: 16))
                 .foregroundColor(.black)
             }
+            .frame(height: 47)
             .buttonStyle(.plain)
-            .padding(.bottom, 16)
+            .padding(.bottom, 10)
         }
-        .background(Color(.sunsetOrangeColor100))
-        .clipShape(TopRoundedRectangle(radius: 24))
+        // The fill runs into the home-indicator inset so the card reaches the
+        // bottom of the screen, while its contents stay clear of it.
+        .background(
+            TopRoundedRectangle(radius: 24)
+                .fill(Color(.sunsetOrangeColor100))
+                .ignoresSafeArea(edges: .bottom)
+        )
     }
 
-    private func carbRatioColumn(value: some View, title: String, onInfoTap: (() -> Void)?) -> some View {
+    private func carbRatioColumn(
+        value: some View,
+        title: String,
+        onInfoTap: @escaping () -> Void
+    ) -> some View {
         VStack(alignment: .center, spacing: 6) {
             value
                 .font(.custom("Nunito-Bold", size: 32))
 
             Rectangle()
-                .fill(Color(.systemGray4))
-                .frame(height: 1)
+                .fill(Color(.black))
+                .frame(height: 3)
+                .cornerRadius(20)
 
-            HStack(spacing: 4) {
-                Text(title)
-                    .font(.custom("Nunito-Medium", size: 16))
-                    .foregroundColor(Color(.black))
-                Image(systemName: "info.circle")
-                    .font(.system(size: 11))
-                    .foregroundColor(Color(.black))
+            Button(action: onInfoTap) {
+                HStack(spacing: 4) {
+                    Text(title)
+                        .font(.custom("Nunito-Medium", size: 16))
+                        .foregroundColor(Color(.black))
+                    Image("ic_info")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color(.black))
+                }
             }
         }
     }

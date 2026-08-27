@@ -37,6 +37,12 @@ class CarbFoodTableViewCell: UITableViewCell {
         guard foodName != food.name else { return }
         foodName = food.name
         controller.rootView = CarbFoodRowView(food: food)
+
+        // SwiftUI would otherwise render the new food on a later pass, leaving
+        // the previous row's content visible in a cell already resized for this
+        // one — which reads as the row adjusting itself as it scrolls in.
+        controller.view.setNeedsLayout()
+        controller.view.layoutIfNeeded()
     }
 
     private func makeHostingController(for food: CarbFood, parent: UIViewController) {

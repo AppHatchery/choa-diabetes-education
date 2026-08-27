@@ -23,6 +23,13 @@ class KnowYourCarbsViewController: UIViewController {
     /// A row is one 64pt image plus 12pt of padding above and below.
     private static let defaultRowHeight: CGFloat = 88
 
+    /// Category titles never wrap, so a header is one line plus its padding.
+    private static let sectionHeaderHeight: CGFloat = {
+        ceil(UIFont.nunitoMedium20.lineHeight)
+            + CarbCategorySectionHeader.topInset
+            + CarbCategorySectionHeader.bottomInset
+    }()
+
     /// Exact row heights, measured once per food and keyed by name so they
     /// survive filtering and reloads. Self-sizing cells cannot settle reliably
     /// around a hosted SwiftUI view, so heights are computed up front instead.
@@ -287,9 +294,12 @@ class KnowYourCarbsViewController: UIViewController {
             forHeaderFooterViewReuseIdentifier: CarbCategorySectionHeader.reuseIdentifier
         )
         tableView.estimatedRowHeight = Self.defaultRowHeight
-        tableView.sectionHeaderHeight = UITableView.automaticDimension
-        tableView.estimatedSectionHeaderHeight = 44
+        // Every height is exact: nothing about this table is left for UIKit to
+        // estimate, so its content size can never be revised mid-scroll.
+        tableView.sectionHeaderHeight = Self.sectionHeaderHeight
+        tableView.estimatedSectionHeaderHeight = Self.sectionHeaderHeight
         tableView.sectionFooterHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
         tableView.sectionHeaderTopPadding = 0
 
         tableViewTopConstraint = tableView.topAnchor.constraint(equalTo: disclaimerContainer.bottomAnchor, constant: 12)
@@ -353,6 +363,14 @@ extension KnowYourCarbsViewController: UITableViewDelegate {
         return header
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Self.sectionHeaderHeight
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        Self.sectionHeaderHeight
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
     }
@@ -392,6 +410,8 @@ extension KnowYourCarbsViewController: UISearchResultsUpdating {
 
 private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
     static let reuseIdentifier = "CarbCategorySectionHeader"
+    static let topInset: CGFloat = 12
+    static let bottomInset: CGFloat = 8
 
     private let titleLabel = UILabel()
 
@@ -404,15 +424,31 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
 
         titleLabel.font = .nunitoMedium20
         titleLabel.textColor = .primaryBlue
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 1
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
 
+        // The height is dictated by the table, so this must not be required.
+        let bottom = titleLabel.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor,
+            constant: -Self.bottomInset
+        )
+        bottom.priority = .required - 1
+
+        // The header is laid out at zero width in an early pass, where this
+        // cannot hold alongside the leading inset. Below required, it is simply
+        // dropped for that pass instead of being reported as a conflict.
+        let trailing = titleLabel.trailingAnchor.constraint(
+            equalTo: contentView.trailingAnchor,
+            constant: -16
+        )
+        trailing.priority = .required - 1
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            trailing,
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Self.topInset),
+            bottom
         ])
     }
 
