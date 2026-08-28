@@ -324,8 +324,8 @@ private extension ChapterEndViewController {
         for i in 0..<count {
             guard i < starViews.count else { break }
             UIView.animate(
-                withDuration: 0.80,
-                delay: Double(i) * 0.15,
+                withDuration: 1.26,
+                delay: Double(i) * 0.2,
                 usingSpringWithDamping: 0.5,
                 initialSpringVelocity: 0.8,
                 options: [],
