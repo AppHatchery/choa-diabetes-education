@@ -6,21 +6,45 @@
 //
 
 import UIKit
-import SwiftUI
 
 class AddFoodItemViewController: UIViewController {
+
+    private let customFoods = CustomFoodsManager.shared
+
+    private let nameField = UITextField()
+    private let carbValueField = UITextField()
+    private let portionSizeField = UITextField()
+    private let categoryButton = UIButton(type: .system)
+    private let categoryLabel = UILabel()
+    private let nameTakenLabel = UILabel()
+    private let addButton = UIButton(type: .system)
+
+    private var categoryTitle: String? {
+        didSet { categoryLabel.text = categoryTitle ?? "" }
+    }
+
+    private var carbGrams: Int? {
+        Int((carbValueField.text ?? "").trimmingCharacters(in: .whitespaces))
+    }
+
+    private var nameIsTaken: Bool {
+        let trimmed = (nameField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        return !trimmed.isEmpty && !customFoods.nameIsAvailable(trimmed)
+    }
+
+    private var canSubmit: Bool {
+        !(nameField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && !nameIsTaken
+            && (carbGrams.map { $0 >= 0 } ?? false)
+            && !(portionSizeField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && categoryTitle != nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         navigationItem.backButtonDisplayMode = .minimal
-        
-        let navigationBar = UINavigationBar()
-        navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-        navigationBar.isTranslucent = false
-        
-        
 
         let closeButton = UIBarButtonItem(
             image: UIImage(named: "close_black"),
@@ -31,32 +55,231 @@ class AddFoodItemViewController: UIViewController {
         closeButton.tintColor = .black
         navigationItem.rightBarButtonItem = closeButton
 
-        let rootView = AddFoodItemForm { [weak self] name, carbGrams, portionSize, categoryTitle in
-            CustomFoodsManager.shared.addFood(
-                name: name,
-                carbGrams: carbGrams,
-                servingSize: portionSize,
-                categoryTitle: categoryTitle
-            )
-            self?.navigationController?.popViewController(animated: true)
+        setupForm()
+        setupDismissKeyboardGesture()
+        updateSubmitState()
+    }
+
+    // MARK: - Form
+
+    private func setupForm() {
+        let heading = UILabel()
+        heading.text = "Add an Item"
+        heading.font = .nunitoMedium20
+        heading.textColor = .primaryBlue
+
+        nameField.font = .nunito16
+        carbValueField.font = .nunito16
+        carbValueField.keyboardType = .numberPad
+        portionSizeField.font = .nunito16
+
+        for field in [nameField, carbValueField, portionSizeField] {
+            field.addTarget(self, action: #selector(fieldChanged), for: .editingChanged)
         }
 
-        let controller = UIHostingController(rootView: rootView)
-        controller.view.backgroundColor = .clear
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        nameTakenLabel.text = "An item with this name already exists."
+        nameTakenLabel.font = UIFont(name: "Nunito-Regular", size: 13) ?? .nunito14
+        nameTakenLabel.textColor = .errorRedColor
+        nameTakenLabel.numberOfLines = 0
+        nameTakenLabel.isHidden = true
 
-        addChild(controller)
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
+        let gramsLabel = UILabel()
+        gramsLabel.text = "g"
+        gramsLabel.font = .nunito16
+        gramsLabel.textColor = .black
+        gramsLabel.setContentHuggingPriority(.required, for: .horizontal)
+
+        let carbRow = UIStackView(arrangedSubviews: [carbValueField, gramsLabel])
+        carbRow.axis = .horizontal
+        carbRow.spacing = 8
+        carbRow.alignment = .center
+
+        let formStack = UIStackView(arrangedSubviews: [
+            heading,
+            makeIcon(),
+            makeField(title: "Item name", content: nameField),
+            nameTakenLabel,
+            makeField(title: "Carb value", content: carbRow),
+            makeField(title: "Portion size", content: portionSizeField),
+            makeCategoryPicker()
+        ])
+        formStack.axis = .vertical
+        formStack.spacing = 20
+        formStack.alignment = .fill
+        formStack.isLayoutMarginsRelativeArrangement = true
+        formStack.layoutMargins = UIEdgeInsets(top: 8, left: 20, bottom: 24, right: 20)
+        formStack.translatesAutoresizingMaskIntoConstraints = false
+
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(formStack)
+        view.addSubview(scrollView)
+
+        setupAddButton()
 
         NSLayoutConstraint.activate([
-            controller.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -16),
+
+            formStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            formStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            formStack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            formStack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            formStack.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
+        ])
+    }
+
+    private func makeIcon() -> UIView {
+        let imageView = UIImageView(image: UIImage(named: CustomFoodsManager.iconName))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let badge = UIView()
+        badge.backgroundColor = .sunsetOrangeColor100
+        badge.layer.cornerRadius = 16
+        badge.layer.cornerCurve = .continuous
+        badge.translatesAutoresizingMaskIntoConstraints = false
+        badge.addSubview(imageView)
+
+        let holder = UIView()
+        holder.addSubview(badge)
+
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 56),
+            imageView.heightAnchor.constraint(equalToConstant: 56),
+            imageView.topAnchor.constraint(equalTo: badge.topAnchor, constant: 12),
+            imageView.bottomAnchor.constraint(equalTo: badge.bottomAnchor, constant: -12),
+            imageView.leadingAnchor.constraint(equalTo: badge.leadingAnchor, constant: 12),
+            imageView.trailingAnchor.constraint(equalTo: badge.trailingAnchor, constant: -12),
+
+            badge.topAnchor.constraint(equalTo: holder.topAnchor),
+            badge.bottomAnchor.constraint(equalTo: holder.bottomAnchor),
+            badge.centerXAnchor.constraint(equalTo: holder.centerXAnchor)
+        ])
+        return holder
+    }
+
+    private func makeField(title: String, content: UIView) -> UIView {
+        let label = UILabel()
+        label.text = title
+        label.font = .nunito16
+        label.textColor = .black
+
+        let box = UIView()
+        box.layer.cornerRadius = 8
+        box.layer.cornerCurve = .continuous
+        box.layer.borderWidth = 1
+        box.layer.borderColor = UIColor.systemGray4.cgColor
+        content.translatesAutoresizingMaskIntoConstraints = false
+        box.addSubview(content)
+
+        NSLayoutConstraint.activate([
+            content.topAnchor.constraint(equalTo: box.topAnchor, constant: 14),
+            content.bottomAnchor.constraint(equalTo: box.bottomAnchor, constant: -14),
+            content.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 14),
+            content.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -14)
         ])
 
-        setupDismissKeyboardGesture()
+        let stack = UIStackView(arrangedSubviews: [label, box])
+        stack.axis = .vertical
+        stack.spacing = 8
+        stack.alignment = .fill
+        return stack
+    }
+
+    private func makeCategoryPicker() -> UIView {
+        categoryLabel.font = .nunito16
+        categoryLabel.textColor = .black
+
+        let chevron = UIImageView(
+            image: UIImage(
+                systemName: "chevron.down",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)
+            )
+        )
+        chevron.tintColor = .black
+        chevron.setContentHuggingPriority(.required, for: .horizontal)
+
+        let row = UIStackView(arrangedSubviews: [categoryLabel, chevron])
+        row.axis = .horizontal
+        row.alignment = .center
+        row.isUserInteractionEnabled = false
+
+        let field = makeField(title: "Item category", content: row)
+
+        // A UIMenu on a button is the UIKit equivalent of SwiftUI's `Menu`.
+        categoryButton.menu = UIMenu(children: customFoods.categoryTitles.map { title in
+            UIAction(title: title) { [weak self] _ in
+                self?.categoryTitle = title
+                self?.updateSubmitState()
+            }
+        })
+        categoryButton.showsMenuAsPrimaryAction = true
+        categoryButton.translatesAutoresizingMaskIntoConstraints = false
+        field.addSubview(categoryButton)
+
+        NSLayoutConstraint.activate([
+            categoryButton.topAnchor.constraint(equalTo: field.topAnchor),
+            categoryButton.leadingAnchor.constraint(equalTo: field.leadingAnchor),
+            categoryButton.trailingAnchor.constraint(equalTo: field.trailingAnchor),
+            categoryButton.bottomAnchor.constraint(equalTo: field.bottomAnchor)
+        ])
+        return field
+    }
+
+    private func setupAddButton() {
+        var config = UIButton.Configuration.plain()
+        config.title = "Add item"
+        config.baseForegroundColor = .white
+        config.background.backgroundColor = .choaGreenColor
+        config.background.cornerRadius = 12
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .nunitoBold20
+            return out
+        }
+        addButton.configuration = config
+        addButton.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(addButton)
+
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalToConstant: 47),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        ])
+    }
+
+    // MARK: - State
+
+    @objc private func fieldChanged() {
+        updateSubmitState()
+    }
+
+    private func updateSubmitState() {
+        nameTakenLabel.isHidden = !nameIsTaken
+
+        // Dimmed rather than `isEnabled = false`: the disabled state would also
+        // grey the title, leaving it barely legible on the green fill.
+        addButton.isUserInteractionEnabled = canSubmit
+        addButton.alpha = canSubmit ? 1 : 0.5
+    }
+
+    // MARK: - Actions
+
+    @objc private func addTapped() {
+        guard let carbGrams, let categoryTitle else { return }
+
+        customFoods.addFood(
+            name: (nameField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines),
+            carbGrams: carbGrams,
+            servingSize: (portionSizeField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines),
+            categoryTitle: categoryTitle
+        )
+        navigationController?.popViewController(animated: true)
     }
 
     private func setupDismissKeyboardGesture() {
@@ -77,183 +300,15 @@ class AddFoodItemViewController: UIViewController {
     }
 }
 
-// MARK: - Form
-
-private struct AddFoodItemForm: View {
-    /// (name, carbGrams, portionSize, categoryTitle)
-    let onAdd: (String, Int, String, String) -> Void
-
-    @ObservedObject private var customFoods = CustomFoodsManager.shared
-
-    @State private var name = ""
-    @State private var carbValue = ""
-    @State private var portionSize = ""
-    @State private var categoryTitle: String?
-
-    private var carbGrams: Int? {
-        Int(carbValue.trimmingCharacters(in: .whitespaces))
-    }
-
-    private var nameIsTaken: Bool {
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return !trimmed.isEmpty && !customFoods.nameIsAvailable(trimmed)
-    }
-
-    private var canSubmit: Bool {
-        !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && !nameIsTaken
-            && (carbGrams.map { $0 >= 0 } ?? false)
-            && !portionSize.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && categoryTitle != nil
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Add an Item")
-                        .font(.custom("Nunito-Medium", size: 20))
-                        .foregroundColor(Color(.primaryBlue))
-
-                    HStack {
-                        Spacer()
-                        
-                        icon
-                        
-                        Spacer()
-                    }
-
-                    field(title: "Item name") {
-                        TextField("", text: $name)
-                            .font(.custom("Nunito-Regular", size: 16))
-                    }
-
-                    if nameIsTaken {
-                        Text("An item with this name already exists.")
-                            .font(.custom("Nunito-Regular", size: 13))
-                            .foregroundColor(Color(.errorRedColor))
-                    }
-
-                    field(title: "Carb value") {
-                        HStack {
-                            TextField("", text: $carbValue)
-                                .keyboardType(.numberPad)
-                                .font(.custom("Nunito-Regular", size: 16))
-
-                            Text("g")
-                                .font(.custom("Nunito-Regular", size: 16))
-                                .foregroundColor(.black)
-                        }
-                    }
-
-                    field(title: "Portion size") {
-                        TextField("", text: $portionSize)
-                            .font(.custom("Nunito-Regular", size: 16))
-                    }
-
-                    categoryPicker
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 8)
-                .padding(.bottom, 24)
-            }
-
-            addButton
-        }
-    }
-
-    private var icon: some View {
-        Image(CustomFoodsManager.iconName)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 56, height: 56)
-            .padding(12)
-            .background(Color(.sunsetOrangeColor100))
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-    }
-
-    private func field<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.custom("Nunito-Regular", size: 16))
-                .foregroundColor(.black)
-
-            content()
-                .padding(.horizontal, 14)
-                .padding(.vertical, 14)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(Color(.systemGray4), lineWidth: 1)
-                )
-        }
-    }
-
-    private var categoryPicker: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Item category")
-                .font(.custom("Nunito-Regular", size: 16))
-                .foregroundColor(.black)
-
-            Menu {
-                ForEach(customFoods.categoryTitles, id: \.self) { title in
-                    Button(title) { categoryTitle = title }
-                }
-            } label: {
-                HStack {
-                    Text(categoryTitle ?? "")
-                        .font(.custom("Nunito-Regular", size: 16))
-                        .foregroundColor(.black)
-
-                    Spacer()
-
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.black)
-                }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 14)
-                .contentShape(Rectangle())
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(Color(.systemGray4), lineWidth: 1)
-                )
-            }
-        }
-    }
-
-    private var addButton: some View {
-        Button {
-            guard let carbGrams, let categoryTitle else { return }
-            onAdd(
-                name.trimmingCharacters(in: .whitespacesAndNewlines),
-                carbGrams,
-                portionSize.trimmingCharacters(in: .whitespacesAndNewlines),
-                categoryTitle
-            )
-        } label: {
-            Text("Add item")
-                .font(.custom("Nunito-Bold", size: 20))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, minHeight: 47)
-                .background(Color(.choaGreenColor))
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .disabled(!canSubmit)
-        .opacity(canSubmit ? 1 : 0.5)
-        .padding(.horizontal, 20)
-        .padding(.bottom, 16)
-    }
-}
-
 #if DEBUG
+import SwiftUI
+
 private struct AddFoodItemViewControllerPreview: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UINavigationController {
         UINavigationController(rootViewController: AddFoodItemViewController())
     }
 
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-    }
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
 }
 
 struct AddFoodItemViewController_Previews: PreviewProvider {
