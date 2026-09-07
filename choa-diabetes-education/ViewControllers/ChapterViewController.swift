@@ -17,8 +17,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     @IBOutlet weak var contentView: UIView!
     
-    private var navProgressBar = UIProgressView(progressViewStyle: .default)
-    private var navProgressWidthConstraint: NSLayoutConstraint?
+    private let navProgressBar = NavigationProgressBar()
     
     var webView: WKWebView!
     var webViewTopConstraint: NSLayoutConstraint!
@@ -71,16 +70,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         webView.scrollView.delegate = self
         
-        // Configure a progress bar in the navigation bar titleView
-        navProgressBar.translatesAutoresizingMaskIntoConstraints = false
-        navProgressBar.progressTintColor = .orangeTextColor
-        navProgressBar.trackTintColor = .systemGray5
-        navProgressBar.setProgress(0.0, animated: false)
-        
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(navProgressBar)
-        
+        // Show a progress bar in the navigation bar titleView
         let icon = UIImage(named: "close_black")
         let rightButton = UIBarButtonItem(
             image: icon,
@@ -90,26 +80,10 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         )
         
         navigationItem.rightBarButtonItem = rightButton
-        
-        NSLayoutConstraint.activate([
-            navProgressBar.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
-            navProgressBar.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
-            navProgressBar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            navProgressBar.heightAnchor.constraint(equalToConstant: 8),
-            container.heightAnchor.constraint(equalToConstant: 20)
-        ])
-        
-        // Set an initial width; this will be updated to 80% of the nav bar in viewDidLayoutSubviews
-        let initialWidth: CGFloat = 200
-        navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: initialWidth)
-        navProgressWidthConstraint?.isActive = true
-        
-        self.navigationItem.titleView = container
+        navigationItem.titleView = navProgressBar
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
-        
-        navProgressBar.layer.cornerRadius = 20
         
         updateModuleProgress(for: contentURL, animated: false)
     }
@@ -166,26 +140,8 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Update the titleView width to 70% of the navigation bar’s width, accounting for back and close buttons implicitly
-        if let navBar = self.navigationController?.navigationBar, let container = self.navigationItem.titleView {
-            let availableWidth = navBar.bounds.width
-            
-            var targetWidth = availableWidth * 0.7
-            
-            let maxWidth: CGFloat = availableWidth - 120 // approximate space for back + close + margins
-            if targetWidth > maxWidth {
-                targetWidth = max(160, maxWidth)
-            }
-            if navProgressWidthConstraint == nil {
-                navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: targetWidth)
-                navProgressWidthConstraint?.isActive = true
-            } else {
-                navProgressWidthConstraint?.constant = targetWidth
-            }
-            // Force layout of the titleView to apply width change immediately
-            container.setNeedsLayout()
-            container.layoutIfNeeded()
-        }
+        
+        navProgressBar.updateWidth(for: navigationController?.navigationBar)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
