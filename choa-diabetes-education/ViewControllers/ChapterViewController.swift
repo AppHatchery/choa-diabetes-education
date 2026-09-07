@@ -110,6 +110,58 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         // Potentially opening up a webview to display the AboutPage
         
         navProgressBar.layer.cornerRadius = 20
+        
+        updateModuleProgress(for: contentURL, animated: false)
+    }
+    
+    /// A page name reads `<section>_<chapter>_<subchapter>_<name>`, so its module is
+    /// the leading `<section>_<chapter>` pair.
+    private func moduleLocation(for pageName: String) -> (modulePrefix: String, subchapter: Int)? {
+        let parts = pageName.split(separator: "_")
+        
+        guard parts.count >= 3,
+              let section = Int(parts[0]),
+              let chapter = Int(parts[1]),
+              let subchapter = Int(parts[2]) else {
+            return nil
+        }
+        
+        return ("\(section)_\(chapter)", subchapter)
+    }
+    
+    /// Subchapter numbers bundled for a module, in reading order
+    private func bundledSubchapters(inModule modulePrefix: String) -> [Int] {
+        let pages = Bundle.main.urls(forResourcesWithExtension: "html", subdirectory: nil) ?? []
+        
+        return pages.compactMap { page in
+            let pageName = page.deletingPathExtension().lastPathComponent
+            guard let location = moduleLocation(for: pageName),
+                  location.modulePrefix == modulePrefix else {
+                return nil
+            }
+            return location.subchapter
+        }.sorted()
+    }
+    
+    /// The bar shows where the reader currently is in the module rather than how much
+    /// of it they have completed, so subchapter 2 of 4 always reads 50% — including on
+    /// a revisit after the whole module has been read through.
+    private func updateModuleProgress(for pageName: String, animated: Bool) {
+        guard let location = moduleLocation(for: pageName) else {
+            // Content shown outside a module has no position to report
+            navProgressBar.isHidden = true
+            return
+        }
+        
+        let subchapters = bundledSubchapters(inModule: location.modulePrefix)
+        
+        guard let position = subchapters.firstIndex(of: location.subchapter) else {
+            navProgressBar.isHidden = true
+            return
+        }
+        
+        navProgressBar.isHidden = false
+        navProgressBar.setProgress(Float(position + 1) / Float(subchapters.count), animated: animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -197,7 +249,12 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(javascript) { (response, error) in
                 //                print("changed the font size to \(self.fontSize)")
             }
-            self.navProgressBar.setProgress(0.0, animated: false)
+            
+            // Subchapters are chained together inside the webview, so the reader's
+            // position follows whichever page has just loaded
+            if let pageName = webView.url?.deletingPathExtension().lastPathComponent {
+                updateModuleProgress(for: pageName, animated: true)
+            }
             
         } else {
             print("outside the app, don't apply styling")
@@ -245,18 +302,6 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)
             webView.scrollView.addSubview(nextButton)
         }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Connect scroll view to progress bar
-        let offset = webView.scrollView.contentOffset
-        
-        let percentageOfFullHeight = offset.y / (webView.scrollView.contentSize.height - scrollView.frame.height)
-        
-        if (percentageOfFullHeight >= 0 && percentageOfFullHeight <= 1){
-            navProgressBar.setProgress(Float(percentageOfFullHeight), animated: true)
-        } /// subtract the height of the scroll view, because the bottom of the content won't scroll all the way to the top
-        
     }
     
     //--------------------------------------------------------------------------------------------------
