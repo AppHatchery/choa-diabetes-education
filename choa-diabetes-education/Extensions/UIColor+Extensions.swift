@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    public static let blue050 = UIColor(named: "blue050")!
     public static let borderGrayColor = UIColor(named: "borderGrayColor")!
     public static let gradientRedColor = UIColor(named: "gradientRedColor")!
     public static let gradientRedColor2 = UIColor(named: "gradientRedColor2")!

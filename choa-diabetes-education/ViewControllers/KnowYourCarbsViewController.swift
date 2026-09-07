@@ -170,6 +170,13 @@ class KnowYourCarbsViewController: UIViewController {
     private func observeTotalCarbs() {
         calculator.$totalCarbs
             .removeDuplicates()
+            // `@Published` emits in `willSet`, so during a synchronous sink the
+            // stored `totalCarbs` is still the previous value. Presenting the
+            // sheet from there meant its own subscription immediately read that
+            // stale value — which is why the first tap of a stepper showed 0g.
+            // Delivering on the next main-queue turn lets the assignment land
+            // first.
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] totalCarbs in
                 self?.updateTotalCarbsSheet(totalCarbs: totalCarbs)
             }
@@ -646,7 +653,11 @@ final class TotalCarbsSheetViewController: UIViewController {
         if let sheet = sheetPresentationController {
             if #available(iOS 16.0, *) {
                 let totalCarbsDetentId = UISheetPresentationController.Detent.Identifier("totalCarbs")
-                sheet.detents = [.custom(identifier: totalCarbsDetentId) { _ in 100 }]
+                sheet.detents = [
+                    .custom(identifier: totalCarbsDetentId) { _ in
+                        100 + TotalCarbsSheetContentView.topPadding
+                    }
+                ]
                 sheet.largestUndimmedDetentIdentifier = totalCarbsDetentId
             } else {
                 sheet.detents = [.medium()]
@@ -661,6 +672,9 @@ final class TotalCarbsSheetViewController: UIViewController {
 }
 
 private final class TotalCarbsSheetContentView: UIView {
+    /// Breathing room above the content; the sheet's detent includes it.
+    static let topPadding: CGFloat = 16
+
     private let onCalculateInsulin: () -> Void
     private let totalLabel = UILabel()
     private var cancellable: AnyCancellable?
@@ -710,7 +724,7 @@ private final class TotalCarbsSheetContentView: UIView {
         row.spacing = 16
         row.alignment = .center
         row.isLayoutMarginsRelativeArrangement = true
-        row.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        row.layoutMargins = UIEdgeInsets(top: Self.topPadding, left: 20, bottom: 0, right: 20)
         row.translatesAutoresizingMaskIntoConstraints = false
         addSubview(row)
 
@@ -720,6 +734,10 @@ private final class TotalCarbsSheetContentView: UIView {
             row.trailingAnchor.constraint(equalTo: trailingAnchor),
             row.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+
+        // Seeded from the current value as well as subscribed, so the sheet is
+        // never blank for a frame no matter when it is constructed.
+        totalLabel.text = "\(CarbsCalculatorManager.shared.totalCarbs)g"
 
         cancellable = CarbsCalculatorManager.shared.$totalCarbs
             .receive(on: DispatchQueue.main)

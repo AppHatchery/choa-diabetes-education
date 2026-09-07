@@ -11,6 +11,10 @@ class AddFoodItemViewController: UIViewController {
 
     private let customFoods = CustomFoodsManager.shared
 
+    private let scrollView = UIScrollView()
+    private var addButtonBottomConstraint: NSLayoutConstraint!
+    private weak var activeField: UITextField?
+
     private let nameField = UITextField()
     private let carbValueField = UITextField()
     private let portionSizeField = UITextField()
@@ -52,11 +56,13 @@ class AddFoodItemViewController: UIViewController {
             target: self,
             action: #selector(closeTapped)
         )
+        
         closeButton.tintColor = .black
         navigationItem.rightBarButtonItem = closeButton
 
         setupForm()
         setupDismissKeyboardGesture()
+        observeKeyboard()
         updateSubmitState()
     }
 
@@ -65,16 +71,16 @@ class AddFoodItemViewController: UIViewController {
     private func setupForm() {
         let heading = UILabel()
         heading.text = "Add an Item"
-        heading.font = .nunitoMedium20
+        heading.font = .nunitoSemiBold20
         heading.textColor = .primaryBlue
 
-        nameField.font = .nunito16
-        carbValueField.font = .nunito16
         carbValueField.keyboardType = .numberPad
-        portionSizeField.font = .nunito16
 
         for field in [nameField, carbValueField, portionSizeField] {
+            field.font = .nunitoSemiBold20
             field.addTarget(self, action: #selector(fieldChanged), for: .editingChanged)
+            field.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
+            field.tintColor = .choaGreenColor
         }
 
         nameTakenLabel.text = "An item with this name already exists."
@@ -85,7 +91,7 @@ class AddFoodItemViewController: UIViewController {
 
         let gramsLabel = UILabel()
         gramsLabel.text = "g"
-        gramsLabel.font = .nunito16
+        gramsLabel.font = .nunitoSemiBold20
         gramsLabel.textColor = .black
         gramsLabel.setContentHuggingPriority(.required, for: .horizontal)
 
@@ -110,8 +116,8 @@ class AddFoodItemViewController: UIViewController {
         formStack.layoutMargins = UIEdgeInsets(top: 8, left: 20, bottom: 24, right: 20)
         formStack.translatesAutoresizingMaskIntoConstraints = false
 
-        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.keyboardDismissMode = .interactive
         scrollView.addSubview(formStack)
         view.addSubview(scrollView)
 
@@ -164,14 +170,14 @@ class AddFoodItemViewController: UIViewController {
     private func makeField(title: String, content: UIView) -> UIView {
         let label = UILabel()
         label.text = title
-        label.font = .nunito16
+        label.font = .nunitoSemiBold18
         label.textColor = .black
 
         let box = UIView()
         box.layer.cornerRadius = 8
         box.layer.cornerCurve = .continuous
         box.layer.borderWidth = 1
-        box.layer.borderColor = UIColor.systemGray4.cgColor
+        box.layer.borderColor = UIColor.borderGrayColor.cgColor
         content.translatesAutoresizingMaskIntoConstraints = false
         box.addSubview(content)
 
@@ -245,11 +251,16 @@ class AddFoodItemViewController: UIViewController {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addButton)
 
+        addButtonBottomConstraint = addButton.bottomAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+            constant: -16
+        )
+
         NSLayoutConstraint.activate([
             addButton.heightAnchor.constraint(equalToConstant: 47),
             addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            addButtonBottomConstraint
         ])
     }
 
@@ -280,6 +291,76 @@ class AddFoodItemViewController: UIViewController {
             categoryTitle: categoryTitle
         )
         navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: - Keyboard
+
+    private func observeKeyboard() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func fieldBeganEditing(_ sender: UITextField) {
+        activeField = sender
+    }
+
+    /// The Add button sits above the keyboard and the scroll view is pinned to
+    /// its top, so lifting the button lifts the whole form with it.
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+        let overlap = max(0, view.bounds.maxY - view.convert(frame, from: nil).minY)
+        // The button already clears the home indicator; only the extra height
+        // the keyboard adds beyond that inset needs taking up.
+        let lift = max(0, overlap - view.safeAreaInsets.bottom)
+
+        animateAlongsideKeyboard(notification) {
+            self.addButtonBottomConstraint.constant = -16 - lift
+            self.view.layoutIfNeeded()
+        } completion: {
+            self.scrollActiveFieldIntoView()
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        animateAlongsideKeyboard(notification) {
+            self.addButtonBottomConstraint.constant = -16
+            self.view.layoutIfNeeded()
+        } completion: {}
+    }
+
+    private func scrollActiveFieldIntoView() {
+        guard let activeField, let container = activeField.superview else { return }
+        // The bordered box, not the bare field, so its label and outline show too.
+        let target = container.convert(container.bounds.insetBy(dx: 0, dy: -12), to: scrollView)
+        scrollView.scrollRectToVisible(target, animated: true)
+    }
+
+    private func animateAlongsideKeyboard(
+        _ notification: Notification,
+        _ animations: @escaping () -> Void,
+        completion: @escaping () -> Void
+    ) {
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+        let curveRaw = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 7
+
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: UInt(curveRaw << 16)),
+            animations: animations,
+            completion: { _ in completion() }
+        )
     }
 
     private func setupDismissKeyboardGesture() {

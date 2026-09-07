@@ -27,6 +27,9 @@ class KnowYourCarbsResultViewController: UIViewController {
 
     private var showBreakdown = true
 
+    private var cardBottomConstraint: NSLayoutConstraint!
+    private weak var activeField: UITextField?
+
     /// Width of each breakdown column, and so of the rule beneath it.
     private static let columnWidth: CGFloat = 150
 
@@ -50,6 +53,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         setupCard()
         setupScrollView()
         setupDismissKeyboardGesture()
+        observeKeyboard()
 
         loadCarbRatio()
         reloadFoods()
@@ -76,6 +80,7 @@ class KnowYourCarbsResultViewController: UIViewController {
     private func setupScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.alwaysBounceVertical = true
+        scrollView.keyboardDismissMode = .interactive
         view.addSubview(scrollView)
 
         foodsStack.axis = .vertical
@@ -134,6 +139,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         additionalCarbsField.font = .nunito16
         additionalCarbsField.text = calculator.additionalCarbs > 0 ? "\(calculator.additionalCarbs)" : ""
         additionalCarbsField.addTarget(self, action: #selector(additionalCarbsChanged), for: .editingChanged)
+        additionalCarbsField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
 
         let unit = UILabel()
         unit.text = "g"
@@ -183,15 +189,20 @@ class KnowYourCarbsResultViewController: UIViewController {
         cardStack.addArrangedSubview(makeInsulinPanel())
         cardStack.addArrangedSubview(makeExitButton())
 
+        cardBottomConstraint = cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
         NSLayoutConstraint.activate([
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cardBottomConstraint,
 
             cardStack.topAnchor.constraint(equalTo: cardView.topAnchor),
             cardStack.leadingAnchor.constraint(equalTo: cardView.leadingAnchor),
             cardStack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor),
-            cardStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            // The card's own safe-area guide, not the controller's: once the
+            // card lifts clear of the home indicator its bottom inset falls to
+            // zero on its own, so the contents don't keep a stale gap.
+            cardStack.bottomAnchor.constraint(equalTo: cardView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
 
@@ -264,6 +275,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         carbRatioField.textAlignment = .center
         carbRatioField.placeholder = "0"
         carbRatioField.addTarget(self, action: #selector(carbRatioChanged), for: .editingChanged)
+        carbRatioField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
 
         let ratioColumn = makeColumn(
             valueView: carbRatioField,
@@ -376,7 +388,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         config.baseForegroundColor = .black
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var out = incoming
-            out.font = .nunitoBold16
+            out.font = .nunitoBold20
             return out
         }
         let button = UIButton(configuration: config)
@@ -422,6 +434,92 @@ class KnowYourCarbsResultViewController: UIViewController {
 
     @objc private func exitTapped() {
         navigationController?.popToRootViewController(animated: true)
+    }
+
+    // MARK: - Keyboard
+
+    private func observeKeyboard() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func fieldBeganEditing(_ sender: UITextField) {
+        activeField = sender
+    }
+
+    /// Which view moves depends on where the field being edited lives.
+    ///
+    /// The carb-ratio field is inside the bottom card, so the card itself has
+    /// to rise above the keyboard. The additional-carbs field is in the scroll
+    /// view, and lifting the card there would only squeeze the space the field
+    /// needs — so the card stays put and the scroll view insets instead.
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+        let keyboardTop = view.convert(frame, from: nil).minY
+        let overlap = max(0, view.bounds.maxY - keyboardTop)
+
+        if activeField === carbRatioField {
+            animateAlongsideKeyboard(notification) {
+                self.cardBottomConstraint.constant = -overlap
+                self.scrollView.contentInset.bottom = 0
+                self.scrollView.verticalScrollIndicatorInsets.bottom = 0
+                self.view.layoutIfNeeded()
+            } completion: {}
+        } else {
+            let hidden = max(0, cardView.frame.minY - keyboardTop)
+            animateAlongsideKeyboard(notification) {
+                self.cardBottomConstraint.constant = 0
+                self.scrollView.contentInset.bottom = hidden
+                self.scrollView.verticalScrollIndicatorInsets.bottom = hidden
+                self.view.layoutIfNeeded()
+            } completion: {
+                self.scrollActiveFieldIntoView()
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        animateAlongsideKeyboard(notification) {
+            self.cardBottomConstraint.constant = 0
+            self.scrollView.contentInset.bottom = 0
+            self.scrollView.verticalScrollIndicatorInsets.bottom = 0
+            self.view.layoutIfNeeded()
+        } completion: {}
+    }
+
+    private func scrollActiveFieldIntoView() {
+        guard let activeField, activeField !== carbRatioField,
+              let container = activeField.superview else { return }
+        let target = container.convert(container.bounds.insetBy(dx: 0, dy: -12), to: scrollView)
+        scrollView.scrollRectToVisible(target, animated: true)
+    }
+
+    private func animateAlongsideKeyboard(
+        _ notification: Notification,
+        _ animations: @escaping () -> Void,
+        completion: @escaping () -> Void
+    ) {
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+        let curveRaw = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 7
+
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: UInt(curveRaw << 16)),
+            animations: animations,
+            completion: { _ in completion() }
+        )
     }
 
     private func setupDismissKeyboardGesture() {

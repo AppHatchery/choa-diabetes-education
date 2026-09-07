@@ -165,18 +165,18 @@ final class CarbFoodRowView: UIView {
         stepperStack.axis = .horizontal
         stepperStack.alignment = .center
         stepperStack.translatesAutoresizingMaskIntoConstraints = false
-        stepperStack.backgroundColor = .systemGray6
-        stepperStack.layer.cornerRadius = 6
+        stepperStack.backgroundColor = .blue050
+        stepperStack.layer.cornerRadius = 4
         stepperStack.layer.cornerCurve = .continuous
         stepperStack.clipsToBounds = true
         stepperStack.isLayoutMarginsRelativeArrangement = true
 
-        quantityLabel.font = .systemFont(ofSize: 17, weight: .bold)
+        quantityLabel.font = .nunitoSemiBold20
         quantityLabel.textColor = .primaryBlue
         quantityLabel.textAlignment = .center
 
-        configure(stepperButton: minusButton, systemName: "minus", action: #selector(decrementTapped))
-        configure(stepperButton: plusButton, systemName: "plus", action: #selector(incrementTapped))
+        configure(stepperButton: minusButton, named: "ic_minuss", action: #selector(decrementTapped))
+        configure(stepperButton: plusButton, named: "ic_pluss", action: #selector(incrementTapped))
 
         stepperStack.addArrangedSubview(minusButton)
         stepperStack.addArrangedSubview(quantityLabel)
@@ -194,11 +194,11 @@ final class CarbFoodRowView: UIView {
         ])
     }
 
-    private func configure(stepperButton button: UIButton, systemName: String, action: Selector) {
+    private func configure(stepperButton button: UIButton, named: String, action: Selector) {
         button.setImage(
             UIImage(
-                systemName: systemName,
-                withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .bold)
+                named: named,
+
             ),
             for: .normal
         )
@@ -236,12 +236,19 @@ final class CarbFoodRowView: UIView {
 
     @objc private func incrementTapped() {
         guard let food else { return }
+        triggerLightHaptic()
         calculator.increment(food)
     }
 
     @objc private func decrementTapped() {
         guard let food else { return }
+        triggerLightHaptic()
         calculator.decrement(food)
+    }
+
+    private func triggerLightHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred(intensity: 0.4)
     }
 }
 
