@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */; };
 		0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */; };
-		CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */; };
-		CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */; };
-		CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */; };
 		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
 		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
 		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
@@ -157,6 +154,11 @@
 		CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B102 /* food_that_dont_raise */; };
 		CF01A1B2000000000000B103 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B104 /* food_that_raises */; };
 		CF01A1B2000000000000B105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B106 /* low_carb */; };
+		CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */; };
+		CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */; };
+		CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */; };
+		CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000D102 /* NavigationProgressBar.swift */; };
+		CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -256,7 +258,6 @@
 		D48D8918289C04FF001A61E2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */; };
 		D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8923289C214F001A61E2 /* HandbookViewController.swift */; };
 		D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D8925289C215C001A61E2 /* CalculatorViewController.swift */; };
-		CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000D102 /* NavigationProgressBar.swift */; };
 		D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492A88F28F8E2A000B98CA3 /* SearchView.swift */; };
 		D492A89228F8E2A900B98CA3 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D492A89128F8E2A900B98CA3 /* SearchView.xib */; };
 		D492A8972901D67900B98CA3 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492A8952901D67900B98CA3 /* SearchResultTableViewCell.swift */; };
@@ -312,9 +313,6 @@
 		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
 		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
 		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
-		CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
-		CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
-		CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
 		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
@@ -455,6 +453,11 @@
 		CF01A1B2000000000000B102 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
 		CF01A1B2000000000000B104 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
 		CF01A1B2000000000000B106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
+		CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000D102 /* NavigationProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationProgressBar.swift; sourceTree = "<group>"; };
+		CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -557,7 +560,6 @@
 		D48D8917289C04FF001A61E2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		D48D8923289C214F001A61E2 /* HandbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandbookViewController.swift; sourceTree = "<group>"; };
 		D48D8925289C215C001A61E2 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
-		CF01A1B2000000000000D102 /* NavigationProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationProgressBar.swift; sourceTree = "<group>"; };
 		D492A88F28F8E2A000B98CA3 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D492A89128F8E2A900B98CA3 /* SearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		D492A8952901D67900B98CA3 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultTableViewCell.swift; path = "choa-diabetes-education/Models/SearchResultTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -628,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */,
+				CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */,
 				B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */,
 				B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */,
 				B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */,
@@ -1421,6 +1424,7 @@
 				CF1408E9304052AD0002FD8A /* corn.png in Resources */,
 				CF1408EA304052AD0002FD8A /* olives.png in Resources */,
 				CF1408EB304052AD0002FD8A /* pasta.png in Resources */,
+				CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */,
 				CF1408EC304052AD0002FD8A /* cereal.png in Resources */,
 				CF1408ED304052AD0002FD8A /* cheese.png in Resources */,
 				CF1408EE304052AD0002FD8A /* eggs.png in Resources */,

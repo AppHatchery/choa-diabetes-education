@@ -26,7 +26,10 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
             <string>Nunito-Regular</string>
         </array>
     </customFonts>
@@ -970,7 +973,7 @@
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Diabetes Basics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-ed-Y3g">
                                                                                 <rect key="frame" x="20" y="20" width="178" height="27.5"/>
-                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -1008,7 +1011,7 @@
                                                                                 <rect key="frame" x="20" y="20" width="178" height="55"/>
                                                                                 <string key="text">Nutrition and 
 Carb Counting</string>
-                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -1046,7 +1049,7 @@ Carb Counting</string>
                                                                                 <rect key="frame" x="20" y="20" width="178" height="55"/>
                                                                                 <string key="text">Diabetes 
 Self-Management</string>
-                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -1120,7 +1123,7 @@ Self-Management</string>
                                                                                                     </label>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="snacks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh0-tV-N2E">
                                                                                                         <rect key="frame" x="0.0" y="29" width="86.5" height="29"/>
-                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                                         <color key="textColor" name="secondarySunsetOrange400"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
@@ -1152,17 +1155,17 @@ Self-Management</string>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fdv-hI-k3J">
-                                                                                                <rect key="frame" x="0.0" y="75" width="64" height="58"/>
+                                                                                                <rect key="frame" x="0.0" y="75" width="64.5" height="58"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMW-le-AK9">
-                                                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="29"/>
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="64.5" height="29"/>
                                                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
                                                                                                         <color key="textColor" name="primaryBlue"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXc-rI-vwp">
-                                                                                                        <rect key="frame" x="0.0" y="29" width="64" height="29"/>
-                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <rect key="frame" x="0.0" y="29" width="64.5" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                                         <color key="textColor" name="primaryBlue"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
@@ -1209,7 +1212,7 @@ Self-Management</string>
                                                                                                     </label>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pr-BV-dbC" userLabel="sugar">
                                                                                                         <rect key="frame" x="0.0" y="29" width="116" height="29"/>
-                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                                         <color key="textColor" name="secondaryFireRed300"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
@@ -1251,7 +1254,7 @@ Self-Management</string>
                                                                                                     </label>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8on-IG-DdE">
                                                                                                         <rect key="frame" x="0.0" y="29" width="118" height="29"/>
-                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
                                                                                                         <color key="textColor" name="secondaryMeadowGreen300"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>

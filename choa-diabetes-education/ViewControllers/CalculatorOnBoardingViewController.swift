@@ -32,6 +32,11 @@ class CalculatorOnBoardingViewController: UIViewController {
     /// The unit shown at the trailing edge of the field, dimmed until a value is typed
     private weak var trailingUnitLabel: UILabel?
     
+    /// Carries the field's fill, corner radius and border. The field draws its own
+    /// content background — under the iOS 26 design especially — which paints over
+    /// `backgroundColor`, so the styling sits on a view behind it instead.
+    private weak var textFieldBackgroundView: UIView?
+    
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
@@ -99,14 +104,36 @@ class CalculatorOnBoardingViewController: UIViewController {
             // its own radius — that is the second, square-looking border, and it ignores
             // layer.cornerRadius. Dropping it leaves the layer's border as the only one.
             questionTextField.borderStyle = .none
-            questionTextField.layer.cornerRadius = 8
-            questionTextField.layer.borderWidth = 1
+            questionTextField.backgroundColor = .clear
+            
+            setupTextFieldBackground()
             
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: questionTextField.frame.height))
             questionTextField.leftView = paddingView
             questionTextField.leftViewMode = .always
             
             setupTrailingText()
+        }
+        
+        private func setupTextFieldBackground() {
+            guard let container = questionTextField.superview else { return }
+            
+            let backgroundView = UIView()
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.isUserInteractionEnabled = false
+            backgroundView.layer.cornerRadius = 8
+            backgroundView.layer.borderWidth = 1
+            
+            container.insertSubview(backgroundView, belowSubview: questionTextField)
+            
+            NSLayoutConstraint.activate([
+                backgroundView.leadingAnchor.constraint(equalTo: questionTextField.leadingAnchor),
+                backgroundView.trailingAnchor.constraint(equalTo: questionTextField.trailingAnchor),
+                backgroundView.topAnchor.constraint(equalTo: questionTextField.topAnchor),
+                backgroundView.bottomAnchor.constraint(equalTo: questionTextField.bottomAnchor)
+            ])
+            
+            textFieldBackgroundView = backgroundView
         }
         
         private func setupTrailingText() {
@@ -162,12 +189,12 @@ class CalculatorOnBoardingViewController: UIViewController {
             
             let isValid = value > 0
             if isValid {
-                questionTextField.backgroundColor = .whiteColor
-                questionTextField.layer.borderColor = UIColor.choaGreenColor.cgColor
-                trailingUnitLabel?.textColor = .black
+                textFieldBackgroundView?.backgroundColor = .green050
+                textFieldBackgroundView?.layer.borderColor = UIColor.choaGreenColor.cgColor
+                trailingUnitLabel?.textColor = .label
             } else {
-                questionTextField.backgroundColor = .textFieldBackgroundColor
-                questionTextField.layer.borderColor = UIColor.systemGray5.cgColor
+                textFieldBackgroundView?.backgroundColor = .textFieldBackgroundColor
+                textFieldBackgroundView?.layer.borderColor = UIColor.borderGrayColor.cgColor
                 trailingUnitLabel?.textColor = .grayTextColor
             }
         }

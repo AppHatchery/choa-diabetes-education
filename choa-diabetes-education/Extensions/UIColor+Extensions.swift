@@ -8,11 +8,13 @@
 import UIKit
 
 extension UIColor {
+    public static let borderGrayColor = UIColor(named: "borderGrayColor")!
     public static let gradientRedColor = UIColor(named: "gradientRedColor")!
     public static let gradientRedColor2 = UIColor(named: "gradientRedColor2")!
     public static let headingGreenColor = UIColor(named: "primaryBlue")!
     public static let answerSelectionColor = UIColor(named: "primaryBlue")!
     public static let choaGreenColor = UIColor(named: "choaGreenColor")!
+    public static let green050 = UIColor(named: "green050")!
 	public static let primaryBlue = UIColor(named: "primaryBlue")!
 	public static let veryLightBlue = UIColor(named: "veryLightBlue")!
 	public static let veryLightRed = UIColor(named: "lightRedColor")!
@@ -27,6 +29,7 @@ extension UIColor {
     public static let diabetesBasicsColor050 = UIColor(named: "secondaryMeadowGreen050")!
     public static let progressBarColor = UIColor(named: "progressBarColor")!
     public static let textFieldBackgroundColor = UIColor(named: "textFieldBackgroundColor")!
+    public static let grayTextColor = UIColor(named: "grayTextColor")!
     public static let diabetesBasicsColor = UIColor(named: "secondaryMeadowGreen300")!
     public static let diabetesBasicsLightColor = UIColor(named: "secondaryMeadowGreen100")!
     public static let nutritionAndCarbColor = UIColor(named: "secondarySunsetOrange300")!
