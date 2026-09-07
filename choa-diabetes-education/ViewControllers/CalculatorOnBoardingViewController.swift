@@ -29,6 +29,9 @@ class CalculatorOnBoardingViewController: UIViewController {
     
     private let constantsManager = CalculatorConstantsManager.shared
     
+    /// The unit shown at the trailing edge of the field, dimmed until a value is typed
+    private weak var trailingUnitLabel: UILabel?
+    
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
@@ -43,6 +46,7 @@ class CalculatorOnBoardingViewController: UIViewController {
         
         setupTextField()
         setupUI()
+        updateQuestionTextFieldState()
         updateNextButtonState()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -91,9 +95,12 @@ class CalculatorOnBoardingViewController: UIViewController {
             questionTextField.keyboardType = .numberPad
             questionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             
+            // The storyboard field is a roundedRect, whose border UIKit draws itself at
+            // its own radius — that is the second, square-looking border, and it ignores
+            // layer.cornerRadius. Dropping it leaves the layer's border as the only one.
+            questionTextField.borderStyle = .none
             questionTextField.layer.cornerRadius = 8
             questionTextField.layer.borderWidth = 1
-            questionTextField.layer.borderColor = UIColor.lightGray.cgColor
             
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: questionTextField.frame.height))
             questionTextField.leftView = paddingView
@@ -108,7 +115,6 @@ class CalculatorOnBoardingViewController: UIViewController {
             if !unit.isEmpty {
                 let trailingLabel = UILabel()
                 trailingLabel.text = unit
-                trailingLabel.textColor = .black
                 trailingLabel.font = questionTextField.font
                 trailingLabel.sizeToFit()
                 
@@ -121,9 +127,11 @@ class CalculatorOnBoardingViewController: UIViewController {
                 
                 questionTextField.rightView = containerView
                 questionTextField.rightViewMode = .always
+                trailingUnitLabel = trailingLabel
             } else {
                 questionTextField.rightView = nil
                 questionTextField.rightViewMode = .never
+                trailingUnitLabel = nil
             }
         }
         
@@ -146,17 +154,21 @@ class CalculatorOnBoardingViewController: UIViewController {
             updateNextButtonState()
         }
     
+        /// Empty reads as a flat grey field; a value lifts it to white inside a green
+        /// outline, with the unit darkening alongside the text
         private func updateQuestionTextFieldState() {
             let text = questionTextField.text ?? ""
             let value = Int(text) ?? 0
             
             let isValid = value > 0
             if isValid {
-                questionTextField.backgroundColor = .veryLightGreen
+                questionTextField.backgroundColor = .whiteColor
                 questionTextField.layer.borderColor = UIColor.choaGreenColor.cgColor
+                trailingUnitLabel?.textColor = .black
             } else {
-                questionTextField.backgroundColor = UIColor.textFieldBackgroundColor
-                questionTextField.layer.borderColor = UIColor.lightGray.cgColor
+                questionTextField.backgroundColor = .textFieldBackgroundColor
+                questionTextField.layer.borderColor = UIColor.systemGray5.cgColor
+                trailingUnitLabel?.textColor = .grayTextColor
             }
         }
         
