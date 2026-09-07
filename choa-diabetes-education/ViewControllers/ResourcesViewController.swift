@@ -89,6 +89,54 @@ class ResourcesViewController: UIViewController {
 
         let managementTap = UITapGestureRecognizer(target: self, action: #selector(didTapManagementCard))
         diabetesSelfManagementView.addGestureRecognizer(managementTap)
+        
+        addTapRecognizersToFoodAndNutritionCards()
+    }
+    
+    private func addTapRecognizersToFoodAndNutritionCards() {
+        let cards: [(view: UIView, selector: Selector)] = [
+            (lowCarbSnacksView, #selector(didTapLowCarbSnacksCard)),
+            (snackRecipesView, #selector(didTapSnackRecipesCard)),
+            (raisesBloodSugarView, #selector(didTapRaisesBloodSugarCard)),
+            (doesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard))
+        ]
+        
+        cards.forEach { card in
+            card.view.isUserInteractionEnabled = true
+            card.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: card.selector))
+        }
+    }
+    
+    @objc private func didTapLowCarbSnacksCard() {
+        openResourcePage(named: "low_carb_snacks", title: "Low carb snacks")
+    }
+    
+    @objc private func didTapSnackRecipesCard() {
+        // TODO: point this at the snack recipes page once its html has been added
+        openResourcePage(named: "snack_recipes", title: "Snack recipes")
+    }
+    
+    @objc private func didTapRaisesBloodSugarCard() {
+        openResourcePage(named: "foods_that_raise_blood_sugar", title: "Raises blood sugar")
+    }
+    
+    @objc private func didTapDoesntRaiseBloodSugarCard() {
+        openResourcePage(named: "foods_that_dont_raise_blood_sugar", title: "Doesn't raise blood sugar")
+    }
+    
+    /// Pushes a webview showing the bundled html page, the same way chapter content is displayed
+    private func openResourcePage(named fileName: String, title: String) {
+        guard Bundle.main.url(forResource: fileName, withExtension: "html") != nil else {
+            print("Missing resource page: \(fileName).html")
+            return
+        }
+        
+        let resourcePageViewController = ResourcePageViewController()
+        resourcePageViewController.contentURL = fileName
+        resourcePageViewController.pageTitle = title
+        resourcePageViewController.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(resourcePageViewController, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

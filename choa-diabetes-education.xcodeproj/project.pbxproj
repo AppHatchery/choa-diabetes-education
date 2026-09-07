@@ -151,6 +151,9 @@
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
 		B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */; };
 		BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */; };
+		CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B102 /* food_that_dont_raise */; };
+		CF01A1B2000000000000B103 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B104 /* food_that_raises */; };
+		CF01A1B2000000000000B105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B106 /* low_carb */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -202,6 +205,10 @@
 		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
+		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
+		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
+		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -438,6 +445,9 @@
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
 		C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodRowView.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000B102 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
+		CF01A1B2000000000000B104 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
+		CF01A1B2000000000000B106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -489,6 +499,10 @@
 		CF1408D6304052AD0002FD8A /* cookies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cookies.png; sourceTree = "<group>"; };
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
+		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
+		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -789,6 +803,9 @@
 				B4DBE87A2F10F5F00075C7F3 /* 3_1_2_managing_low_blood_sugar.html */,
 				B4DBE87C2F10F9420075C7F3 /* 3_1_3_managing_low_blood_sugar.html */,
 				B4DBE87E2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html */,
+				CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */,
+				CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */,
+				CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -804,6 +821,9 @@
 				CF1408CF304052AD0002FD8A /* starchy_vegetables */,
 				CF1408D4304052AD0002FD8A /* sugary_foods */,
 				CF1408D9304052AD0002FD8A /* sweets_and_desserts */,
+				CF01A1B2000000000000B102 /* food_that_dont_raise */,
+				CF01A1B2000000000000B104 /* food_that_raises */,
+				CF01A1B2000000000000B106 /* low_carb */,
 				B4DBE8822F11024E0075C7F3 /* arrow_right.png */,
 				B4AB10C72F0E974300F74329 /* hope_blurry_vision.png */,
 				B4AB10C12F0E964B00F74329 /* hope_excessive_hunger.png */,
@@ -954,6 +974,7 @@
 				D48167B028ABF15D003B14A3 /* QuotesViewController.swift */,
 				D4C39B3228B7E1D0003CCA14 /* QuizIntroViewController.swift */,
 				D4C39B3428B7E1F3003CCA14 /* QuizQuestionsViewController.swift */,
+				CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */,
 				D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */,
 				D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */,
 				AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */,
@@ -1419,6 +1440,12 @@
 				CF140908304052AD0002FD8A /* milk.png in Resources */,
 				CF140909304052AD0002FD8A /* pies.png in Resources */,
 				CF14090A304052AD0002FD8A /* bread.png in Resources */,
+				CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */,
+				CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */,
+				CF01A1B2000000000000B103 /* food_that_raises in Resources */,
+				CF01A1B2000000000000B105 /* low_carb in Resources */,
+				CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */,
+				CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */,
 				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
@@ -1545,6 +1572,7 @@
 				0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */,
 				BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */,
 				B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */,
+				CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */,
 				85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
