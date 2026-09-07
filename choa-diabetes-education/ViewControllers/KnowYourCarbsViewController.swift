@@ -371,7 +371,7 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
         background.backgroundColor = .white
         backgroundView = background
 
-        titleLabel.font = .nunitoMedium20
+        titleLabel.font = .nunitoSemiBold20
         titleLabel.textColor = .primaryBlue
         titleLabel.numberOfLines = 1
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
