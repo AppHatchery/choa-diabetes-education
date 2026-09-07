@@ -6,80 +6,86 @@
 //
 
 import UIKit
-import SwiftUI
 
+/// Hosts a `CarbFoodRowView` and lets Auto Layout size the cell from it.
 class CarbFoodTableViewCell: UITableViewCell {
     static let reuseIdentifier = "CarbFoodTableViewCell"
 
-    private var hostingController: UIHostingController<CarbFoodRowView>?
-    private var foodName: String?
+    private let rowView = CarbFoodRowView()
 
-    /// Reuses a single hosting controller per cell and only swaps its `rootView`.
-    /// Rebuilding it on every reuse — and never parenting it — left SwiftUI's
-    /// update loop detached, so taps registered late or not at all.
-    func configure(with food: CarbFood, parent: UIViewController) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         selectionStyle = .none
         backgroundColor = .clear
 
-        guard let controller = hostingController else {
-            makeHostingController(for: food, parent: parent)
-            foodName = food.name
-            return
-        }
+        rowView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(rowView)
 
-        if controller.parent !== parent {
-            attach(controller, to: parent)
-        }
-
-        // Re-assigning an identical rootView forces a SwiftUI re-layout on every
-        // dequeue, which resizes the cell mid-scroll. Names are unique, so they
-        // are enough to tell whether anything actually changed.
-        guard foodName != food.name else { return }
-        foodName = food.name
-        controller.rootView = CarbFoodRowView(food: food)
-
-        // SwiftUI would otherwise render the new food on a later pass, leaving
-        // the previous row's content visible in a cell already resized for this
-        // one — which reads as the row adjusting itself as it scrolls in.
-        controller.view.setNeedsLayout()
-        controller.view.layoutIfNeeded()
-    }
-
-    private func makeHostingController(for food: CarbFood, parent: UIViewController) {
-        let controller = UIHostingController(rootView: CarbFoodRowView(food: food))
-        controller.view.backgroundColor = .clear
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-
-        hostingController = controller
-
-        contentView.addSubview(controller.view)
-
-        // The row height is dictated by the table, so the hosting view must
-        // simply fill it. A required bottom pin would contend with whatever
-        // height SwiftUI reports for itself.
-        let bottom = controller.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        bottom.priority = .required - 1
-
+        let inset = CarbFoodRowView.horizontalInset
         NSLayoutConstraint.activate([
-            controller.view.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: CarbFoodRowView.horizontalInset
-            ),
-            controller.view.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -CarbFoodRowView.horizontalInset
-            ),
-            controller.view.topAnchor.constraint(equalTo: contentView.topAnchor),
-            bottom
+            rowView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            rowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+            rowView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            rowView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-
-        attach(controller, to: parent)
     }
 
-    private func attach(_ controller: UIHostingController<CarbFoodRowView>, to parent: UIViewController) {
-        controller.willMove(toParent: nil)
-        controller.removeFromParent()
-        parent.addChild(controller)
-        controller.didMove(toParent: parent)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    /// `parent` is unused now that the row is UIKit — no hosting controller
+    /// needs adopting — but it is kept so the call site stays unchanged.
+    func configure(with food: CarbFood, parent: UIViewController) {
+        rowView.configure(with: food)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rowView.prepareForReuse()
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+private struct CarbFoodTableViewCellPreview: UIViewRepresentable {
+    let food: CarbFood
+
+    func makeUIView(context: Context) -> CarbFoodTableViewCell {
+        let cell = CarbFoodTableViewCell(
+            style: .default,
+            reuseIdentifier: CarbFoodTableViewCell.reuseIdentifier
+        )
+        cell.configure(with: food, parent: UIViewController())
+        return cell
+    }
+
+    func updateUIView(_ uiView: CarbFoodTableViewCell, context: Context) {}
+}
+
+struct CarbFoodTableViewCell_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack(spacing: 0) {
+            CarbFoodTableViewCellPreview(
+                food: CarbFood(
+                    name: "Bagel",
+                    servingSize: "1/2 piece",
+                    carbGrams: 30,
+                    imageName: "im_bagel"
+                )
+            )
+            CarbFoodTableViewCellPreview(
+                food: CarbFood(
+                    name: "Peanut Butter & Jelly Sandwich on Thick Sliced Wholegrain Bread",
+                    servingSize: "1 pc",
+                    carbGrams: 45,
+                    imageName: "im_peanut_butter_jelly_sandwich"
+                )
+            )
+        }
+        .previewLayout(.sizeThatFits)
+    }
+}
+#endif

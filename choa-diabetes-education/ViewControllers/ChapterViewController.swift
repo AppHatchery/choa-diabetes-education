@@ -17,8 +17,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     
     @IBOutlet weak var contentView: UIView!
     
-    private var navProgressBar = UIProgressView(progressViewStyle: .default)
-    private var navProgressWidthConstraint: NSLayoutConstraint?
+    private let navProgressBar = NavigationProgressBar()
     
     var webView: WKWebView!
     var webViewTopConstraint: NSLayoutConstraint!
@@ -71,16 +70,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         
         webView.scrollView.delegate = self
         
-        // Configure a progress bar in the navigation bar titleView
-        navProgressBar.translatesAutoresizingMaskIntoConstraints = false
-        navProgressBar.progressTintColor = .orangeTextColor
-        navProgressBar.trackTintColor = .systemGray5
-        navProgressBar.setProgress(0.0, animated: false)
-        
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(navProgressBar)
-        
+        // Show a progress bar in the navigation bar titleView
         let icon = UIImage(named: "close_black")
         let rightButton = UIBarButtonItem(
             image: icon,
@@ -90,50 +80,68 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
         )
         
         navigationItem.rightBarButtonItem = rightButton
-        
-        NSLayoutConstraint.activate([
-            navProgressBar.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 8),
-            navProgressBar.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -8),
-            navProgressBar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            navProgressBar.heightAnchor.constraint(equalToConstant: 8),
-            container.heightAnchor.constraint(equalToConstant: 20)
-        ])
-        
-        // Set an initial width; this will be updated to 80% of the nav bar in viewDidLayoutSubviews
-        let initialWidth: CGFloat = 200
-        navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: initialWidth)
-        navProgressWidthConstraint?.isActive = true
-        
-        self.navigationItem.titleView = container
+        navigationItem.titleView = navProgressBar
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Potentially opening up a webview to display the AboutPage
         
-        navProgressBar.layer.cornerRadius = 20
+        updateModuleProgress(for: contentURL, animated: false)
+    }
+    
+    /// A page name reads `<section>_<chapter>_<subchapter>_<name>`, so its module is
+    /// the leading `<section>_<chapter>` pair.
+    private func moduleLocation(for pageName: String) -> (modulePrefix: String, subchapter: Int)? {
+        let parts = pageName.split(separator: "_")
+        
+        guard parts.count >= 3,
+              let section = Int(parts[0]),
+              let chapter = Int(parts[1]),
+              let subchapter = Int(parts[2]) else {
+            return nil
+        }
+        
+        return ("\(section)_\(chapter)", subchapter)
+    }
+    
+    /// Subchapter numbers bundled for a module, in reading order
+    private func bundledSubchapters(inModule modulePrefix: String) -> [Int] {
+        let pages = Bundle.main.urls(forResourcesWithExtension: "html", subdirectory: nil) ?? []
+        
+        return pages.compactMap { page in
+            let pageName = page.deletingPathExtension().lastPathComponent
+            guard let location = moduleLocation(for: pageName),
+                  location.modulePrefix == modulePrefix else {
+                return nil
+            }
+            return location.subchapter
+        }.sorted()
+    }
+    
+    /// The bar shows where the reader currently is in the module rather than how much
+    /// of it they have completed, so subchapter 2 of 4 always reads 50% — including on
+    /// a revisit after the whole module has been read through.
+    private func updateModuleProgress(for pageName: String, animated: Bool) {
+        guard let location = moduleLocation(for: pageName) else {
+            // Content shown outside a module has no position to report
+            navProgressBar.isHidden = true
+            return
+        }
+        
+        let subchapters = bundledSubchapters(inModule: location.modulePrefix)
+        
+        guard let position = subchapters.firstIndex(of: location.subchapter) else {
+            navProgressBar.isHidden = true
+            return
+        }
+        
+        navProgressBar.isHidden = false
+        navProgressBar.setProgress(Float(position + 1) / Float(subchapters.count), animated: animated)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Update the titleView width to 70% of the navigation bar’s width, accounting for back and close buttons implicitly
-        if let navBar = self.navigationController?.navigationBar, let container = self.navigationItem.titleView {
-            let availableWidth = navBar.bounds.width
-            
-            var targetWidth = availableWidth * 0.7
-            
-            let maxWidth: CGFloat = availableWidth - 120 // approximate space for back + close + margins
-            if targetWidth > maxWidth {
-                targetWidth = max(160, maxWidth)
-            }
-            if navProgressWidthConstraint == nil {
-                navProgressWidthConstraint = container.widthAnchor.constraint(equalToConstant: targetWidth)
-                navProgressWidthConstraint?.isActive = true
-            } else {
-                navProgressWidthConstraint?.constant = targetWidth
-            }
-            // Force layout of the titleView to apply width change immediately
-            container.setNeedsLayout()
-            container.layoutIfNeeded()
-        }
+        
+        navProgressBar.updateWidth(for: navigationController?.navigationBar)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -197,7 +205,12 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             webView.evaluateJavaScript(javascript) { (response, error) in
                 //                print("changed the font size to \(self.fontSize)")
             }
-            self.navProgressBar.setProgress(0.0, animated: false)
+            
+            // Subchapters are chained together inside the webview, so the reader's
+            // position follows whichever page has just loaded
+            if let pageName = webView.url?.deletingPathExtension().lastPathComponent {
+                updateModuleProgress(for: pageName, animated: true)
+            }
             
         } else {
             print("outside the app, don't apply styling")
@@ -245,18 +258,6 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)
             webView.scrollView.addSubview(nextButton)
         }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Connect scroll view to progress bar
-        let offset = webView.scrollView.contentOffset
-        
-        let percentageOfFullHeight = offset.y / (webView.scrollView.contentSize.height - scrollView.frame.height)
-        
-        if (percentageOfFullHeight >= 0 && percentageOfFullHeight <= 1){
-            navProgressBar.setProgress(Float(percentageOfFullHeight), animated: true)
-        } /// subtract the height of the scroll view, because the bottom of the content won't scroll all the way to the top
-        
     }
     
     //--------------------------------------------------------------------------------------------------

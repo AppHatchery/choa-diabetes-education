@@ -77,12 +77,15 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
         config.image = UIImage(named: "edit_pencil")
-
         config.imagePlacement = .trailing
-        config.imagePadding = 2
-
-        // Remove default padding
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        config.imagePadding = 4
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        config.baseForegroundColor = .black
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .nunito16
+            return out
+        }
 
         let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
             self?.editButtonTapped()

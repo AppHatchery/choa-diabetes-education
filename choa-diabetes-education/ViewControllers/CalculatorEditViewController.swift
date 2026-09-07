@@ -80,9 +80,10 @@ class CalculatorEditViewController: UIViewController {
         textField.rightView = containerView
         textField.rightViewMode = .always
         
+        textField.borderStyle = .none
         textField.layer.cornerRadius = 8
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.clear.cgColor
+        textField.layer.borderColor = UIColor.borderGrayColor.cgColor
         textField.layer.masksToBounds = true
         textField.leftView = textFieldPaddingView
         textField.leftViewMode = .always

@@ -151,6 +151,11 @@
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
 		B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */; };
 		BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */; };
+		CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */; };
+		CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */; };
+		CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */; };
+		CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000D102 /* NavigationProgressBar.swift */; };
+		CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -202,6 +207,19 @@
 		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF01A1B2000000000000F101 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F102 /* food_that_raises */; };
+		CF01A1B2000000000000F103 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F104 /* food_that_dont_raise */; };
+		CF01A1B2000000000000F105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F106 /* low_carb */; };
+		CF01A1B2000000000000F107 /* snack_recipes in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F108 /* snack_recipes */; };
+		CF01A1B2000000000000E101 /* snack_recipes.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E102 /* snack_recipes.html */; };
+		CF01A1B2000000000000E103 /* egg_frittata_muffins.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E104 /* egg_frittata_muffins.html */; };
+		CF01A1B2000000000000E105 /* no_bake_granola_bar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E106 /* no_bake_granola_bar.html */; };
+		CF01A1B2000000000000E107 /* almond_crusted_chicken_fingers.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */; };
+		CF01A1B2000000000000E109 /* brown_rice.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E110 /* brown_rice.html */; };
+		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
+		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
+		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
+		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -438,6 +456,11 @@
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
 		C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodRowView.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000D102 /* NavigationProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationProgressBar.swift; sourceTree = "<group>"; };
+		CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -489,6 +512,19 @@
 		CF1408D6304052AD0002FD8A /* cookies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cookies.png; sourceTree = "<group>"; };
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
+		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000F102 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
+		CF01A1B2000000000000F104 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
+		CF01A1B2000000000000F106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
+		CF01A1B2000000000000F108 /* snack_recipes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snack_recipes; sourceTree = "<group>"; };
+		CF01A1B2000000000000E102 /* snack_recipes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = snack_recipes.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E104 /* egg_frittata_muffins.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = egg_frittata_muffins.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E106 /* no_bake_granola_bar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = no_bake_granola_bar.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = almond_crusted_chicken_fingers.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E110 /* brown_rice.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = brown_rice.html; sourceTree = "<group>"; };
+		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
+		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */,
+				CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */,
 				B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */,
 				B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */,
 				B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */,
@@ -789,6 +826,14 @@
 				B4DBE87A2F10F5F00075C7F3 /* 3_1_2_managing_low_blood_sugar.html */,
 				B4DBE87C2F10F9420075C7F3 /* 3_1_3_managing_low_blood_sugar.html */,
 				B4DBE87E2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html */,
+				CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */,
+				CF01A1B2000000000000E102 /* snack_recipes.html */,
+				CF01A1B2000000000000E104 /* egg_frittata_muffins.html */,
+				CF01A1B2000000000000E106 /* no_bake_granola_bar.html */,
+				CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */,
+				CF01A1B2000000000000E110 /* brown_rice.html */,
+				CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */,
+				CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -804,6 +849,10 @@
 				CF1408CF304052AD0002FD8A /* starchy_vegetables */,
 				CF1408D4304052AD0002FD8A /* sugary_foods */,
 				CF1408D9304052AD0002FD8A /* sweets_and_desserts */,
+				CF01A1B2000000000000F108 /* snack_recipes */,
+				CF01A1B2000000000000F106 /* low_carb */,
+				CF01A1B2000000000000F104 /* food_that_dont_raise */,
+				CF01A1B2000000000000F102 /* food_that_raises */,
 				B4DBE8822F11024E0075C7F3 /* arrow_right.png */,
 				B4AB10C72F0E974300F74329 /* hope_blurry_vision.png */,
 				B4AB10C12F0E964B00F74329 /* hope_excessive_hunger.png */,
@@ -918,16 +967,16 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
-				B4E144312E9C2CA8009A5589 /* Helpers */,
-				B44D1F1B2E5CA24200DE4E3A /* Managers */,
-				B438F6BB2E44C570005CBD49 /* Fonts */,
-				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
-				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
-				D48D890B289C0095001A61E2 /* plists */,
-				D48D890A289C007D001A61E2 /* Extensions */,
+				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
 				D48D8909289C0072001A61E2 /* Delegates */,
+				D48D890A289C007D001A61E2 /* Extensions */,
+				B438F6BB2E44C570005CBD49 /* Fonts */,
+				B4E144312E9C2CA8009A5589 /* Helpers */,
+				FD99F3952A194839009F3C30 /* Localizable.strings */,
+				B44D1F1B2E5CA24200DE4E3A /* Managers */,
 				D48D8914289C02E3001A61E2 /* Models */,
+				D48D890B289C0095001A61E2 /* plists */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
@@ -954,6 +1003,9 @@
 				D48167B028ABF15D003B14A3 /* QuotesViewController.swift */,
 				D4C39B3228B7E1D0003CCA14 /* QuizIntroViewController.swift */,
 				D4C39B3428B7E1F3003CCA14 /* QuizQuestionsViewController.swift */,
+				CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */,
+				CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */,
+				CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */,
 				D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */,
 				D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */,
 				AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */,
@@ -1001,6 +1053,7 @@
 				D4D48E8C28D10FAB00820FD4 /* FoodDiary.xib */,
 				D4D48E8E28D1122F00820FD4 /* Communities.swift */,
 				D4D48E9028D1123700820FD4 /* Communities.xib */,
+				CF01A1B2000000000000D102 /* NavigationProgressBar.swift */,
 				D492A88F28F8E2A000B98CA3 /* SearchView.swift */,
 				D492A89128F8E2A900B98CA3 /* SearchView.xib */,
 				D492A8952901D67900B98CA3 /* SearchResultTableViewCell.swift */,
@@ -1077,6 +1130,7 @@
 				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
 				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
+				CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */,
 				6BF08537DA126EA3BEB82D30 /* CarbFood.swift */,
 			);
 			path = Models;
@@ -1388,6 +1442,7 @@
 				CF1408E9304052AD0002FD8A /* corn.png in Resources */,
 				CF1408EA304052AD0002FD8A /* olives.png in Resources */,
 				CF1408EB304052AD0002FD8A /* pasta.png in Resources */,
+				CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */,
 				CF1408EC304052AD0002FD8A /* cereal.png in Resources */,
 				CF1408ED304052AD0002FD8A /* cheese.png in Resources */,
 				CF1408EE304052AD0002FD8A /* eggs.png in Resources */,
@@ -1419,6 +1474,18 @@
 				CF140908304052AD0002FD8A /* milk.png in Resources */,
 				CF140909304052AD0002FD8A /* pies.png in Resources */,
 				CF14090A304052AD0002FD8A /* bread.png in Resources */,
+				CF01A1B2000000000000F101 /* food_that_raises in Resources */,
+				CF01A1B2000000000000F103 /* food_that_dont_raise in Resources */,
+				CF01A1B2000000000000F105 /* low_carb in Resources */,
+				CF01A1B2000000000000F107 /* snack_recipes in Resources */,
+				CF01A1B2000000000000E101 /* snack_recipes.html in Resources */,
+				CF01A1B2000000000000E103 /* egg_frittata_muffins.html in Resources */,
+				CF01A1B2000000000000E105 /* no_bake_granola_bar.html in Resources */,
+				CF01A1B2000000000000E107 /* almond_crusted_chicken_fingers.html in Resources */,
+				CF01A1B2000000000000E109 /* brown_rice.html in Resources */,
+				CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */,
+				CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */,
+				CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */,
 				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
@@ -1455,6 +1522,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */,
+				CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */,
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */,
 				CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */,
@@ -1477,6 +1546,7 @@
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */,
+				CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
 				B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
@@ -1539,12 +1609,14 @@
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
 				B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */,
+				CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */,
 				1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */,
 				04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */,
 				6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */,
 				0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */,
 				BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */,
 				B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */,
+				CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */,
 				85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1710,7 +1782,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 32M4QVP4AY;
+				DEVELOPMENT_TEAM = 3RQHVA7936;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Type U";
@@ -1747,7 +1819,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 32M4QVP4AY;
+				DEVELOPMENT_TEAM = 3RQHVA7936;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Type U";

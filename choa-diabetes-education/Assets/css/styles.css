@@ -269,3 +269,165 @@ tr > td:nth-last-child(2) {
   justify-content: space-between;
   min-height: 100vh;
 }
+
+/* Snack recipes: a two-up grid of photo cards linking to each recipe. */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.recipe-card {
+  display: block;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.recipe-card:hover {
+  text-decoration: none;
+}
+
+.recipe-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.recipe-card-body {
+  padding: 12px;
+}
+
+.recipe-card-title {
+  font-family: NunitoBold, Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  margin: 0 0 8px;
+}
+
+.recipe-card-meta {
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+/* Snack recipe detail pages. */
+.recipe-hero {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* Servings and serving size, side by side with a divider between them. */
+.recipe-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.recipe-fact {
+  padding-left: 12px;
+  border-left: 1px solid #dae3d0;
+}
+
+.recipe-fact-value {
+  font-family: NunitoBold, Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  margin: 0;
+}
+
+.recipe-fact-label {
+  font-size: 14px;
+  line-height: 20px;
+  color: #8b8b8b;
+  margin: 0;
+}
+
+.allergy-box {
+  display: flex;
+  gap: 32px;
+  background: #fdeceb;
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.allergy-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.allergy-item span {
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.ingredient-row p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.recipe-directions {
+  padding-left: 20px;
+  margin-bottom: 24px;
+}
+
+.recipe-directions li {
+  font-family: NunitoRegular, Roboto;
+  font-size: 15px;
+  line-height: 24px;
+  padding: 6px 0;
+}
+
+/* Calories, fat, sodium and so on in a tinted panel. */
+.nutrition-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  background: #f2f2f2;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.nutrition-item {
+  text-align: center;
+}
+
+.nutrition-value {
+  font-family: NunitoBold, Roboto, sans-serif;
+  font-size: 22px;
+  line-height: 30px;
+  color: #000000;
+  margin: 0;
+}
+
+.nutrition-label {
+  font-size: 14px;
+  line-height: 20px;
+  color: #8b8b8b;
+  margin: 0;
+}

@@ -46,6 +46,8 @@ class HomeViewController: UIViewController {
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
     var highBloodSugarOnly = false
+    
+    private let constantsManager = CalculatorConstantsManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -314,49 +316,84 @@ class HomeViewController: UIViewController {
 	@IBAction func tappedMealsButton(_ sender: Any) {
 		insulinForFood = true
 		insulinForHighBloodSugar = false
+        highBloodSugarOnly = false
 
-		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
-
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-			destinationVC.insulinForFoodBoolean = insulinForFood
-		}
+        openCalculator()
 	}
 
 	@IBAction func tappedHighSugarButton(_ sender: Any) {
-		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
-
 		insulinForFood = false
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = true
 
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-
-			destinationVC.insulinForFoodBoolean = insulinForFood
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-            destinationVC.highBloodSugarOnly = highBloodSugarOnly
-		}
+        openCalculator()
 	}
 
-
 	@IBAction func tappedMealsAndHighSugarButton(_ sender: Any) {
-		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
-
 		insulinForFood = true
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = false
 
-		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-			destinationVC.hidesBottomBarWhenPushed = true
-			self.navigationController?.pushViewController(destinationVC, animated: true)
-			destinationVC.insulinForFoodBoolean = insulinForFood
-			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-		}
+        openCalculator()
 	}
+    
+    /// The calculators run on the constants onboarding collects, so onboarding comes
+    /// first — unless those values are already saved, or the user has been through
+    /// onboarding before and chose to skip it.
+    private func openCalculator() {
+        if constantsManager.hasStoredConstants || constantsManager.hasCompletedOnboarding {
+            pushCalculator()
+        } else {
+            pushCalculatorOnboarding()
+        }
+    }
+    
+    private func pushCalculatorOnboarding() {
+        let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+        
+        guard let welcomeVC = storyboard.instantiateViewController(
+            withIdentifier: "calculatorOnboardingWelcome"
+        ) as? CalculatorOnBoardingWelcomeViewController else {
+            // The calculators still work without saved constants, so fall through to
+            // them rather than leaving the button dead
+            pushCalculator()
+            return
+        }
+        
+        welcomeVC.hidesBottomBarWhenPushed = true
+        welcomeVC.insulinForFoodBoolean = insulinForFood
+        welcomeVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+        
+        navigationController?.pushViewController(welcomeVC, animated: true)
+    }
+    
+    private func pushCalculator() {
+        let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
+        
+        // High blood sugar on its own is the only case CalculatorB handles
+        if insulinForHighBloodSugar && !insulinForFood {
+            guard let destinationVC = storyboard.instantiateViewController(
+                withIdentifier: "insulinForHighSugarCalculator"
+            ) as? CalculatorBViewController else { return }
+            
+            destinationVC.hidesBottomBarWhenPushed = true
+            destinationVC.insulinForFoodBoolean = insulinForFood
+            destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+            destinationVC.highBloodSugarOnly = highBloodSugarOnly
+            
+            navigationController?.pushViewController(destinationVC, animated: true)
+        } else {
+            guard let destinationVC = storyboard.instantiateViewController(
+                withIdentifier: "insulinForFoodCalculator"
+            ) as? CalculatorAViewController else { return }
+            
+            destinationVC.hidesBottomBarWhenPushed = true
+            destinationVC.insulinForFoodBoolean = insulinForFood
+            destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+            
+            navigationController?.pushViewController(destinationVC, animated: true)
+        }
+    }
     
     @objc private func didTapGetHelpView() {
         tappedGetHelpButton(self)

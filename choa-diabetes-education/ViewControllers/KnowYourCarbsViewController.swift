@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 import Combine
 
 class KnowYourCarbsViewController: UIViewController {
@@ -20,47 +19,12 @@ class KnowYourCarbsViewController: UIViewController {
     private let customFoods = CustomFoodsManager.shared
     private var filteredCategories: [CarbCategory] = []
 
-    /// A row is one 64pt image plus 12pt of padding above and below.
-    private static let defaultRowHeight: CGFloat = 88
-
     /// Category titles never wrap, so a header is one line plus its padding.
     private static let sectionHeaderHeight: CGFloat = {
         ceil(UIFont.nunitoMedium20.lineHeight)
             + CarbCategorySectionHeader.topInset
             + CarbCategorySectionHeader.bottomInset
     }()
-
-    /// Exact row heights, measured once per food and keyed by name so they
-    /// survive filtering and reloads. Self-sizing cells cannot settle reliably
-    /// around a hosted SwiftUI view, so heights are computed up front instead.
-    private var rowHeightCache: [String: CGFloat] = [:]
-
-    /// Width the cached heights were measured against; they are void if it changes.
-    private var rowHeightCacheWidth: CGFloat = 0
-
-    private func rowHeight(for food: CarbFood) -> CGFloat {
-        let width = tableView.bounds.width
-        guard width > 0 else { return Self.defaultRowHeight }
-
-        if width != rowHeightCacheWidth {
-            rowHeightCache.removeAll()
-            rowHeightCacheWidth = width
-        }
-
-        if let cached = rowHeightCache[food.name] {
-            return cached
-        }
-
-        // Ask SwiftUI itself for the height at the width the row will actually
-        // get, rather than inferring it from font metrics.
-        let available = width - CarbFoodRowView.horizontalInset * 2
-        let measured = UIHostingController(rootView: CarbFoodRowView(food: food))
-            .sizeThatFits(in: CGSize(width: available, height: .greatestFiniteMagnitude))
-
-        let height = ceil(measured.height)
-        rowHeightCache[food.name] = height
-        return height
-    }
 
     /// Built-in catalogue merged with the user's own items.
     private var allCategories: [CarbCategory] {
@@ -106,30 +70,28 @@ class KnowYourCarbsViewController: UIViewController {
     // MARK: - Setup
 
     private var chipsContainer: UIView!
-    private var disclaimerContainer: UIView!
-    private var disclaimerHostingController: UIHostingController<DisclaimerBanner>?
+    private var disclaimerContainer: DisclaimerBannerView?
     private var tableViewTopConstraint: NSLayoutConstraint!
 
     private func setupAddButton() {
         var config = UIButton.Configuration.plain()
         config.title = "Add"
-        config.image = UIImage(systemName: "plus")
+        config.image = UIImage(
+            systemName: "plus",
+            withConfiguration: UIImage
+                .SymbolConfiguration(pointSize: 12, weight: .bold)
+        )
         config.imagePlacement = .trailing
         config.imagePadding = 4
-        config.contentInsets = .zero
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
         config.baseForegroundColor = .black
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var out = incoming
-            out.font = .nunitoBold16
+            out.font = .nunito16
             return out
         }
 
         let addButton = UIButton(configuration: config)
-        addButton
-            .setPreferredSymbolConfiguration(
-                UIImage.SymbolConfiguration(pointSize: 0, weight: .bold),
-                forImageIn: .normal
-            )
         addButton.addTarget(self, action: #selector(addItemTapped), for: .touchUpInside)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
@@ -158,69 +120,63 @@ class KnowYourCarbsViewController: UIViewController {
     }
 
     private func setupCategoryChips() {
-        let chipsView = CategoryChipsRow(categories: allCategories) { [weak self] index in
+        let chipsView = CategoryChipsView(categories: allCategories) { [weak self] index in
             self?.scrollToCategory(at: index)
         }
-        let controller = UIHostingController(rootView: chipsView)
-        controller.view.backgroundColor = .clear
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-
-        addChild(controller)
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
+        chipsView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(chipsView)
 
         NSLayoutConstraint.activate([
-            controller.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            chipsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            chipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        chipsContainer = controller.view
+        chipsContainer = chipsView
     }
 
     private func setupDisclaimer() {
-        let disclaimerView = DisclaimerBanner { [weak self] in
+        let banner = DisclaimerBannerView { [weak self] in
             self?.dismissDisclaimer()
         }
-        let controller = UIHostingController(rootView: disclaimerView)
-        controller.view.backgroundColor = .clear
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-
-        addChild(controller)
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(banner)
 
         NSLayoutConstraint.activate([
-            controller.view.topAnchor.constraint(equalTo: chipsContainer.bottomAnchor),
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            banner.topAnchor.constraint(equalTo: chipsContainer.bottomAnchor),
+            banner.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            banner.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
 
-        disclaimerContainer = controller.view
-        disclaimerHostingController = controller
+        disclaimerContainer = banner
     }
 
     private func dismissDisclaimer() {
-        guard let controller = disclaimerHostingController else { return }
+        guard let banner = disclaimerContainer else { return }
 
         tableViewTopConstraint.isActive = false
         tableViewTopConstraint = tableView.topAnchor.constraint(equalTo: chipsContainer.bottomAnchor, constant: 12)
         tableViewTopConstraint.isActive = true
 
         UIView.animate(withDuration: 0.25, animations: {
-            controller.view.alpha = 0
+            banner.alpha = 0
             self.view.layoutIfNeeded()
         }, completion: { _ in
-            controller.willMove(toParent: nil)
-            controller.view.removeFromSuperview()
-            controller.removeFromParent()
-            self.disclaimerHostingController = nil
+            banner.removeFromSuperview()
+            self.disclaimerContainer = nil
         })
     }
 
     private func observeTotalCarbs() {
         calculator.$totalCarbs
             .removeDuplicates()
+            // `@Published` emits in `willSet`, so during a synchronous sink the
+            // stored `totalCarbs` is still the previous value. Presenting the
+            // sheet from there meant its own subscription immediately read that
+            // stale value — which is why the first tap of a stepper showed 0g.
+            // Delivering on the next main-queue turn lets the assignment land
+            // first.
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] totalCarbs in
                 self?.updateTotalCarbsSheet(totalCarbs: totalCarbs)
             }
@@ -293,16 +249,17 @@ class KnowYourCarbsViewController: UIViewController {
             CarbCategorySectionHeader.self,
             forHeaderFooterViewReuseIdentifier: CarbCategorySectionHeader.reuseIdentifier
         )
-        tableView.estimatedRowHeight = Self.defaultRowHeight
-        // Every height is exact: nothing about this table is left for UIKit to
-        // estimate, so its content size can never be revised mid-scroll.
+        // Rows size themselves from their own Auto Layout constraints.
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 88
         tableView.sectionHeaderHeight = Self.sectionHeaderHeight
         tableView.estimatedSectionHeaderHeight = Self.sectionHeaderHeight
         tableView.sectionFooterHeight = 0
         tableView.estimatedSectionFooterHeight = 0
         tableView.sectionHeaderTopPadding = 0
 
-        tableViewTopConstraint = tableView.topAnchor.constraint(equalTo: disclaimerContainer.bottomAnchor, constant: 12)
+        let topAnchorView: UIView = disclaimerContainer ?? chipsContainer
+        tableViewTopConstraint = tableView.topAnchor.constraint(equalTo: topAnchorView.bottomAnchor, constant: 12)
 
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -371,14 +328,6 @@ extension KnowYourCarbsViewController: UITableViewDelegate {
         Self.sectionHeaderHeight
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -422,7 +371,7 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
         background.backgroundColor = .white
         backgroundView = background
 
-        titleLabel.font = .nunitoMedium20
+        titleLabel.font = .nunitoSemiBold20
         titleLabel.textColor = .primaryBlue
         titleLabel.numberOfLines = 1
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -463,101 +412,211 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
 
 // MARK: - Category Chips
 
-private struct CategoryChipsRow: View {
-    let categories: [CarbCategory]
-    let onSelect: (Int) -> Void
-
-    private let palette: [Color] = [
-        Color(red: 0.98, green: 0.92, blue: 0.96),
-        Color(red: 0.90, green: 0.96, blue: 1.0),
-        Color(red: 1.0, green: 0.95, blue: 0.85),
-        Color(red: 0.95, green: 0.92, blue: 1.0),
-        Color(red: 0.92, green: 0.98, blue: 0.93),
-        Color(red: 0.95, green: 0.92, blue: 1.0),
-        Color(red: 1.0, green: 0.93, blue: 0.90),
-        Color(red: 0.93, green: 0.96, blue: 0.90),
-        Color(red: 0.90, green: 0.97, blue: 0.95)
+/// Horizontally scrolling row of category shortcuts.
+private final class CategoryChipsView: UIView {
+    private static let palette: [UIColor] = [
+        UIColor(red: 0.98, green: 0.92, blue: 0.96, alpha: 1),
+        UIColor(red: 0.90, green: 0.96, blue: 1.00, alpha: 1),
+        UIColor(red: 1.00, green: 0.95, blue: 0.85, alpha: 1),
+        UIColor(red: 0.95, green: 0.92, blue: 1.00, alpha: 1),
+        UIColor(red: 0.92, green: 0.98, blue: 0.93, alpha: 1),
+        UIColor(red: 0.95, green: 0.92, blue: 1.00, alpha: 1),
+        UIColor(red: 1.00, green: 0.93, blue: 0.90, alpha: 1),
+        UIColor(red: 0.93, green: 0.96, blue: 0.90, alpha: 1),
+        UIColor(red: 0.90, green: 0.97, blue: 0.95, alpha: 1)
     ]
 
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .top, spacing: 20) {
-                ForEach(Array(categories.enumerated()), id: \.offset) { index, category in
-                    CategoryChip(
-                        category: category,
-                        backgroundColor: palette[index % palette.count],
-                        action: { onSelect(index) }
-                    )
-                }
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 4)
+    private let onSelect: (Int) -> Void
+
+    init(categories: [CarbCategory], onSelect: @escaping (Int) -> Void) {
+        self.onSelect = onSelect
+        super.init(frame: .zero)
+
+        backgroundColor = .clear
+
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 20
+        stack.alignment = .top
+        stack.translatesAutoresizingMaskIntoConstraints = false
+
+        for (index, category) in categories.enumerated() {
+            let chip = CategoryChipView(
+                category: category,
+                backgroundColor: Self.palette[index % Self.palette.count]
+            )
+            chip.tag = index
+            chip.addTarget(self, action: #selector(chipTapped), for: .touchUpInside)
+            stack.addArrangedSubview(chip)
         }
+
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stack)
+        addSubview(scrollView)
+
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            stack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 12),
+            stack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -4),
+            stack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 16),
+            stack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -16),
+            stack.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor, constant: -16)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func chipTapped(_ sender: UIControl) {
+        onSelect(sender.tag)
     }
 }
 
-private struct CategoryChip: View {
-    let category: CarbCategory
-    let backgroundColor: Color
-    let action: () -> Void
+private final class CategoryChipView: UIControl {
+    init(category: CarbCategory, backgroundColor chipColor: UIColor) {
+        super.init(frame: .zero)
 
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 8) {
-                Image(category.foods.first?.imageName ?? "")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 56, height: 56)
-                    .background(backgroundColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+        let imageView = UIImageView(image: UIImage(named: category.foods.first?.imageName ?? ""))
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = chipColor
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 14
+        imageView.layer.cornerCurve = .continuous
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-                Text(category.title)
-                    .font(.custom("Nunito-Regular", size: 14))
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .frame(width: 64)
-            }
-        }
-        .buttonStyle(.plain)
+        let label = UILabel()
+        label.text = category.title
+        label.font = .nunito14
+        label.textColor = .black
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(imageView)
+        addSubview(label)
+
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 56),
+            imageView.heightAnchor.constraint(equalToConstant: 56),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            label.widthAnchor.constraint(equalToConstant: 64),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    /// Subviews are decorative; the chip itself takes the touch.
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        bounds.contains(point) ? self : nil
     }
 }
 
 // MARK: - Disclaimer Banner
 
-private struct DisclaimerBanner: View {
-    let onDismiss: () -> Void
+private final class DisclaimerBannerView: UIView {
+    private let onDismiss: () -> Void
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 8) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(Color(.orangeTextColor))
-                Text("Disclaimer")
-                    .font(.custom("Nunito-Bold", size: 20))
-                    .foregroundColor(Color(.orangeTextColor))
-                Spacer()
-                Button(action: onDismiss) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color(.orangeTextColor))
-                }
-                .buttonStyle(.plain)
-            }
+    init(onDismiss: @escaping () -> Void) {
+        self.onDismiss = onDismiss
+        super.init(frame: .zero)
 
-            (
-                Text("Carb values are estimates based on common foods and popular brands. Actual values may vary slightly by brand, product, or serving size. For a more accurate value, tap ")
-                    + Text("Add +").fontWeight(.bold)
-                    + Text(" to enter a custom item.")
+        backgroundColor = .sunsetOrangeColor100
+        layer.cornerRadius = 16
+        layer.cornerCurve = .continuous
+
+        let icon = UIImageView(
+            image: UIImage(
+                systemName: "exclamationmark.triangle.fill",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular)
             )
-            .font(.custom("Nunito-Regular", size: 16))
-            .foregroundColor(.black)
-            .fixedSize(horizontal: false, vertical: true)
-        }
-        .padding(16)
-        .background(Color(.sunsetOrangeColor100))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        )
+        icon.tintColor = .orangeTextColor
+        icon.setContentHuggingPriority(.required, for: .horizontal)
+
+        let title = UILabel()
+        title.text = "Disclaimer"
+        title.font = .nunitoBold20
+        title.textColor = .orangeTextColor
+
+        let close = UIButton(type: .system)
+        close.setImage(
+            UIImage(
+                systemName: "xmark",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 16, weight: .bold)
+            ),
+            for: .normal
+        )
+        close.tintColor = .orangeTextColor
+        close.setContentHuggingPriority(.required, for: .horizontal)
+        close.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
+
+        let headerRow = UIStackView(arrangedSubviews: [icon, title, UIView(), close])
+        headerRow.axis = .horizontal
+        headerRow.spacing = 8
+        headerRow.alignment = .center
+
+        let body = UILabel()
+        body.numberOfLines = 0
+        body.attributedText = Self.bodyText()
+
+        let stack = UIStackView(arrangedSubviews: [headerRow, body])
+        stack.axis = .vertical
+        stack.spacing = 12
+        stack.alignment = .fill
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stack)
+
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: topAnchor),
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    /// "Add +" is bold in the middle of an otherwise regular sentence.
+    private static func bodyText() -> NSAttributedString {
+        let text = NSMutableAttributedString(
+            string: "Carb values are estimates based on common foods and popular brands. "
+                + "Actual values may vary slightly by brand, product, or serving size. "
+                + "For a more accurate value, tap ",
+            attributes: [.font: UIFont.nunito16, .foregroundColor: UIColor.black]
+        )
+        text.append(NSAttributedString(
+            string: "Add +",
+            attributes: [.font: UIFont.nunitoBold16, .foregroundColor: UIColor.black]
+        ))
+        text.append(NSAttributedString(
+            string: " to enter a custom item.",
+            attributes: [.font: UIFont.nunito16, .foregroundColor: UIColor.black]
+        ))
+        return text
+    }
+
+    @objc private func dismissTapped() {
+        onDismiss()
     }
 }
 
@@ -580,26 +639,25 @@ final class TotalCarbsSheetViewController: UIViewController {
 
         view.backgroundColor = .sunsetOrangeColor100
 
-        let contentView = TotalCarbsSheetContent(onCalculateInsulin: onCalculateInsulin)
-        let controller = UIHostingController(rootView: contentView)
-        controller.view.backgroundColor = .clear
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-
-        addChild(controller)
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
+        let contentView = TotalCarbsSheetContentView(onCalculateInsulin: onCalculateInsulin)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(contentView)
 
         NSLayoutConstraint.activate([
-            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            controller.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
         if let sheet = sheetPresentationController {
             if #available(iOS 16.0, *) {
                 let totalCarbsDetentId = UISheetPresentationController.Detent.Identifier("totalCarbs")
-                sheet.detents = [.custom(identifier: totalCarbsDetentId) { _ in 100 }]
+                sheet.detents = [
+                    .custom(identifier: totalCarbsDetentId) { _ in
+                        100 + TotalCarbsSheetContentView.topPadding
+                    }
+                ]
                 sheet.largestUndimmedDetentIdentifier = totalCarbsDetentId
             } else {
                 sheet.detents = [.medium()]
@@ -613,56 +671,120 @@ final class TotalCarbsSheetViewController: UIViewController {
     }
 }
 
-private struct TotalCarbsSheetContent: View {
-    @ObservedObject private var calculator = CarbsCalculatorManager.shared
-    let onCalculateInsulin: () -> Void
+private final class TotalCarbsSheetContentView: UIView {
+    /// Breathing room above the content; the sheet's detent includes it.
+    static let topPadding: CGFloat = 16
 
-    var body: some View {
-        HStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Total Carbs")
-                    .font(.custom("Nunito-Regular", size: 15))
-                    .foregroundColor(Color(.orangeTextColor))
-                Text("\(calculator.totalCarbs)g")
-                    .font(.custom("Nunito-Bold", size: 28))
-                    .foregroundColor(Color(.orangeTextColor))
-            }
+    private let onCalculateInsulin: () -> Void
+    private let totalLabel = UILabel()
+    private var cancellable: AnyCancellable?
 
-            Spacer()
+    init(onCalculateInsulin: @escaping () -> Void) {
+        self.onCalculateInsulin = onCalculateInsulin
+        super.init(frame: .zero)
 
-            Button(action: onCalculateInsulin) {
-                HStack(spacing: 8) {
-                    Text("Calculate insulin")
-                        .font(.custom("Nunito-Bold", size: 16))
-                    Image(systemName: "arrow.right")
-                        .font(.system(size: 14, weight: .bold))
-                }
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 14)
-                .background(Color(.sunsetOrangeColor400))
-                .cornerRadius(12)
-            }
-            .buttonStyle(.plain)
+        backgroundColor = .clear
+
+        let caption = UILabel()
+        caption.text = "Total Carbs"
+        caption.font = UIFont(name: "Nunito-Regular", size: 15) ?? .nunito16
+        caption.textColor = .orangeTextColor
+
+        totalLabel.font = UIFont(name: "Nunito-Bold", size: 28) ?? .nunitoBold24
+        totalLabel.textColor = .orangeTextColor
+
+        let textStack = UIStackView(arrangedSubviews: [caption, totalLabel])
+        textStack.axis = .vertical
+        textStack.spacing = 2
+        textStack.alignment = .leading
+
+        var config = UIButton.Configuration.plain()
+        config.title = "Calculate insulin"
+        config.image = UIImage(
+            systemName: "arrow.right",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 14, weight: .bold)
+        )
+        config.imagePlacement = .trailing
+        config.imagePadding = 8
+        config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20)
+        config.baseForegroundColor = .white
+        config.background.backgroundColor = .sunsetOrangeColor400
+        config.background.cornerRadius = 12
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .nunitoBold16
+            return out
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 0)
+        let button = UIButton(configuration: config)
+        button.setContentHuggingPriority(.required, for: .horizontal)
+        button.addTarget(self, action: #selector(calculateTapped), for: .touchUpInside)
+
+        let row = UIStackView(arrangedSubviews: [textStack, UIView(), button])
+        row.axis = .horizontal
+        row.spacing = 16
+        row.alignment = .center
+        row.isLayoutMarginsRelativeArrangement = true
+        row.layoutMargins = UIEdgeInsets(top: Self.topPadding, left: 20, bottom: 0, right: 20)
+        row.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(row)
+
+        NSLayoutConstraint.activate([
+            row.topAnchor.constraint(equalTo: topAnchor),
+            row.leadingAnchor.constraint(equalTo: leadingAnchor),
+            row.trailingAnchor.constraint(equalTo: trailingAnchor),
+            row.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+
+        // Seeded from the current value as well as subscribed, so the sheet is
+        // never blank for a frame no matter when it is constructed.
+        totalLabel.text = "\(CarbsCalculatorManager.shared.totalCarbs)g"
+
+        cancellable = CarbsCalculatorManager.shared.$totalCarbs
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] total in
+                self?.totalLabel.text = "\(total)g"
+            }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func calculateTapped() {
+        onCalculateInsulin()
     }
 }
 
 #if DEBUG
+import SwiftUI
+
 private struct KnowYourCarbsViewControllerPreview: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UINavigationController {
         UINavigationController(rootViewController: KnowYourCarbsViewController())
     }
 
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-    }
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
 }
 
 struct KnowYourCarbsViewController_Previews: PreviewProvider {
     static var previews: some View {
         KnowYourCarbsViewControllerPreview()
+    }
+}
+
+private struct TotalCarbsSheetViewControllerPreview: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> TotalCarbsSheetViewController {
+        TotalCarbsSheetViewController(onCalculateInsulin: {})
+    }
+
+    func updateUIViewController(_ uiViewController: TotalCarbsSheetViewController, context: Context) {}
+}
+
+struct TotalCarbsSheetViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        TotalCarbsSheetViewControllerPreview()
+            .frame(height: 100)
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif
