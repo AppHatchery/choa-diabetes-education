@@ -31,7 +31,10 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
         setupUI()
         
         // TEST: Probably could set up unit tests to make sure the content loads properly
-        webView.load( URLRequest( url: Bundle.main.url(forResource: contentURL, withExtension: "html")! ))
+        if let htmlURL = Bundle.main.url(forResource: contentURL, withExtension: "html") {
+            // Grant read access to the entire bundle so CSS, JS, fonts, and other resources can be loaded
+            webView.loadFileURL(htmlURL, allowingReadAccessTo: Bundle.main.bundleURL)
+        }
         // Potentially opening up a webview to display the AboutPage
     }
     
@@ -71,6 +74,14 @@ class ResourceDetailViewController: UIViewController, WKUIDelegate, WKNavigation
     //--------------------------------------------------------------------------------------------------
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
+        if let url = navigationAction.request.url {
+            // Open YouTube links in Safari
+            if url.host?.contains("youtube.com") == true || url.host?.contains("youtu.be") == true {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel, preferences)
+                return
+            }
+        }
         preferences.preferredContentMode = .mobile
         decisionHandler(.allow,preferences)
     }

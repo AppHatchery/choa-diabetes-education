@@ -7,30 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */; };
+		0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */; };
+		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
+		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
+		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
+		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
+		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
+		AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */; };
 		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
 		B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */; };
 		B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */; };
+		B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = B40B5DA72F3BA68F0028CCB0 /* Pendo */; };
 		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
 		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
 		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
 		B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */; };
 		B42E24332E9EC45E002ACFF6 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */; };
-		B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */; };
-		B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */; };
-		B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */; };
-		B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */; };
-		B44BAEE52EB0D73B006E6001 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */; };
 		B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */; };
 		B44D1F172E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */; };
 		B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */; };
 		B44D1F1A2E5C7A1500DE4E3A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */; };
 		B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */; };
 		B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */; };
-		B454251C2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */; };
-		B454251E2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */; };
 		B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */; };
 		B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */; };
 		B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */; };
@@ -68,6 +70,10 @@
 		B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */; };
 		B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */; };
 		B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */; };
+		B4D40D422FA0017000C12FC5 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */; };
+		B4D40D432FA0017000C12FC5 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */; };
+		B4D40D442FA0017000C12FC5 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */; };
+		B4D40D452FA0017000C12FC5 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */; };
 		B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B4DA9DC72E98F82900C415CE /* Lottie */; };
 		B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE7FA2F0FD6710075C7F3 /* 1_2_1_when_to_check_bg.html */; };
 		B4DBE7FD2F0FD6B10075C7F3 /* 1_2_2_steps_to_check_bg.html in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE7FC2F0FD6A50075C7F3 /* 1_2_2_steps_to_check_bg.html */; };
@@ -143,6 +149,66 @@
 		B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */; };
 		B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */; };
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
+		B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */; };
+		BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */; };
+		CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B102 /* food_that_dont_raise */; };
+		CF01A1B2000000000000B103 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B104 /* food_that_raises */; };
+		CF01A1B2000000000000B105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B106 /* low_carb */; };
+		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
+		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
+		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
+		CF1408DB304052AD0002FD8A /* syrup.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D3304052AD0002FD8A /* syrup.png */; };
+		CF1408DC304052AD0002FD8A /* pineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B6304052AD0002FD8A /* pineapple.png */; };
+		CF1408DD304052AD0002FD8A /* pork.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BF304052AD0002FD8A /* pork.png */; };
+		CF1408DE304052AD0002FD8A /* protein_seeds.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C1304052AD0002FD8A /* protein_seeds.png */; };
+		CF1408DF304052AD0002FD8A /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B3304052AD0002FD8A /* apple.png */; };
+		CF1408E0304052AD0002FD8A /* fat_seeds.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B0304052AD0002FD8A /* fat_seeds.png */; };
+		CF1408E1304052AD0002FD8A /* potatoes.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408CE304052AD0002FD8A /* potatoes.png */; };
+		CF1408E2304052AD0002FD8A /* flavored_milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A1304052AD0002FD8A /* flavored_milk.png */; };
+		CF1408E3304052AD0002FD8A /* fish.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BC304052AD0002FD8A /* fish.png */; };
+		CF1408E4304052AD0002FD8A /* jelly.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D1304052AD0002FD8A /* jelly.png */; };
+		CF1408E5304052AD0002FD8A /* cakes.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D5304052AD0002FD8A /* cakes.png */; };
+		CF1408E6304052AD0002FD8A /* yogurt_stick.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A4304052AD0002FD8A /* yogurt_stick.png */; };
+		CF1408E7304052AD0002FD8A /* crackers.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C6304052AD0002FD8A /* crackers.png */; };
+		CF1408E8304052AD0002FD8A /* fat_grains.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AA304052AD0002FD8A /* fat_grains.png */; };
+		CF1408E9304052AD0002FD8A /* corn.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408CC304052AD0002FD8A /* corn.png */; };
+		CF1408EA304052AD0002FD8A /* olives.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AD304052AD0002FD8A /* olives.png */; };
+		CF1408EB304052AD0002FD8A /* pasta.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C8304052AD0002FD8A /* pasta.png */; };
+		CF1408EC304052AD0002FD8A /* cereal.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C5304052AD0002FD8A /* cereal.png */; };
+		CF1408ED304052AD0002FD8A /* cheese.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B9304052AD0002FD8A /* cheese.png */; };
+		CF1408EE304052AD0002FD8A /* eggs.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BB304052AD0002FD8A /* eggs.png */; };
+		CF1408EF304052AD0002FD8A /* soda.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D2304052AD0002FD8A /* soda.png */; };
+		CF1408F0304052AD0002FD8A /* sausage.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AF304052AD0002FD8A /* sausage.png */; };
+		CF1408F1304052AD0002FD8A /* peas.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408CD304052AD0002FD8A /* peas.png */; };
+		CF1408F2304052AD0002FD8A /* nuts.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BD304052AD0002FD8A /* nuts.png */; };
+		CF1408F3304052AD0002FD8A /* rice.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C9304052AD0002FD8A /* rice.png */; };
+		CF1408F4304052AD0002FD8A /* fruit_juice.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B4304052AD0002FD8A /* fruit_juice.png */; };
+		CF1408F5304052AD0002FD8A /* oil.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AC304052AD0002FD8A /* oil.png */; };
+		CF1408F6304052AD0002FD8A /* beef.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B8304052AD0002FD8A /* beef.png */; };
+		CF1408F7304052AD0002FD8A /* mayonnaise.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AB304052AD0002FD8A /* mayonnaise.png */; };
+		CF1408F8304052AD0002FD8A /* cream_cheese.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A9304052AD0002FD8A /* cream_cheese.png */; };
+		CF1408F9304052AD0002FD8A /* salad_dressing.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408AE304052AD0002FD8A /* salad_dressing.png */; };
+		CF1408FA304052AD0002FD8A /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D0304052AD0002FD8A /* candy.png */; };
+		CF1408FB304052AD0002FD8A /* starch_grains.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C7304052AD0002FD8A /* starch_grains.png */; };
+		CF1408FC304052AD0002FD8A /* cookies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D6304052AD0002FD8A /* cookies.png */; };
+		CF1408FD304052AD0002FD8A /* chicken.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BA304052AD0002FD8A /* chicken.png */; };
+		CF1408FE304052AD0002FD8A /* seafood.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C0304052AD0002FD8A /* seafood.png */; };
+		CF1408FF304052AD0002FD8A /* turkey.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C2304052AD0002FD8A /* turkey.png */; };
+		CF140900304052AD0002FD8A /* bacon.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A7304052AD0002FD8A /* bacon.png */; };
+		CF140901304052AD0002FD8A /* peanut_butter.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408BE304052AD0002FD8A /* peanut_butter.png */; };
+		CF140902304052AD0002FD8A /* avocado.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A6304052AD0002FD8A /* avocado.png */; };
+		CF140903304052AD0002FD8A /* sour_cream.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B1304052AD0002FD8A /* sour_cream.png */; };
+		CF140904304052AD0002FD8A /* butter.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A8304052AD0002FD8A /* butter.png */; };
+		CF140905304052AD0002FD8A /* beans.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408CB304052AD0002FD8A /* beans.png */; };
+		CF140906304052AD0002FD8A /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408B5304052AD0002FD8A /* orange.png */; };
+		CF140907304052AD0002FD8A /* ice_cream.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D7304052AD0002FD8A /* ice_cream.png */; };
+		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
+		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
+		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
+		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
+		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
+		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -152,7 +218,7 @@
 		D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FA9002991723E009C51C3 /* AboutViewController.swift */; };
 		D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */; };
 		D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */; };
-		D432FDD02981CFF8003D2657 /* Pendo in Frameworks */ = {isa = PBXBuildFile; productRef = D432FDCF2981CFF8003D2657 /* Pendo */; };
+		D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */ = {isa = PBXBuildFile; fileRef = D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */; };
 		D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679628ABBCCC003B14A3 /* OrientationHeader.swift */; };
 		D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481679828ABBCDE003B14A3 /* OrientationHeader.xib */; };
 		D481679B28ABDE4F003B14A3 /* OrientationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481679A28ABDE4F003B14A3 /* OrientationViewController.swift */; };
@@ -178,7 +244,6 @@
 		D48167C328AC00C8003B14A3 /* QuizTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48167C128AC00C8003B14A3 /* QuizTableViewCell.xib */; };
 		D48167C528ACFB40003B14A3 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48167C428ACFB40003B14A3 /* Content.swift */; };
 		D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48167C728AD0396003B14A3 /* ChapterViewController.swift */; };
-		D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */ = {isa = PBXBuildFile; fileRef = D48167F328AD38FF003B14A3 /* gotham-rounded */; };
 		D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F0289C0043001A61E2 /* AppDelegate.swift */; };
 		D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D88F2289C0043001A61E2 /* SceneDelegate.swift */; };
 		D48D88F8289C0043001A61E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48D88F6289C0043001A61E2 /* Main.storyboard */; };
@@ -210,14 +275,9 @@
 		D4D48E9128D1123700820FD4 /* Communities.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D48E9028D1123700820FD4 /* Communities.xib */; };
 		D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */; };
 		D4D48E9528D11DCC00820FD4 /* ResourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */; };
-		D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */; };
-		D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */; };
+		D4DFF2F42A8E731700CAEEF7 /* NunitoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2F32A8E731700CAEEF7 /* NunitoRegular.ttf */; };
 		D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */; };
-		D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */; };
 		D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */; };
-		D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */; };
-		D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */; };
-		D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */; };
 		D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */; };
 		D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC906E28BFB9ED00CD2831 /* AppsView.swift */; };
 		D4EC907128BFB9F800CD2831 /* AppsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EC907028BFB9F800CD2831 /* AppsView.xib */; };
@@ -245,8 +305,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
+		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
+		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
+		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
+		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
+		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
+		AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReferencesViewController.swift; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
 		B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetHelp.storyboard; sourceTree = "<group>"; };
@@ -256,19 +323,12 @@
 		B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutKetoneMeasurementsViewController.swift; sourceTree = "<group>"; };
 		B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutKetoneMeasurementsView.storyboard; sourceTree = "<group>"; };
 		B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extensions.swift"; sourceTree = "<group>"; };
-		B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBold.ttf; sourceTree = "<group>"; };
-		B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedBook.ttf; sourceTree = "<group>"; };
-		B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedLight.ttf; sourceTree = "<group>"; };
-		B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamRoundedMedium.ttf; sourceTree = "<group>"; };
-		B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
 		B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaEmergencyView.swift; sourceTree = "<group>"; };
 		B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaEmergencyView.xib; sourceTree = "<group>"; };
 		B44D1F192E5C7A1500DE4E3A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		B44D1F1E2E5CDCF700DE4E3A /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
-		B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
-		B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
 		B454CACA2E48D7BB0068CF44 /* BloodKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodKetoneLevelView.swift; sourceTree = "<group>"; };
 		B454CACB2E48D7BB0068CF44 /* BloodKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BloodKetoneLevelView.xib; sourceTree = "<group>"; };
 		B455E2A42E4B9D8C009AA560 /* FinalStepNoDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepNoDescView.swift; sourceTree = "<group>"; };
@@ -306,6 +366,10 @@
 		B4B788D32E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoOptionsFollowUpQuestionView.xib; sourceTree = "<group>"; };
 		B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecheckKetoneLevelView.swift; sourceTree = "<group>"; };
 		B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecheckKetoneLevelView.xib; sourceTree = "<group>"; };
+		B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		B4DBE7FA2F0FD6710075C7F3 /* 1_2_1_when_to_check_bg.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 1_2_1_when_to_check_bg.html; sourceTree = "<group>"; };
 		B4DBE7FC2F0FD6A50075C7F3 /* 1_2_2_steps_to_check_bg.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 1_2_2_steps_to_check_bg.html; sourceTree = "<group>"; };
 		B4DBE7FE2F0FD7D60075C7F3 /* will_pyjamas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = will_pyjamas.png; sourceTree = "<group>"; };
@@ -380,6 +444,65 @@
 		B4F6ABFE2E5A23F20037D323 /* FinalStepWithReminderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithReminderView.xib; sourceTree = "<group>"; };
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
+		C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodRowView.swift; sourceTree = "<group>"; };
+		CF01A1B2000000000000B102 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
+		CF01A1B2000000000000B104 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
+		CF01A1B2000000000000B106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
+		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
+		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
+		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
+		CF1408A2304052AD0002FD8A /* milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = milk.png; sourceTree = "<group>"; };
+		CF1408A3304052AD0002FD8A /* yogurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yogurt.png; sourceTree = "<group>"; };
+		CF1408A4304052AD0002FD8A /* yogurt_stick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yogurt_stick.png; sourceTree = "<group>"; };
+		CF1408A6304052AD0002FD8A /* avocado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avocado.png; sourceTree = "<group>"; };
+		CF1408A7304052AD0002FD8A /* bacon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bacon.png; sourceTree = "<group>"; };
+		CF1408A8304052AD0002FD8A /* butter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butter.png; sourceTree = "<group>"; };
+		CF1408A9304052AD0002FD8A /* cream_cheese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cream_cheese.png; sourceTree = "<group>"; };
+		CF1408AA304052AD0002FD8A /* fat_grains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fat_grains.png; sourceTree = "<group>"; };
+		CF1408AB304052AD0002FD8A /* mayonnaise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mayonnaise.png; sourceTree = "<group>"; };
+		CF1408AC304052AD0002FD8A /* oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil.png; sourceTree = "<group>"; };
+		CF1408AD304052AD0002FD8A /* olives.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = olives.png; sourceTree = "<group>"; };
+		CF1408AE304052AD0002FD8A /* salad_dressing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salad_dressing.png; sourceTree = "<group>"; };
+		CF1408AF304052AD0002FD8A /* sausage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sausage.png; sourceTree = "<group>"; };
+		CF1408B0304052AD0002FD8A /* fat_seeds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fat_seeds.png; sourceTree = "<group>"; };
+		CF1408B1304052AD0002FD8A /* sour_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sour_cream.png; sourceTree = "<group>"; };
+		CF1408B3304052AD0002FD8A /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		CF1408B4304052AD0002FD8A /* fruit_juice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_juice.png; sourceTree = "<group>"; };
+		CF1408B5304052AD0002FD8A /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
+		CF1408B6304052AD0002FD8A /* pineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pineapple.png; sourceTree = "<group>"; };
+		CF1408B8304052AD0002FD8A /* beef.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beef.png; sourceTree = "<group>"; };
+		CF1408B9304052AD0002FD8A /* cheese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheese.png; sourceTree = "<group>"; };
+		CF1408BA304052AD0002FD8A /* chicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chicken.png; sourceTree = "<group>"; };
+		CF1408BB304052AD0002FD8A /* eggs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eggs.png; sourceTree = "<group>"; };
+		CF1408BC304052AD0002FD8A /* fish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish.png; sourceTree = "<group>"; };
+		CF1408BD304052AD0002FD8A /* nuts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nuts.png; sourceTree = "<group>"; };
+		CF1408BE304052AD0002FD8A /* peanut_butter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peanut_butter.png; sourceTree = "<group>"; };
+		CF1408BF304052AD0002FD8A /* pork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pork.png; sourceTree = "<group>"; };
+		CF1408C0304052AD0002FD8A /* seafood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seafood.png; sourceTree = "<group>"; };
+		CF1408C1304052AD0002FD8A /* protein_seeds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = protein_seeds.png; sourceTree = "<group>"; };
+		CF1408C2304052AD0002FD8A /* turkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turkey.png; sourceTree = "<group>"; };
+		CF1408C4304052AD0002FD8A /* bread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bread.png; sourceTree = "<group>"; };
+		CF1408C5304052AD0002FD8A /* cereal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cereal.png; sourceTree = "<group>"; };
+		CF1408C6304052AD0002FD8A /* crackers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crackers.png; sourceTree = "<group>"; };
+		CF1408C7304052AD0002FD8A /* starch_grains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starch_grains.png; sourceTree = "<group>"; };
+		CF1408C8304052AD0002FD8A /* pasta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pasta.png; sourceTree = "<group>"; };
+		CF1408C9304052AD0002FD8A /* rice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rice.png; sourceTree = "<group>"; };
+		CF1408CB304052AD0002FD8A /* beans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beans.png; sourceTree = "<group>"; };
+		CF1408CC304052AD0002FD8A /* corn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corn.png; sourceTree = "<group>"; };
+		CF1408CD304052AD0002FD8A /* peas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peas.png; sourceTree = "<group>"; };
+		CF1408CE304052AD0002FD8A /* potatoes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = potatoes.png; sourceTree = "<group>"; };
+		CF1408D0304052AD0002FD8A /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
+		CF1408D1304052AD0002FD8A /* jelly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jelly.png; sourceTree = "<group>"; };
+		CF1408D2304052AD0002FD8A /* soda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soda.png; sourceTree = "<group>"; };
+		CF1408D3304052AD0002FD8A /* syrup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = syrup.png; sourceTree = "<group>"; };
+		CF1408D5304052AD0002FD8A /* cakes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cakes.png; sourceTree = "<group>"; };
+		CF1408D6304052AD0002FD8A /* cookies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cookies.png; sourceTree = "<group>"; };
+		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
+		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
+		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
+		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +513,7 @@
 		D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMultipleAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizMultipleAnswer.xib; sourceTree = "<group>"; };
 		D432FDD12981D055003D2657 /* -Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "-Bridging-Header.h"; sourceTree = "<group>"; };
+		D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treatment-low-blood-sugar.png"; sourceTree = "<group>"; };
 		D481679628ABBCCC003B14A3 /* OrientationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationHeader.swift; sourceTree = "<group>"; };
 		D481679828ABBCDE003B14A3 /* OrientationHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrientationHeader.xib; sourceTree = "<group>"; };
 		D481679A28ABDE4F003B14A3 /* OrientationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewController.swift; sourceTree = "<group>"; };
@@ -415,7 +539,6 @@
 		D48167C128AC00C8003B14A3 /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
 		D48167C428ACFB40003B14A3 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		D48167C728AD0396003B14A3 /* ChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewController.swift; sourceTree = "<group>"; };
-		D48167F328AD38FF003B14A3 /* gotham-rounded */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "gotham-rounded"; sourceTree = "<group>"; };
 		D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "choa-diabetes-education.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48D88F0289C0043001A61E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48D88F2289C0043001A61E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -450,16 +573,13 @@
 		D4D48E9028D1123700820FD4 /* Communities.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Communities.xib; sourceTree = "<group>"; };
 		D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesViewController.swift; sourceTree = "<group>"; };
 		D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailViewController.swift; sourceTree = "<group>"; };
-		D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium.otf"; sourceTree = "<group>"; };
-		D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light Italic.otf"; sourceTree = "<group>"; };
-		D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Light.otf"; sourceTree = "<group>"; };
-		D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Medium Italic.otf"; sourceTree = "<group>"; };
-		D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Rounded Bold.otf"; sourceTree = "<group>"; };
+		D4DFF2F32A8E731700CAEEF7 /* NunitoRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NunitoRegular.ttf; sourceTree = "<group>"; };
 		D4EB10CB2A0D7FC000CD5292 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4EC906E28BFB9ED00CD2831 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		D4EC907028BFB9F800CD2831 /* AppsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsView.xib; sourceTree = "<group>"; };
 		D4EC907228BFE33C00CD2831 /* ChapterEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterEndViewController.swift; sourceTree = "<group>"; };
+		E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodTableViewCell.swift; sourceTree = "<group>"; };
+		EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomFoodsManager.swift; sourceTree = "<group>"; };
 		FD99F3952A194839009F3C30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FD99F3972A1948EB009F3C30 /* UIString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Extensions.swift"; sourceTree = "<group>"; };
 		FD99F3992A1D0D43009F3C30 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
@@ -487,8 +607,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */,
 				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
-				D432FDD02981CFF8003D2657 /* Pendo in Frameworks */,
 				B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,10 +619,10 @@
 		B438F6BB2E44C570005CBD49 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B438F6BC2E44C582005CBD49 /* GothamRoundedBold.ttf */,
-				B438F6BD2E44C582005CBD49 /* GothamRoundedBook.ttf */,
-				B438F6BE2E44C582005CBD49 /* GothamRoundedLight.ttf */,
-				B438F6BF2E44C582005CBD49 /* GothamRoundedMedium.ttf */,
+				B4D40D3E2FA0017000C12FC5 /* Nunito-Bold.ttf */,
+				B4D40D3F2FA0017000C12FC5 /* Nunito-Light.ttf */,
+				B4D40D402FA0017000C12FC5 /* Nunito-Medium.ttf */,
+				B4D40D412FA0017000C12FC5 /* Nunito-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -512,6 +632,8 @@
 			children = (
 				B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */,
 				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
+				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
+				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -549,6 +671,111 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		CF1408A5304052AD0002FD8A /* dairy */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408A1304052AD0002FD8A /* flavored_milk.png */,
+				CF1408A2304052AD0002FD8A /* milk.png */,
+				CF1408A3304052AD0002FD8A /* yogurt.png */,
+				CF1408A4304052AD0002FD8A /* yogurt_stick.png */,
+			);
+			path = dairy;
+			sourceTree = "<group>";
+		};
+		CF1408B2304052AD0002FD8A /* fat */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408A6304052AD0002FD8A /* avocado.png */,
+				CF1408A7304052AD0002FD8A /* bacon.png */,
+				CF1408A8304052AD0002FD8A /* butter.png */,
+				CF1408A9304052AD0002FD8A /* cream_cheese.png */,
+				CF1408AA304052AD0002FD8A /* fat_grains.png */,
+				CF1408AB304052AD0002FD8A /* mayonnaise.png */,
+				CF1408AC304052AD0002FD8A /* oil.png */,
+				CF1408AD304052AD0002FD8A /* olives.png */,
+				CF1408AE304052AD0002FD8A /* salad_dressing.png */,
+				CF1408AF304052AD0002FD8A /* sausage.png */,
+				CF1408B0304052AD0002FD8A /* fat_seeds.png */,
+				CF1408B1304052AD0002FD8A /* sour_cream.png */,
+			);
+			path = fat;
+			sourceTree = "<group>";
+		};
+		CF1408B7304052AD0002FD8A /* fruits_and_fruit_juices */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408B3304052AD0002FD8A /* apple.png */,
+				CF1408B4304052AD0002FD8A /* fruit_juice.png */,
+				CF1408B5304052AD0002FD8A /* orange.png */,
+				CF1408B6304052AD0002FD8A /* pineapple.png */,
+			);
+			path = fruits_and_fruit_juices;
+			sourceTree = "<group>";
+		};
+		CF1408C3304052AD0002FD8A /* protein */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408B8304052AD0002FD8A /* beef.png */,
+				CF1408B9304052AD0002FD8A /* cheese.png */,
+				CF1408BA304052AD0002FD8A /* chicken.png */,
+				CF1408BB304052AD0002FD8A /* eggs.png */,
+				CF1408BC304052AD0002FD8A /* fish.png */,
+				CF1408BD304052AD0002FD8A /* nuts.png */,
+				CF1408BE304052AD0002FD8A /* peanut_butter.png */,
+				CF1408BF304052AD0002FD8A /* pork.png */,
+				CF1408C0304052AD0002FD8A /* seafood.png */,
+				CF1408C1304052AD0002FD8A /* protein_seeds.png */,
+				CF1408C2304052AD0002FD8A /* turkey.png */,
+			);
+			path = protein;
+			sourceTree = "<group>";
+		};
+		CF1408CA304052AD0002FD8A /* starch */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408C4304052AD0002FD8A /* bread.png */,
+				CF1408C5304052AD0002FD8A /* cereal.png */,
+				CF1408C6304052AD0002FD8A /* crackers.png */,
+				CF1408C7304052AD0002FD8A /* starch_grains.png */,
+				CF1408C8304052AD0002FD8A /* pasta.png */,
+				CF1408C9304052AD0002FD8A /* rice.png */,
+			);
+			path = starch;
+			sourceTree = "<group>";
+		};
+		CF1408CF304052AD0002FD8A /* starchy_vegetables */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408CB304052AD0002FD8A /* beans.png */,
+				CF1408CC304052AD0002FD8A /* corn.png */,
+				CF1408CD304052AD0002FD8A /* peas.png */,
+				CF1408CE304052AD0002FD8A /* potatoes.png */,
+			);
+			path = starchy_vegetables;
+			sourceTree = "<group>";
+		};
+		CF1408D4304052AD0002FD8A /* sugary_foods */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408D0304052AD0002FD8A /* candy.png */,
+				CF1408D1304052AD0002FD8A /* jelly.png */,
+				CF1408D2304052AD0002FD8A /* soda.png */,
+				CF1408D3304052AD0002FD8A /* syrup.png */,
+			);
+			path = sugary_foods;
+			sourceTree = "<group>";
+		};
+		CF1408D9304052AD0002FD8A /* sweets_and_desserts */ = {
+			isa = PBXGroup;
+			children = (
+				CF1408D5304052AD0002FD8A /* cakes.png */,
+				CF1408D6304052AD0002FD8A /* cookies.png */,
+				CF1408D7304052AD0002FD8A /* ice_cream.png */,
+				CF1408D8304052AD0002FD8A /* pies.png */,
+			);
+			path = sweets_and_desserts;
+			sourceTree = "<group>";
+		};
 		D48167C628AD02D3003B14A3 /* pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +803,9 @@
 				B4DBE87A2F10F5F00075C7F3 /* 3_1_2_managing_low_blood_sugar.html */,
 				B4DBE87C2F10F9420075C7F3 /* 3_1_3_managing_low_blood_sugar.html */,
 				B4DBE87E2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html */,
+				CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */,
+				CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */,
+				CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */,
 			);
 			path = pages;
 			sourceTree = "<group>";
@@ -583,6 +813,17 @@
 		D48167D528AD35BB003B14A3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CF1408A5304052AD0002FD8A /* dairy */,
+				CF1408B2304052AD0002FD8A /* fat */,
+				CF1408B7304052AD0002FD8A /* fruits_and_fruit_juices */,
+				CF1408C3304052AD0002FD8A /* protein */,
+				CF1408CA304052AD0002FD8A /* starch */,
+				CF1408CF304052AD0002FD8A /* starchy_vegetables */,
+				CF1408D4304052AD0002FD8A /* sugary_foods */,
+				CF1408D9304052AD0002FD8A /* sweets_and_desserts */,
+				CF01A1B2000000000000B102 /* food_that_dont_raise */,
+				CF01A1B2000000000000B104 /* food_that_raises */,
+				CF01A1B2000000000000B106 /* low_carb */,
 				B4DBE8822F11024E0075C7F3 /* arrow_right.png */,
 				B4AB10C72F0E974300F74329 /* hope_blurry_vision.png */,
 				B4AB10C12F0E964B00F74329 /* hope_excessive_hunger.png */,
@@ -644,6 +885,7 @@
 				B4DBE86E2F10F3150075C7F3 /* will_drinking_soda.png */,
 				B4DBE86F2F10F3150075C7F3 /* will_nutrition_food.png */,
 				B4DBE8702F10F3150075C7F3 /* will_taking_pill.png */,
+				D480637E2A952E67006C9861 /* treatment-low-blood-sugar.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -672,7 +914,6 @@
 				D4DFF2F52A8E734000CAEEF7 /* Nunito */,
 				D492A89B29088CA700B98CA3 /* Acme */,
 				D492A89929088C9A00B98CA3 /* Irish_Grover */,
-				D48167F328AD38FF003B14A3 /* gotham-rounded */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -697,16 +938,16 @@
 		D48D88EF289C0043001A61E2 /* choa-diabetes-education */ = {
 			isa = PBXGroup;
 			children = (
-				B4E144312E9C2CA8009A5589 /* Helpers */,
-				B44D1F1B2E5CA24200DE4E3A /* Managers */,
-				B438F6BB2E44C570005CBD49 /* Fonts */,
-				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
-				FD99F3952A194839009F3C30 /* Localizable.strings */,
 				D48D890C289C027E001A61E2 /* Assets */,
-				D48D890B289C0095001A61E2 /* plists */,
-				D48D890A289C007D001A61E2 /* Extensions */,
+				FDC8E5342A27BC49006FDFF0 /* CustomComponents */,
 				D48D8909289C0072001A61E2 /* Delegates */,
+				D48D890A289C007D001A61E2 /* Extensions */,
+				B438F6BB2E44C570005CBD49 /* Fonts */,
+				B4E144312E9C2CA8009A5589 /* Helpers */,
+				FD99F3952A194839009F3C30 /* Localizable.strings */,
+				B44D1F1B2E5CA24200DE4E3A /* Managers */,
 				D48D8914289C02E3001A61E2 /* Models */,
+				D48D890B289C0095001A61E2 /* plists */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
@@ -733,8 +974,10 @@
 				D48167B028ABF15D003B14A3 /* QuotesViewController.swift */,
 				D4C39B3228B7E1D0003CCA14 /* QuizIntroViewController.swift */,
 				D4C39B3428B7E1F3003CCA14 /* QuizQuestionsViewController.swift */,
+				CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */,
 				D4D48E9228D1146D00820FD4 /* ResourcesViewController.swift */,
 				D4D48E9428D11DCC00820FD4 /* ResourceDetailViewController.swift */,
+				AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */,
 				D48D8925289C215C001A61E2 /* CalculatorViewController.swift */,
 				D42A537D2964DE5A0031D395 /* CalculatorHomeViewController.swift */,
 				D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */,
@@ -742,8 +985,9 @@
 				D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */,
 				B4A61F992E8550720079B276 /* CalculatorEditViewController.swift */,
 				B40A72CA2E0DC5AA00416D59 /* GetHelpViewController.swift */,
-				B454251B2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift */,
-				B454251D2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift */,
+				CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */,
+				CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */,
+				32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -785,7 +1029,12 @@
 				D432FDC8297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift */,
 				D432FDCA297EEC83003D2657 /* QuizMultipleAnswer.xib */,
 				D42FA8FC29916B74009C51C3 /* AboutApp.swift */,
+				8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */,
+				8EBD52252A8DE3F200237C49 /* AboutTeam.xib */,
 				D42FA8FE29916B81009C51C3 /* AboutApp.xib */,
+				C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */,
+				E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */,
+				004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -835,11 +1084,6 @@
 				D48167DA28AD35F1003B14A3 /* css */,
 				D48167D528AD35BB003B14A3 /* images */,
 				D48167C628AD02D3003B14A3 /* pages */,
-				D4DFF3012A8E76F400CAEEF7 /* Gotham Rounded Bold.otf */,
-				D4DFF2FE2A8E76F400CAEEF7 /* Gotham Rounded Light Italic.otf */,
-				D4DFF2FF2A8E76F400CAEEF7 /* Gotham Rounded Light.otf */,
-				D4DFF3002A8E76F400CAEEF7 /* Gotham Rounded Medium Italic.otf */,
-				D4DFF2FD2A8E76F400CAEEF7 /* Gotham Rounded Medium.otf */,
 				D492A8A3290890C900B98CA3 /* IrishGrover-Regular.ttf */,
 				D492A8A2290890C600B98CA3 /* Acme-Regular.ttf */,
 				D48D88FC289C0045001A61E2 /* Assets.xcassets */,
@@ -850,11 +1094,11 @@
 		D48D8914289C02E3001A61E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B44BAEE42EB0D726006E6001 /* CalculatorOnboardingQuestion.swift */,
 				D48167C428ACFB40003B14A3 /* Content.swift */,
 				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
 				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
+				6BF08537DA126EA3BEB82D30 /* CarbFood.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -869,7 +1113,7 @@
 		D4DFF2F52A8E734000CAEEF7 /* Nunito */ = {
 			isa = PBXGroup;
 			children = (
-				D4DFF2F32A8E731700CAEEF7 /* Nunito-Regular.ttf */,
+				D4DFF2F32A8E731700CAEEF7 /* NunitoRegular.ttf */,
 			);
 			path = Nunito;
 			sourceTree = "<group>";
@@ -947,9 +1191,9 @@
 			);
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
-				D432FDCF2981CFF8003D2657 /* Pendo */,
 				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
 				B4DA9DC72E98F82900C415CE /* Lottie */,
+				B40B5DA72F3BA68F0028CCB0 /* Pendo */,
 			);
 			productName = "choa-diabetes-education";
 			productReference = D48D88ED289C0043001A61E2 /* choa-diabetes-education.app */;
@@ -988,9 +1232,9 @@
 			);
 			mainGroup = D48D88E4289C0043001A61E2;
 			packageReferences = (
-				D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
 				D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */,
 			);
 			productRefGroup = D48D88EE289C0043001A61E2 /* Products */;
 			projectDirPath = "";
@@ -1054,16 +1298,16 @@
 				FD99F3962A194839009F3C30 /* Localizable.strings in Resources */,
 				FDC8E5382A281D95006FDFF0 /* FinalStepView.xib in Resources */,
 				B4AB10C42F0E96A700F74329 /* 1_1_4_what_makes_blood_sugar_high.html in Resources */,
-				D4DFF2F42A8E731700CAEEF7 /* Nunito-Regular.ttf in Resources */,
+				D4DFF2F42A8E731700CAEEF7 /* NunitoRegular.ttf in Resources */,
 				B455E2A72E4B9DB5009AA560 /* FinalStepNoDescView.xib in Resources */,
 				B4DBE8632F10E75F0075C7F3 /* will_insulin_meter_standing.png in Resources */,
 				B4AB10D22F0EDBF300F74329 /* will_eating_carbs.png in Resources */,
-				D4DFF3072A8E774400CAEEF7 /* Gotham Rounded Medium.otf in Resources */,
 				B4AB10D62F0EDC1900F74329 /* hope_thinking.png in Resources */,
 				D4DFF3082A8E774400CAEEF7 /* Acme-Regular.ttf in Resources */,
 				B454CACC2E48D7BB0068CF44 /* BloodKetoneLevelView.xib in Resources */,
 				D48D8900289C0045001A61E2 /* LaunchScreen.storyboard in Resources */,
 				B4DBE8532F1058D20075C7F3 /* 2_1_1_nutritonal_food_groups.html in Resources */,
+				8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */,
 				FDC8E5202A1FAC59006FDFF0 /* Calculator.storyboard in Resources */,
 				D48167C328AC00C8003B14A3 /* QuizTableViewCell.xib in Resources */,
 				B4AB10C02F0E949000F74329 /* 1_1_2_type_1_diabetes.html in Resources */,
@@ -1072,13 +1316,16 @@
 				B4DBE8612F105E9B0075C7F3 /* nutrition_facts_form.png in Resources */,
 				B4DBE81F2F0FF9EF0075C7F3 /* 1_3_1_types_of_insulin.html in Resources */,
 				D432FDCB297EEC83003D2657 /* QuizMultipleAnswer.xib in Resources */,
+				B4D40D422FA0017000C12FC5 /* Nunito-Light.ttf in Resources */,
+				B4D40D432FA0017000C12FC5 /* Nunito-Regular.ttf in Resources */,
+				B4D40D442FA0017000C12FC5 /* Nunito-Medium.ttf in Resources */,
+				B4D40D452FA0017000C12FC5 /* Nunito-Bold.ttf in Resources */,
 				B4AB10CB2F0E975D00F74329 /* hope_fatigue.png in Resources */,
 				D48167AD28ABEF71003B14A3 /* MedicalTeam.xib in Resources */,
 				B4DBE86B2F10EE340075C7F3 /* sliding_scale_dosing_table.png in Resources */,
 				D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */,
 				D4C39B3128B7DA22003CCA14 /* 1_1_1_whatisdiabetes.html in Resources */,
 				B4DBE7FB2F0FD68D0075C7F3 /* 1_2_1_when_to_check_bg.html in Resources */,
-				D4DFF3092A8E774400CAEEF7 /* Gotham Rounded Bold.otf in Resources */,
 				D4C39B2F28B7D9F6003CCA14 /* uikit.js in Resources */,
 				B4DBE7FD2F0FD6B10075C7F3 /* 1_2_2_steps_to_check_bg.html in Resources */,
 				B44D1F182E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib in Resources */,
@@ -1104,7 +1351,6 @@
 				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
 				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				B4AB10B42F0E90AB00F74329 /* hope_excessive_thirst.png in Resources */,
-				D48167F428AD38FF003B14A3 /* gotham-rounded in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				B4DBE83D2F1024590075C7F3 /* 1_5_2_steps_to_check_ketones.html in Resources */,
 				B4DBE85B2F105D340075C7F3 /* 2_2_1_how_to_count_carbs.html in Resources */,
@@ -1115,7 +1361,6 @@
 				B4A61FA72E859FCF0079B276 /* InfoPopUpViewController.xib in Resources */,
 				D492A8982901D67900B98CA3 /* SearchResultTableViewCell.xib in Resources */,
 				D492A89228F8E2A900B98CA3 /* SearchView.xib in Resources */,
-				D4DFF30D2A8E774400CAEEF7 /* Gotham Rounded Medium Italic.otf in Resources */,
 				B4DBE87F2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html in Resources */,
 				B4AB10CE2F0E976C00F74329 /* hope_frequent_urination.png in Resources */,
 				D48D88FD289C0045001A61E2 /* Assets.xcassets in Resources */,
@@ -1126,20 +1371,14 @@
 				B4B3CEAE2E3A461100622C13 /* YesOrNoFollowUpView.xib in Resources */,
 				B4DBE8012F0FD8000075C7F3 /* will_sleeping.png in Resources */,
 				B4DBE8372F1012C40075C7F3 /* 1_4_2_with_syringe_and_vial.html in Resources */,
-				D4DFF30C2A8E774400CAEEF7 /* Gotham Rounded Light.otf in Resources */,
 				B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */,
 				B4DBE8032F0FD8240075C7F3 /* will_basketball.png in Resources */,
 				B4DBE8352F100F290075C7F3 /* 1_4_1_with_pen.html in Resources */,
 				B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
-				D4DFF30B2A8E774400CAEEF7 /* Gotham Rounded Light Italic.otf in Resources */,
 				B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */,
 				B4AB10DA2F0EDC3D00F74329 /* hope_steroids.png in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
-				B438F6C02E44C582005CBD49 /* GothamRoundedBold.ttf in Resources */,
-				B438F6C12E44C582005CBD49 /* GothamRoundedBook.ttf in Resources */,
-				B438F6C22E44C582005CBD49 /* GothamRoundedLight.ttf in Resources */,
-				B438F6C32E44C582005CBD49 /* GothamRoundedMedium.ttf in Resources */,
 				B4DBE85D2F105DE20075C7F3 /* will_calculator_standing.png in Resources */,
 				B4DBE8252F0FFEEB0075C7F3 /* 1_3_2_storage_of_insulin.html in Resources */,
 				B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */,
@@ -1152,9 +1391,65 @@
 				B4AB10D82F0EDC2A00F74329 /* hope_stress.png in Resources */,
 				B4DBE8692F10EC6F0075C7F3 /* 2_3_3_how_to_calculate_insulin_dosages.html in Resources */,
 				FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */,
+				CF1408DA304052AD0002FD8A /* yogurt.png in Resources */,
+				CF1408DB304052AD0002FD8A /* syrup.png in Resources */,
+				CF1408DC304052AD0002FD8A /* pineapple.png in Resources */,
+				CF1408DD304052AD0002FD8A /* pork.png in Resources */,
+				CF1408DE304052AD0002FD8A /* protein_seeds.png in Resources */,
+				CF1408DF304052AD0002FD8A /* apple.png in Resources */,
+				CF1408E0304052AD0002FD8A /* fat_seeds.png in Resources */,
+				CF1408E1304052AD0002FD8A /* potatoes.png in Resources */,
+				CF1408E2304052AD0002FD8A /* flavored_milk.png in Resources */,
+				CF1408E3304052AD0002FD8A /* fish.png in Resources */,
+				CF1408E4304052AD0002FD8A /* jelly.png in Resources */,
+				CF1408E5304052AD0002FD8A /* cakes.png in Resources */,
+				CF1408E6304052AD0002FD8A /* yogurt_stick.png in Resources */,
+				CF1408E7304052AD0002FD8A /* crackers.png in Resources */,
+				CF1408E8304052AD0002FD8A /* fat_grains.png in Resources */,
+				CF1408E9304052AD0002FD8A /* corn.png in Resources */,
+				CF1408EA304052AD0002FD8A /* olives.png in Resources */,
+				CF1408EB304052AD0002FD8A /* pasta.png in Resources */,
+				CF1408EC304052AD0002FD8A /* cereal.png in Resources */,
+				CF1408ED304052AD0002FD8A /* cheese.png in Resources */,
+				CF1408EE304052AD0002FD8A /* eggs.png in Resources */,
+				CF1408EF304052AD0002FD8A /* soda.png in Resources */,
+				CF1408F0304052AD0002FD8A /* sausage.png in Resources */,
+				CF1408F1304052AD0002FD8A /* peas.png in Resources */,
+				CF1408F2304052AD0002FD8A /* nuts.png in Resources */,
+				CF1408F3304052AD0002FD8A /* rice.png in Resources */,
+				CF1408F4304052AD0002FD8A /* fruit_juice.png in Resources */,
+				CF1408F5304052AD0002FD8A /* oil.png in Resources */,
+				CF1408F6304052AD0002FD8A /* beef.png in Resources */,
+				CF1408F7304052AD0002FD8A /* mayonnaise.png in Resources */,
+				CF1408F8304052AD0002FD8A /* cream_cheese.png in Resources */,
+				CF1408F9304052AD0002FD8A /* salad_dressing.png in Resources */,
+				CF1408FA304052AD0002FD8A /* candy.png in Resources */,
+				CF1408FB304052AD0002FD8A /* starch_grains.png in Resources */,
+				CF1408FC304052AD0002FD8A /* cookies.png in Resources */,
+				CF1408FD304052AD0002FD8A /* chicken.png in Resources */,
+				CF1408FE304052AD0002FD8A /* seafood.png in Resources */,
+				CF1408FF304052AD0002FD8A /* turkey.png in Resources */,
+				CF140900304052AD0002FD8A /* bacon.png in Resources */,
+				CF140901304052AD0002FD8A /* peanut_butter.png in Resources */,
+				CF140902304052AD0002FD8A /* avocado.png in Resources */,
+				CF140903304052AD0002FD8A /* sour_cream.png in Resources */,
+				CF140904304052AD0002FD8A /* butter.png in Resources */,
+				CF140905304052AD0002FD8A /* beans.png in Resources */,
+				CF140906304052AD0002FD8A /* orange.png in Resources */,
+				CF140907304052AD0002FD8A /* ice_cream.png in Resources */,
+				CF140908304052AD0002FD8A /* milk.png in Resources */,
+				CF140909304052AD0002FD8A /* pies.png in Resources */,
+				CF14090A304052AD0002FD8A /* bread.png in Resources */,
+				CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */,
+				CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */,
+				CF01A1B2000000000000B103 /* food_that_raises in Resources */,
+				CF01A1B2000000000000B105 /* low_carb in Resources */,
+				CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */,
+				CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */,
 				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
 				D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */,
 				D48167A128ABE262003B14A3 /* OrientationFooter.xib in Resources */,
+				D480637F2A952E67006C9861 /* treatment-low-blood-sugar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,13 +1483,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
+				AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */,
+				CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */,
 				D4D48E8B28D10FA200820FD4 /* FoodDiary.swift in Sources */,
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
 				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,
-				B454251E2EAFA31A00CF3323 /* CalculatorOnBoardingViewController.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
 				B44D1F1D2E5CA25300DE4E3A /* ReminderManager.swift in Sources */,
@@ -1219,7 +1515,6 @@
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
 				B4A61F9A2E8550720079B276 /* CalculatorEditViewController.swift in Sources */,
 				8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */,
-				B454251C2EAF6C7600CF3323 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */,
 				B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
 				D48D88F1289C0043001A61E2 /* AppDelegate.swift in Sources */,
@@ -1242,10 +1537,12 @@
 				B42E24332E9EC45E002ACFF6 /* Float+Extensions.swift in Sources */,
 				B4F6AC022E5A4F2B0037D323 /* FinalStepCallChoaView.swift in Sources */,
 				D481679F28ABE251003B14A3 /* OrientationFooter.swift in Sources */,
+				8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */,
 				D48167B728ABF711003B14A3 /* UIView+Extensions.swift in Sources */,
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
+				CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */,
 				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
@@ -1259,7 +1556,6 @@
 				B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */,
 				B44D1F1F2E5CDCF700DE4E3A /* UIButton+Extensions.swift in Sources */,
 				D48167A728ABE73E003B14A3 /* AgendaView.swift in Sources */,
-				B44BAEE52EB0D73B006E6001 /* CalculatorOnboardingQuestion.swift in Sources */,
 				D4EC906F28BFB9ED00CD2831 /* AppsView.swift in Sources */,
 				D42FA9012991723E009C51C3 /* AboutViewController.swift in Sources */,
 				D48167A328ABE4B2003B14A3 /* HomeViewController.swift in Sources */,
@@ -1270,6 +1566,14 @@
 				D48D88F3289C0043001A61E2 /* SceneDelegate.swift in Sources */,
 				D4C39B3528B7E1F3003CCA14 /* QuizQuestionsViewController.swift in Sources */,
 				B455E2A52E4B9D8C009AA560 /* FinalStepNoDescView.swift in Sources */,
+				1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */,
+				04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */,
+				6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */,
+				0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */,
+				BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */,
+				B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */,
+				CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */,
+				85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,7 +1736,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1449,7 +1753,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1470,7 +1774,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32M4QVP4AY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
@@ -1486,7 +1790,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.emory.diabetes.education;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1524,20 +1828,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pendo-io/pendo-mobile-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.11.2;
+			};
+		};
 		B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.2;
-			};
-		};
-		D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pendo-io/pendo-mobile-ios";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1551,15 +1855,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B40B5DA72F3BA68F0028CCB0 /* Pendo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B40B5DA62F3BA68F0028CCB0 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
+			productName = Pendo;
+		};
 		B4DA9DC72E98F82900C415CE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4DA9DC62E98F82900C415CE /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
-		};
-		D432FDCF2981CFF8003D2657 /* Pendo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D432FDCE2981CFF8003D2657 /* XCRemoteSwiftPackageReference "pendo-mobile-ios" */;
-			productName = Pendo;
 		};
 		D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;

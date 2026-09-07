@@ -55,13 +55,13 @@ class OpenEndedQueView: UIView {
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
         
         self.currentQuestion = currentQuestion
-        questionLabel.font = .gothamRoundedBold16
+        questionLabel.font = .nunitoBold16
         questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
         
-        secondQuestionLabel.font = .gothamRoundedBold16
+        secondQuestionLabel.font = .nunitoBold16
         secondQuestionLabel.numberOfLines = 0
         secondQuestionLabel.textColor = .headingGreenColor
         secondQuestionLabel.text = currentQuestion.subQuestion
@@ -72,7 +72,7 @@ class OpenEndedQueView: UIView {
             secondInputField.text = "0"
         }
         
-        unitLabel.font = .avenirLight14
+        unitLabel.font = .arial14
         unitLabel.textColor = .headingGreenColor
         unitLabel.text = currentQuestion.inputUnit
         unitLabel.textAlignment = .left
@@ -86,7 +86,7 @@ class OpenEndedQueView: UIView {
         
         
         descriptionLabel.isHidden = false
-        descriptionLabel.font = .avenirLight14
+        descriptionLabel.font = .arial14
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = description

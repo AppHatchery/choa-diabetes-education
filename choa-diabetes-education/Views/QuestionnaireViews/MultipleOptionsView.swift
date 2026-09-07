@@ -45,7 +45,7 @@ class MultipleOptionsView: UIView {
     
     func setupView(currentQuestion: Questionnaire) {
         self.currentQuestion = currentQuestion
-        questionLabel.font = .gothamRoundedBold16
+        questionLabel.font = .nunitoBold16
         questionLabel.numberOfLines = 0
         questionLabel.textColor = .headingGreenColor
         questionLabel.text = currentQuestion.question
@@ -57,7 +57,7 @@ class MultipleOptionsView: UIView {
             thirdButton.setTitle(answerOptions[2].localized(), for: .normal)
         }
         
-        descriptionLabel.font = .avenirLight14
+        descriptionLabel.font = .arial14
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .headingGreenColor
         descriptionLabel.text = currentQuestion.description

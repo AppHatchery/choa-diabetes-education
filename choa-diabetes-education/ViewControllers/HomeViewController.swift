@@ -29,6 +29,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nutritionResourceCard: UIView!
     @IBOutlet weak var diabetesSelfManagementResourceCard: UIView!
     
+    @IBOutlet weak var knowYourCarbsView: UIView!
+    @IBOutlet weak var knowYourCarbsImage: UIImageView!
+    @IBOutlet weak var knowYourCarbsButton: UIButton!
+    
+    @IBOutlet weak var medicalReferencesLable: UILabel!
+    @IBOutlet weak var medicalReferencesButton: UIButton!
     
     var chapterContent = 0
     var quizContent = 0
@@ -40,8 +46,6 @@ class HomeViewController: UIViewController {
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
     var highBloodSugarOnly = false
-    
-    private let constantsManager = CalculatorConstantsManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +57,11 @@ class HomeViewController: UIViewController {
 
 		appearance.titleTextAttributes = [
 			.foregroundColor: UIColor.black,
-			.font: UIFont.gothamRoundedBold16
+            .font: UIFont.nunitoBold16
 		]
 		appearance.largeTitleTextAttributes = [
 			.foregroundColor: UIColor.black,
-			.font: UIFont.gothamRoundedBold16
+			.font: UIFont.nunitoBold16
 		]
 		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
 		appearance.backButtonAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.clear]
@@ -97,12 +101,22 @@ class HomeViewController: UIViewController {
         getHelpView.clipsToBounds = true
         getHelpViewImage.clipsToBounds = true
 		getHelpButton.layer.cornerRadius = 12
-		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+		getHelpButton.titleLabel?.font = .nunitoBold16
         
         getHelpView.isUserInteractionEnabled = true
         let getHelpTap = UITapGestureRecognizer(target: self, action: #selector(didTapGetHelpView))
         getHelpView.addGestureRecognizer(getHelpTap)
         
+        knowYourCarbsView.layer.cornerRadius = 12
+        knowYourCarbsView.clipsToBounds = true
+        knowYourCarbsImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+        knowYourCarbsButton.layer.cornerRadius = 12
+
+        knowYourCarbsView.isUserInteractionEnabled = true
+        let knowYourCarbsTap = UITapGestureRecognizer(target: self, action: #selector(didTapKnowYourCarbsView))
+        knowYourCarbsView.addGestureRecognizer(knowYourCarbsTap)
+        knowYourCarbsButton.addTarget(self, action: #selector(didTapKnowYourCarbsView), for: .touchUpInside)
+
         resourceCards.forEach {
             $0.layer.cornerRadius = 8
         }
@@ -110,6 +124,7 @@ class HomeViewController: UIViewController {
         
 //        setupButtonConfigs()
         addTapRecognizersToResourceCards()
+        attachMedicalReferencesInteractions()
     }
     
     override func viewDidLayoutSubviews() {
@@ -147,7 +162,7 @@ class HomeViewController: UIViewController {
         insulinButtonsConfig.titleTextAttributesTransformer =
             UIConfigurationTextAttributesTransformer { incoming in
                 var out = incoming
-                out.font = .gothamRoundedMedium16
+                out.font = .nunitoBold16
                 return out
             }
         
@@ -165,7 +180,7 @@ class HomeViewController: UIViewController {
 //        insulinButtonsConfig.titleTextAttributesTransformer =
 //            UIConfigurationTextAttributesTransformer { incoming in
 //                var out = incoming
-//                out.font = .gothamRoundedMedium16
+//                out.font = .nunitoBold16
 //                out.foregroundColor = UIColor.secondaryRedColor
 //                out.backgroundColor = UIColor.whiteColor
 //                return out
@@ -249,6 +264,23 @@ class HomeViewController: UIViewController {
         //        performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
     }
 
+    // MARK: - Medical References
+
+    private func attachMedicalReferencesInteractions() {
+        medicalReferencesLable.isUserInteractionEnabled = true
+        medicalReferencesLable.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(didTapMedicalReferences))
+        )
+
+        medicalReferencesButton.addTarget(self, action: #selector(didTapMedicalReferences), for: .touchUpInside)
+    }
+
+    @objc private func didTapMedicalReferences() {
+        let medicalReferencesVC = MedicalReferencesViewController()
+        medicalReferencesVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(medicalReferencesVC, animated: true)
+    }
+    
     // MARK: - Tap handlers for resource cards
     
     @objc private func didTapEducationalResourcesLabel() {
@@ -285,21 +317,12 @@ class HomeViewController: UIViewController {
 
 		let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
 
-        if constantsManager.hasStoredConstants {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        } else {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        }
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+			destinationVC.insulinForFoodBoolean = insulinForFood
+		}
 	}
 
 	@IBAction func tappedHighSugarButton(_ sender: Any) {
@@ -309,22 +332,14 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = true
 
-        if constantsManager.hasStoredConstants {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                destinationVC.highBloodSugarOnly = highBloodSugarOnly
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        } else {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        }
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+
+			destinationVC.insulinForFoodBoolean = insulinForFood
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+            destinationVC.highBloodSugarOnly = highBloodSugarOnly
+		}
 	}
 
 
@@ -335,31 +350,28 @@ class HomeViewController: UIViewController {
 		insulinForHighBloodSugar = true
         highBloodSugarOnly = false
 
-        if constantsManager.hasStoredConstants {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        } else {
-            if let destinationVC = storyboard.instantiateViewController(withIdentifier: "calculatorOnboardingWelcome") as? CalculatorOnBoardingWelcomeViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
-                destinationVC.insulinForFoodBoolean = insulinForFood
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
-        }
+		if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
+			destinationVC.hidesBottomBarWhenPushed = true
+			self.navigationController?.pushViewController(destinationVC, animated: true)
+			destinationVC.insulinForFoodBoolean = insulinForFood
+			destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugar
+		}
 	}
     
     @objc private func didTapGetHelpView() {
         tappedGetHelpButton(self)
     }
 
+    @objc private func didTapKnowYourCarbsView() {
+        let knowYourCarbsVC = KnowYourCarbsViewController()
+        knowYourCarbsVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(knowYourCarbsVC, animated: true)
+    }
+
 	@IBAction func tappedGetHelpButton(_ sender: Any) {
 		insulinForFood = true
 		insulinForHighBloodSugar = true
-		getHelpButton.titleLabel?.font = .gothamRoundedMedium16
+		getHelpButton.titleLabel?.font = .nunitoBold16
         
 
 		let manager = QuestionnaireManager.instance

@@ -33,29 +33,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		UINavigationBar.appearance().scrollEdgeAppearance = appearance
 
         // Override point for customization after application launch.
-//        let appKey = "eyJhbGciOiJSUzI1NiIsImtpZCI6IiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiIyZWU3M2U5OGZhZWU0YmE2ZjIzZDllNzZmNTFiYzllMTRiZGZmYTFhNjIwNjcwZmUwNzJlMjkzNWFhNTQ5YzgxNTU2NTE5N2UwOWVmNTU0MzA0ZWY5NmYxZWNiNDkyYzg0ZWNjNDM0ZjVkMDE2NGE1ZTMxZDk4YmQ5ZDVjZjExNi4wNzFjODA5YzhkYTc2OThiZTU0OWU1YjRkOGNmZTBkOS4wYzE2MjA1NjFkODMyOTExNmIwYjJkNmIwNDIwOGE1Zjk3ZmIwOWJlZTYyYjZiNWYyZTUzNTQxOTg5NDIzNGRjIn0.UKO49xBA1FKCsxv3TKrxqGTG2CjF3NbjEZBcIxOK0zE9bNWNPIuQr2aBpUKoUMS-rhbZyFxAUlmG4kkPPgKK1jaY5iooUbLW9_PE6EV4jCrnWjffsC3b1v9TrN5cSLlb8UE_Gf2hZZh3HH11AY5gfMgedKyG0B-MWFWmEAw9kcw"
-//        PendoManager.shared().setup(appKey)
+        let appKey = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiJiMDlhYTE4MjM0MjQ3NWEwYWQzOGQwZGEzYmU2MmQzYWQyNDg3ZGM4MTFmYjUyNTJiOTIxMmM0MDZlODU4ZWMzM2RmYWQyN2U0YjliNzMxYTgyNjk2Yjc0NGIxMmY0M2FkOWQ1M2M0YmE4ZjA5YzI2OWRhM2YwMjExYWQ0YzZkMjgwNjAwNzk2NDNhZThkY2ZlY2IxZWE2ODVhYTUxMTM5YTE1ZmFmZGNiYWE1Y2UyN2Q5ZmYwMDg5MjRjNjhhZWY5MGEyZDNiZDZkMWYzY2E2MmE3YzU3MmQ2OTNiNDNkYjcyMzVmNDU1MTFlOGRhODA5YzAyNmFkMTgxMzFhY2MwYmZjMmQ2YjQ2N2JiOTc3MjIzODU1YjVjMTcwZGY3MGIuOWU5MDNkMDEzOTkzYWRhOWE1OTk4NWUzMGYyMDI0N2MuYWJlYzQ5NTgzNjE2OTA2M2M4OGIwMGI1NWM4MWQ3ODQ4ZjZkYWYzZThhYzRiMTdmOWExYzhhNmJiMjJhZDFjNiJ9.FjISu5oGApqJSll8TUdQV5PLg3jceYnC74VAWvhOXSO3DfvViriua6sMoygOF8vRYornQ_f-cTxLTAf3M7EhanqBhVrYUAOIsd83nDPrYTxIc0TLzzpfb634WTSVNomhgXqc2IUyx3AnlLTJ-TYRH3h5_ilDZ0Ns_w85zv_ymeI"
+        PendoManager.shared().setup(appKey)
 
         // Set up Pendo
-        // TODO: Add firebase installation
-        // Set visitor as "" to anonymize the entries
-        // Set visitor as weekly cohorts
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "mm"
+        let accountId = "TypeU-Test" // Pilot
+        let visitorIdKey = "visitorId"
+        // Update with each release so new visitors are tagged with the cohort they joined on.
+        // Version number alone doesn’t tell you when they joined; this does.
+        let releaseCohort = "Mar26"
+        
+        // Get or create visitor ID
+        // Existing users keep their past ID; new users get tagged with this release’s cohort
+        let visitorId: String
+        if let existingId = UserDefaults.standard.string(forKey: visitorIdKey) {
+            visitorId = existingId
+        } else {
+            visitorId = "Pilot-\(releaseCohort)-\(UUID())"
+            UserDefaults.standard.set(visitorId, forKey: visitorIdKey)
+        }
+        
+        // Launch Pendo session
+        PendoManager.shared().startSession(
+            visitorId,
+            accountId: accountId,
+            visitorData: [:],
+            accountData: [:]
+        )
+        
+        // Save app version on file for future update changes
+        let appVersionKey = "PreviousAppVersion"
+        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
-        let visitorId = "Tester-May-\(UUID())" // Could use Cohorts in the future to track patients
-        let accountId = "TypeU-Beta" // TypeU-Test TypeU-Beta for testing
-        // Use TypeU-Release when the educators give the go and we start bringing in patients
-        // Potentially also use Pendo Guides to answer, are you a CHOA patient?
-
-//        PendoManager.shared().startSession(
-//             visitorId,
-//             accountId: accountId,
-//             visitorData: [:],
-//             accountData: [:]
-//         )
-//
-//        FirebaseApp.configure()
+        UserDefaults.standard.set(currentVersion, forKey: appVersionKey)
+        
+        FirebaseApp.configure()
 
         return true
     }

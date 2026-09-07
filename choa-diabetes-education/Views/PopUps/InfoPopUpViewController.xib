@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,8 +11,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Gotham Rounded Medium.otf">
-            <string>GothamRounded-Medium</string>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
         </array>
     </customFonts>
     <objects>
@@ -36,24 +36,24 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrb-iU-raj" userLabel="Content View">
-                    <rect key="frame" x="20" y="227.33333333333334" width="353" height="397.33333333333326"/>
+                    <rect key="frame" x="20" y="226.66666666666666" width="353" height="398.66666666666674"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydP-Jb-kCY">
-                            <rect key="frame" x="24" y="24" width="305" height="20"/>
-                            <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                            <rect key="frame" x="24" y="24" width="305" height="27.333333333333329"/>
+                            <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                             <color key="textColor" name="choaGreenColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVt-j2-JDC">
-                            <rect key="frame" x="24" y="67.999999999999957" width="305" height="233.33333333333337"/>
+                            <rect key="frame" x="24" y="69.333333333333329" width="305" height="233.33333333333337"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGo-1J-u4K" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                            <rect key="frame" x="24" y="325.33333333333326" width="305" height="48"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGo-1J-u4K" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                            <rect key="frame" x="24" y="326.66666666666674" width="305" height="48"/>
                             <color key="backgroundColor" name="choaGreenColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="lum-bD-Evo"/>
@@ -62,7 +62,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Close" imagePadding="8">
                                 <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                <fontDescription key="titleFontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
@@ -76,7 +76,7 @@
                         <constraint firstItem="ydP-Jb-kCY" firstAttribute="leading" secondItem="rrb-iU-raj" secondAttribute="leading" constant="24" id="RnQ-Bc-Dsc"/>
                         <constraint firstAttribute="trailing" secondItem="ydP-Jb-kCY" secondAttribute="trailing" constant="24" id="VVD-H4-Vl8"/>
                         <constraint firstItem="PGo-1J-u4K" firstAttribute="top" secondItem="EVt-j2-JDC" secondAttribute="bottom" constant="24" id="ZkI-Xn-giC"/>
-                        <constraint firstItem="EVt-j2-JDC" firstAttribute="top" secondItem="ydP-Jb-kCY" secondAttribute="bottom" constant="24" id="a3l-vm-agv"/>
+                        <constraint firstItem="EVt-j2-JDC" firstAttribute="top" secondItem="ydP-Jb-kCY" secondAttribute="bottom" constant="18" id="a3l-vm-agv"/>
                         <constraint firstAttribute="bottom" secondItem="PGo-1J-u4K" secondAttribute="bottom" constant="24" id="fjy-Ue-iIS"/>
                         <constraint firstItem="PGo-1J-u4K" firstAttribute="leading" secondItem="rrb-iU-raj" secondAttribute="leading" constant="24" id="hI1-K1-HUU"/>
                         <constraint firstAttribute="trailing" secondItem="EVt-j2-JDC" secondAttribute="trailing" constant="24" id="lL5-oR-Hef"/>

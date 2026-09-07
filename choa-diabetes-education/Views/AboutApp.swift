@@ -16,6 +16,7 @@ class AboutApp: UIView {
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
     @IBOutlet weak var supportTextView: UITextView!
     
+    @IBOutlet weak var versionNumber: UILabel!
     
     //------------------------------------------------------------------------------
     override init( frame: CGRect ) {
@@ -46,6 +47,9 @@ class AboutApp: UIView {
         aboutDescriptionLabel.text = "About.Description".localized()
         supportTextView.text = "About.Support.Description".localized()
         
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                versionNumber.text = "v\(version)"
+            }
     }
     
     @IBAction func searchForResources(_ sender: UIButton) {

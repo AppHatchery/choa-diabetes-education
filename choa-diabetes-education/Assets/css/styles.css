@@ -1,11 +1,6 @@
 @font-face {
-  font-family: GothamRoundedBold;
-  src: url("Gotham Rounded Bold.otf");
-}
-
-@font-face {
-  font-family: GothamRoundedMedium;
-  src: url("Gotham Rounded Medium.otf");
+  font-family: NunitoBold;
+  src: url("Nunito-Bold.ttf");
 }
 
 @font-face {
@@ -35,7 +30,7 @@ h5,
 h6,
 .uk-h6 {
   color: var(--primary-green);
-  font-family: GothamRoundedBold, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: NunitoBold, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
@@ -44,7 +39,7 @@ h4,
 .uk-h4,
 h5,
 .uk-h5 {
-  font-family: GothamRoundedMedium, -apple-system, BlinkMacSystemFont,
+  font-family: NunitoBold, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
@@ -53,7 +48,7 @@ p,
 div,
 span {
   font-family: NunitoRegular, Roboto;
-  /* Fallback to sans-serif if AvenirRoman isn't available */
+  /* Fallback to sans-serif if Arial isn't available */
   line-height: 28px;
 }
 
@@ -113,7 +108,7 @@ a {
   background-color: #00a94f;
   color: #ffffff;
   border-radius: 12px;
-  font-family: GothamRoundedMedium;
+  font-family: NunitoBold;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -158,9 +153,54 @@ tr > td:nth-last-child(2) {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .grid-1-2 {
   grid-template-columns: 1fr 2fr;
   justify-items: start;
+}
+
+/* Food group tiles: image on a tinted card with a caption beneath. */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.food-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.food-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.food-item span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.food-group-title {
+  font-family: NunitoBold, Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 22px;
+  color: #000000;
+  margin: 20px 0 10px;
 }
 
 .flex {

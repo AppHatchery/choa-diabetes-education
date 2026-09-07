@@ -36,7 +36,7 @@ open class RoundedButton: UIButton {
         config.title = currentTitle
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var out = incoming
-            out.font = .gothamRoundedMedium16
+            out.font = .nunitoBold16
             return out
         }
 

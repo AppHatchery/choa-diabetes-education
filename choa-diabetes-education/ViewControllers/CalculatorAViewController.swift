@@ -63,15 +63,20 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = .black
+        
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
         config.image = UIImage(named: "edit_pencil")
-
         config.imagePlacement = .trailing
-        config.imagePadding = 2
-
-        // Remove default padding
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        config.imagePadding = 4
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        config.baseForegroundColor = .black
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var out = incoming
+            out.font = .nunito16
+            return out
+        }
 
         let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
             self?.editButtonTapped()
@@ -114,7 +119,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             nextButton
                 .setTitleWithStyle(
                     "Exit",
-                    font: .gothamRoundedMedium20,
+                    font: .nunitoBold20,
                     color: .choaGreenColor
                 )
             nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -229,31 +234,31 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         // Use that screen to get the coordinate space to convert from.
 //        let fromCoordinateSpace = screen.coordinateSpace
-//        
-//        
+//
+//
 //        // Get your view's coordinate space.
 //        let toCoordinateSpace: UICoordinateSpace = view
-//        
-//        
+//
+//
 //        // Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.
 //        let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
-//        
+//
 //        // Get the safe area insets when the keyboard is offscreen.
 //        var bottomOffset = view.safeAreaInsets.bottom
-//        
+//
 //        // Get the intersection between the keyboard's frame and the view's bounds to work with the
 //        // part of the keyboard that overlaps your view.
 //        let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)
-//        
+//
 //        // Check whether the keyboard intersects your view before adjusting your offset.
 //        if !viewIntersection.isEmpty {
-//            
+//
 //            // Adjust the offset by the difference between the view's height and the height of the
 //            // intersection rectangle.
 //            bottomOffset = view.bounds.maxY - viewIntersection.minY
 //        }
-//        
-//        
+//
+//
 //        // The jitter before was caused by having a contentView inside the main view that was moving instead of the view itself 022423
 //        // Use the new offset to adjust your UI, for example by changing a layout guide, offsetting
 //        // your view, changing a scroll inset, and so on. This example uses the new offset to update
@@ -313,6 +318,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                 )
                 
                 insulinForFood.text = "\(foodInsulin.cleanString) units"
+                PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs": currentTotalCarbs, "ratio": currentCarbRatio])
             }
 
             totalCarbsField.textColor = .primaryBlue
@@ -385,7 +391,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         if insulinForFoodBoolean && insulinForHighBloodSugarBoolean == true {
             if (totalCarbs > 0 && carbRatio > 0){
-                PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs":totalCarbs,"ratio":carbRatio])
                 if insulinForHighBloodSugarBoolean {
                     performSegue(withIdentifier: "SegueToCalculatorBViewController", sender: nil)
                 } else {
@@ -493,4 +498,3 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
     }
 }
-
