@@ -69,6 +69,23 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
         navigationController?.popViewController(animated: true)
     }
     
+    /// A page opened from a link becomes its own screen on the navigation stack, so the
+    /// system back button steps back through the pages the reader has opened
+    private func pushResourcePage(named fileName: String) {
+        guard Bundle.main.url(forResource: fileName, withExtension: "html") != nil else {
+            print("Missing resource page: \(fileName).html")
+            return
+        }
+        
+        let resourcePageViewController = ResourcePageViewController()
+        resourcePageViewController.contentURL = fileName
+        resourcePageViewController.pageTitle = pageTitle
+        resourcePageViewController.fontSize = fontSize
+        resourcePageViewController.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(resourcePageViewController, animated: true)
+    }
+    
     private func setupUI() {
         view.addSubview(webView)
         
@@ -110,6 +127,14 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
             if url.host?.contains("youtube.com") == true || url.host?.contains("youtu.be") == true {
                 UIApplication.shared.open(url)
                 decisionHandler(.cancel, preferences)
+                return
+            }
+            
+            // Tapping through to another bundled page pushes it rather than navigating
+            // in place, so back returns to the page it was opened from
+            if navigationAction.navigationType == .linkActivated, url.isFileURL {
+                decisionHandler(.cancel, preferences)
+                pushResourcePage(named: url.deletingPathExtension().lastPathComponent)
                 return
             }
         }

@@ -112,7 +112,6 @@ class ResourcesViewController: UIViewController {
     }
     
     @objc private func didTapSnackRecipesCard() {
-        // TODO: point this at the snack recipes page once its html has been added
         openResourcePage(named: "snack_recipes", title: "Snack recipes")
     }
     

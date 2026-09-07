@@ -151,9 +151,6 @@
 		B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */; };
 		B9686D28F588C8FCBBF5A7BF /* CustomFoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */; };
 		BF20A0CC6220213B17618E69 /* TopRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */; };
-		CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B102 /* food_that_dont_raise */; };
-		CF01A1B2000000000000B103 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B104 /* food_that_raises */; };
-		CF01A1B2000000000000B105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000B106 /* low_carb */; };
 		CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */; };
 		CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */; };
 		CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */; };
@@ -210,6 +207,15 @@
 		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF01A1B2000000000000F101 /* food_that_raises in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F102 /* food_that_raises */; };
+		CF01A1B2000000000000F103 /* food_that_dont_raise in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F104 /* food_that_dont_raise */; };
+		CF01A1B2000000000000F105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F106 /* low_carb */; };
+		CF01A1B2000000000000F107 /* snack_recipes in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F108 /* snack_recipes */; };
+		CF01A1B2000000000000E101 /* snack_recipes.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E102 /* snack_recipes.html */; };
+		CF01A1B2000000000000E103 /* egg_frittata_muffins.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E104 /* egg_frittata_muffins.html */; };
+		CF01A1B2000000000000E105 /* no_bake_granola_bar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E106 /* no_bake_granola_bar.html */; };
+		CF01A1B2000000000000E107 /* almond_crusted_chicken_fingers.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */; };
+		CF01A1B2000000000000E109 /* brown_rice.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E110 /* brown_rice.html */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
 		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
@@ -450,9 +456,6 @@
 		B4F6AC002E5A4F2B0037D323 /* FinalStepCallChoaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaView.swift; sourceTree = "<group>"; };
 		B4F6AC012E5A4F2B0037D323 /* FinalStepCallChoaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepCallChoaView.xib; sourceTree = "<group>"; };
 		C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFoodRowView.swift; sourceTree = "<group>"; };
-		CF01A1B2000000000000B102 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
-		CF01A1B2000000000000B104 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
-		CF01A1B2000000000000B106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
 		CF01A1B2000000000000C102 /* CalculatorOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingViewController.swift; sourceTree = "<group>"; };
 		CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
 		CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
@@ -510,6 +513,15 @@
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000F102 /* food_that_raises */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_raises; sourceTree = "<group>"; };
+		CF01A1B2000000000000F104 /* food_that_dont_raise */ = {isa = PBXFileReference; lastKnownFileType = folder; path = food_that_dont_raise; sourceTree = "<group>"; };
+		CF01A1B2000000000000F106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
+		CF01A1B2000000000000F108 /* snack_recipes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snack_recipes; sourceTree = "<group>"; };
+		CF01A1B2000000000000E102 /* snack_recipes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = snack_recipes.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E104 /* egg_frittata_muffins.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = egg_frittata_muffins.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E106 /* no_bake_granola_bar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = no_bake_granola_bar.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = almond_crusted_chicken_fingers.html; sourceTree = "<group>"; };
+		CF01A1B2000000000000E110 /* brown_rice.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = brown_rice.html; sourceTree = "<group>"; };
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
@@ -815,6 +827,11 @@
 				B4DBE87C2F10F9420075C7F3 /* 3_1_3_managing_low_blood_sugar.html */,
 				B4DBE87E2F10FC9B0075C7F3 /* 3_2_1_when_to_call_a_doctor.html */,
 				CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */,
+				CF01A1B2000000000000E102 /* snack_recipes.html */,
+				CF01A1B2000000000000E104 /* egg_frittata_muffins.html */,
+				CF01A1B2000000000000E106 /* no_bake_granola_bar.html */,
+				CF01A1B2000000000000E108 /* almond_crusted_chicken_fingers.html */,
+				CF01A1B2000000000000E110 /* brown_rice.html */,
 				CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */,
 				CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */,
 			);
@@ -832,9 +849,10 @@
 				CF1408CF304052AD0002FD8A /* starchy_vegetables */,
 				CF1408D4304052AD0002FD8A /* sugary_foods */,
 				CF1408D9304052AD0002FD8A /* sweets_and_desserts */,
-				CF01A1B2000000000000B102 /* food_that_dont_raise */,
-				CF01A1B2000000000000B104 /* food_that_raises */,
-				CF01A1B2000000000000B106 /* low_carb */,
+				CF01A1B2000000000000F108 /* snack_recipes */,
+				CF01A1B2000000000000F106 /* low_carb */,
+				CF01A1B2000000000000F104 /* food_that_dont_raise */,
+				CF01A1B2000000000000F102 /* food_that_raises */,
 				B4DBE8822F11024E0075C7F3 /* arrow_right.png */,
 				B4AB10C72F0E974300F74329 /* hope_blurry_vision.png */,
 				B4AB10C12F0E964B00F74329 /* hope_excessive_hunger.png */,
@@ -1456,10 +1474,16 @@
 				CF140908304052AD0002FD8A /* milk.png in Resources */,
 				CF140909304052AD0002FD8A /* pies.png in Resources */,
 				CF14090A304052AD0002FD8A /* bread.png in Resources */,
+				CF01A1B2000000000000F101 /* food_that_raises in Resources */,
+				CF01A1B2000000000000F103 /* food_that_dont_raise in Resources */,
+				CF01A1B2000000000000F105 /* low_carb in Resources */,
+				CF01A1B2000000000000F107 /* snack_recipes in Resources */,
+				CF01A1B2000000000000E101 /* snack_recipes.html in Resources */,
+				CF01A1B2000000000000E103 /* egg_frittata_muffins.html in Resources */,
+				CF01A1B2000000000000E105 /* no_bake_granola_bar.html in Resources */,
+				CF01A1B2000000000000E107 /* almond_crusted_chicken_fingers.html in Resources */,
+				CF01A1B2000000000000E109 /* brown_rice.html in Resources */,
 				CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */,
-				CF01A1B2000000000000B101 /* food_that_dont_raise in Resources */,
-				CF01A1B2000000000000B103 /* food_that_raises in Resources */,
-				CF01A1B2000000000000B105 /* low_carb in Resources */,
 				CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */,
 				CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */,
 				B4F6AC032E5A4F2C0037D323 /* FinalStepCallChoaView.xib in Resources */,
