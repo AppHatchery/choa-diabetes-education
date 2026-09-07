@@ -20,47 +20,12 @@ class KnowYourCarbsViewController: UIViewController {
     private let customFoods = CustomFoodsManager.shared
     private var filteredCategories: [CarbCategory] = []
 
-    /// A row is one 64pt image plus 12pt of padding above and below.
-    private static let defaultRowHeight: CGFloat = 88
-
     /// Category titles never wrap, so a header is one line plus its padding.
     private static let sectionHeaderHeight: CGFloat = {
         ceil(UIFont.nunitoMedium20.lineHeight)
             + CarbCategorySectionHeader.topInset
             + CarbCategorySectionHeader.bottomInset
     }()
-
-    /// Exact row heights, measured once per food and keyed by name so they
-    /// survive filtering and reloads. Self-sizing cells cannot settle reliably
-    /// around a hosted SwiftUI view, so heights are computed up front instead.
-    private var rowHeightCache: [String: CGFloat] = [:]
-
-    /// Width the cached heights were measured against; they are void if it changes.
-    private var rowHeightCacheWidth: CGFloat = 0
-
-    private func rowHeight(for food: CarbFood) -> CGFloat {
-        let width = tableView.bounds.width
-        guard width > 0 else { return Self.defaultRowHeight }
-
-        if width != rowHeightCacheWidth {
-            rowHeightCache.removeAll()
-            rowHeightCacheWidth = width
-        }
-
-        if let cached = rowHeightCache[food.name] {
-            return cached
-        }
-
-        // Ask SwiftUI itself for the height at the width the row will actually
-        // get, rather than inferring it from font metrics.
-        let available = width - CarbFoodRowView.horizontalInset * 2
-        let measured = UIHostingController(rootView: CarbFoodRowView(food: food))
-            .sizeThatFits(in: CGSize(width: available, height: .greatestFiniteMagnitude))
-
-        let height = ceil(measured.height)
-        rowHeightCache[food.name] = height
-        return height
-    }
 
     /// Built-in catalogue merged with the user's own items.
     private var allCategories: [CarbCategory] {
@@ -292,9 +257,9 @@ class KnowYourCarbsViewController: UIViewController {
             CarbCategorySectionHeader.self,
             forHeaderFooterViewReuseIdentifier: CarbCategorySectionHeader.reuseIdentifier
         )
-        tableView.estimatedRowHeight = Self.defaultRowHeight
-        // Every height is exact: nothing about this table is left for UIKit to
-        // estimate, so its content size can never be revised mid-scroll.
+        // Rows size themselves from the hosted SwiftUI view's own constraints.
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 88
         tableView.sectionHeaderHeight = Self.sectionHeaderHeight
         tableView.estimatedSectionHeaderHeight = Self.sectionHeaderHeight
         tableView.sectionFooterHeight = 0
@@ -368,14 +333,6 @@ extension KnowYourCarbsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         Self.sectionHeaderHeight
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        rowHeight(for: displayedCategories[indexPath.section].foods[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
