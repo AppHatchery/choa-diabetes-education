@@ -5,7 +5,7 @@
 //  Created by Maxwell Kapezi Jr on 28/10/2025.
 //
 
-enum CalculatorOnboardingQuestion: Int {
+enum CalculatorOnboardingQuestion: Int, CaseIterable {
     case carbRatio = 0
     case targetBloodSugar = 1
     case correctionFactor = 2

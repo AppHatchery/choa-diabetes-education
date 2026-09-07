@@ -14,7 +14,9 @@ class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var nextButton: PrimaryButton!
     
-    private let progressView = UIProgressView(progressViewStyle: .bar)
+    // Each question is its own pushed view controller, so the bar should show the
+    // new position straight away rather than animating up from empty
+    private let progressBar = NavigationProgressBar(animatesProgressChanges: false)
 
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
@@ -68,33 +70,20 @@ class CalculatorOnBoardingViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem = rightButton
         
-        setupProgressBarInNavigationBar()
+        navigationItem.titleView = progressBar
     }
     
-    private func setupProgressBarInNavigationBar() {
-        let navBarWidth = UIScreen.main.bounds.width - 150
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: navBarWidth, height: 20))
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        // Configure progress view
-        progressView.frame = CGRect(x: 0, y: 5, width: navBarWidth, height: 20)
-        progressView.progressTintColor = .progressBarColor
-        progressView.trackTintColor = UIColor.lightGray.withAlphaComponent(0.3)
-        progressView.layer.cornerRadius = 2
-        progressView.clipsToBounds = true
-        
-        containerView.addSubview(progressView)
-        navigationItem.titleView = containerView
+        progressBar.updateWidth(for: navigationController?.navigationBar)
     }
     
     private func updateProgressBar() {
-        let totalQuestions: Float = 3.0
-        let currentQuestionNumber: Float = Float(currentQuestion.rawValue + 1)
-        let progress = currentQuestionNumber / totalQuestions
+        let totalQuestions = Float(CalculatorOnboardingQuestion.allCases.count)
+        let currentQuestionNumber = Float(currentQuestion.rawValue + 1)
         
-        // Animate progress update
-        UIView.animate(withDuration: 0.3) {
-            self.progressView.setProgress(progress, animated: true)
-        }
+        progressBar.setProgress(currentQuestionNumber / totalQuestions)
     }
     
     private func setupTextField() {
