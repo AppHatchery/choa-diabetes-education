@@ -48,7 +48,7 @@ enum KnowYourCarbsData {
             CarbFood(name: "Light Yogurt", servingSize: "6 oz", carbGrams: 15, imageName: "im_light_yogurt"),
             CarbFood(name: "Regular Yogurt", servingSize: "6 oz", carbGrams: 30, imageName: "im_regular_yogurt")
         ]),
-        CarbCategory(title: "Starchy Vegetables", foods: [
+        CarbCategory(title: "Starchy Veg", foods: [
             CarbFood(name: "Baked Potato", servingSize: "1 small potato", carbGrams: 30, imageName: "im_baked_potato"),
             CarbFood(name: "Mashed Potato", servingSize: "1 cup", carbGrams: 15, imageName: "im_mashed_potatoes"),
             CarbFood(name: "Fast Food French Fries", servingSize: "small size", carbGrams: 30, imageName: "im_french_fries"),

@@ -113,23 +113,22 @@ class KnowYourCarbsViewController: UIViewController {
     private func setupAddButton() {
         var config = UIButton.Configuration.plain()
         config.title = "Add"
-        config.image = UIImage(systemName: "plus")
+        config.image = UIImage(
+            systemName: "plus",
+            withConfiguration: UIImage
+                .SymbolConfiguration(pointSize: 12, weight: .bold)
+        )
         config.imagePlacement = .trailing
         config.imagePadding = 4
-        config.contentInsets = .zero
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
         config.baseForegroundColor = .black
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var out = incoming
-            out.font = .nunitoBold16
+            out.font = .nunito16
             return out
         }
 
         let addButton = UIButton(configuration: config)
-        addButton
-            .setPreferredSymbolConfiguration(
-                UIImage.SymbolConfiguration(pointSize: 0, weight: .bold),
-                forImageIn: .normal
-            )
         addButton.addTarget(self, action: #selector(addItemTapped), for: .touchUpInside)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)

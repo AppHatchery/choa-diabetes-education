@@ -40,6 +40,16 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
         navigationItem.title = pageTitle
         navigationItem.title = ""
         
+        let icon = UIImage(named: "close_black")
+        let rightButton = UIBarButtonItem(
+            image: icon,
+            style: .plain,
+            target: self,
+            action: #selector(didSelectExitAction)
+        )
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
         let config = WKWebViewConfiguration()
         
         webView = WKWebView(frame: .zero, configuration: config)
@@ -53,6 +63,10 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
             // Grant read access to the entire bundle so CSS, JS, fonts, and other resources can be loaded
             webView.loadFileURL(htmlURL, allowingReadAccessTo: Bundle.main.bundleURL)
         }
+    }
+    
+    @objc func didSelectExitAction() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setupUI() {
