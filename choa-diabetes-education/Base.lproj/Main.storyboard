@@ -944,166 +944,364 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beyond Basics Class Recap" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
-                                <rect key="frame" x="20" y="74" width="252.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                <color key="textColor" name="primaryBlue"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eP5-fU-nic">
-                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxE-fH-2Uv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="915"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEc-P8-bn4" userLabel="Diabetes Basics View">
-                                                <rect key="frame" x="20" y="20" width="335" height="150"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-Ot-8WR">
+                                                <rect key="frame" x="20" y="0.0" width="335" height="895"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Diabetes Basics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-ed-Y3g">
-                                                        <rect key="frame" x="20" y="20" width="178" height="27.5"/>
-                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="fIL-aN-PVj">
-                                                        <rect key="frame" x="205" y="40" width="130" height="110"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="130" id="JiZ-lN-Rq5"/>
-                                                            <constraint firstAttribute="height" constant="110" id="qNe-CQ-2he"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Understanding diabetes, monitoring, and insulin use." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-0l-ca5">
-                                                        <rect key="frame" x="20" y="96.5" width="185" height="33.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" name="secondaryMeadowGreen400"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="fqd-0l-ca5" secondAttribute="bottom" constant="20" id="39F-yB-31x"/>
-                                                    <constraint firstItem="fIL-aN-PVj" firstAttribute="leading" secondItem="fqd-0l-ca5" secondAttribute="trailing" id="Dfd-YT-rEH"/>
-                                                    <constraint firstItem="fIL-aN-PVj" firstAttribute="leading" secondItem="S7q-ed-Y3g" secondAttribute="trailing" constant="7" id="HyX-mt-FyF"/>
-                                                    <constraint firstItem="S7q-ed-Y3g" firstAttribute="leading" secondItem="nEc-P8-bn4" secondAttribute="leading" constant="20" id="Ifr-W6-F3Q"/>
-                                                    <constraint firstItem="S7q-ed-Y3g" firstAttribute="top" secondItem="nEc-P8-bn4" secondAttribute="top" constant="20" id="JNb-jG-pPc"/>
-                                                    <constraint firstAttribute="height" constant="150" id="Qdi-dC-JNb"/>
-                                                    <constraint firstItem="fqd-0l-ca5" firstAttribute="leading" secondItem="nEc-P8-bn4" secondAttribute="leading" constant="20" id="VpJ-gL-lku"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fIL-aN-PVj" secondAttribute="trailing" id="Wk6-Jn-gjW"/>
-                                                    <constraint firstAttribute="bottom" secondItem="fIL-aN-PVj" secondAttribute="bottom" id="tkO-LT-kyl"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KsJ-Yr-eBu" userLabel="Nutrition and Carb Counting View">
-                                                <rect key="frame" x="20" y="182" width="335" height="150"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0z-Jk-HEQ">
-                                                        <rect key="frame" x="20" y="20" width="178" height="55"/>
-                                                        <string key="text">Nutrition and 
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="odf-6R-wow" userLabel="Basics Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="513.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beyond Basics Class Recap" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                <color key="textColor" name="primaryBlue"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-rk-b80">
+                                                                <rect key="frame" x="0.0" y="39.5" width="335" height="474"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEc-P8-bn4" userLabel="Diabetes Basics View">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Diabetes Basics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-ed-Y3g">
+                                                                                <rect key="frame" x="20" y="20" width="178" height="27.5"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="fIL-aN-PVj">
+                                                                                <rect key="frame" x="205" y="40" width="130" height="110"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="130" id="JiZ-lN-Rq5"/>
+                                                                                    <constraint firstAttribute="height" constant="110" id="qNe-CQ-2he"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Understanding diabetes, monitoring, and insulin use." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-0l-ca5">
+                                                                                <rect key="frame" x="20" y="91.5" width="185" height="38.5"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="secondaryMeadowGreen400"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="fqd-0l-ca5" secondAttribute="bottom" constant="20" id="39F-yB-31x"/>
+                                                                            <constraint firstItem="fIL-aN-PVj" firstAttribute="leading" secondItem="fqd-0l-ca5" secondAttribute="trailing" id="Dfd-YT-rEH"/>
+                                                                            <constraint firstItem="fIL-aN-PVj" firstAttribute="leading" secondItem="S7q-ed-Y3g" secondAttribute="trailing" constant="7" id="HyX-mt-FyF"/>
+                                                                            <constraint firstItem="S7q-ed-Y3g" firstAttribute="leading" secondItem="nEc-P8-bn4" secondAttribute="leading" constant="20" id="Ifr-W6-F3Q"/>
+                                                                            <constraint firstItem="S7q-ed-Y3g" firstAttribute="top" secondItem="nEc-P8-bn4" secondAttribute="top" constant="20" id="JNb-jG-pPc"/>
+                                                                            <constraint firstAttribute="height" constant="150" id="Qdi-dC-JNb"/>
+                                                                            <constraint firstItem="fqd-0l-ca5" firstAttribute="leading" secondItem="nEc-P8-bn4" secondAttribute="leading" constant="20" id="VpJ-gL-lku"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="fIL-aN-PVj" secondAttribute="trailing" id="Wk6-Jn-gjW"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="fIL-aN-PVj" secondAttribute="bottom" id="tkO-LT-kyl"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KsJ-Yr-eBu" userLabel="Nutrition and Carb Counting View">
+                                                                        <rect key="frame" x="0.0" y="162" width="335" height="150"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0z-Jk-HEQ">
+                                                                                <rect key="frame" x="20" y="20" width="178" height="55"/>
+                                                                                <string key="text">Nutrition and 
 Carb Counting</string>
-                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="5gf-42-DnT">
-                                                        <rect key="frame" x="205" y="40" width="130" height="110"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="110" id="Yqq-8Q-njM"/>
-                                                            <constraint firstAttribute="width" constant="130" id="pSE-YO-OfQ"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essential dietary guidance for managing diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-Qy-caq">
-                                                        <rect key="frame" x="20" y="96.5" width="185" height="33.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" name="secondarySunsetOrange400"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="8cW-OP-UzE"/>
-                                                    <constraint firstItem="tLO-Qy-caq" firstAttribute="leading" secondItem="KsJ-Yr-eBu" secondAttribute="leading" constant="20" id="Ftk-LE-fnE"/>
-                                                    <constraint firstItem="e0z-Jk-HEQ" firstAttribute="leading" secondItem="KsJ-Yr-eBu" secondAttribute="leading" constant="20" id="XDt-SN-uz1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="5gf-42-DnT" secondAttribute="trailing" id="a6x-5Y-z27"/>
-                                                    <constraint firstItem="e0z-Jk-HEQ" firstAttribute="top" secondItem="KsJ-Yr-eBu" secondAttribute="top" constant="20" id="bgY-Lf-tgR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="5gf-42-DnT" secondAttribute="bottom" id="fKz-nD-ut7"/>
-                                                    <constraint firstItem="5gf-42-DnT" firstAttribute="leading" secondItem="tLO-Qy-caq" secondAttribute="trailing" id="ggd-el-Uhh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="tLO-Qy-caq" secondAttribute="bottom" constant="20" id="oZI-Fr-cUj"/>
-                                                    <constraint firstItem="5gf-42-DnT" firstAttribute="leading" secondItem="e0z-Jk-HEQ" secondAttribute="trailing" constant="7" id="yjh-Lv-3l2"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjh-6Z-EOK" userLabel="Diabetes Self Management View">
-                                                <rect key="frame" x="20" y="344" width="335" height="150"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwO-pr-yHk">
-                                                        <rect key="frame" x="20" y="20" width="178" height="55"/>
-                                                        <string key="text">Diabetes 
+                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="5gf-42-DnT">
+                                                                                <rect key="frame" x="205" y="40" width="130" height="110"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="110" id="Yqq-8Q-njM"/>
+                                                                                    <constraint firstAttribute="width" constant="130" id="pSE-YO-OfQ"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essential dietary guidance for managing diabetes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-Qy-caq">
+                                                                                <rect key="frame" x="20" y="91.5" width="185" height="38.5"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="secondarySunsetOrange400"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="150" id="8cW-OP-UzE"/>
+                                                                            <constraint firstItem="tLO-Qy-caq" firstAttribute="leading" secondItem="KsJ-Yr-eBu" secondAttribute="leading" constant="20" id="Ftk-LE-fnE"/>
+                                                                            <constraint firstItem="e0z-Jk-HEQ" firstAttribute="leading" secondItem="KsJ-Yr-eBu" secondAttribute="leading" constant="20" id="XDt-SN-uz1"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="5gf-42-DnT" secondAttribute="trailing" id="a6x-5Y-z27"/>
+                                                                            <constraint firstItem="e0z-Jk-HEQ" firstAttribute="top" secondItem="KsJ-Yr-eBu" secondAttribute="top" constant="20" id="bgY-Lf-tgR"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="5gf-42-DnT" secondAttribute="bottom" id="fKz-nD-ut7"/>
+                                                                            <constraint firstItem="5gf-42-DnT" firstAttribute="leading" secondItem="tLO-Qy-caq" secondAttribute="trailing" id="ggd-el-Uhh"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="tLO-Qy-caq" secondAttribute="bottom" constant="20" id="oZI-Fr-cUj"/>
+                                                                            <constraint firstItem="5gf-42-DnT" firstAttribute="leading" secondItem="e0z-Jk-HEQ" secondAttribute="trailing" constant="7" id="yjh-Lv-3l2"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjh-6Z-EOK" userLabel="Diabetes Self Management View">
+                                                                        <rect key="frame" x="0.0" y="324" width="335" height="150"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwO-pr-yHk">
+                                                                                <rect key="frame" x="20" y="20" width="178" height="55"/>
+                                                                                <string key="text">Diabetes 
 Self-Management</string>
-                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="hope_confused" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-34-USy">
-                                                        <rect key="frame" x="205" y="40" width="130" height="110"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="110" id="F5S-uK-NSV"/>
-                                                            <constraint firstAttribute="width" constant="130" id="MjJ-n9-Bod"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key strategies for daily care and emergencies." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQZ-J6-dX0">
-                                                        <rect key="frame" x="20" y="96.5" width="185" height="33.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="hope_confused" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-34-USy">
+                                                                                <rect key="frame" x="205" y="40" width="130" height="110"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="110" id="F5S-uK-NSV"/>
+                                                                                    <constraint firstAttribute="width" constant="130" id="MjJ-n9-Bod"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key strategies for daily care and emergencies." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQZ-J6-dX0">
+                                                                                <rect key="frame" x="20" y="91.5" width="185" height="38.5"/>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="secondaryOrchidPurple400"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="5c5-34-USy" secondAttribute="trailing" id="3ee-cj-026"/>
+                                                                            <constraint firstItem="NQZ-J6-dX0" firstAttribute="leading" secondItem="Kjh-6Z-EOK" secondAttribute="leading" constant="20" id="6oj-NS-udM"/>
+                                                                            <constraint firstItem="WwO-pr-yHk" firstAttribute="top" secondItem="Kjh-6Z-EOK" secondAttribute="top" constant="20" id="BBM-A7-3UJ"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="NQZ-J6-dX0" secondAttribute="bottom" constant="20" id="Ccd-OP-l72"/>
+                                                                            <constraint firstItem="5c5-34-USy" firstAttribute="leading" secondItem="NQZ-J6-dX0" secondAttribute="trailing" id="HIx-TW-jaU"/>
+                                                                            <constraint firstItem="WwO-pr-yHk" firstAttribute="leading" secondItem="Kjh-6Z-EOK" secondAttribute="leading" constant="20" id="HL9-VV-DF5"/>
+                                                                            <constraint firstItem="5c5-34-USy" firstAttribute="leading" secondItem="WwO-pr-yHk" secondAttribute="trailing" constant="7" id="M6R-I2-913"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="5c5-34-USy" secondAttribute="bottom" id="ixu-Mq-EAS"/>
+                                                                            <constraint firstAttribute="height" constant="150" id="uvx-46-3Km"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="5QA-SE-Oao" userLabel="Food and Nutrition Stack View">
+                                                        <rect key="frame" x="0.0" y="533.5" width="335" height="361.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food &amp; nutrition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdj-du-f2I">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                <color key="textColor" name="primaryBlue"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8U8-IF-Bon" userLabel="Grid Stack View">
+                                                                <rect key="frame" x="0.0" y="39.5" width="335" height="322"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KiD-1Q-ynh">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="153"/>
+                                                                        <subviews>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0mh-6q-oD4" userLabel="Low-Carb Snacks View">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="159.5" height="153"/>
+                                                                                <subviews>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Wd8-vf-R7f">
+                                                                                        <rect key="frame" x="10" y="10" width="139.5" height="133"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_veggie_tray" translatesAutoresizingMaskIntoConstraints="NO" id="b4h-Bm-Zqs">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="75" id="XVD-lg-Fs2"/>
+                                                                                                    <constraint firstAttribute="width" constant="75" id="twQ-Av-YG7"/>
+                                                                                                </constraints>
+                                                                                            </imageView>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Hh-mN-OMf">
+                                                                                                <rect key="frame" x="0.0" y="75" width="86.5" height="58"/>
+                                                                                                <subviews>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low-carb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWN-TP-KMD">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondarySunsetOrange400"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="snacks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh0-tV-N2E">
+                                                                                                        <rect key="frame" x="0.0" y="29" width="86.5" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondarySunsetOrange400"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" name="secondarySunsetOrange100"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Wd8-vf-R7f" secondAttribute="trailing" constant="10" id="254-ak-2U1"/>
+                                                                                    <constraint firstItem="Wd8-vf-R7f" firstAttribute="leading" secondItem="0mh-6q-oD4" secondAttribute="leading" constant="10" id="Ahj-79-vLZ"/>
+                                                                                    <constraint firstItem="Wd8-vf-R7f" firstAttribute="top" secondItem="0mh-6q-oD4" secondAttribute="top" constant="10" id="cLX-86-teW"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="Wd8-vf-R7f" secondAttribute="bottom" constant="10" id="dol-Js-orY"/>
+                                                                                    <constraint firstAttribute="height" constant="153" id="uv4-QG-gkj"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1OU-A0-mEe" userLabel="Snack Recipes View">
+                                                                                <rect key="frame" x="175.5" y="0.0" width="159.5" height="153"/>
+                                                                                <subviews>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-Vt-bBc">
+                                                                                        <rect key="frame" x="10" y="10" width="139.5" height="133"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_protein_plate" translatesAutoresizingMaskIntoConstraints="NO" id="BcT-4T-PmD">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="75" id="KlL-bd-qJ7"/>
+                                                                                                    <constraint firstAttribute="width" constant="75" id="hOy-Nc-phP"/>
+                                                                                                </constraints>
+                                                                                            </imageView>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Fdv-hI-k3J">
+                                                                                                <rect key="frame" x="0.0" y="75" width="64" height="58"/>
+                                                                                                <subviews>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMW-le-AK9">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="primaryBlue"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXc-rI-vwp">
+                                                                                                        <rect key="frame" x="0.0" y="29" width="64" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="primaryBlue"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" name="blue100"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="6gl-Vt-bBc" firstAttribute="leading" secondItem="1OU-A0-mEe" secondAttribute="leading" constant="10" id="5gy-T5-SQZ"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="6gl-Vt-bBc" secondAttribute="bottom" constant="10" id="Gws-bR-AXn"/>
+                                                                                    <constraint firstItem="6gl-Vt-bBc" firstAttribute="top" secondItem="1OU-A0-mEe" secondAttribute="top" constant="10" id="It2-Hf-yCM"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="6gl-Vt-bBc" secondAttribute="trailing" constant="10" id="Nkr-9Z-lQg"/>
+                                                                                    <constraint firstAttribute="height" constant="153" id="STs-M5-974"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tN0-NK-1U4">
+                                                                        <rect key="frame" x="0.0" y="169" width="335" height="153"/>
+                                                                        <subviews>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FK6-nE-Dei" userLabel="Raises Blood Sugar View">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="159.5" height="153"/>
+                                                                                <subviews>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-j2-Z1L">
+                                                                                        <rect key="frame" x="10" y="10" width="139.5" height="133"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_cookies" translatesAutoresizingMaskIntoConstraints="NO" id="1hz-fI-0hY">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="75" id="VMs-3b-U0q"/>
+                                                                                                    <constraint firstAttribute="width" constant="75" id="wcV-8m-gS6"/>
+                                                                                                </constraints>
+                                                                                            </imageView>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2jn-pY-oXm">
+                                                                                                <rect key="frame" x="0.0" y="75" width="116" height="58"/>
+                                                                                                <subviews>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raises blood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0k-xy-Plq">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="116" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondaryFireRed300"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Pr-BV-dbC" userLabel="sugar">
+                                                                                                        <rect key="frame" x="0.0" y="29" width="116" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondaryFireRed300"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" name="secondaryFireRed100"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="AY8-j2-Z1L" firstAttribute="top" secondItem="FK6-nE-Dei" secondAttribute="top" constant="10" id="4HF-oe-Mmc"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="AY8-j2-Z1L" secondAttribute="bottom" constant="10" id="ejJ-iD-xcf"/>
+                                                                                    <constraint firstAttribute="height" constant="153" id="jrv-EH-5LF"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="AY8-j2-Z1L" secondAttribute="trailing" constant="10" id="nJU-XT-w5h"/>
+                                                                                    <constraint firstItem="AY8-j2-Z1L" firstAttribute="leading" secondItem="FK6-nE-Dei" secondAttribute="leading" constant="10" id="nuD-TO-sfS"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2X-7z-IX6" userLabel="Doesn't Raise Blood Sugar View">
+                                                                                <rect key="frame" x="175.5" y="0.0" width="159.5" height="153"/>
+                                                                                <subviews>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xRK-NG-Ajp">
+                                                                                        <rect key="frame" x="10" y="10" width="139.5" height="133"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_garden_salad" translatesAutoresizingMaskIntoConstraints="NO" id="I98-IL-yEe">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="width" constant="75" id="H6o-K5-MFx"/>
+                                                                                                    <constraint firstAttribute="height" constant="75" id="aTg-LV-aJ9"/>
+                                                                                                </constraints>
+                                                                                            </imageView>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dbe-9z-OGc">
+                                                                                                <rect key="frame" x="0.0" y="75" width="118" height="58"/>
+                                                                                                <subviews>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doesn't raise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huN-UQ-bcz">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="118" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondaryMeadowGreen300"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blood sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8on-IG-DdE">
+                                                                                                        <rect key="frame" x="0.0" y="29" width="118" height="29"/>
+                                                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                                                        <color key="textColor" name="secondaryMeadowGreen300"/>
+                                                                                                        <nil key="highlightedColor"/>
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" name="secondaryMeadowGreen100"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="xRK-NG-Ajp" firstAttribute="top" secondItem="I2X-7z-IX6" secondAttribute="top" constant="10" id="AXz-2Y-AaW"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="xRK-NG-Ajp" secondAttribute="bottom" constant="10" id="Q7e-63-ckU"/>
+                                                                                    <constraint firstAttribute="height" constant="153" id="R66-ig-1Qf"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="xRK-NG-Ajp" secondAttribute="trailing" constant="10" id="WMl-st-dKZ"/>
+                                                                                    <constraint firstItem="xRK-NG-Ajp" firstAttribute="leading" secondItem="I2X-7z-IX6" secondAttribute="leading" constant="10" id="fhF-jM-BvR"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="secondaryOrchidPurple400"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="5c5-34-USy" secondAttribute="trailing" id="3ee-cj-026"/>
-                                                    <constraint firstItem="NQZ-J6-dX0" firstAttribute="leading" secondItem="Kjh-6Z-EOK" secondAttribute="leading" constant="20" id="6oj-NS-udM"/>
-                                                    <constraint firstItem="WwO-pr-yHk" firstAttribute="top" secondItem="Kjh-6Z-EOK" secondAttribute="top" constant="20" id="BBM-A7-3UJ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="NQZ-J6-dX0" secondAttribute="bottom" constant="20" id="Ccd-OP-l72"/>
-                                                    <constraint firstItem="5c5-34-USy" firstAttribute="leading" secondItem="NQZ-J6-dX0" secondAttribute="trailing" id="HIx-TW-jaU"/>
-                                                    <constraint firstItem="WwO-pr-yHk" firstAttribute="leading" secondItem="Kjh-6Z-EOK" secondAttribute="leading" constant="20" id="HL9-VV-DF5"/>
-                                                    <constraint firstItem="5c5-34-USy" firstAttribute="leading" secondItem="WwO-pr-yHk" secondAttribute="trailing" constant="7" id="M6R-I2-913"/>
-                                                    <constraint firstAttribute="bottom" secondItem="5c5-34-USy" secondAttribute="bottom" id="ixu-Mq-EAS"/>
-                                                    <constraint firstAttribute="height" constant="150" id="uvx-46-3Km"/>
-                                                </constraints>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="KsJ-Yr-eBu" firstAttribute="leading" secondItem="NxE-fH-2Uv" secondAttribute="leading" constant="20" id="49v-Nq-7KH"/>
-                                            <constraint firstItem="KsJ-Yr-eBu" firstAttribute="top" secondItem="nEc-P8-bn4" secondAttribute="bottom" constant="12" id="8Lb-XI-ShC"/>
-                                            <constraint firstItem="Kjh-6Z-EOK" firstAttribute="top" secondItem="KsJ-Yr-eBu" secondAttribute="bottom" constant="12" id="Acc-f2-MZj"/>
-                                            <constraint firstAttribute="trailing" secondItem="KsJ-Yr-eBu" secondAttribute="trailing" constant="20" id="IbA-Qh-nle"/>
-                                            <constraint firstItem="nEc-P8-bn4" firstAttribute="leading" secondItem="NxE-fH-2Uv" secondAttribute="leading" constant="20" id="fbD-QU-1Vh"/>
-                                            <constraint firstAttribute="trailing" secondItem="Kjh-6Z-EOK" secondAttribute="trailing" constant="20" symbolic="YES" id="lb0-qw-w6R"/>
-                                            <constraint firstItem="nEc-P8-bn4" firstAttribute="top" secondItem="NxE-fH-2Uv" secondAttribute="top" constant="20" id="lo2-ad-t2g"/>
-                                            <constraint firstItem="Kjh-6Z-EOK" firstAttribute="leading" secondItem="NxE-fH-2Uv" secondAttribute="leading" constant="20" symbolic="YES" id="mdz-3s-GJu"/>
-                                            <constraint firstAttribute="trailing" secondItem="nEc-P8-bn4" secondAttribute="trailing" constant="20" id="uzj-VD-GNk"/>
+                                            <constraint firstAttribute="trailing" secondItem="xN6-Ot-8WR" secondAttribute="trailing" constant="20" id="J9c-II-Bcs"/>
+                                            <constraint firstAttribute="bottom" secondItem="xN6-Ot-8WR" secondAttribute="bottom" constant="20" id="em1-M8-Ted"/>
+                                            <constraint firstItem="xN6-Ot-8WR" firstAttribute="leading" secondItem="NxE-fH-2Uv" secondAttribute="leading" constant="20" id="ex0-ly-w4f"/>
+                                            <constraint firstItem="xN6-Ot-8WR" firstAttribute="top" secondItem="NxE-fH-2Uv" secondAttribute="top" id="ubk-Ex-Tg6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="top" secondItem="sDo-SE-Lvy" secondAttribute="top" id="5SS-nY-apr"/>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="width" secondItem="jYa-NI-j88" secondAttribute="width" id="G2t-OH-oeH"/>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="leading" secondItem="sDo-SE-Lvy" secondAttribute="leading" id="U0G-9T-Wib"/>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="trailing" secondItem="sDo-SE-Lvy" secondAttribute="trailing" constant="375" id="Wyh-zc-c80"/>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="bottom" secondItem="sDo-SE-Lvy" secondAttribute="bottom" constant="573" id="a9L-uu-fdj"/>
-                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="height" secondItem="jYa-NI-j88" secondAttribute="height" id="lru-iU-HHm"/>
+                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="top" secondItem="eP5-fU-nic" secondAttribute="top" id="5SS-nY-apr"/>
+                                    <constraint firstAttribute="bottom" secondItem="NxE-fH-2Uv" secondAttribute="bottom" constant="59" id="BwK-qV-fVk"/>
+                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="width" secondItem="eP5-fU-nic" secondAttribute="width" id="G2t-OH-oeH"/>
+                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="leading" secondItem="eP5-fU-nic" secondAttribute="leading" id="U0G-9T-Wib"/>
+                                    <constraint firstItem="NxE-fH-2Uv" firstAttribute="trailing" secondItem="eP5-fU-nic" secondAttribute="trailing" constant="375" id="Wyh-zc-c80"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="sDo-SE-Lvy"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="jYa-NI-j88"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yaj-cm-XBt"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Yaj-cm-XBt" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AvU-gT-zUS" secondAttribute="trailing" constant="20" id="0sv-5Z-ob2"/>
+                            <constraint firstItem="eP5-fU-nic" firstAttribute="top" secondItem="Yaj-cm-XBt" secondAttribute="top" id="2xv-z4-c3b"/>
                             <constraint firstItem="eP5-fU-nic" firstAttribute="leading" secondItem="Yaj-cm-XBt" secondAttribute="leading" id="74v-lc-aOu"/>
-                            <constraint firstItem="AvU-gT-zUS" firstAttribute="top" secondItem="Yaj-cm-XBt" secondAttribute="top" id="PGl-b0-eBc"/>
                             <constraint firstItem="eP5-fU-nic" firstAttribute="bottom" secondItem="Yaj-cm-XBt" secondAttribute="bottom" id="Xzi-w9-pDV"/>
-                            <constraint firstItem="AvU-gT-zUS" firstAttribute="leading" secondItem="Yaj-cm-XBt" secondAttribute="leading" constant="20" id="cuc-pK-dKX"/>
-                            <constraint firstItem="eP5-fU-nic" firstAttribute="top" secondItem="AvU-gT-zUS" secondAttribute="bottom" id="jc6-JV-PzD"/>
                             <constraint firstItem="eP5-fU-nic" firstAttribute="trailing" secondItem="Yaj-cm-XBt" secondAttribute="trailing" id="k8W-xx-GPh"/>
                         </constraints>
                     </view>
@@ -1112,7 +1310,15 @@ Self-Management</string>
                     <connections>
                         <outlet property="diabetesBasicsView" destination="nEc-P8-bn4" id="Q0F-qX-Hlc"/>
                         <outlet property="diabetesSelfManagementView" destination="Kjh-6Z-EOK" id="Cgp-A5-d0f"/>
+                        <outlet property="doesntRaiseBloodSugarView" destination="I2X-7z-IX6" id="LP2-kh-qwk"/>
+                        <outlet property="lowCarbSnacksView" destination="0mh-6q-oD4" id="4Vr-jg-RMM"/>
                         <outlet property="nutritionAndCarbCountingView" destination="KsJ-Yr-eBu" id="4Jo-66-DlR"/>
+                        <outlet property="raisesBloodSugarView" destination="FK6-nE-Dei" id="QmO-tA-MdR"/>
+                        <outlet property="snackRecipesView" destination="1OU-A0-mEe" id="7rm-fy-JOS"/>
+                        <outletCollection property="foodAndNutritionGridItems" destination="0mh-6q-oD4" collectionClass="NSMutableArray" id="6Sh-Vh-cfC"/>
+                        <outletCollection property="foodAndNutritionGridItems" destination="1OU-A0-mEe" collectionClass="NSMutableArray" id="jxG-7F-I2I"/>
+                        <outletCollection property="foodAndNutritionGridItems" destination="FK6-nE-Dei" collectionClass="NSMutableArray" id="Usx-MV-Bck"/>
+                        <outletCollection property="foodAndNutritionGridItems" destination="I2X-7z-IX6" collectionClass="NSMutableArray" id="bd2-TJ-P1j"/>
                         <segue destination="r9r-Zx-0xw" kind="show" identifier="SegueToHandbook" id="ted-C5-uD1"/>
                     </connections>
                 </viewController>
@@ -2253,7 +2459,7 @@ Self-Management</string>
         <segue reference="3yE-9v-cRW"/>
         <segue reference="L1W-07-Vpb"/>
         <segue reference="CS3-6i-fi4"/>
-        <segue reference="bnL-Lw-gUg"/>
+        <segue reference="ted-C5-uD1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
@@ -2268,6 +2474,10 @@ Self-Management</string>
         <image name="hope_clock" width="132" height="121"/>
         <image name="hope_confused" width="153" height="153"/>
         <image name="hope_panic_call" width="164" height="140"/>
+        <image name="im_cookies" width="225" height="225"/>
+        <image name="im_garden_salad" width="225" height="225"/>
+        <image name="im_protein_plate" width="225" height="225"/>
+        <image name="im_veggie_tray" width="225" height="225"/>
         <image name="incorrectIcon" width="111" height="111"/>
         <image name="insulinCalculatorBg" width="1086" height="771"/>
         <image name="knowYourCarbsBg" width="1086" height="495"/>
@@ -2287,6 +2497,9 @@ Self-Management</string>
         <image name="will_sliding" width="154" height="153"/>
         <namedColor name="backgroundColor">
             <color red="0.91764705882352937" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="blue100">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2314,6 +2527,9 @@ Self-Management</string>
         </namedColor>
         <namedColor name="primaryGreen">
             <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryFireRed100">
+            <color red="0.99607843137254903" green="0.9137254901960784" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryFireRed300">
             <color red="0.92941176470588238" green="0.10980392156862745" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

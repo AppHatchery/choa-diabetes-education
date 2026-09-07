@@ -11,6 +11,14 @@ class ResourcesViewController: UIViewController {
     @IBOutlet weak var diabetesBasicsView: UIView!
     @IBOutlet weak var nutritionAndCarbCountingView: UIView!
     @IBOutlet weak var diabetesSelfManagementView: UIView!
+    
+    @IBOutlet var foodAndNutritionGridItems: [UIView]!
+    
+    @IBOutlet weak var lowCarbSnacksView: UIView!
+    @IBOutlet weak var snackRecipesView: UIView!
+    @IBOutlet weak var raisesBloodSugarView: UIView!
+    @IBOutlet weak var doesntRaiseBloodSugarView: UIView!
+    
         
     var chapterContent = 0
     var quizContent = 0
@@ -35,6 +43,10 @@ class ResourcesViewController: UIViewController {
         diabetesBasicsView.layer.cornerRadius = 24
         nutritionAndCarbCountingView.layer.cornerRadius = 24
         diabetesSelfManagementView.layer.cornerRadius = 24
+        
+        foodAndNutritionGridItems.forEach {
+            $0.layer.cornerRadius = 12
+        }
         
         addTapRecognizersToResourceCards()
     }
