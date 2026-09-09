@@ -376,18 +376,24 @@ class GetHelpViewController: UIViewController {
 
 	private func updateBackgroundColorForFinalStep(questionId: Int) {
 		let backgroundColor: UIColor
+		let tintColor: UIColor
 
 		switch questionId {
 		case FinalQuestionId.firstEmergencyScreen.id:
 			backgroundColor = .secondaryRedColor
+			tintColor = .white
 		case FinalQuestionId.endo.id:
 			backgroundColor = .white
+			tintColor = .black
 		case FinalQuestionId.continueRegularCare.id:
-			backgroundColor = .veryLightGreen
+			backgroundColor = .secondaryMeadowGreen300
+			tintColor = .white
 		case FinalQuestionId.callChoaEmergency.id:
 			backgroundColor = .sunsetOrangeColor300
+			tintColor = .white
 		default:
 			backgroundColor = .white
+			tintColor = .black
 		}
 
 		view.backgroundColor = backgroundColor
@@ -397,12 +403,12 @@ class GetHelpViewController: UIViewController {
 		appearance.backgroundColor = backgroundColor
 		appearance.shadowColor = .clear
 
-		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
-		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor]
 
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance
-		navigationController?.navigationBar.tintColor = UIColor.black
+		navigationController?.navigationBar.tintColor = tintColor
 	}
 
 	private func resetBackgroundColor() {
