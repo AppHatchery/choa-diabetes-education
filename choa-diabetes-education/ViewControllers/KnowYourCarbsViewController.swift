@@ -10,7 +10,10 @@ import Combine
 
 class KnowYourCarbsViewController: UIViewController {
 
-    private let searchController = UISearchController(searchResultsController: nil)
+    // A plain search bar, not a `UISearchController`: an active search
+    // controller presents itself over this screen, which blanked the whole page
+    // as soon as the keyboard came up.
+    private let searchBar = UISearchBar()
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let calculator = CarbsCalculatorManager.shared
     private var cancellables: Set<AnyCancellable> = []
@@ -32,8 +35,7 @@ class KnowYourCarbsViewController: UIViewController {
     }
 
     private var isSearching: Bool {
-        let text = searchController.searchBar.text ?? ""
-        return searchController.isActive && !text.trimmingCharacters(in: .whitespaces).isEmpty
+        !(searchBar.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty
     }
 
     private var displayedCategories: [CarbCategory] {
@@ -47,12 +49,22 @@ class KnowYourCarbsViewController: UIViewController {
         navigationItem.backButtonDisplayMode = .minimal
 
         setupAddButton()
+        setupSearchBar()
         setupCategoryChips()
         setupDisclaimer()
-        setupSearchController()
         setupTableView()
         observeTotalCarbs()
         observeCustomFoods()
+        observeKeyboard()
+        setupKeyboardDismissTap()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // The bar is driven manually from the table view's scrolling — see
+        // `scrollViewDidScroll`. Always start the screen with it visible.
+        lastScrollOffset = tableView.contentOffset.y
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +76,47 @@ class KnowYourCarbsViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // Leave the bar visible for whatever comes next, and never leave this
+        // screen with a hidden bar the user cannot get back.
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         dismissTotalCarbsSheet()
+    }
+
+    /// Tapping anywhere outside the search field puts the keyboard away.
+    private func setupKeyboardDismissTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        // Let the touch through as well, so rows and chips still respond to the
+        // same tap that dismisses the keyboard.
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+
+        // Dragging the list away is the other natural dismiss gesture.
+        tableView.keyboardDismissMode = .onDrag
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    /// Keep the list scrollable clear of the keyboard while searching.
+    private func observeKeyboard() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(keyboardFrameChanged),
+                           name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        center.addObserver(self, selector: #selector(keyboardWillHide),
+                           name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func keyboardFrameChanged(_ note: Notification) {
+        guard let frame = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let overlap = max(0, view.bounds.maxY - view.convert(frame, from: nil).minY)
+        tableView.contentInset.bottom = overlap
+        tableView.verticalScrollIndicatorInsets.bottom = overlap
+    }
+
+    @objc private func keyboardWillHide(_ note: Notification) {
+        tableView.contentInset.bottom = 0
+        tableView.verticalScrollIndicatorInsets.bottom = 0
     }
 
     // MARK: - Setup
@@ -72,6 +124,13 @@ class KnowYourCarbsViewController: UIViewController {
     private var chipsContainer: UIView!
     private var disclaimerContainer: DisclaimerBannerView?
     private var tableViewTopConstraint: NSLayoutConstraint!
+
+    /// Content offset at the last handled scroll event, used to derive the
+    /// direction of travel.
+    private var lastScrollOffset: CGFloat = 0
+    /// Movement smaller than this is treated as noise, so the bar does not
+    /// flicker on tiny finger adjustments.
+    private static let barToggleThreshold: CGFloat = 24
 
     private func setupAddButton() {
         var config = UIButton.Configuration.plain()
@@ -112,7 +171,7 @@ class KnowYourCarbsViewController: UIViewController {
             .sink { [weak self] _ in
                 guard let self else { return }
                 if self.isSearching {
-                    self.filterContent(for: self.searchController.searchBar.text ?? "")
+                    self.filterContent(for: self.searchBar.text ?? "")
                 }
                 self.tableView.reloadData()
             }
@@ -127,7 +186,7 @@ class KnowYourCarbsViewController: UIViewController {
         view.addSubview(chipsView)
 
         NSLayoutConstraint.activate([
-            chipsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            chipsView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             chipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             chipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -223,18 +282,32 @@ class KnowYourCarbsViewController: UIViewController {
 
     private func scrollToCategory(at index: Int) {
         guard !isSearching, allCategories.indices.contains(index) else { return }
-        searchController.isActive = false
+        // Jumping to a category is a deliberate re-orientation — bring the bar
+        // back rather than leaving it collapsed.
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        searchBar.resignFirstResponder()
         tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
     }
 
-    private func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search foods"
-        searchController.searchBar.tintColor = .choaGreenColor
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
+    private func setupSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search foods"
+        searchBar.tintColor = .choaGreenColor
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundColor = .white
+        searchBar.returnKeyType = .search
+        searchBar.enablesReturnKeyAutomatically = false
+
+        // The search bar lives in the view rather than in `navigationItem` so
+        // that collapsing the nav bar on scroll leaves search reachable.
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(searchBar)
+
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
+        ])
     }
 
     private func setupTableView() {
@@ -344,14 +417,70 @@ extension KnowYourCarbsViewController: UITableViewDelegate {
 
         return UISwipeActionsConfiguration(actions: [delete])
     }
+
+    // MARK: - Nav bar hiding
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastScrollOffset = scrollView.contentOffset.y
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Only react to the user's own dragging: programmatic scrolls (chip
+        // taps, keyboard insets) should not move the bar.
+        guard scrollView.isDragging || scrollView.isDecelerating else { return }
+
+        let offset = scrollView.contentOffset.y
+        let topInset = -scrollView.adjustedContentInset.top
+        let delta = offset - lastScrollOffset
+
+        // Bounce past either end is not a direction the user is choosing.
+        let maxOffset = max(topInset, scrollView.contentSize.height - scrollView.bounds.height + scrollView.adjustedContentInset.bottom)
+        guard offset > topInset, offset < maxOffset else {
+            if offset <= topInset { setBarHidden(false) }
+            return
+        }
+
+        guard abs(delta) > Self.barToggleThreshold else { return }
+        lastScrollOffset = offset
+        setBarHidden(delta > 0)
+    }
+
+    private func setBarHidden(_ hidden: Bool) {
+        guard let nav = navigationController, nav.isNavigationBarHidden != hidden else { return }
+        // Never hide the bar out from under an active search.
+        guard !hidden || !searchBar.isFirstResponder else { return }
+        nav.setNavigationBarHidden(hidden, animated: true)
+    }
 }
 
-// MARK: - UISearchResultsUpdating
+// MARK: - UISearchBarDelegate
 
-extension KnowYourCarbsViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContent(for: searchController.searchBar.text ?? "")
+extension KnowYourCarbsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContent(for: searchText)
         tableView.reloadData()
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // The nav bar stays put while typing; only the cancel affordance changes.
+        searchBar.setShowsCancelButton(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        filterContent(for: "")
+        tableView.reloadData()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 }
 
