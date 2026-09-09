@@ -379,7 +379,7 @@ class GetHelpViewController: UIViewController {
 
 		switch questionId {
 		case FinalQuestionId.firstEmergencyScreen.id:
-			backgroundColor = .veryLightRed
+			backgroundColor = .secondaryRedColor
 		case FinalQuestionId.endo.id:
 			backgroundColor = .white
 		case FinalQuestionId.continueRegularCare.id:
