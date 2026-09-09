@@ -50,7 +50,9 @@ class FinalStepCallChoaEmergencyView: UIView {
 		callChoaButton.layer.cornerRadius = 12
 //		callChoaButton.titleLabel?.font = .nunitoBold20
 
-        callDetailsView.roundedCorners(corners: [.topLeft, .topRight], radius: 20)
+        callDetailsView.layer.cornerRadius = 20
+        callDetailsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        callDetailsView.clipsToBounds = true
         
 //		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
 	}
