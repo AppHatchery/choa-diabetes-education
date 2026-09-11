@@ -35,31 +35,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let appKey = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiJiMDlhYTE4MjM0MjQ3NWEwYWQzOGQwZGEzYmU2MmQzYWQyNDg3ZGM4MTFmYjUyNTJiOTIxMmM0MDZlODU4ZWMzM2RmYWQyN2U0YjliNzMxYTgyNjk2Yjc0NGIxMmY0M2FkOWQ1M2M0YmE4ZjA5YzI2OWRhM2YwMjExYWQ0YzZkMjgwNjAwNzk2NDNhZThkY2ZlY2IxZWE2ODVhYTUxMTM5YTE1ZmFmZGNiYWE1Y2UyN2Q5ZmYwMDg5MjRjNjhhZWY5MGEyZDNiZDZkMWYzY2E2MmE3YzU3MmQ2OTNiNDNkYjcyMzVmNDU1MTFlOGRhODA5YzAyNmFkMTgxMzFhY2MwYmZjMmQ2YjQ2N2JiOTc3MjIzODU1YjVjMTcwZGY3MGIuOWU5MDNkMDEzOTkzYWRhOWE1OTk4NWUzMGYyMDI0N2MuYWJlYzQ5NTgzNjE2OTA2M2M4OGIwMGI1NWM4MWQ3ODQ4ZjZkYWYzZThhYzRiMTdmOWExYzhhNmJiMjJhZDFjNiJ9.FjISu5oGApqJSll8TUdQV5PLg3jceYnC74VAWvhOXSO3DfvViriua6sMoygOF8vRYornQ_f-cTxLTAf3M7EhanqBhVrYUAOIsd83nDPrYTxIc0TLzzpfb634WTSVNomhgXqc2IUyx3AnlLTJ-TYRH3h5_ilDZ0Ns_w85zv_ymeI"
         PendoManager.shared().setup(appKey)
+        
+        #if !DEBUG
+                // Set up Pendo
+                let accountId = "TypeU-Test" // Pilot
+                let visitorIdKey = "visitorId"
+                // Update with each release so new visitors are tagged with the cohort they joined on.
+                // Version number alone doesn’t tell you when they joined; this does.
+                let releaseCohort = "Mar26"
 
-        // Set up Pendo
-        let accountId = "TypeU-Test" // Pilot
-        let visitorIdKey = "visitorId"
-        // Update with each release so new visitors are tagged with the cohort they joined on.
-        // Version number alone doesn’t tell you when they joined; this does.
-        let releaseCohort = "Mar26"
-        
-        // Get or create visitor ID
-        // Existing users keep their past ID; new users get tagged with this release’s cohort
-        let visitorId: String
-        if let existingId = UserDefaults.standard.string(forKey: visitorIdKey) {
-            visitorId = existingId
-        } else {
-            visitorId = "Pilot-\(releaseCohort)-\(UUID())"
-            UserDefaults.standard.set(visitorId, forKey: visitorIdKey)
-        }
-        
-        // Launch Pendo session
-        PendoManager.shared().startSession(
-            visitorId,
-            accountId: accountId,
-            visitorData: [:],
-            accountData: [:]
-        )
+                // Get or create visitor ID
+                // Existing users keep their past ID; new users get tagged with this release’s cohort
+                let visitorId: String
+                if let existingId = UserDefaults.standard.string(forKey: visitorIdKey) {
+                    visitorId = existingId
+                } else {
+                    visitorId = "Pilot-\(releaseCohort)-\(UUID())"
+                    UserDefaults.standard.set(visitorId, forKey: visitorIdKey)
+                }
+
+                // Launch Pendo session
+                PendoManager.shared().startSession(
+                    visitorId,
+                    accountId: accountId,
+                    visitorData: [:],
+                    accountData: [:]
+                )
+        #endif
         
         // Save app version on file for future update changes
         let appVersionKey = "PreviousAppVersion"

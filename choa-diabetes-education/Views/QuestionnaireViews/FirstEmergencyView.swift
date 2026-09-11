@@ -22,10 +22,10 @@ class FirstEmergencyView: UIView {
 
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var call911Button: UIButton!
+    @IBOutlet weak var callInstructionsView: UIView!
+    @IBOutlet var call911Button: UIButton!
 	@IBOutlet var goToTheNearestLabel: UILabel!
 	@IBOutlet var emergencyDepartmentLabel: UILabel!
-
 	@IBOutlet var exitButton: UIButton!
 
 	override init(frame: CGRect) {
@@ -47,22 +47,24 @@ class FirstEmergencyView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .nunitoBold26
+        titleLabel.font = .nunitoSemiBold32
 		titleLabel.numberOfLines = 0
-		titleLabel.textColor = .secondaryRedColor
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
-
+        
+        callInstructionsView.layer.cornerRadius = 20
+        callInstructionsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        callInstructionsView.clipsToBounds = true
 
 		goToTheNearestLabel.text = "Calculator.Final.FirstEmergency.GoTo".localized()
-		goToTheNearestLabel.font = .nunitoBold24
+		goToTheNearestLabel.font = .nunitoSemiBold24
 		goToTheNearestLabel.numberOfLines = 0
 		goToTheNearestLabel.textColor = .black
 		goToTheNearestLabel.textAlignment = .center
 
 		emergencyDepartmentLabel.text = "Calculator.Final.FirstEmergency.EmergencyDepartment"
 			.localized()
-		emergencyDepartmentLabel.font = .nunitoBold26
+		emergencyDepartmentLabel.font = .nunitoSemiBold24
 		emergencyDepartmentLabel.numberOfLines = 0
 		emergencyDepartmentLabel.textColor = .secondaryRedColor
 		emergencyDepartmentLabel.textAlignment = .center
