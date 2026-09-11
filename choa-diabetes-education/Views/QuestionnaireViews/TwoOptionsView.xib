@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -49,22 +48,22 @@
                     <rect key="frame" x="20" y="40" width="353" height="699"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-sI-pDY" userLabel="Resources Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="89.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="85.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your child’s ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2O-Xw-owa">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="25"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2O-Xw-owa">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
                                     <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="18"/>
                                     <color key="textColor" name="primaryBlue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn how to measure ketones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8W-Q0-crO">
-                                    <rect key="frame" x="0.0" y="37" width="353" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="33" width="353" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" name="primaryBlue"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnZ-jN-izc">
-                                    <rect key="frame" x="0.0" y="69.5" width="353" height="20"/>
+                                    <rect key="frame" x="0.0" y="65.5" width="353" height="20"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="YZ1-Mf-vff"/>
@@ -73,28 +72,28 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
-                            <rect key="frame" x="0.0" y="101.5" width="353" height="273.5"/>
+                            <rect key="frame" x="0.0" y="97.5" width="353" height="267"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="46.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="40"/>
                                     <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
-                                    <rect key="frame" x="0.0" y="58.5" width="353" height="215"/>
+                                    <rect key="frame" x="0.0" y="52" width="353" height="215"/>
                                     <subviews>
                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
                                             <rect key="frame" x="0.0" y="0.0" width="170.5" height="215"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtT-ZT-c86">
-                                                    <rect key="frame" x="10" y="173" width="150.5" height="22"/>
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-V4-WiZ">
-                                                    <rect key="frame" x="10" y="10" width="150.5" height="153"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -113,13 +112,13 @@
                                             <rect key="frame" x="182.5" y="0.0" width="170.5" height="215"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSD-GN-g7J">
-                                                    <rect key="frame" x="10" y="173" width="150.5" height="22"/>
+                                                    <rect key="frame" x="10" y="176" width="150.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-ak-o7C">
-                                                    <rect key="frame" x="10" y="10" width="150.5" height="153"/>
+                                                    <rect key="frame" x="10" y="10" width="150.5" height="156"/>
                                                     <color key="backgroundColor" name="lightGrayColor"/>
                                                 </imageView>
                                             </subviews>
@@ -143,7 +142,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                            <rect key="frame" x="0.0" y="387" width="353" height="312"/>
+                            <rect key="frame" x="0.0" y="376.5" width="353" height="322.5"/>
                         </stackView>
                     </subviews>
                     <constraints>
