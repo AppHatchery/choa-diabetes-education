@@ -182,6 +182,7 @@ class KnowYourCarbsViewController: UIViewController {
         let chipsView = CategoryChipsView(categories: allCategories) { [weak self] index in
             self?.scrollToCategory(at: index)
         }
+        
         chipsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(chipsView)
 
@@ -297,6 +298,7 @@ class KnowYourCarbsViewController: UIViewController {
         searchBar.backgroundColor = .white
         searchBar.returnKeyType = .search
         searchBar.enablesReturnKeyAutomatically = false
+        searchBar.showsCancelButton = false
 
         // The search bar lives in the view rather than in `navigationItem` so
         // that collapsing the nav bar on scroll leaves search reachable.
@@ -355,7 +357,7 @@ class KnowYourCarbsViewController: UIViewController {
         filteredCategories = allCategories.compactMap { category in
             let matches = category.foods.filter { $0.name.lowercased().contains(trimmed) }
             guard !matches.isEmpty else { return nil }
-            return CarbCategory(title: category.title, foods: matches)
+            return CarbCategory(title: category.title, shortName: category.shortName, iconImageName: category.iconImageName, foods: matches)
         }
     }
 }
@@ -462,25 +464,11 @@ extension KnowYourCarbsViewController: UISearchBarDelegate {
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        // The nav bar stays put while typing; only the cancel affordance changes.
-        searchBar.setShowsCancelButton(true, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.setShowsCancelButton(false, animated: true)
-        searchBar.resignFirstResponder()
-        filterContent(for: "")
-        tableView.reloadData()
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
     }
 }
 
@@ -543,6 +531,10 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
 
 /// Horizontally scrolling row of category shortcuts.
 private final class CategoryChipsView: UIView {
+    /// These categories are reachable from the table view and search, but are
+    /// too dense (or niche) to be worth their own chip.
+    private static let hiddenTitles: Set<String> = ["Combination Foods", "Condiments"]
+
     private static let palette: [UIColor] = [
         UIColor(red: 0.98, green: 0.92, blue: 0.96, alpha: 1),
         UIColor(red: 0.90, green: 0.96, blue: 1.00, alpha: 1),
@@ -565,16 +557,19 @@ private final class CategoryChipsView: UIView {
 
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 20
+        stack.spacing = 10
         stack.alignment = .top
         stack.translatesAutoresizingMaskIntoConstraints = false
 
-        for (index, category) in categories.enumerated() {
+        let chippedCategories = categories.enumerated()
+            .filter { !Self.hiddenTitles.contains($0.element.title) }
+
+        for (chipIndex, entry) in chippedCategories.enumerated() {
             let chip = CategoryChipView(
-                category: category,
-                backgroundColor: Self.palette[index % Self.palette.count]
+                category: entry.element,
+                backgroundColor: Self.palette[chipIndex % Self.palette.count]
             )
-            chip.tag = index
+            chip.tag = entry.offset
             chip.addTarget(self, action: #selector(chipTapped), for: .touchUpInside)
             stack.addArrangedSubview(chip)
         }
@@ -612,7 +607,7 @@ private final class CategoryChipView: UIControl {
     init(category: CarbCategory, backgroundColor chipColor: UIColor) {
         super.init(frame: .zero)
 
-        let imageView = UIImageView(image: UIImage(named: category.foods.first?.imageName ?? ""))
+        let imageView = UIImageView(image: UIImage(named: category.iconImageName))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = chipColor
         imageView.clipsToBounds = true
@@ -621,8 +616,8 @@ private final class CategoryChipView: UIControl {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         let label = UILabel()
-        label.text = category.title
-        label.font = .nunito14
+        label.text = category.shortName ?? category.title
+        label.font = .nunito13
         label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 2
