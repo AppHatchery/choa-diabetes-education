@@ -44,9 +44,9 @@ class FinalStepNoDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .nunitoBold26
+        titleLabel.font = .nunitoSemiBold32
 		titleLabel.numberOfLines = 0
-		titleLabel.textColor = .choaGreenColor
+		titleLabel.textColor = .white
 		titleLabel.text = currentQuestion.finalStep?.title
 		titleLabel.textAlignment = .center
 

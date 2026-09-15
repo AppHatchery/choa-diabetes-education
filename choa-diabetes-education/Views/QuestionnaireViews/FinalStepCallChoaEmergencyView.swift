@@ -15,13 +15,12 @@ protocol FinalStepCallChoaEmergencyViewProtocol: AnyObject {
 class FinalStepCallChoaEmergencyView: UIView {
 	static let nibName = "FinalStepCallChoaEmergencyView"
 
-	@IBOutlet weak var contentView: UIView!
-	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet var doneButton: UIButton!
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var callDetailsView: UIView!
+    @IBOutlet var doneButton: UIButton!
 	@IBOutlet var callInstructionsView: UIView!
 	@IBOutlet var callChoaButton: UIButton!
-	@IBOutlet var callYourCareTeamLabel: UILabel!
-	@IBOutlet var mainStackView: UIStackView!
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepCallChoaEmergencyViewProtocol?
@@ -42,20 +41,18 @@ class FinalStepCallChoaEmergencyView: UIView {
 		Bundle.main.loadNibNamed(FinalStepCallChoaEmergencyView.nibName, owner: self)
 		addSubview(contentView)
 		contentView.frame = self.bounds
-		contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 	}
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
-		titleLabel.font = .nunitoBold24
-		titleLabel.numberOfLines = 0
-		titleLabel.text = currentQuestion.finalStep?.title
 
 		callChoaButton.layer.cornerRadius = 12
 //		callChoaButton.titleLabel?.font = .nunitoBold20
 
-        callInstructionsView.isHidden = true
-        mainStackView.removeArrangedSubview(callInstructionsView)
+        callDetailsView.layer.cornerRadius = 20
+        callDetailsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        callDetailsView.clipsToBounds = true
         
 //		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
 	}
