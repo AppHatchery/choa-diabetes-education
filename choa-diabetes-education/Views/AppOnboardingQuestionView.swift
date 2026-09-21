@@ -11,6 +11,7 @@ import UIKit
 /// matching input UI (option list or text fields), and the next button.
 /// Owns every UI concern for the onboarding flow so its view controller only
 /// has to track state and navigate between questions.
+
 class AppOnboardingQuestionView: UIView {
     @IBOutlet private weak var questionTitleLabel: UILabel!
     @IBOutlet private weak var questionSubtitleLabel: UILabel!
@@ -21,7 +22,11 @@ class AppOnboardingQuestionView: UIView {
     @IBOutlet private weak var nextButton: PrimaryButton!
 
     @IBOutlet private weak var selectOptionView: UIView!
+    @IBOutlet weak var selectOptionViewHeightAnchor: NSLayoutConstraint!
+    @IBOutlet weak var selectOptionLabel: UILabel!
     @IBOutlet private weak var openEndedOptionView: UIView!
+    @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var selectOptionImageView: UIImageView!
 
     /// Called whenever the answer for the current question changes.
     var onAnswerChanged: ((AppOnboardingAnswer) -> Void)?
@@ -129,17 +134,35 @@ class AppOnboardingQuestionView: UIView {
 
     private func configureOption(_ row: UIView, with option: AppOnboardingOption, isSelected: Bool) {
         row.tag = option.id
-        isSelected ? row.updateViewForSelection() : row.updateViewForDeselection()
 
         if let imageView = row.firstSubview(ofType: UIImageView.self) {
             imageView.image = option.imageName.flatMap { UIImage(named: $0) }
             imageView.isHidden = option.imageName == nil
+            // NSKeyedArchiver doesn't carry raw CALayer properties across the
+            // template clone, so this has to be (re)applied on every copy.
+            imageView.layer.cornerRadius = 8
+            imageView.layer.masksToBounds = true
+
+            // The row's height constraint is cloned along with it, so mutate
+            // the clone's constant rather than adding a new constraint.
+            if let heightConstraint = row.constraints.first(where: { $0.firstAttribute == .height }) {
+                heightConstraint.constant = option.imageName != nil ? 100 : 64
+            }
         }
+        
         row.firstSubview(ofType: UILabel.self)?.text = option.title
+        setSelected(isSelected, on: row)
 
         row.gestureRecognizers?.forEach(row.removeGestureRecognizer)
         row.isUserInteractionEnabled = true
         row.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOption(_:))))
+    }
+
+    /// Applies (or removes) the selected styling on an option row, including
+    /// switching `selectOptionLabel` to white so it reads against the filled background.
+    private func setSelected(_ isSelected: Bool, on row: UIView) {
+        isSelected ? row.updateViewForSelection() : row.updateViewForDeselection()
+        row.firstSubview(ofType: UILabel.self)?.textColor = isSelected ? .white : .primaryBlue
     }
 
     @discardableResult
@@ -154,6 +177,16 @@ class AppOnboardingQuestionView: UIView {
         textField.delegate = self
         textField.removeTarget(nil, action: nil, for: .editingChanged)
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+
+        // NSKeyedArchiver doesn't carry raw CALayer properties across the
+        // template clone, so the border has to be (re)applied on every copy.
+        if let container = textField.superview {
+            container.layer.borderWidth = 1
+            container.layer.borderColor = UIColor.borderGrayColor.cgColor
+            container.layer.cornerRadius = 8
+            container.layer.masksToBounds = true
+        }
+
         return textField
     }
 
@@ -166,7 +199,7 @@ class AppOnboardingQuestionView: UIView {
         onAnswerChanged?(.selection(row.tag))
 
         for view in selectStackView.arrangedSubviews {
-            view.tag == row.tag ? view.updateViewForSelection() : view.updateViewForDeselection()
+            setSelected(view.tag == row.tag, on: view)
         }
 
         updateNextButtonState()

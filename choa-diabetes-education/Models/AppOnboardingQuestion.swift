@@ -79,9 +79,9 @@ enum AppOnboardingQuestion: CaseIterable {
         switch self {
         case .userRole:
             return .singleSelect([
-                AppOnboardingOption(id: 0, title: "AppOnboarding.UserRole.option1".localized(), imageName: "onboarding_user_diabetes"),
-                AppOnboardingOption(id: 1, title: "AppOnboarding.UserRole.option2".localized(), imageName: "onboarding_user_caregiver"),
-                AppOnboardingOption(id: 2, title: "AppOnboarding.UserRole.option3".localized(), imageName: "onboarding_user_nurse")
+                AppOnboardingOption(id: 0, title: "AppOnboarding.UserRole.option1".localized(), imageName: "will_smile"),
+                AppOnboardingOption(id: 1, title: "AppOnboarding.UserRole.option2".localized(), imageName: "will_smile"),
+                AppOnboardingOption(id: 2, title: "AppOnboarding.UserRole.option3".localized(), imageName: "will_smile")
             ])
         case .isChoaPatient:
             return .singleSelect([
