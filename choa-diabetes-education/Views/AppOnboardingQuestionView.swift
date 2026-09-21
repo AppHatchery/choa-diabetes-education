@@ -182,7 +182,7 @@ class AppOnboardingQuestionView: UIView {
         // template clone, so the border has to be (re)applied on every copy.
         if let container = textField.superview {
             container.layer.borderWidth = 1
-            container.layer.borderColor = UIColor.borderGrayColor.cgColor
+            container.layer.borderColor = UIColor.primaryBlue.cgColor
             container.layer.cornerRadius = 8
             container.layer.masksToBounds = true
         }

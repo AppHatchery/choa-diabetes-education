@@ -20,10 +20,16 @@ class AppOnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.navigationBar.tintColor = .choaGreenColor
         navigationItem.backButtonDisplayMode = .minimal
-        
+
+        // The first screen in the flow starts with no answers passed in; resume
+        // from whatever was previously saved, if anything.
+        if answers.isEmpty {
+            answers = AppOnboardingManager.shared.answers
+        }
+
         questionView.configure(with: currentQuestion, answer: answers[currentQuestion])
         questionView.onAnswerChanged = { [weak self] answer in
             guard let self else { return }
@@ -50,6 +56,8 @@ class AppOnboardingViewController: UIViewController {
     }
 
     private func finishOnboarding() {
+        AppOnboardingManager.shared.saveAnswers(answers)
+
         guard let window = view.window else { return }
 
         let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()

@@ -24,7 +24,7 @@ struct AppOnboardingInputField: Equatable {
     let placeholder: String
 }
 
-enum AppOnboardingAnswer: Equatable {
+enum AppOnboardingAnswer: Equatable, Codable {
     case selection(Int)
     case text(String)
     case multipleText([String])
@@ -33,9 +33,44 @@ enum AppOnboardingAnswer: Equatable {
         if case .selection(let id) = self { return id }
         return nil
     }
+
+    private enum CodingKeys: String, CodingKey {
+        case kind, value
+    }
+
+    private enum Kind: String, Codable {
+        case selection, text, multipleText
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        switch try container.decode(Kind.self, forKey: .kind) {
+        case .selection:
+            self = .selection(try container.decode(Int.self, forKey: .value))
+        case .text:
+            self = .text(try container.decode(String.self, forKey: .value))
+        case .multipleText:
+            self = .multipleText(try container.decode([String].self, forKey: .value))
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .selection(let id):
+            try container.encode(Kind.selection, forKey: .kind)
+            try container.encode(id, forKey: .value)
+        case .text(let value):
+            try container.encode(Kind.text, forKey: .kind)
+            try container.encode(value, forKey: .value)
+        case .multipleText(let values):
+            try container.encode(Kind.multipleText, forKey: .kind)
+            try container.encode(values, forKey: .value)
+        }
+    }
 }
 
-enum AppOnboardingQuestion: CaseIterable {
+enum AppOnboardingQuestion: String, CaseIterable, Codable {
     case userRole
     case isChoaPatient
     case whichChoa

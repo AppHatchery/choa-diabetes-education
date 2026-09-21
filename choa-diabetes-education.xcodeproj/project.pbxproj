@@ -10,6 +10,8 @@
 		04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */; };
 		0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */; };
 		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
+		42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E823908D07BE6545031D5 /* AppOnboardingManager.swift */; };
+		44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */; };
 		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
 		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
@@ -155,7 +157,6 @@
 		CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */; };
 		CF01A1B2000000000000C105 /* CalculatorOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */; };
 		CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000D102 /* NavigationProgressBar.swift */; };
-		44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */; };
 		CF01A1B2000000000000E101 /* snack_recipes.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E102 /* snack_recipes.html */; };
 		CF01A1B2000000000000E103 /* egg_frittata_muffins.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E104 /* egg_frittata_muffins.html */; };
 		CF01A1B2000000000000E105 /* no_bake_granola_bar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000E106 /* no_bake_granola_bar.html */; };
@@ -218,6 +219,7 @@
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
 		CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */; };
+		CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
 		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
@@ -323,11 +325,13 @@
 		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
 		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
 		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
+		43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestionView.swift; sourceTree = "<group>"; };
 		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
 		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
 		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
+		945E823908D07BE6545031D5 /* AppOnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingManager.swift; sourceTree = "<group>"; };
 		AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReferencesViewController.swift; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
@@ -464,7 +468,6 @@
 		CF01A1B2000000000000C104 /* CalculatorOnBoardingWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnBoardingWelcomeViewController.swift; sourceTree = "<group>"; };
 		CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOnboardingQuestion.swift; sourceTree = "<group>"; };
 		CF01A1B2000000000000D102 /* NavigationProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationProgressBar.swift; sourceTree = "<group>"; };
-		43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestionView.swift; sourceTree = "<group>"; };
 		CF01A1B2000000000000E102 /* snack_recipes.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = snack_recipes.html; sourceTree = "<group>"; };
 		CF01A1B2000000000000E104 /* egg_frittata_muffins.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = egg_frittata_muffins.html; sourceTree = "<group>"; };
 		CF01A1B2000000000000E106 /* no_bake_granola_bar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = no_bake_granola_bar.html; sourceTree = "<group>"; };
@@ -527,6 +530,7 @@
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
 		CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingWelcomViewController.swift; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
@@ -662,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */,
+				945E823908D07BE6545031D5 /* AppOnboardingManager.swift */,
 				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
 				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
 				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
@@ -1023,6 +1028,7 @@
 				CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */,
 				32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */,
 				CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */,
+				CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1552,6 +1558,7 @@
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */,
+				CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */,
 				CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */,
 				44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
@@ -1593,6 +1600,7 @@
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
+				42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */,
 				CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */,
 				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
