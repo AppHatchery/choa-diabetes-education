@@ -102,21 +102,21 @@
         <!--App Onboarding View Controller-->
         <scene sceneID="ehn-Qo-4De">
             <objects>
-                <viewController id="6V1-ZA-Pgw" customClass="AppOnboardingViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Tb-il-lJw">
+                <viewController storyboardIdentifier="appOnboardingQuestion" id="6V1-ZA-Pgw" customClass="AppOnboardingViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Tb-il-lJw" customClass="AppOnboardingQuestionView" customModule="choa_diabetes_education" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ut6-el-zJh">
                                 <rect key="frame" x="20" y="94" width="335" height="53.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who's using this app?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-vK-aZx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who's using this app?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-vK-aZx">
                                         <rect key="frame" x="0.0" y="0.0" width="181.5" height="25"/>
                                         <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                         <color key="textColor" name="primaryBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the option that best describes you." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waG-vl-kfp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the option that best describes you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waG-vl-kfp">
                                         <rect key="frame" x="0.0" y="33" width="327.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -187,7 +187,7 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPC-Va-fB6" userLabel="Text Field View">
                                                                                 <rect key="frame" x="0.0" y="28.5" width="315" height="64"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9E0-IY-keI">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9E0-IY-keI">
                                                                                         <rect key="frame" x="10" y="10" width="295" height="44"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <textInputTraits key="textInputTraits"/>
@@ -231,6 +231,7 @@
                                     <constraint firstItem="Xmr-UT-NSR" firstAttribute="top" secondItem="bQU-MN-Jb9" secondAttribute="top" id="0IK-pq-kV6"/>
                                     <constraint firstItem="Xmr-UT-NSR" firstAttribute="leading" secondItem="bQU-MN-Jb9" secondAttribute="leading" id="H8D-ol-2L6"/>
                                     <constraint firstAttribute="bottom" secondItem="Xmr-UT-NSR" secondAttribute="bottom" id="IXO-bP-HwC"/>
+                                    <constraint firstItem="Xmr-UT-NSR" firstAttribute="width" secondItem="bQU-MN-Jb9" secondAttribute="width" id="PUb-UJ-gvT"/>
                                     <constraint firstAttribute="trailing" secondItem="Xmr-UT-NSR" secondAttribute="trailing" id="RVG-TW-G8D"/>
                                 </constraints>
                             </scrollView>
@@ -247,7 +248,7 @@
                                     <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="didTapNextButton:" destination="6V1-ZA-Pgw" eventType="touchUpInside" id="yuH-MA-9g9"/>
+                                    <action selector="didTapNextButton:" destination="5Tb-il-lJw" eventType="touchUpInside" id="yuH-MA-9g9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -265,15 +266,17 @@
                             <constraint firstItem="erv-QA-qfW" firstAttribute="trailing" secondItem="ut6-el-zJh" secondAttribute="trailing" constant="20" id="yEf-B2-ma7"/>
                             <constraint firstItem="bQU-MN-Jb9" firstAttribute="top" secondItem="ut6-el-zJh" secondAttribute="bottom" constant="20" id="zF3-6M-lax"/>
                         </constraints>
+                        <connections>
+                            <outlet property="nextButton" destination="Nf1-1e-K9n" id="mOf-5F-NNk"/>
+                            <outlet property="openEndedOptionView" destination="i4s-ct-LsM" id="n6M-Cm-dyY"/>
+                            <outlet property="openEndedStackView" destination="X1z-b3-OFh" id="Daw-Mi-Cxr"/>
+                            <outlet property="questionSubtitleLabel" destination="waG-vl-kfp" id="iSe-Vd-QhT"/>
+                            <outlet property="questionTitleLabel" destination="1NX-vK-aZx" id="lAG-qT-1BO"/>
+                            <outlet property="selectOptionView" destination="sME-5a-rRD" id="mo4-iw-yzC"/>
+                            <outlet property="selectStackView" destination="wop-6g-vKq" id="Edh-uy-qd5"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Sx8-NO-x8I"/>
-                    <connections>
-                        <outlet property="nextButton" destination="Nf1-1e-K9n" id="mOf-5F-NNk"/>
-                        <outlet property="openEndedStackView" destination="X1z-b3-OFh" id="Daw-Mi-Cxr"/>
-                        <outlet property="questionSubtitleLabel" destination="waG-vl-kfp" id="iSe-Vd-QhT"/>
-                        <outlet property="questionTitleLabel" destination="1NX-vK-aZx" id="lAG-qT-1BO"/>
-                        <outlet property="selectStackView" destination="wop-6g-vKq" id="Edh-uy-qd5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxm-kb-OYq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
