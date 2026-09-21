@@ -175,8 +175,8 @@ final class CarbFoodRowView: UIView {
         quantityLabel.textColor = .primaryBlue
         quantityLabel.textAlignment = .center
 
-        configure(stepperButton: minusButton, named: "ic_minuss", action: #selector(decrementTapped))
-        configure(stepperButton: plusButton, named: "ic_pluss", action: #selector(incrementTapped))
+        configure(stepperButton: minusButton, image: "minus", action: #selector(decrementTapped))
+        configure(stepperButton: plusButton, image: "plus", action: #selector(incrementTapped))
 
         stepperStack.addArrangedSubview(minusButton)
         stepperStack.addArrangedSubview(quantityLabel)
@@ -194,11 +194,12 @@ final class CarbFoodRowView: UIView {
         ])
     }
 
-    private func configure(stepperButton button: UIButton, named: String, action: Selector) {
+    private func configure(stepperButton button: UIButton, image: String, action: Selector) {
         button.setImage(
             UIImage(
-                named: named,
-
+                systemName: image,
+                withConfiguration: UIImage
+                    .SymbolConfiguration(pointSize: 16, weight: .semibold)
             ),
             for: .normal
         )

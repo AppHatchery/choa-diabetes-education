@@ -31,6 +31,7 @@ extension UIColor {
     public static let progressBarColor = UIColor(named: "progressBarColor")!
     public static let textFieldBackgroundColor = UIColor(named: "textFieldBackgroundColor")!
     public static let grayTextColor = UIColor(named: "grayTextColor")!
+    public static let secondaryMeadowGreen300 = UIColor(named: "secondaryMeadowGreen300")!
     public static let diabetesBasicsColor = UIColor(named: "secondaryMeadowGreen300")!
     public static let diabetesBasicsLightColor = UIColor(named: "secondaryMeadowGreen100")!
     public static let nutritionAndCarbColor = UIColor(named: "secondarySunsetOrange300")!
