@@ -16,7 +16,7 @@ class AppOnboardingViewController: UIViewController {
         title = "App Onboarding"
     }
 
-    @IBAction func didTapMainAppButton(_ sender: Any) {
+    @IBAction func didTapNextButton(_ sender: Any) {
         guard let window = view.window else { return }
 
         let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
