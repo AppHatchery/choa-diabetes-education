@@ -10,6 +10,8 @@
 		04D2876EA295719FC24382B7 /* CarbFoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8283C23CF78D67137B1869A /* CarbFoodRowView.swift */; };
 		0527A8DA396229E516637F91 /* CarbsCalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */; };
 		1501A0613FFF17E4A2B7E3C8 /* CarbFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF08537DA126EA3BEB82D30 /* CarbFood.swift */; };
+		42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E823908D07BE6545031D5 /* AppOnboardingManager.swift */; };
+		44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */; };
 		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
 		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
@@ -216,10 +218,14 @@
 		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */; };
+		CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
 		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
 		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
+		CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */; };
+		CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -319,11 +325,13 @@
 		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
 		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
 		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
+		43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestionView.swift; sourceTree = "<group>"; };
 		6BF08537DA126EA3BEB82D30 /* CarbFood.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbFood.swift; sourceTree = "<group>"; };
 		8EAF82C02A467EAE0035919B /* FourOptionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourOptionsView.xib; sourceTree = "<group>"; };
 		8EAF82C22A467EBC0035919B /* FourOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourOptionsView.swift; sourceTree = "<group>"; };
 		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
 		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
+		945E823908D07BE6545031D5 /* AppOnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingManager.swift; sourceTree = "<group>"; };
 		AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReferencesViewController.swift; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
@@ -521,10 +529,14 @@
 		CF1408D6304052AD0002FD8A /* cookies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cookies.png; sourceTree = "<group>"; };
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
+		CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingWelcomViewController.swift; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
+		CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingViewController.swift; sourceTree = "<group>"; };
+		CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppOnboarding.storyboard; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -654,9 +666,11 @@
 			isa = PBXGroup;
 			children = (
 				B4A61F9B2E85850E0079B276 /* CalculatorConstantsManager.swift */,
+				945E823908D07BE6545031D5 /* AppOnboardingManager.swift */,
 				B44D1F1C2E5CA25300DE4E3A /* ReminderManager.swift */,
 				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
 				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
+				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -676,13 +690,6 @@
 				B4A61FA42E859FCF0079B276 /* InfoPopUpViewController.xib */,
 			);
 			path = PopUps;
-			sourceTree = "<group>";
-		};
-		B4B9C9B82E9D2AAA00072900 /* NotificationViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NotificationViews;
 			sourceTree = "<group>";
 		};
 		B4E144312E9C2CA8009A5589 /* Helpers */ = {
@@ -979,6 +986,7 @@
 				D48D890B289C0095001A61E2 /* plists */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
+				CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
 				B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */,
 				FDC8E5212A1FAE87006FDFF0 /* Orientation.storyboard */,
@@ -1019,6 +1027,8 @@
 				CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */,
 				CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */,
 				32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */,
+				CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */,
+				CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1026,7 +1036,6 @@
 		D48D8908289C006D001A61E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B4B9C9B82E9D2AAA00072900 /* NotificationViews */,
 				B4A61FA52E859FCF0079B276 /* PopUps */,
 				FDC8E53F2A293809006FDFF0 /* QuestionnaireViews */,
 				D481679628ABBCCC003B14A3 /* OrientationHeader.swift */,
@@ -1054,6 +1063,7 @@
 				D4D48E8E28D1122F00820FD4 /* Communities.swift */,
 				D4D48E9028D1123700820FD4 /* Communities.xib */,
 				CF01A1B2000000000000D102 /* NavigationProgressBar.swift */,
+				43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */,
 				D492A88F28F8E2A000B98CA3 /* SearchView.swift */,
 				D492A89128F8E2A900B98CA3 /* SearchView.xib */,
 				D492A8952901D67900B98CA3 /* SearchResultTableViewCell.swift */,
@@ -1129,8 +1139,8 @@
 				D48167C428ACFB40003B14A3 /* Content.swift */,
 				FDC8E5282A2046FD006FDFF0 /* QuestionType.swift */,
 				FDC8E52A2A204974006FDFF0 /* Questionnaire.swift */,
-				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
 				CF01A1B2000000000000C106 /* CalculatorOnboardingQuestion.swift */,
+				CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */,
 				6BF08537DA126EA3BEB82D30 /* CarbFood.swift */,
 			);
 			path = Models;
@@ -1248,7 +1258,7 @@
 					5,
 				);
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					D48D88EC289C0043001A61E2 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1318,6 +1328,7 @@
 				B4DBE8212F0FFD000075C7F3 /* long_acting_insulin.png in Resources */,
 				B4DBE81D2F0FDB7C0075C7F3 /* will_test_strip.png in Resources */,
 				D42FA8FF29916B81009C51C3 /* AboutApp.xib in Resources */,
+				CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */,
 				B4DBE8312F1002AF0075C7F3 /* insulin_injection_sites.png in Resources */,
 				8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */,
 				B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */,
@@ -1532,6 +1543,7 @@
 				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
+				CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */,
 				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,
 				D432FDC9297EEC76003D2657 /* QuizMultipleAnswerTableViewCell.swift in Sources */,
 				D48D8916289C0365001A61E2 /* UIColor+Extensions.swift in Sources */,
@@ -1546,7 +1558,9 @@
 				D48167C828AD0396003B14A3 /* ChapterViewController.swift in Sources */,
 				FDC8E5362A27C12E006FDFF0 /* PrimaryButton.swift in Sources */,
 				B4B8E9752E6EB08000C377D1 /* RecheckKetoneLevelView.swift in Sources */,
+				CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */,
 				CF01A1B2000000000000D101 /* NavigationProgressBar.swift in Sources */,
+				44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */,
 				D492A89028F8E2A000B98CA3 /* SearchView.swift in Sources */,
 				B4F6ABFD2E5A23E90037D323 /* FinalStepWithReminderView.swift in Sources */,
 				D48D8926289C215C001A61E2 /* CalculatorViewController.swift in Sources */,
@@ -1557,6 +1571,7 @@
 				FDC8E5412A29413D006FDFF0 /* OpenEndedQueView.swift in Sources */,
 				D48167B928ABF963003B14A3 /* QuotesView.swift in Sources */,
 				B4A61F9A2E8550720079B276 /* CalculatorEditViewController.swift in Sources */,
+				CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */,
 				8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */,
 				B4B3CEB02E3A499200622C13 /* YesOrNoFollowUpView.swift in Sources */,
 				D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */,
@@ -1585,6 +1600,7 @@
 				FD99F39A2A1D0D43009F3C30 /* URLs.swift in Sources */,
 				B49BDE6F2E16CE5D00A09DA5 /* FiveOptionsView.swift in Sources */,
 				B4A61F9C2E85850E0079B276 /* CalculatorConstantsManager.swift in Sources */,
+				42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */,
 				CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */,
 				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
@@ -1663,6 +1679,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1693,8 +1710,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3RQHVA7936;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1714,6 +1733,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1723,6 +1743,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1753,8 +1774,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 3RQHVA7936;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1767,6 +1790,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1782,17 +1806,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 3RQHVA7936;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Type U";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = AppOnboarding;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1819,17 +1843,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 3RQHVA7936;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "choa-diabetes-education/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Type U";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = AppOnboarding;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

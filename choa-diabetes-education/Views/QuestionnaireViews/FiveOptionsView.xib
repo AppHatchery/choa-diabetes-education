@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -77,13 +78,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="161.5" height="215"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiN-6y-2K6">
-                                                                            <rect key="frame" x="10" y="176" width="141.5" height="19"/>
+                                                                            <rect key="frame" x="10" y="173" width="141.5" height="22"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_trouble_breathing" translatesAutoresizingMaskIntoConstraints="NO" id="kKl-lf-axA">
-                                                                            <rect key="frame" x="10" y="10" width="141.5" height="156"/>
+                                                                            <rect key="frame" x="10" y="10" width="141.5" height="153"/>
                                                                             <color key="backgroundColor" name="lightGrayColor"/>
                                                                         </imageView>
                                                                     </subviews>
@@ -103,13 +104,13 @@
                                                                     <rect key="frame" x="173.5" y="0.0" width="161.5" height="215"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6t-ub-JrC">
-                                                                            <rect key="frame" x="10" y="176" width="141.5" height="19"/>
+                                                                            <rect key="frame" x="10" y="173" width="141.5" height="22"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_confused" translatesAutoresizingMaskIntoConstraints="NO" id="Ard-dz-RHC">
-                                                                            <rect key="frame" x="10" y="10" width="141.5" height="156"/>
+                                                                            <rect key="frame" x="10" y="10" width="141.5" height="153"/>
                                                                             <color key="backgroundColor" name="lightGrayColor"/>
                                                                         </imageView>
                                                                     </subviews>
@@ -134,13 +135,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="161.5" height="215"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tay-08-FDF">
-                                                                            <rect key="frame" x="10" y="176" width="141.5" height="19"/>
+                                                                            <rect key="frame" x="10" y="173" width="141.5" height="22"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_lethargic" translatesAutoresizingMaskIntoConstraints="NO" id="i5Q-zO-sTq">
-                                                                            <rect key="frame" x="10" y="10" width="141.5" height="156"/>
+                                                                            <rect key="frame" x="10" y="10" width="141.5" height="153"/>
                                                                             <color key="backgroundColor" name="lightGrayColor"/>
                                                                         </imageView>
                                                                     </subviews>
@@ -160,13 +161,13 @@
                                                                     <rect key="frame" x="173.5" y="0.0" width="161.5" height="215"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIO-C8-ns5">
-                                                                            <rect key="frame" x="10" y="176" width="141.5" height="19"/>
+                                                                            <rect key="frame" x="10" y="173" width="141.5" height="22"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                             <color key="textColor" name="primaryBlue"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_repeated_vomiting" translatesAutoresizingMaskIntoConstraints="NO" id="HEj-hZ-7of">
-                                                                            <rect key="frame" x="10" y="10" width="141.5" height="156"/>
+                                                                            <rect key="frame" x="10" y="10" width="141.5" height="153"/>
                                                                             <color key="backgroundColor" name="lightGrayColor"/>
                                                                         </imageView>
                                                                     </subviews>
