@@ -10,6 +10,9 @@ protocol OpenEndedQueViewProtocol: AnyObject {
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, cf: Int)
 
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, durationOver300: HighBloodSugarDuration?)
+
+    /// Called instead of `didSelectNextAction` when the reading is below the low blood sugar threshold.
+    func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int)
 }
 
 class OpenEndedQueView: UIView {
@@ -17,6 +20,9 @@ class OpenEndedQueView: UIView {
 
     /// Readings at or above this value show the duration follow-up question.
     private static let highBloodSugarThreshold = 300
+
+    /// Readings below this value may be hypoglycemia, so confirm before continuing.
+    private static let lowBloodSugarThreshold = 70
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var firstQueContentView: UIView!
@@ -151,8 +157,13 @@ class OpenEndedQueView: UIView {
 
         switch self.currentQuestion.questionType {
         case .openEndedWithMultipleInput(.bloodSugarCheck):
-            let duration = isFollowUpRequired ? HighBloodSugarDuration(rawValue: Int(slider.value)) : nil
-            delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, durationOver300: duration)
+            if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
+                contentView.endEditing(true)
+                delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
+            } else {
+                let duration = isFollowUpRequired ? HighBloodSugarDuration(rawValue: Int(slider.value)) : nil
+                delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, durationOver300: duration)
+            }
         default:
             return
         }

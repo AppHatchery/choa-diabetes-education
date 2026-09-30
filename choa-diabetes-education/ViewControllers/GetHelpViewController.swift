@@ -645,6 +645,40 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
 	}
 
+	func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
+		let alert = AlertPopUpViewController(
+			title: "Calculator.LowBloodSugarAlert.title".localized(),
+			message: "Calculator.LowBloodSugarAlert.message".localized(),
+			primaryActionTitle: "Calculator.LowBloodSugarAlert.primaryAction".localized(),
+			secondaryActionTitle: "Calculator.LowBloodSugarAlert.secondaryAction".localized()
+		)
+		alert.onPrimaryAction = { [weak self] in
+			self?.popToChildIssueQuestion()
+		}
+		alert.onSecondaryAction = { [weak self] in
+			guard let self else { return }
+			// A low reading can't have been over 300, so clear those flags before moving on
+			self.questionnaireManager.saveBloodSugarOver300(false)
+			self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		}
+		alert.appear(sender: self)
+	}
+
+		// Returns to the "What's going on with your child?" question so a different symptom can be picked
+	private func popToChildIssueQuestion() {
+		let childIssueVC = navVC.viewControllers.last { controller in
+			guard let getHelpVC = controller as? GetHelpViewController else { return false }
+			return getHelpVC.questionObj.questionType == .fourOptions(.childIssue)
+		}
+
+		if let childIssueVC {
+			navVC.popToViewController(childIssueVC, animated: true)
+		} else {
+			navVC.popViewController(animated: true)
+		}
+	}
+
 	@objc func didSelectExitAction() {
         print("🚪 Exit button pressed - clearing all state")
         

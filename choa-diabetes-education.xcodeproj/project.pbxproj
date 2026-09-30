@@ -218,6 +218,7 @@
 		CF140908304052AD0002FD8A /* milk.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A2304052AD0002FD8A /* milk.png */; };
 		CF140909304052AD0002FD8A /* pies.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408D8304052AD0002FD8A /* pies.png */; };
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
+		CF44788F306D18E2007D2494 /* AlertPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */; };
 		CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */; };
 		CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
@@ -529,6 +530,7 @@
 		CF1408D6304052AD0002FD8A /* cookies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cookies.png; sourceTree = "<group>"; };
 		CF1408D7304052AD0002FD8A /* ice_cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice_cream.png; sourceTree = "<group>"; };
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
+		CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpViewController.swift; sourceTree = "<group>"; };
 		CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestion.swift; sourceTree = "<group>"; };
 		CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingWelcomViewController.swift; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 			children = (
 				B4A61FA32E859FCF0079B276 /* InfoPopUpViewController.swift */,
 				B4A61FA42E859FCF0079B276 /* InfoPopUpViewController.xib */,
+				CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */,
 			);
 			path = PopUps;
 			sourceTree = "<group>";
@@ -1603,6 +1606,7 @@
 				42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */,
 				CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */,
 				B4A61FA62E859FCF0079B276 /* InfoPopUpViewController.swift in Sources */,
+				CF44788F306D18E2007D2494 /* AlertPopUpViewController.swift in Sources */,
 				D48167AF28ABF039003B14A3 /* MedicalTeamViewController.swift in Sources */,
 				FDC8E53E2A292F70006FDFF0 /* TwoOptionsView.swift in Sources */,
 				D4EC907328BFE33D00CD2831 /* ChapterEndViewController.swift in Sources */,
