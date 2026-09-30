@@ -65,8 +65,15 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
         }
     }
     
+    /// Closes every resource page opened from links and returns to the resources list
     @objc func didSelectExitAction() {
-        navigationController?.popViewController(animated: true)
+        guard let navigationController else { return }
+        
+        if let resourcesViewController = navigationController.viewControllers.last(where: { $0 is ResourcesViewController }) {
+            navigationController.popToViewController(resourcesViewController, animated: true)
+        } else {
+            navigationController.popViewController(animated: true)
+        }
     }
     
     /// A page opened from a link becomes its own screen on the navigation stack, so the
