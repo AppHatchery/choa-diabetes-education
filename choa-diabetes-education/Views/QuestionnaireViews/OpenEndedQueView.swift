@@ -14,17 +14,12 @@ class OpenEndedQueView: UIView {
     static let nibName = "OpenEndedQueView"
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var firstQueContentView: UIView!
-    @IBOutlet weak var secondQueContentView: UIView!
+    @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var followUpQuestionView: UIView!
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var secondQuestionLabel: UILabel!
-    
-    @IBOutlet weak var firstInputField: UITextField!
-    @IBOutlet weak var secondInputField: UITextField!
     
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var nextButton: PrimaryButton!
     
     //    @IBOutlet weak var descriptionLabel: UILabel!
@@ -61,22 +56,6 @@ class OpenEndedQueView: UIView {
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
         
-        secondQuestionLabel.font = .nunitoBold16
-        secondQuestionLabel.numberOfLines = 0
-        secondQuestionLabel.textColor = .headingGreenColor
-        secondQuestionLabel.text = currentQuestion.subQuestion
-        secondQuestionLabel.textAlignment = .left
-        
-        if !multiple {
-            secondQueContentView.isHidden = true
-            secondInputField.text = "0"
-        }
-        
-        unitLabel.font = .arial14
-        unitLabel.textColor = .headingGreenColor
-        unitLabel.text = currentQuestion.inputUnit
-        unitLabel.textAlignment = .left
-        
         guard let description = currentQuestion.description, description != "" else {
             
             descriptionLabel.isHidden = true
@@ -111,7 +90,7 @@ class OpenEndedQueView: UIView {
         case .openEndedWithMultipleInput(let id):
             switch  id {
             case .bloodSugar:
-                guard let bloodSugar = Int(firstInputField.text ?? ""), let cf = Int(secondInputField.text ?? "") else { return }
+//                guard let bloodSugar = Int(firstInputField.text ?? ""), let cf = Int(secondInputField.text ?? "") else { return }
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, cf: cf)
             }
         default:
