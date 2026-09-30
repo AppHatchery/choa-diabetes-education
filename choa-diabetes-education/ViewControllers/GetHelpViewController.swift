@@ -628,6 +628,23 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
 
+		// For the blood sugar reading question. The duration is only provided when the reading is 300 or higher.
+	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, durationOver300: HighBloodSugarDuration?) {
+		// iLet Pump users escalate after 90 minutes above 300, everyone else after 3 hours
+		let thresholdMinutes = questionnaireManager.iLetPump ? 90 : 180
+
+		if let duration = durationOver300 {
+			questionnaireManager.saveBloodSugarOver300(true)
+			questionnaireManager.saveBloodSugarOver300For3Hours(duration.minutes >= thresholdMinutes)
+		} else {
+			questionnaireManager.saveBloodSugarOver300(false)
+			questionnaireManager.saveBloodSugarOver300For3Hours(false)
+		}
+
+		print("Blood sugar: \(bloodSugar), duration over 300: \(String(describing: durationOver300)), over threshold: \(questionnaireManager.bloodSugarOver300For3Hours)")
+		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
+	}
+
 	@objc func didSelectExitAction() {
         print("🚪 Exit button pressed - clearing all state")
         

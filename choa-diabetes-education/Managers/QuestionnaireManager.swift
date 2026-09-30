@@ -163,8 +163,8 @@ extension QuestionnaireManager {
 	}
 
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire) {
-		switch currentQuestion.questionId {
-		case YesOrNoQuestionId.bloodSugarCheck.id:
+		switch currentQuestion.questionType {
+		case .yesOrNo(.bloodSugarCheck), .openEndedWithMultipleInput(.bloodSugarCheck):
 			let createTestTypeQue = createFourCustomOptionsQuestion(
 				questionId: FourOptionsQuestionId.otherSymptom,
 				question: "GetHelp.Que.OtherSymptoms.title".localized(),
@@ -1180,12 +1180,12 @@ extension QuestionnaireManager {
     func triggerTestActionFlow(_ currentQuestion: Questionnaire) {
 		if currentTestType == .insulinShots {
 			saveILetPump(false)
-			let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: nil, showDescriptionAtBottom: false)
+			let createQue = createBloodSugarCheckQuestion()
 
 			actionsDelegate?.showNextQuestion(createQue)
 		} else if currentTestType == .pump {
 //            let createQue = createTwoCustomOptionsQuestion(questionId: .calculationType, question: "Calculator.Que.Method.title".localized(), description: "Calculator.Que.Method.description".localized(), answerOptions: ["Calculator.Que.Method.option1".localized(), "Calculator.Que.Method.option2".localized()])
-			let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: nil, showDescriptionAtBottom: false)
+			let createQue = createBloodSugarCheckQuestion()
 
 			actionsDelegate?.showNextQuestion(createQue)
 		}
@@ -1218,11 +1218,21 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createQue)
             
         } else if currentTestType == .insulinShots {
-            let createQue = createYesOrNoQuestion(questionId: .bloodSugarCheck, question: "Calculator.Que.BloodSugarCheck.title".localized(), description: nil, showDescriptionAtBottom: false)
+            let createQue = createBloodSugarCheckQuestion()
             actionsDelegate?.showNextQuestion(createQue)
         }
     }
     
+    /// Routes the answer to the blood sugar reading question. Relies on
+    /// `bloodSugarOver300` and `bloodSugarOver300For3Hours` being saved first.
+    func triggerBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire) {
+        if bloodSugarOver300 && bloodSugarOver300For3Hours {
+            triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+        } else {
+            triggerOtherSymptomsActionFlow(currentQuestion)
+        }
+    }
+
     func triggerBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
         if currentMethod == .scale {
             let createQue = createOpenEndedMultipleInpQuestion(questionId: .bloodSugar, question: "Calculator.Que.BloodSugar.title".localized(), subQuestion: "Calculator.Que.BloodSugar.subQue.Scale".localized(), inputUnit: "Calculator.Que.BloodSugar.unit".localized(), description: "Calculator.Que.BloodSugar.description".localized(), showDescriptionAtBottom: true)
@@ -1464,6 +1474,16 @@ extension QuestionnaireManager {
         return quesObj
     }
     
+    func createBloodSugarCheckQuestion() -> Questionnaire {
+        let quesObj = Questionnaire()
+        quesObj.questionId = OpenEndedWithMultipleInputQuestionId.bloodSugarCheck.id
+        quesObj.questionType = .openEndedWithMultipleInput(.bloodSugarCheck)
+        quesObj.question = "Calculator.Que.BloodSugarReading.title".localized()
+        quesObj.subQuestion = "Calculator.Que.BloodSugarDuration.title".localized()
+        quesObj.inputUnit = "Calculator.Que.BloodSugar.unit".localized()
+        return quesObj
+    }
+
     func createTwoCustomOptionsQuestion(questionId: TwoOptionsQuestionId, question: String, description: String?, answerOptions: [String]) -> Questionnaire {
         let quesObj = Questionnaire()
         quesObj.questionId = questionId.id
