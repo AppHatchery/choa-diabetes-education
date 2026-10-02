@@ -36,5 +36,22 @@ open class PrimaryButton: UIButton {
         self.layer.shadowOpacity = 0
         self.layer.shadowRadius = 0
         self.layer.shadowColor = UIColor.black.cgColor
+
+        // Keep the title and image white when disabled instead of the system gray.
+        // The faded look comes from the alpha set by the screens using this button.
+        setTitleColor(.white, for: .disabled)
+        // Configured buttons (e.g. "plain" style from a xib) apply their own disabled color on top of
+        // baseForegroundColor, so force white through the title and image color transformers instead.
+        configurationUpdateHandler = { button in
+            guard var configuration = button.configuration else { return }
+            configuration.baseForegroundColor = .white
+            configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attributes in
+                var attributes = attributes
+                attributes.foregroundColor = UIColor.white
+                return attributes
+            }
+            configuration.imageColorTransformer = UIConfigurationColorTransformer { _ in .white }
+            button.configuration = configuration
+        }
     }
 }

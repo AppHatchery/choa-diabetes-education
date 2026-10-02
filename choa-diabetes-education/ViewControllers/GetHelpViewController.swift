@@ -155,7 +155,7 @@ class GetHelpViewController: UIViewController {
             if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)) {
                 // Popping FROM reminder page
                 
-                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                if previousVC.questionObj.questionType.isBloodSugarRecheck {
                     // Going back to blood sugar recheck
                     questionnaireManager.decrementReminderPageVisitCount()
                     print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
@@ -194,7 +194,7 @@ class GetHelpViewController: UIViewController {
                     print("   ⚠️ Ketones PRESERVED when popping to reminder")
                 }
                 
-                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                if previousVC.questionObj.questionType.isBloodSugarRecheck {
                     // Going back to blood sugar recheck
                     questionnaireManager.decrementKetoneVisitCount()
                     print("   🧪 Decremented ketone count (popping to blood sugar recheck)")
@@ -226,7 +226,7 @@ class GetHelpViewController: UIViewController {
             // ============================================================
             // YES/NO VIEW TRACKING (Blood Sugar Recheck, etc.)
             // ============================================================
-            if questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+            if questionObj.questionType.isBloodSugarRecheck {
                 // Popping FROM blood sugar recheck page
                 
                 if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
@@ -645,6 +645,11 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
 	}
 
+		// For the blood sugar recheck reading. The manager compares it against the 150/180 mg/dL threshold.
+	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int) {
+		questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
+	}
+
 	func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
 		let alert = AlertPopUpViewController(
 			title: "Calculator.LowBloodSugarAlert.title".localized(),
@@ -657,6 +662,13 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		}
 		alert.onSecondaryAction = { [weak self] in
 			guard let self else { return }
+
+			// On recheck, keep the first reading's flags and continue down the below-threshold path
+			if currentQuestion.questionType == .openEndedWithMultipleInput(.bloodSugarRecheck) {
+				self.questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
+				return
+			}
+
 			// A low reading can't have been over 300, so clear those flags before moving on
 			self.questionnaireManager.saveBloodSugarOver300(false)
 			self.questionnaireManager.saveBloodSugarOver300For3Hours(false)

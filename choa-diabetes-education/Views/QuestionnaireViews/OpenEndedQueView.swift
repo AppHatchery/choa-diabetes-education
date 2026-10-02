@@ -11,6 +11,9 @@ protocol OpenEndedQueViewProtocol: AnyObject {
 
     func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, durationOver300: HighBloodSugarDuration?)
 
+    /// Called for the blood sugar recheck, which only asks for the reading.
+    func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int)
+
     /// Called instead of `didSelectNextAction` when the reading is below the low blood sugar threshold.
     func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int)
 }
@@ -61,6 +64,55 @@ class OpenEndedQueView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    /// Shrinks the content view by the keyboard overlap so the next button, pinned to its bottom, stays visible.
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard !isHidden,
+              let userInfo = notification.userInfo,
+              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+              let window = window else { return }
+
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
+
+        // Convert keyboard frame to this view's coordinate space
+        let keyboardFrameInView = convert(keyboardFrameEnd, from: window.screen.coordinateSpace)
+        let overlapHeight = bounds.intersection(keyboardFrameInView).height
+
+        guard overlapHeight > 0 else { return }
+
+        var newFrame = bounds
+        newFrame.size.height = max(bounds.height - overlapHeight, 0)
+        UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
+            self.contentView.frame = newFrame
+            self.contentView.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            contentView.frame = bounds
+            return
+        }
+
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
+        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
+
+        UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
+            self.contentView.frame = self.bounds
+            self.contentView.layoutIfNeeded()
+        }, completion: nil)
     }
 
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
@@ -116,7 +168,9 @@ class OpenEndedQueView: UIView {
     }
 
     private var isFollowUpRequired: Bool {
-        guard let bloodSugar = enteredBloodSugar else { return false }
+        // Only the first blood sugar check asks how long it's been above 300 mg/dL
+        guard currentQuestion.questionType == .openEndedWithMultipleInput(.bloodSugarCheck),
+              let bloodSugar = enteredBloodSugar else { return false }
         return bloodSugar >= OpenEndedQueView.highBloodSugarThreshold
     }
 
@@ -163,6 +217,13 @@ class OpenEndedQueView: UIView {
             } else {
                 let duration = isFollowUpRequired ? HighBloodSugarDuration(rawValue: Int(slider.value)) : nil
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, durationOver300: duration)
+            }
+        case .openEndedWithMultipleInput(.bloodSugarRecheck):
+            contentView.endEditing(true)
+            if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
+                delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
+            } else {
+                delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             }
         default:
             return

@@ -21,6 +21,12 @@ enum QuestionType: Equatable {
 	case callChoa(FinalQuestionId)
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
+
+    /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
+    /// and an open-ended reading for the 150/180 mg/dL checks.
+    var isBloodSugarRecheck: Bool {
+        self == .yesOrNo(.bloodSugarRecheck) || self == .openEndedWithMultipleInput(.bloodSugarRecheck)
+    }
 }
 
 
@@ -107,6 +113,7 @@ enum TwoOptionsQuestionId {
 enum OpenEndedWithMultipleInputQuestionId {
     case bloodSugar
     case bloodSugarCheck
+    case bloodSugarRecheck
 
     var id: Int {
         switch self {
@@ -114,6 +121,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             return 1
         case .bloodSugarCheck:
             return 2
+        case .bloodSugarRecheck:
+            return 3
         }
     }
 
@@ -123,6 +132,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             self = .bloodSugar
         case 2:
             self = .bloodSugarCheck
+        case 3:
+            self = .bloodSugarRecheck
         default:
             self = .bloodSugar
         }
