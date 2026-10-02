@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZSC-5o-30c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -26,18 +25,17 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
-        </array>
-        <array key="NunitoRegular.ttf">
-            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
         <!--Home-->
         <scene sceneID="l2I-G8-qIn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WyU-Ub-Med" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavigationController" title="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZSC-5o-30c" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="tabBarItem:bAO-VP-Djn:image" selectedImage="homeFilled" id="bAO-VP-Djn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oMS-yL-QCe">
@@ -56,6 +54,7 @@
                         <segue destination="6QC-M0-wRq" kind="relationship" relationship="rootViewController" id="NEz-JL-ZRK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyU-Ub-Med" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2390" y="-591"/>
         </scene>

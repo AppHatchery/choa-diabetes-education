@@ -89,20 +89,20 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
 
 		insulinCalculatorView.layer.cornerRadius = 12
-		mealsAndHighSugarButton.layer.cornerRadius = 12
+		mealsAndHighSugarButton.applyCornerRadius(12)
 
-		mealsButton.layer.cornerRadius = 12
+		mealsButton.applyCornerRadius(12)
 		mealsButton.layer.borderWidth = 1
 		mealsButton.layer.borderColor = UIColor.white.cgColor
 
-		highSugarButton.layer.cornerRadius = 12
+		highSugarButton.applyCornerRadius(12)
 		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
         
 		getHelpView.layer.cornerRadius = 12
         getHelpView.clipsToBounds = true
         getHelpViewImage.clipsToBounds = true
-		getHelpButton.layer.cornerRadius = 12
+		getHelpButton.applyCornerRadius(12)
 		getHelpButton.titleLabel?.font = .nunitoBold16
         
         getHelpView.isUserInteractionEnabled = true
@@ -112,7 +112,7 @@ class HomeViewController: UIViewController {
         knowYourCarbsView.layer.cornerRadius = 12
         knowYourCarbsView.clipsToBounds = true
         knowYourCarbsImage.transform = CGAffineTransform(scaleX: -1, y: 1)
-        knowYourCarbsButton.layer.cornerRadius = 12
+        knowYourCarbsButton.applyCornerRadius(12)
 
         knowYourCarbsView.isUserInteractionEnabled = true
         let knowYourCarbsTap = UITapGestureRecognizer(target: self, action: #selector(didTapKnowYourCarbsView))

@@ -40,6 +40,16 @@ extension UIView {
         layer.masksToBounds = false
     }
 
+	/// Rounds all corners with a fixed radius. iOS 26 manages view corners through
+	/// `cornerConfiguration`, which overrides `layer.cornerRadius`.
+	func applyCornerRadius(_ radius: CGFloat) {
+		if #available(iOS 26.0, *) {
+			cornerConfiguration = .corners(radius: .fixed(radius))
+		} else {
+			layer.cornerRadius = radius
+		}
+	}
+
 	func roundedCorners(corners: UIRectCorner, radius: CGFloat) {
 		let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
 		let shape = CAShapeLayer()

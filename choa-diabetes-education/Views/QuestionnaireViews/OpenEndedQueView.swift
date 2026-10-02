@@ -141,7 +141,6 @@ class OpenEndedQueView: UIView {
         hasSelectedDuration = false
         followUpQuestionView.isHidden = true
 
-        nextButton.layer.cornerRadius = 12
         updateNextButtonState()
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
