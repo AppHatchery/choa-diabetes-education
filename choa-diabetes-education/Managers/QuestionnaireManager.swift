@@ -353,7 +353,7 @@ extension QuestionnaireManager {
     func triggerBloodSugarRecheckReadingActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
         let threshold = iLetPump ? 180 : 150
 
-        if bloodSugar >= threshold {
+        if bloodSugar > threshold {
             triggerBloodSugarRecheckAboveActionFlow(currentQuestion)
         } else {
             triggerBloodSugarRecheckBelowActionFlow(currentQuestion)
