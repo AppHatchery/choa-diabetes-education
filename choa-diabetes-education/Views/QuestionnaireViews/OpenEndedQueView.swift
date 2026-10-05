@@ -145,6 +145,7 @@ class OpenEndedQueView: UIView {
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
         tap.cancelsTouchesInView = false
+        tap.delegate = self
         contentView.addGestureRecognizer(tap)
         contentView.isUserInteractionEnabled = true
 
@@ -201,6 +202,11 @@ class OpenEndedQueView: UIView {
         updateNextButtonState()
     }
 
+    /// Opens the keyboard on the blood sugar field.
+    func focusBloodSugarField() {
+        bloodSugarTextField.becomeFirstResponder()
+    }
+
     @objc func viewTapped(_ sender: UITapGestureRecognizer?) {
         contentView.endEditing(true)
     }
@@ -208,17 +214,17 @@ class OpenEndedQueView: UIView {
     @IBAction func didNextButtonTap(_ sender: UIButton) {
         guard canContinue, let bloodSugar = enteredBloodSugar else { return }
 
+        contentView.endEditing(true)
+
         switch self.currentQuestion.questionType {
         case .openEndedWithMultipleInput(.bloodSugarCheck):
             if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
-                contentView.endEditing(true)
                 delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             } else {
                 let duration = isFollowUpRequired ? HighBloodSugarDuration(rawValue: Int(slider.value)) : nil
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, durationOver300: duration)
             }
         case .openEndedWithMultipleInput(.bloodSugarRecheck):
-            contentView.endEditing(true)
             if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
                 delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             } else {
@@ -227,5 +233,18 @@ class OpenEndedQueView: UIView {
         default:
             return
         }
+    }
+}
+
+extension OpenEndedQueView: UIGestureRecognizerDelegate {
+    /// Ignore taps on controls. Dismissing the keyboard resizes the content view, which moves
+    /// the next button out from under the touch before it can register `touchUpInside`.
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        var view = touch.view
+        while let current = view {
+            if current is UIControl { return false }
+            view = current.superview
+        }
+        return true
     }
 }

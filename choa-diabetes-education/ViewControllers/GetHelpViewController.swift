@@ -69,6 +69,11 @@ class GetHelpViewController: UIViewController {
         
         if isMovingToParent {
             hasAppearedFromPush = true
+
+            // Raise the keyboard alongside the push so the reading can be typed right away
+            if !openEndedQueView.isHidden {
+                openEndedQueView.focusBloodSugarField()
+            }
         }
         
         questionnaireManager.printCurrentKetoneState()
