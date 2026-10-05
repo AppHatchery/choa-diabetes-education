@@ -41,9 +41,16 @@ class BloodKetoneLevelView: UIView {
 			return
 		}
 
+		view.translatesAutoresizingMaskIntoConstraints = false
+
 		addSubview(view)
-		view.frame = self.bounds
-		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: trailingAnchor),
+			view.bottomAnchor.constraint(equalTo: bottomAnchor),
+		])
 
 		ketoneLevelsStackView.layer.borderWidth = 1
 		ketoneLevelsStackView.layer.borderColor = UIColor.ketoneBorderColor.cgColor

@@ -22,9 +22,9 @@
                 <outlet property="contentView" destination="mcN-wV-Tt9" id="lVW-ud-aVY"/>
                 <outlet property="firstButtonImage" destination="hvd-V4-WiZ" id="h1h-dc-CBY"/>
                 <outlet property="firstButtonLabel" destination="PtT-ZT-c86" id="oPs-vu-SES"/>
-                <outlet property="followUpQuestionStackView" destination="gta-fH-YWH" id="YYe-2h-Zbw"/>
                 <outlet property="instructionsLabel" destination="f2O-Xw-owa" id="9eK-f2-QXs"/>
                 <outlet property="learnHowLabel" destination="L8W-Q0-crO" id="Rgt-Za-XZM"/>
+                <outlet property="mainStackView" destination="tGn-23-bqq" id="mSt-kV-0tl"/>
                 <outlet property="nextButton" destination="kuU-rn-CP1" id="WMC-2h-7Tx"/>
                 <outlet property="optionsStackView" destination="f3L-Mi-67V" id="laJ-WA-PNq"/>
                 <outlet property="questionLabel" destination="SKw-ag-lAw" id="VOg-aA-dqZ"/>
@@ -48,7 +48,7 @@
                     <rect key="frame" x="0.0" y="20" width="393" height="776"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-23-bqq" userLabel="Main Stack View">
-                            <rect key="frame" x="20" y="20" width="353" height="685"/>
+                            <rect key="frame" x="20" y="20" width="353" height="368"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-sI-pDY" userLabel="Resources Stack View">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="89.5"/>
@@ -144,18 +144,12 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gta-fH-YWH" userLabel="Follow Up Question Stack View">
-                                    <rect key="frame" x="0.0" y="373" width="353" height="312"/>
-                                </stackView>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="685" id="LXn-Gz-K99"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="tGn-23-bqq" firstAttribute="top" secondItem="YrJ-pc-bcW" secondAttribute="top" constant="20" id="2bk-dN-xAX"/>
-                        <constraint firstAttribute="bottom" secondItem="tGn-23-bqq" secondAttribute="bottom" constant="20" id="6Ng-oW-4QO"/>
+                        <constraint firstAttribute="bottom" secondItem="tGn-23-bqq" secondAttribute="bottom" constant="20" id="kQ3-bm-8Rz"/>
                         <constraint firstItem="tGn-23-bqq" firstAttribute="leading" secondItem="YrJ-pc-bcW" secondAttribute="leading" constant="20" id="FT4-sN-UEU"/>
                         <constraint firstItem="tGn-23-bqq" firstAttribute="width" secondItem="YrJ-pc-bcW" secondAttribute="width" constant="-40" id="Tq7-wE-3kx"/>
                         <constraint firstAttribute="trailing" secondItem="tGn-23-bqq" secondAttribute="trailing" constant="20" id="nRa-sJ-2VI"/>
