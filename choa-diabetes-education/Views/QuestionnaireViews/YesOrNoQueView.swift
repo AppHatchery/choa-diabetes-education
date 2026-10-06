@@ -82,7 +82,6 @@ class YesOrNoQueView: UIView, YesOrNoFollowUpView.YesOrNoFollowUpViewDelegate {
         yesButton.setTitle("Yes", for: .normal)
         noButton.setTitle("No", for: .normal)
         
-        nextButton.layer.cornerRadius = 12
         
     }
     

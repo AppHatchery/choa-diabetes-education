@@ -69,6 +69,11 @@ class GetHelpViewController: UIViewController {
         
         if isMovingToParent {
             hasAppearedFromPush = true
+
+            // Raise the keyboard alongside the push so the reading can be typed right away
+            if !openEndedQueView.isHidden {
+                openEndedQueView.focusBloodSugarField()
+            }
         }
         
         questionnaireManager.printCurrentKetoneState()
@@ -155,7 +160,7 @@ class GetHelpViewController: UIViewController {
             if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)) {
                 // Popping FROM reminder page
                 
-                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                if previousVC.questionObj.questionType.isBloodSugarRecheck {
                     // Going back to blood sugar recheck
                     questionnaireManager.decrementReminderPageVisitCount()
                     print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
@@ -194,7 +199,7 @@ class GetHelpViewController: UIViewController {
                     print("   ⚠️ Ketones PRESERVED when popping to reminder")
                 }
                 
-                if previousVC.questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+                if previousVC.questionObj.questionType.isBloodSugarRecheck {
                     // Going back to blood sugar recheck
                     questionnaireManager.decrementKetoneVisitCount()
                     print("   🧪 Decremented ketone count (popping to blood sugar recheck)")
@@ -226,7 +231,7 @@ class GetHelpViewController: UIViewController {
             // ============================================================
             // YES/NO VIEW TRACKING (Blood Sugar Recheck, etc.)
             // ============================================================
-            if questionObj.questionType == .yesOrNo(.bloodSugarRecheck) {
+            if questionObj.questionType.isBloodSugarRecheck {
                 // Popping FROM blood sugar recheck page
                 
                 if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
@@ -376,18 +381,24 @@ class GetHelpViewController: UIViewController {
 
 	private func updateBackgroundColorForFinalStep(questionId: Int) {
 		let backgroundColor: UIColor
+		let tintColor: UIColor
 
 		switch questionId {
 		case FinalQuestionId.firstEmergencyScreen.id:
-			backgroundColor = .veryLightRed
+			backgroundColor = .secondaryRedColor
+			tintColor = .white
 		case FinalQuestionId.endo.id:
 			backgroundColor = .white
+			tintColor = .black
 		case FinalQuestionId.continueRegularCare.id:
-			backgroundColor = .veryLightGreen
+			backgroundColor = .secondaryMeadowGreen300
+			tintColor = .white
 		case FinalQuestionId.callChoaEmergency.id:
-			backgroundColor = .lightBackgroundColor
+			backgroundColor = .sunsetOrangeColor300
+			tintColor = .white
 		default:
 			backgroundColor = .white
+			tintColor = .black
 		}
 
 		view.backgroundColor = backgroundColor
@@ -397,12 +408,12 @@ class GetHelpViewController: UIViewController {
 		appearance.backgroundColor = backgroundColor
 		appearance.shadowColor = .clear
 
-		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
-		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
+		appearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor]
+		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor]
 
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance
-		navigationController?.navigationBar.tintColor = UIColor.black
+		navigationController?.navigationBar.tintColor = tintColor
 	}
 
 	private func resetBackgroundColor() {
@@ -621,6 +632,69 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         self.questionnaireManager.saveData(bloodSugar: bloodSugar, correctionFactor: cf)
         self.questionnaireManager.triggerKetonesActionFlow(currentQuestion)
     }
+
+		// For the blood sugar reading question. The duration is only provided when the reading is 300 or higher.
+	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int, durationOver300: HighBloodSugarDuration?) {
+		// iLet Pump users escalate after 90 minutes above 300, everyone else after 3 hours
+		let thresholdMinutes = questionnaireManager.iLetPump ? 90 : 180
+
+		if let duration = durationOver300 {
+			questionnaireManager.saveBloodSugarOver300(true)
+			questionnaireManager.saveBloodSugarOver300For3Hours(duration.minutes >= thresholdMinutes)
+		} else {
+			questionnaireManager.saveBloodSugarOver300(false)
+			questionnaireManager.saveBloodSugarOver300For3Hours(false)
+		}
+
+		print("Blood sugar: \(bloodSugar), duration over 300: \(String(describing: durationOver300)), over threshold: \(questionnaireManager.bloodSugarOver300For3Hours)")
+		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
+	}
+
+		// For the blood sugar recheck reading. The manager compares it against the 150/180 mg/dL threshold.
+	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int) {
+		questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
+	}
+
+	func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
+		let alert = AlertPopUpViewController(
+			title: "Calculator.LowBloodSugarAlert.title".localized(),
+			message: "Calculator.LowBloodSugarAlert.message".localized(),
+			primaryActionTitle: "Calculator.LowBloodSugarAlert.primaryAction".localized(),
+			secondaryActionTitle: "Calculator.LowBloodSugarAlert.secondaryAction".localized()
+		)
+		alert.onPrimaryAction = { [weak self] in
+			self?.popToChildIssueQuestion()
+		}
+		alert.onSecondaryAction = { [weak self] in
+			guard let self else { return }
+
+			// On recheck, keep the first reading's flags and continue down the below-threshold path
+			if currentQuestion.questionType == .openEndedWithMultipleInput(.bloodSugarRecheck) {
+				self.questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
+				return
+			}
+
+			// A low reading can't have been over 300, so clear those flags before moving on
+			self.questionnaireManager.saveBloodSugarOver300(false)
+			self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
+			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		}
+		alert.appear(sender: self)
+	}
+
+		// Returns to the "What's going on with your child?" question so a different symptom can be picked
+	private func popToChildIssueQuestion() {
+		let childIssueVC = navVC.viewControllers.last { controller in
+			guard let getHelpVC = controller as? GetHelpViewController else { return false }
+			return getHelpVC.questionObj.questionType == .fourOptions(.childIssue)
+		}
+
+		if let childIssueVC {
+			navVC.popToViewController(childIssueVC, animated: true)
+		} else {
+			navVC.popViewController(animated: true)
+		}
+	}
 
 	@objc func didSelectExitAction() {
         print("🚪 Exit button pressed - clearing all state")

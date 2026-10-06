@@ -93,7 +93,6 @@ class FiveOptionsView: UIView {
 			nextButton.alpha = 0.3
 		}
         
-        nextButton.layer.cornerRadius = 12
 
 	}
 

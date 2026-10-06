@@ -18,12 +18,23 @@ struct CarbFood {
 
 struct CarbCategory {
     let title: String
+    /// Shown on the category's chip; chosen explicitly rather than inferred
+    /// from `foods.first`, which shifts whenever custom foods or ordering change.
+    let shortName: String?
+    let iconImageName: String
     let foods: [CarbFood]
+
+    init(title: String, shortName: String? = nil, iconImageName: String, foods: [CarbFood]) {
+        self.title = title
+        self.shortName = shortName
+        self.iconImageName = iconImageName
+        self.foods = foods
+    }
 }
 
 enum KnowYourCarbsData {
     static let categories: [CarbCategory] = [
-        CarbCategory(title: "Grains", foods: [
+        CarbCategory(title: "Grains", iconImageName: "im_white_bread", foods: [
             CarbFood(name: "Bread", servingSize: "per slice", carbGrams: 15, imageName: "im_white_bread"),
             CarbFood(name: "Bagel", servingSize: "1/2 piece", carbGrams: 30, imageName: "im_bagel"),
             CarbFood(name: "Hamburger / Hot Dog Bun", servingSize: "per bun", carbGrams: 30, imageName: "im_bread_roll"),
@@ -39,7 +50,7 @@ enum KnowYourCarbsData {
             CarbFood(name: "Waffle (Frozen / Heated)", servingSize: "per waffle", carbGrams: 15, imageName: "im_waffle"),
             CarbFood(name: "Dinner Roll", servingSize: "per roll", carbGrams: 15, imageName: "im_dinner_roll")
         ]),
-        CarbCategory(title: "Milk", foods: [
+        CarbCategory(title: "Milk", iconImageName: "im_milk", foods: [
             CarbFood(name: "Regular Milk", servingSize: "1 cup", carbGrams: 12, imageName: "im_milk"),
             CarbFood(name: "Chocolate Milk", servingSize: "1 cup", carbGrams: 24, imageName: "im_chocolate_milk"),
             CarbFood(name: "Flavored Soy / Almond Milk", servingSize: "1 cup", carbGrams: 15, imageName: "im_strawberry_milk"),
@@ -48,13 +59,13 @@ enum KnowYourCarbsData {
             CarbFood(name: "Light Yogurt", servingSize: "6 oz", carbGrams: 15, imageName: "im_light_yogurt"),
             CarbFood(name: "Regular Yogurt", servingSize: "6 oz", carbGrams: 30, imageName: "im_regular_yogurt")
         ]),
-        CarbCategory(title: "Starchy Veg", foods: [
+        CarbCategory(title: "Starchy Veg", iconImageName: "im_corn", foods: [
             CarbFood(name: "Baked Potato", servingSize: "1 small potato", carbGrams: 30, imageName: "im_baked_potato"),
             CarbFood(name: "Mashed Potato", servingSize: "1 cup", carbGrams: 15, imageName: "im_mashed_potatoes"),
             CarbFood(name: "Fast Food French Fries", servingSize: "small size", carbGrams: 30, imageName: "im_french_fries"),
             CarbFood(name: "Sweet Potato", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_sweet_potato"),
             CarbFood(name: "Green Peas", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_green_peas"),
-            CarbFood(name: "Corn", servingSize: "1/2 cup | 1 small corn on cob", carbGrams: 15, imageName: "im_corn_on_the_cob"),
+            CarbFood(name: "Corn", servingSize: "1/2 cup | 1 small corn on cob", carbGrams: 15, imageName: "im_corn"),
             CarbFood(name: "Black / Pinto Beans", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_black_beans"),
             CarbFood(name: "Baked Beans", servingSize: "1/2 cup", carbGrams: 25, imageName: "im_pinto_beans"),
             CarbFood(name: "Lima Beans", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_soybeans"),
@@ -64,7 +75,7 @@ enum KnowYourCarbsData {
             CarbFood(name: "Chickpeas", servingSize: "1 cup | cooked", carbGrams: 20, imageName: "im_chickpeas"),
             CarbFood(name: "Tater Tots", servingSize: "9 pieces", carbGrams: 20, imageName: "im_tater_tots")
         ]),
-        CarbCategory(title: "Fruits", foods: [
+        CarbCategory(title: "Fruits", iconImageName: "im_apple", foods: [
             CarbFood(name: "Orange", servingSize: "small orange", carbGrams: 30, imageName: "im_orange"),
             CarbFood(name: "Apple", servingSize: "small apple", carbGrams: 15, imageName: "im_apple"),
             CarbFood(name: "Banana", servingSize: "medium banana", carbGrams: 30, imageName: "im_banana"),
@@ -78,9 +89,10 @@ enum KnowYourCarbsData {
             CarbFood(name: "Unsweetened Applesauce", servingSize: "1/2 cup | cooked", carbGrams: 15, imageName: "im_applesauce"),
             CarbFood(name: "Orange / Apple Juice", servingSize: "1/2 cup", carbGrams: 25, imageName: "im_orange_juice"),
             CarbFood(name: "Blueberries", servingSize: "3/4 cup", carbGrams: 20, imageName: "im_blueberries"),
-            CarbFood(name: "Melon Cup", servingSize: "1 cup", carbGrams: 20, imageName: "im_melon")
+            CarbFood(name: "Melon Cup", servingSize: "1 cup", carbGrams: 20, imageName: "im_melon"),
+            CarbFood(name: "Pineapple", servingSize: "1 cup", carbGrams: 20, imageName: "im_pineapple")
         ]),
-        CarbCategory(title: "Snacks", foods: [
+        CarbCategory(title: "Snacks", iconImageName: "im_cookies", foods: [
             CarbFood(name: "Popcorn", servingSize: "3 cups", carbGrams: 15, imageName: "im_popcorn"),
             CarbFood(name: "Pretzel Sticks", servingSize: "30 thin sticks", carbGrams: 15, imageName: "im_pretzel_sticks"),
             CarbFood(name: "Goldfish", servingSize: "1/2 cup | 45 pcs", carbGrams: 15, imageName: "im_goldfish_crackers"),
@@ -96,7 +108,7 @@ enum KnowYourCarbsData {
             CarbFood(name: "Cheese-It Crackers", servingSize: "23 pcs", carbGrams: 15, imageName: "im_cheese_cubes"),
             CarbFood(name: "Vanilla Wafers", servingSize: "5 pcs", carbGrams: 13, imageName: "im_vanilla_wafers")
         ]),
-        CarbCategory(title: "Combination Foods", foods: [
+        CarbCategory(title: "Combination Foods", iconImageName: "im_pepperoni_pizza", foods: [
             CarbFood(name: "Pizza", servingSize: "1 slice (1/8 of 14\")", carbGrams: 35, imageName: "im_pepperoni_pizza"),
             CarbFood(name: "Meat & Cheese Taco", servingSize: "1 taco", carbGrams: 15, imageName: "im_taco"),
             CarbFood(name: "Chicken Nuggets", servingSize: "5 pcs", carbGrams: 15, imageName: "im_chicken_nuggets"),
@@ -112,16 +124,16 @@ enum KnowYourCarbsData {
             CarbFood(name: "Cheese Quesadilla", servingSize: "1 pc", carbGrams: 30, imageName: "im_quesadilla"),
             CarbFood(name: "Popcorn Shrimp", servingSize: "3/4 cup", carbGrams: 25, imageName: "im_cheese_puffs")
         ]),
-        CarbCategory(title: "Desserts & Sweets", foods: [
+        CarbCategory(title: "Desserts & Sweets", shortName: "Dessert", iconImageName: "im_popsicle", foods: [
             CarbFood(name: "Oreo / Choco Cookies", servingSize: "2 small cookies", carbGrams: 15, imageName: "im_cookies"),
-            CarbFood(name: "Frosted cake", servingSize: "1 taco", carbGrams: 30, imageName: "im_birthday_cake"),
+            CarbFood(name: "Frosted cake", servingSize: "1 pc", carbGrams: 30, imageName: "im_birthday_cake"),
             CarbFood(name: "Regular Ice Cream", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_vanilla_ice_cream"),
             CarbFood(name: "Regular Frozen Yogurt", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_strawberry_soft_serve"),
             CarbFood(name: "Sugar-Free Pudding", servingSize: "1/2 cup", carbGrams: 15, imageName: "im_chocolate_pudding"),
             CarbFood(name: "Mini Candy Bars", servingSize: "3 bars", carbGrams: 15, imageName: "im_mini_candy_bars"),
             CarbFood(name: "Welch's Fruit Snacks", servingSize: "0.9 oz pouch", carbGrams: 20, imageName: "im_fruit_snacks")
         ]),
-        CarbCategory(title: "Condiments", foods: [
+        CarbCategory(title: "Condiments", iconImageName: "im_pancake_syrup", foods: [
             CarbFood(name: "Pancake Syrup", servingSize: "1 tbsp", carbGrams: 35, imageName: "im_pancake_syrup"),
             CarbFood(name: "Light Pancake Syrup", servingSize: "2 tbsp", carbGrams: 15, imageName: "im_light_pancake_syrup"),
             CarbFood(name: "Sugar-Free Pancake Syrup", servingSize: "2 tbsp", carbGrams: 5, imageName: "im_sugar_free_pancake_syrup"),
@@ -129,7 +141,7 @@ enum KnowYourCarbsData {
             CarbFood(name: "Sugar, Honey or Jelly", servingSize: "1 tbsp", carbGrams: 15, imageName: "im_honey"),
             CarbFood(name: "BBQ Sauce", servingSize: "1 tbsp", carbGrams: 7, imageName: "im_bbq_sauce")
         ]),
-        CarbCategory(title: "Low-Carb Foods", foods: [
+        CarbCategory(title: "Low-Carb Foods", shortName: "Low-Carb", iconImageName: "im_veggie_tray", foods: [
             CarbFood(name: "Raw Veggies", servingSize: "1 tbsp", carbGrams: 5, imageName: "im_veggie_tray"),
             CarbFood(name: "Salad with Dressing", servingSize: "2 tbsp", carbGrams: 5, imageName: "im_garden_salad"),
             CarbFood(name: "Broccoli, Cabbage, Carrots, Celery, Collards, Cucumber, Green Beans, Salad Greens.", servingSize: "1/2 cup cooked | 1 cup raw", carbGrams: 5, imageName: "im_mixed_vegetables"),

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,32 +28,49 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="HFm-0v-zWr">
-                    <rect key="frame" x="20" y="138" width="353" height="646"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="HFm-0v-zWr">
+                    <rect key="frame" x="20" y="40" width="353" height="812"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRD-A1-AHg">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="76"/>
-                            <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                            <color key="textColor" name="choaGreenColor"/>
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="242"/>
+                            <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="Ua4-Ot-rkW">
-                            <rect key="frame" x="0.0" y="112" width="353" height="450"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3s-7P-VZf" userLabel="Radio Gradient View">
+                            <rect key="frame" x="0.0" y="278" width="353" height="450"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Ua4-Ot-rkW">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="450"/>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-bU-eB5">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="450"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="450" id="yzN-or-PMG"/>
+                                <constraint firstAttribute="bottom" secondItem="Ua4-Ot-rkW" secondAttribute="bottom" id="0lN-W5-GGp"/>
+                                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="K3s-7P-VZf" secondAttribute="top" id="9Gj-iv-s9N"/>
+                                <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="K3s-7P-VZf" secondAttribute="leading" id="NTF-78-b3G"/>
+                                <constraint firstAttribute="height" constant="450" id="deP-Hi-FCD"/>
+                                <constraint firstItem="ZtV-bU-eB5" firstAttribute="top" secondItem="K3s-7P-VZf" secondAttribute="top" id="gCI-1c-NDq"/>
+                                <constraint firstItem="ZtV-bU-eB5" firstAttribute="leading" secondItem="K3s-7P-VZf" secondAttribute="leading" id="gg7-gK-Soe"/>
+                                <constraint firstAttribute="bottom" secondItem="ZtV-bU-eB5" secondAttribute="bottom" id="kSy-7B-G4V"/>
+                                <constraint firstAttribute="trailing" secondItem="Ua4-Ot-rkW" secondAttribute="trailing" id="sAK-2W-7PC"/>
+                                <constraint firstAttribute="trailing" secondItem="ZtV-bU-eB5" secondAttribute="trailing" id="vBp-Vl-Zhu"/>
                             </constraints>
-                        </imageView>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-yt-N2K">
-                            <rect key="frame" x="0.0" y="598" width="353" height="48"/>
+                            <rect key="frame" x="0.0" y="764" width="353" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="ynE-BU-Fwu"/>
                             </constraints>
-                            <color key="tintColor" systemColor="labelColor"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Exit" imagePadding="8">
                                 <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
                                 <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                <color key="baseForegroundColor" systemColor="labelColor"/>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="didSelectExitAction:" destination="-1" eventType="touchUpInside" id="Hp6-XN-Tq5"/>
@@ -64,7 +80,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q44-JH-esr"/>
-            <color key="backgroundColor" name="lightGreenColor"/>
+            <color key="backgroundColor" name="secondaryMeadowGreen300"/>
             <constraints>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="HFm-0v-zWr" secondAttribute="trailing" constant="20" id="Kxb-tz-B9I"/>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="HFm-0v-zWr" secondAttribute="bottom" id="peM-jm-Pju"/>
@@ -77,15 +93,10 @@
     </objects>
     <resources>
         <image name="hope_normal_care" width="275.33334350585938" height="400.33334350585938"/>
+        <image name="radio_gradient" width="1206" height="1554"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <namedColor name="choaGreenColor">
-            <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="secondaryMeadowGreen300">
+            <color red="0.44705882352941179" green="0.74901960784313726" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="lightGreenColor">
-            <color red="0.95294117647058818" green="0.98039215686274506" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

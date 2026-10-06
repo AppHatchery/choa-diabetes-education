@@ -85,7 +85,6 @@ class RecheckKetoneLevelView: UIView, UrineKetoneLevelView.UrineKetoneLevelDeleg
 
 		if followUpAnswer == 0 {
 			nextButton.alpha = 0.3
-			nextButton.titleLabel?.font = .nunitoBold20
 		}
         
 

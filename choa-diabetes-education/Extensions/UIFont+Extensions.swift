@@ -20,6 +20,7 @@ extension UIFont {
     public static let nunitoSemiBold16 = UIFont(name: "Nunito-SemiBold", size: 16.0)!
     public static let nunitoSemiBold18 = UIFont(name: "Nunito-SemiBold", size: 18.0)!
     public static let nunitoSemiBold20 = UIFont(name: "Nunito-SemiBold", size: 20.0)!
+    public static let nunitoSemiBold24 = UIFont(name: "Nunito-SemiBold", size: 24.0)!
     public static let nunitoSemiBold32 = UIFont(name: "Nunito-SemiBold", size: 32.0)!
     public static let nunitoSemiBold48 = UIFont(name: "Nunito-SemiBold", size: 48.0)!
 	public static let nunitoMedium = UIFont(name: "Nunito-Medium", size: 18.0)!
@@ -27,6 +28,7 @@ extension UIFont {
     public static let nunitoMedium18 = UIFont(name: "Nunito-Medium", size: 18.0)!
 	public static let nunitoMedium20 = UIFont(name: "Nunito-Medium", size: 20.0)!
     public static let nunitoMedium32 = UIFont(name: "Nunito-Medium", size: 32.0)!
+    public static let nunito13 = UIFont(name: "Nunito-Regular", size: 13)!
     public static let nunito14 = UIFont(name: "Nunito-Regular", size: 14)!
     public static let nunito16 = UIFont(name: "Nunito-Regular", size: 16)!
     public static let arial14 = UIFont(name: "Arial", size: 16.0)!

@@ -95,7 +95,12 @@ final class CustomFoodsManager: ObservableObject {
                     )
                 }
 
-            return CarbCategory(title: category.title, foods: category.foods + custom)
+            return CarbCategory(
+                title: category.title,
+                shortName: category.shortName,
+                iconImageName: category.iconImageName,
+                foods: category.foods + custom
+            )
         }
     }
 

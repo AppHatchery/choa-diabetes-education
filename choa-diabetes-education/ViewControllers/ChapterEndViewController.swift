@@ -96,7 +96,6 @@ class ChapterEndViewController: UIViewController {
         bottomStarsView.layer.cornerRadius = 20
         bottomStarsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        nextChapterButton.layer.cornerRadius = 12
         
         switch contentIndex {
         case 0:

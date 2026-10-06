@@ -61,7 +61,7 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
     @IBAction func didTapSkipButton(_ sender: Any) {
         // Skipping still counts as having been through onboarding, so the user isn't
         // asked again every time they open a calculator
-        CalculatorConstantsManager.shared.hasCompletedOnboarding = false
+        CalculatorConstantsManager.shared.hasCompletedOnboarding = true
         
         let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
         

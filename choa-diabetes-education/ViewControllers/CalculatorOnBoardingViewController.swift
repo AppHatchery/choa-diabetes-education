@@ -13,7 +13,11 @@ class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var nextButton: PrimaryButton!
-    
+    @IBOutlet weak var nextButtonBottomConstraint: NSLayoutConstraint!
+
+    /// The constraint's constant with no keyboard on screen.
+    private let nextButtonRestingBottomInset: CGFloat = 10
+
     // Each question is its own pushed view controller, so the bar should show the
     // new position straight away rather than animating up from empty
     private let progressBar = NavigationProgressBar(animatesProgressChanges: false)
@@ -53,11 +57,17 @@ class CalculatorOnBoardingViewController: UIViewController {
         setupUI()
         updateQuestionTextFieldState()
         updateNextButtonState()
-        
+        observeKeyboard()
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-    
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -317,7 +327,57 @@ class CalculatorOnBoardingViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
+    // MARK: - Keyboard
+
+    private func observeKeyboard() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+
+        let overlap = max(0, view.bounds.maxY - view.convert(frame, from: nil).minY)
+        // The button already clears the home indicator via the safe area; only the
+        // extra height the keyboard adds beyond that inset needs taking up.
+        let lift = max(0, overlap - view.safeAreaInsets.bottom)
+
+        animateAlongsideKeyboard(notification) {
+            self.nextButtonBottomConstraint.constant = self.nextButtonRestingBottomInset + lift
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        animateAlongsideKeyboard(notification) {
+            self.nextButtonBottomConstraint.constant = self.nextButtonRestingBottomInset
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func animateAlongsideKeyboard(_ notification: Notification, _ animations: @escaping () -> Void) {
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+        let curveRaw = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int ?? 7
+
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: UInt(curveRaw << 16)),
+            animations: animations
+        )
+    }
+
 
     /*
     // MARK: - Navigation
