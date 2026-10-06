@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ply-vB-dTq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -173,98 +172,114 @@
             <objects>
                 <viewController storyboardIdentifier="AboutKetoneMeasurementsViewController" id="HGN-Y1-cXL" customClass="AboutKetoneMeasurementsViewController" customModule="choa_diabetes_education" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wXk-MV-mty">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="657"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
-                                <rect key="frame" x="20" y="20" width="335" height="669.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6z-qr-gp6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-kf-DaX">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
-                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                        <color key="textColor" name="choaGreenColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚠️ Make sure your ketone strips have not expired!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-pV-FoT">
-                                        <rect key="frame" x="0.0" y="47.5" width="335" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" name="secondarySunsetOrange300"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-Z1-GD4">
-                                        <rect key="frame" x="0.0" y="115.5" width="335" height="486"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
+                                        <rect key="frame" x="20" y="20" width="335" height="243.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zNu-ps-ZLt">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="228"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-kf-DaX">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                <color key="textColor" name="choaGreenColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚠️ Make sure your ketone strips have not expired!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLg-pV-FoT">
+                                                <rect key="frame" x="0.0" y="47.5" width="335" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" name="secondarySunsetOrange300"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="gGA-Z1-GD4">
+                                                <rect key="frame" x="0.0" y="91.5" width="335" height="152"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M98-Yg-k0B">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="43W-HS-c4Y"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
-                                                        <color key="textColor" name="choaGreenColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-dh-l91">
-                                                        <rect key="frame" x="0.0" y="28" width="335" height="200"/>
-                                                        <color key="backgroundColor" name="lightGreenColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="eGD-6b-gKd"/>
-                                                        </constraints>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <color key="textColor" systemColor="labelColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tJ-OHv">
-                                                <rect key="frame" x="0.0" y="252" width="335" height="234"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-xr-Q99">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
-                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
-                                                        <color key="textColor" name="choaGreenColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-7x-yFu">
-                                                        <rect key="frame" x="0.0" y="34" width="335" height="200"/>
-                                                        <color key="backgroundColor" name="lightGreenColor"/>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <color key="textColor" systemColor="labelColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zNu-ps-ZLt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="61"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M98-Yg-k0B">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="43W-HS-c4Y"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
+                                                                <color key="textColor" name="choaGreenColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-dh-l91">
+                                                                <rect key="frame" x="0.0" y="28" width="335" height="33"/>
+                                                                <color key="backgroundColor" name="lightGreenColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="eGD-6b-gKd"/>
+                                                                </constraints>
+                                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                <color key="textColor" systemColor="labelColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-tJ-OHv">
+                                                        <rect key="frame" x="0.0" y="85" width="335" height="67"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-xr-Q99">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="22"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
+                                                                <color key="textColor" name="choaGreenColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Btq-7x-yFu">
+                                                                <rect key="frame" x="0.0" y="34" width="335" height="33"/>
+                                                                <color key="backgroundColor" name="lightGreenColor"/>
+                                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                <color key="textColor" systemColor="labelColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="621.5" width="335" height="48"/>
-                                        <color key="backgroundColor" name="choaGreenColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Close" imagePadding="8">
-                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                            <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="closeButtonTapped:" destination="HGN-Y1-cXL" eventType="touchUpInside" id="0HV-sm-LN6"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="leading" secondItem="g6z-qr-gp6" secondAttribute="leading" constant="20" id="Act-5x-4xd"/>
+                                    <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="g6z-qr-gp6" secondAttribute="top" constant="20" id="B2v-HI-gKq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fs0-Yy-ZkI" secondAttribute="trailing" constant="20" id="dZz-jj-rdE"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fs0-Yy-ZkI" secondAttribute="bottom" constant="20" id="eNr-zg-7hX"/>
+                                    <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="width" secondItem="g6z-qr-gp6" secondAttribute="width" constant="-40" id="kW3-ab-Sv1"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="20" y="609" width="335" height="48"/>
+                                <color key="backgroundColor" name="choaGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Close" imagePadding="8">
+                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                    <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="HGN-Y1-cXL" eventType="touchUpInside" id="0HV-sm-LN6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ru1-eJ-dZH"/>
                         <color key="backgroundColor" name="lightGreenColor"/>
                         <constraints>
-                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" constant="20" id="UMj-9C-pRN"/>
-                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="Fs0-Yy-ZkI" secondAttribute="trailing" constant="20" id="bkD-gu-t2s"/>
-                            <constraint firstItem="Fs0-Yy-ZkI" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" constant="20" id="oPz-f0-3qQ"/>
+                            <constraint firstItem="g6z-qr-gp6" firstAttribute="top" secondItem="ru1-eJ-dZH" secondAttribute="top" id="68L-mK-pOm"/>
+                            <constraint firstItem="FUb-b0-qjs" firstAttribute="top" secondItem="g6z-qr-gp6" secondAttribute="bottom" constant="10" id="6vQ-dq-UrN"/>
+                            <constraint firstItem="FUb-b0-qjs" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" constant="20" id="DsA-ft-UkP"/>
+                            <constraint firstItem="g6z-qr-gp6" firstAttribute="trailing" secondItem="ru1-eJ-dZH" secondAttribute="trailing" id="GcH-gK-4Kq"/>
+                            <constraint firstItem="g6z-qr-gp6" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" id="Z6q-EV-xZz"/>
+                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="bottom" secondItem="FUb-b0-qjs" secondAttribute="bottom" constant="10" id="oQd-Qa-dFI"/>
+                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="FUb-b0-qjs" secondAttribute="trailing" constant="20" id="snd-Vb-YBv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -275,9 +290,9 @@
                         <outlet property="titleLabel" destination="Z2h-kf-DaX" id="3eX-r8-ymM"/>
                         <outlet property="urineMeasurementDescription" destination="Oyd-dh-l91" id="uw9-kd-0VL"/>
                         <outlet property="urineMeasurementTitle" destination="M98-Yg-k0B" id="Ciq-nL-v3c"/>
+                        <outletCollection property="measurementTitles" destination="M98-Yg-k0B" collectionClass="NSMutableArray" id="jmx-x0-fue"/>
                         <outletCollection property="measurementDescriptions" destination="Oyd-dh-l91" collectionClass="NSMutableArray" id="8Je-7r-aya"/>
                         <outletCollection property="measurementDescriptions" destination="Btq-7x-yFu" collectionClass="NSMutableArray" id="eiq-Pg-j0o"/>
-                        <outletCollection property="measurementTitles" destination="M98-Yg-k0B" collectionClass="NSMutableArray" id="jmx-x0-fue"/>
                         <outletCollection property="measurementTitles" destination="D3a-xr-Q99" collectionClass="NSMutableArray" id="Jfg-NU-QaL"/>
                     </connections>
                 </viewController>
@@ -287,7 +302,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="118"/>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
