@@ -21,6 +21,12 @@ enum QuestionType: Equatable {
 	case callChoa(FinalQuestionId)
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
+
+    /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
+    /// and an open-ended reading for the 150/180 mg/dL checks.
+    var isBloodSugarRecheck: Bool {
+        self == .yesOrNo(.bloodSugarRecheck) || self == .openEndedWithMultipleInput(.bloodSugarRecheck)
+    }
 }
 
 
@@ -106,20 +112,54 @@ enum TwoOptionsQuestionId {
 
 enum OpenEndedWithMultipleInputQuestionId {
     case bloodSugar
-    
+    case bloodSugarCheck
+    case bloodSugarRecheck
+
     var id: Int {
         switch self {
         case .bloodSugar:
             return 1
+        case .bloodSugarCheck:
+            return 2
+        case .bloodSugarRecheck:
+            return 3
         }
     }
-    
+
     init(id: Int) {
         switch id {
         case 1:
             self = .bloodSugar
+        case 2:
+            self = .bloodSugarCheck
+        case 3:
+            self = .bloodSugarRecheck
         default:
             self = .bloodSugar
+        }
+    }
+}
+
+/// Steps on the "How long has the blood sugar been above 300 mg/dL?" slider.
+/// Raw values match the slider's min (1) to max (7) values.
+enum HighBloodSugarDuration: Int, CaseIterable {
+    case thirtyMinutes = 1
+    case oneHour
+    case oneHourThirtyMinutes
+    case twoHours
+    case twoHoursThirtyMinutes
+    case threeHours
+    case moreThanThreeHours
+
+    var minutes: Int {
+        switch self {
+        case .thirtyMinutes: return 30
+        case .oneHour: return 60
+        case .oneHourThirtyMinutes: return 90
+        case .twoHours: return 120
+        case .twoHoursThirtyMinutes: return 150
+        case .threeHours: return 180
+        case .moreThanThreeHours: return 181
         }
     }
 }
