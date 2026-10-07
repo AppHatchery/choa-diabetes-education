@@ -56,7 +56,7 @@ class AppOnboardingViewController: UIViewController {
     }
 
     private func finishOnboarding() {
-        AppOnboardingManager.shared.saveAnswers(answers)
+        AppOnboardingManager.shared.saveAnswers(answersOnTakenPath())
 
         guard let window = view.window else { return }
 
@@ -65,5 +65,20 @@ class AppOnboardingViewController: UIViewController {
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
             window.rootViewController = mainViewController
         })
+    }
+
+    // Answers from a branch the user backed out of (e.g. an age entered before
+    // switching to school nurse) would otherwise be saved too, so walk the flow
+    // from the start and keep only the questions actually reached.
+    private func answersOnTakenPath() -> [AppOnboardingQuestion: AppOnboardingAnswer] {
+        var takenAnswers: [AppOnboardingQuestion: AppOnboardingAnswer] = [:]
+        var question: AppOnboardingQuestion? = .userRole
+
+        while let current = question {
+            takenAnswers[current] = answers[current]
+            question = current.next(selectedOptionId: answers[current]?.selectedOptionId)
+        }
+
+        return takenAnswers
     }
 }

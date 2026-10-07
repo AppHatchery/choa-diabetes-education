@@ -64,7 +64,7 @@ class KnowYourCarbsViewController: UIViewController {
         // The bar is driven manually from the table view's scrolling — see
         // `scrollViewDidScroll`. Always start the screen with it visible.
         lastScrollOffset = tableView.contentOffset.y
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        showNavigationBarIfHidden(animated: animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,8 +78,16 @@ class KnowYourCarbsViewController: UIViewController {
         super.viewWillDisappear(animated)
         // Leave the bar visible for whatever comes next, and never leave this
         // screen with a hidden bar the user cannot get back.
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        showNavigationBarIfHidden(animated: animated)
         dismissTotalCarbsSheet()
+    }
+
+    /// Calling `setNavigationBarHidden` mid push/pop when the bar is already
+    /// visible makes the bar re-lay out its items and drops the back button,
+    /// so only touch it when the bar really was collapsed by scrolling.
+    private func showNavigationBarIfHidden(animated: Bool) {
+        guard let nav = navigationController, nav.isNavigationBarHidden else { return }
+        nav.setNavigationBarHidden(false, animated: animated)
     }
 
     /// Tapping anywhere outside the search field puts the keyboard away.
