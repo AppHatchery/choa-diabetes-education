@@ -12,6 +12,9 @@
         <array key="Nunito-Bold.ttf">
             <string>Nunito-Bold</string>
         </array>
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FiveOptionsView" customModule="choa_diabetes_education" customModuleProvider="target">
@@ -63,7 +66,7 @@
                                             <subviews>
                                                 <label opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Are any of these symptoms present?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="hKg-mK-vs6">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
-                                                    <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                                     <color key="textColor" name="primaryBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

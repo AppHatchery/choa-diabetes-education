@@ -78,7 +78,7 @@ class YesOrNoFollowUpView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 
-		questionLabel.font = .nunitoMedium
+        questionLabel.font = .nunitoSemiBold18
 		questionLabel.numberOfLines = 0
 		questionLabel.textColor = .headingGreenColor
 

@@ -121,6 +121,7 @@ class OpenEndedQueView: UIView {
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
         self.currentQuestion = currentQuestion
 
+        questionLabel.font = .nunitoSemiBold18
         questionLabel.numberOfLines = 0
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left

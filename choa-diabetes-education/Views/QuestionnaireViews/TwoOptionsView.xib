@@ -12,8 +12,8 @@
         <array key="Nunito-Bold.ttf">
             <string>Nunito-Bold</string>
         </array>
-        <array key="Nunito-Medium.ttf">
-            <string>Nunito-Medium</string>
+        <array key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -48,7 +48,7 @@
                     <rect key="frame" x="0.0" y="20" width="393" height="776"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tGn-23-bqq" userLabel="Main Stack View">
-                            <rect key="frame" x="20" y="20" width="353" height="368"/>
+                            <rect key="frame" x="20" y="20" width="353" height="371"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-sI-pDY" userLabel="Resources Stack View">
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="89.5"/>
@@ -75,16 +75,16 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="f3L-Mi-67V" userLabel="Options Stack View">
-                                    <rect key="frame" x="0.0" y="94.5" width="353" height="273.5"/>
+                                    <rect key="frame" x="0.0" y="94.5" width="353" height="276.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kbakjsbdkjasnbdbasjkdbjaksbdjabsjdbasjkbdjasbdmnbasndb jaskjdbjkasbd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKw-ag-lAw">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="46.5"/>
-                                            <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="17"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="49.5"/>
+                                            <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qxt-b7-iZ4" userLabel="Buttons Stack View">
-                                            <rect key="frame" x="0.0" y="58.5" width="353" height="215"/>
+                                            <rect key="frame" x="0.0" y="61.5" width="353" height="215"/>
                                             <subviews>
                                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXH-GO-ZrE" userLabel="Button View">
                                                     <rect key="frame" x="0.0" y="0.0" width="170.5" height="215"/>
