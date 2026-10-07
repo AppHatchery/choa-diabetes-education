@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UNUserNotificationCenter.current().delegate = ReminderManager.shared
         print("✅ AppDelegate: Set UNUserNotificationCenter delegate to ReminderManager")
+
+        // Every button gets a 12pt corner radius, on iOS 26 and earlier
+        UIButton.enforceStandardCornerRadius()
 		
 //		let appearance = UINavigationBarAppearance()
 //		appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]

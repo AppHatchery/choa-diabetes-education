@@ -194,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6z-qr-gp6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-Yy-ZkI">
                                         <rect key="frame" x="20" y="20" width="335" height="601.5"/>
@@ -272,7 +272,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUb-b0-qjs" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
-                                <rect key="frame" x="20" y="609" width="335" height="48"/>
+                                <rect key="frame" x="20" y="619" width="335" height="48"/>
                                 <color key="backgroundColor" name="choaGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="y4y-I9-fwi"/>
@@ -296,7 +296,7 @@
                             <constraint firstItem="FUb-b0-qjs" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" constant="20" id="DsA-ft-UkP"/>
                             <constraint firstItem="g6z-qr-gp6" firstAttribute="trailing" secondItem="ru1-eJ-dZH" secondAttribute="trailing" id="GcH-gK-4Kq"/>
                             <constraint firstItem="g6z-qr-gp6" firstAttribute="leading" secondItem="ru1-eJ-dZH" secondAttribute="leading" id="Z6q-EV-xZz"/>
-                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="bottom" secondItem="FUb-b0-qjs" secondAttribute="bottom" constant="10" id="oQd-Qa-dFI"/>
+                            <constraint firstItem="ru1-eJ-dZH" firstAttribute="bottom" secondItem="FUb-b0-qjs" secondAttribute="bottom" id="oQd-Qa-dFI"/>
                             <constraint firstItem="ru1-eJ-dZH" firstAttribute="trailing" secondItem="FUb-b0-qjs" secondAttribute="trailing" constant="20" id="snd-Vb-YBv"/>
                         </constraints>
                     </view>

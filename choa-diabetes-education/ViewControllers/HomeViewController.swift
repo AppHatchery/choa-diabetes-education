@@ -170,7 +170,7 @@ class HomeViewController: UIViewController {
         
         for button in insulinButtons {
             
-            insulinButtonsConfig.background.cornerRadius = 8
+            insulinButtonsConfig.background.cornerRadius = UIButton.standardCornerRadius
             insulinButtonsConfig.background.strokeWidth = 1
             insulinButtonsConfig.background.strokeColor = .whiteColor
             

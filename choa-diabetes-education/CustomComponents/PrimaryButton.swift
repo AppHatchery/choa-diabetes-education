@@ -8,7 +8,7 @@ import UIKit
 
 open class PrimaryButton: UIButton {
 
-    private static let cornerRadius: CGFloat = 12.0
+    private static let cornerRadius: CGFloat = UIButton.standardCornerRadius
 
     required public override init(frame: CGRect) {
         super.init(frame: frame)
