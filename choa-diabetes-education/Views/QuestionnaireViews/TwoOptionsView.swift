@@ -11,6 +11,9 @@ protocol TwoOptionsViewProtocol: AnyObject {
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?)
 
+	// For questions with no follow-up, like how blood sugar was checked
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer)
+
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer, followUpAnswer: SixOptionsAnswer?)
 	
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer, followUpAnswer: ThreeOptionsAnswer?)
@@ -125,7 +128,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 			$0.layer.borderColor = UIColor.highlightedBlueColor.cgColor
 		}
 
-		if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id) {
+		if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id ||
+			currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id) {
 			resourcesStackView.isHidden = true
 		} else {
 			setupLearnHowLabel()
@@ -195,7 +199,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
 
-				if currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 1 {
+				if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 1) ||
+					currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id {
 					nextButton.alpha = 1
 				} else {
 					nextButton.alpha = 0.3
@@ -314,6 +319,12 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						followUpAnswer: followUpAnswer == 1 ? .yes : .no
 					)
 			}
+
+		case TwoOptionsQuestionId.bloodSugarCheckMethod.id:
+			delegate?.didSelectNextAction(
+				currentQuestion: currentQuestion,
+				selectedAnswer: .BloodSugarCheckMethod(BloodSugarCheckMethod(id: selected))
+			)
 
 		case TwoOptionsQuestionId.measuringType.id:
 				guard followUpAnswer != 0 else { return }

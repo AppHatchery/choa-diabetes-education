@@ -21,6 +21,7 @@ enum QuestionType: Equatable {
 	case callChoa(FinalQuestionId)
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
+	case performFingerStickTest(FinalQuestionId)
 
     /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
     /// and an open-ended reading for the 150/180 mg/dL checks.
@@ -82,6 +83,7 @@ enum TwoOptionsQuestionId {
     case testType
     case calculationType
 	case measuringType
+	case bloodSugarCheckMethod
 
     
     var id: Int {
@@ -92,6 +94,8 @@ enum TwoOptionsQuestionId {
             return 2
 		case .measuringType:
 			return 3
+		case .bloodSugarCheckMethod:
+			return 4
         }
     }
     
@@ -103,6 +107,8 @@ enum TwoOptionsQuestionId {
             self = .calculationType
 		case 3:
 			self = .measuringType
+		case 4:
+			self = .bloodSugarCheckMethod
         default:
             self = .testType
         }
@@ -114,6 +120,7 @@ enum OpenEndedWithMultipleInputQuestionId {
     case bloodSugar
     case bloodSugarCheck
     case bloodSugarRecheck
+    case lowBloodSugarCheck
 
     var id: Int {
         switch self {
@@ -123,6 +130,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             return 2
         case .bloodSugarRecheck:
             return 3
+        case .lowBloodSugarCheck:
+            return 4
         }
     }
 
@@ -134,6 +143,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             self = .bloodSugarCheck
         case 3:
             self = .bloodSugarRecheck
+        case 4:
+            self = .lowBloodSugarCheck
         default:
             self = .bloodSugar
         }
@@ -222,6 +233,7 @@ enum FinalQuestionId {
 	case callChoa
 	case callChoaEmergency
 	case recheckKetoneLevel
+	case performFingerStickTest
 
     var id: Int {
         switch self {
@@ -255,6 +267,8 @@ enum FinalQuestionId {
 			return 14
 		case .recheckKetoneLevel:
 			return 15
+		case .performFingerStickTest:
+			return 16
         }
     }
     
@@ -286,6 +300,8 @@ enum FinalQuestionId {
 			self = .callChoa
 		case 14:
 			self = .recheckKetoneLevel
+		case 16:
+			self = .performFingerStickTest
         default:
             self = .firstEmergencyScreen
         }
@@ -319,7 +335,22 @@ enum YesOrNo {
 enum TwoOptionsAnswer: Equatable {
     case TestType(TestType)
     case CalculationType(CalculationType)
-    
+    case BloodSugarCheckMethod(BloodSugarCheckMethod)
+}
+
+/// How blood sugar was checked in the hypoglycemia flow
+enum BloodSugarCheckMethod {
+    case glucoseMeter
+    case cgm
+
+    init(id: Int) {
+        switch id {
+        case 2:
+            self = .cgm
+        default:
+            self = .glucoseMeter
+        }
+    }
 }
 
 enum TestType {

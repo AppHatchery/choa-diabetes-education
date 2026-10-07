@@ -13,6 +13,9 @@ protocol QuestionnaireManagerProvider: AnyObject {
     var actionsDelegate: QuestionnaireActionsProtocol? { get set }
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
     func triggerHypoglycemiaFlow(_ currentQuestio: Questionnaire)
+    func triggerBloodSugarCheckMethodActionFlow(_ currentQuestion: Questionnaire, method: BloodSugarCheckMethod)
+    func triggerLowBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire)
+    func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -168,8 +171,8 @@ extension QuestionnaireManager {
         switch currentQuestion.questionId {
         case FourOptionsQuestionId.childIssue.id:
             let createTwoOptionQuestion = createTwoCustomOptionsQuestion(
-                questionId: TwoOptionsQuestionId.testType,
-                question: "Calculator.Que.TestType.title".localized(),
+                questionId: TwoOptionsQuestionId.bloodSugarCheckMethod,
+                question: "GetHelp.Que.BloodSugarCheckMethod.title".localized(),
                 description: nil,
                 answerOptions: [
                     "Calculator.Que.TestType.option3",
@@ -179,6 +182,41 @@ extension QuestionnaireManager {
             actionsDelegate?.showNextQuestion(createTwoOptionQuestion)
         default:
             return
+        }
+    }
+
+    /// Glucose meter readings go straight to the reading. CGM readings are confirmed with a finger stick first.
+    func triggerBloodSugarCheckMethodActionFlow(_ currentQuestion: Questionnaire, method: BloodSugarCheckMethod) {
+        switch method {
+        case .glucoseMeter:
+            saveCGM(false)
+            triggerLowBloodSugarReadingActionFlow(currentQuestion)
+        case .cgm:
+            saveCGM(true)
+            showFinalStage(stage: .performFingerStickTest, calculation: nil)
+        }
+    }
+
+    /// Asks for the blood sugar reading in the hypoglycemia flow. There is no duration follow-up or low reading alert.
+    func triggerLowBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire) {
+        let quesObj = Questionnaire()
+        quesObj.questionId = OpenEndedWithMultipleInputQuestionId.lowBloodSugarCheck.id
+        quesObj.questionType = .openEndedWithMultipleInput(.lowBloodSugarCheck)
+        quesObj.question = "Calculator.Que.BloodSugarReading.title".localized()
+        quesObj.inputUnit = "Calculator.Que.BloodSugar.unit".localized()
+        actionsDelegate?.showNextQuestion(quesObj)
+    }
+
+    /// Routes the hypoglycemia blood sugar reading. Readings over 70 mg/dL (including over 300) go to the low symptoms question.
+    func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
+        self.bloodSugar = bloodSugar
+
+        if bloodSugar > 70 {
+            // TODO: Show "Are any of these low symptoms present?" once that screen is built
+            print("Hypoglycemia reading \(bloodSugar) > 70 → low symptoms question")
+        } else {
+            // TODO: Show the treatment step for readings at or below 70 mg/dL
+            print("Hypoglycemia reading \(bloodSugar) ≤ 70 → treat low blood sugar")
         }
     }
 
@@ -1426,6 +1464,11 @@ extension QuestionnaireManager {
 		case .recheckKetoneLevel:
 			let finalStepObj = createRecheckKetoneStage(questionId: stage.id, title: "Calculator.Final.RecheckKetone.title".localized())
 			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .performFingerStickTest:
+			let quesObj = Questionnaire()
+			quesObj.questionId = stage.id
+			quesObj.questionType = .performFingerStickTest(stage)
+			actionsDelegate?.showNextQuestion(quesObj)
         }
 
         

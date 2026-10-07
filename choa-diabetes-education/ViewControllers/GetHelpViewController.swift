@@ -27,7 +27,7 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
 	@IBOutlet var recheckKetoneLevelView: RecheckKetoneLevelView!
-    @IBOutlet weak var performFingerStickBloodTest: UIView!
+    @IBOutlet weak var performFingerStickBloodTest: PerformFingerStickTestView!
 
 
 	private let questionObj: Questionnaire
@@ -292,6 +292,7 @@ class GetHelpViewController: UIViewController {
         fourOptionsView.isHidden = true
 		fiveOptionsView.isHidden = true
 		firstEmergencyView.isHidden = true
+		performFingerStickBloodTest.isHidden = true
     }
 
     private func setupViews() {
@@ -375,6 +376,11 @@ class GetHelpViewController: UIViewController {
 			recheckKetoneLevelView.isHidden = false
 			recheckKetoneLevelView.delegate = self
 			recheckKetoneLevelView.setupView(currentQuestion: questionObj)
+		case .performFingerStickTest:
+			performFingerStickBloodTest.isHidden = false
+			performFingerStickBloodTest.delegate = self
+			performFingerStickBloodTest.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
         case .none:
 			break
         }
@@ -394,7 +400,7 @@ class GetHelpViewController: UIViewController {
 		case FinalQuestionId.continueRegularCare.id:
 			backgroundColor = .secondaryMeadowGreen300
 			tintColor = .white
-		case FinalQuestionId.callChoaEmergency.id:
+		case FinalQuestionId.callChoaEmergency.id, FinalQuestionId.performFingerStickTest.id:
 			backgroundColor = .sunsetOrangeColor300
 			tintColor = .white
 		default:
@@ -457,6 +463,17 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         }
         
     }
+
+		// For checking how blood sugar was checked in the hypoglycemia flow
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
+		switch selectedAnswer {
+		case .BloodSugarCheckMethod(let method):
+			print("Blood sugar check method: \(method)")
+			self.questionnaireManager.triggerBloodSugarCheckMethodActionFlow(currentQuestion, method: method)
+		default:
+			return
+		}
+	}
 
 		// For checking if they use iLet Pump
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?) {
@@ -651,8 +668,13 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
 	}
 
-		// For the blood sugar recheck reading. The manager compares it against the 150/180 mg/dL threshold.
+		// For the hypoglycemia reading, and the blood sugar recheck reading (compared against the 150/180 mg/dL threshold).
 	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int) {
+		if currentQuestion.questionType == .openEndedWithMultipleInput(.lowBloodSugarCheck) {
+			questionnaireManager.triggerLowBloodSugarReadingResultActionFlow(currentQuestion, bloodSugar: bloodSugar)
+			return
+		}
+
 		questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
 	}
 
@@ -874,6 +896,12 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 	}
 }
 
+
+extension GetHelpViewController: PerformFingerStickTestViewProtocol {
+	func didSelectFingerStickNextAction(_ question: Questionnaire) {
+		questionnaireManager.triggerLowBloodSugarReadingActionFlow(question)
+	}
+}
 
 extension GetHelpViewController: QuestionnaireActionsProtocol {
     func showNextQuestion(_ question: Questionnaire) {

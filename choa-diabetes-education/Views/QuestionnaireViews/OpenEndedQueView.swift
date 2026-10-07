@@ -230,6 +230,9 @@ class OpenEndedQueView: UIView {
             } else {
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             }
+        case .openEndedWithMultipleInput(.lowBloodSugarCheck):
+            // Hypoglycemia flow, so low readings are expected and skip the alert
+            delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
         default:
             return
         }
