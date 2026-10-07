@@ -12,6 +12,7 @@ import UIKit
 
 let twoHourDuration: TimeInterval = 7200
 let oneHour30Duration: TimeInterval = 5400
+let fifteenMinuteDuration: TimeInterval = 900
 
 protocol ReminderManagerDelegate: AnyObject {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String)
@@ -145,6 +146,17 @@ class ReminderManager: NSObject {
             body: body,
             enableCountdown: enableCountdown
         ) // 90 minutes = 5400 seconds
+	}
+
+		/// Schedule a 15-minute reminder to recheck low blood sugar (convenience method)
+		/// - Parameters:
+		///   - title: Notification title
+		///   - body: Notification body
+		///   - enableCountdown: Whether to start a countdown timer for this reminder
+		/// - Returns: The identifier of the scheduled reminder
+	@discardableResult
+	func schedule15MinuteReminder(title: String = "Time to check!", body: String = "Time to recheck your blood sugar.", enableCountdown: Bool = true) -> String {
+		return scheduleReminder(in: fifteenMinuteDuration, title: title, body: body, enableCountdown: enableCountdown) // 15 minutes = 900 seconds
 	}
 
 		/// Schedule a 30-second test reminder (convenience method for testing)

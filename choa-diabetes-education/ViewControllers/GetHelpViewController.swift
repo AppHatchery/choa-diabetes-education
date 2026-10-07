@@ -476,6 +476,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		case .BloodSugarCheckMethod(let method):
 			print("Blood sugar check method: \(method)")
 			self.questionnaireManager.triggerBloodSugarCheckMethodActionFlow(currentQuestion, method: method)
+		case .LowBloodSugarTestType(let testType, let pumpShowsCGM):
+			self.questionnaireManager.triggerLowBloodSugarTestTypeActionFlow(currentQuestion, testType: testType, pumpShowsCGM: pumpShowsCGM)
 		default:
 			return
 		}
@@ -686,7 +688,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 
 	func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
 		let alert = AlertPopUpViewController(
-			title: "Calculator.LowBloodSugarAlert.title".localized(),
+			title: String(format: "Calculator.LowBloodSugarAlert.title".localized(), AppOnboardingManager.shared.lowBloodSugarThreshold),
 			message: "Calculator.LowBloodSugarAlert.message".localized(),
 			primaryActionTitle: "Calculator.LowBloodSugarAlert.primaryAction".localized(),
 			secondaryActionTitle: "Calculator.LowBloodSugarAlert.secondaryAction".localized()
@@ -783,6 +785,14 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
     
     func didSelectYesOverAction(_ question: Questionnaire) {
         let q = questionnaireManager
+
+        // Low blood sugar: once the 15 minutes are up, recheck the blood sugar
+        if FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+            print("   → Low blood sugar flow: Recheck blood sugar")
+            q.triggerLowBloodSugarReadingActionFlow(question)
+            return
+        }
+
         let iLetPump = q.iLetPump
         let reminderPageVisitCount = q.getReminderPageVisitCount()
         let ketoneCheckPageVisitCount = q.getKetoneVisitCount()

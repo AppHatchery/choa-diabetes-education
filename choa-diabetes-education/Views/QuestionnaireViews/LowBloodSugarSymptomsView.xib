@@ -44,7 +44,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nD1-Po-TmC" userLabel="Symptoms Stack View">
-                                    <rect key="frame" x="0.0" y="74.666666666666629" width="353" height="533.33333333333326"/>
+                                    <rect key="frame" x="0.0" y="74.666666666666686" width="353" height="533.33333333333326"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5l6-Nx-iRZ" userLabel="Row 1 Stack View">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="121.33333333333333"/>
@@ -224,7 +224,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-Sv-qva" userLabel="Row 4 Stack View">
-                                            <rect key="frame" x="0.0" y="412" width="353" height="121.33333333333333"/>
+                                            <rect key="frame" x="0.0" y="412" width="353" height="121.33333333333337"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FDh-Ib-QxZ" userLabel="Spacer">
                                                     <rect key="frame" x="0.0" y="0.0" width="112.33333333333333" height="121.33333333333333"/>
@@ -280,19 +280,23 @@
                             </constraints>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="I notice these symptoms" imagePadding="8"/>
+                            <buttonConfiguration key="configuration" style="plain" image="leftArrow" imagePlacement="trailing" title="I notice these symptoms" imagePadding="8">
+                                <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="didTapNoticeSymptomsButton:" destination="-1" eventType="touchUpInside" id="Dbc-4k-8uG"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGc-2A-jNU" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGc-2A-jNU">
                             <rect key="frame" x="0.0" y="55" width="353" height="47"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="47" id="nxN-xs-bCA"/>
                             </constraints>
                             <color key="tintColor" name="choaGreenColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="None of the above"/>
+                            <buttonConfiguration key="configuration" style="plain" title="None of the above">
+                                <fontDescription key="titleFontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="didTapNoneOfTheAboveButton:" destination="-1" eventType="touchUpInside" id="f6R-eH-6iz"/>
                             </connections>

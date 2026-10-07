@@ -33,6 +33,8 @@ class FinalStepWithReminderView: UIView {
 	@IBOutlet var hopeImage: UIImageView!
 
 	@IBOutlet var hydrationInfoStackView: UIStackView!
+	@IBOutlet var hydrationTitleLabel: UILabel!
+	@IBOutlet var over2HoursStackView: UIStackView!
 	@IBOutlet var rearrangeableStackView: UIStackView!
 
 	@IBOutlet var reminderContainerView: UIView!
@@ -66,6 +68,13 @@ class FinalStepWithReminderView: UIView {
 	private var countdownFinished: Bool = false
     
     private var isObservingNotifications = false
+
+	/// The low blood sugar flow reuses this page to treat with 15g or 8g of carbs and recheck in 15 minutes
+	private var lowBloodSugarStage: FinalQuestionId? {
+		guard let questionId = currentQuestion?.questionId else { return nil }
+		let stage = FinalQuestionId(id: questionId)
+		return stage.isLowBloodSugarTreatment ? stage : nil
+	}
 
 	override func didMoveToWindow() {
 		super.didMoveToWindow()
@@ -137,14 +146,18 @@ class FinalStepWithReminderView: UIView {
         self.currentQuestion = currentQuestion
         setupCommonUI(currentQuestion: currentQuestion)
 
-        switch questionnaireManager.currentTestType {
-        case .insulinShots:
-            setupForInsulinShots()
-        case .pump:
-            if questionnaireManager.iLetPump {
-                setupForPumpWithIlet()
-            } else {
-                setupForPump()
+        if let lowBloodSugarStage {
+            setupForLowBloodSugar(stage: lowBloodSugarStage)
+        } else {
+            switch questionnaireManager.currentTestType {
+            case .insulinShots:
+                setupForInsulinShots()
+            case .pump:
+                if questionnaireManager.iLetPump {
+                    setupForPumpWithIlet()
+                } else {
+                    setupForPump()
+                }
             }
         }
 
@@ -190,9 +203,16 @@ class FinalStepWithReminderView: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .natural
 
-        titleLabel.text = questionnaireManager.currentTestType == .insulinShots
-            ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
-            : currentQuestion.finalStep?.title
+        if let lowBloodSugarStage {
+            // Taken from the stage so the title survives restoring a reminder after an app restart
+            titleLabel.text = lowBloodSugarStage == .treatLowBloodSugar8g
+                ? "Final.TreatLowBloodSugar8g.title".localized()
+                : "Final.TreatLowBloodSugar15g.title".localized()
+        } else {
+            titleLabel.text = questionnaireManager.currentTestType == .insulinShots
+                ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
+                : currentQuestion.finalStep?.title
+        }
 
         reminderView.layer.cornerRadius = 12
         reminderButton.layer.cornerRadius = 12
@@ -218,6 +238,41 @@ class FinalStepWithReminderView: UIView {
         )
         
         doneButton.isHidden = true
+    }
+
+    // MARK: - Low Blood Sugar
+    private func setupForLowBloodSugar(stage: FinalQuestionId) {
+        confirmChangeDisconnectStackView.isHidden = true
+        giveRecommendedDoseStackView.isHidden = true
+        over2HoursStackView.isHidden = true
+
+        hopeImage.image = UIImage(named: "will_drugs")
+        hopeImage.isHidden = false
+
+        let isSmallerTreatment = stage == .treatLowBloodSugar8g
+        hydrationTitleLabel.text = isSmallerTreatment
+            ? "Final.TreatLowBloodSugar8g.carbs.title".localized()
+            : "Final.TreatLowBloodSugar15g.carbs.title".localized()
+        hydrationExampleInfoTextView.setText(
+            isSmallerTreatment
+                ? "Final.TreatLowBloodSugar8g.carbs.examples".localized()
+                : "Final.TreatLowBloodSugar15g.carbs.examples".localized(),
+            boldPhrases: []
+        )
+
+        reminderNextCheckLabel.text = "Final.ReminderNextCheckLowBloodSugar.text".localized()
+        setNextCheckDescription()
+    }
+
+    /// The "you'll need to check…" text under the next check title, for whichever flow this page is in
+    private func setNextCheckDescription() {
+        if lowBloodSugarStage != nil {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionLowBloodSugar.text".localized(), boldPhrases: ["blood sugar", "15 mins"])
+        } else if questionnaireManager.iLetPump {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
+        } else {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
+        }
     }
 
     // MARK: - Insulin Shots
@@ -402,15 +457,8 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.textColor = .black
 			reminderNextCheckDescriptionLabel.font = .nunitoBold20
 		} else {
-			if questionnaireManager.iLetPump {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-
-				reminderNextCheckDescriptionLabel.textColor = .black
-			} else {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-
-				reminderNextCheckDescriptionLabel.textColor = .black
-			}
+			setNextCheckDescription()
+			reminderNextCheckDescriptionLabel.textColor = .black
 		}
 	}
 
@@ -574,11 +622,14 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-            if questionnaireManager.iLetPump {
-                questionnaireManager.saveYesOver2hours(true)
+            // Skipping only changes the ketone recheck logic in the high blood sugar flow
+            if lowBloodSugarStage == nil {
+                if questionnaireManager.iLetPump {
+                    questionnaireManager.saveYesOver2hours(true)
+                }
+
+                questionnaireManager.skipFirstReminder(true)
             }
-            
-            questionnaireManager.skipFirstReminder(true)
             
             // Pendo: Track when user skips an existing reminder before it elapses
             PendoManager.shared().track(
@@ -613,29 +664,39 @@ class FinalStepWithReminderView: UIView {
 			countdownFinished = false
 
 			reminderView.backgroundColor = .veryLightBlue
-			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+			reminderNextCheckLabel.text = lowBloodSugarStage != nil
+				? "Final.ReminderNextCheckLowBloodSugar.text".localized()
+				: "Final.ReminderNextCheck.text".localized()
 			reminderNextCheckLabel.isHidden = false
 
 			reminderNextCheckDescriptionLabel.font = .systemFont(ofSize: 14)
 			reminderNextCheckDescriptionLabel.textColor = .black
 
-			if questionnaireManager.iLetPump {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-			} else {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-			}
+			setNextCheckDescription()
 
-			questionnaireManager.saveYesOver2hours(true)
+			if lowBloodSugarStage == nil {
+				questionnaireManager.saveYesOver2hours(true)
+			}
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
             
             ReminderPersistence.clearReminderState()
 		} else {
-            let duration: TimeInterval = questionnaireManager.iLetPump ? oneHour30Duration : twoHourDuration
+            let duration: TimeInterval
+            let newReminderId: String
+
+            if lowBloodSugarStage != nil {
+                duration = fifteenMinuteDuration
+                newReminderId = ReminderManager.shared.schedule15MinuteReminder()
+            } else if questionnaireManager.iLetPump {
+                duration = oneHour30Duration
+                newReminderId = ReminderManager.shared.schedule90MinuteReminder()
+            } else {
+                duration = twoHourDuration
+                newReminderId = ReminderManager.shared.scheduleTwoHourReminder()
+            }
 
 			let scheduledTime = Date().addingTimeInterval(duration)
-
-            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() : ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 

@@ -85,6 +85,7 @@ enum TwoOptionsQuestionId {
     case calculationType
 	case measuringType
 	case bloodSugarCheckMethod
+	case lowBloodSugarTestType
 
     
     var id: Int {
@@ -97,6 +98,8 @@ enum TwoOptionsQuestionId {
 			return 3
 		case .bloodSugarCheckMethod:
 			return 4
+		case .lowBloodSugarTestType:
+			return 5
         }
     }
     
@@ -110,6 +113,8 @@ enum TwoOptionsQuestionId {
 			self = .measuringType
 		case 4:
 			self = .bloodSugarCheckMethod
+		case 5:
+			self = .lowBloodSugarTestType
         default:
             self = .testType
         }
@@ -236,6 +241,13 @@ enum FinalQuestionId {
 	case recheckKetoneLevel
 	case performFingerStickTest
 	case continueDMMP
+	case treatLowBloodSugar15g
+	case treatLowBloodSugar8g
+
+    /// The low blood sugar reminder pages, as opposed to the high blood sugar ones
+    var isLowBloodSugarTreatment: Bool {
+        self == .treatLowBloodSugar15g || self == .treatLowBloodSugar8g
+    }
 
     var id: Int {
         switch self {
@@ -273,6 +285,10 @@ enum FinalQuestionId {
 			return 16
 		case .continueDMMP:
 			return 17
+		case .treatLowBloodSugar15g:
+			return 18
+		case .treatLowBloodSugar8g:
+			return 19
         }
     }
     
@@ -308,6 +324,10 @@ enum FinalQuestionId {
 			self = .performFingerStickTest
 		case 17:
 			self = .continueDMMP
+		case 18:
+			self = .treatLowBloodSugar15g
+		case 19:
+			self = .treatLowBloodSugar8g
         default:
             self = .firstEmergencyScreen
         }
@@ -342,6 +362,8 @@ enum TwoOptionsAnswer: Equatable {
     case TestType(TestType)
     case CalculationType(CalculationType)
     case BloodSugarCheckMethod(BloodSugarCheckMethod)
+    // How insulin is taken in the low blood sugar flow. Pump users also say whether the pump shows CGM readings.
+    case LowBloodSugarTestType(TestType, pumpShowsCGM: Bool?)
 }
 
 /// How blood sugar was checked in the hypoglycemia flow

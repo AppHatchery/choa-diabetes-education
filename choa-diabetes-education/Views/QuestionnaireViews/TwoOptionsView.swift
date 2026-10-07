@@ -129,7 +129,8 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		}
 
 		if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id ||
-			currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id) {
+			currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id ||
+			currentQuestion.questionId == TwoOptionsQuestionId.lowBloodSugarTestType.id) {
 			resourcesStackView.isHidden = true
 		} else {
 			setupLearnHowLabel()
@@ -138,6 +139,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 		if (currentQuestion.questionId == TwoOptionsQuestionId.measuringType.id) {
 			firstButtonImage.image = UIImage(named: "ketone_strip")
 			secondButtonImage.image = UIImage(named: "blood_ketone")
+		}
+
+		if (currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id) {
+			firstButtonImage.image = UIImage(named: "glucose_meter")
+			secondButtonImage.image = UIImage(named: "cgm")
 		}
 
 		if selected == 0 {
@@ -199,7 +205,11 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 				view.updateViewForSelection()
 				label.updateLabelForSelection()
 
-				if (currentQuestion.questionId == TwoOptionsQuestionId.testType.id && selected == 1) ||
+				// Injection / Insulin pen has no follow-up, so Next is ready as soon as it's picked
+				let isInsulinTypeQuestion = currentQuestion.questionId == TwoOptionsQuestionId.testType.id ||
+					currentQuestion.questionId == TwoOptionsQuestionId.lowBloodSugarTestType.id
+
+				if (isInsulinTypeQuestion && selected == 1) ||
 					currentQuestion.questionId == TwoOptionsQuestionId.bloodSugarCheckMethod.id {
 					nextButton.alpha = 1
 				} else {
@@ -233,7 +243,7 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
     func didFirstButtonTap() {
         switch currentQuestion.questionId {
-        case TwoOptionsQuestionId.testType.id:
+        case TwoOptionsQuestionId.testType.id, TwoOptionsQuestionId.lowBloodSugarTestType.id:
             removeFollowUpView()
 
         case TwoOptionsQuestionId.measuringType.id:
@@ -270,6 +280,18 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 
             questionnaireManager.saveMeasuringMethod(.urineKetone)
 
+            let followUpSubview = YesOrNoFollowUpView()
+            followUpSubview.delegate = self
+            followUpSubview.setupView(currentQuestion: currentQuestion)
+            showFollowUpView(followUpSubview)
+
+        case TwoOptionsQuestionId.lowBloodSugarTestType.id:
+            // Guard against adding duplicate YesOrNoFollowUpView
+            if followUpView is YesOrNoFollowUpView {
+                return
+            }
+
+            // Asks whether the insulin pump display shows CGM readings
             let followUpSubview = YesOrNoFollowUpView()
             followUpSubview.delegate = self
             followUpSubview.setupView(currentQuestion: currentQuestion)
@@ -319,6 +341,20 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						followUpAnswer: followUpAnswer == 1 ? .yes : .no
 					)
 			}
+
+		case TwoOptionsQuestionId.lowBloodSugarTestType.id:
+			let testType = TestType(id: selected)
+			var pumpShowsCGM: Bool?
+
+			if testType == .pump {
+				guard followUpAnswer != 0 else { return }
+				pumpShowsCGM = followUpAnswer == 1
+			}
+
+			delegate?.didSelectNextAction(
+				currentQuestion: currentQuestion,
+				selectedAnswer: .LowBloodSugarTestType(testType, pumpShowsCGM: pumpShowsCGM)
+			)
 
 		case TwoOptionsQuestionId.bloodSugarCheckMethod.id:
 			delegate?.didSelectNextAction(

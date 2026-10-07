@@ -17,6 +17,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerLowBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire)
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int)
     func triggerLowBloodSugarSymptomsActionFlow(_ currentQuestion: Questionnaire, hasSymptoms: Bool)
+    func triggerLowBloodSugarTestTypeActionFlow(_ currentQuestion: Questionnaire, testType: TestType, pumpShowsCGM: Bool?)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -208,11 +209,12 @@ extension QuestionnaireManager {
         actionsDelegate?.showNextQuestion(quesObj)
     }
 
-    /// Routes the hypoglycemia blood sugar reading. Readings over 70 mg/dL (including over 300) go to the low symptoms question.
+    /// Routes the hypoglycemia blood sugar reading. The threshold is 80 mg/dL for children 5 and under, otherwise 70 mg/dL.
+    /// Readings at or above it (including over 300) go to the low symptoms question, readings below it ask how insulin is taken.
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
         self.bloodSugar = bloodSugar
 
-        if bloodSugar > 70 {
+        if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
             let quesObj = Questionnaire()
             // questionId is read on every screen, so it must be set even though this question has only one id
             quesObj.questionId = 1
@@ -220,9 +222,28 @@ extension QuestionnaireManager {
             quesObj.question = "GetHelp.Que.LowBloodSugarSymptoms.title".localized()
             actionsDelegate?.showNextQuestion(quesObj)
         } else {
-            // TODO: Show the treatment step for readings at or below 70 mg/dL
-            print("Hypoglycemia reading \(bloodSugar) ≤ 70 → treat low blood sugar")
+            let createTestTypeQue = createTwoCustomOptionsQuestion(
+                questionId: .lowBloodSugarTestType,
+                question: "Calculator.Que.TestType.title".localized(),
+                description: nil,
+                answerOptions: [TestType.insulinShots.description, TestType.pump.description]
+            )
+            actionsDelegate?.showNextQuestion(createTestTypeQue)
         }
+    }
+
+    /// How insulin is taken when blood sugar is low. Pump users also say whether the pump shows CGM readings.
+    func triggerLowBloodSugarTestTypeActionFlow(_ currentQuestion: Questionnaire, testType: TestType, pumpShowsCGM: Bool?) {
+        saveTestType(testType)
+        if let pumpShowsCGM {
+            saveCGM(pumpShowsCGM)
+        }
+
+        // Pumps showing CGM readings are already cutting back insulin, so they only need 8g unless blood sugar is 50 mg/dL or lower
+        let needsSmallerTreatment = testType == .pump && pumpShowsCGM == true && bloodSugar > 50
+        print("Low blood sugar test type: \(testType), pump shows CGM: \(String(describing: pumpShowsCGM)), 8g treatment: \(needsSmallerTreatment)")
+
+        showFinalStage(stage: needsSmallerTreatment ? .treatLowBloodSugar8g : .treatLowBloodSugar15g, calculation: nil)
     }
 
     /// Low symptoms with a reading over 70 mg/dL need a call to CHOA, otherwise continue the DMMP.
@@ -1477,6 +1498,18 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(finalStepObj)
 		case .recheckKetoneLevel:
 			let finalStepObj = createRecheckKetoneStage(questionId: stage.id, title: "Calculator.Final.RecheckKetone.title".localized())
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .treatLowBloodSugar15g:
+			let finalStepObj = createFinalStageWithReminder(
+				questionId: stage.id,
+				title: "Final.TreatLowBloodSugar15g.title".localized(),
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .treatLowBloodSugar8g:
+			let finalStepObj = createFinalStageWithReminder(
+				questionId: stage.id,
+				title: "Final.TreatLowBloodSugar8g.title".localized(),
+			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
 		case .continueDMMP:
 			let finalStepObj = createFinalStageNoDescription(

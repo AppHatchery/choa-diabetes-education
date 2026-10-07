@@ -25,19 +25,19 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Ohe-Dt-OJh" userLabel="Main Stack View">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Ohe-Dt-OJh" userLabel="Main Stack View">
                     <rect key="frame" x="20" y="138" width="353" height="574"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check ketone level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lq-1P-jWL">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Check ketone level" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lq-1P-jWL">
                             <rect key="frame" x="0.0" y="0.0" width="353" height="17.666666666666668"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <color key="textColor" name="primaryBlue"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="Zrj-BY-3Ie">
-                            <rect key="frame" x="0.0" y="41.666666666666657" width="353" height="300"/>
+                            <rect key="frame" x="0.0" y="41.666666666666657" width="353" height="336"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="300" id="fZW-KR-ECy"/>
+                                <constraint firstAttribute="height" constant="336" id="fZW-KR-ECy"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQd-11-iCR" userLabel="ILet Pump Info Stack View">
@@ -73,7 +73,7 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IH-5H-Vhb">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IH-5H-Vhb">
                                     <rect key="frame" x="0.0" y="20.333333333333371" width="353" height="114"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <string key="text">Example: A 2-year-old drinks 2 oz per hour 
@@ -128,7 +128,7 @@
             <constraints>
                 <constraint firstItem="7jb-vU-vDa" firstAttribute="leading" secondItem="isd-EZ-F5f" secondAttribute="leading" constant="20" id="14r-bj-gwf"/>
                 <constraint firstItem="Ohe-Dt-OJh" firstAttribute="leading" secondItem="isd-EZ-F5f" secondAttribute="leading" constant="20" id="DBW-3a-BPj"/>
-                <constraint firstItem="7jb-vU-vDa" firstAttribute="top" secondItem="Ohe-Dt-OJh" secondAttribute="bottom" constant="24" id="Ly5-lI-i46"/>
+                <constraint firstItem="7jb-vU-vDa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ohe-Dt-OJh" secondAttribute="bottom" constant="24" id="Ly5-lI-i46"/>
                 <constraint firstItem="Ohe-Dt-OJh" firstAttribute="top" secondItem="isd-EZ-F5f" secondAttribute="top" constant="20" id="MgA-aO-m9g"/>
                 <constraint firstItem="isd-EZ-F5f" firstAttribute="trailing" secondItem="7jb-vU-vDa" secondAttribute="trailing" constant="20" id="OnO-pf-YIe"/>
                 <constraint firstItem="isd-EZ-F5f" firstAttribute="trailing" secondItem="Ohe-Dt-OJh" secondAttribute="trailing" constant="20" id="jiV-78-xZy"/>

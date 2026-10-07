@@ -33,6 +33,20 @@ class AppOnboardingManager {
         }
     }
 
+    // Age entered during onboarding, or nil if it was skipped or isn't a whole number
+    var age: Int? {
+        guard case .text(let value) = answers[.age] else { return nil }
+        return Int(value.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+
+    // Children 5 and under are treated for low blood sugar below 80 mg/dL, everyone else below 70 mg/dL
+    var lowBloodSugarThreshold: Int {
+        if let age, age <= 5 {
+            return 80
+        }
+        return 70
+    }
+
     // Whether the user has been through onboarding, whether they filled it in
     // or skipped it, so it isn't offered again on every launch.
     var hasCompletedOnboarding: Bool {

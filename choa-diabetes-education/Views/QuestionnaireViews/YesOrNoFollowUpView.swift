@@ -94,6 +94,12 @@ class YesOrNoFollowUpView: UIView {
 			yesButton.titleLabel?.text = "Yes".localized()
 			noButton.titleLabel?.text = "No".localized()
 
+		case TwoOptionsQuestionId.lowBloodSugarTestType.id:
+			questionLabel.text = "Calculator.Que.PumpShowsCGM.title".localized()
+
+			yesButton.titleLabel?.text = "Yes".localized()
+			noButton.titleLabel?.text = "No".localized()
+
 		case YesOrNoQuestionId.bloodSugarCheck.id:
 			questionLabel.text = QuestionnaireManager.instance.iLetPump ? "Calculator.Que.ILetPumpBloodSugarTimeCheck.title".localized() : "Calculator.Que.BloodSugarTimeCheck.title".localized()
 

@@ -89,6 +89,7 @@
 "Calculator.Que.CGM.description" = "Examples of pumps that show Continuous Glucose Monitor data include TSlim Control IQ, Omnipod 5 in Automode, Ilet pump";
 
 "Calculator.Que.IletPump.title" = "Is insulin delivered using iLet Pump?";
+"Calculator.Que.PumpShowsCGM.title" = "Does the insulin pump display show CGM readings?";
 "Calculator.Que.IletPump.option1" = "Yes";
 "Calculator.Que.IletPump.option2" = "No";
 
@@ -107,7 +108,7 @@
 "GetHelp.Que.BloodSugarCheckMethod.title" = "How was blood sugar checked?";
 "GetHelp.Que.LowBloodSugarSymptoms.title" = "Are any of these low blood sugar symptoms present?";
 "Calculator.Que.BloodSugarDuration.title" = "How long has the blood sugar been above 300 mg/dL?";
-"Calculator.LowBloodSugarAlert.title" = "Blood sugar is below 70";
+"Calculator.LowBloodSugarAlert.title" = "Blood sugar is below %d";
 "Calculator.LowBloodSugarAlert.message" = "That's too low to be a high blood sugar. It might be hypoglycemia instead.";
 "Calculator.LowBloodSugarAlert.primaryAction" = "Choose a different symptom";
 "Calculator.LowBloodSugarAlert.secondaryAction" = "Continue with hyperglycemia";
@@ -242,6 +243,14 @@
 
 // For iLet
 "Final.ReminderNextCheckForIlet.text" = "Next Check in 90 mins";
+"Final.ReminderNextCheckLowBloodSugar.text" = "Next check in 15 mins";
+"Final.ReminderNextCheckDescriptionLowBloodSugar.text" = "You’ll need to recheck the blood sugar in 15 mins.";
+"Final.TreatLowBloodSugar15g.title" = "Treat low blood sugar (15g)";
+"Final.TreatLowBloodSugar8g.title" = "Treat low blood sugar (8g)";
+"Final.TreatLowBloodSugar15g.carbs.title" = "Give 15g of fast-acting carbohydrate";
+"Final.TreatLowBloodSugar8g.carbs.title" = "Give 8g of fast-acting carbohydrate";
+"Final.TreatLowBloodSugar15g.carbs.examples" = "• 4 oz (120 mL) fruit juice, or\n• 4 glucose tablets";
+"Final.TreatLowBloodSugar8g.carbs.examples" = "• 2 oz (60 mL) fruit juice, or\n• 2 glucose tablets";
 "Final.ReminderNextCheckDescriptionForIlet.text" = "You’ll need to check your blood sugar and ketones in 90 mins.";
 "Final.ReminderTimeCheckForIlet.text" = "Has it been more than 90 minutes since your last ketone test?";
 
