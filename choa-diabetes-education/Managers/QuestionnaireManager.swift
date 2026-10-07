@@ -16,6 +16,7 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerBloodSugarCheckMethodActionFlow(_ currentQuestion: Questionnaire, method: BloodSugarCheckMethod)
     func triggerLowBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire)
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int)
+    func triggerLowBloodSugarSymptomsActionFlow(_ currentQuestion: Questionnaire, hasSymptoms: Bool)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -212,11 +213,24 @@ extension QuestionnaireManager {
         self.bloodSugar = bloodSugar
 
         if bloodSugar > 70 {
-            // TODO: Show "Are any of these low symptoms present?" once that screen is built
-            print("Hypoglycemia reading \(bloodSugar) > 70 → low symptoms question")
+            let quesObj = Questionnaire()
+            // questionId is read on every screen, so it must be set even though this question has only one id
+            quesObj.questionId = 1
+            quesObj.questionType = .lowBloodSugarSymptoms
+            quesObj.question = "GetHelp.Que.LowBloodSugarSymptoms.title".localized()
+            actionsDelegate?.showNextQuestion(quesObj)
         } else {
             // TODO: Show the treatment step for readings at or below 70 mg/dL
             print("Hypoglycemia reading \(bloodSugar) ≤ 70 → treat low blood sugar")
+        }
+    }
+
+    /// Low symptoms with a reading over 70 mg/dL need a call to CHOA, otherwise continue the DMMP.
+    func triggerLowBloodSugarSymptomsActionFlow(_ currentQuestion: Questionnaire, hasSymptoms: Bool) {
+        if hasSymptoms {
+            triggerCallChoaEmergencyActionFlow(currentQuestion)
+        } else {
+            showFinalStage(stage: .continueDMMP, calculation: nil)
         }
     }
 
@@ -1463,6 +1477,13 @@ extension QuestionnaireManager {
 			actionsDelegate?.showNextQuestion(finalStepObj)
 		case .recheckKetoneLevel:
 			let finalStepObj = createRecheckKetoneStage(questionId: stage.id, title: "Calculator.Final.RecheckKetone.title".localized())
+			actionsDelegate?.showNextQuestion(finalStepObj)
+		case .continueDMMP:
+			let finalStepObj = createFinalStageNoDescription(
+				questionId: stage.id,
+				title: "Calculator.Final.ContinueDMMP.title".localized(),
+				imageName: "hope_normal_care"
+			)
 			actionsDelegate?.showNextQuestion(finalStepObj)
 		case .performFingerStickTest:
 			let quesObj = Questionnaire()

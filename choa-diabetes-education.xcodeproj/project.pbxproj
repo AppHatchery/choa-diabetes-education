@@ -226,8 +226,10 @@
 		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
 		CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */; };
 		CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */; };
-		CFCFD05830767A2B0067FBBB /* PerformFingerStickTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */; };
-		CFCFD05C30767A980067FBBB /* PerformFingerStickTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */; };
+		CFCFD05830767A2B0067FBBB /* PerformFingerStickTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */; };
+		CFCFD05C30767A980067FBBB /* PerformFingerStickTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */; };
+		CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */; };
+		CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -539,8 +541,10 @@
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
 		CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingViewController.swift; sourceTree = "<group>"; };
 		CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppOnboarding.storyboard; sourceTree = "<group>"; };
-		CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformFingerStickTestViewController.xib; sourceTree = "<group>"; };
-		CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestViewController.swift; sourceTree = "<group>"; };
+		CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformFingerStickTestView.xib; sourceTree = "<group>"; };
+		CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestView.swift; sourceTree = "<group>"; };
+		CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowBloodSugarSymptomsView.swift; sourceTree = "<group>"; };
+		CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowBloodSugarSymptomsView.xib; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -1216,8 +1220,10 @@
 				B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */,
 				B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */,
 				B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */,
-				CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */,
-				CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */,
+				CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */,
+				CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */,
+				CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */,
+				CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -1329,7 +1335,7 @@
 				B4DBE81A2F0FDB7C0075C7F3 /* will_washing_hands.png in Resources */,
 				B4DBE8232F0FFDF20075C7F3 /* rapid_acting_insulin.png in Resources */,
 				B4DBE81B2F0FDB7C0075C7F3 /* lancets.png in Resources */,
-				CFCFD05830767A2B0067FBBB /* PerformFingerStickTestViewController.xib in Resources */,
+				CFCFD05830767A2B0067FBBB /* PerformFingerStickTestView.xib in Resources */,
 				B4DBE8672F10E9B50075C7F3 /* 2_3_2_how_to_calculate_insulin_dosages.html in Resources */,
 				B4DBE81C2F0FDB7C0075C7F3 /* test_strips.png in Resources */,
 				B4DBE8212F0FFD000075C7F3 /* long_acting_insulin.png in Resources */,
@@ -1386,6 +1392,7 @@
 				B40A72C92E0DC48F00416D59 /* GetHelp.storyboard in Resources */,
 				D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */,
 				FDC8E53C2A292F64006FDFF0 /* TwoOptionsView.xib in Resources */,
+				CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */,
 				B4AB10DC2F0EDCC900F74329 /* 1_1_5_what_is_insulin.html in Resources */,
 				B4DBE8652F10E8180075C7F3 /* 2_3_1_how_to_calculate_insulin_dosages.html in Resources */,
 				B4AB10D02F0E978300F74329 /* hope_weight_loss.png in Resources */,
@@ -1541,6 +1548,7 @@
 			files = (
 				CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */,
 				CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */,
+				CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */,
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */,
 				CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */,
@@ -1548,7 +1556,7 @@
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
 				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
-				CFCFD05C30767A980067FBBB /* PerformFingerStickTestViewController.swift in Sources */,
+				CFCFD05C30767A980067FBBB /* PerformFingerStickTestView.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */,
 				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,

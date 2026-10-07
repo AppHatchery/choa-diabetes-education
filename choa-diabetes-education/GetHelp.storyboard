@@ -34,6 +34,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioD-Qi-2f7" userLabel="Low Blood Sugar Symptoms View" customClass="LowBloodSugarSymptomsView" customModule="choa_diabetes_education" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hp2-ZR-yc9" userLabel="Final Step Call Choa Emergency View" customClass="FinalStepCallChoaEmergencyView" customModule="choa_diabetes_education" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -113,6 +117,7 @@
                             <constraint firstItem="HAC-w5-MM5" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="J5z-62-f3I"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="elY-vn-3Y5" secondAttribute="bottom" id="Lih-Cz-03X"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="bottom" secondItem="EOW-zC-1Ol" secondAttribute="bottom" id="M9Q-Jb-o7b"/>
+                            <constraint firstItem="ioD-Qi-2f7" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="MfF-HM-hmI"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="wUN-qi-RLG" secondAttribute="trailing" id="PDj-B2-wKf"/>
                             <constraint firstItem="HAC-w5-MM5" firstAttribute="bottom" secondItem="jBt-r3-vyH" secondAttribute="bottom" id="PEl-hN-Zmo"/>
                             <constraint firstItem="7xL-af-9Q9" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="RIS-za-lW2"/>
@@ -142,6 +147,9 @@
                             <constraint firstItem="l8R-X1-5JF" firstAttribute="leading" secondItem="HxV-vl-WIU" secondAttribute="leading" id="lTm-dK-nGj"/>
                             <constraint firstAttribute="trailing" secondItem="0vn-ym-cdQ" secondAttribute="trailing" id="lU7-LZ-oIp"/>
                             <constraint firstItem="360-yq-Lhz" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="nVw-aD-iIF"/>
+                            <constraint firstItem="ioD-Qi-2f7" firstAttribute="bottom" secondItem="jBt-r3-vyH" secondAttribute="bottom" id="rti-f2-wRZ"/>
+                            <constraint firstItem="ioD-Qi-2f7" firstAttribute="trailing" secondItem="jBt-r3-vyH" secondAttribute="trailing" id="t9N-tF-cmn"/>
+                            <constraint firstItem="ioD-Qi-2f7" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="tOs-Dd-GAt"/>
                             <constraint firstItem="wUN-qi-RLG" firstAttribute="leading" secondItem="jBt-r3-vyH" secondAttribute="leading" id="uWQ-uV-LSu"/>
                             <constraint firstItem="jBt-r3-vyH" firstAttribute="trailing" secondItem="EOW-zC-1Ol" secondAttribute="trailing" id="uvS-pO-LSW"/>
                             <constraint firstItem="360-yq-Lhz" firstAttribute="top" secondItem="jBt-r3-vyH" secondAttribute="top" id="vkg-uu-Q7x"/>
@@ -163,6 +171,7 @@
                         <outlet property="firstEmergencyView" destination="wUN-qi-RLG" id="Yjh-QN-T8Q"/>
                         <outlet property="fiveOptionsView" destination="0vn-ym-cdQ" id="Z7M-3o-V2J"/>
                         <outlet property="fourOptionsView" destination="dt8-K3-Fgq" id="RmO-VE-qau"/>
+                        <outlet property="lowBloodSugarSymptomsView" destination="ioD-Qi-2f7" id="cpx-f2-BgX"/>
                         <outlet property="multipleOptionsView" destination="dX5-Tc-aJy" id="X3t-ey-pH9"/>
                         <outlet property="openEndedQueView" destination="a9x-JQ-2BE" id="5Fm-hh-3rC"/>
                         <outlet property="performFingerStickBloodTest" destination="360-yq-Lhz" id="oU1-qd-VhU"/>

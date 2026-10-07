@@ -22,6 +22,7 @@ enum QuestionType: Equatable {
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
 	case performFingerStickTest(FinalQuestionId)
+	case lowBloodSugarSymptoms
 
     /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
     /// and an open-ended reading for the 150/180 mg/dL checks.
@@ -234,6 +235,7 @@ enum FinalQuestionId {
 	case callChoaEmergency
 	case recheckKetoneLevel
 	case performFingerStickTest
+	case continueDMMP
 
     var id: Int {
         switch self {
@@ -269,6 +271,8 @@ enum FinalQuestionId {
 			return 15
 		case .performFingerStickTest:
 			return 16
+		case .continueDMMP:
+			return 17
         }
     }
     
@@ -302,6 +306,8 @@ enum FinalQuestionId {
 			self = .recheckKetoneLevel
 		case 16:
 			self = .performFingerStickTest
+		case 17:
+			self = .continueDMMP
         default:
             self = .firstEmergencyScreen
         }

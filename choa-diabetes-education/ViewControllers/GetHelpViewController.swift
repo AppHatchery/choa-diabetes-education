@@ -27,7 +27,8 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
 	@IBOutlet var recheckKetoneLevelView: RecheckKetoneLevelView!
-    @IBOutlet weak var performFingerStickBloodTest: PerformFingerStickTestView!
+    @IBOutlet var performFingerStickBloodTest: PerformFingerStickTestView!
+    @IBOutlet var lowBloodSugarSymptomsView: LowBloodSugarSymptomsView!
 
 
 	private let questionObj: Questionnaire
@@ -293,6 +294,7 @@ class GetHelpViewController: UIViewController {
 		fiveOptionsView.isHidden = true
 		firstEmergencyView.isHidden = true
 		performFingerStickBloodTest.isHidden = true
+		lowBloodSugarSymptomsView.isHidden = true
     }
 
     private func setupViews() {
@@ -381,6 +383,10 @@ class GetHelpViewController: UIViewController {
 			performFingerStickBloodTest.delegate = self
 			performFingerStickBloodTest.setupView(currentQuestion: questionObj)
 			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .lowBloodSugarSymptoms:
+			lowBloodSugarSymptomsView.isHidden = false
+			lowBloodSugarSymptomsView.delegate = self
+			lowBloodSugarSymptomsView.setupView(currentQuestion: questionObj)
         case .none:
 			break
         }
@@ -397,7 +403,7 @@ class GetHelpViewController: UIViewController {
 		case FinalQuestionId.endo.id:
 			backgroundColor = .white
 			tintColor = .black
-		case FinalQuestionId.continueRegularCare.id:
+		case FinalQuestionId.continueRegularCare.id, FinalQuestionId.continueDMMP.id:
 			backgroundColor = .secondaryMeadowGreen300
 			tintColor = .white
 		case FinalQuestionId.callChoaEmergency.id, FinalQuestionId.performFingerStickTest.id:
@@ -900,6 +906,12 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 extension GetHelpViewController: PerformFingerStickTestViewProtocol {
 	func didSelectFingerStickNextAction(_ question: Questionnaire) {
 		questionnaireManager.triggerLowBloodSugarReadingActionFlow(question)
+	}
+}
+
+extension GetHelpViewController: LowBloodSugarSymptomsViewProtocol {
+	func didSelectLowBloodSugarSymptoms(_ question: Questionnaire, hasSymptoms: Bool) {
+		questionnaireManager.triggerLowBloodSugarSymptomsActionFlow(question, hasSymptoms: hasSymptoms)
 	}
 }
 

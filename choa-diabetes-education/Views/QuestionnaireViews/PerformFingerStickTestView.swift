@@ -1,5 +1,5 @@
 //
-//  PerformFingerStickTestViewController.swift
+//  PerformFingerStickTestView.swift
 //  choa-diabetes-education
 //
 //  Created by Maxwell Kapezi Jr on 07/10/2026.
@@ -13,7 +13,7 @@ protocol PerformFingerStickTestViewProtocol: AnyObject {
 
 /// Shown after choosing CGM in the hypoglycemia flow, asking for a finger stick to confirm the reading.
 class PerformFingerStickTestView: UIView {
-	static let nibName = "PerformFingerStickTestViewController"
+	static let nibName = "PerformFingerStickTestView"
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var mainStackView: UIStackView!
