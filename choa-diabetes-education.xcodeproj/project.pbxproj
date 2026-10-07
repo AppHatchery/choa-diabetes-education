@@ -27,7 +27,6 @@
 		B415AD1D2E5351EA003D7142 /* FirstEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */; };
 		B415AD1F2E5351FC003D7142 /* FirstEmergencyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */; };
 		B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */; };
-		B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */; };
 		B42E24332E9EC45E002ACFF6 /* Float+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */; };
 		B44D1F142E5B088F00DE4E3A /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */; };
 		B44D1F172E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */; };
@@ -227,6 +226,8 @@
 		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
 		CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */; };
 		CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */; };
+		CFCFD05830767A2B0067FBBB /* PerformFingerStickTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */; };
+		CFCFD05C30767A980067FBBB /* PerformFingerStickTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -341,7 +342,6 @@
 		B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEmergencyView.swift; sourceTree = "<group>"; };
 		B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstEmergencyView.xib; sourceTree = "<group>"; };
 		B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutKetoneMeasurementsViewController.swift; sourceTree = "<group>"; };
-		B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutKetoneMeasurementsView.storyboard; sourceTree = "<group>"; };
 		B42E24322E9EC452002ACFF6 /* Float+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F132E5B088E00DE4E3A /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B44D1F152E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepCallChoaEmergencyView.swift; sourceTree = "<group>"; };
@@ -539,6 +539,8 @@
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
 		CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingViewController.swift; sourceTree = "<group>"; };
 		CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppOnboarding.storyboard; sourceTree = "<group>"; };
+		CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformFingerStickTestViewController.xib; sourceTree = "<group>"; };
+		CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestViewController.swift; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -1204,7 +1206,6 @@
 				B415AD1C2E5351EA003D7142 /* FirstEmergencyView.swift */,
 				B415AD1E2E5351FC003D7142 /* FirstEmergencyView.xib */,
 				B41C738A2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift */,
-				B41C738E2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard */,
 				B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */,
 				B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */,
 				B4F6ABFC2E5A23E90037D323 /* FinalStepWithReminderView.swift */,
@@ -1215,6 +1216,8 @@
 				B44D1F162E5B95E600DE4E3A /* FinalStepCallChoaEmergencyView.xib */,
 				B4B8E9742E6EB08000C377D1 /* RecheckKetoneLevelView.swift */,
 				B4B8E9762E6EB09000C377D1 /* RecheckKetoneLevelView.xib */,
+				CFCFD05B30767A980067FBBB /* PerformFingerStickTestViewController.swift */,
+				CFCFD05730767A2B0067FBBB /* PerformFingerStickTestViewController.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -1326,6 +1329,7 @@
 				B4DBE81A2F0FDB7C0075C7F3 /* will_washing_hands.png in Resources */,
 				B4DBE8232F0FFDF20075C7F3 /* rapid_acting_insulin.png in Resources */,
 				B4DBE81B2F0FDB7C0075C7F3 /* lancets.png in Resources */,
+				CFCFD05830767A2B0067FBBB /* PerformFingerStickTestViewController.xib in Resources */,
 				B4DBE8672F10E9B50075C7F3 /* 2_3_2_how_to_calculate_insulin_dosages.html in Resources */,
 				B4DBE81C2F0FDB7C0075C7F3 /* test_strips.png in Resources */,
 				B4DBE8212F0FFD000075C7F3 /* long_acting_insulin.png in Resources */,
@@ -1396,7 +1400,6 @@
 				B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
 				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
-				B41C738F2E55F23400CC4213 /* AboutKetoneMeasurementsView.storyboard in Resources */,
 				B4AB10B42F0E90AB00F74329 /* hope_excessive_thirst.png in Resources */,
 				D48167BF28ABFE24003B14A3 /* ChapterListTableViewCell.xib in Resources */,
 				B4DBE83D2F1024590075C7F3 /* 1_5_2_steps_to_check_ketones.html in Resources */,
@@ -1545,6 +1548,7 @@
 				D4C39B3828B7E5F1003CCA14 /* QuizAnswerTableViewCell.swift in Sources */,
 				B40A72CB2E0DC5AA00416D59 /* GetHelpViewController.swift in Sources */,
 				D42FA8FD29916B74009C51C3 /* AboutApp.swift in Sources */,
+				CFCFD05C30767A980067FBBB /* PerformFingerStickTestViewController.swift in Sources */,
 				FDC8E5312A2699D9006FDFF0 /* YesOrNoQueView.swift in Sources */,
 				CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */,
 				B454CACD2E48D7BB0068CF44 /* BloodKetoneLevelView.swift in Sources */,

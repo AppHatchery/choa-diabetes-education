@@ -27,6 +27,7 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
 	@IBOutlet var recheckKetoneLevelView: RecheckKetoneLevelView!
+    @IBOutlet weak var performFingerStickBloodTest: UIView!
 
 
 	private let questionObj: Questionnaire
@@ -539,10 +540,10 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		case .HighBloodSugar(let childIssue):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
-		case .LowBloodSugar(let childIssue):
+		case .LowBloodSugar:
 			print("Four options selected answer: \(selectedAnswer)")
-            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
-        case .NotSure(let childIssue):
+            self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
+        case .NotSure:
             self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
 			print("Four options selected answer: \(selectedAnswer)")
 

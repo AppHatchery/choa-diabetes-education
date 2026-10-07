@@ -12,6 +12,7 @@ protocol QuestionnaireActionsProtocol: AnyObject {
 protocol QuestionnaireManagerProvider: AnyObject {
     var actionsDelegate: QuestionnaireActionsProtocol? { get set }
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue)
+    func triggerHypoglycemiaFlow(_ currentQuestio: Questionnaire)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -162,6 +163,24 @@ extension QuestionnaireManager {
 			return
 		}
 	}
+    
+    func triggerHypoglycemiaFlow(_ currentQuestion: Questionnaire) {
+        switch currentQuestion.questionId {
+        case FourOptionsQuestionId.childIssue.id:
+            let createTwoOptionQuestion = createTwoCustomOptionsQuestion(
+                questionId: TwoOptionsQuestionId.testType,
+                question: "Calculator.Que.TestType.title".localized(),
+                description: nil,
+                answerOptions: [
+                    "Calculator.Que.TestType.option3",
+                    "Calculator.Que.TestType.option4"
+                ]
+            )
+            actionsDelegate?.showNextQuestion(createTwoOptionQuestion)
+        default:
+            return
+        }
+    }
 
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire) {
 		switch currentQuestion.questionType {
