@@ -381,7 +381,7 @@ enum BloodSugarCheckMethod {
     }
 }
 
-enum TestType {
+enum TestType: Codable {
     case pump
     case insulinShots
     
@@ -406,7 +406,7 @@ enum TestType {
     }
 }
 
-enum MeasuringType {
+enum MeasuringType: Codable {
 	case urineKetone
 	case bloodKetone
 
@@ -443,7 +443,7 @@ enum FourOptionsAnswer: Equatable {
 	case NoneOfTheAbove(OtherSymptom)
 }
 
-enum ChildIssue {
+enum ChildIssue: Codable {
 	case diabeticKetoacidosis
 	case highBloodSugar
 	case lowBloodSugar
@@ -606,7 +606,7 @@ enum FiveOptionsQuestionId {
 	}
 }
 
-enum CalculationType {
+enum CalculationType: Codable {
     case scale
     case formula
     
@@ -641,7 +641,7 @@ enum MultipleOptionsAnswer: Equatable {
     
 }
 
-enum KetonesMeasurements {
+enum KetonesMeasurements: Codable {
     case zeroToSmall
     case moderateToLarge
     case unknown
@@ -680,7 +680,7 @@ enum ThreeOptionsAnswer: Equatable {
 	case BloodKetoneLevel(BloodKetoneLevel)
 }
 
-enum UrineKetoneLevel {
+enum UrineKetoneLevel: Codable {
 	case negative
 	case zeroPointFive
 	case onePointFive
@@ -708,7 +708,7 @@ enum UrineKetoneLevel {
 	}
 }
 
-enum BloodKetoneLevel {
+enum BloodKetoneLevel: Codable {
 	case low
 	case moderate
 	case large

@@ -70,47 +70,102 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func getRemainingTime() -> TimeInterval?
 	func getActiveReminderId() -> String?
     
-        // Track Reminder Page Visits
-    func incrementReminderPageVisitCount()
-    func decrementReminderPageVisitCount()
+        // Visit counts, derived from the questions on the navigation stack
     func getReminderPageVisitCount() -> Int
-    func resetReminderPageVisitCount()
-    
-        // Track Ketone Visits (both urine and blood)
-    func incrementKetoneVisitCount()
-    func decrementKetoneVisitCount()
     func getKetoneVisitCount() -> Int
-    func resetKetoneVisitCount()
+    func updateVisitCounts(for path: [Questionnaire])
+}
+
+/// How many times the user has reached the screens the ketone routing branches on.
+struct VisitCounts: Codable {
+    /// iLet Pump reminder pages (other flows don't branch on reminder visits)
+    var reminderPages = 0
+    /// Ketone measurements: the first one on the measuring type question, plus each recheck
+    var ketoneChecks = 0
+
+    static func + (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
+        VisitCounts(reminderPages: lhs.reminderPages + rhs.reminderPages,
+                    ketoneChecks: lhs.ketoneChecks + rhs.ketoneChecks)
+    }
+
+    static func - (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
+        VisitCounts(reminderPages: max(lhs.reminderPages - rhs.reminderPages, 0),
+                    ketoneChecks: max(lhs.ketoneChecks - rhs.ketoneChecks, 0))
+    }
+}
+
+/// Everything recorded during one Get Help session. Saved as a single value on every change,
+/// and copied into a pending reminder, so the flow can pick up where it left off after a relaunch.
+struct GetHelpSession: Codable {
+    var testType: TestType = .pump
+    var measuringMethod: MeasuringType = .urineKetone
+    var childIssue: ChildIssue = .diabeticKetoacidosis
+    var calculationType: CalculationType = .formula
+    var cgm = true
+    var iLetPump = false
+    var bloodSugarOver300 = false
+    var bloodSugarOver300For3Hours = false
+    var bloodSugar = 0
+    var correctionFactor = 0
+    var ketones: KetonesMeasurements?
+    var urineKetones: UrineKetoneLevel?
+    var bloodKetones: BloodKetoneLevel?
+    var firstUrineKetoneValue: UrineKetoneLevel?
+    var firstBloodKetoneValue: BloodKetoneLevel?
+    var secondUrineKetoneValue: UrineKetoneLevel?
+    var secondBloodKetoneValue: BloodKetoneLevel?
+    var yesOver2hours = false
+    var skipFirstReminder = false
+    var activeReminderId: String?
+    var reminderScheduledTime: Date?
+
+    /// Counts as of the last Get Help screen shown
+    var visitCounts = VisitCounts()
+    /// Counts from screens that are no longer on the navigation stack, because the flow was
+    /// reopened from a reminder onto a fresh stack. Added to whatever the stack holds.
+    var visitCountsBeforeStack = VisitCounts()
 }
 
 class QuestionnaireManager: QuestionnaireManagerProvider  {
     
     
-	static var instance: QuestionnaireManager = QuestionnaireManager()
-    var actionsDelegate: QuestionnaireActionsProtocol?
+	static let instance = QuestionnaireManager()
+    weak var actionsDelegate: QuestionnaireActionsProtocol?
     
-    private(set) var currentTestType: TestType = .pump
-	private(set) var currentMeasuringMethod: MeasuringType = .urineKetone
-	private(set) var currentChildIssue: ChildIssue = .diabeticKetoacidosis
-    var currentMethod: CalculationType = .formula
-    private(set) var cgm: Bool = true
-	private(set) var iLetPump: Bool = false
-	private(set) var bloodSugarOver300: Bool = false
-	private(set) var bloodSugarOver300For3Hours: Bool = false
-    private(set) var bloodSugar: Int = 0
-    private(set) var correctionFactor: Int = 0
-    private(set) var ketones: KetonesMeasurements?
-	private(set) var urineKetones: UrineKetoneLevel?
-	private(set) var bloodKetones: BloodKetoneLevel?
-    private(set) var firstUrineKetoneValue: UrineKetoneLevel?
-    private(set) var firstBloodKetoneValue: BloodKetoneLevel?
-    private(set) var secondUrineKetoneValue: UrineKetoneLevel?
-    private(set) var secondBloodKetoneValue: BloodKetoneLevel?
-	private(set) var yesOver2hours: Bool = false
-    private(set) var skipFirstReminder: Bool = false
+    private static let sessionKey = "getHelpSession"
 
-	private(set) var activeReminderId: String?
-	private(set) var reminderScheduledTime: Date?
+    private(set) var session: GetHelpSession {
+        didSet { saveSession() }
+    }
+
+    private init() {
+        session = Self.loadSession() ?? GetHelpSession()
+        Self.removeLegacyKeys()
+    }
+
+    // Accessors kept so the routing code can keep reading and writing the fields directly
+    private(set) var currentTestType: TestType { get { session.testType } set { session.testType = newValue } }
+	private(set) var currentMeasuringMethod: MeasuringType { get { session.measuringMethod } set { session.measuringMethod = newValue } }
+	private(set) var currentChildIssue: ChildIssue { get { session.childIssue } set { session.childIssue = newValue } }
+    var currentMethod: CalculationType { get { session.calculationType } set { session.calculationType = newValue } }
+    private(set) var cgm: Bool { get { session.cgm } set { session.cgm = newValue } }
+	private(set) var iLetPump: Bool { get { session.iLetPump } set { session.iLetPump = newValue } }
+	private(set) var bloodSugarOver300: Bool { get { session.bloodSugarOver300 } set { session.bloodSugarOver300 = newValue } }
+	private(set) var bloodSugarOver300For3Hours: Bool { get { session.bloodSugarOver300For3Hours } set { session.bloodSugarOver300For3Hours = newValue } }
+    private(set) var bloodSugar: Int { get { session.bloodSugar } set { session.bloodSugar = newValue } }
+    private(set) var correctionFactor: Int { get { session.correctionFactor } set { session.correctionFactor = newValue } }
+    private(set) var ketones: KetonesMeasurements? { get { session.ketones } set { session.ketones = newValue } }
+	private(set) var urineKetones: UrineKetoneLevel? { get { session.urineKetones } set { session.urineKetones = newValue } }
+	private(set) var bloodKetones: BloodKetoneLevel? { get { session.bloodKetones } set { session.bloodKetones = newValue } }
+    private(set) var firstUrineKetoneValue: UrineKetoneLevel? { get { session.firstUrineKetoneValue } set { session.firstUrineKetoneValue = newValue } }
+    private(set) var firstBloodKetoneValue: BloodKetoneLevel? { get { session.firstBloodKetoneValue } set { session.firstBloodKetoneValue = newValue } }
+    private(set) var secondUrineKetoneValue: UrineKetoneLevel? { get { session.secondUrineKetoneValue } set { session.secondUrineKetoneValue = newValue } }
+    private(set) var secondBloodKetoneValue: BloodKetoneLevel? { get { session.secondBloodKetoneValue } set { session.secondBloodKetoneValue = newValue } }
+	private(set) var yesOver2hours: Bool { get { session.yesOver2hours } set { session.yesOver2hours = newValue } }
+    private(set) var skipFirstReminder: Bool { get { session.skipFirstReminder } set { session.skipFirstReminder = newValue } }
+
+	private(set) var activeReminderId: String? { get { session.activeReminderId } set { session.activeReminderId = newValue } }
+	private(set) var reminderScheduledTime: Date? { get { session.reminderScheduledTime } set { session.reminderScheduledTime = newValue } }
 
     private var calculation: Double {
         
@@ -139,14 +194,6 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
 }
 
 extension QuestionnaireManager {
-    private static let urineKetoneKey = "persistedUrineKetoneLevel"
-    private static let bloodKetoneKey = "persistedBloodKetoneLevel"
-
-    private static let firstUrineKetoneKey = "firstUrineKetoneValue"
-    private static let firstBloodKetoneKey = "firstBloodKetoneValue"
-    
-    private static let secondUrineKetoneKey = "secondUrineKetoneValue"
-    private static let secondBloodKetoneKey = "secondBloodKetoneValue"
 
 	func triggerDKAWorkFlow(_ currentQuestion: Questionnaire, childIssue: ChildIssue) {
 		switch currentQuestion.questionId {
@@ -513,13 +560,12 @@ extension QuestionnaireManager {
         self.ketones = type
     }
     
-    // MARK: - Urine Ketone Persistence
+    // MARK: - Urine Ketones
 
     func saveUrineKetoneLevel(level: UrineKetoneLevel) {
         self.urineKetones = level
         // Clear blood ketones when saving urine ketones
         clearBloodKetoneLevel()
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.urineKetoneKey)
         print("💾 Saved urine ketone level: \(level) (id: \(level.id))")
         print("🗑️ Cleared blood ketones (switched to urine)")
     }
@@ -527,105 +573,41 @@ extension QuestionnaireManager {
     // Save first urine ketone value
     func saveFirstUrineKetoneValue(_ level: UrineKetoneLevel) {
         self.firstUrineKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstUrineKetoneKey)
         print("💾 Saved FIRST urine ketone value: \(level) (id: \(level.id))")
     }
 
     // Save first blood ketone value
     func saveFirstBloodKetoneValue(_ level: BloodKetoneLevel) {
         self.firstBloodKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.firstBloodKetoneKey)
         print("💾 Saved FIRST blood ketone value: \(level) (id: \(level.id))")
     }
     
     // Save second urine ketone value
     func saveSecondUrineKetoneValue(_ level: UrineKetoneLevel) {
         self.secondUrineKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.secondUrineKetoneKey)
         print("💾 Saved SECOND urine ketone value: \(level) (id: \(level.id))")
-        print("💾 Persisted SECOND urine ketone id: \(level.id) -> key: \(QuestionnaireManager.secondUrineKetoneKey)")
     }
 
     // Save first blood ketone value
     func saveSecondBloodKetoneValue(_ level: BloodKetoneLevel) {
         self.secondBloodKetoneValue = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.secondBloodKetoneKey)
         print("💾 Saved SECOND blood ketone value: \(level) (id: \(level.id))")
-        print("💾 Persisted SECOND blood ketone id: \(level.id) -> key: \(QuestionnaireManager.secondBloodKetoneKey)")
-    }
-    
-    func getPersistedUrineKetoneLevel() -> UrineKetoneLevel? {
-        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.urineKetoneKey)
-        guard storedId != 0 else {
-            print("📖 No persisted urine ketone level found")
-            return nil
-        }
-        let level = UrineKetoneLevel(id: storedId)
-        print("📖 Retrieved urine ketone level: id=\(storedId) -> \(level)")
-        return level
-    }
-    
-    // Get persisted first urine ketone value
-    func getPersistedFirstUrineKetoneValue() -> UrineKetoneLevel? {
-        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.firstUrineKetoneKey)
-        guard storedId != 0 else {
-            print("📖 No persisted first urine ketone value found")
-            return nil
-        }
-        let level = UrineKetoneLevel(id: storedId)
-        print("📖 Retrieved first urine ketone value: id=\(storedId) -> \(level)")
-        return level
-    }
-
-    // Get persisted first blood ketone value
-    func getPersistedFirstBloodKetoneValue() -> BloodKetoneLevel? {
-        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.firstBloodKetoneKey)
-        guard storedId != 0 else {
-            print("📖 No persisted first blood ketone value found")
-            return nil
-        }
-        let level = BloodKetoneLevel(id: storedId)
-        print("📖 Retrieved first blood ketone value: id=\(storedId) -> \(level)")
-        return level
     }
     
     func clearUrineKetoneLevel() {
         self.urineKetones = nil
-        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.urineKetoneKey)
         print("🗑️ Cleared urine ketone level")
     }
     
-    // Clear first ketone values
-    func clearFirstKetoneValues() {
-        self.firstUrineKetoneValue = nil
-        self.firstBloodKetoneValue = nil
-        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.firstUrineKetoneKey)
-        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.firstBloodKetoneKey)
-        print("🗑️ Cleared first ketone values")
-    }
-    
-    // MARK: - Blood Ketone Persistence
+    // MARK: - Blood Ketones
     
     func saveBloodKetoneLevel(level: BloodKetoneLevel) {
         self.bloodKetones = level
-        UserDefaults.standard.set(level.id, forKey: QuestionnaireManager.bloodKetoneKey)
         print("💾 Saved blood ketone level: \(level) (id: \(level.id))")
-    }
-    
-    func getPersistedBloodKetoneLevel() -> BloodKetoneLevel? {
-        let storedId = UserDefaults.standard.integer(forKey: QuestionnaireManager.bloodKetoneKey)
-        guard storedId != 0 else {
-            print("📖 No persisted blood ketone level found")
-            return nil
-        }
-        let level = BloodKetoneLevel(id: storedId)
-        print("📖 Retrieved blood ketone level: id=\(storedId) -> \(level)")
-        return level
     }
     
     func clearBloodKetoneLevel() {
         self.bloodKetones = nil
-        UserDefaults.standard.removeObject(forKey: QuestionnaireManager.bloodKetoneKey)
         print("🗑️ Cleared blood ketone level")
     }
     
@@ -694,31 +676,6 @@ extension QuestionnaireManager {
         }
     }
     
-    // MARK: - Load Persisted State
-    
-    /// Call this when you need to restore ketone levels (e.g., after view pops)
-    func loadPersistedKetoneState() {
-        if let urineLevel = getPersistedUrineKetoneLevel() {
-            self.urineKetones = urineLevel
-            print("🔄 Restored urine ketone: \(urineLevel)")
-        }
-        if let bloodLevel = getPersistedBloodKetoneLevel() {
-            self.bloodKetones = bloodLevel
-            print("🔄 Restored blood ketone: \(bloodLevel)")
-        }
-        
-        if urineKetones == nil && bloodKetones == nil {
-            print("🔄 No ketone state to restore")
-        }
-    }
-    
-    // MARK: - Clear All Ketone Data
-    
-    func clearAllKetoneData() {
-        clearUrineKetoneLevel()
-        clearBloodKetoneLevel()
-        print("🗑️ Cleared all ketone data")
-    }
     
     // MARK: - Helper to check which ketone type is active
         
@@ -749,8 +706,8 @@ extension QuestionnaireManager {
            - Blood Ketones: \(String(describing: bloodKetones))
            - First Urine Ketone: \(String(describing: firstUrineKetoneValue))
            - First Blood Ketone: \(String(describing: firstBloodKetoneValue))
-           - Persisted Urine: \(String(describing: getPersistedUrineKetoneLevel()))
-           - Persisted Blood: \(String(describing: getPersistedBloodKetoneLevel()))
+           - Second Urine Ketone: \(String(describing: secondUrineKetoneValue))
+           - Second Blood Ketone: \(String(describing: secondBloodKetoneValue))
            - iLetPump: \(iLetPump)
            - skipFirstReminder: \(skipFirstReminder)
            - Reminder Visit Count: \(getReminderPageVisitCount())
@@ -1629,87 +1586,110 @@ extension QuestionnaireManager {
         return (round(value*10)/10.0)
     }
 
-	static func resetInstance() {
-		instance = QuestionnaireManager()
-        instance.resetReminderPageVisitCount()
-        instance.resetKetoneVisitCount()
-        instance.clearFirstKetoneValues()
-        instance.clearAllKetoneData()
-        print("🔄 QuestionnaireManager instance completely reset")
+    /// Clears everything recorded since ketones were first measured: the current, first and
+    /// second ketone readings, the over-2-hours flag and the visit counts.
+    /// Used when the user backs out to (or before) the question where the ketone check starts.
+    func resetKetoneProgress() {
+        var updated = session
+        updated.yesOver2hours = false
+        updated.urineKetones = nil
+        updated.bloodKetones = nil
+        updated.firstUrineKetoneValue = nil
+        updated.firstBloodKetoneValue = nil
+        updated.secondUrineKetoneValue = nil
+        updated.secondBloodKetoneValue = nil
+        updated.visitCounts = VisitCounts()
+        updated.visitCountsBeforeStack = VisitCounts()
+        session = updated
+        print("🗑️ Ketone progress reset")
+    }
+
+    /// Starts a new Get Help session. The instance is long-lived (views and view controllers
+    /// keep a reference to it), so the session state is cleared in place rather than replaced.
+    func reset() {
+        session = GetHelpSession()
+
+        print("🔄 QuestionnaireManager session completely reset")
     }
 }
 
 extension QuestionnaireManager {
     
-    private static let reminderPageVisitCountKey = "reminderPageVisitCount"
-    private static let ketoneVisitCountKey = "ketoneVisitCount"
-    
-    // MARK: - Reminder Page Visit Count
-    
-    func incrementReminderPageVisitCount() {
-        guard iLetPump || currentTestType == .pump else { return }
-        
-        let currentCount = getReminderPageVisitCount()
-        let newCount = currentCount + 1
-        UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.reminderPageVisitCountKey)
-        
-        print("📊 Reminder page visit count incremented: \(currentCount) -> \(newCount)")
-    }
-    
-    func decrementReminderPageVisitCount() {
-        guard iLetPump else { return }
-        
-        let currentCount = getReminderPageVisitCount()
-        guard currentCount > 0 else {
-            print("📊 Cannot decrement - count already at 0")
-            return
-        }
-        
-        let newCount = currentCount - 1
-        UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.reminderPageVisitCountKey)
-        
-        print("📊 Reminder page visit count decremented: \(currentCount) -> \(newCount)")
-    }
-    
+    // MARK: - Visit Counts
+
     func getReminderPageVisitCount() -> Int {
-        return UserDefaults.standard.integer(forKey: QuestionnaireManager.reminderPageVisitCountKey)
+        session.visitCounts.reminderPages
     }
-    
-    func resetReminderPageVisitCount() {
-        UserDefaults.standard.set(0, forKey: QuestionnaireManager.reminderPageVisitCountKey)
-        print("📊 Reminder page visit count reset to 0")
-    }
-    
-    // MARK: - Ketone Visit Count (for both urine and blood)
-        
-    func incrementKetoneVisitCount() {
-        let currentCount = getKetoneVisitCount()
-        let newCount = currentCount + 1
-        UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.ketoneVisitCountKey)
-        
-        print("🧪 Ketone visit count incremented: \(currentCount) -> \(newCount)")
-    }
-    
-    func decrementKetoneVisitCount() {
-        let currentCount = getKetoneVisitCount()
-        guard currentCount > 0 else {
-            print("🧪 Cannot decrement - count already at 0")
-            return
-        }
-        
-        let newCount = currentCount - 1
-        UserDefaults.standard.set(newCount, forKey: QuestionnaireManager.ketoneVisitCountKey)
-        
-        print("🧪 Ketone visit count decremented: \(currentCount) -> \(newCount)")
-    }
-    
+
     func getKetoneVisitCount() -> Int {
-        return UserDefaults.standard.integer(forKey: QuestionnaireManager.ketoneVisitCountKey)
+        session.visitCounts.ketoneChecks
     }
-    
-    func resetKetoneVisitCount() {
-        UserDefaults.standard.set(0, forKey: QuestionnaireManager.ketoneVisitCountKey)
-        print("🧪 Ketone visit count reset to 0")
+
+    /// Recounts visits from the questions on the navigation stack, oldest first. Called each time
+    /// a Get Help screen appears, so popping back drops the screens that were left automatically.
+    func updateVisitCounts(for path: [Questionnaire]) {
+        session.visitCounts = session.visitCountsBeforeStack + visitCounts(in: path)
+    }
+
+    /// Keeps the current counts when the navigation stack is about to be discarded
+    /// (e.g. a reminder notification pops to Home and pushes the recheck screen).
+    func carryVisitCountsPastStack() {
+        session.visitCountsBeforeStack = session.visitCounts
+    }
+
+    /// Restores a session saved with a reminder and re-shows that reminder page on a fresh stack.
+    /// The saved counts already include the reminder page, so it's taken back out of the carried
+    /// counts; the page is counted again from the stack once it appears.
+    func restoreSession(_ restored: GetHelpSession, reshowing question: Questionnaire) {
+        session = restored
+
+        var updated = session
+        updated.visitCountsBeforeStack = restored.visitCounts - visitCounts(in: [question])
+        updated.visitCounts = updated.visitCountsBeforeStack
+        session = updated
+    }
+
+    private func visitCounts(in path: [Questionnaire]) -> VisitCounts {
+        var counts = VisitCounts()
+
+        for question in path {
+            guard let questionType = question.questionType else { continue }
+
+            switch questionType {
+            case .twoOptions(.measuringType), .recheckKetoneLevel:
+                counts.ketoneChecks += 1
+            case .reminder:
+                if iLetPump && !FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+                    counts.reminderPages += 1
+                }
+            default:
+                break
+            }
+        }
+
+        return counts
+    }
+
+    // MARK: - Session Persistence
+
+    private func saveSession() {
+        guard let data = try? JSONEncoder().encode(session) else { return }
+        UserDefaults.standard.set(data, forKey: Self.sessionKey)
+    }
+
+    private static func loadSession() -> GetHelpSession? {
+        guard let data = UserDefaults.standard.data(forKey: sessionKey) else { return nil }
+        return try? JSONDecoder().decode(GetHelpSession.self, from: data)
+    }
+
+    /// Keys from before the session was saved as one value
+    private static func removeLegacyKeys() {
+        [
+            "persistedUrineKetoneLevel", "persistedBloodKetoneLevel",
+            "firstUrineKetoneValue", "firstBloodKetoneValue",
+            "secondUrineKetoneValue", "secondBloodKetoneValue",
+            "reminderPageVisitCount", "ketoneVisitCount"
+        ].forEach(UserDefaults.standard.removeObject(forKey:))
     }
 }
 

@@ -369,7 +369,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						// Urine ketones selected
 					let answerEnum = UrineKetoneLevel(id: followUpAnswer)
 					questionnaireManager.saveMeasuringMethod(.urineKetone)
-                    questionnaireManager.incrementKetoneVisitCount()
 
 					delegate?.didSelectNextAction(
 						currentQuestion: currentQuestion,
@@ -380,7 +379,6 @@ class TwoOptionsView: UIView, TwoOptionsFollowUpQuestionView.TwoOptionsFollowUpD
 						// Blood ketones selected
 					let answerEnum = BloodKetoneLevel(id: followUpAnswer)
 					questionnaireManager.saveMeasuringMethod(.bloodKetone)
-                    questionnaireManager.incrementKetoneVisitCount()
 
 					delegate?.didSelectNextAction(
 						currentQuestion: currentQuestion,

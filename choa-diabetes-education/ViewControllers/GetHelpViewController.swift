@@ -34,8 +34,6 @@ class GetHelpViewController: UIViewController {
 	private let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
     
-    private let manager = QuestionnaireManager.instance
-    
     private let navVC: UINavigationController
     
     init(navVC: UINavigationController, currentQuestion: Questionnaire) {
@@ -61,17 +59,16 @@ class GetHelpViewController: UIViewController {
 //    }
     
     private var isReminderPageFirstAppearance = true
-    private var hasAppearedFromPush = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationItem.backButtonDisplayMode = .minimal
-        
-        questionnaireManager.loadPersistedKetoneState()
+
+        // The manager only holds a weak reference to one delegate, so whichever screen is
+        // showing takes it over, including a screen uncovered by popping back to it
+        questionnaireManager.actionsDelegate = self
         
         if isMovingToParent {
-            hasAppearedFromPush = true
-
             // Raise the keyboard alongside the push so the reading can be typed right away
             if !openEndedQueView.isHidden {
                 openEndedQueView.focusBloodSugarField()
@@ -84,27 +81,15 @@ class GetHelpViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Track reminder page visits for iLet pump users
-        // Only count when pushed (not when appearing from back navigation initially)
-        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
-           questionnaireManager.iLetPump,
-           hasAppearedFromPush {
-            questionnaireManager.incrementReminderPageVisitCount()
-            hasAppearedFromPush = false
-            
-            print("✅ Reminder page appeared - visit tracked")
-            questionnaireManager.printCurrentKetoneState()
-        }
-        
-        // Track ketone recheck visits when RecheckKetoneLevelView appears from push
-        if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)),
-           hasAppearedFromPush {
-            questionnaireManager.incrementKetoneVisitCount()
-            hasAppearedFromPush = false
-            
-            print("✅ Ketone recheck page appeared - visit tracked")
-            questionnaireManager.printCurrentKetoneState()
-        }
+        // Visit counts are derived from the questions on the stack, so recount whenever a screen
+        // appears: after a push, after popping back, and after a cancelled swipe back
+        questionnaireManager.updateVisitCounts(for: questionPath)
+        questionnaireManager.printCurrentKetoneState()
+    }
+
+    /// The questions on the navigation stack, oldest first
+    private var questionPath: [Questionnaire] {
+        (navigationController ?? navVC).viewControllers.compactMap { ($0 as? GetHelpViewController)?.questionObj }
     }
 
 	override func viewDidLoad() {
@@ -136,7 +121,6 @@ class GetHelpViewController: UIViewController {
 		)
 		navigationItem.rightBarButtonItem = rightButton
 
-		self.questionnaireManager.actionsDelegate = self
 		hideAllViews()
 		setupViews()
 	}
@@ -156,128 +140,34 @@ class GetHelpViewController: UIViewController {
             
             print("   → Going back to: \(String(describing: previousVC.questionObj.questionType))")
             
-            // ============================================================
-            // REMINDER PAGE TRACKING
-            // ============================================================
-            if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)) {
-                // Popping FROM reminder page
-                
-                if previousVC.questionObj.questionType.isBloodSugarRecheck {
-                    // Going back to blood sugar recheck
-                    questionnaireManager.decrementReminderPageVisitCount()
-                    print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
-                }
-                
-                // Handle popping from reminder back to recheck ketone level
-                if previousVC.questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: previousVC.questionObj.questionId)) {
-                    // Going back to recheck ketone level
-                    questionnaireManager.decrementReminderPageVisitCount()
-                    print("   📊 Decremented reminder count (popping to recheckKetoneLevel)")
-                }
-                
-                if !previousVC.twoOptionsView.isHidden {
-                    // Going back to test type selection - full reset
-                    questionnaireManager.saveYesOver2hours(false)
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping back to test type selection from reminder")
-                }
-            }
-            
-            // ============================================================
-            // KETONE RECHECK PAGE TRACKING
-            // ============================================================
-            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) {
-                // Popping FROM ketone recheck page
-                
-                if previousVC.questionObj.questionType == .reminder(FinalQuestionId(id: previousVC.questionObj.questionId)) {
-                    // Going back to reminder page
-                    questionnaireManager.decrementKetoneVisitCount()
-                    print("   🧪 Decremented ketone count (popping to reminder page)")
-                    
-                    // Note: Ketones are preserved when going back to reminder
-                    print("   ⚠️ Ketones PRESERVED when popping to reminder")
-                }
-                
-                if previousVC.questionObj.questionType.isBloodSugarRecheck {
-                    // Going back to blood sugar recheck
-                    questionnaireManager.decrementKetoneVisitCount()
-                    print("   🧪 Decremented ketone count (popping to blood sugar recheck)")
-                    
-                    // Note: Ketones are preserved for the next check
-                    print("   ⚠️ Ketones PRESERVED when popping to blood sugar recheck")
-                }
-                
-                if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
-                    // Going back to measuring type selection - FULL RESET
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping to measuring type selection from recheck")
-                }
-                
-                if !previousVC.twoOptionsView.isHidden && previousVC.questionObj.questionType == .twoOptions(.testType) {
-                    // Going back to test type selection - full reset
-                    questionnaireManager.saveYesOver2hours(false)
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping back to test type selection from recheck")
-                }
-            }
-            
-            // ============================================================
-            // YES/NO VIEW TRACKING (Blood Sugar Recheck, etc.)
-            // ============================================================
-            if questionObj.questionType.isBloodSugarRecheck {
-                // Popping FROM blood sugar recheck page
-                
-                if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
-                    // Going back to measuring type selection - FULL RESET
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping to measuring type selection from blood sugar recheck")
-                }
-            }
-            
-            // ============================================================
-            // GENERAL CLEANUP
-            // ============================================================
-            
-            // Clear all data when going back to test type selection from ANY screen
-            if !previousVC.twoOptionsView.isHidden &&
-               previousVC.questionObj.questionType == .twoOptions(.testType) &&
-               questionObj.questionType != .twoOptions(.testType) {
-                
-                questionnaireManager.saveYesOver2hours(false)
-                questionnaireManager.resetReminderPageVisitCount()
-                questionnaireManager.resetKetoneVisitCount()
-                questionnaireManager.clearAllKetoneData()
-                questionnaireManager.clearFirstKetoneValues()
-                
-                print("   🗑️ Full reset: popping back to test type selection from \(String(describing: questionObj.questionType))")
-            }
-            
-            // Clear all data when exiting the flow completely (back to home)
-            if let navControllers = navigationController?.viewControllers,
-               navControllers.last is HomeViewController {
-                questionnaireManager.clearAllKetoneData()
-                questionnaireManager.resetReminderPageVisitCount()
-                questionnaireManager.resetKetoneVisitCount()
-                questionnaireManager.clearFirstKetoneValues()
-                print("   🏠 Returning to home - all data cleared")
+            // Visit counts need no bookkeeping here: the uncovered screen recounts them when it appears
+            if shouldResetKetoneProgress(poppingTo: previousVC.questionObj.questionType) {
+                questionnaireManager.resetKetoneProgress()
+                print("   🗑️ Ketone progress reset: popping from \(String(describing: questionObj.questionType)) to \(String(describing: previousVC.questionObj.questionType))")
             }
             
             questionnaireManager.printCurrentKetoneState()
         }
     }
 
+    
+    /// Backing out to the point where ketones are first measured (or before it) starts
+    /// the ketone check over.
+    private func shouldResetKetoneProgress(poppingTo previousType: QuestionType?) -> Bool {
+        let currentType: QuestionType? = questionObj.questionType
+        let isPoppingFromReminder = currentType == .reminder(FinalQuestionId(id: questionObj.questionId))
+        let isPoppingFromRecheck = currentType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) ||
+            currentType?.isBloodSugarRecheck == true
+
+        var isPoppingToTwoOptions = false
+        if case .twoOptions = previousType {
+            isPoppingToTwoOptions = true
+        }
+
+        return (isPoppingFromReminder && isPoppingToTwoOptions) ||
+            (isPoppingFromRecheck && previousType == .twoOptions(.measuringType)) ||
+            (previousType == .twoOptions(.testType) && currentType != .twoOptions(.testType))
+    }
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true
@@ -730,13 +620,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 	@objc func didSelectExitAction() {
         print("🚪 Exit button pressed - clearing all state")
         
-        // Clear all persisted state
-        questionnaireManager.clearAllKetoneData()
-        questionnaireManager.resetReminderPageVisitCount()
-        questionnaireManager.resetKetoneVisitCount()
-        
-        // Reset the instance
-        QuestionnaireManager.resetInstance()
+        questionnaireManager.reset()
         
         questionnaireManager.printCurrentKetoneState()
         

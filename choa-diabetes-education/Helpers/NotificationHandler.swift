@@ -44,6 +44,9 @@ class NotificationHandler {
             return
         }
                 
+        // The screens about to be popped hold the visit history the recheck routing depends on
+        QuestionnaireManager.instance.carryVisitCountsPastStack()
+        
         // Pop to root
         navController.popToRootViewController(animated: false)
         
