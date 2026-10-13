@@ -44,6 +44,12 @@ class NotificationHandler {
             return
         }
                 
+        // Low blood sugar reminders recheck for vomiting, loss of consciousness and the reading, rather than ketones
+        let isLowBloodSugarReminder = navController.viewControllers.contains { controller in
+            guard let questionId = (controller as? GetHelpViewController)?.questionObj.questionId else { return false }
+            return FinalQuestionId(id: questionId).isLowBloodSugarTreatment
+        }
+
         // The screens about to be popped hold the visit history the recheck routing depends on
         QuestionnaireManager.instance.carryVisitCountsPastStack()
         
@@ -60,10 +66,12 @@ class NotificationHandler {
             
             // Create the reminder question
             let manager = QuestionnaireManager.instance
-            let reminderQuestion = manager.createRecheckKetoneStage(
-                questionId: FinalQuestionId.recheckKetoneLevel.id,
-                title: "GetHelp.Que.CheckChildsKetoneLevel.title".localized()
-            )
+            let reminderQuestion = isLowBloodSugarReminder
+                ? manager.createLowBloodSugarRecheckQuestion()
+                : manager.createRecheckKetoneStage(
+                    questionId: FinalQuestionId.recheckKetoneLevel.id,
+                    title: "GetHelp.Que.CheckChildsKetoneLevel.title".localized()
+                )
                         
             // Create GetHelpViewController using the storyboard instantiation method
             let storyboard = UIStoryboard(name: "GetHelp", bundle: nil)

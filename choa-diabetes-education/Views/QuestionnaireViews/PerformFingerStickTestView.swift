@@ -11,13 +11,16 @@ protocol PerformFingerStickTestViewProtocol: AnyObject {
 	func didSelectFingerStickNextAction(_ question: Questionnaire)
 }
 
-/// Shown after choosing CGM in the hypoglycemia flow, asking for a finger stick to confirm the reading.
+/// An instruction on the orange background with a Next button. Shown after choosing CGM in the hypoglycemia flow,
+/// asking for a finger stick to confirm the reading, and for glucagon when low blood sugar is severe.
 class PerformFingerStickTestView: UIView {
 	static let nibName = "PerformFingerStickTestView"
 
 	@IBOutlet weak var contentView: UIView!
 	@IBOutlet weak var mainStackView: UIStackView!
 	@IBOutlet weak var instructionsView: UIView!
+	@IBOutlet weak var instructionLabel: UILabel!
+	@IBOutlet weak var hopeImageView: UIImageView!
 	@IBOutlet weak var nextButton: UIButton!
 
 	private var currentQuestion: Questionnaire!
@@ -42,6 +45,14 @@ class PerformFingerStickTestView: UIView {
 
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
+
+		// The finger stick instruction is the default in the xib
+		if let finalStep = currentQuestion.finalStep {
+			instructionLabel.text = finalStep.title
+			if let imageName = finalStep.imageName {
+				hopeImageView.image = UIImage(named: imageName)
+			}
+		}
 
 		nextButton.layer.cornerRadius = 12
 

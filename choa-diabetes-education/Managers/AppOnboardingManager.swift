@@ -39,6 +39,17 @@ class AppOnboardingManager {
         return Int(value.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 
+    // Whether "I'm a school nurse" was picked as the user role
+    var isSchoolNurse: Bool {
+        answers[.userRole]?.selectedOptionId == 2
+    }
+
+    // Whether the user gets care at CHOA, or nil if the question was skipped or never asked (school nurses)
+    var isChoaPatient: Bool? {
+        guard let id = answers[.isChoaPatient]?.selectedOptionId else { return nil }
+        return id == 0
+    }
+
     // Children 5 and under are treated for low blood sugar below 80 mg/dL, everyone else below 70 mg/dL
     var lowBloodSugarThreshold: Int {
         if let age, age <= 5 {

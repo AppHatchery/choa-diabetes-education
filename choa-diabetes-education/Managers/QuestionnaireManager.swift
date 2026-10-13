@@ -18,6 +18,9 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int)
     func triggerLowBloodSugarSymptomsActionFlow(_ currentQuestion: Questionnaire, hasSymptoms: Bool)
     func triggerLowBloodSugarTestTypeActionFlow(_ currentQuestion: Questionnaire, testType: TestType, pumpShowsCGM: Bool?)
+    func triggerLowBloodSugarRecheckActionFlow(_ currentQuestion: Questionnaire)
+    func triggerLowBloodSugarRecheckAnswerActionFlow(_ currentQuestion: Questionnaire, answer: LowBloodSugarRecheckAnswer)
+    func triggerGiveGlucagonNextActionFlow(_ currentQuestion: Questionnaire)
 	func triggerOtherSymptomsActionFlow(_ currentQuestion: Questionnaire)
 	func triggerKetoneMeasuringTypeActionFlow(_ currentQuestion: Questionnaire)
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire)
@@ -82,15 +85,29 @@ struct VisitCounts: Codable {
     var reminderPages = 0
     /// Ketone measurements: the first one on the measuring type question, plus each recheck
     var ketoneChecks = 0
+    /// Low blood sugar treatment pages (15g or 8g of carbs)
+    var lowBloodSugarTreatments = 0
 
     static func + (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
         VisitCounts(reminderPages: lhs.reminderPages + rhs.reminderPages,
-                    ketoneChecks: lhs.ketoneChecks + rhs.ketoneChecks)
+                    ketoneChecks: lhs.ketoneChecks + rhs.ketoneChecks,
+                    lowBloodSugarTreatments: lhs.lowBloodSugarTreatments + rhs.lowBloodSugarTreatments)
     }
 
     static func - (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
         VisitCounts(reminderPages: max(lhs.reminderPages - rhs.reminderPages, 0),
-                    ketoneChecks: max(lhs.ketoneChecks - rhs.ketoneChecks, 0))
+                    ketoneChecks: max(lhs.ketoneChecks - rhs.ketoneChecks, 0),
+                    lowBloodSugarTreatments: max(lhs.lowBloodSugarTreatments - rhs.lowBloodSugarTreatments, 0))
+    }
+}
+
+extension VisitCounts {
+    /// Sessions saved before a count was added are missing its key, so missing counts start at 0
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        reminderPages = try container.decodeIfPresent(Int.self, forKey: .reminderPages) ?? 0
+        ketoneChecks = try container.decodeIfPresent(Int.self, forKey: .ketoneChecks) ?? 0
+        lowBloodSugarTreatments = try container.decodeIfPresent(Int.self, forKey: .lowBloodSugarTreatments) ?? 0
     }
 }
 
@@ -286,11 +303,77 @@ extension QuestionnaireManager {
             saveCGM(pumpShowsCGM)
         }
 
-        // Pumps showing CGM readings are already cutting back insulin, so they only need 8g unless blood sugar is 50 mg/dL or lower
-        let needsSmallerTreatment = testType == .pump && pumpShowsCGM == true && bloodSugar > 50
-        print("Low blood sugar test type: \(testType), pump shows CGM: \(String(describing: pumpShowsCGM)), 8g treatment: \(needsSmallerTreatment)")
+        print("Low blood sugar test type: \(testType), pump shows CGM: \(String(describing: pumpShowsCGM))")
+        showLowBloodSugarTreatment()
+    }
+
+    /// Treats with 15g of carbs, or 8g for pumps showing CGM readings. Those pumps are already cutting back insulin,
+    /// so they only need 8g unless blood sugar is 50 mg/dL or lower. Pump users' `cgm` is whether the pump shows CGM readings.
+    private func showLowBloodSugarTreatment() {
+        let needsSmallerTreatment = currentTestType == .pump && cgm && bloodSugar > 50
+        print("Low blood sugar treatment \(getLowBloodSugarTreatmentCount() + 1), 8g treatment: \(needsSmallerTreatment)")
 
         showFinalStage(stage: needsSmallerTreatment ? .treatLowBloodSugar8g : .treatLowBloodSugar15g, calculation: nil)
+    }
+
+    /// After treating for 4 rounds, a reading that's still low is escalated instead of treated again
+    private static let maxLowBloodSugarTreatments = 4
+
+    /// Asked 15 minutes after treating low blood sugar
+    func triggerLowBloodSugarRecheckActionFlow(_ currentQuestion: Questionnaire) {
+        actionsDelegate?.showNextQuestion(createLowBloodSugarRecheckQuestion())
+    }
+
+    func createLowBloodSugarRecheckQuestion() -> Questionnaire {
+        let quesObj = Questionnaire()
+        quesObj.questionId = ThreeOptionsQuestionId.vomitingOrLossOfConsciousness.id
+        quesObj.questionType = .threeOptions(.vomitingOrLossOfConsciousness)
+        quesObj.question = "GetHelp.Que.VomitingOrLossOfConsciousness.title".localized()
+        quesObj.answerOptions = [
+            "GetHelp.Que.VomitingOrLossOfConsciousness.option1".localized(),
+            "GetHelp.Que.VomitingOrLossOfConsciousness.option2".localized(),
+            "GetHelp.Que.VomitingOrLossOfConsciousness.option3".localized()
+        ]
+        quesObj.subQuestion = "Calculator.Que.BloodSugarReading.title".localized()
+        quesObj.inputUnit = "Calculator.Que.BloodSugar.unit".localized()
+        return quesObj
+    }
+
+    /// Vomiting or loss of consciousness can't be treated with carbs by mouth, so escalate.
+    /// Otherwise a reading back at the threshold ends the flow, and a low one is treated again, up to 4 times.
+    func triggerLowBloodSugarRecheckAnswerActionFlow(_ currentQuestion: Questionnaire, answer: LowBloodSugarRecheckAnswer) {
+        switch answer {
+        case .vomiting, .lossOfConsciousness:
+            triggerSevereLowBloodSugarActionFlow(currentQuestion)
+        case .neither(let bloodSugar):
+            self.bloodSugar = bloodSugar
+
+            if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
+                showFinalStage(stage: .continueRegularCare, calculation: nil)
+            } else if getLowBloodSugarTreatmentCount() >= Self.maxLowBloodSugarTreatments {
+                triggerSevereLowBloodSugarActionFlow(currentQuestion)
+            } else {
+                showLowBloodSugarTreatment()
+            }
+        }
+    }
+
+    /// School nurses give glucagon and then call the care team. CHOA patients call the CHOA emergency line,
+    /// and patients cared for elsewhere call their own care team.
+    private func triggerSevereLowBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
+        let onboarding = AppOnboardingManager.shared
+
+        if onboarding.isSchoolNurse {
+            showFinalStage(stage: .giveGlucagon, calculation: nil)
+        } else if onboarding.isChoaPatient == false {
+            showFinalStage(stage: .callCareTeam, calculation: nil)
+        } else {
+            triggerCallChoaEmergencyActionFlow(currentQuestion)
+        }
+    }
+
+    func triggerGiveGlucagonNextActionFlow(_ currentQuestion: Questionnaire) {
+        showFinalStage(stage: .callCareTeam, calculation: nil)
     }
 
     /// Low symptoms with a reading over 70 mg/dL need a call to CHOA, otherwise continue the DMMP.
@@ -1480,6 +1563,22 @@ extension QuestionnaireManager {
 			quesObj.questionId = stage.id
 			quesObj.questionType = .performFingerStickTest(stage)
 			actionsDelegate?.showNextQuestion(quesObj)
+		case .giveGlucagon:
+			let finalStepObj = FinalStep()
+			finalStepObj.title = "Final.GiveGlucagon.title".localized()
+			finalStepObj.imageName = "will_drugs"
+
+			let quesObj = Questionnaire()
+			quesObj.questionId = stage.id
+			quesObj.questionType = .giveGlucagon(stage)
+			quesObj.finalStep = finalStepObj
+			actionsDelegate?.showNextQuestion(quesObj)
+		case .callCareTeam:
+			let finalStepObj = createFinalStageCallChoaEmergency(
+				questionId: stage.id,
+				title: "Final.CallCareTeam.title".localized()
+			)
+			actionsDelegate?.showNextQuestion(finalStepObj)
         }
 
         
@@ -1625,6 +1724,10 @@ extension QuestionnaireManager {
         session.visitCounts.ketoneChecks
     }
 
+    func getLowBloodSugarTreatmentCount() -> Int {
+        session.visitCounts.lowBloodSugarTreatments
+    }
+
     /// Recounts visits from the questions on the navigation stack, oldest first. Called each time
     /// a Get Help screen appears, so popping back drops the screens that were left automatically.
     func updateVisitCounts(for path: [Questionnaire]) {
@@ -1659,7 +1762,9 @@ extension QuestionnaireManager {
             case .twoOptions(.measuringType), .recheckKetoneLevel:
                 counts.ketoneChecks += 1
             case .reminder:
-                if iLetPump && !FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+                if FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+                    counts.lowBloodSugarTreatments += 1
+                } else if iLetPump {
                     counts.reminderPages += 1
                 }
             default:

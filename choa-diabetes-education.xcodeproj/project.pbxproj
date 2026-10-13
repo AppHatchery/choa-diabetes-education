@@ -230,6 +230,8 @@
 		CFCFD05C30767A980067FBBB /* PerformFingerStickTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */; };
 		CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */; };
 		CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */; };
+		A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */; };
+		A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -545,6 +547,8 @@
 		CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestView.swift; sourceTree = "<group>"; };
 		CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowBloodSugarSymptomsView.swift; sourceTree = "<group>"; };
 		CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowBloodSugarSymptomsView.xib; sourceTree = "<group>"; };
+		A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionQueView.swift; sourceTree = "<group>"; };
+		A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeOptionQueView.xib; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -1224,6 +1228,8 @@
 				CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */,
 				CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */,
 				CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */,
+				A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */,
+				A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */,
 			);
 			path = QuestionnaireViews;
 			sourceTree = "<group>";
@@ -1393,6 +1399,7 @@
 				D4DFF30A2A8E774400CAEEF7 /* IrishGrover-Regular.ttf in Resources */,
 				FDC8E53C2A292F64006FDFF0 /* TwoOptionsView.xib in Resources */,
 				CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */,
+				A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */,
 				B4AB10DC2F0EDCC900F74329 /* 1_1_5_what_is_insulin.html in Resources */,
 				B4DBE8652F10E8180075C7F3 /* 2_3_1_how_to_calculate_insulin_dosages.html in Resources */,
 				B4AB10D02F0E978300F74329 /* hope_weight_loss.png in Resources */,
@@ -1549,6 +1556,7 @@
 				CF01A1B2000000000000C101 /* CalculatorOnBoardingViewController.swift in Sources */,
 				CF01A1B2000000000000C103 /* CalculatorOnBoardingWelcomeViewController.swift in Sources */,
 				CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */,
+				A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */,
 				D4D48E9328D1146D00820FD4 /* ResourcesViewController.swift in Sources */,
 				AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */,
 				CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */,

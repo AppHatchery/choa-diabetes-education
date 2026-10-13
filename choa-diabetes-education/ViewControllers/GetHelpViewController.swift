@@ -18,6 +18,7 @@ class GetHelpViewController: UIViewController {
 
 
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
+    @IBOutlet var threeOptionQueView: ThreeOptionQueView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
     @IBOutlet weak var fourOptionsView: FourOptionsView!
@@ -31,7 +32,7 @@ class GetHelpViewController: UIViewController {
     @IBOutlet var lowBloodSugarSymptomsView: LowBloodSugarSymptomsView!
 
 
-	private let questionObj: Questionnaire
+	let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
     
     private let navVC: UINavigationController
@@ -178,6 +179,7 @@ class GetHelpViewController: UIViewController {
 		finalStepCallChoaEmergencyView.isHidden = true
 		finalStepWithReminderView.isHidden = true
         twoOptionsView.isHidden = true
+        threeOptionQueView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
@@ -198,6 +200,10 @@ class GetHelpViewController: UIViewController {
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
+        case .threeOptions:
+            threeOptionQueView.isHidden = false
+            threeOptionQueView.delegate = self
+            threeOptionQueView.setupView(currentQuestion: questionObj)
 		case .fourOptions:
 			fourOptionsView.isHidden = false
 			fourOptionsView.delegate = self
@@ -268,7 +274,7 @@ class GetHelpViewController: UIViewController {
 			recheckKetoneLevelView.isHidden = false
 			recheckKetoneLevelView.delegate = self
 			recheckKetoneLevelView.setupView(currentQuestion: questionObj)
-		case .performFingerStickTest:
+		case .performFingerStickTest, .giveGlucagon:
 			performFingerStickBloodTest.isHidden = false
 			performFingerStickBloodTest.delegate = self
 			performFingerStickBloodTest.setupView(currentQuestion: questionObj)
@@ -296,7 +302,8 @@ class GetHelpViewController: UIViewController {
 		case FinalQuestionId.continueRegularCare.id, FinalQuestionId.continueDMMP.id:
 			backgroundColor = .secondaryMeadowGreen300
 			tintColor = .white
-		case FinalQuestionId.callChoaEmergency.id, FinalQuestionId.performFingerStickTest.id:
+		case FinalQuestionId.callChoaEmergency.id, FinalQuestionId.performFingerStickTest.id,
+			FinalQuestionId.giveGlucagon.id, FinalQuestionId.callCareTeam.id:
 			backgroundColor = .sunsetOrangeColor300
 			tintColor = .white
 		default:
@@ -670,10 +677,10 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
     func didSelectYesOverAction(_ question: Questionnaire) {
         let q = questionnaireManager
 
-        // Low blood sugar: once the 15 minutes are up, recheck the blood sugar
+        // Low blood sugar: once the 15 minutes are up, check for vomiting or loss of consciousness and recheck the blood sugar
         if FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
-            print("   → Low blood sugar flow: Recheck blood sugar")
-            q.triggerLowBloodSugarReadingActionFlow(question)
+            print("   → Low blood sugar flow: Recheck")
+            q.triggerLowBloodSugarRecheckActionFlow(question)
             return
         }
 
@@ -799,7 +806,18 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 
 extension GetHelpViewController: PerformFingerStickTestViewProtocol {
 	func didSelectFingerStickNextAction(_ question: Questionnaire) {
-		questionnaireManager.triggerLowBloodSugarReadingActionFlow(question)
+		if case .giveGlucagon = question.questionType {
+			questionnaireManager.triggerGiveGlucagonNextActionFlow(question)
+		} else {
+			questionnaireManager.triggerLowBloodSugarReadingActionFlow(question)
+		}
+	}
+}
+
+extension GetHelpViewController: ThreeOptionQueViewProtocol {
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: LowBloodSugarRecheckAnswer) {
+		print("Low blood sugar recheck: \(selectedAnswer)")
+		questionnaireManager.triggerLowBloodSugarRecheckAnswerActionFlow(currentQuestion, answer: selectedAnswer)
 	}
 }
 

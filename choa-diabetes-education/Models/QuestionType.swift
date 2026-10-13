@@ -8,6 +8,7 @@ import Foundation
 enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
+	case threeOptions(ThreeOptionsQuestionId)
 	case fourOptions(FourOptionsQuestionId)
 	case fiveOptions(FiveOptionsQuestionId)
     case multipleOptions
@@ -22,6 +23,7 @@ enum QuestionType: Equatable {
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
 	case performFingerStickTest(FinalQuestionId)
+	case giveGlucagon(FinalQuestionId)
 	case lowBloodSugarSymptoms
 
     /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
@@ -121,6 +123,31 @@ enum TwoOptionsQuestionId {
     }
 }
 
+/// Two picture options plus a "Neither" option, which asks for the blood sugar reading
+enum ThreeOptionsQuestionId {
+	case vomitingOrLossOfConsciousness
+
+	var id: Int {
+		switch self {
+		case .vomitingOrLossOfConsciousness:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		default:
+			self = .vomitingOrLossOfConsciousness
+		}
+	}
+}
+
+/// The answer to the low blood sugar recheck, 15 minutes after treating
+enum LowBloodSugarRecheckAnswer: Equatable {
+	case vomiting
+	case lossOfConsciousness
+	case neither(bloodSugar: Int)
+}
 
 enum OpenEndedWithMultipleInputQuestionId {
     case bloodSugar
@@ -243,6 +270,8 @@ enum FinalQuestionId {
 	case continueDMMP
 	case treatLowBloodSugar15g
 	case treatLowBloodSugar8g
+	case giveGlucagon
+	case callCareTeam
 
     /// The low blood sugar reminder pages, as opposed to the high blood sugar ones
     var isLowBloodSugarTreatment: Bool {
@@ -289,6 +318,10 @@ enum FinalQuestionId {
 			return 18
 		case .treatLowBloodSugar8g:
 			return 19
+		case .giveGlucagon:
+			return 20
+		case .callCareTeam:
+			return 21
         }
     }
     
@@ -328,6 +361,10 @@ enum FinalQuestionId {
 			self = .treatLowBloodSugar15g
 		case 19:
 			self = .treatLowBloodSugar8g
+		case 20:
+			self = .giveGlucagon
+		case 21:
+			self = .callCareTeam
         default:
             self = .firstEmergencyScreen
         }
