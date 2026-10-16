@@ -42,10 +42,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     var highBloodSugarOnly = false
     
     private var isUserEditingFields = false
-    private var didEditTargetDuringSession = false
-    private var didEditCorrectionDuringSession = false
-    private var originalTargetText: String?
-    private var originalCorrectionText: String?
     
     private let constantsManager = CalculatorConstantsManager.shared
     
@@ -107,9 +103,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         targetBloodSugarField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
         correctionFactorField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
         
-        targetBloodSugarField.addTarget(self, action: #selector(trackTargetEditingChanged(_:)), for: .editingChanged)
-        correctionFactorField.addTarget(self, action: #selector(trackCorrectionEditingChanged(_:)), for: .editingChanged)
-        
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         bloodSugarField.addTarget(self, action: #selector(textFieldsDidChange(_:)), for: .editingChanged)
@@ -159,57 +152,10 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
         isUserEditingFields = true
-        if sender === targetBloodSugarField {
-            originalTargetText = targetBloodSugarField.text
-            didEditTargetDuringSession = false
-            targetBloodSugarField.text = ""
-        } else if sender === correctionFactorField {
-            originalCorrectionText = correctionFactorField.text
-            didEditCorrectionDuringSession = false
-            correctionFactorField.text = ""
-        }
     }
 
     @objc private func textFieldEditingDidEnd(_ sender: UITextField) {
         isUserEditingFields = false
-        if sender === targetBloodSugarField {
-            // If nothing was edited, restore stored constant if available, else original text
-            if didEditTargetDuringSession == false {
-                if constantsManager.hasStoredConstants {
-                    let constants = constantsManager.getConstants()
-                    if constants.targetBloodSugar > 0 {
-                        targetBloodSugar = constants.targetBloodSugar
-                        targetBloodSugarField.text = String(constants.targetBloodSugar)
-                    } else {
-                        targetBloodSugarField.text = originalTargetText
-                    }
-                } else {
-                    targetBloodSugarField.text = originalTargetText
-                }
-            }
-        } else if sender === correctionFactorField {
-            if didEditCorrectionDuringSession == false {
-                if constantsManager.hasStoredConstants {
-                    let constants = constantsManager.getConstants()
-                    if constants.correctionFactor > 0 {
-                        correctionFactor = constants.correctionFactor
-                        correctionFactorField.text = String(constants.correctionFactor)
-                    } else {
-                        correctionFactorField.text = originalCorrectionText
-                    }
-                } else {
-                    correctionFactorField.text = originalCorrectionText
-                }
-            }
-        }
-    }
-    
-    @objc private func trackTargetEditingChanged(_ sender: UITextField) {
-        didEditTargetDuringSession = true
-    }
-
-    @objc private func trackCorrectionEditingChanged(_ sender: UITextField) {
-        didEditCorrectionDuringSession = true
     }
     
     @objc private func editButtonTapped() {
@@ -313,17 +259,31 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     }
     
     func seeCalculationViewSetup() {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+        let accessoryView: UIView
 
-        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
-        doneButton.setTitle( "Calculate", for: .normal )
-        doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
-        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
-        customView.addSubview( doneButton )
-        bloodSugarField.inputAccessoryView = customView
-        targetBloodSugarField.inputAccessoryView = customView
-        correctionFactorField.inputAccessoryView = customView
+        if #available(iOS 26.0, *) {
+            // iOS 26+: system keyboard toolbar so the button renders as Liquid Glass
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let calculateItem = UIBarButtonItem(title: "Calculate", style: .prominent, target: self, action: #selector(self.dismissKeyboard))
+            calculateItem.tintColor = UIColor.choaGreenColor
+            toolbar.items = [.flexibleSpace(), calculateItem]
+            toolbar.sizeToFit()
+            accessoryView = toolbar
+        } else {
+            let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+
+            let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
+            doneButton.setTitle( "Calculate", for: .normal )
+            doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
+            doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
+            customView.addSubview( doneButton )
+            accessoryView = customView
+        }
+
+        bloodSugarField.inputAccessoryView = accessoryView
+        targetBloodSugarField.inputAccessoryView = accessoryView
+        correctionFactorField.inputAccessoryView = accessoryView
     }
     
     private func updateSeeResultAccessoryIfNeeded() {
@@ -349,6 +309,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             bloodSugarField.inputAccessoryView = nil
             targetBloodSugarField.inputAccessoryView = nil
+            correctionFactorField.inputAccessoryView = nil
         }
 
         // Reload input views of the current first responder so changes take effect immediately

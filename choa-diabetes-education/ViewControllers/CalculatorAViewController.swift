@@ -175,12 +175,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("should begin tediting")
-        textField.text = ""
-    }
-    
-    
     // Yago to add
     // The next button should not require the user to dismiss the keyboard, rather it should change by itself once the field is no longer empty. Alternatively test if tapping on the screen to dismiss the keyboard works like in the search feature, and make this end editing
     
@@ -335,16 +329,30 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     }
     
     func seeCalculationViewSetup() {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
-        customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+        let accessoryView: UIView
 
-        let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
-        doneButton.setTitle( "Calculate", for: .normal )
-        doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
-        doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
-        customView.addSubview( doneButton )
-        totalCarbsField.inputAccessoryView = customView
-        carbRatioField.inputAccessoryView = customView
+        if #available(iOS 26.0, *) {
+            // iOS 26+: system keyboard toolbar so the button renders as Liquid Glass
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let calculateItem = UIBarButtonItem(title: "Calculate", style: .prominent, target: self, action: #selector(self.dismissKeyboard))
+            calculateItem.tintColor = UIColor.choaGreenColor
+            toolbar.items = [.flexibleSpace(), calculateItem]
+            toolbar.sizeToFit()
+            accessoryView = toolbar
+        } else {
+            let customView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            customView.backgroundColor = UIColor( red: 0xd5/255.0, green: 0xd8/255.0, blue: 0xdc/255.0, alpha: 1)
+
+            let doneButton = UIButton( frame: CGRect( x: view.frame.width - 100 - 10, y: 0, width: 100, height: 44 ))
+            doneButton.setTitle( "Calculate", for: .normal )
+            doneButton.setTitleColor( UIColor.choaGreenColor, for: .normal)
+            doneButton.addTarget( self, action: #selector( self.dismissKeyboard), for: .touchUpInside )
+            customView.addSubview( doneButton )
+            accessoryView = customView
+        }
+
+        totalCarbsField.inputAccessoryView = accessoryView
+        carbRatioField.inputAccessoryView = accessoryView
     }
     
     private func updateSeeResultAccessoryIfNeeded() {
