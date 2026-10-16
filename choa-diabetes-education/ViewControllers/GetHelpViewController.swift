@@ -60,10 +60,15 @@ class GetHelpViewController: UIViewController {
 //    }
     
     private var isReminderPageFirstAppearance = true
+
+    /// This screen's navigation bar colours. The bar is shared by every screen on the stack,
+    /// so they're applied again whenever this screen appears, including when it's popped back to.
+    private var navigationBarColors: (background: UIColor, tint: UIColor) = (.white, .black)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationItem.backButtonDisplayMode = .minimal
+        applyNavigationBarColors()
 
         // The manager only holds a weak reference to one delegate, so whichever screen is
         // showing takes it over, including a screen uncovered by popping back to it
@@ -130,14 +135,17 @@ class GetHelpViewController: UIViewController {
         super.viewWillDisappear(true)
 
         if isMovingFromParent {
-            resetBackgroundColor()
             finalStepWithReminderView?.cleanup()
             
             print("⬅️ Popping from: \(String(describing: questionObj.questionType))")
             
             guard let previousVC = navigationController?.viewControllers.last as? GetHelpViewController else {
+                resetBackgroundColor()
                 return
             }
+
+            // Restore the uncovered screen's bar colours rather than resetting them to white
+            previousVC.applyNavigationBarColors()
             
             print("   → Going back to: \(String(describing: previousVC.questionObj.questionType))")
             
@@ -312,6 +320,12 @@ class GetHelpViewController: UIViewController {
 		}
 
 		view.backgroundColor = backgroundColor
+		navigationBarColors = (backgroundColor, tintColor)
+		applyNavigationBarColors()
+	}
+
+	private func applyNavigationBarColors() {
+		let (backgroundColor, tintColor) = navigationBarColors
 
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()

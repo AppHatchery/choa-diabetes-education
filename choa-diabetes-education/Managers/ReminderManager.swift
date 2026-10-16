@@ -11,10 +11,8 @@ import UIKit
 
 
 let twoHourDuration: TimeInterval = 7200
-// TODO: Set back to 5400 (90 minutes) once the iLet recheck has been tested
-let oneHour30Duration: TimeInterval = 30
-// TODO: Set back to 900 (15 minutes) once the low blood sugar recheck has been tested
-let fifteenMinuteDuration: TimeInterval = 30
+let oneHour30Duration: TimeInterval = 5400
+let fifteenMinuteDuration: TimeInterval = 900
 
 protocol ReminderManagerDelegate: AnyObject {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String)

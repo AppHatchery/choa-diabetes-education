@@ -274,11 +274,11 @@ extension QuestionnaireManager {
     }
 
     /// Routes the hypoglycemia blood sugar reading. The threshold is 80 mg/dL for children 5 and under, otherwise 70 mg/dL.
-    /// Readings at or above it (including over 300) go to the low symptoms question, readings below it ask how insulin is taken.
+    /// Readings above it (including over 300) go to the low symptoms question, readings at or below it ask how insulin is taken.
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
         self.bloodSugar = bloodSugar
 
-        if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
+        if bloodSugar > AppOnboardingManager.shared.lowBloodSugarThreshold {
             let quesObj = Questionnaire()
             // questionId is read on every screen, so it must be set even though this question has only one id
             quesObj.questionId = 1
@@ -340,7 +340,7 @@ extension QuestionnaireManager {
     }
 
     /// Vomiting or loss of consciousness can't be treated with carbs by mouth, so escalate.
-    /// Otherwise a reading back at the threshold ends the flow, and a low one is treated again, up to 4 times.
+    /// Otherwise a reading above the threshold ends the flow, and one at or below it is treated again, up to 4 times.
     func triggerLowBloodSugarRecheckAnswerActionFlow(_ currentQuestion: Questionnaire, answer: LowBloodSugarRecheckAnswer) {
         switch answer {
         case .vomiting, .lossOfConsciousness:
@@ -348,7 +348,7 @@ extension QuestionnaireManager {
         case .neither(let bloodSugar):
             self.bloodSugar = bloodSugar
 
-            if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
+            if bloodSugar > AppOnboardingManager.shared.lowBloodSugarThreshold {
                 showFinalStage(stage: .continueRegularCare, calculation: nil)
             } else if getLowBloodSugarTreatmentCount() >= Self.maxLowBloodSugarTreatments {
                 triggerSevereLowBloodSugarActionFlow(currentQuestion)

@@ -358,11 +358,8 @@ All of these live in `Views/QuestionnaireViews/` and are XIB-backed `UIView`s lo
 | Method | Used by | Interval constant | `userInfo` carried |
 | --- | --- | --- | --- |
 | `scheduleTwoHourReminder()` | Sick Day, non-iLet | `twoHourDuration` = 7200 s | none |
-| `schedule90MinuteReminder(questionId:reminderPageVisits:ketoneCheckVisits:)` | Sick Day, iLet | `oneHour30Duration` | `iLetReminderQuestionId`, `reminderPageVisits`, `ketoneCheckVisits` |
-| `schedule15MinuteReminder(lowBloodSugarTreatments:)` | Hypo treatment page | `fifteenMinuteDuration` | `isLowBloodSugarRecheck = true`, `lowBloodSugarTreatments` |
-| `scheduleTestReminder()` | Manual testing | 30 s | none |
-
-> ⚠️ **Testing values are checked in.** `oneHour30Duration` and `fifteenMinuteDuration` at the top of `ReminderManager.swift` are both set to **30 seconds**, with `TODO`s to restore **5400** (90 min) and **900** (15 min). Set them back before a release.
+| `schedule90MinuteReminder(questionId:reminderPageVisits:ketoneCheckVisits:)` | Sick Day, iLet | `oneHour30Duration` = 5400 s | `iLetReminderQuestionId`, `reminderPageVisits`, `ketoneCheckVisits` |
+| `schedule15MinuteReminder(lowBloodSugarTreatments:)` | Hypo treatment page | `fifteenMinuteDuration` = 900 s | `isLowBloodSugarRecheck = true`, `lowBloodSugarTreatments` |
 
 The `userInfo` lets a tap rebuild the right screen even after the app was killed and the session or stack is gone. Without it, a relaunch could restart the hypo treatment count, keep treating instead of escalating, or send iLet users round the ketone recheck forever.
 

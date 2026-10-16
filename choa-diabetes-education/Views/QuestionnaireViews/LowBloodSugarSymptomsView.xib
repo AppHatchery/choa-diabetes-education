@@ -32,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33E-uc-VU7">
-                    <rect key="frame" x="0.0" y="118" width="393" height="546"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="556"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d1A-Nd-7Wh" userLabel="Main Stack View">
                             <rect key="frame" x="20" y="20" width="353" height="608"/>
@@ -270,7 +270,7 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="dd0-yj-4HZ"/>
                 </scrollView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U0j-MR-zAd" userLabel="Buttons Stack View">
-                    <rect key="frame" x="20" y="672" width="353" height="102"/>
+                    <rect key="frame" x="20" y="682" width="353" height="102"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGM-OK-8Fp" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="353" height="47"/>
@@ -313,7 +313,7 @@
                 <constraint firstItem="U0j-MR-zAd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Vwg-jx-3dy"/>
                 <constraint firstItem="33E-uc-VU7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="b4v-3C-VaH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U0j-MR-zAd" secondAttribute="trailing" constant="20" id="eiQ-w0-OdH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="U0j-MR-zAd" secondAttribute="bottom" constant="10" id="qYo-EM-dTB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="U0j-MR-zAd" secondAttribute="bottom" id="qYo-EM-dTB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="32.824427480916029" y="81.690140845070431"/>
