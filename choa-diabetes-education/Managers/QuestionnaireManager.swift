@@ -358,8 +358,8 @@ extension QuestionnaireManager {
         }
     }
 
-    /// School nurses give glucagon and then call the care team. Everyone else gets the emergency call screen,
-    /// which sends patients cared for outside CHOA to their own care team.
+    /// Vomiting, loss of consciousness, or still low after the last treatment: school nurses give glucagon and then
+    /// call the care team. Everyone else gets the emergency call screen, which only CHOA patients see with the CHOA line.
     private func triggerSevereLowBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
         if AppOnboardingManager.shared.isSchoolNurse {
             showFinalStage(stage: .giveGlucagon, calculation: nil)
@@ -1271,12 +1271,13 @@ extension QuestionnaireManager {
 		showFinalStage(stage: .callChoa, calculation: nil)
 	}
 
-	/// Patients cared for outside CHOA never see the CHOA emergency line; they call their own care team instead.
+	/// The CHOA emergency line is only for CHOA patients. Everyone else (school nurses, patients cared for
+	/// elsewhere, and anyone who skipped onboarding) calls their own care team instead.
 	func triggerCallChoaEmergencyActionFlow(_ currentQuestion: Questionnaire) {
-		if AppOnboardingManager.shared.isChoaPatient == false {
-			showFinalStage(stage: .callCareTeam, calculation: nil)
-		} else {
+		if AppOnboardingManager.shared.isChoaPatient == true {
 			showFinalStage(stage: .callChoaEmergency, calculation: nil)
+		} else {
+			showFinalStage(stage: .callCareTeam, calculation: nil)
 		}
 	}
     
