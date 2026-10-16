@@ -1740,6 +1740,31 @@ extension QuestionnaireManager {
         session.visitCountsBeforeStack = session.visitCounts
     }
 
+    /// Makes sure treatments given before a low blood sugar recheck reminder still count once it's tapped,
+    /// even if the saved session didn't survive the app being closed. Call after `carryVisitCountsPastStack()`.
+    func carryLowBloodSugarTreatments(atLeast treatments: Int) {
+        guard session.visitCountsBeforeStack.lowBloodSugarTreatments < treatments else { return }
+        session.visitCountsBeforeStack.lowBloodSugarTreatments = treatments
+        session.visitCounts.lowBloodSugarTreatments = max(session.visitCounts.lowBloodSugarTreatments, treatments)
+    }
+
+    /// Makes sure iLet reminder pages and ketone checks from before a 90-minute reminder still count once
+    /// it's tapped, even if the saved session didn't survive the app being closed. Call after `carryVisitCountsPastStack()`.
+    func carryILetVisitCounts(atLeastReminderPages reminderPages: Int, ketoneChecks: Int) {
+        var updated = session
+        updated.visitCountsBeforeStack.reminderPages = max(updated.visitCountsBeforeStack.reminderPages, reminderPages)
+        updated.visitCountsBeforeStack.ketoneChecks = max(updated.visitCountsBeforeStack.ketoneChecks, ketoneChecks)
+        updated.visitCounts.reminderPages = max(updated.visitCounts.reminderPages, reminderPages)
+        updated.visitCounts.ketoneChecks = max(updated.visitCounts.ketoneChecks, ketoneChecks)
+        session = updated
+    }
+
+    /// The carried counts already include the reminder page being put back on the stack,
+    /// so it's taken back out of them; the page is counted again from the stack.
+    func prepareToReshowReminderPage(_ question: Questionnaire) {
+        session.visitCountsBeforeStack = session.visitCountsBeforeStack - visitCounts(in: [question])
+    }
+
     /// Restores a session saved with a reminder and re-shows that reminder page on a fresh stack.
     /// The saved counts already include the reminder page, so it's taken back out of the carried
     /// counts; the page is counted again from the stack once it appears.

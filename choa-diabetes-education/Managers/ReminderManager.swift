@@ -11,8 +11,10 @@ import UIKit
 
 
 let twoHourDuration: TimeInterval = 7200
-let oneHour30Duration: TimeInterval = 5400
-let fifteenMinuteDuration: TimeInterval = 900
+// TODO: Set back to 5400 (90 minutes) once the iLet recheck has been tested
+let oneHour30Duration: TimeInterval = 30
+// TODO: Set back to 900 (15 minutes) once the low blood sugar recheck has been tested
+let fifteenMinuteDuration: TimeInterval = 30
 
 protocol ReminderManagerDelegate: AnyObject {
 	func reminderManager(_ manager: ReminderManager, didScheduleReminderWithId id: String)
@@ -27,6 +29,15 @@ class ReminderManager: NSObject {
 		// MARK: - Properties
 	static let shared = ReminderManager()
 	weak var delegate: ReminderManagerDelegate?
+
+	/// Set in a notification's `userInfo` when it's the 15-minute low blood sugar recheck
+	static let lowBloodSugarRecheckKey = "isLowBloodSugarRecheck"
+	/// How many times low blood sugar had been treated when the recheck was scheduled
+	static let lowBloodSugarTreatmentsKey = "lowBloodSugarTreatments"
+	/// The iLet reminder page the 90-minute reminder was set from, and its visit counts at the time
+	static let iLetReminderQuestionIdKey = "iLetReminderQuestionId"
+	static let reminderPageVisitsKey = "reminderPageVisits"
+	static let ketoneCheckVisitsKey = "ketoneCheckVisits"
 
 	private let notificationCenter = UNUserNotificationCenter.current()
 	private var countdownTimers: [String: Timer] = [:]
@@ -60,6 +71,7 @@ class ReminderManager: NSObject {
 		///   - body: Notification body
 		///   - identifier: Optional custom identifier. If nil, a unique one will be generated
 		///   - enableCountdown: Whether to start a countdown timer for this reminder
+		///   - userInfo: Extra values carried by the notification, read back when it's tapped
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
 	func scheduleReminder(
@@ -67,7 +79,8 @@ class ReminderManager: NSObject {
 		title: String,
 		body: String,
 		identifier: String? = nil,
-		enableCountdown: Bool = false
+		enableCountdown: Bool = false,
+		userInfo: [AnyHashable: Any] = [:]
 	) -> String {
 
 		let reminderIdentifier = identifier ?? "reminder-\(UUID().uuidString)"
@@ -83,7 +96,8 @@ class ReminderManager: NSObject {
 						identifier: reminderIdentifier,
 						timeInterval: timeInterval,
 						title: title,
-						body: body
+						body: body,
+						userInfo: userInfo
 					)
 
 						// Start countdown if enabled
@@ -100,7 +114,8 @@ class ReminderManager: NSObject {
 						identifier: reminderIdentifier,
 						timeInterval: timeInterval,
 						title: title,
-						body: body
+						body: body,
+						userInfo: userInfo
 					)
 
 					if enableCountdown {
@@ -137,14 +152,29 @@ class ReminderManager: NSObject {
 		///   - title: Notification title
 		///   - body: Notification body
 		///   - enableCountdown: Whether to start a countdown timer for this reminder
+		///   - questionId: The iLet reminder page the reminder is set from
+		///   - reminderPageVisits: Reminder pages visited so far
+		///   - ketoneCheckVisits: Ketone checks so far
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
-	func schedule90MinuteReminder(title: String = "Time to check!", body: String = "Time to test your blood sugar and ketones.", enableCountdown: Bool = true) -> String {
+	func schedule90MinuteReminder(
+		title: String = "Time to check!",
+		body: String = "Time to test your blood sugar and ketones.",
+		enableCountdown: Bool = true,
+		questionId: Int,
+		reminderPageVisits: Int,
+		ketoneCheckVisits: Int
+	) -> String {
         return scheduleReminder(
             in: oneHour30Duration,
             title: title,
             body: body,
-            enableCountdown: enableCountdown
+            enableCountdown: enableCountdown,
+            userInfo: [
+                Self.iLetReminderQuestionIdKey: questionId,
+                Self.reminderPageVisitsKey: reminderPageVisits,
+                Self.ketoneCheckVisitsKey: ketoneCheckVisits
+            ]
         ) // 90 minutes = 5400 seconds
 	}
 
@@ -153,10 +183,20 @@ class ReminderManager: NSObject {
 		///   - title: Notification title
 		///   - body: Notification body
 		///   - enableCountdown: Whether to start a countdown timer for this reminder
+		///   - lowBloodSugarTreatments: Treatments given so far, so the recheck still escalates after a relaunch
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
-	func schedule15MinuteReminder(title: String = "Time to check!", body: String = "Time to recheck your blood sugar.", enableCountdown: Bool = true) -> String {
-		return scheduleReminder(in: fifteenMinuteDuration, title: title, body: body, enableCountdown: enableCountdown) // 15 minutes = 900 seconds
+	func schedule15MinuteReminder(title: String = "Time to check!", body: String = "Time to recheck your blood sugar.", enableCountdown: Bool = true, lowBloodSugarTreatments: Int) -> String {
+		return scheduleReminder(
+			in: fifteenMinuteDuration,
+			title: title,
+			body: body,
+			enableCountdown: enableCountdown,
+			userInfo: [
+				Self.lowBloodSugarRecheckKey: true,
+				Self.lowBloodSugarTreatmentsKey: lowBloodSugarTreatments
+			]
+		) // 15 minutes = 900 seconds
 	}
 
 		/// Schedule a 30-second test reminder (convenience method for testing)
@@ -343,12 +383,14 @@ class ReminderManager: NSObject {
 		identifier: String,
 		timeInterval: TimeInterval,
 		title: String,
-		body: String
+		body: String,
+		userInfo: [AnyHashable: Any]
 	) {
 			// Create notification content
 		let content = UNMutableNotificationContent()
 		content.title = title
 		content.body = body
+		content.userInfo = userInfo
 		content.sound = UNNotificationSound.default
 
 			// Create time interval trigger
@@ -393,6 +435,16 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
             withCompletionHandler completionHandler: @escaping () -> Void
         ) {
             let identifier = response.notification.request.identifier
+            let userInfo = response.notification.request.content.userInfo
+            let isLowBloodSugarRecheck = userInfo[Self.lowBloodSugarRecheckKey] as? Bool ?? false
+            let lowBloodSugarTreatments = userInfo[Self.lowBloodSugarTreatmentsKey] as? Int
+            let iLetReminder = (userInfo[Self.iLetReminderQuestionIdKey] as? Int).map { questionId in
+                NotificationHandler.ILetReminder(
+                    questionId: questionId,
+                    reminderPageVisits: userInfo[Self.reminderPageVisitsKey] as? Int ?? 0,
+                    ketoneCheckVisits: userInfo[Self.ketoneCheckVisitsKey] as? Int ?? 0
+                )
+            }
 
             print("🔔 ========================================")
             print("🔔 ReminderManager: User tapped notification")
@@ -417,7 +469,12 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
             // Handle the notification tap - navigate to reminder page
             DispatchQueue.main.async {
                 print("🚀 Calling NotificationHandler...")
-                NotificationHandler.shared.handleNotificationTap(identifier: identifier)
+                NotificationHandler.shared.handleNotificationTap(
+                    identifier: identifier,
+                    isLowBloodSugarRecheck: isLowBloodSugarRecheck,
+                    lowBloodSugarTreatments: lowBloodSugarTreatments,
+                    iLetReminder: iLetReminder
+                )
             }
 
             completionHandler()

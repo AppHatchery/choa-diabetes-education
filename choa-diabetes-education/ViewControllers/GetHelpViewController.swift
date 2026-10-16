@@ -68,20 +68,20 @@ class GetHelpViewController: UIViewController {
         // The manager only holds a weak reference to one delegate, so whichever screen is
         // showing takes it over, including a screen uncovered by popping back to it
         questionnaireManager.actionsDelegate = self
-        
+
+        questionnaireManager.printCurrentKetoneState()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         if isMovingToParent {
-            // Raise the keyboard alongside the push so the reading can be typed right away
+            // Raise the keyboard once the push finishes so it doesn't animate in mid-transition
             if !openEndedQueView.isHidden {
                 openEndedQueView.focusBloodSugarField()
             }
         }
-        
-        questionnaireManager.printCurrentKetoneState()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+
         // Visit counts are derived from the questions on the stack, so recount whenever a screen
         // appears: after a push, after popping back, and after a cancelled swipe back
         questionnaireManager.updateVisitCounts(for: questionPath)

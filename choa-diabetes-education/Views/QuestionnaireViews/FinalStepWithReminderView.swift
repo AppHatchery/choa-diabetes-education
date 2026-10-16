@@ -687,10 +687,16 @@ class FinalStepWithReminderView: UIView {
 
             if lowBloodSugarStage != nil {
                 duration = fifteenMinuteDuration
-                newReminderId = ReminderManager.shared.schedule15MinuteReminder()
+                newReminderId = ReminderManager.shared.schedule15MinuteReminder(
+                    lowBloodSugarTreatments: questionnaireManager.getLowBloodSugarTreatmentCount()
+                )
             } else if questionnaireManager.iLetPump {
                 duration = oneHour30Duration
-                newReminderId = ReminderManager.shared.schedule90MinuteReminder()
+                newReminderId = ReminderManager.shared.schedule90MinuteReminder(
+                    questionId: currentQuestion.questionId,
+                    reminderPageVisits: questionnaireManager.getReminderPageVisitCount(),
+                    ketoneCheckVisits: questionnaireManager.getKetoneVisitCount()
+                )
             } else {
                 duration = twoHourDuration
                 newReminderId = ReminderManager.shared.scheduleTwoHourReminder()

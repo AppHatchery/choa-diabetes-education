@@ -155,6 +155,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // A notification tapped while the app was closed opens its recheck screen instead of the reminder page
+        if NotificationHandler.shared.hasPendingTap {
+            NotificationHandler.shared.handlePendingTap()
+            return
+        }
+
         checkAndRestoreActiveReminder()
     }
     
