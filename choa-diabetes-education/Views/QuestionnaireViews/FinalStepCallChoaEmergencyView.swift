@@ -57,11 +57,10 @@ class FinalStepCallChoaEmergencyView: UIView {
         callDetailsView.clipsToBounds = true
 
         // Patients cared for outside CHOA, and school nurses after giving glucagon, call their own care team
-        if currentQuestion.questionType == .callChoaEmergency(.callCareTeam) {
-            callTitleLabel.text = currentQuestion.finalStep?.title
-            phoneNumberLabel.isHidden = true
-            callChoaButton.isHidden = true
-        }
+        let isCallCareTeam = currentQuestion.questionType == .callChoaEmergency(.callCareTeam)
+        callTitleLabel.text = isCallCareTeam ? currentQuestion.finalStep?.title : "Call CHOA Emergency"
+        phoneNumberLabel.isHidden = isCallCareTeam
+        callChoaButton.isHidden = isCallCareTeam
         
 //		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
 	}

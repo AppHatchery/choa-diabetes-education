@@ -358,15 +358,11 @@ extension QuestionnaireManager {
         }
     }
 
-    /// School nurses give glucagon and then call the care team. CHOA patients call the CHOA emergency line,
-    /// and patients cared for elsewhere call their own care team.
+    /// School nurses give glucagon and then call the care team. Everyone else gets the emergency call screen,
+    /// which sends patients cared for outside CHOA to their own care team.
     private func triggerSevereLowBloodSugarActionFlow(_ currentQuestion: Questionnaire) {
-        let onboarding = AppOnboardingManager.shared
-
-        if onboarding.isSchoolNurse {
+        if AppOnboardingManager.shared.isSchoolNurse {
             showFinalStage(stage: .giveGlucagon, calculation: nil)
-        } else if onboarding.isChoaPatient == false {
-            showFinalStage(stage: .callCareTeam, calculation: nil)
         } else {
             triggerCallChoaEmergencyActionFlow(currentQuestion)
         }
@@ -1275,8 +1271,13 @@ extension QuestionnaireManager {
 		showFinalStage(stage: .callChoa, calculation: nil)
 	}
 
+	/// Patients cared for outside CHOA never see the CHOA emergency line; they call their own care team instead.
 	func triggerCallChoaEmergencyActionFlow(_ currentQuestion: Questionnaire) {
-		showFinalStage(stage: .callChoaEmergency, calculation: nil)
+		if AppOnboardingManager.shared.isChoaPatient == false {
+			showFinalStage(stage: .callCareTeam, calculation: nil)
+		} else {
+			showFinalStage(stage: .callChoaEmergency, calculation: nil)
+		}
 	}
     
     func triggerKetonesActionFlow(_ currentQuestion: Questionnaire) {
