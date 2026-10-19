@@ -25,11 +25,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -1626,10 +1626,10 @@ Self-Management</string>
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01N-wh-4QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="963.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1221.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="S0m-QU-P4O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="963.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1221.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-qE-a7M" userLabel="Insulin Calculator Main View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
@@ -1773,8 +1773,105 @@ Self-Management</string>
                                                             <constraint firstItem="31R-aQ-CLj" firstAttribute="top" secondItem="dbc-qE-a7M" secondAttribute="top" id="jcc-WR-vdV"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1P-1p-VtN" userLabel="Halloween Insulin Calculator Main View">
+                                                        <rect key="frame" x="0.0" y="258" width="375" height="234"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ek-fW-6b5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_insulin_card" translatesAutoresizingMaskIntoConstraints="NO" id="YGU-Yn-Ld1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="279"/>
+                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ENv-g7-mgg">
+                                                                        <rect key="frame" x="0.0" y="138" width="375" height="96"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVP-4E-xw7">
+                                                                                <rect key="frame" x="16" y="0.0" width="330" height="40"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="40" id="FO6-JA-l6f"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <state key="normal" title="Meals + Correction">
+                                                                                    <color key="titleColor" name="primaryBlue"/>
+                                                                                </state>
+                                                                                <connections>
+                                                                                    <action selector="tappedMealsAndHighSugarButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="iSm-4k-5FZ"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DTB-Ir-JL3">
+                                                                                <rect key="frame" x="16" y="56" width="330" height="40"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbY-QA-qjx">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="40"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="40" id="Lsh-Qn-xk4"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                        <state key="normal" title="Meals">
+                                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="tappedMealsButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="tf3-VY-4i4"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmF-CR-6hq">
+                                                                                        <rect key="frame" x="173" y="0.0" width="157" height="40"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="40" id="iCK-MP-Ah9"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                        <state key="normal" title="Correction">
+                                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="tappedHighSugarButton:" destination="6QC-M0-wRq" eventType="touchUpInside" id="ftn-yL-Scp"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="uVP-4E-xw7" secondAttribute="trailing" constant="16" id="10m-w2-Wpr"/>
+                                                                            <constraint firstItem="DTB-Ir-JL3" firstAttribute="top" secondItem="uVP-4E-xw7" secondAttribute="bottom" constant="16" id="Aub-k3-mjM"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="uVP-4E-xw7" secondAttribute="trailing" constant="16" id="IeI-2w-yeh"/>
+                                                                            <constraint firstItem="uVP-4E-xw7" firstAttribute="top" secondItem="ENv-g7-mgg" secondAttribute="top" id="Kxy-Ka-OZN"/>
+                                                                            <constraint firstItem="DTB-Ir-JL3" firstAttribute="leading" secondItem="ENv-g7-mgg" secondAttribute="leading" constant="16" id="LSO-64-EPd"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="DTB-Ir-JL3" secondAttribute="bottom" id="mce-rq-0Qt"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="DTB-Ir-JL3" secondAttribute="trailing" constant="16" id="n8q-kN-2fA"/>
+                                                                            <constraint firstItem="uVP-4E-xw7" firstAttribute="leading" secondItem="ENv-g7-mgg" secondAttribute="leading" constant="16" id="s7F-ww-f95"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="ENv-g7-mgg" secondAttribute="bottom" id="CYw-zE-IJb"/>
+                                                                    <constraint firstItem="YGU-Yn-Ld1" firstAttribute="top" secondItem="6Ek-fW-6b5" secondAttribute="top" id="c1D-d5-R6K"/>
+                                                                    <constraint firstItem="ENv-g7-mgg" firstAttribute="leading" secondItem="6Ek-fW-6b5" secondAttribute="leading" id="dOZ-if-3WC"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="YGU-Yn-Ld1" secondAttribute="bottom" id="eJ9-Jg-ZzG"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="YGU-Yn-Ld1" secondAttribute="trailing" id="fxH-70-qdY"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ENv-g7-mgg" secondAttribute="trailing" id="gnm-Cg-Xu9"/>
+                                                                    <constraint firstItem="YGU-Yn-Ld1" firstAttribute="leading" secondItem="6Ek-fW-6b5" secondAttribute="leading" id="zEC-nz-ucY"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="6Ek-fW-6b5" secondAttribute="trailing" constant="16" id="B7B-H8-I6p"/>
+                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="top" secondItem="d1P-1p-VtN" secondAttribute="top" constant="16" id="OVc-Xo-yBU"/>
+                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="leading" secondItem="d1P-1p-VtN" secondAttribute="leading" constant="16" id="fhf-Ey-XPt"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6Ek-fW-6b5" secondAttribute="bottom" constant="16" id="pEd-Sz-l4B"/>
+                                                            <constraint firstAttribute="height" constant="234" id="rse-4b-4aS"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pha-na-mCD" userLabel="Get Help Main View">
-                                                        <rect key="frame" x="0.0" y="258" width="375" height="208.5"/>
+                                                        <rect key="frame" x="0.0" y="516" width="375" height="208.5"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-qi-WLr" userLabel="Get Help View">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="208.5"/>
@@ -1865,7 +1962,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ae9-bK-9Za" userLabel="Educational Resources View">
-                                                        <rect key="frame" x="0.0" y="490.5" width="375" height="224"/>
+                                                        <rect key="frame" x="0.0" y="748.5" width="375" height="224"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Ku-EZy">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2046,7 +2143,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db0-ii-KXm" userLabel="Know Your Carbs Main View">
-                                                        <rect key="frame" x="0.0" y="738.5" width="375" height="173"/>
+                                                        <rect key="frame" x="0.0" y="996.5" width="375" height="173"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-KJ-tc6" userLabel="Know Your Carbs View">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="173"/>
@@ -2136,7 +2233,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a73-kv-LBs" userLabel="Medical References View">
-                                                        <rect key="frame" x="0.0" y="935.5" width="375" height="28"/>
+                                                        <rect key="frame" x="0.0" y="1193.5" width="375" height="28"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tl-RK-WaE">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2228,6 +2325,9 @@ Self-Management</string>
                         <outletCollection property="insulinButtons" destination="5yr-9n-Doi" collectionClass="NSMutableArray" id="Ahb-da-x9a"/>
                         <outletCollection property="insulinButtons" destination="R23-lN-sve" collectionClass="NSMutableArray" id="FXT-Lq-Wwz"/>
                         <outletCollection property="insulinButtons" destination="ASG-8s-BbA" collectionClass="NSMutableArray" id="Dxs-x3-vge"/>
+                        <outletCollection property="insulinButtons" destination="uVP-4E-xw7" collectionClass="NSMutableArray" id="oDZ-WA-EKW"/>
+                        <outletCollection property="insulinButtons" destination="mbY-QA-qjx" collectionClass="NSMutableArray" id="2fz-Th-MCo"/>
+                        <outletCollection property="insulinButtons" destination="SmF-CR-6hq" collectionClass="NSMutableArray" id="xsq-ls-HRH"/>
                         <segue destination="8Ad-bW-OKf" kind="show" identifier="SegueToGetHelp" id="PGI-iE-Hc8"/>
                     </connections>
                 </viewController>
@@ -2470,6 +2570,7 @@ Self-Management</string>
         <image name="close_black" width="28" height="28"/>
         <image name="diabetes_basics_text_bubble_1" width="308" height="103"/>
         <image name="directions-icon" width="150" height="138"/>
+        <image name="halloween_insulin_card" width="362" height="279"/>
         <image name="homeFilled" width="30.5" height="30"/>
         <image name="hope_basics" width="132" height="121"/>
         <image name="hope_clock" width="132" height="121"/>
