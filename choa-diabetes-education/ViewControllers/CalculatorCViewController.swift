@@ -78,14 +78,14 @@ class CalculatorCViewController: UIViewController {
         // Total insulin
         let total: Float
         if roundsOnlyTotal {
-            // food + blood = (a/b + c/d) = (a·d + c·b) / (b·d); count whole half-units, rounding down
+            // food + blood = (a/b + c/d) = (a·d + c·b) / (b·d); round to the nearest whole unit (.5 rounds up)
             let numerator = food.numerator * blood.denominator + blood.numerator * food.denominator
             let denominator = food.denominator * blood.denominator
-            total = Float((2 * numerator) / denominator) / 2
+            total = Float((2 * numerator + denominator) / (2 * denominator))
         } else {
             let foodInsulin = roundDownToNearestHalf(value: Float(food.numerator) / Float(food.denominator))
             let bloodInsulin = roundDownToNearestHalf(value: Float(blood.numerator) / Float(blood.denominator))
-            total = roundDownToNearestHalf(value: foodInsulin + bloodInsulin)
+            total = (foodInsulin + bloodInsulin).rounded()
         }
         totalInsulin.text = "\(total.cleanString) units"
         
