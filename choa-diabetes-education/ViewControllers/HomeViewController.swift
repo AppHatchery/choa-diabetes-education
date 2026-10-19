@@ -155,6 +155,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // A notification tapped while the app was closed opens its recheck screen instead of the reminder page
+        if NotificationHandler.shared.hasPendingTap {
+            NotificationHandler.shared.handlePendingTap()
+            return
+        }
+
         checkAndRestoreActiveReminder()
     }
     
@@ -170,7 +177,7 @@ class HomeViewController: UIViewController {
         
         for button in insulinButtons {
             
-            insulinButtonsConfig.background.cornerRadius = 8
+            insulinButtonsConfig.background.cornerRadius = UIButton.standardCornerRadius
             insulinButtonsConfig.background.strokeWidth = 1
             insulinButtonsConfig.background.strokeColor = .whiteColor
             
@@ -414,7 +421,7 @@ class HomeViewController: UIViewController {
 		let manager = QuestionnaireManager.instance
 			//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
         
-        QuestionnaireManager.resetInstance()
+        manager.reset()
 
 		let firstQues = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,

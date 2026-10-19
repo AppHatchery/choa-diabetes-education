@@ -44,7 +44,7 @@ open class RoundedButton: UIButton {
         config.baseForegroundColor = UIColor.primaryBlue
 
         config.cornerStyle = .fixed
-        config.background.cornerRadius = 8
+        config.background.cornerRadius = UIButton.standardCornerRadius
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
 
         config.background.strokeColor = UIColor.highlightedBlueColor
@@ -72,7 +72,7 @@ open class RoundedButton: UIButton {
             }
 
             updated.cornerStyle = .fixed
-            updated.background.cornerRadius = 8
+            updated.background.cornerRadius = UIButton.standardCornerRadius
 
             if updated.title == nil {
                 updated.title = (button as? RoundedButton)?.baseTitle ?? button.title(for: .normal)

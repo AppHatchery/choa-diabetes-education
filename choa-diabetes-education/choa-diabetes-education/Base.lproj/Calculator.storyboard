@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ghu-L0-qWH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,11 +17,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -1285,8 +1284,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
-                                <rect key="frame" x="20" y="533" width="335" height="114"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="PZ5-sG-E1L">
+                                <rect key="frame" x="20" y="545" width="335" height="102"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHp-XQ-o5F" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
@@ -1308,7 +1307,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jls-AL-oXU">
-                                        <rect key="frame" x="0.0" y="66" width="335" height="48"/>
+                                        <rect key="frame" x="0.0" y="54" width="335" height="48"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="bwX-nN-HlT"/>
@@ -2006,13 +2005,13 @@
     <inferredMetricsTieBreakers>
         <segue reference="coK-uS-kQN"/>
         <segue reference="aTD-Ou-0iR"/>
-        <segue reference="v97-e6-biO"/>
+        <segue reference="fQk-19-zau"/>
         <segue reference="sKM-go-Es6"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.right" catalog="system" width="128" height="95"/>
-        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="120"/>
-        <image name="arrowtriangle.up.fill" catalog="system" width="128" height="120"/>
+        <image name="arrow.right" catalog="system" width="128" height="99"/>
+        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="125"/>
+        <image name="arrowtriangle.up.fill" catalog="system" width="128" height="125"/>
         <image name="calculator" width="24" height="27.666666030883789"/>
         <image name="calculator-button1" width="50.5" height="50"/>
         <image name="calculator-button2" width="50" height="50"/>
@@ -2027,7 +2026,7 @@
         <image name="will_food" width="150" height="155"/>
         <image name="will_nutrition" width="132" height="121"/>
         <image name="will_three_quick_questions" width="260" height="373"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="118"/>
         <namedColor name="backgroundColor">
             <color red="0.91764705882352937" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

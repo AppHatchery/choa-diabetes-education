@@ -252,7 +252,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             nextButton = UIButton()
             nextButton.frame = CGRect(x: self.view.frame.width/2-70, y: chapterContentHeight-90, width: 140, height: 48)
             nextButton.backgroundColor = UIColor.choaGreenColor
-            nextButton.layer.cornerRadius = nextButton.frame.height/2
+            nextButton.applyStandardCornerRadius()
             nextButton.setTitle("Done", for: .normal)
             nextButton.setTitleColor(UIColor.white, for: .normal)
             nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)

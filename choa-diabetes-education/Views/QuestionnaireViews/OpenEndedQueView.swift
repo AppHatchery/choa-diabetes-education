@@ -25,7 +25,10 @@ class OpenEndedQueView: UIView {
     private static let highBloodSugarThreshold = 300
 
     /// Readings below this value may be hypoglycemia, so confirm before continuing.
-    private static let lowBloodSugarThreshold = 70
+    /// Based on the age saved during onboarding: 80 mg/dL for children 5 and under, otherwise 70 mg/dL.
+    private var lowBloodSugarThreshold: Int {
+        AppOnboardingManager.shared.lowBloodSugarThreshold
+    }
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var firstQueContentView: UIView!
@@ -118,6 +121,7 @@ class OpenEndedQueView: UIView {
     func setupView(currentQuestion: Questionnaire, multiple: Bool) {
         self.currentQuestion = currentQuestion
 
+        questionLabel.font = .nunitoSemiBold18
         questionLabel.numberOfLines = 0
         questionLabel.text = currentQuestion.question
         questionLabel.textAlignment = .left
@@ -218,18 +222,21 @@ class OpenEndedQueView: UIView {
 
         switch self.currentQuestion.questionType {
         case .openEndedWithMultipleInput(.bloodSugarCheck):
-            if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
+            if bloodSugar < lowBloodSugarThreshold {
                 delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             } else {
                 let duration = isFollowUpRequired ? HighBloodSugarDuration(rawValue: Int(slider.value)) : nil
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar, durationOver300: duration)
             }
         case .openEndedWithMultipleInput(.bloodSugarRecheck):
-            if bloodSugar < OpenEndedQueView.lowBloodSugarThreshold {
+            if bloodSugar < lowBloodSugarThreshold {
                 delegate?.didEnterLowBloodSugar(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             } else {
                 delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
             }
+        case .openEndedWithMultipleInput(.lowBloodSugarCheck):
+            // Hypoglycemia flow, so low readings are expected and skip the alert. The manager splits on the same threshold.
+            delegate?.didSelectNextAction(currentQuestion: self.currentQuestion, bloodSugar: bloodSugar)
         default:
             return
         }

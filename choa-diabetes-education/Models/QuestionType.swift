@@ -8,6 +8,7 @@ import Foundation
 enum QuestionType: Equatable {
     case yesOrNo(YesOrNoQuestionId)
     case twoOptions(TwoOptionsQuestionId)
+	case threeOptions(ThreeOptionsQuestionId)
 	case fourOptions(FourOptionsQuestionId)
 	case fiveOptions(FiveOptionsQuestionId)
     case multipleOptions
@@ -21,6 +22,9 @@ enum QuestionType: Equatable {
 	case callChoa(FinalQuestionId)
 	case callChoaEmergency(FinalQuestionId)
 	case recheckKetoneLevel(FinalQuestionId)
+	case performFingerStickTest(FinalQuestionId)
+	case giveGlucagon(FinalQuestionId)
+	case lowBloodSugarSymptoms
 
     /// The blood sugar recheck is a yes/no question for the pump "300 mg/dL or higher" check,
     /// and an open-ended reading for the 150/180 mg/dL checks.
@@ -82,6 +86,8 @@ enum TwoOptionsQuestionId {
     case testType
     case calculationType
 	case measuringType
+	case bloodSugarCheckMethod
+	case lowBloodSugarTestType
 
     
     var id: Int {
@@ -92,6 +98,10 @@ enum TwoOptionsQuestionId {
             return 2
 		case .measuringType:
 			return 3
+		case .bloodSugarCheckMethod:
+			return 4
+		case .lowBloodSugarTestType:
+			return 5
         }
     }
     
@@ -103,17 +113,47 @@ enum TwoOptionsQuestionId {
             self = .calculationType
 		case 3:
 			self = .measuringType
+		case 4:
+			self = .bloodSugarCheckMethod
+		case 5:
+			self = .lowBloodSugarTestType
         default:
             self = .testType
         }
     }
 }
 
+/// Two picture options plus a "Neither" option, which asks for the blood sugar reading
+enum ThreeOptionsQuestionId {
+	case vomitingOrLossOfConsciousness
+
+	var id: Int {
+		switch self {
+		case .vomitingOrLossOfConsciousness:
+			return 1
+		}
+	}
+
+	init(id: Int) {
+		switch id {
+		default:
+			self = .vomitingOrLossOfConsciousness
+		}
+	}
+}
+
+/// The answer to the low blood sugar recheck, 15 minutes after treating
+enum LowBloodSugarRecheckAnswer: Equatable {
+	case vomiting
+	case lossOfConsciousness
+	case neither(bloodSugar: Int)
+}
 
 enum OpenEndedWithMultipleInputQuestionId {
     case bloodSugar
     case bloodSugarCheck
     case bloodSugarRecheck
+    case lowBloodSugarCheck
 
     var id: Int {
         switch self {
@@ -123,6 +163,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             return 2
         case .bloodSugarRecheck:
             return 3
+        case .lowBloodSugarCheck:
+            return 4
         }
     }
 
@@ -134,6 +176,8 @@ enum OpenEndedWithMultipleInputQuestionId {
             self = .bloodSugarCheck
         case 3:
             self = .bloodSugarRecheck
+        case 4:
+            self = .lowBloodSugarCheck
         default:
             self = .bloodSugar
         }
@@ -222,6 +266,17 @@ enum FinalQuestionId {
 	case callChoa
 	case callChoaEmergency
 	case recheckKetoneLevel
+	case performFingerStickTest
+	case continueDMMP
+	case treatLowBloodSugar15g
+	case treatLowBloodSugar8g
+	case giveGlucagon
+	case callCareTeam
+
+    /// The low blood sugar reminder pages, as opposed to the high blood sugar ones
+    var isLowBloodSugarTreatment: Bool {
+        self == .treatLowBloodSugar15g || self == .treatLowBloodSugar8g
+    }
 
     var id: Int {
         switch self {
@@ -255,6 +310,18 @@ enum FinalQuestionId {
 			return 14
 		case .recheckKetoneLevel:
 			return 15
+		case .performFingerStickTest:
+			return 16
+		case .continueDMMP:
+			return 17
+		case .treatLowBloodSugar15g:
+			return 18
+		case .treatLowBloodSugar8g:
+			return 19
+		case .giveGlucagon:
+			return 20
+		case .callCareTeam:
+			return 21
         }
     }
     
@@ -286,6 +353,18 @@ enum FinalQuestionId {
 			self = .callChoa
 		case 14:
 			self = .recheckKetoneLevel
+		case 16:
+			self = .performFingerStickTest
+		case 17:
+			self = .continueDMMP
+		case 18:
+			self = .treatLowBloodSugar15g
+		case 19:
+			self = .treatLowBloodSugar8g
+		case 20:
+			self = .giveGlucagon
+		case 21:
+			self = .callCareTeam
         default:
             self = .firstEmergencyScreen
         }
@@ -319,10 +398,27 @@ enum YesOrNo {
 enum TwoOptionsAnswer: Equatable {
     case TestType(TestType)
     case CalculationType(CalculationType)
-    
+    case BloodSugarCheckMethod(BloodSugarCheckMethod)
+    // How insulin is taken in the low blood sugar flow. Pump users also say whether the pump shows CGM readings.
+    case LowBloodSugarTestType(TestType, pumpShowsCGM: Bool?)
 }
 
-enum TestType {
+/// How blood sugar was checked in the hypoglycemia flow
+enum BloodSugarCheckMethod {
+    case glucoseMeter
+    case cgm
+
+    init(id: Int) {
+        switch id {
+        case 2:
+            self = .cgm
+        default:
+            self = .glucoseMeter
+        }
+    }
+}
+
+enum TestType: Codable {
     case pump
     case insulinShots
     
@@ -347,7 +443,7 @@ enum TestType {
     }
 }
 
-enum MeasuringType {
+enum MeasuringType: Codable {
 	case urineKetone
 	case bloodKetone
 
@@ -384,7 +480,7 @@ enum FourOptionsAnswer: Equatable {
 	case NoneOfTheAbove(OtherSymptom)
 }
 
-enum ChildIssue {
+enum ChildIssue: Codable {
 	case diabeticKetoacidosis
 	case highBloodSugar
 	case lowBloodSugar
@@ -547,7 +643,7 @@ enum FiveOptionsQuestionId {
 	}
 }
 
-enum CalculationType {
+enum CalculationType: Codable {
     case scale
     case formula
     
@@ -582,7 +678,7 @@ enum MultipleOptionsAnswer: Equatable {
     
 }
 
-enum KetonesMeasurements {
+enum KetonesMeasurements: Codable {
     case zeroToSmall
     case moderateToLarge
     case unknown
@@ -621,7 +717,7 @@ enum ThreeOptionsAnswer: Equatable {
 	case BloodKetoneLevel(BloodKetoneLevel)
 }
 
-enum UrineKetoneLevel {
+enum UrineKetoneLevel: Codable {
 	case negative
 	case zeroPointFive
 	case onePointFive
@@ -649,7 +745,7 @@ enum UrineKetoneLevel {
 	}
 }
 
-enum BloodKetoneLevel {
+enum BloodKetoneLevel: Codable {
 	case low
 	case moderate
 	case large

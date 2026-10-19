@@ -18,6 +18,7 @@ class GetHelpViewController: UIViewController {
 
 
     @IBOutlet weak var twoOptionsView: TwoOptionsView!
+    @IBOutlet var threeOptionQueView: ThreeOptionQueView!
     @IBOutlet weak var openEndedQueView: OpenEndedQueView!
     @IBOutlet weak var multipleOptionsView: MultipleOptionsView!
     @IBOutlet weak var fourOptionsView: FourOptionsView!
@@ -27,12 +28,12 @@ class GetHelpViewController: UIViewController {
 	@IBOutlet var finalStepCallChoaEmergencyView: FinalStepCallChoaEmergencyView!
 	@IBOutlet var finalStepWithReminderView: FinalStepWithReminderView!
 	@IBOutlet var recheckKetoneLevelView: RecheckKetoneLevelView!
+    @IBOutlet var performFingerStickBloodTest: PerformFingerStickTestView!
+    @IBOutlet var lowBloodSugarSymptomsView: LowBloodSugarSymptomsView!
 
 
-	private let questionObj: Questionnaire
+	let questionObj: Questionnaire
     private let questionnaireManager: QuestionnaireManager = QuestionnaireManager.instance
-    
-    private let manager = QuestionnaireManager.instance
     
     private let navVC: UINavigationController
     
@@ -59,50 +60,42 @@ class GetHelpViewController: UIViewController {
 //    }
     
     private var isReminderPageFirstAppearance = true
-    private var hasAppearedFromPush = false
+
+    /// This screen's navigation bar colours. The bar is shared by every screen on the stack,
+    /// so they're applied again whenever this screen appears, including when it's popped back to.
+    private var navigationBarColors: (background: UIColor, tint: UIColor) = (.white, .black)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationItem.backButtonDisplayMode = .minimal
-        
-        questionnaireManager.loadPersistedKetoneState()
-        
-        if isMovingToParent {
-            hasAppearedFromPush = true
+        applyNavigationBarColors()
 
-            // Raise the keyboard alongside the push so the reading can be typed right away
+        // The manager only holds a weak reference to one delegate, so whichever screen is
+        // showing takes it over, including a screen uncovered by popping back to it
+        questionnaireManager.actionsDelegate = self
+
+        questionnaireManager.printCurrentKetoneState()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if isMovingToParent {
+            // Raise the keyboard once the push finishes so it doesn't animate in mid-transition
             if !openEndedQueView.isHidden {
                 openEndedQueView.focusBloodSugarField()
             }
         }
-        
+
+        // Visit counts are derived from the questions on the stack, so recount whenever a screen
+        // appears: after a push, after popping back, and after a cancelled swipe back
+        questionnaireManager.updateVisitCounts(for: questionPath)
         questionnaireManager.printCurrentKetoneState()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Track reminder page visits for iLet pump users
-        // Only count when pushed (not when appearing from back navigation initially)
-        if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)),
-           questionnaireManager.iLetPump,
-           hasAppearedFromPush {
-            questionnaireManager.incrementReminderPageVisitCount()
-            hasAppearedFromPush = false
-            
-            print("✅ Reminder page appeared - visit tracked")
-            questionnaireManager.printCurrentKetoneState()
-        }
-        
-        // Track ketone recheck visits when RecheckKetoneLevelView appears from push
-        if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)),
-           hasAppearedFromPush {
-            questionnaireManager.incrementKetoneVisitCount()
-            hasAppearedFromPush = false
-            
-            print("✅ Ketone recheck page appeared - visit tracked")
-            questionnaireManager.printCurrentKetoneState()
-        }
+
+    /// The questions on the navigation stack, oldest first
+    private var questionPath: [Questionnaire] {
+        (navigationController ?? navVC).viewControllers.compactMap { ($0 as? GetHelpViewController)?.questionObj }
     }
 
 	override func viewDidLoad() {
@@ -134,7 +127,6 @@ class GetHelpViewController: UIViewController {
 		)
 		navigationItem.rightBarButtonItem = rightButton
 
-		self.questionnaireManager.actionsDelegate = self
 		hideAllViews()
 		setupViews()
 	}
@@ -143,139 +135,48 @@ class GetHelpViewController: UIViewController {
         super.viewWillDisappear(true)
 
         if isMovingFromParent {
-            resetBackgroundColor()
             finalStepWithReminderView?.cleanup()
             
             print("⬅️ Popping from: \(String(describing: questionObj.questionType))")
             
             guard let previousVC = navigationController?.viewControllers.last as? GetHelpViewController else {
+                resetBackgroundColor()
                 return
             }
+
+            // Restore the uncovered screen's bar colours rather than resetting them to white
+            previousVC.applyNavigationBarColors()
             
             print("   → Going back to: \(String(describing: previousVC.questionObj.questionType))")
             
-            // ============================================================
-            // REMINDER PAGE TRACKING
-            // ============================================================
-            if questionObj.questionType == .reminder(FinalQuestionId(id: questionObj.questionId)) {
-                // Popping FROM reminder page
-                
-                if previousVC.questionObj.questionType.isBloodSugarRecheck {
-                    // Going back to blood sugar recheck
-                    questionnaireManager.decrementReminderPageVisitCount()
-                    print("   📊 Decremented reminder count (popping to bloodSugarRecheck)")
-                }
-                
-                // Handle popping from reminder back to recheck ketone level
-                if previousVC.questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: previousVC.questionObj.questionId)) {
-                    // Going back to recheck ketone level
-                    questionnaireManager.decrementReminderPageVisitCount()
-                    print("   📊 Decremented reminder count (popping to recheckKetoneLevel)")
-                }
-                
-                if !previousVC.twoOptionsView.isHidden {
-                    // Going back to test type selection - full reset
-                    questionnaireManager.saveYesOver2hours(false)
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping back to test type selection from reminder")
-                }
-            }
-            
-            // ============================================================
-            // KETONE RECHECK PAGE TRACKING
-            // ============================================================
-            if questionObj.questionType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) {
-                // Popping FROM ketone recheck page
-                
-                if previousVC.questionObj.questionType == .reminder(FinalQuestionId(id: previousVC.questionObj.questionId)) {
-                    // Going back to reminder page
-                    questionnaireManager.decrementKetoneVisitCount()
-                    print("   🧪 Decremented ketone count (popping to reminder page)")
-                    
-                    // Note: Ketones are preserved when going back to reminder
-                    print("   ⚠️ Ketones PRESERVED when popping to reminder")
-                }
-                
-                if previousVC.questionObj.questionType.isBloodSugarRecheck {
-                    // Going back to blood sugar recheck
-                    questionnaireManager.decrementKetoneVisitCount()
-                    print("   🧪 Decremented ketone count (popping to blood sugar recheck)")
-                    
-                    // Note: Ketones are preserved for the next check
-                    print("   ⚠️ Ketones PRESERVED when popping to blood sugar recheck")
-                }
-                
-                if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
-                    // Going back to measuring type selection - FULL RESET
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping to measuring type selection from recheck")
-                }
-                
-                if !previousVC.twoOptionsView.isHidden && previousVC.questionObj.questionType == .twoOptions(.testType) {
-                    // Going back to test type selection - full reset
-                    questionnaireManager.saveYesOver2hours(false)
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping back to test type selection from recheck")
-                }
-            }
-            
-            // ============================================================
-            // YES/NO VIEW TRACKING (Blood Sugar Recheck, etc.)
-            // ============================================================
-            if questionObj.questionType.isBloodSugarRecheck {
-                // Popping FROM blood sugar recheck page
-                
-                if previousVC.questionObj.questionType == .twoOptions(.measuringType) {
-                    // Going back to measuring type selection - FULL RESET
-                    questionnaireManager.resetReminderPageVisitCount()
-                    questionnaireManager.resetKetoneVisitCount()
-                    questionnaireManager.clearAllKetoneData()
-                    questionnaireManager.clearFirstKetoneValues()
-                    print("   🗑️ Full reset: popping to measuring type selection from blood sugar recheck")
-                }
-            }
-            
-            // ============================================================
-            // GENERAL CLEANUP
-            // ============================================================
-            
-            // Clear all data when going back to test type selection from ANY screen
-            if !previousVC.twoOptionsView.isHidden &&
-               previousVC.questionObj.questionType == .twoOptions(.testType) &&
-               questionObj.questionType != .twoOptions(.testType) {
-                
-                questionnaireManager.saveYesOver2hours(false)
-                questionnaireManager.resetReminderPageVisitCount()
-                questionnaireManager.resetKetoneVisitCount()
-                questionnaireManager.clearAllKetoneData()
-                questionnaireManager.clearFirstKetoneValues()
-                
-                print("   🗑️ Full reset: popping back to test type selection from \(String(describing: questionObj.questionType))")
-            }
-            
-            // Clear all data when exiting the flow completely (back to home)
-            if let navControllers = navigationController?.viewControllers,
-               navControllers.last is HomeViewController {
-                questionnaireManager.clearAllKetoneData()
-                questionnaireManager.resetReminderPageVisitCount()
-                questionnaireManager.resetKetoneVisitCount()
-                questionnaireManager.clearFirstKetoneValues()
-                print("   🏠 Returning to home - all data cleared")
+            // Visit counts need no bookkeeping here: the uncovered screen recounts them when it appears
+            if shouldResetKetoneProgress(poppingTo: previousVC.questionObj.questionType) {
+                questionnaireManager.resetKetoneProgress()
+                print("   🗑️ Ketone progress reset: popping from \(String(describing: questionObj.questionType)) to \(String(describing: previousVC.questionObj.questionType))")
             }
             
             questionnaireManager.printCurrentKetoneState()
         }
     }
 
+    
+    /// Backing out to the point where ketones are first measured (or before it) starts
+    /// the ketone check over.
+    private func shouldResetKetoneProgress(poppingTo previousType: QuestionType?) -> Bool {
+        let currentType: QuestionType? = questionObj.questionType
+        let isPoppingFromReminder = currentType == .reminder(FinalQuestionId(id: questionObj.questionId))
+        let isPoppingFromRecheck = currentType == .recheckKetoneLevel(FinalQuestionId(id: questionObj.questionId)) ||
+            currentType?.isBloodSugarRecheck == true
+
+        var isPoppingToTwoOptions = false
+        if case .twoOptions = previousType {
+            isPoppingToTwoOptions = true
+        }
+
+        return (isPoppingFromReminder && isPoppingToTwoOptions) ||
+            (isPoppingFromRecheck && previousType == .twoOptions(.measuringType)) ||
+            (previousType == .twoOptions(.testType) && currentType != .twoOptions(.testType))
+    }
     
     private func hideAllViews() {
         yesOrNoQueView.isHidden = true
@@ -286,11 +187,14 @@ class GetHelpViewController: UIViewController {
 		finalStepCallChoaEmergencyView.isHidden = true
 		finalStepWithReminderView.isHidden = true
         twoOptionsView.isHidden = true
+        threeOptionQueView.isHidden = true
         openEndedQueView.isHidden = true
         multipleOptionsView.isHidden = true
         fourOptionsView.isHidden = true
 		fiveOptionsView.isHidden = true
 		firstEmergencyView.isHidden = true
+		performFingerStickBloodTest.isHidden = true
+		lowBloodSugarSymptomsView.isHidden = true
     }
 
     private func setupViews() {
@@ -304,6 +208,10 @@ class GetHelpViewController: UIViewController {
             twoOptionsView.isHidden = false
             twoOptionsView.delegate = self
             twoOptionsView.setupView(currentQuestion: questionObj)
+        case .threeOptions:
+            threeOptionQueView.isHidden = false
+            threeOptionQueView.delegate = self
+            threeOptionQueView.setupView(currentQuestion: questionObj)
 		case .fourOptions:
 			fourOptionsView.isHidden = false
 			fourOptionsView.delegate = self
@@ -374,6 +282,15 @@ class GetHelpViewController: UIViewController {
 			recheckKetoneLevelView.isHidden = false
 			recheckKetoneLevelView.delegate = self
 			recheckKetoneLevelView.setupView(currentQuestion: questionObj)
+		case .performFingerStickTest, .giveGlucagon:
+			performFingerStickBloodTest.isHidden = false
+			performFingerStickBloodTest.delegate = self
+			performFingerStickBloodTest.setupView(currentQuestion: questionObj)
+			updateBackgroundColorForFinalStep(questionId: questionObj.questionId)
+		case .lowBloodSugarSymptoms:
+			lowBloodSugarSymptomsView.isHidden = false
+			lowBloodSugarSymptomsView.delegate = self
+			lowBloodSugarSymptomsView.setupView(currentQuestion: questionObj)
         case .none:
 			break
         }
@@ -390,10 +307,11 @@ class GetHelpViewController: UIViewController {
 		case FinalQuestionId.endo.id:
 			backgroundColor = .white
 			tintColor = .black
-		case FinalQuestionId.continueRegularCare.id:
+		case FinalQuestionId.continueRegularCare.id, FinalQuestionId.continueDMMP.id:
 			backgroundColor = .secondaryMeadowGreen300
 			tintColor = .white
-		case FinalQuestionId.callChoaEmergency.id:
+		case FinalQuestionId.callChoaEmergency.id, FinalQuestionId.performFingerStickTest.id,
+			FinalQuestionId.giveGlucagon.id, FinalQuestionId.callCareTeam.id:
 			backgroundColor = .sunsetOrangeColor300
 			tintColor = .white
 		default:
@@ -402,6 +320,12 @@ class GetHelpViewController: UIViewController {
 		}
 
 		view.backgroundColor = backgroundColor
+		navigationBarColors = (backgroundColor, tintColor)
+		applyNavigationBarColors()
+	}
+
+	private func applyNavigationBarColors() {
+		let (backgroundColor, tintColor) = navigationBarColors
 
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
@@ -456,6 +380,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
         }
         
     }
+
+		// For checking how blood sugar was checked in the hypoglycemia flow
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer) {
+		switch selectedAnswer {
+		case .BloodSugarCheckMethod(let method):
+			print("Blood sugar check method: \(method)")
+			self.questionnaireManager.triggerBloodSugarCheckMethodActionFlow(currentQuestion, method: method)
+		case .LowBloodSugarTestType(let testType, let pumpShowsCGM):
+			self.questionnaireManager.triggerLowBloodSugarTestTypeActionFlow(currentQuestion, testType: testType, pumpShowsCGM: pumpShowsCGM)
+		default:
+			return
+		}
+	}
 
 		// For checking if they use iLet Pump
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: TwoOptionsAnswer, followUpAnswer: YesOrNo?) {
@@ -539,10 +476,10 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		case .HighBloodSugar(let childIssue):
 			print("Four options selected answer: \(selectedAnswer)")
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
-		case .LowBloodSugar(let childIssue):
+		case .LowBloodSugar:
 			print("Four options selected answer: \(selectedAnswer)")
-            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
-        case .NotSure(let childIssue):
+            self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
+        case .NotSure:
             self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
 			print("Four options selected answer: \(selectedAnswer)")
 
@@ -650,14 +587,19 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 		questionnaireManager.triggerBloodSugarReadingActionFlow(currentQuestion)
 	}
 
-		// For the blood sugar recheck reading. The manager compares it against the 150/180 mg/dL threshold.
+		// For the hypoglycemia reading, and the blood sugar recheck reading (compared against the 150/180 mg/dL threshold).
 	func didSelectNextAction(currentQuestion: Questionnaire, bloodSugar: Int) {
+		if currentQuestion.questionType == .openEndedWithMultipleInput(.lowBloodSugarCheck) {
+			questionnaireManager.triggerLowBloodSugarReadingResultActionFlow(currentQuestion, bloodSugar: bloodSugar)
+			return
+		}
+
 		questionnaireManager.triggerBloodSugarRecheckReadingActionFlow(currentQuestion, bloodSugar: bloodSugar)
 	}
 
 	func didEnterLowBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
 		let alert = AlertPopUpViewController(
-			title: "Calculator.LowBloodSugarAlert.title".localized(),
+			title: String(format: "Calculator.LowBloodSugarAlert.title".localized(), AppOnboardingManager.shared.lowBloodSugarThreshold),
 			message: "Calculator.LowBloodSugarAlert.message".localized(),
 			primaryActionTitle: "Calculator.LowBloodSugarAlert.primaryAction".localized(),
 			secondaryActionTitle: "Calculator.LowBloodSugarAlert.secondaryAction".localized()
@@ -699,13 +641,7 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 	@objc func didSelectExitAction() {
         print("🚪 Exit button pressed - clearing all state")
         
-        // Clear all persisted state
-        questionnaireManager.clearAllKetoneData()
-        questionnaireManager.resetReminderPageVisitCount()
-        questionnaireManager.resetKetoneVisitCount()
-        
-        // Reset the instance
-        QuestionnaireManager.resetInstance()
+        questionnaireManager.reset()
         
         questionnaireManager.printCurrentKetoneState()
         
@@ -754,6 +690,14 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
     
     func didSelectYesOverAction(_ question: Questionnaire) {
         let q = questionnaireManager
+
+        // Low blood sugar: once the 15 minutes are up, check for vomiting or loss of consciousness and recheck the blood sugar
+        if FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+            print("   → Low blood sugar flow: Recheck")
+            q.triggerLowBloodSugarRecheckActionFlow(question)
+            return
+        }
+
         let iLetPump = q.iLetPump
         let reminderPageVisitCount = q.getReminderPageVisitCount()
         let ketoneCheckPageVisitCount = q.getKetoneVisitCount()
@@ -873,6 +817,29 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
 	}
 }
 
+
+extension GetHelpViewController: PerformFingerStickTestViewProtocol {
+	func didSelectFingerStickNextAction(_ question: Questionnaire) {
+		if case .giveGlucagon = question.questionType {
+			questionnaireManager.triggerGiveGlucagonNextActionFlow(question)
+		} else {
+			questionnaireManager.triggerLowBloodSugarReadingActionFlow(question)
+		}
+	}
+}
+
+extension GetHelpViewController: ThreeOptionQueViewProtocol {
+	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: LowBloodSugarRecheckAnswer) {
+		print("Low blood sugar recheck: \(selectedAnswer)")
+		questionnaireManager.triggerLowBloodSugarRecheckAnswerActionFlow(currentQuestion, answer: selectedAnswer)
+	}
+}
+
+extension GetHelpViewController: LowBloodSugarSymptomsViewProtocol {
+	func didSelectLowBloodSugarSymptoms(_ question: Questionnaire, hasSymptoms: Bool) {
+		questionnaireManager.triggerLowBloodSugarSymptomsActionFlow(question, hasSymptoms: hasSymptoms)
+	}
+}
 
 extension GetHelpViewController: QuestionnaireActionsProtocol {
     func showNextQuestion(_ question: Questionnaire) {

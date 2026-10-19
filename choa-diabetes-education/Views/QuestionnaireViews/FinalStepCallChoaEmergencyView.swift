@@ -21,6 +21,8 @@ class FinalStepCallChoaEmergencyView: UIView {
     @IBOutlet var doneButton: UIButton!
 	@IBOutlet var callInstructionsView: UIView!
 	@IBOutlet var callChoaButton: UIButton!
+	@IBOutlet var callTitleLabel: UILabel!
+	@IBOutlet var phoneNumberLabel: UILabel!
 
 	private var currentQuestion: Questionnaire!
 	weak var delegate: FinalStepCallChoaEmergencyViewProtocol?
@@ -53,6 +55,12 @@ class FinalStepCallChoaEmergencyView: UIView {
         callDetailsView.layer.cornerRadius = 20
         callDetailsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         callDetailsView.clipsToBounds = true
+
+        // Patients cared for outside CHOA, and school nurses after giving glucagon, call their own care team
+        let isCallCareTeam = currentQuestion.questionType == .callChoaEmergency(.callCareTeam)
+        callTitleLabel.text = isCallCareTeam ? currentQuestion.finalStep?.title : "Call CHOA Emergency"
+        phoneNumberLabel.isHidden = isCallCareTeam
+        callChoaButton.isHidden = isCallCareTeam
         
 //		mainStackView.removeArrangedSubview(callYourCareTeamLabel)
 	}
