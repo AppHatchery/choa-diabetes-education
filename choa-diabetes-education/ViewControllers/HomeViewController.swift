@@ -18,6 +18,16 @@ class HomeViewController: UIViewController {
 	@IBOutlet var highSugarButton: UIButton!
     @IBOutlet var insulinButtons: [UIButton]!
 
+	@IBOutlet var halloweenMealsAndHighSugarButton: UIButton!
+	@IBOutlet var halloweenMealsButton: UIButton!
+	@IBOutlet var halloweenHighSugarButton: UIButton!
+
+    @IBOutlet weak var halloweenGetHelpView: UIView!
+    @IBOutlet weak var halloweenDiabetesBasicsResourceCard: UIView!
+    @IBOutlet weak var halloweenNutritionResourceCard: UIView!
+    @IBOutlet weak var halloweenDiabetesSelfManagementResourceCard: UIView!
+    @IBOutlet weak var halloweenKnowYourCarbsView: UIView!
+
 	@IBOutlet var getHelpView: UIView!
     @IBOutlet weak var getHelpViewImage: UIImageView!
     @IBOutlet var getHelpButton: UIButton!
@@ -98,7 +108,18 @@ class HomeViewController: UIViewController {
 		highSugarButton.applyCornerRadius(12)
 		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
-        
+
+		// Halloween insulin calculator buttons match the regular card's styling
+		halloweenMealsAndHighSugarButton.applyCornerRadius(12)
+
+		halloweenMealsButton.applyCornerRadius(12)
+		halloweenMealsButton.layer.borderWidth = 1
+		halloweenMealsButton.layer.borderColor = UIColor.white.cgColor
+
+		halloweenHighSugarButton.applyCornerRadius(12)
+		halloweenHighSugarButton.layer.borderWidth = 1
+		halloweenHighSugarButton.layer.borderColor = UIColor.white.cgColor
+
 		getHelpView.layer.cornerRadius = 12
         getHelpView.clipsToBounds = true
         getHelpViewImage.clipsToBounds = true
@@ -223,6 +244,19 @@ class HomeViewController: UIViewController {
 
         let managementTap = UITapGestureRecognizer(target: self, action: #selector(didTapManagementCard))
         diabetesSelfManagementResourceCard.addGestureRecognizer(managementTap)
+
+        // Halloween cards route to the same handlers as their regular counterparts
+        let halloweenCards: [(UIView, Selector)] = [
+            (halloweenGetHelpView, #selector(didTapGetHelpView)),
+            (halloweenDiabetesBasicsResourceCard, #selector(didTapDiabetesBasicsCard)),
+            (halloweenNutritionResourceCard, #selector(didTapNutritionCard)),
+            (halloweenDiabetesSelfManagementResourceCard, #selector(didTapManagementCard)),
+            (halloweenKnowYourCarbsView, #selector(didTapKnowYourCarbsView))
+        ]
+        for (card, action) in halloweenCards {
+            card.isUserInteractionEnabled = true
+            card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

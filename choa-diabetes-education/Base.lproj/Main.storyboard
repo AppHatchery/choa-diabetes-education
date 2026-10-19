@@ -1626,10 +1626,10 @@ Self-Management</string>
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01N-wh-4QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1221.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1667"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="S0m-QU-P4O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1221.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1667"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-qE-a7M" userLabel="Insulin Calculator Main View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
@@ -1637,7 +1637,7 @@ Self-Management</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31R-aQ-CLj" userLabel="Insulin Calculator View">
                                                                 <rect key="frame" x="19" y="0.0" width="337" height="234"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulinCalculatorBg" translatesAutoresizingMaskIntoConstraints="NO" id="yMC-dy-qma">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulinCalculatorBg" translatesAutoresizingMaskIntoConstraints="NO" id="yMC-dy-qma">
                                                                         <rect key="frame" x="0.0" y="0.0" width="337" height="234"/>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jrx-xY-67N">
@@ -1774,20 +1774,20 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1P-1p-VtN" userLabel="Halloween Insulin Calculator Main View">
-                                                        <rect key="frame" x="0.0" y="258" width="375" height="234"/>
+                                                        <rect key="frame" x="0.0" y="258" width="375" height="250"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ek-fW-6b5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ek-fW-6b5">
+                                                                <rect key="frame" x="19" y="0.0" width="337" height="250"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_insulin_card" translatesAutoresizingMaskIntoConstraints="NO" id="YGU-Yn-Ld1">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="279"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="337" height="250"/>
                                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                                     </imageView>
-                                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ENv-g7-mgg">
-                                                                        <rect key="frame" x="0.0" y="138" width="375" height="96"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENv-g7-mgg">
+                                                                        <rect key="frame" x="0.0" y="138" width="337" height="96"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVP-4E-xw7">
-                                                                                <rect key="frame" x="16" y="0.0" width="330" height="40"/>
+                                                                                <rect key="frame" x="16" y="0.0" width="305" height="40"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="40" id="FO6-JA-l6f"/>
@@ -1803,10 +1803,10 @@ Self-Management</string>
                                                                                 </connections>
                                                                             </button>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DTB-Ir-JL3">
-                                                                                <rect key="frame" x="16" y="56" width="330" height="40"/>
+                                                                                <rect key="frame" x="16" y="56" width="305" height="40"/>
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbY-QA-qjx">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="40"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="40"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="40" id="Lsh-Qn-xk4"/>
                                                                                         </constraints>
@@ -1820,7 +1820,7 @@ Self-Management</string>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmF-CR-6hq">
-                                                                                        <rect key="frame" x="173" y="0.0" width="157" height="40"/>
+                                                                                        <rect key="frame" x="160.5" y="0.0" width="144.5" height="40"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="40" id="iCK-MP-Ah9"/>
                                                                                         </constraints>
@@ -1851,7 +1851,7 @@ Self-Management</string>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="ENv-g7-mgg" secondAttribute="bottom" id="CYw-zE-IJb"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ENv-g7-mgg" secondAttribute="bottom" constant="16" id="CYw-zE-IJb"/>
                                                                     <constraint firstItem="YGU-Yn-Ld1" firstAttribute="top" secondItem="6Ek-fW-6b5" secondAttribute="top" id="c1D-d5-R6K"/>
                                                                     <constraint firstItem="ENv-g7-mgg" firstAttribute="leading" secondItem="6Ek-fW-6b5" secondAttribute="leading" id="dOZ-if-3WC"/>
                                                                     <constraint firstAttribute="bottom" secondItem="YGU-Yn-Ld1" secondAttribute="bottom" id="eJ9-Jg-ZzG"/>
@@ -1859,19 +1859,24 @@ Self-Management</string>
                                                                     <constraint firstAttribute="trailing" secondItem="ENv-g7-mgg" secondAttribute="trailing" id="gnm-Cg-Xu9"/>
                                                                     <constraint firstItem="YGU-Yn-Ld1" firstAttribute="leading" secondItem="6Ek-fW-6b5" secondAttribute="leading" id="zEC-nz-ucY"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="6Ek-fW-6b5" secondAttribute="trailing" constant="16" id="B7B-H8-I6p"/>
-                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="top" secondItem="d1P-1p-VtN" secondAttribute="top" constant="16" id="OVc-Xo-yBU"/>
-                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="leading" secondItem="d1P-1p-VtN" secondAttribute="leading" constant="16" id="fhf-Ey-XPt"/>
-                                                            <constraint firstAttribute="bottom" secondItem="6Ek-fW-6b5" secondAttribute="bottom" constant="16" id="pEd-Sz-l4B"/>
-                                                            <constraint firstAttribute="height" constant="234" id="rse-4b-4aS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6Ek-fW-6b5" secondAttribute="trailing" constant="19" id="B7B-H8-I6p"/>
+                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="top" secondItem="d1P-1p-VtN" secondAttribute="top" id="OVc-Xo-yBU"/>
+                                                            <constraint firstItem="6Ek-fW-6b5" firstAttribute="leading" secondItem="d1P-1p-VtN" secondAttribute="leading" constant="19" id="fhf-Ey-XPt"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6Ek-fW-6b5" secondAttribute="bottom" id="pEd-Sz-l4B"/>
+                                                            <constraint firstAttribute="height" constant="250" id="rse-4b-4aS"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pha-na-mCD" userLabel="Get Help Main View">
-                                                        <rect key="frame" x="0.0" y="516" width="375" height="208.5"/>
+                                                        <rect key="frame" x="0.0" y="532" width="375" height="208.5"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-qi-WLr" userLabel="Get Help View">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="208.5"/>
@@ -1961,8 +1966,35 @@ Self-Management</string>
                                                             <constraint firstAttribute="trailing" secondItem="Hy1-qi-WLr" secondAttribute="trailing" constant="16" id="UQ9-5e-BlR"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDV-Hv-51h" userLabel="Halloween Get Help Main View">
+                                                        <rect key="frame" x="0.0" y="764.5" width="375" height="208.5"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZW-dQ-xRk" userLabel="Get Help View">
+                                                                <rect key="frame" x="16" y="0.0" width="343" height="208.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_get_help" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-b1-ION">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="208.5"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="gKQ-b1-ION" secondAttribute="trailing" id="9eC-FR-EDD"/>
+                                                                    <constraint firstItem="gKQ-b1-ION" firstAttribute="top" secondItem="PZW-dQ-xRk" secondAttribute="top" id="TE1-HH-QKE"/>
+                                                                    <constraint firstItem="gKQ-b1-ION" firstAttribute="leading" secondItem="PZW-dQ-xRk" secondAttribute="leading" id="bNx-oH-ZfV"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gKQ-b1-ION" secondAttribute="bottom" id="e5Y-Pj-1ty"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="PZW-dQ-xRk" firstAttribute="top" secondItem="kDV-Hv-51h" secondAttribute="top" id="Ay6-VC-KZX"/>
+                                                            <constraint firstItem="PZW-dQ-xRk" firstAttribute="leading" secondItem="kDV-Hv-51h" secondAttribute="leading" constant="16" id="DGl-R4-FFZ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PZW-dQ-xRk" secondAttribute="trailing" constant="16" id="Pbq-iS-1EK"/>
+                                                            <constraint firstAttribute="bottom" secondItem="PZW-dQ-xRk" secondAttribute="bottom" id="m3W-Fb-xE0"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ae9-bK-9Za" userLabel="Educational Resources View">
-                                                        <rect key="frame" x="0.0" y="748.5" width="375" height="224"/>
+                                                        <rect key="frame" x="0.0" y="997" width="375" height="224"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Ku-EZy">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -1994,131 +2026,182 @@ Self-Management</string>
                                                                 <rect key="frame" x="0.0" y="44" width="388.5" height="180"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dix-VG-0Pp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="483" height="180"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="938" height="180"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5a-EM-bgg" userLabel="Resouce Card View">
-                                                                                <rect key="frame" x="19" y="0.0" width="140" height="180"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cGt-Hs-u2C">
+                                                                                <rect key="frame" x="19" y="0.0" width="900" height="180"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Diabetes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-O5-cm5">
-                                                                                        <rect key="frame" x="8" y="8" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondaryMeadowGreen300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxq-qD-vIg">
-                                                                                        <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondaryMeadowGreen300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="2XY-ZE-QYu">
-                                                                                        <rect key="frame" x="8" y="59" width="124" height="125"/>
-                                                                                    </imageView>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5a-EM-bgg" userLabel="Resouce Card View">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Diabetes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JB8-O5-cm5">
+                                                                                                <rect key="frame" x="8" y="8" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondaryMeadowGreen300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxq-qD-vIg">
+                                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondaryMeadowGreen300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="hope_basics" translatesAutoresizingMaskIntoConstraints="NO" id="2XY-ZE-QYu">
+                                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondaryMeadowGreen100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="Zxq-qD-vIg" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="4RG-fq-ZeM"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="2XY-ZE-QYu" secondAttribute="trailing" constant="8" id="8xG-hM-Inj"/>
+                                                                                            <constraint firstItem="JB8-O5-cm5" firstAttribute="top" secondItem="g5a-EM-bgg" secondAttribute="top" constant="8" id="HXB-yK-IaC"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="Zxq-qD-vIg" secondAttribute="trailing" constant="8" id="I0k-l9-mSE"/>
+                                                                                            <constraint firstItem="2XY-ZE-QYu" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="Ito-dC-pfe"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="2XY-ZE-QYu" secondAttribute="bottom" constant="-4" id="LMe-Zh-idt"/>
+                                                                                            <constraint firstItem="2XY-ZE-QYu" firstAttribute="top" secondItem="Zxq-qD-vIg" secondAttribute="bottom" constant="12" id="QXM-QT-RDd"/>
+                                                                                            <constraint firstAttribute="width" constant="140" id="UqS-nW-zcK"/>
+                                                                                            <constraint firstItem="Zxq-qD-vIg" firstAttribute="top" secondItem="JB8-O5-cm5" secondAttribute="bottom" id="Y6z-yv-s2r"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="JB8-O5-cm5" secondAttribute="trailing" constant="8" id="bKU-zL-VtN"/>
+                                                                                            <constraint firstAttribute="height" constant="180" id="dwj-fn-LKg"/>
+                                                                                            <constraint firstItem="JB8-O5-cm5" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="l5m-Mi-iQm"/>
+                                                                                        </constraints>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuN-JU-7lD" userLabel="Resouce Card View">
+                                                                                        <rect key="frame" x="152" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Nutrition and " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vva-PV-0cP">
+                                                                                                <rect key="frame" x="8" y="8" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondarySunsetOrange300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Counting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6e-Yq-UOv">
+                                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondarySunsetOrange300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="gTi-4w-diV">
+                                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondarySunsetOrange100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="gTi-4w-diV" firstAttribute="top" secondItem="t6e-Yq-UOv" secondAttribute="bottom" constant="12" id="3M2-05-DMu"/>
+                                                                                            <constraint firstItem="Vva-PV-0cP" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="742-64-foO"/>
+                                                                                            <constraint firstItem="Vva-PV-0cP" firstAttribute="top" secondItem="uuN-JU-7lD" secondAttribute="top" constant="8" id="BQJ-qU-iBH"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="Vva-PV-0cP" secondAttribute="trailing" constant="8" id="Hz0-Ga-PqB"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="t6e-Yq-UOv" secondAttribute="trailing" constant="8" id="JCy-ps-uOu"/>
+                                                                                            <constraint firstItem="t6e-Yq-UOv" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="ZqJ-Ex-kSt"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="gTi-4w-diV" secondAttribute="trailing" constant="8" id="gpw-MZ-NWM"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="gTi-4w-diV" secondAttribute="bottom" constant="-4" id="grb-lx-ot4"/>
+                                                                                            <constraint firstAttribute="height" constant="180" id="jOw-3m-tG1"/>
+                                                                                            <constraint firstItem="gTi-4w-diV" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="lEB-1b-CtY"/>
+                                                                                            <constraint firstItem="t6e-Yq-UOv" firstAttribute="top" secondItem="Vva-PV-0cP" secondAttribute="bottom" id="sfl-Kn-RQ2"/>
+                                                                                            <constraint firstAttribute="width" constant="140" id="uim-h1-AuD"/>
+                                                                                        </constraints>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agd-QZ-Gud" userLabel="Resouce Card View">
+                                                                                        <rect key="frame" x="304" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Diabetes Self" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4s-km-Enb">
+                                                                                                <rect key="frame" x="8" y="8" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondaryRoyalPurple300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIl-vD-ZJX">
+                                                                                                <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
+                                                                                                <color key="tintColor" name="secondaryMeadowGreen300"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
+                                                                                                <color key="textColor" name="secondaryRoyalPurple300"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="hope_clock" translatesAutoresizingMaskIntoConstraints="NO" id="mlt-nD-aji">
+                                                                                                <rect key="frame" x="8" y="59" width="124" height="125"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondaryRoyalPurple100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="bottom" secondItem="mlt-nD-aji" secondAttribute="bottom" constant="-4" id="0Fq-Z3-pot"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="DIl-vD-ZJX" secondAttribute="trailing" constant="8" id="0y4-ms-I3p"/>
+                                                                                            <constraint firstItem="DIl-vD-ZJX" firstAttribute="top" secondItem="J4s-km-Enb" secondAttribute="bottom" id="7N2-89-GNY"/>
+                                                                                            <constraint firstItem="J4s-km-Enb" firstAttribute="top" secondItem="agd-QZ-Gud" secondAttribute="top" constant="8" id="CVv-N3-ZFW"/>
+                                                                                            <constraint firstItem="J4s-km-Enb" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Ob0-yE-jp1"/>
+                                                                                            <constraint firstAttribute="width" constant="140" id="RDP-EK-ReF"/>
+                                                                                            <constraint firstItem="DIl-vD-ZJX" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="W0O-ri-Bhs"/>
+                                                                                            <constraint firstItem="mlt-nD-aji" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Y7t-t9-yk2"/>
+                                                                                            <constraint firstAttribute="height" constant="180" id="a72-Yg-e2w"/>
+                                                                                            <constraint firstItem="mlt-nD-aji" firstAttribute="top" secondItem="DIl-vD-ZJX" secondAttribute="bottom" constant="12" id="i10-XO-0N5"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="mlt-nD-aji" secondAttribute="trailing" constant="8" id="iZ2-Ai-WFd"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="J4s-km-Enb" secondAttribute="trailing" constant="8" id="t1a-dt-ujZ"/>
+                                                                                        </constraints>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYZ-dJ-iUN" userLabel="Halloween Resouce Card View">
+                                                                                        <rect key="frame" x="456" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_diabetes_basics" translatesAutoresizingMaskIntoConstraints="NO" id="Xub-NN-tXb">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondaryMeadowGreen100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="140" id="9ba-dP-wdR"/>
+                                                                                            <constraint firstAttribute="height" constant="180" id="USn-pl-15O"/>
+                                                                                            <constraint firstItem="Xub-NN-tXb" firstAttribute="top" secondItem="VYZ-dJ-iUN" secondAttribute="top" id="eyh-eC-vyc"/>
+                                                                                            <constraint firstItem="Xub-NN-tXb" firstAttribute="leading" secondItem="VYZ-dJ-iUN" secondAttribute="leading" id="imn-bx-onU"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="Xub-NN-tXb" secondAttribute="bottom" id="kfM-Cj-cOh"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="Xub-NN-tXb" secondAttribute="trailing" id="vIw-lk-BbX"/>
+                                                                                        </constraints>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La2-ot-BAM" userLabel="Halloween Resouce Card View">
+                                                                                        <rect key="frame" x="608" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_nutrition_and_carb_counting" translatesAutoresizingMaskIntoConstraints="NO" id="NaN-fM-TYr">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondaryMeadowGreen100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="180" id="5Rd-Gh-nMs"/>
+                                                                                            <constraint firstAttribute="width" constant="140" id="GUf-WO-SdP"/>
+                                                                                            <constraint firstItem="NaN-fM-TYr" firstAttribute="leading" secondItem="La2-ot-BAM" secondAttribute="leading" id="L1t-ge-Sas"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="NaN-fM-TYr" secondAttribute="bottom" id="dlY-jT-I8Y"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="NaN-fM-TYr" secondAttribute="trailing" id="gR8-Nf-Waa"/>
+                                                                                            <constraint firstItem="NaN-fM-TYr" firstAttribute="top" secondItem="La2-ot-BAM" secondAttribute="top" id="yhg-f0-FtA"/>
+                                                                                        </constraints>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjG-JO-0DS" userLabel="Halloween Resouce Card View">
+                                                                                        <rect key="frame" x="760" y="0.0" width="140" height="180"/>
+                                                                                        <subviews>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_diabetes_management" translatesAutoresizingMaskIntoConstraints="NO" id="qYg-x1-iVA">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                                            </imageView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" name="secondaryMeadowGreen100"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="qYg-x1-iVA" firstAttribute="top" secondItem="jjG-JO-0DS" secondAttribute="top" id="B7p-aP-foy"/>
+                                                                                            <constraint firstAttribute="height" constant="180" id="IyA-PU-htU"/>
+                                                                                            <constraint firstAttribute="width" constant="140" id="KgS-cp-RBs"/>
+                                                                                            <constraint firstItem="qYg-x1-iVA" firstAttribute="leading" secondItem="jjG-JO-0DS" secondAttribute="leading" id="Sr2-F4-W9o"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="qYg-x1-iVA" secondAttribute="trailing" id="eSh-Z5-Bh6"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="qYg-x1-iVA" secondAttribute="bottom" id="kRf-39-aif"/>
+                                                                                        </constraints>
+                                                                                    </view>
                                                                                 </subviews>
-                                                                                <color key="backgroundColor" name="secondaryMeadowGreen100"/>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="Zxq-qD-vIg" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="4RG-fq-ZeM"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="2XY-ZE-QYu" secondAttribute="trailing" constant="8" id="8xG-hM-Inj"/>
-                                                                                    <constraint firstItem="JB8-O5-cm5" firstAttribute="top" secondItem="g5a-EM-bgg" secondAttribute="top" constant="8" id="HXB-yK-IaC"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="Zxq-qD-vIg" secondAttribute="trailing" constant="8" id="I0k-l9-mSE"/>
-                                                                                    <constraint firstItem="2XY-ZE-QYu" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="Ito-dC-pfe"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="2XY-ZE-QYu" secondAttribute="bottom" constant="-4" id="LMe-Zh-idt"/>
-                                                                                    <constraint firstItem="2XY-ZE-QYu" firstAttribute="top" secondItem="Zxq-qD-vIg" secondAttribute="bottom" constant="12" id="QXM-QT-RDd"/>
-                                                                                    <constraint firstAttribute="width" constant="140" id="UqS-nW-zcK"/>
-                                                                                    <constraint firstItem="Zxq-qD-vIg" firstAttribute="top" secondItem="JB8-O5-cm5" secondAttribute="bottom" id="Y6z-yv-s2r"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="JB8-O5-cm5" secondAttribute="trailing" constant="8" id="bKU-zL-VtN"/>
-                                                                                    <constraint firstAttribute="height" constant="180" id="dwj-fn-LKg"/>
-                                                                                    <constraint firstItem="JB8-O5-cm5" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="leading" constant="8" id="l5m-Mi-iQm"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuN-JU-7lD" userLabel="Resouce Card View">
-                                                                                <rect key="frame" x="171" y="0.0" width="140" height="180"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Nutrition and " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vva-PV-0cP">
-                                                                                        <rect key="frame" x="8" y="8" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondarySunsetOrange300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carb Counting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6e-Yq-UOv">
-                                                                                        <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondarySunsetOrange300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="gTi-4w-diV">
-                                                                                        <rect key="frame" x="8" y="59" width="124" height="125"/>
-                                                                                    </imageView>
-                                                                                </subviews>
-                                                                                <color key="backgroundColor" name="secondarySunsetOrange100"/>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="gTi-4w-diV" firstAttribute="top" secondItem="t6e-Yq-UOv" secondAttribute="bottom" constant="12" id="3M2-05-DMu"/>
-                                                                                    <constraint firstItem="Vva-PV-0cP" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="742-64-foO"/>
-                                                                                    <constraint firstItem="Vva-PV-0cP" firstAttribute="top" secondItem="uuN-JU-7lD" secondAttribute="top" constant="8" id="BQJ-qU-iBH"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="Vva-PV-0cP" secondAttribute="trailing" constant="8" id="Hz0-Ga-PqB"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="t6e-Yq-UOv" secondAttribute="trailing" constant="8" id="JCy-ps-uOu"/>
-                                                                                    <constraint firstItem="t6e-Yq-UOv" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="ZqJ-Ex-kSt"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="gTi-4w-diV" secondAttribute="trailing" constant="8" id="gpw-MZ-NWM"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="gTi-4w-diV" secondAttribute="bottom" constant="-4" id="grb-lx-ot4"/>
-                                                                                    <constraint firstAttribute="height" constant="180" id="jOw-3m-tG1"/>
-                                                                                    <constraint firstItem="gTi-4w-diV" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="leading" constant="8" id="lEB-1b-CtY"/>
-                                                                                    <constraint firstItem="t6e-Yq-UOv" firstAttribute="top" secondItem="Vva-PV-0cP" secondAttribute="bottom" id="sfl-Kn-RQ2"/>
-                                                                                    <constraint firstAttribute="width" constant="140" id="uim-h1-AuD"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agd-QZ-Gud" userLabel="Resouce Card View">
-                                                                                <rect key="frame" x="323" y="0.0" width="140" height="180"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Diabetes Self" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4s-km-Enb">
-                                                                                        <rect key="frame" x="8" y="8" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondaryRoyalPurple300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIl-vD-ZJX">
-                                                                                        <rect key="frame" x="8" y="27.5" width="124" height="19.5"/>
-                                                                                        <color key="tintColor" name="secondaryMeadowGreen300"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="14"/>
-                                                                                        <color key="textColor" name="secondaryRoyalPurple300"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="hope_clock" translatesAutoresizingMaskIntoConstraints="NO" id="mlt-nD-aji">
-                                                                                        <rect key="frame" x="8" y="59" width="124" height="125"/>
-                                                                                    </imageView>
-                                                                                </subviews>
-                                                                                <color key="backgroundColor" name="secondaryRoyalPurple100"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="bottom" secondItem="mlt-nD-aji" secondAttribute="bottom" constant="-4" id="0Fq-Z3-pot"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="DIl-vD-ZJX" secondAttribute="trailing" constant="8" id="0y4-ms-I3p"/>
-                                                                                    <constraint firstItem="DIl-vD-ZJX" firstAttribute="top" secondItem="J4s-km-Enb" secondAttribute="bottom" id="7N2-89-GNY"/>
-                                                                                    <constraint firstItem="J4s-km-Enb" firstAttribute="top" secondItem="agd-QZ-Gud" secondAttribute="top" constant="8" id="CVv-N3-ZFW"/>
-                                                                                    <constraint firstItem="J4s-km-Enb" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Ob0-yE-jp1"/>
-                                                                                    <constraint firstAttribute="width" constant="140" id="RDP-EK-ReF"/>
-                                                                                    <constraint firstItem="DIl-vD-ZJX" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="W0O-ri-Bhs"/>
-                                                                                    <constraint firstItem="mlt-nD-aji" firstAttribute="leading" secondItem="agd-QZ-Gud" secondAttribute="leading" constant="8" id="Y7t-t9-yk2"/>
-                                                                                    <constraint firstAttribute="height" constant="180" id="a72-Yg-e2w"/>
-                                                                                    <constraint firstItem="mlt-nD-aji" firstAttribute="top" secondItem="DIl-vD-ZJX" secondAttribute="bottom" constant="12" id="i10-XO-0N5"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="mlt-nD-aji" secondAttribute="trailing" constant="8" id="iZ2-Ai-WFd"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="J4s-km-Enb" secondAttribute="trailing" constant="8" id="t1a-dt-ujZ"/>
-                                                                                </constraints>
-                                                                            </view>
+                                                                            </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="uuN-JU-7lD" firstAttribute="top" secondItem="Dix-VG-0Pp" secondAttribute="top" id="Bq7-jn-WP2"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="agd-QZ-Gud" secondAttribute="bottom" id="Jzz-ot-Met"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="g5a-EM-bgg" secondAttribute="bottom" id="K2L-7p-E9G"/>
-                                                                            <constraint firstItem="g5a-EM-bgg" firstAttribute="top" secondItem="Dix-VG-0Pp" secondAttribute="top" id="KKo-Xl-nBe"/>
-                                                                            <constraint firstItem="uuN-JU-7lD" firstAttribute="leading" secondItem="g5a-EM-bgg" secondAttribute="trailing" constant="12" id="NlN-Gw-fpS"/>
-                                                                            <constraint firstItem="agd-QZ-Gud" firstAttribute="top" secondItem="Dix-VG-0Pp" secondAttribute="top" id="SPP-bh-JTT"/>
-                                                                            <constraint firstItem="agd-QZ-Gud" firstAttribute="leading" secondItem="uuN-JU-7lD" secondAttribute="trailing" constant="12" id="aQv-4u-Ba1"/>
-                                                                            <constraint firstAttribute="width" constant="483" id="uYT-kD-qta"/>
-                                                                            <constraint firstItem="g5a-EM-bgg" firstAttribute="leading" secondItem="Dix-VG-0Pp" secondAttribute="leading" constant="19" id="v96-bh-rrv"/>
+                                                                            <constraint firstItem="cGt-Hs-u2C" firstAttribute="leading" secondItem="Dix-VG-0Pp" secondAttribute="leading" constant="19" id="G5J-Ct-9UD"/>
+                                                                            <constraint firstItem="cGt-Hs-u2C" firstAttribute="top" secondItem="Dix-VG-0Pp" secondAttribute="top" id="c0d-ux-XQz"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="cGt-Hs-u2C" secondAttribute="bottom" id="cOE-xt-SPh"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="cGt-Hs-u2C" secondAttribute="trailing" constant="19" id="nNS-k4-uYm"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -2143,7 +2226,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db0-ii-KXm" userLabel="Know Your Carbs Main View">
-                                                        <rect key="frame" x="0.0" y="996.5" width="375" height="173"/>
+                                                        <rect key="frame" x="0.0" y="1245" width="375" height="173"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPR-KJ-tc6" userLabel="Know Your Carbs View">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="173"/>
@@ -2232,8 +2315,36 @@ Self-Management</string>
                                                             <constraint firstItem="UPR-KJ-tc6" firstAttribute="top" secondItem="db0-ii-KXm" secondAttribute="top" id="paL-yo-Msg"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBf-UA-rEL" userLabel="Halloween Know Your Carbs Main View">
+                                                        <rect key="frame" x="0.0" y="1442" width="375" height="173"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZD-Uz-Dax" userLabel="Know Your Carbs View">
+                                                                <rect key="frame" x="16" y="0.0" width="343" height="173"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_know_your_carbs" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-7b-xfx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="173"/>
+                                                                        <color key="tintColor" name="secondarySunsetOrange300"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="nWM-7b-xfx" firstAttribute="leading" secondItem="jZD-Uz-Dax" secondAttribute="leading" id="eD1-qR-fKj"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="nWM-7b-xfx" secondAttribute="bottom" id="mAS-82-ybW"/>
+                                                                    <constraint firstItem="nWM-7b-xfx" firstAttribute="top" secondItem="jZD-Uz-Dax" secondAttribute="top" id="p9x-Ga-Vzj"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nWM-7b-xfx" secondAttribute="trailing" id="vKW-Pn-WiF"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="jZD-Uz-Dax" firstAttribute="top" secondItem="rBf-UA-rEL" secondAttribute="top" id="fFD-mb-Vyq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="jZD-Uz-Dax" secondAttribute="trailing" constant="16" id="uwX-ag-bsp"/>
+                                                            <constraint firstItem="jZD-Uz-Dax" firstAttribute="leading" secondItem="rBf-UA-rEL" secondAttribute="leading" constant="16" id="vMg-qm-XHB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="jZD-Uz-Dax" secondAttribute="bottom" id="w9F-he-yfy"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a73-kv-LBs" userLabel="Medical References View">
-                                                        <rect key="frame" x="0.0" y="1193.5" width="375" height="28"/>
+                                                        <rect key="frame" x="0.0" y="1639" width="375" height="28"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tl-RK-WaE">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2309,6 +2420,14 @@ Self-Management</string>
                         <outlet property="getHelpButton" destination="5xL-XH-zFX" id="uh8-jM-HJi"/>
                         <outlet property="getHelpView" destination="Hy1-qi-WLr" id="n50-iZ-wgI"/>
                         <outlet property="getHelpViewImage" destination="6Av-nn-Oit" id="Vqb-FG-GtM"/>
+                        <outlet property="halloweenDiabetesBasicsResourceCard" destination="VYZ-dJ-iUN" id="Hw5-Db-Rc1"/>
+                        <outlet property="halloweenDiabetesSelfManagementResourceCard" destination="jjG-JO-0DS" id="Hw7-Mg-Rc1"/>
+                        <outlet property="halloweenGetHelpView" destination="PZW-dQ-xRk" id="Hw4-Gh-Vw1"/>
+                        <outlet property="halloweenHighSugarButton" destination="SmF-CR-6hq" id="Hw3-Hs-Bt1"/>
+                        <outlet property="halloweenKnowYourCarbsView" destination="jZD-Uz-Dax" id="Hw8-Kc-Vw1"/>
+                        <outlet property="halloweenNutritionResourceCard" destination="La2-ot-BAM" id="Hw6-Nt-Rc1"/>
+                        <outlet property="halloweenMealsAndHighSugarButton" destination="uVP-4E-xw7" id="Hw1-Mh-Sg1"/>
+                        <outlet property="halloweenMealsButton" destination="mbY-QA-qjx" id="Hw2-Ml-Bt1"/>
                         <outlet property="highSugarButton" destination="5yr-9n-Doi" id="s5r-7N-U4v"/>
                         <outlet property="insulinCalculatorView" destination="31R-aQ-CLj" id="fph-FB-dkx"/>
                         <outlet property="knowYourCarbsButton" destination="pg5-Gz-vir" id="Knt-m6-HQ8"/>
@@ -2319,15 +2438,15 @@ Self-Management</string>
                         <outlet property="medicalReferencesButton" destination="Tuy-wl-2r6" id="9tz-ou-hU8"/>
                         <outlet property="medicalReferencesLable" destination="nyq-6f-B6r" id="ywe-WA-6l5"/>
                         <outlet property="nutritionResourceCard" destination="uuN-JU-7lD" id="ZNz-ZX-XZ4"/>
-                        <outletCollection property="resourceCards" destination="uuN-JU-7lD" collectionClass="NSMutableArray" id="eS2-f5-Ae7"/>
-                        <outletCollection property="resourceCards" destination="g5a-EM-bgg" collectionClass="NSMutableArray" id="tcx-7J-Ude"/>
-                        <outletCollection property="resourceCards" destination="agd-QZ-Gud" collectionClass="NSMutableArray" id="94u-Jq-Okx"/>
                         <outletCollection property="insulinButtons" destination="5yr-9n-Doi" collectionClass="NSMutableArray" id="Ahb-da-x9a"/>
                         <outletCollection property="insulinButtons" destination="R23-lN-sve" collectionClass="NSMutableArray" id="FXT-Lq-Wwz"/>
                         <outletCollection property="insulinButtons" destination="ASG-8s-BbA" collectionClass="NSMutableArray" id="Dxs-x3-vge"/>
                         <outletCollection property="insulinButtons" destination="uVP-4E-xw7" collectionClass="NSMutableArray" id="oDZ-WA-EKW"/>
                         <outletCollection property="insulinButtons" destination="mbY-QA-qjx" collectionClass="NSMutableArray" id="2fz-Th-MCo"/>
                         <outletCollection property="insulinButtons" destination="SmF-CR-6hq" collectionClass="NSMutableArray" id="xsq-ls-HRH"/>
+                        <outletCollection property="resourceCards" destination="g5a-EM-bgg" collectionClass="NSMutableArray" id="tcx-7J-Ude"/>
+                        <outletCollection property="resourceCards" destination="uuN-JU-7lD" collectionClass="NSMutableArray" id="eS2-f5-Ae7"/>
+                        <outletCollection property="resourceCards" destination="agd-QZ-Gud" collectionClass="NSMutableArray" id="94u-Jq-Okx"/>
                         <segue destination="8Ad-bW-OKf" kind="show" identifier="SegueToGetHelp" id="PGI-iE-Hc8"/>
                     </connections>
                 </viewController>
@@ -2570,7 +2689,12 @@ Self-Management</string>
         <image name="close_black" width="28" height="28"/>
         <image name="diabetes_basics_text_bubble_1" width="308" height="103"/>
         <image name="directions-icon" width="150" height="138"/>
+        <image name="halloween_diabetes_basics" width="140" height="185"/>
+        <image name="halloween_diabetes_management" width="140" height="185"/>
+        <image name="halloween_get_help" width="362" height="176"/>
         <image name="halloween_insulin_card" width="362" height="279"/>
+        <image name="halloween_know_your_carbs" width="362" height="157"/>
+        <image name="halloween_nutrition_and_carb_counting" width="140" height="185"/>
         <image name="homeFilled" width="30.5" height="30"/>
         <image name="hope_basics" width="132" height="121"/>
         <image name="hope_clock" width="132" height="121"/>
