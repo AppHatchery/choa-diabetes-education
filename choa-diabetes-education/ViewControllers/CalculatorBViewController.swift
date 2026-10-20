@@ -28,7 +28,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var step2Label: UILabel!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+
     let infoPopup = InfoPopUpViewController()
     
     var totalCarbs: Int = 0
@@ -65,11 +66,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
+        updateWillImage()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWillImage), name: .halloweenThemeDidChange, object: nil)
+
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
         config.image = UIImage(named: "edit_pencil")
@@ -160,6 +164,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     
     @objc private func editButtonTapped() {
         performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
+    }
+
+    // Swap in the Halloween Will when the theme is enabled in Remote Config
+    @objc private func updateWillImage() {
+        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_fork" : "will_calculator"
+        willImageView.image = UIImage(named: imageName)
     }
     
     private func loadStoredConstants() {

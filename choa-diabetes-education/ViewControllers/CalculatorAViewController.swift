@@ -28,7 +28,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFoodTitleLabel: UILabel!
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+
     var totalCarbs: Int = 0
     var carbRatio: Int = 0
     var insulinForHighBloodSugarBoolean = false
@@ -58,11 +59,14 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
+        updateWillImage()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWillImage), name: .halloweenThemeDidChange, object: nil)
+
         navigationController?.navigationBar.tintColor = .black
         
         var config = UIButton.Configuration.plain()
@@ -158,6 +162,12 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @objc private func editButtonTapped() {
         // Handle edit action
         performSegue(withIdentifier: "calculatorAToEditSegue", sender: nil)
+    }
+
+    // Swap in the Halloween Will when the theme is enabled in Remote Config
+    @objc private func updateWillImage() {
+        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_fork" : "will_food"
+        willImageView.image = UIImage(named: imageName)
     }
     
     private func loadStoredConstants() {

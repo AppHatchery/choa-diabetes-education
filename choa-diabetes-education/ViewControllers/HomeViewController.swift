@@ -28,6 +28,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var halloweenDiabetesSelfManagementResourceCard: UIView!
     @IBOutlet weak var halloweenKnowYourCarbsView: UIView!
 
+    // Stacks holding each theme's cards; only one theme's stacks are visible at a time
+    @IBOutlet var regularStacks: [UIStackView]!
+    @IBOutlet var halloweenStacks: [UIStackView]!
+
 	@IBOutlet var getHelpView: UIView!
     @IBOutlet weak var getHelpViewImage: UIImageView!
     @IBOutlet var getHelpButton: UIButton!
@@ -61,6 +65,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        applyTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
         
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
@@ -222,6 +229,13 @@ class HomeViewController: UIViewController {
 //        getHelpButtonConfig.baseForegroundColor = UIColor.secondaryRedColor
 //        
 //        getHelpButton.configuration = getHelpButtonConfig
+    }
+
+    // Show the Halloween or regular stacks based on the Remote Config theme
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        regularStacks.forEach { $0.isHidden = isHalloween }
+        halloweenStacks.forEach { $0.isHidden = !isHalloween }
     }
 
     private func addTapRecognizersToResourceCards() {
