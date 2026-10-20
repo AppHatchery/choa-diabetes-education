@@ -176,7 +176,8 @@ class CalculatorOnBoardingViewController: UIViewController {
             bottomView.layer.cornerRadius = 24
 
             questionLabel.text = currentQuestion.title
-            questionImage.image = UIImage(named: currentQuestion.imageName)
+            let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+            questionImage.image = UIImage(named: isHalloween ? currentQuestion.halloweenImageName : currentQuestion.imageName)
             
             // Load previously entered value if exists
             if let savedValue = collectedValues[currentQuestion] {

@@ -10,7 +10,9 @@ import UIKit
 class CalculatorOnBoardingWelcomeViewController: UIViewController {
     @IBOutlet weak var nextButton: PrimaryButton!
     @IBOutlet weak var skipButton: UIButton!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var buttonsStackView: UIStackView!
+
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
     
@@ -28,8 +30,38 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+            applyHalloweenTheme()
+        }
+    }
+
+    /// Spooky background behind a see-through nav bar, with Halloween Will (speech bubble included in the image)
+    private func applyHalloweenTheme() {
+        let backgroundImageView = UIImageView(image: UIImage(named: "halloween_bg_1"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        // Shows through the image's transparent rounded corners on tall screens
+        view.backgroundColor = .diabetesBasicsColor050
+
+        // Scoped to this screen so the rest of the stack keeps its white bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+
+        willImageView.image = UIImage(named: "halloween_will_three_quick_questions")
+        // The Halloween Will is taller than the regular one, so let it shrink rather than run into the buttons on small screens
+        willImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        willImageView.bottomAnchor.constraint(lessThanOrEqualTo: buttonsStackView.topAnchor, constant: -16).isActive = true
     }
     
     private func setupNavigationBar() {

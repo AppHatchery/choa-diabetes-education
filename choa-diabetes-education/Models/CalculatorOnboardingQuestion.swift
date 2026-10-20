@@ -42,7 +42,18 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
             return "will_correction_factor_question"
         }
     }
-    
+
+    var halloweenImageName: String {
+        switch self {
+        case .carbRatio:
+            return "halloween_will_carb_ratio_question"
+        case .targetBloodSugar:
+            return "halloween_will_target_blood_sugar_question"
+        case .correctionFactor:
+            return "halloween_will_correction_factor_question"
+        }
+    }
+
     var next: CalculatorOnboardingQuestion? {
         return CalculatorOnboardingQuestion(rawValue: self.rawValue + 1)
     }
