@@ -15,7 +15,14 @@ class CalculatorCViewController: UIViewController {
     @IBOutlet weak var insulinForBloodSugar: UILabel!
     @IBOutlet weak var totalInsulin: UILabel!
     @IBOutlet weak var animationView: LottieAnimationView!
-    
+
+    @IBOutlet weak var heroView: UIView!
+    @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var resultsCardView: UIView!
+    @IBOutlet weak var newCalculationButton: UIButton!
+    @IBOutlet weak var heroTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heroHeightConstraint: NSLayoutConstraint!
+
     var totalCarbs: Int = 0
     var bloodSugar: Int = 0
     var targetBloodSugar: Int = 0
@@ -41,9 +48,50 @@ class CalculatorCViewController: UIViewController {
         
         animationView.loopMode = .loop
         animationView.play()
-        
+
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+            applyHalloweenTheme()
+        }
+
         calculateInsulin()
         // Do any additional setup after loading the view.
+    }
+
+    /// Spooky background behind a see-through nav bar, a bigger Halloween Will
+    /// standing on the results card, and a translucent card.
+    private func applyHalloweenTheme() {
+        let backgroundImageView = UIImageView(image: UIImage(named: "halloween_bg_1"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        // Shows through the image's transparent rounded corners on tall screens
+        view.backgroundColor = .diabetesBasicsColor050
+
+        // Scoped to this screen so the rest of the stack keeps its white bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+
+        // Will replaces the confetti and grows into the top spacing, keeping the card where it was
+        animationView.stop()
+        animationView.isHidden = true
+        heroView.backgroundColor = .clear
+        heroHeightConstraint.constant += heroTopConstraint.constant
+        heroTopConstraint.constant = 0
+        willImageView.image = UIImage(named: "halloween_will_insulin")
+        willImageView.contentMode = .scaleAspectFit
+
+        resultsCardView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        resultsCardView.layer.cornerRadius = 12
+        newCalculationButton.backgroundColor = .clear
     }
     
     func calculateInsulin() {

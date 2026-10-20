@@ -399,10 +399,10 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Rq-c6A" userLabel="Error View">
                                                 <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
                                                 <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-6J-m0H">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-6J-m0H">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="16.5" id="C7T-Ml-IEf"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16.5" id="C7T-Ml-IEf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -472,7 +472,9 @@
                         <outlet property="carbLabel" destination="rdn-jQ-VZ4" id="Qj0-9T-wgq"/>
                         <outlet property="carbLine" destination="aLl-fr-CoT" id="OZO-xv-JGx"/>
                         <outlet property="carbRatioField" destination="0Xu-sr-bAo" id="8BG-u6-eue"/>
+                        <outlet property="carbRatioInfoButton" destination="0NM-NA-7gF" id="Cri-Ib-Ot1"/>
                         <outlet property="carbRatioLabel" destination="tDP-q1-SIz" id="jeR-zL-far"/>
+                        <outlet property="totalCarbsInfoButton" destination="Ie3-mA-6Fz" id="Tci-Ib-Ot1"/>
                         <outlet property="carbRatioLine" destination="ASx-0w-WBu" id="ZUz-Ip-pSo"/>
                         <outlet property="contentView" destination="AUX-3L-Ife" id="L8k-zz-3UX"/>
                         <outlet property="willImageView" destination="3ch-Yc-D4H" id="Hw9-Wf-Ia1"/>
@@ -789,7 +791,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-3M-GRB" userLabel="Error View">
                                                 <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
                                                 <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -802,7 +804,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="VDM-Ze-XZ1" secondAttribute="trailing" id="QPD-gV-xyz"/>
                                                     <constraint firstAttribute="bottom" secondItem="VDM-Ze-XZ1" secondAttribute="bottom" id="S1h-7s-EDI"/>
                                                     <constraint firstItem="VDM-Ze-XZ1" firstAttribute="leading" secondItem="5LM-3M-GRB" secondAttribute="leading" id="ivw-gQ-GBn"/>
-                                                    <constraint firstAttribute="height" constant="16.5" id="oi4-Ao-plm"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16.5" id="oi4-Ao-plm"/>
                                                     <constraint firstItem="VDM-Ze-XZ1" firstAttribute="top" secondItem="5LM-3M-GRB" secondAttribute="top" id="zTf-4A-4J1"/>
                                                 </constraints>
                                             </view>
@@ -873,6 +875,8 @@
                         <outlet property="contentView" destination="OAy-nL-hOb" id="ZWb-zf-PaF"/>
                         <outlet property="willImageView" destination="JtY-JF-Wtl" id="Hw9-Wf-Ib1"/>
                         <outlet property="correctionFactorField" destination="kp9-xv-07h" id="Pqe-i4-anf"/>
+                        <outlet property="correctionFactorInfoButton" destination="0OV-vW-dn6" id="Cfi-Ib-Ot1"/>
+                        <outlet property="targetBloodSugarInfoButton" destination="Y0z-if-pqh" id="Tbi-Ib-Ot1"/>
                         <outlet property="correctionFactorLabel" destination="VD6-CH-aav" id="eai-M2-kvV"/>
                         <outlet property="correctionFactorLine" destination="iSq-de-jOX" id="LvM-4S-H2y"/>
                         <outlet property="errorMessage" destination="VDM-Ze-XZ1" id="6mf-la-JKM"/>
@@ -1125,6 +1129,12 @@
                     <navigationItem key="navigationItem" id="WFv-WD-9du"/>
                     <connections>
                         <outlet property="animationView" destination="N2s-sE-eu2" id="vqq-GJ-mOG"/>
+                        <outlet property="heroHeightConstraint" destination="nvz-Zj-Gy2" id="Hc1-Hh-Ct1"/>
+                        <outlet property="heroTopConstraint" destination="MvF-Lb-KMe" id="Hc2-Ht-Ct1"/>
+                        <outlet property="heroView" destination="35z-8o-lTh" id="Hc3-Hv-Vw1"/>
+                        <outlet property="newCalculationButton" destination="M8e-CV-EKi" id="Hc4-Nc-Bt1"/>
+                        <outlet property="resultsCardView" destination="h4q-u7-cNn" id="Hc5-Rc-Vw1"/>
+                        <outlet property="willImageView" destination="8V9-Nf-08a" id="Hc6-Wi-Iv1"/>
                         <outlet property="insulinForBloodSugar" destination="xX3-88-LkR" id="0Tx-dO-2DY"/>
                         <outlet property="insulinForFood" destination="LDR-LU-f9x" id="gso-ev-w19"/>
                         <outlet property="totalInsulin" destination="beY-zM-Pis" id="9zd-t2-kpa"/>

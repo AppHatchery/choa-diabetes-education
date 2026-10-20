@@ -17,9 +17,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var totalCarbsField: UITextField!
     @IBOutlet weak var carbLine: UIView!
     @IBOutlet weak var carbLabel: UILabel!
+    @IBOutlet weak var totalCarbsInfoButton: UIButton!
     @IBOutlet weak var carbRatioField: UITextField!
     @IBOutlet weak var carbRatioLine: UIView!
     @IBOutlet weak var carbRatioLabel: UILabel!
+    @IBOutlet weak var carbRatioInfoButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
@@ -38,7 +40,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     let infoPopup = InfoPopUpViewController()
     
     private let constantsManager = CalculatorConstantsManager.shared
-    
+
+    /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
+    private var fieldsWithMissingValueError = Set<UITextField>()
+    private var defaultLineColors = [UIView: UIColor]()
+
     weak var resetDelegate: CalculatorResetDelegate?
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -106,7 +112,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         carbLine.layer.cornerRadius = 3
         carbRatioLine.layer.cornerRadius = 3
-        
+
+        for line in [carbLine, carbRatioLine] {
+            if let line, let color = line.backgroundColor {
+                defaultLineColors[line] = color
+            }
+        }
+
         resultsView.isHidden = true
         
         if mealsAndHighSugar {
@@ -148,10 +160,14 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         carbRatioLine.backgroundColor = .errorRedColor
         carbRatioLabel.textColor = .contentBlackColor
+        carbLine.backgroundColor = defaultLineColors[carbLine] ?? .primaryBlue
+        carbLabel.textColor = .primaryBlue
         totalCarbsField.textColor = .black
         
         resultsView.isHidden = true
-        errorMessage.isHidden = true
+        fieldsWithMissingValueError.removeAll()
+        hideErrorMessage()
+        syncInfoIcons()
     }
     
     deinit {
@@ -206,11 +222,60 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             print("none of these")
         }
         
-        errorMessage.isHidden = true
+        hideErrorMessage()
+        updateMissingValueError(for: textField)
         updateSeeResultAccessoryIfNeeded()
         //        toggleNextButton()
     }
-    
+
+    /// The error label wraps to fit its message, so clear the text too or a hidden
+    /// multi-line message would still hold its height
+    private func hideErrorMessage() {
+        errorMessage.isHidden = true
+        errorMessage.text = nil
+    }
+
+    private func missingValueErrorParts(for field: UITextField) -> (line: UIView, label: UILabel, normalLabelColor: UIColor, message: String)? {
+        switch field {
+        case totalCarbsField:
+            return (carbLine, carbLabel, .primaryBlue, "Calculator.Carbs.Number.Error".localized())
+        case carbRatioField:
+            return (carbRatioLine, carbRatioLabel, .black, "Calculator.Carbs.Ratio.Error".localized())
+        default:
+            return nil
+        }
+    }
+
+    private func showMissingValueError(for field: UITextField) {
+        guard let parts = missingValueErrorParts(for: field) else { return }
+        fieldsWithMissingValueError.insert(field)
+        toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        syncInfoIcons()
+    }
+
+    /// Clears a flagged field's error once it has a value, and brings it back if the value is deleted
+    private func updateMissingValueError(for field: UITextField) {
+        guard fieldsWithMissingValueError.contains(field),
+              let parts = missingValueErrorParts(for: field) else { return }
+
+        if (Int(field.text ?? "") ?? 0) > 0 {
+            parts.line.backgroundColor = defaultLineColors[parts.line]
+            parts.label.textColor = parts.normalLabelColor
+            if errorMessage.text == parts.message {
+                hideErrorMessage()
+            }
+        } else {
+            toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        }
+        syncInfoIcons()
+    }
+
+    /// Info icons sit beside their labels, so they follow the labels into and out of the error state
+    private func syncInfoIcons() {
+        totalCarbsInfoButton.tintColor = carbLabel.textColor
+        carbRatioInfoButton.tintColor = carbRatioLabel.textColor
+    }
+
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
         if state {
             errorLine.backgroundColor = UIColor.red
@@ -399,7 +464,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
-        
+        updateMissingValueError(for: sender)
+
         if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
         }
@@ -419,10 +485,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                 }
             } else if (totalCarbs > 0){
                 // CarbRatio is not there
-                toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
+                showMissingValueError(for: carbRatioField)
             } else if (carbRatio > 0){
                 // Carbs are not there
-                toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
+                showMissingValueError(for: totalCarbsField)
             } else {
                 // Nothing is there
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()

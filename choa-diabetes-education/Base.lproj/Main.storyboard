@@ -1626,13 +1626,13 @@ Self-Management</string>
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01N-wh-4QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1643"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1568.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="S0m-QU-P4O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1643"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1568.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Rg1-Tp-Stk" userLabel="Regular Top Stack">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="434"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-qE-a7M" userLabel="Insulin Calculator Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
@@ -1777,22 +1777,22 @@ Self-Management</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pha-na-mCD" userLabel="Get Help Main View">
-                                                                <rect key="frame" x="0.0" y="258" width="375" height="250"/>
+                                                                <rect key="frame" x="0.0" y="258" width="375" height="176"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-qi-WLr" userLabel="Get Help View">
-                                                                        <rect key="frame" x="16" y="0.0" width="343" height="250"/>
+                                                                        <rect key="frame" x="16" y="0.0" width="343" height="176"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-ax-rrc">
-                                                                                <rect key="frame" x="16" y="16" width="327" height="234"/>
+                                                                                <rect key="frame" x="16" y="16" width="327" height="160"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsure about an urgent  health concern?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMd-yk-LbY">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="113"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="39"/>
                                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNH-LZ-Sh2">
-                                                                                        <rect key="frame" x="0.0" y="113" width="327" height="121"/>
+                                                                                        <rect key="frame" x="0.0" y="39" width="327" height="121"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-Jq-Twz">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="184" height="121"/>
@@ -1865,13 +1865,13 @@ Self-Management</string>
                                                                     <constraint firstAttribute="bottom" secondItem="Hy1-qi-WLr" secondAttribute="bottom" id="NNn-V1-dpN"/>
                                                                     <constraint firstItem="Hy1-qi-WLr" firstAttribute="top" secondItem="pha-na-mCD" secondAttribute="top" id="UPV-s8-hG4"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Hy1-qi-WLr" secondAttribute="trailing" constant="16" id="UQ9-5e-BlR"/>
-                                                                    <constraint firstAttribute="height" constant="250" id="y54-iN-chp"/>
+                                                                    <constraint firstAttribute="height" constant="176" id="y54-iN-chp"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Hw1-Tp-Stk" userLabel="Halloween Top Stack">
-                                                        <rect key="frame" x="0.0" y="532" width="375" height="441"/>
+                                                        <rect key="frame" x="0.0" y="458" width="375" height="441"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1P-1p-VtN" userLabel="Halloween Insulin Calculator Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -2008,7 +2008,7 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ae9-bK-9Za" userLabel="Educational Resources View">
-                                                        <rect key="frame" x="0.0" y="997" width="375" height="224"/>
+                                                        <rect key="frame" x="0.0" y="923" width="375" height="224"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Ku-EZy">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2250,7 +2250,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Rg2-Bt-Stk" userLabel="Regular Bottom Stack">
-                                                        <rect key="frame" x="0.0" y="1245" width="375" height="173"/>
+                                                        <rect key="frame" x="0.0" y="1171" width="375" height="173"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db0-ii-KXm" userLabel="Know Your Carbs Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
@@ -2345,20 +2345,20 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Hw2-Bt-Stk" userLabel="Halloween Bottom Stack">
-                                                        <rect key="frame" x="0.0" y="1442" width="375" height="149"/>
+                                                        <rect key="frame" x="0.0" y="1368" width="375" height="148.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBf-UA-rEL" userLabel="Halloween Know Your Carbs Main View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="148.5"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZD-Uz-Dax" userLabel="Know Your Carbs View">
-                                                                        <rect key="frame" x="16" y="0.0" width="343" height="149"/>
+                                                                        <rect key="frame" x="16" y="0.0" width="343" height="148.5"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_know_your_carbs" translatesAutoresizingMaskIntoConstraints="NO" id="nWM-7b-xfx">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="149"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="148.5"/>
+                                                                                <color key="tintColor" name="secondarySunsetOrange300"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="nWM-7b-xfx" secondAttribute="height" multiplier="1086:471" id="Hk9-Ar-Cn1"/>
                                                                                 </constraints>
-                                                                                <color key="tintColor" name="secondarySunsetOrange300"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2381,7 +2381,7 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a73-kv-LBs" userLabel="Medical References View">
-                                                        <rect key="frame" x="0.0" y="1615" width="375" height="28"/>
+                                                        <rect key="frame" x="0.0" y="1540.5" width="375" height="28"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tl-RK-WaE">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>

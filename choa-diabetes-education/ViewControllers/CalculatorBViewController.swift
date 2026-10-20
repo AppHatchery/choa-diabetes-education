@@ -17,6 +17,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var correctionFactorField: UITextField!
     @IBOutlet weak var correctionFactorLine: UIView!
     @IBOutlet weak var correctionFactorLabel: UILabel!
+    @IBOutlet weak var correctionFactorInfoButton: UIButton!
+    @IBOutlet weak var targetBloodSugarInfoButton: UIButton!
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
@@ -43,7 +45,19 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     var highBloodSugarOnly = false
     
     private var isUserEditingFields = false
-    
+    private var isShowingBelowTargetWarning = false
+
+    /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
+    private var fieldsWithMissingValueError = Set<UITextField>()
+    private var defaultLineColors = [UIView: UIColor]()
+
+    /// Uses the fields' live text so it's accurate mid-edit
+    private var isBloodSugarBelowTarget: Bool {
+        let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let currentTargetValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        return currentBloodSugarValue > 0 && currentTargetValue > 0 && currentBloodSugarValue < currentTargetValue
+    }
+
     private let constantsManager = CalculatorConstantsManager.shared
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -120,7 +134,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         bloodSugarLine.layer.cornerRadius = 3
         targetBloodSugarLine.layer.cornerRadius = 3
         correctionFactorLine.layer.cornerRadius = 3
-                
+
+        for line in [bloodSugarLine, targetBloodSugarLine, correctionFactorLine] {
+            if let line, let color = line.backgroundColor {
+                defaultLineColors[line] = color
+            }
+        }
+
         resultsView.isHidden = true
         
         if highBloodSugarOnly == false {
@@ -168,7 +188,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
 
     // Swap in the Halloween Will when the theme is enabled in Remote Config
     @objc private func updateWillImage() {
-        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_fork" : "will_calculator"
+        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_insulin" : "will_calculator"
         willImageView.image = UIImage(named: imageName)
     }
     
@@ -211,12 +231,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         case 0:
             bloodSugar = Int(textField.text ?? "0") ?? 0
             print(bloodSugar)
-            if bloodSugar < constantsManager.targetBloodSugar && bloodSugar != 0 {
-                bloodSugarField.textColor = UIColor.orangeTextColor
-                insulinForHighBloodSugar.textColor = .orangeTextColor
-                bloodSugarLine.backgroundColor = .orangeTextColor
-                bloodSugarLabel.textColor = .orangeTextColor
-            } else if bloodSugar < targetBloodSugar && bloodSugar != 0 {
+            if isBloodSugarBelowTarget {
+                isShowingBelowTargetWarning = true
                 bloodSugarField.textColor = UIColor.orangeTextColor
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
@@ -244,7 +260,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             print("none of these")
         }
         
-        errorMessage.isHidden = true
+        hideErrorMessage()
+        updateMissingValueError(for: textField)
         //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
         //            nextButton.isEnabled = true
         //        } else {
@@ -254,6 +271,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         updateNextButtonState()
     }
     
+    /// The error label wraps to fit its message, so clear the text too or a hidden
+    /// multi-line message would still hold its height
+    private func hideErrorMessage() {
+        errorMessage.isHidden = true
+        errorMessage.text = nil
+    }
+
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
         if state {
             errorLine.backgroundColor = UIColor.red
@@ -347,14 +371,78 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             bloodSugar = Int(sender.text ?? "") ?? 0
         } else if sender == targetBloodSugarField {
             targetBloodSugar = Int(sender.text ?? "") ?? 0
+        } else if sender == correctionFactorField {
+            correctionFactor = Int(sender.text ?? "") ?? 0
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
         updateNextButtonState()
-        
-        if totalCarbs > 0 && carbRatio > 0 {
+        updateMissingValueError(for: sender)
+
+        if isShowingBelowTargetWarning && !isBloodSugarBelowTarget {
+            clearBelowTargetWarning()
+        } else if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
         }
+    }
+
+    private func missingValueErrorParts(for field: UITextField) -> (line: UIView, label: UILabel, normalLabelColor: UIColor, message: String)? {
+        switch field {
+        case bloodSugarField:
+            return (bloodSugarLine, bloodSugarLabel, .primaryBlue, "Calculator.BloodSugar.Number.Error".localized())
+        case targetBloodSugarField:
+            return (targetBloodSugarLine, targetBloodSugarLabel, .black, "Calculator.BloodSugar.Target.Error".localized())
+        case correctionFactorField:
+            return (correctionFactorLine, correctionFactorLabel, .black, "Calculator.BloodSugar.CF.Error".localized())
+        default:
+            return nil
+        }
+    }
+
+    private func showMissingValueError(for field: UITextField) {
+        guard let parts = missingValueErrorParts(for: field) else { return }
+        fieldsWithMissingValueError.insert(field)
+        toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        syncInfoIcons()
+    }
+
+    /// Clears a flagged field's error once it has a value, and brings it back if the value is deleted
+    private func updateMissingValueError(for field: UITextField) {
+        guard fieldsWithMissingValueError.contains(field),
+              let parts = missingValueErrorParts(for: field) else { return }
+
+        if (Int(field.text ?? "") ?? 0) > 0 {
+            parts.line.backgroundColor = defaultLineColors[parts.line]
+            parts.label.textColor = parts.normalLabelColor
+            if errorMessage.text == parts.message {
+                hideErrorMessage()
+            }
+        } else {
+            toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        }
+        syncInfoIcons()
+    }
+
+    /// Info icons sit beside their labels, so they follow the labels into and out of the error state
+    private func syncInfoIcons() {
+        correctionFactorInfoButton.tintColor = correctionFactorLabel.textColor
+        targetBloodSugarInfoButton.tintColor = targetBloodSugarLabel.textColor
+    }
+
+    /// Back to the normal state once blood sugar is no longer below target,
+    /// e.g. the target is lowered or blood sugar is raised mid-edit
+    private func clearBelowTargetWarning() {
+        isShowingBelowTargetWarning = false
+
+        bloodSugarField.textColor = .primaryBlue
+        bloodSugarLine.backgroundColor = .primaryBlue
+        bloodSugarLabel.textColor = .primaryBlue
+        insulinForHighBloodSugar.font = .nunitoBold32
+        insulinForHighBloodSugar.textColor = .primaryBlue
+
+        // Drop the warning text; recalculating shows the real dose if every field is filled
+        resultsView.isHidden = true
+        calculateFoodInsulin()
     }
     
     @IBAction func nextButton(_ sender: UIButton){
@@ -366,13 +454,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
             } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
                 // CarbRatio is not there
-                toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+                showMissingValueError(for: correctionFactorField)
             } else if (bloodSugar != 0 && correctionFactor != 0) {
                 // Target BG is not there
-                toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+                showMissingValueError(for: targetBloodSugarField)
             } else if (targetBloodSugar != 0 && correctionFactor != 0) {
                 // BG is not there
-                toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
+                showMissingValueError(for: bloodSugarField)
             } else {
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
                 errorMessage.isHidden = false
@@ -558,6 +646,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         // If current blood sugar is below target, show warning and do not calculate
         if currentBloodSugar > 0 && currentTargetBloodSugar > 0 && currentBloodSugar < currentTargetBloodSugar {
             // Show results container with warning state
+            isShowingBelowTargetWarning = true
             UIView.animate(withDuration: 0.2) {
                 self.resultsView.isHidden = false
             }

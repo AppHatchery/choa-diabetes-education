@@ -106,6 +106,8 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
 
 		insulinCalculatorView.layer.cornerRadius = 12
+		// The aspect-fill background image would otherwise paint over the rounded corners
+		insulinCalculatorView.clipsToBounds = true
 		mealsAndHighSugarButton.applyCornerRadius(12)
 
 		mealsButton.applyCornerRadius(12)
