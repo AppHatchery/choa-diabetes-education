@@ -18,6 +18,8 @@
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
 		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
+		A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */; };
+		A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */; };
 		AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */; };
 		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
@@ -219,6 +221,7 @@
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
 		CF44788F306D18E2007D2494 /* AlertPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */; };
 		CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */; };
+		CF77AA46308619A800094233 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF77AA45308619A800094233 /* RemoteConfigManager.swift */; };
 		CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
@@ -230,8 +233,6 @@
 		CFCFD05C30767A980067FBBB /* PerformFingerStickTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */; };
 		CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */; };
 		CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */; };
-		A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */; };
-		A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -283,6 +284,7 @@
 		D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */ = {isa = PBXBuildFile; fileRef = D492A89929088C9A00B98CA3 /* Irish_Grover */; };
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
 		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
+		D4A5116A2982F6F70049A8D8 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
 		D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2928B7D9D7003CCA14 /* styles.css */; };
 		D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */; };
@@ -338,6 +340,8 @@
 		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
 		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
 		945E823908D07BE6545031D5 /* AppOnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingManager.swift; sourceTree = "<group>"; };
+		A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionQueView.swift; sourceTree = "<group>"; };
+		A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeOptionQueView.xib; sourceTree = "<group>"; };
 		AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReferencesViewController.swift; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
 		CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpViewController.swift; sourceTree = "<group>"; };
 		CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF77AA45308619A800094233 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingWelcomViewController.swift; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
@@ -547,8 +552,6 @@
 		CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestView.swift; sourceTree = "<group>"; };
 		CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowBloodSugarSymptomsView.swift; sourceTree = "<group>"; };
 		CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowBloodSugarSymptomsView.xib; sourceTree = "<group>"; };
-		A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionQueView.swift; sourceTree = "<group>"; };
-		A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeOptionQueView.xib; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -655,6 +658,7 @@
 			files = (
 				B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */,
 				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
+				D4A5116A2982F6F70049A8D8 /* FirebaseRemoteConfig in Frameworks */,
 				B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +687,7 @@
 				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
 				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
+				CF77AA45308619A800094233 /* RemoteConfigManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1253,6 +1258,7 @@
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
 				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
+				D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */,
 				B4DA9DC72E98F82900C415CE /* Lottie */,
 				B40B5DA72F3BA68F0028CCB0 /* Pendo */,
 			);
@@ -1612,6 +1618,7 @@
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */,
+				CF77AA46308619A800094233 /* RemoteConfigManager.swift in Sources */,
 				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
@@ -1961,6 +1968,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
