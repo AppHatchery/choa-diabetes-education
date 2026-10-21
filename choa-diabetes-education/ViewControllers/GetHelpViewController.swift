@@ -478,7 +478,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 		case .LowBloodSugar:
 			print("Four options selected answer: \(selectedAnswer)")
-            self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
+            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
+            // TODO: Will be enabled in the next version after Halloween
+            // self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
         case .NotSure:
             self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
 			print("Four options selected answer: \(selectedAnswer)")

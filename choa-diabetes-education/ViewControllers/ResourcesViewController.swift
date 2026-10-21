@@ -40,7 +40,16 @@ class ResourcesViewController: UIViewController {
     
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        
+
+        // A resource page may have tinted the bar to match its header, so put back the white bar on return
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .whiteColor
+        appearance.shadowColor = .clear
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -143,7 +152,7 @@ class ResourcesViewController: UIViewController {
     }
     
     @objc private func didTapSnackRecipesCard() {
-        openResourcePage(named: "snack_recipes", title: "Snack recipes")
+        openResourcePage(named: "snack_recipes", title: "Snack recipes", headerColor: .nutritionAndCarbColor)
     }
     
     @objc private func didTapRaisesBloodSugarCard() {
@@ -155,7 +164,7 @@ class ResourcesViewController: UIViewController {
     }
     
     /// Pushes a webview showing the bundled html page, the same way chapter content is displayed
-    private func openResourcePage(named fileName: String, title: String) {
+    private func openResourcePage(named fileName: String, title: String, headerColor: UIColor? = nil) {
         guard Bundle.main.url(forResource: fileName, withExtension: "html") != nil else {
             print("Missing resource page: \(fileName).html")
             return
@@ -164,6 +173,7 @@ class ResourcesViewController: UIViewController {
         let resourcePageViewController = ResourcePageViewController()
         resourcePageViewController.contentURL = fileName
         resourcePageViewController.pageTitle = title
+        resourcePageViewController.headerColor = headerColor
         resourcePageViewController.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(resourcePageViewController, animated: true)
