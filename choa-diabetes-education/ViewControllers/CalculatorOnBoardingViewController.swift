@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
@@ -14,6 +15,14 @@ class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var nextButton: PrimaryButton!
     @IBOutlet weak var nextButtonBottomConstraint: NSLayoutConstraint!
+    /// Full-screen overlay that ignores touches; only used on the target blood sugar question
+    @IBOutlet weak var ghostDriftView: LottieAnimationView!
+
+    /// A ghost drifts across the target blood sugar question during Halloween
+    private var showsGhostDrift: Bool {
+        currentQuestion == .targetBloodSugar && RemoteConfigManager.shared.isHalloweenThemeEnabled
+    }
+    private var hasPlayedGhostDrift = false
 
     /// The constraint's constant with no keyboard on screen.
     private let nextButtonRestingBottomInset: CGFloat = 10
@@ -55,12 +64,33 @@ class CalculatorOnBoardingViewController: UIViewController {
         
         setupTextField()
         setupUI()
+        setupGhostDrift()
         updateQuestionTextFieldState()
         updateNextButtonState()
         observeKeyboard()
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Waits for the push to finish so the whole drift is seen, and doesn't
+        // drift again when coming back from the next question
+        if showsGhostDrift && !hasPlayedGhostDrift {
+            hasPlayedGhostDrift = true
+            ghostDriftView.play()
+        }
+    }
+
+    private func setupGhostDrift() {
+        ghostDriftView.isHidden = !showsGhostDrift
+        guard showsGhostDrift else { return }
+
+        ghostDriftView.animation = LottieAnimation.named("ghost-drift")
+        ghostDriftView.loopMode = .playOnce
+        ghostDriftView.backgroundBehavior = .pauseAndRestore
     }
 
     deinit {

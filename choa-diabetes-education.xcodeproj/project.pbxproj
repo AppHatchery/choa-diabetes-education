@@ -172,6 +172,7 @@
 		CF129C1F3088C33400E241C4 /* spider-drop.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1E3088C33400E241C4 /* spider-drop.json */; };
 		CF129C233088D26100E241C4 /* bat-flyby.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C223088D26100E241C4 /* bat-flyby.json */; };
 		CF129C253088D96500E241C4 /* falling-leaves.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C243088D96500E241C4 /* falling-leaves.json */; };
+		CF129C273088F3A900E241C4 /* ghost-drift.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C263088F3A900E241C4 /* ghost-drift.json */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -495,6 +496,7 @@
 		CF129C1E3088C33400E241C4 /* spider-drop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop.json"; sourceTree = "<group>"; };
 		CF129C223088D26100E241C4 /* bat-flyby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bat-flyby.json"; sourceTree = "<group>"; };
 		CF129C243088D96500E241C4 /* falling-leaves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves.json"; sourceTree = "<group>"; };
+		CF129C263088F3A900E241C4 /* ghost-drift.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ghost-drift.json"; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -704,9 +706,10 @@
 			isa = PBXGroup;
 			children = (
 				CF129C223088D26100E241C4 /* bat-flyby.json */,
-				CF129C243088D96500E241C4 /* falling-leaves.json */,
-				CF129C1E3088C33400E241C4 /* spider-drop.json */,
 				B48F8E6C2E98F1C700D29F1B /* confetti.json */,
+				CF129C243088D96500E241C4 /* falling-leaves.json */,
+				CF129C263088F3A900E241C4 /* ghost-drift.json */,
+				CF129C1E3088C33400E241C4 /* spider-drop.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
 				B4DBE85D2F105DE20075C7F3 /* will_calculator_standing.png in Resources */,
 				B4DBE8252F0FFEEB0075C7F3 /* 1_3_2_storage_of_insulin.html in Resources */,
+				CF129C273088F3A900E241C4 /* ghost-drift.json in Resources */,
 				B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */,
 				B4AB10B72F0E932B00F74329 /* 1_1_3_type_2_diabetes.html in Resources */,
 				B4AB10C62F0E971F00F74329 /* hope_nausea_and_vomiting.png in Resources */,

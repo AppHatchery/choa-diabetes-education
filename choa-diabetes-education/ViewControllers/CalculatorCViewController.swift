@@ -89,7 +89,6 @@ class CalculatorCViewController: UIViewController {
         willImageView.image = UIImage(named: "halloween_will_calculator_cropped")
         willImageView.contentMode = .scaleAspectFit
 
-        resultsCardView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         resultsCardView.layer.cornerRadius = 12
         newCalculationButton.backgroundColor = .clear
     }

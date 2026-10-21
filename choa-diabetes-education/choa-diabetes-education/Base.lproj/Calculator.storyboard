@@ -17,11 +17,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -793,7 +793,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="0uo-cg-T9T" secondAttribute="trailing" constant="12" id="brI-xg-XQc"/>
                                                     <constraint firstAttribute="bottom" secondItem="0uo-cg-T9T" secondAttribute="bottom" constant="12" id="cWB-os-hL6"/>
                                                     <constraint firstItem="0uo-cg-T9T" firstAttribute="leading" secondItem="ejV-h9-hQY" secondAttribute="leading" constant="12" id="gmt-ei-CaW"/>
-                                                    <constraint firstAttribute="height" constant="108" id="syc-h1-Xaj"/>
+                                                    <constraint firstItem="foj-ZT-nso" firstAttribute="width" secondItem="0uo-cg-T9T" secondAttribute="width" id="RsW-Lb-Wd1"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -933,7 +933,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="220"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="falling-leaves"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="confetti"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="8V9-Nf-08a">
@@ -2002,6 +2002,10 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_carb_ratio_question" translatesAutoresizingMaskIntoConstraints="NO" id="cL0-rQ-Qli">
                                 <rect key="frame" x="8" y="90" width="359" height="157.5"/>
                             </imageView>
+                            <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-93-Jzl" userLabel="Ghost Drift Animation View" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9yg-mK-ilm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2012,11 +2016,15 @@
                             <constraint firstItem="PhD-3p-9Qa" firstAttribute="top" secondItem="cL0-rQ-Qli" secondAttribute="bottom" id="E7i-IM-cKw"/>
                             <constraint firstItem="cL0-rQ-Qli" firstAttribute="top" secondItem="9yg-mK-ilm" secondAttribute="top" constant="16" id="MHe-fG-nDX"/>
                             <constraint firstItem="PhD-3p-9Qa" firstAttribute="trailing" secondItem="9yg-mK-ilm" secondAttribute="trailing" id="MrK-Em-TqL"/>
+                            <constraint firstItem="dH1-93-Jzl" firstAttribute="top" secondItem="n2e-hC-15Y" secondAttribute="top" id="QBB-9O-y1t"/>
                             <constraint firstItem="oW0-4J-NbR" firstAttribute="top" secondItem="n2e-hC-15Y" secondAttribute="top" id="QHc-kf-OcE"/>
                             <constraint firstItem="PhD-3p-9Qa" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" id="WV9-sQ-rRN"/>
+                            <constraint firstItem="dH1-93-Jzl" firstAttribute="bottom" secondItem="9yg-mK-ilm" secondAttribute="bottom" id="bq3-M4-kMQ"/>
                             <constraint firstItem="oW0-4J-NbR" firstAttribute="trailing" secondItem="9yg-mK-ilm" secondAttribute="trailing" id="ewE-aB-Rbp"/>
                             <constraint firstItem="oW0-4J-NbR" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" id="fdM-vQ-u9e"/>
+                            <constraint firstItem="dH1-93-Jzl" firstAttribute="leading" secondItem="9yg-mK-ilm" secondAttribute="leading" id="ksl-Is-pbN"/>
                             <constraint firstItem="9yg-mK-ilm" firstAttribute="trailing" secondItem="cL0-rQ-Qli" secondAttribute="trailing" constant="8" id="xxA-nB-c59"/>
+                            <constraint firstItem="dH1-93-Jzl" firstAttribute="trailing" secondItem="9yg-mK-ilm" secondAttribute="trailing" id="zTu-wn-vGz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xKR-sL-aFm"/>
@@ -2025,6 +2033,7 @@
                         <outlet property="nextButton" destination="5qN-bs-iCD" id="dHo-4E-ISZ"/>
                         <outlet property="nextButtonBottomConstraint" destination="PZJ-74-wkS" id="a1B-2c-Dz9"/>
                         <outlet property="questionImage" destination="cL0-rQ-Qli" id="eHG-6X-CFr"/>
+                        <outlet property="ghostDriftView" destination="dH1-93-Jzl" id="GhD-Lt-0a1"/>
                         <outlet property="questionLabel" destination="4Ic-9d-CMK" id="kfI-qy-i5Q"/>
                         <outlet property="questionTextField" destination="1gC-Td-1xZ" id="GWi-3f-Wjb"/>
                     </connections>

@@ -13,6 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    /// Temporarily off so every launch goes straight to the main app; set back to true to bring onboarding back
+    private let isAppOnboardingEnabled = false
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -22,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // The scene launches from the AppOnboarding storyboard; skip straight to
         // the main app once the user has already been through onboarding.
-        if AppOnboardingManager.shared.hasCompletedOnboarding {
+        if !isAppOnboardingEnabled || AppOnboardingManager.shared.hasCompletedOnboarding {
             window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
 
             // A tapped notification should open its screen straight away, so it skips the intro
