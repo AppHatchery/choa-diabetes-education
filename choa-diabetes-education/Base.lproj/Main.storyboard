@@ -2542,22 +2542,14 @@ Self-Management</string>
                                     <constraint firstAttribute="trailing" secondItem="01N-wh-4QW" secondAttribute="trailing" id="vNl-Xl-Mmp"/>
                                 </constraints>
                             </scrollView>
-                            <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ6-1p-12p" userLabel="Falling Leaves View" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fpi-Xq-p7T"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="bottom" secondItem="Fpi-Xq-p7T" secondAttribute="bottom" id="3Fj-2e-JtI"/>
-                            <constraint firstItem="xJ6-1p-12p" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="6kF-Zp-Ed1"/>
-                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="trailing" secondItem="xJ6-1p-12p" secondAttribute="trailing" id="8tp-eX-0IO"/>
                             <constraint firstItem="01N-wh-4QW" firstAttribute="width" secondItem="gje-YZ-Nnv" secondAttribute="width" multiplier="0.963636" constant="13.636499999999955" id="E23-pD-4ln"/>
-                            <constraint firstItem="xJ6-1p-12p" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="HhJ-Cz-0hY"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="ZEE-nC-kh3"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="trailing" secondItem="Fpi-Xq-p7T" secondAttribute="trailing" id="e4N-Tz-hBX"/>
-                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="bottom" secondItem="xJ6-1p-12p" secondAttribute="bottom" id="gsX-T4-Apz"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="nsa-qD-ObC"/>
                         </constraints>
                     </view>
@@ -2569,7 +2561,6 @@ Self-Management</string>
                         <outlet property="diabetesBasicsResourceCard" destination="g5a-EM-bgg" id="wXM-CY-6sp"/>
                         <outlet property="diabetesSelfManagementResourceCard" destination="agd-QZ-Gud" id="SSS-Pj-lDl"/>
                         <outlet property="educationalResourcesLabel" destination="Lq8-b0-kda" id="V2E-kj-iar"/>
-                        <outlet property="fallingLeavesView" destination="xJ6-1p-12p" id="FLv-Lt-0a1"/>
                         <outlet property="getHelpButton" destination="5xL-XH-zFX" id="uh8-jM-HJi"/>
                         <outlet property="getHelpView" destination="Hy1-qi-WLr" id="n50-iZ-wgI"/>
                         <outlet property="getHelpViewImage" destination="6Av-nn-Oit" id="Vqb-FG-GtM"/>

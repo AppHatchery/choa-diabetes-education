@@ -171,6 +171,7 @@
 		CF129C1D3088BDAD00E241C4 /* halloween_launch.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */; };
 		CF129C1F3088C33400E241C4 /* spider-drop.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1E3088C33400E241C4 /* spider-drop.json */; };
 		CF129C233088D26100E241C4 /* bat-flyby.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C223088D26100E241C4 /* bat-flyby.json */; };
+		CF129C253088D96500E241C4 /* falling-leaves.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C243088D96500E241C4 /* falling-leaves.json */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -230,7 +231,6 @@
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
 		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
 		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
-		CFA797F43088B27A008F0D27 /* falling-leaves.json in Resources */ = {isa = PBXBuildFile; fileRef = CFA797F33088B27A008F0D27 /* falling-leaves.json */; };
 		CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */; };
 		CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */; };
 		CFCFD05830767A2B0067FBBB /* PerformFingerStickTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */; };
@@ -494,6 +494,7 @@
 		CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = halloween_launch.mp4; sourceTree = "<group>"; };
 		CF129C1E3088C33400E241C4 /* spider-drop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop.json"; sourceTree = "<group>"; };
 		CF129C223088D26100E241C4 /* bat-flyby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bat-flyby.json"; sourceTree = "<group>"; };
+		CF129C243088D96500E241C4 /* falling-leaves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves.json"; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -553,7 +554,6 @@
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
-		CFA797F33088B27A008F0D27 /* falling-leaves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves.json"; sourceTree = "<group>"; };
 		CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingViewController.swift; sourceTree = "<group>"; };
 		CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppOnboarding.storyboard; sourceTree = "<group>"; };
 		CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformFingerStickTestView.xib; sourceTree = "<group>"; };
@@ -704,7 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				CF129C223088D26100E241C4 /* bat-flyby.json */,
-				CFA797F33088B27A008F0D27 /* falling-leaves.json */,
+				CF129C243088D96500E241C4 /* falling-leaves.json */,
 				CF129C1E3088C33400E241C4 /* spider-drop.json */,
 				B48F8E6C2E98F1C700D29F1B /* confetti.json */,
 			);
@@ -1502,6 +1502,7 @@
 				CF1408E9304052AD0002FD8A /* corn.png in Resources */,
 				CF1408EA304052AD0002FD8A /* olives.png in Resources */,
 				CF1408EB304052AD0002FD8A /* pasta.png in Resources */,
+				CF129C253088D96500E241C4 /* falling-leaves.json in Resources */,
 				CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */,
 				CF1408EC304052AD0002FD8A /* cereal.png in Resources */,
 				CF1408ED304052AD0002FD8A /* cheese.png in Resources */,
@@ -1516,7 +1517,6 @@
 				CF1408F6304052AD0002FD8A /* beef.png in Resources */,
 				CF1408F7304052AD0002FD8A /* mayonnaise.png in Resources */,
 				CF1408F8304052AD0002FD8A /* cream_cheese.png in Resources */,
-				CFA797F43088B27A008F0D27 /* falling-leaves.json in Resources */,
 				CF1408F9304052AD0002FD8A /* salad_dressing.png in Resources */,
 				CF1408FA304052AD0002FD8A /* candy.png in Resources */,
 				CF1408FB304052AD0002FD8A /* starch_grains.png in Resources */,

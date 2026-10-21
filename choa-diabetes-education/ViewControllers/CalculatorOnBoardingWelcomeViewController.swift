@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class CalculatorOnBoardingWelcomeViewController: UIViewController {
     @IBOutlet weak var nextButton: PrimaryButton!
@@ -51,6 +52,25 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
         ])
         // Shows through the image's transparent rounded corners on tall screens
         view.backgroundColor = .diabetesBasicsColor050
+
+        // Leaves fall over the background but behind Will and the buttons
+        let fallingLeavesView = LottieAnimationView(name: "falling-leaves")
+        fallingLeavesView.contentMode = .scaleAspectFill
+        fallingLeavesView.loopMode = .playOnce
+        fallingLeavesView.backgroundBehavior = .pauseAndRestore
+        fallingLeavesView.isUserInteractionEnabled = false
+        fallingLeavesView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.insertSubview(fallingLeavesView, aboveSubview: buttonsStackView)
+        
+        NSLayoutConstraint.activate([
+            fallingLeavesView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingLeavesView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingLeavesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingLeavesView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        fallingLeavesView.play()
 
         // Scoped to this screen so the rest of the stack keeps its white bar
         let appearance = UINavigationBarAppearance()

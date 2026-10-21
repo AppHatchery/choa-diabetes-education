@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Lottie
 
 class HomeViewController: UIViewController {
     
@@ -28,9 +27,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var halloweenNutritionResourceCard: UIView!
     @IBOutlet weak var halloweenDiabetesSelfManagementResourceCard: UIView!
     @IBOutlet weak var halloweenKnowYourCarbsView: UIView!
-
-    // Falling leaves overlay drawn above the cards; it ignores touches so the cards stay tappable
-    @IBOutlet weak var fallingLeavesView: LottieAnimationView!
 
     // Stacks holding each theme's cards; only one theme's stacks are visible at a time
     @IBOutlet var regularStacks: [UIStackView]!
@@ -69,10 +65,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fallingLeavesView.animation = LottieAnimation.named("falling-leaves")
-        fallingLeavesView.loopMode = .loop
-        fallingLeavesView.backgroundBehavior = .pauseAndRestore
 
         applyTheme()
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
@@ -246,13 +238,6 @@ class HomeViewController: UIViewController {
         let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
         regularStacks.forEach { $0.isHidden = isHalloween }
         halloweenStacks.forEach { $0.isHidden = !isHalloween }
-
-        fallingLeavesView.isHidden = !isHalloween
-        if isHalloween {
-            fallingLeavesView.play()
-        } else {
-            fallingLeavesView.stop()
-        }
     }
 
     private func addTapRecognizersToResourceCards() {
