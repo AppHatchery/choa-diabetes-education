@@ -110,6 +110,9 @@ private final class LaunchVideoView: UIView {
         let playerLayer = layer as! AVPlayerLayer
         playerLayer.player = player
         playerLayer.videoGravity = .resizeAspectFill
+
+        // Tapping skips the rest of the video with the same fade into the app
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fadeOut)))
     }
 
     required init?(coder: NSCoder) {
@@ -137,7 +140,7 @@ private final class LaunchVideoView: UIView {
         player.play()
     }
 
-    private func fadeOut() {
+    @objc private func fadeOut() {
         guard !isDismissing else { return }
         isDismissing = true
 
