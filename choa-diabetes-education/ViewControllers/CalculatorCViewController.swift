@@ -86,7 +86,7 @@ class CalculatorCViewController: UIViewController {
         heroView.backgroundColor = .clear
         heroHeightConstraint.constant += heroTopConstraint.constant
         heroTopConstraint.constant = 0
-        willImageView.image = UIImage(named: "halloween_will_insulin")
+        willImageView.image = UIImage(named: "halloween_will_calculator_cropped")
         willImageView.contentMode = .scaleAspectFit
 
         resultsCardView.backgroundColor = UIColor.white.withAlphaComponent(0.6)

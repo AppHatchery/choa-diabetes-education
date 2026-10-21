@@ -17,11 +17,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
-        </array>
-        <array key="NunitoRegular.ttf">
-            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -342,7 +342,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XzY-Gm-xIq" userLabel="Bottom Stack View">
-                                        <rect key="frame" x="20" y="400.5" width="335" height="192.5"/>
+                                        <rect key="frame" x="20" y="367" width="335" height="226"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muN-D1-fcE" userLabel="Results View">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="108"/>
@@ -397,10 +397,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdP-Rq-c6A" userLabel="Error View">
-                                                <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="118" width="335" height="50"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDa-6J-m0H">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16.5" id="C7T-Ml-IEf"/>
                                                         </constraints>
@@ -419,7 +419,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKv-bL-omf" userLabel="Navigation Stack View">
-                                                <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="178" width="335" height="48"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCs-1y-0RM">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
@@ -474,10 +474,8 @@
                         <outlet property="carbRatioField" destination="0Xu-sr-bAo" id="8BG-u6-eue"/>
                         <outlet property="carbRatioInfoButton" destination="0NM-NA-7gF" id="Cri-Ib-Ot1"/>
                         <outlet property="carbRatioLabel" destination="tDP-q1-SIz" id="jeR-zL-far"/>
-                        <outlet property="totalCarbsInfoButton" destination="Ie3-mA-6Fz" id="Tci-Ib-Ot1"/>
                         <outlet property="carbRatioLine" destination="ASx-0w-WBu" id="ZUz-Ip-pSo"/>
                         <outlet property="contentView" destination="AUX-3L-Ife" id="L8k-zz-3UX"/>
-                        <outlet property="willImageView" destination="3ch-Yc-D4H" id="Hw9-Wf-Ia1"/>
                         <outlet property="errorMessage" destination="hDa-6J-m0H" id="NY3-o7-PQQ"/>
                         <outlet property="insulinForFood" destination="cDg-1J-agr" id="Wof-NM-BsF"/>
                         <outlet property="insulinForFoodTitleLabel" destination="K0m-0W-92g" id="xnr-c1-5EH"/>
@@ -485,6 +483,8 @@
                         <outlet property="resultsView" destination="muN-D1-fcE" id="zex-l7-Y2l"/>
                         <outlet property="step1Label" destination="777-f9-pJw" id="ZHt-LH-y0j"/>
                         <outlet property="totalCarbsField" destination="kKr-Jy-xTq" id="TBF-hF-fSM"/>
+                        <outlet property="totalCarbsInfoButton" destination="Ie3-mA-6Fz" id="Tci-Ib-Ot1"/>
+                        <outlet property="willImageView" destination="3ch-Yc-D4H" id="Hw9-Wf-Ia1"/>
                         <outletCollection property="textFieldCollection" destination="kKr-Jy-xTq" collectionClass="NSMutableArray" id="F9y-ZB-H4c"/>
                         <outletCollection property="textFieldCollection" destination="0Xu-sr-bAo" collectionClass="NSMutableArray" id="JD2-TC-TO5"/>
                         <segue destination="l7g-rs-uOg" kind="show" identifier="SegueToCalculatorBViewController" id="v97-e6-biO"/>
@@ -733,7 +733,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
-                                        <rect key="frame" x="20" y="400.5" width="335" height="192.5"/>
+                                        <rect key="frame" x="20" y="367" width="335" height="226"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejV-h9-hQY" userLabel="Results View">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="108"/>
@@ -789,10 +789,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LM-3M-GRB" userLabel="Error View">
-                                                <rect key="frame" x="0.0" y="118" width="335" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="118" width="335" height="50"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Carbs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-Ze-XZ1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -809,7 +809,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
-                                                <rect key="frame" x="0.0" y="144.5" width="335" height="48"/>
+                                                <rect key="frame" x="0.0" y="178" width="335" height="48"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
@@ -873,10 +873,8 @@
                         <outlet property="bloodSugarLabel" destination="OGr-Ab-4uo" id="uTu-gy-XqY"/>
                         <outlet property="bloodSugarLine" destination="ZJI-IW-mMV" id="LHz-yX-5QN"/>
                         <outlet property="contentView" destination="OAy-nL-hOb" id="ZWb-zf-PaF"/>
-                        <outlet property="willImageView" destination="JtY-JF-Wtl" id="Hw9-Wf-Ib1"/>
                         <outlet property="correctionFactorField" destination="kp9-xv-07h" id="Pqe-i4-anf"/>
                         <outlet property="correctionFactorInfoButton" destination="0OV-vW-dn6" id="Cfi-Ib-Ot1"/>
-                        <outlet property="targetBloodSugarInfoButton" destination="Y0z-if-pqh" id="Tbi-Ib-Ot1"/>
                         <outlet property="correctionFactorLabel" destination="VD6-CH-aav" id="eai-M2-kvV"/>
                         <outlet property="correctionFactorLine" destination="iSq-de-jOX" id="LvM-4S-H2y"/>
                         <outlet property="errorMessage" destination="VDM-Ze-XZ1" id="6mf-la-JKM"/>
@@ -887,8 +885,10 @@
                         <outlet property="resultsView" destination="ejV-h9-hQY" id="uDs-kh-ANO"/>
                         <outlet property="step2Label" destination="NOw-x8-fnF" id="y0u-aE-5PA"/>
                         <outlet property="targetBloodSugarField" destination="BER-a7-Jr6" id="rnh-9Z-mPa"/>
+                        <outlet property="targetBloodSugarInfoButton" destination="Y0z-if-pqh" id="Tbi-Ib-Ot1"/>
                         <outlet property="targetBloodSugarLabel" destination="Cgv-xe-5BO" id="NyI-4b-eWy"/>
                         <outlet property="targetBloodSugarLine" destination="Zku-X7-GJx" id="h9B-4t-KNf"/>
+                        <outlet property="willImageView" destination="JtY-JF-Wtl" id="Hw9-Wf-Ib1"/>
                         <outletCollection property="textFieldCollection" destination="BER-a7-Jr6" collectionClass="NSMutableArray" id="p0O-9y-KKT"/>
                         <outletCollection property="textFieldCollection" destination="bTa-hb-Glq" collectionClass="NSMutableArray" id="7KF-qr-w30"/>
                         <outletCollection property="textFieldCollection" destination="kp9-xv-07h" collectionClass="NSMutableArray" id="sTf-Pm-A2k"/>
@@ -915,7 +915,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="220"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="confetti"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="typeu_halloween_layers"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="will_nutrition" translatesAutoresizingMaskIntoConstraints="NO" id="8V9-Nf-08a">
@@ -1132,12 +1132,12 @@
                         <outlet property="heroHeightConstraint" destination="nvz-Zj-Gy2" id="Hc1-Hh-Ct1"/>
                         <outlet property="heroTopConstraint" destination="MvF-Lb-KMe" id="Hc2-Ht-Ct1"/>
                         <outlet property="heroView" destination="35z-8o-lTh" id="Hc3-Hv-Vw1"/>
-                        <outlet property="newCalculationButton" destination="M8e-CV-EKi" id="Hc4-Nc-Bt1"/>
-                        <outlet property="resultsCardView" destination="h4q-u7-cNn" id="Hc5-Rc-Vw1"/>
-                        <outlet property="willImageView" destination="8V9-Nf-08a" id="Hc6-Wi-Iv1"/>
                         <outlet property="insulinForBloodSugar" destination="xX3-88-LkR" id="0Tx-dO-2DY"/>
                         <outlet property="insulinForFood" destination="LDR-LU-f9x" id="gso-ev-w19"/>
+                        <outlet property="newCalculationButton" destination="M8e-CV-EKi" id="Hc4-Nc-Bt1"/>
+                        <outlet property="resultsCardView" destination="h4q-u7-cNn" id="Hc5-Rc-Vw1"/>
                         <outlet property="totalInsulin" destination="beY-zM-Pis" id="9zd-t2-kpa"/>
+                        <outlet property="willImageView" destination="8V9-Nf-08a" id="Hc6-Wi-Iv1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kt-83-i3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1899,9 +1899,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="aws-NG-CIL"/>
                     <connections>
+                        <outlet property="buttonsStackView" destination="rfe-m4-SX4" id="Wqb-Sv-Ot1"/>
                         <outlet property="nextButton" destination="SUX-lR-8hh" id="EIS-Kz-ccQ"/>
                         <outlet property="skipButton" destination="aXb-NA-xyn" id="Qjm-Zv-hSP"/>
-                        <outlet property="buttonsStackView" destination="rfe-m4-SX4" id="Wqb-Sv-Ot1"/>
                         <outlet property="willImageView" destination="5Wj-q3-duA" id="Wqi-Wl-Iv1"/>
                     </connections>
                 </viewController>

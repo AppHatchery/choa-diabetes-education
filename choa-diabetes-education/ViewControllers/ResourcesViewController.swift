@@ -18,7 +18,20 @@ class ResourcesViewController: UIViewController {
     @IBOutlet weak var snackRecipesView: UIView!
     @IBOutlet weak var raisesBloodSugarView: UIView!
     @IBOutlet weak var doesntRaiseBloodSugarView: UIView!
-    
+
+    @IBOutlet weak var halloweenDiabetesBasicsView: UIView!
+    @IBOutlet weak var halloweenNutritionAndCarbCountingView: UIView!
+    @IBOutlet weak var halloweenDiabetesSelfManagementView: UIView!
+
+    @IBOutlet weak var halloweenLowCarbSnacksView: UIView!
+    @IBOutlet weak var halloweenSnackRecipesView: UIView!
+    @IBOutlet weak var halloweenRaisesBloodSugarView: UIView!
+    @IBOutlet weak var halloweenDoesntRaiseBloodSugarView: UIView!
+
+    // Stacks holding each theme's cards; only one theme's stacks are visible at a time
+    @IBOutlet var regularStacks: [UIStackView]!
+    @IBOutlet var halloweenStacks: [UIStackView]!
+
         
     var chapterContent = 0
     var quizContent = 0
@@ -39,7 +52,10 @@ class ResourcesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        applyTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+
         diabetesBasicsView.layer.cornerRadius = 24
         nutritionAndCarbCountingView.layer.cornerRadius = 24
         diabetesSelfManagementView.layer.cornerRadius = 24
@@ -50,7 +66,14 @@ class ResourcesViewController: UIViewController {
         
         addTapRecognizersToResourceCards()
     }
-    
+
+    // Show the Halloween or regular stacks based on the Remote Config theme
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        regularStacks.forEach { $0.isHidden = isHalloween }
+        halloweenStacks.forEach { $0.isHidden = !isHalloween }
+    }
+
     @objc private func didTapDiabetesBasicsCard() {
         chapterContent = ContentChapter().sectionOne.count
         quizContent = ContentChapter().sectionOne.count
@@ -94,11 +117,19 @@ class ResourcesViewController: UIViewController {
     }
     
     private func addTapRecognizersToFoodAndNutritionCards() {
+        // Halloween cards route to the same handlers as their regular counterparts
         let cards: [(view: UIView, selector: Selector)] = [
             (lowCarbSnacksView, #selector(didTapLowCarbSnacksCard)),
             (snackRecipesView, #selector(didTapSnackRecipesCard)),
             (raisesBloodSugarView, #selector(didTapRaisesBloodSugarCard)),
-            (doesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard))
+            (doesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard)),
+            (halloweenDiabetesBasicsView, #selector(didTapDiabetesBasicsCard)),
+            (halloweenNutritionAndCarbCountingView, #selector(didTapNutritionCard)),
+            (halloweenDiabetesSelfManagementView, #selector(didTapManagementCard)),
+            (halloweenLowCarbSnacksView, #selector(didTapLowCarbSnacksCard)),
+            (halloweenSnackRecipesView, #selector(didTapSnackRecipesCard)),
+            (halloweenRaisesBloodSugarView, #selector(didTapRaisesBloodSugarCard)),
+            (halloweenDoesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard))
         ]
         
         cards.forEach { card in

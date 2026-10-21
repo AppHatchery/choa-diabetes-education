@@ -25,11 +25,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
-        </array>
-        <array key="NunitoRegular.ttf">
-            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -950,13 +950,13 @@
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxE-fH-2Uv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="915"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1674.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-Ot-8WR">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="895"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="1654.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="odf-6R-wow" userLabel="Basics Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="513.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="966"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beyond Basics Class Recap" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvU-gT-zUS">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
@@ -1081,10 +1081,48 @@ Self-Management</string>
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Hrb-St-k01" userLabel="Halloween Banners Stack View">
+                                                                <rect key="frame" x="0.0" y="525.5" width="335" height="440.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_banner_diabetes_basics" translatesAutoresizingMaskIntoConstraints="NO" id="Hrb-Im-001">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="139"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="Hrb-Im-001" secondAttribute="height" multiplier="1086:450" id="Hrb-Ar-001"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="24"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_banner_nutrition_and_carb_counting" translatesAutoresizingMaskIntoConstraints="NO" id="Hrb-Im-002">
+                                                                        <rect key="frame" x="0.0" y="151" width="335" height="138.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="Hrb-Im-002" secondAttribute="height" multiplier="1086:450" id="Hrb-Ar-002"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="24"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_banner_diabetes_management" translatesAutoresizingMaskIntoConstraints="NO" id="Hrb-Im-003">
+                                                                        <rect key="frame" x="0.0" y="301.5" width="335" height="139"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="Hrb-Im-003" secondAttribute="height" multiplier="1086:450" id="Hrb-Ar-003"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="24"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="5QA-SE-Oao" userLabel="Food and Nutrition Stack View">
-                                                        <rect key="frame" x="0.0" y="533.5" width="335" height="361.5"/>
+                                                        <rect key="frame" x="0.0" y="986" width="335" height="668.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food &amp; nutrition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdj-du-f2I">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
@@ -1275,6 +1313,65 @@ Self-Management</string>
                                                                     </stackView>
                                                                 </subviews>
                                                             </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-St-k01" userLabel="Halloween Grid Stack View">
+                                                                <rect key="frame" x="0.0" y="373.5" width="335" height="295"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-St-r01">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="139.5"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_card_low_carb_snacks" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-Im-001">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="159.5" height="139.5"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="Hrg-Im-001" secondAttribute="height" multiplier="525:459" id="Hrg-Ar-001"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="12"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_card_snack_recipes" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-Im-002">
+                                                                                <rect key="frame" x="175.5" y="0.0" width="159.5" height="139.5"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="Hrg-Im-002" secondAttribute="height" multiplier="525:459" id="Hrg-Ar-002"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="12"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-St-r02">
+                                                                        <rect key="frame" x="0.0" y="155.5" width="335" height="139.5"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_card_raises_blood_sugar" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-Im-003">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="159.5" height="139.5"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="Hrg-Im-003" secondAttribute="height" multiplier="525:459" id="Hrg-Ar-003"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="12"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_card_doesnt_raise_blood_sugar" translatesAutoresizingMaskIntoConstraints="NO" id="Hrg-Im-004">
+                                                                                <rect key="frame" x="175.5" y="0.0" width="159.5" height="139.5"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="Hrg-Im-004" secondAttribute="height" multiplier="525:459" id="Hrg-Ar-004"/>
+                                                                                </constraints>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="12"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -1313,10 +1410,21 @@ Self-Management</string>
                         <outlet property="diabetesBasicsView" destination="nEc-P8-bn4" id="Q0F-qX-Hlc"/>
                         <outlet property="diabetesSelfManagementView" destination="Kjh-6Z-EOK" id="Cgp-A5-d0f"/>
                         <outlet property="doesntRaiseBloodSugarView" destination="I2X-7z-IX6" id="LP2-kh-qwk"/>
+                        <outlet property="halloweenDiabetesBasicsView" destination="Hrb-Im-001" id="Hro-Ut-001"/>
+                        <outlet property="halloweenDiabetesSelfManagementView" destination="Hrb-Im-003" id="Hro-Ut-003"/>
+                        <outlet property="halloweenDoesntRaiseBloodSugarView" destination="Hrg-Im-004" id="Hro-Ut-007"/>
+                        <outlet property="halloweenLowCarbSnacksView" destination="Hrg-Im-001" id="Hro-Ut-004"/>
+                        <outlet property="halloweenNutritionAndCarbCountingView" destination="Hrb-Im-002" id="Hro-Ut-002"/>
+                        <outlet property="halloweenRaisesBloodSugarView" destination="Hrg-Im-003" id="Hro-Ut-006"/>
+                        <outlet property="halloweenSnackRecipesView" destination="Hrg-Im-002" id="Hro-Ut-005"/>
                         <outlet property="lowCarbSnacksView" destination="0mh-6q-oD4" id="4Vr-jg-RMM"/>
                         <outlet property="nutritionAndCarbCountingView" destination="KsJ-Yr-eBu" id="4Jo-66-DlR"/>
                         <outlet property="raisesBloodSugarView" destination="FK6-nE-Dei" id="QmO-tA-MdR"/>
                         <outlet property="snackRecipesView" destination="1OU-A0-mEe" id="7rm-fy-JOS"/>
+                        <outletCollection property="regularStacks" destination="Cdc-rk-b80" collectionClass="NSMutableArray" id="Hro-Ut-008"/>
+                        <outletCollection property="regularStacks" destination="8U8-IF-Bon" collectionClass="NSMutableArray" id="Hro-Ut-009"/>
+                        <outletCollection property="halloweenStacks" destination="Hrb-St-k01" collectionClass="NSMutableArray" id="Hro-Ut-010"/>
+                        <outletCollection property="halloweenStacks" destination="Hrg-St-k01" collectionClass="NSMutableArray" id="Hro-Ut-011"/>
                         <outletCollection property="foodAndNutritionGridItems" destination="0mh-6q-oD4" collectionClass="NSMutableArray" id="6Sh-Vh-cfC"/>
                         <outletCollection property="foodAndNutritionGridItems" destination="1OU-A0-mEe" collectionClass="NSMutableArray" id="jxG-7F-I2I"/>
                         <outletCollection property="foodAndNutritionGridItems" destination="FK6-nE-Dei" collectionClass="NSMutableArray" id="Usx-MV-Bck"/>
@@ -1622,6 +1730,10 @@ Self-Management</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ6-1p-12p" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey5-Hn-OzV">
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
@@ -2439,9 +2551,13 @@ Self-Management</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="bottom" secondItem="Fpi-Xq-p7T" secondAttribute="bottom" id="3Fj-2e-JtI"/>
+                            <constraint firstItem="xJ6-1p-12p" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="6kF-Zp-Ed1"/>
+                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="trailing" secondItem="xJ6-1p-12p" secondAttribute="trailing" id="8tp-eX-0IO"/>
                             <constraint firstItem="01N-wh-4QW" firstAttribute="width" secondItem="gje-YZ-Nnv" secondAttribute="width" multiplier="0.963636" constant="13.636499999999955" id="E23-pD-4ln"/>
+                            <constraint firstItem="xJ6-1p-12p" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="HhJ-Cz-0hY"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="top" secondItem="Fpi-Xq-p7T" secondAttribute="top" id="ZEE-nC-kh3"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="trailing" secondItem="Fpi-Xq-p7T" secondAttribute="trailing" id="e4N-Tz-hBX"/>
+                            <constraint firstItem="Fpi-Xq-p7T" firstAttribute="bottom" secondItem="xJ6-1p-12p" secondAttribute="bottom" id="gsX-T4-Apz"/>
                             <constraint firstItem="Ey5-Hn-OzV" firstAttribute="leading" secondItem="Fpi-Xq-p7T" secondAttribute="leading" id="nsa-qD-ObC"/>
                         </constraints>
                     </view>
@@ -2731,6 +2847,13 @@ Self-Management</string>
         <image name="close_black" width="28" height="28"/>
         <image name="diabetes_basics_text_bubble_1" width="308" height="103"/>
         <image name="directions-icon" width="150" height="138"/>
+        <image name="halloween_banner_diabetes_basics" width="362" height="150"/>
+        <image name="halloween_banner_diabetes_management" width="362" height="150"/>
+        <image name="halloween_banner_nutrition_and_carb_counting" width="362" height="150"/>
+        <image name="halloween_card_doesnt_raise_blood_sugar" width="175" height="153"/>
+        <image name="halloween_card_low_carb_snacks" width="175" height="153"/>
+        <image name="halloween_card_raises_blood_sugar" width="175" height="153"/>
+        <image name="halloween_card_snack_recipes" width="175" height="153"/>
         <image name="halloween_diabetes_basics" width="140" height="185"/>
         <image name="halloween_diabetes_management" width="140" height="185"/>
         <image name="halloween_get_help" width="362" height="176"/>
