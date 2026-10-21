@@ -25,11 +25,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -1730,10 +1730,6 @@ Self-Management</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ6-1p-12p" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey5-Hn-OzV">
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
@@ -2546,6 +2542,10 @@ Self-Management</string>
                                     <constraint firstAttribute="trailing" secondItem="01N-wh-4QW" secondAttribute="trailing" id="vNl-Xl-Mmp"/>
                                 </constraints>
                             </scrollView>
+                            <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ6-1p-12p" userLabel="Falling Leaves View" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fpi-Xq-p7T"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2569,6 +2569,7 @@ Self-Management</string>
                         <outlet property="diabetesBasicsResourceCard" destination="g5a-EM-bgg" id="wXM-CY-6sp"/>
                         <outlet property="diabetesSelfManagementResourceCard" destination="agd-QZ-Gud" id="SSS-Pj-lDl"/>
                         <outlet property="educationalResourcesLabel" destination="Lq8-b0-kda" id="V2E-kj-iar"/>
+                        <outlet property="fallingLeavesView" destination="xJ6-1p-12p" id="FLv-Lt-0a1"/>
                         <outlet property="getHelpButton" destination="5xL-XH-zFX" id="uh8-jM-HJi"/>
                         <outlet property="getHelpView" destination="Hy1-qi-WLr" id="n50-iZ-wgI"/>
                         <outlet property="getHelpViewImage" destination="6Av-nn-Oit" id="Vqb-FG-GtM"/>

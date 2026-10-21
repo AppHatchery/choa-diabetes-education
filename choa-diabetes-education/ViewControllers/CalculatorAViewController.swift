@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import Pendo
 
 protocol CalculatorResetDelegate: AnyObject {
@@ -31,6 +32,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var spiderDropView: LottieAnimationView!
 
     var totalCarbs: Int = 0
     var carbRatio: Int = 0
@@ -65,13 +67,17 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
-        updateWillImage()
+        applyTheme()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWillImage), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+
+        spiderDropView.animation = LottieAnimation.named("spider-drop")
+        spiderDropView.loopMode = .loop
+        spiderDropView.backgroundBehavior = .pauseAndRestore
 
         navigationController?.navigationBar.tintColor = .black
         
@@ -180,10 +186,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         performSegue(withIdentifier: "calculatorAToEditSegue", sender: nil)
     }
 
-    // Swap in the Halloween Will when the theme is enabled in Remote Config
-    @objc private func updateWillImage() {
-        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_fork" : "will_food"
+    // Swap in the Halloween Will and spiders when the theme is enabled in Remote Config
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        let imageName = isHalloween ? "halloween_will_fork" : "will_food"
         willImageView.image = UIImage(named: imageName)
+
+        spiderDropView.isHidden = !isHalloween
+        if isHalloween {
+            spiderDropView.play()
+        } else {
+            spiderDropView.stop()
+        }
     }
     
     private func loadStoredConstants() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import Pendo
 
 class CalculatorBViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
@@ -31,6 +32,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var step2Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var batFlyby: LottieAnimationView!
 
     let infoPopup = InfoPopUpViewController()
     
@@ -80,13 +82,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
-        updateWillImage()
+        applyTheme()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWillImage), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+
+        batFlyby.animation = LottieAnimation.named("bat-flyby")
+        batFlyby.loopMode = .loop
+        batFlyby.backgroundBehavior = .pauseAndRestore
 
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
@@ -186,10 +192,18 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
     }
 
-    // Swap in the Halloween Will when the theme is enabled in Remote Config
-    @objc private func updateWillImage() {
-        let imageName = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "halloween_will_insulin" : "will_calculator"
+    // Swap in the Halloween Will and spiders when the theme is enabled in Remote Config
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        let imageName = isHalloween ? "halloween_will_insulin" : "will_calculator"
         willImageView.image = UIImage(named: imageName)
+
+        batFlyby.isHidden = !isHalloween
+        if isHalloween {
+            batFlyby.play()
+        } else {
+            batFlyby.stop()
+        }
     }
     
     private func loadStoredConstants() {

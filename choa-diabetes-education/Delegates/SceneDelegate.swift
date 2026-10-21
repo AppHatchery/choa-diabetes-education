@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 import Pendo
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -23,7 +24,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // the main app once the user has already been through onboarding.
         if AppOnboardingManager.shared.hasCompletedOnboarding {
             window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+
+            // A tapped notification should open its screen straight away, so it skips the intro
+            if RemoteConfigManager.shared.isHalloweenThemeEnabled && connectionOptions.notificationResponse == nil {
+                playHalloweenLaunchVideo()
+            }
         }
+    }
+
+    /// Plays the Halloween intro over the home screen, which fades in once the video ends.
+    private func playHalloweenLaunchVideo() {
+        guard let window,
+              let url = Bundle.main.url(forResource: "halloween_launch", withExtension: "mp4") else { return }
+
+        // Show the window first so the root view is installed underneath the video, not on top of it
+        window.makeKeyAndVisible()
+
+        let videoView = LaunchVideoView(url: url)
+        videoView.frame = window.bounds
+        videoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        window.addSubview(videoView)
+        videoView.play()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -66,5 +87,68 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+}
+
+/// Full-screen video laid over the window that fades away to reveal the app when it finishes.
+private final class LaunchVideoView: UIView {
+
+    override class var layerClass: AnyClass { AVPlayerLayer.self }
+
+    private let player: AVPlayer
+    private var endObserver: NSObjectProtocol?
+    private var statusObservation: NSKeyValueObservation?
+    private var isDismissing = false
+
+    init(url: URL) {
+        player = AVPlayer(url: url)
+        super.init(frame: .zero)
+
+        backgroundColor = .black
+        let playerLayer = layer as! AVPlayerLayer
+        playerLayer.player = player
+        playerLayer.videoGravity = .resizeAspectFill
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func play() {
+        // Mix with, rather than stop, whatever the user is already listening to
+        try? AVAudioSession.sharedInstance().setCategory(.ambient)
+
+        endObserver = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: .main
+        ) { [weak self] _ in
+            self?.fadeOut()
+        }
+
+        // A video that can't play shouldn't leave the user on a black screen
+        statusObservation = player.currentItem?.observe(\.status) { [weak self] item, _ in
+            guard item.status == .failed else { return }
+            DispatchQueue.main.async { self?.fadeOut() }
+        }
+
+        player.play()
+    }
+
+    private func fadeOut() {
+        guard !isDismissing else { return }
+        isDismissing = true
+
+        if let endObserver {
+            NotificationCenter.default.removeObserver(endObserver)
+        }
+        statusObservation = nil
+
+        UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut) {
+            self.alpha = 0
+        } completion: { _ in
+            self.player.pause()
+            self.removeFromSuperview()
+        }
+    }
 }
 
