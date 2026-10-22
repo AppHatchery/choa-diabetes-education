@@ -306,10 +306,10 @@ class HomeViewController: UIViewController {
         chapterName = ContentChapter().sectionTitles[sender.tag]
         chapterSubName = ContentChapter().sectionSubtitles[sender.tag]
         
-        // Halloween Style
+        // Halloween Style, only on Halloween itself and only while the Remote Config theme is on
         var dateComponents: DateComponents
         dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date())
-        if dateComponents.month == 10 && dateComponents.day == 31 {
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled && dateComponents.month == 10 && dateComponents.day == 31 {
             let scared = UIAlertAction(title: "I'm scared", style: .default) { _ in
                 self.performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
             }

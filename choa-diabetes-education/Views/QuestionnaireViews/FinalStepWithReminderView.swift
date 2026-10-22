@@ -398,12 +398,16 @@ class FinalStepWithReminderView: UIView {
             giveRecommendedDoseStackView.isHidden = true
             print("   ✅ Action: CHANGE PUMP SITE")
         } else {
-            // Default: confirm pump is secure (low/negative ketones)
+            // Default: confirm pump is secure and give the correction dose through it (low/negative ketones)
             confirmChangeDisconnectLabel.setText(
                 "Final.ConfirmPumpIsSecure.text".localized(),
                 boldPhrases: ["pump site is securely connected"]
             )
-            giveRecommendedDoseStackView.isHidden = true
+            giveRecommendedDoseStackView.isHidden = false
+            giveRecommendedDoseLabel.setText(
+                "Final.GiveRecommendedDose.text".localized(),
+                boldPhrases: ["correction dose through", "pump site"]
+            )
             print("   ✅ Action: CONFIRM PUMP SECURE")
         }
         
