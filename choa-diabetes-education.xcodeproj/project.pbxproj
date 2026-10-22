@@ -168,6 +168,11 @@
 		CF01A1B2000000000000F105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F106 /* low_carb */; };
 		CF01A1B2000000000000F107 /* snack_recipes in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F108 /* snack_recipes */; };
 		CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */; };
+		CF0A90D2308A7231001D1906 /* falling-stars.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90D0308A7231001D1906 /* falling-stars.json */; };
+		CF0A90D3308A7231001D1906 /* bats-flyby-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */; };
+		CF0A90D4308A7231001D1906 /* spider-drop-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90D1308A7231001D1906 /* spider-drop-sm.json */; };
+		CF0A90D5308A7231001D1906 /* falling-leaves-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */; };
+		CF0A9123308A88C8001D1906 /* HalloweenAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */; };
 		CF129C1D3088BDAD00E241C4 /* halloween_launch.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */; };
 		CF129C1F3088C33400E241C4 /* spider-drop.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1E3088C33400E241C4 /* spider-drop.json */; };
 		CF129C233088D26100E241C4 /* bat-flyby.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C223088D26100E241C4 /* bat-flyby.json */; };
@@ -492,6 +497,11 @@
 		CF01A1B2000000000000F106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
 		CF01A1B2000000000000F108 /* snack_recipes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snack_recipes; sourceTree = "<group>"; };
 		CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bats-flyby-sm.json"; sourceTree = "<group>"; };
+		CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves-sm.json"; sourceTree = "<group>"; };
+		CF0A90D0308A7231001D1906 /* falling-stars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-stars.json"; sourceTree = "<group>"; };
+		CF0A90D1308A7231001D1906 /* spider-drop-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop-sm.json"; sourceTree = "<group>"; };
+		CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = HalloweenAppIcon.icon; sourceTree = "<group>"; };
 		CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = halloween_launch.mp4; sourceTree = "<group>"; };
 		CF129C1E3088C33400E241C4 /* spider-drop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop.json"; sourceTree = "<group>"; };
 		CF129C223088D26100E241C4 /* bat-flyby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bat-flyby.json"; sourceTree = "<group>"; };
@@ -705,6 +715,10 @@
 		B48F8E6B2E98F18000D29F1B /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */,
+				CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */,
+				CF0A90D0308A7231001D1906 /* falling-stars.json */,
+				CF0A90D1308A7231001D1906 /* spider-drop-sm.json */,
 				CF129C223088D26100E241C4 /* bat-flyby.json */,
 				B48F8E6C2E98F1C700D29F1B /* confetti.json */,
 				CF129C243088D96500E241C4 /* falling-leaves.json */,
@@ -1026,6 +1040,7 @@
 				D48D890B289C0095001A61E2 /* plists */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
+				CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */,
 				CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
 				B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */,
@@ -1341,6 +1356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DBE82B2F1001850075C7F3 /* insulin_bottle.png in Resources */,
+				CF0A9123308A88C8001D1906 /* HalloweenAppIcon.icon in Resources */,
 				B4DBE82C2F1001850075C7F3 /* warning.png in Resources */,
 				B4DBE82D2F1001850075C7F3 /* calendar.png in Resources */,
 				B4DBE8332F1002FB0075C7F3 /* 1_3_3_injection_sites.html in Resources */,
@@ -1383,6 +1399,10 @@
 				B4DBE8712F10F3150075C7F3 /* hope_chubby_cheeks.png in Resources */,
 				B4DBE8722F10F3150075C7F3 /* hope_on_call.png in Resources */,
 				B4DBE8732F10F3150075C7F3 /* will_drinking_soda.png in Resources */,
+				CF0A90D2308A7231001D1906 /* falling-stars.json in Resources */,
+				CF0A90D3308A7231001D1906 /* bats-flyby-sm.json in Resources */,
+				CF0A90D4308A7231001D1906 /* spider-drop-sm.json in Resources */,
+				CF0A90D5308A7231001D1906 /* falling-leaves-sm.json in Resources */,
 				B4DBE8742F10F3150075C7F3 /* will_nutrition_food.png in Resources */,
 				B4DBE8752F10F3150075C7F3 /* will_taking_pill.png in Resources */,
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
@@ -1859,7 +1879,7 @@
 		D48D8905289C0045001A61E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = HalloweenAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1897,7 +1917,7 @@
 		D48D8906289C0045001A61E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = HalloweenAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

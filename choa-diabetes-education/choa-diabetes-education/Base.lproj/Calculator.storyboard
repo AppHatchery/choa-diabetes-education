@@ -444,10 +444,6 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmY-CP-Uut" userLabel="Spider Drop Animation View" customClass="LottieAnimationView" customModule="Lottie">
-                                        <rect key="frame" x="237" y="307" width="138" height="108"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -457,12 +453,8 @@
                                     <constraint firstItem="XzY-Gm-xIq" firstAttribute="leading" secondItem="AUX-3L-Ife" secondAttribute="leading" constant="20" id="GPZ-Bo-Dto"/>
                                     <constraint firstAttribute="bottom" secondItem="XzY-Gm-xIq" secondAttribute="bottom" id="QfQ-D5-Jql"/>
                                     <constraint firstAttribute="trailing" secondItem="dKf-Ah-0U7" secondAttribute="trailing" id="Thx-eF-Ftp"/>
-                                    <constraint firstItem="VmY-CP-Uut" firstAttribute="top" secondItem="Kjq-y4-umZ" secondAttribute="bottom" constant="8" id="a5B-xl-d4T"/>
                                     <constraint firstItem="dKf-Ah-0U7" firstAttribute="top" secondItem="AUX-3L-Ife" secondAttribute="top" id="aOW-xV-Yos"/>
-                                    <constraint firstAttribute="trailing" secondItem="VmY-CP-Uut" secondAttribute="trailing" id="fH1-jw-wEQ"/>
-                                    <constraint firstItem="VmY-CP-Uut" firstAttribute="leading" secondItem="AUX-3L-Ife" secondAttribute="leading" constant="237" id="h2F-ex-Ffd"/>
                                     <constraint firstAttribute="trailing" secondItem="XzY-Gm-xIq" secondAttribute="trailing" constant="20" id="iEp-Xd-J5h"/>
-                                    <constraint firstAttribute="bottom" secondItem="VmY-CP-Uut" secondAttribute="bottom" constant="178" id="iTl-L0-akj"/>
                                     <constraint firstAttribute="trailing" secondItem="Kjq-y4-umZ" secondAttribute="trailing" constant="18" id="nIS-14-3Vh"/>
                                 </constraints>
                             </view>
@@ -489,7 +481,6 @@
                         <outlet property="insulinForFoodTitleLabel" destination="K0m-0W-92g" id="xnr-c1-5EH"/>
                         <outlet property="nextButton" destination="xCs-1y-0RM" id="WIF-rt-T4o"/>
                         <outlet property="resultsView" destination="muN-D1-fcE" id="zex-l7-Y2l"/>
-                        <outlet property="spiderDropView" destination="VmY-CP-Uut" id="SpD-Lt-0a1"/>
                         <outlet property="step1Label" destination="777-f9-pJw" id="ZHt-LH-y0j"/>
                         <outlet property="totalCarbsField" destination="kKr-Jy-xTq" id="TBF-hF-fSM"/>
                         <outlet property="totalCarbsInfoButton" destination="Ie3-mA-6Fz" id="Tci-Ib-Ot1"/>
@@ -741,10 +732,6 @@
                                             <constraint firstAttribute="trailing" secondItem="nBO-pm-9pW" secondAttribute="trailing" id="hKd-cO-gy8"/>
                                         </constraints>
                                     </stackView>
-                                    <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObE-fj-gYR" userLabel="Spider Drop Animation View" customClass="LottieAnimationView" customModule="Lottie">
-                                        <rect key="frame" x="233" y="308" width="142" height="108"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d11-C5-2yW" userLabel="Bottom Stack View">
                                         <rect key="frame" x="20" y="367" width="335" height="226"/>
                                         <subviews>
@@ -863,14 +850,10 @@
                                     <constraint firstAttribute="bottom" secondItem="d11-C5-2yW" secondAttribute="bottom" id="3Sr-IQ-ua1"/>
                                     <constraint firstItem="mBB-CC-8Fi" firstAttribute="top" secondItem="kHh-vj-nCP" secondAttribute="bottom" constant="20" id="47z-S7-lcG"/>
                                     <constraint firstItem="mBB-CC-8Fi" firstAttribute="leading" secondItem="OAy-nL-hOb" secondAttribute="leading" constant="20" id="Dpa-jU-mgq"/>
-                                    <constraint firstItem="ObE-fj-gYR" firstAttribute="top" secondItem="kHh-vj-nCP" secondAttribute="bottom" constant="158" id="EcM-sd-kCy"/>
                                     <constraint firstItem="kHh-vj-nCP" firstAttribute="leading" secondItem="OAy-nL-hOb" secondAttribute="leading" id="Kbz-VL-q6J"/>
-                                    <constraint firstAttribute="trailing" secondItem="ObE-fj-gYR" secondAttribute="trailing" id="amk-uE-71T"/>
                                     <constraint firstItem="d11-C5-2yW" firstAttribute="leading" secondItem="OAy-nL-hOb" secondAttribute="leading" constant="20" id="c3F-b4-65t"/>
                                     <constraint firstAttribute="trailing" secondItem="kHh-vj-nCP" secondAttribute="trailing" id="mXy-jN-iLX"/>
                                     <constraint firstAttribute="trailing" secondItem="d11-C5-2yW" secondAttribute="trailing" constant="20" id="qwD-PB-RFE"/>
-                                    <constraint firstAttribute="bottom" secondItem="ObE-fj-gYR" secondAttribute="bottom" constant="177" id="uQH-qT-DCe"/>
-                                    <constraint firstItem="ObE-fj-gYR" firstAttribute="leading" secondItem="OAy-nL-hOb" secondAttribute="leading" constant="233" id="ujV-rH-pxP"/>
                                     <constraint firstAttribute="trailing" secondItem="mBB-CC-8Fi" secondAttribute="trailing" constant="20" id="z2i-K4-YtL"/>
                                 </constraints>
                             </view>
@@ -886,7 +869,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="gyH-1L-U53"/>
                     <connections>
-                        <outlet property="batFlyby" destination="ObE-fj-gYR" id="SpD-Lt-0b1"/>
                         <outlet property="bloodSugarField" destination="bTa-hb-Glq" id="19y-dx-18e"/>
                         <outlet property="bloodSugarLabel" destination="OGr-Ab-4uo" id="uTu-gy-XqY"/>
                         <outlet property="bloodSugarLine" destination="ZJI-IW-mMV" id="LHz-yX-5QN"/>

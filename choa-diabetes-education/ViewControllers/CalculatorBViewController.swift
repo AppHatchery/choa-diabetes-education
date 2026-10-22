@@ -32,7 +32,9 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var step2Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
-    @IBOutlet weak var batFlyby: LottieAnimationView!
+
+    // Full-screen Halloween overlay; it ignores touches so the fields stay usable
+    private let batFlyby = LottieAnimationView(name: "bats-flyby-sm")
 
     let infoPopup = InfoPopUpViewController()
     
@@ -90,9 +92,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
 
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
 
-        batFlyby.animation = LottieAnimation.named("bat-flyby")
-        batFlyby.loopMode = .loop
-        batFlyby.backgroundBehavior = .pauseAndRestore
+        setupBatFlyby()
 
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
@@ -204,6 +204,24 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             batFlyby.stop()
         }
+    }
+
+    private func setupBatFlyby() {
+        batFlyby.contentMode = .scaleAspectFill
+        batFlyby.loopMode = .loop
+        batFlyby.backgroundBehavior = .pauseAndRestore
+        batFlyby.isUserInteractionEnabled = false
+        batFlyby.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(batFlyby)
+
+        NSLayoutConstraint.activate([
+            // Starts below the nav bar so the bats don't fly behind it
+            batFlyby.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            batFlyby.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            batFlyby.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            batFlyby.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func loadStoredConstants() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ChapterEndViewController: UIViewController {
     
@@ -242,6 +243,26 @@ class ChapterEndViewController: UIViewController {
             drawnInView.alpha = 0
             drawnInView.accessibilityElementsHidden = true
         }
+
+        // Leaves (stars for self management) fall over the whole screen, stars card and buttons included, without blocking taps
+        let fallingAnimationName = contentIndex == 2 ? "falling-stars" : "falling-leaves"
+        let fallingView = LottieAnimationView(name: fallingAnimationName)
+        fallingView.contentMode = .scaleAspectFill
+        fallingView.loopMode = .playOnce
+        fallingView.backgroundBehavior = .pauseAndRestore
+        fallingView.isUserInteractionEnabled = false
+        fallingView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(fallingView)
+
+        NSLayoutConstraint.activate([
+            fallingView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        fallingView.play()
 
         // Scoped to this screen so the rest of the stack keeps its colored bar
         let appearance = UINavigationBarAppearance()

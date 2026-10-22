@@ -478,9 +478,9 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.triggerDKAWorkFlow(currentQuestion, childIssue: childIssue)
 		case .LowBloodSugar:
 			print("Four options selected answer: \(selectedAnswer)")
-//            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
+            self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
             // TODO: Will be enabled in the next version after Halloween
-             self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
+            // self.questionnaireManager.triggerHypoglycemiaFlow(currentQuestion)
         case .NotSure:
             self.questionnaireManager.triggerCallChoaEmergencyActionFlow(currentQuestion)
 			print("Four options selected answer: \(selectedAnswer)")
@@ -622,6 +622,23 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			self.questionnaireManager.saveBloodSugarOver300(false)
 			self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
 			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+		}
+		alert.appear(sender: self)
+	}
+
+	func didEnterHighBloodSugar(currentQuestion: Questionnaire, bloodSugar: Int) {
+		let alert = AlertPopUpViewController(
+			title: String(format: "Calculator.HighBloodSugarAlert.title".localized(), OpenEndedQueView.highBloodSugarThreshold),
+			message: "Calculator.HighBloodSugarAlert.message".localized(),
+			primaryActionTitle: "Calculator.HighBloodSugarAlert.primaryAction".localized(),
+			secondaryActionTitle: "Calculator.HighBloodSugarAlert.secondaryAction".localized()
+		)
+		alert.onPrimaryAction = { [weak self] in
+			self?.popToChildIssueQuestion()
+		}
+		alert.onSecondaryAction = { [weak self] in
+			// Stay in the hypoglycemia flow, which treats any reading above the low threshold the same way
+			self?.questionnaireManager.triggerLowBloodSugarReadingResultActionFlow(currentQuestion, bloodSugar: bloodSugar)
 		}
 		alert.appear(sender: self)
 	}

@@ -32,7 +32,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
-    @IBOutlet weak var spiderDropView: LottieAnimationView!
+
+    // Full-screen Halloween overlay; it ignores touches so the fields stay usable
+    private let spiderDropView = LottieAnimationView(name: "spider-drop-sm")
 
     var totalCarbs: Int = 0
     var carbRatio: Int = 0
@@ -75,9 +77,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
 
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
 
-        spiderDropView.animation = LottieAnimation.named("spider-drop")
-        spiderDropView.loopMode = .loop
-        spiderDropView.backgroundBehavior = .pauseAndRestore
+        setupSpiderDropView()
 
         navigationController?.navigationBar.tintColor = .black
         
@@ -198,6 +198,23 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             spiderDropView.stop()
         }
+    }
+
+    private func setupSpiderDropView() {
+        spiderDropView.contentMode = .scaleAspectFill
+        spiderDropView.loopMode = .loop
+        spiderDropView.backgroundBehavior = .pauseAndRestore
+        spiderDropView.isUserInteractionEnabled = false
+        spiderDropView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(spiderDropView)
+
+        NSLayoutConstraint.activate([
+            spiderDropView.topAnchor.constraint(equalTo: view.topAnchor),
+            spiderDropView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            spiderDropView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            spiderDropView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func loadStoredConstants() {
