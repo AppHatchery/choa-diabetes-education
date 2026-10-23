@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ResourcesViewController: UIViewController {
     @IBOutlet weak var diabetesBasicsView: UIView!
@@ -31,6 +32,9 @@ class ResourcesViewController: UIViewController {
     // Stacks holding each theme's cards; only one theme's stacks are visible at a time
     @IBOutlet var regularStacks: [UIStackView]!
     @IBOutlet var halloweenStacks: [UIStackView]!
+
+    // Halloween overlay that stays put while the cards scroll; it ignores touches so the cards stay tappable
+    private let batFlyby = LottieAnimationView(name: "bats-flyby")
 
         
     var chapterContent = 0
@@ -62,6 +66,7 @@ class ResourcesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupBatFlyby()
         applyTheme()
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
 
@@ -81,6 +86,36 @@ class ResourcesViewController: UIViewController {
         let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
         regularStacks.forEach { $0.isHidden = isHalloween }
         halloweenStacks.forEach { $0.isHidden = !isHalloween }
+
+        batFlyby.isHidden = !isHalloween
+        if isHalloween {
+            batFlyby.play()
+        } else {
+            batFlyby.stop()
+        }
+    }
+
+    private func setupBatFlyby() {
+        batFlyby.contentMode = .scaleAspectFill
+        batFlyby.loopMode = .loop
+        batFlyby.backgroundBehavior = .pauseAndRestore
+        batFlyby.isUserInteractionEnabled = false
+        batFlyby.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(batFlyby)
+        // Draw above every other subview, even ones added or brought to the front later
+        batFlyby.layer.zPosition = 1
+
+        // Sized to the animation's aspect ratio from the top, so aspect fill doesn't crop the bats off the top
+        let animationSize = batFlyby.animation?.size ?? CGSize(width: 1, height: 1)
+
+        NSLayoutConstraint.activate([
+            // Starts below the nav bar so the bats don't fly behind it
+            batFlyby.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            batFlyby.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            batFlyby.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            batFlyby.heightAnchor.constraint(equalTo: batFlyby.widthAnchor, multiplier: animationSize.height / animationSize.width)
+        ])
     }
 
     @objc private func didTapDiabetesBasicsCard() {

@@ -37,17 +37,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     /// Plays the Halloween intro over the home screen, which fades in once the video ends.
     private func playHalloweenLaunchVideo() {
-        guard let window,
-              let url = Bundle.main.url(forResource: "halloween_launch", withExtension: "mp4") else { return }
+        guard let window else { return }
 
         // Show the window first so the root view is installed underneath the video, not on top of it
         window.makeKeyAndVisible()
 
-        let videoView = LaunchVideoView(url: url)
-        videoView.frame = window.bounds
-        videoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        window.addSubview(videoView)
-        videoView.play()
+        LaunchVideoView.playHalloweenLaunch(in: window)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -93,7 +88,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 /// Full-screen video laid over the window that fades away to reveal the app when it finishes.
-private final class LaunchVideoView: UIView {
+/// It plays through to the end; touches stop at the video rather than reaching the app underneath.
+final class LaunchVideoView: UIView {
+
+    /// Lays the Halloween intro over the whole window and plays it, unless one is already playing.
+    /// At launch it covers the app straight away; replaying it from the app fades it in instead.
+    static func playHalloweenLaunch(in window: UIWindow, fadesIn: Bool = false) {
+        guard !window.subviews.contains(where: { $0 is LaunchVideoView }),
+              let url = Bundle.main.url(forResource: "halloween_launch", withExtension: "mp4") else { return }
+
+        let videoView = LaunchVideoView(url: url)
+        videoView.frame = window.bounds
+        videoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        window.addSubview(videoView)
+        videoView.play()
+
+        if fadesIn {
+            videoView.alpha = 0
+            UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseInOut) {
+                videoView.alpha = 1
+            }
+        }
+    }
 
     override class var layerClass: AnyClass { AVPlayerLayer.self }
 
@@ -110,9 +126,6 @@ private final class LaunchVideoView: UIView {
         let playerLayer = layer as! AVPlayerLayer
         playerLayer.player = player
         playerLayer.videoGravity = .resizeAspectFill
-
-        // Tapping skips the rest of the video with the same fade into the app
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fadeOut)))
     }
 
     required init?(coder: NSCoder) {
@@ -140,7 +153,7 @@ private final class LaunchVideoView: UIView {
         player.play()
     }
 
-    @objc private func fadeOut() {
+    private func fadeOut() {
         guard !isDismissing else { return }
         isDismissing = true
 

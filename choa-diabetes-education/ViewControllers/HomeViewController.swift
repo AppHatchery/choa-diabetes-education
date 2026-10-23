@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var halloweenKnowYourCarbsView: UIView!
 
     // Falling leaves overlay drawn above the cards; it ignores touches so the cards stay tappable
-    private let fallingLeavesView = LottieAnimationView(name: "falling-leaves")
+    private let fallingLeavesView = LottieAnimationView(name: "falling-leaves-longer")
 
     // Stacks holding each theme's cards; only one theme's stacks are visible at a time
     @IBOutlet var regularStacks: [UIStackView]!
@@ -67,10 +67,13 @@ class HomeViewController: UIViewController {
     
     private let constantsManager = CalculatorConstantsManager.shared
 
+    private var jackOLanternBarButtonItem: UIBarButtonItem?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupFallingLeavesView()
+        setupJackOLanternButton()
         applyTheme()
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
         
@@ -244,6 +247,8 @@ class HomeViewController: UIViewController {
         regularStacks.forEach { $0.isHidden = isHalloween }
         halloweenStacks.forEach { $0.isHidden = !isHalloween }
 
+        navigationItem.rightBarButtonItem = isHalloween ? jackOLanternBarButtonItem : nil
+
         fallingLeavesView.isHidden = !isHalloween
         if isHalloween {
             fallingLeavesView.play()
@@ -255,7 +260,7 @@ class HomeViewController: UIViewController {
     /// Full-screen overlay above everything else, shown only for the Halloween theme
     private func setupFallingLeavesView() {
         fallingLeavesView.contentMode = .scaleAspectFill
-        fallingLeavesView.loopMode = .loop
+        fallingLeavesView.loopMode = .playOnce
         fallingLeavesView.backgroundBehavior = .pauseAndRestore
         fallingLeavesView.isUserInteractionEnabled = false
         fallingLeavesView.translatesAutoresizingMaskIntoConstraints = false
@@ -268,6 +273,32 @@ class HomeViewController: UIViewController {
             fallingLeavesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             fallingLeavesView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+
+    /// Jack-o'-lantern in the top right that replays the Halloween intro; only shown with the Halloween theme
+    private func setupJackOLanternButton() {
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "jackolantern")?.withRenderingMode(.alwaysOriginal)
+        config.contentInsets = .zero
+
+        let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+            self?.didTapJackOLantern()
+        })
+        button.imageView?.contentMode = .scaleAspectFit
+        button.accessibilityLabel = "Play Halloween intro"
+        button.translatesAutoresizingMaskIntoConstraints = false
+        // The artwork is 42 x 46 pt, too tall for the bar, so it's scaled down to fit
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 30),
+            button.heightAnchor.constraint(equalToConstant: 33)
+        ])
+
+        jackOLanternBarButtonItem = UIBarButtonItem(customView: button)
+    }
+
+    private func didTapJackOLantern() {
+        guard let window = view.window else { return }
+        LaunchVideoView.playHalloweenLaunch(in: window, fadesIn: true)
     }
 
     private func addTapRecognizersToResourceCards() {

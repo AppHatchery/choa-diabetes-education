@@ -207,20 +207,24 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         spiderDropView.isUserInteractionEnabled = false
         spiderDropView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(spiderDropView)
+        contentView.addSubview(spiderDropView)
+        // Draw above every other subview, even ones added or brought to the front later
+        spiderDropView.layer.zPosition = 1
 
-        NSLayoutConstraint.activate(
-[
+        // The animation is taller than the content view for its width, so pinning both edges let aspect fill
+        // center it and crop the spiders off the top. Matching its aspect ratio from the top keeps the drop in view.
+        let animationSize = spiderDropView.animation?.size ?? CGSize(width: 1, height: 1)
+
+        NSLayoutConstraint.activate([
             spiderDropView.topAnchor
-                .constraint(
-                    equalTo: view.safeAreaLayoutGuide.topAnchor,
-                    constant: 20
-                ),
-            spiderDropView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            spiderDropView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            spiderDropView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ]
-)
+                .constraint(equalTo: contentView.topAnchor, constant: 0),
+            spiderDropView.leadingAnchor
+                .constraint(equalTo: contentView.leadingAnchor),
+            spiderDropView.trailingAnchor
+                .constraint(equalTo: contentView.trailingAnchor),
+            spiderDropView.heightAnchor
+                .constraint(equalTo: spiderDropView.widthAnchor, multiplier: animationSize.height / animationSize.width)
+        ])
     }
     
     private func loadStoredConstants() {

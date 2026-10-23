@@ -213,14 +213,20 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         batFlyby.isUserInteractionEnabled = false
         batFlyby.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(batFlyby)
+        // contentView starts below the nav bar, so the bats don't fly behind it
+        contentView.addSubview(batFlyby)
+        // Draw above every other subview, even ones added or brought to the front later
+        batFlyby.layer.zPosition = 1
+
+        // The animation is taller than the content view for its width, so pinning both edges let aspect fill
+        // center it and crop the bats off the top. Matching its aspect ratio from the top keeps the flyby in view.
+        let animationSize = batFlyby.animation?.size ?? CGSize(width: 1, height: 1)
 
         NSLayoutConstraint.activate([
-            // Starts below the nav bar so the bats don't fly behind it
-            batFlyby.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            batFlyby.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            batFlyby.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            batFlyby.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            batFlyby.topAnchor.constraint(equalTo: contentView.topAnchor),
+            batFlyby.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            batFlyby.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            batFlyby.heightAnchor.constraint(equalTo: batFlyby.widthAnchor, multiplier: animationSize.height / animationSize.width)
         ])
     }
     
