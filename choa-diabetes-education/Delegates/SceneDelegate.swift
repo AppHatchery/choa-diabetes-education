@@ -33,6 +33,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 playHalloweenLaunchVideo()
             }
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(applyThemeAppIcon), name: .halloweenThemeDidChange, object: nil)
+    }
+
+    /// Matches the home screen icon to the theme: the Halloween icon while it's on, the regular one otherwise.
+    /// iOS only allows this while the app is active, and always shows its own "You have changed the icon" alert,
+    /// so it waits until the intro video has finished rather than interrupting it.
+    @objc private func applyThemeAppIcon() {
+        let application = UIApplication.shared
+        guard application.supportsAlternateIcons,
+              application.applicationState == .active,
+              window?.subviews.contains(where: { $0 is LaunchVideoView }) != true else { return }
+
+        let iconName: String? = RemoteConfigManager.shared.isHalloweenThemeEnabled ? "HalloweenAppIcon" : nil
+        guard application.alternateIconName != iconName else { return }
+
+        application.setAlternateIconName(iconName) { error in
+            if let error {
+                print("App icon change failed: \(error.localizedDescription)")
+            }
+        }
     }
 
     /// Plays the Halloween intro over the home screen, which fades in once the video ends.
@@ -42,7 +63,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Show the window first so the root view is installed underneath the video, not on top of it
         window.makeKeyAndVisible()
 
-        LaunchVideoView.playHalloweenLaunch(in: window)
+        LaunchVideoView.playHalloweenLaunch(in: window) { [weak self] in
+            self?.applyThemeAppIcon()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -55,6 +78,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+
+        // Catches a theme change that arrived while the app was in the background
+        applyThemeAppIcon()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -93,11 +119,12 @@ final class LaunchVideoView: UIView {
 
     /// Lays the Halloween intro over the whole window and plays it, unless one is already playing.
     /// At launch it covers the app straight away; replaying it from the app fades it in instead.
-    static func playHalloweenLaunch(in window: UIWindow, fadesIn: Bool = false) {
+    static func playHalloweenLaunch(in window: UIWindow, fadesIn: Bool = false, onFinish: (() -> Void)? = nil) {
         guard !window.subviews.contains(where: { $0 is LaunchVideoView }),
               let url = Bundle.main.url(forResource: "halloween_launch", withExtension: "mp4") else { return }
 
         let videoView = LaunchVideoView(url: url)
+        videoView.onFinish = onFinish
         videoView.frame = window.bounds
         videoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         window.addSubview(videoView)
@@ -117,6 +144,8 @@ final class LaunchVideoView: UIView {
     private var endObserver: NSObjectProtocol?
     private var statusObservation: NSKeyValueObservation?
     private var isDismissing = false
+    /// Called once the video has faded away and been removed
+    private var onFinish: (() -> Void)?
 
     init(url: URL) {
         player = AVPlayer(url: url)
@@ -167,6 +196,7 @@ final class LaunchVideoView: UIView {
         } completion: { _ in
             self.player.pause()
             self.removeFromSuperview()
+            self.onFinish?()
         }
     }
 }

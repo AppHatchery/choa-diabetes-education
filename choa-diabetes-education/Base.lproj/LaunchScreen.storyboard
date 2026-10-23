@@ -16,20 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1ZS-WJ-IsD">
-                                <rect key="frame" x="146.66666666666666" y="362" width="100" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="halloween_icon" translatesAutoresizingMaskIntoConstraints="NO" id="97m-Ac-648">
+                                <rect key="frame" x="139.66666666666666" y="237" width="114" height="378"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="IqT-je-Ptw"/>
+                                    <constraint firstAttribute="width" constant="114" id="kge-9v-lPm"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="secondarySunsetOrange400"/>
+                        <color key="backgroundColor" name="primaryGreen"/>
                         <constraints>
-                            <constraint firstItem="1ZS-WJ-IsD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9yL-dH-Svj"/>
-                            <constraint firstItem="1ZS-WJ-IsD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Cha-yh-JLe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1ZS-WJ-IsD" secondAttribute="bottom" constant="294" id="Egw-Nb-Q4G"/>
-                            <constraint firstItem="1ZS-WJ-IsD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="244" id="HrM-he-0Ur"/>
+                            <constraint firstItem="97m-Ac-648" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="93r-Xf-wAD"/>
+                            <constraint firstItem="97m-Ac-648" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="FVs-2M-wpb"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,8 +38,8 @@
     </scenes>
     <resources>
         <image name="halloween_icon" width="369" height="378"/>
-        <namedColor name="secondarySunsetOrange400">
-            <color red="0.8784313725490196" green="0.47843137254901963" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="primaryGreen">
+            <color red="0.0" green="0.66274509803921566" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
