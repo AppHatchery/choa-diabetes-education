@@ -696,19 +696,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 
             if insulinForHighBloodSugarBoolean && currentBloodSugar >= currentTargetBloodSugar {
-                let exactBloodInsulin = Float(currentBloodSugar - currentTargetBloodSugar) / Float(currentCorrectionFactor)
+                let bloodInsulin = InsulinDose.correction(bloodSugar: currentBloodSugar, targetBloodSugar: currentTargetBloodSugar, correctionFactor: currentCorrectionFactor)
 
                 bloodSugarLine.backgroundColor = .primaryBlue
                 bloodSugarLabel.textColor = .primaryBlue
                 bloodSugarField.textColor = .primaryBlue
 
                 // For meals + correction, only the combined total is rounded (on CalculatorC)
-                if insulinForFoodBoolean {
-                    insulinForHighBloodSugar.text = "\(exactBloodInsulin.preciseString) units"
-                } else {
-                    let roundedBloodInsulin = constantsManager.roundingRule.round(numerator: currentBloodSugar - currentTargetBloodSugar, denominator: currentCorrectionFactor)
-                    insulinForHighBloodSugar.text = "\(roundedBloodInsulin.cleanString) units"
-                }
+                insulinForHighBloodSugar.text = bloodInsulin.displayText(rounded: !insulinForFoodBoolean, using: constantsManager.roundingRule)
                 insulinForHighBloodSugar.font = .nunitoBold32
                 insulinForHighBloodSugar.textColor = .primaryBlue
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar": currentBloodSugar, "target_blood_sugar": currentTargetBloodSugar, "correction_factor": currentCorrectionFactor])

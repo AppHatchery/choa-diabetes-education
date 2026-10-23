@@ -412,15 +412,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 
             if insulinForFoodBoolean {
-                let exactFoodInsulin = Float(currentTotalCarbs) / Float(currentCarbRatio)
+                let foodInsulin = InsulinDose.food(totalCarbs: currentTotalCarbs, carbRatio: currentCarbRatio)
 
                 // For meals + correction, only the combined total is rounded (on CalculatorC)
-                if insulinForHighBloodSugarBoolean {
-                    insulinForFood.text = "\(exactFoodInsulin.preciseString) units"
-                } else {
-                    let roundedFoodInsulin = constantsManager.roundingRule.round(numerator: currentTotalCarbs, denominator: currentCarbRatio)
-                    insulinForFood.text = "\(roundedFoodInsulin.cleanString) units"
-                }
+                insulinForFood.text = foodInsulin.displayText(rounded: !insulinForHighBloodSugarBoolean, using: constantsManager.roundingRule)
                 PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs": currentTotalCarbs, "ratio": currentCarbRatio])
             }
 

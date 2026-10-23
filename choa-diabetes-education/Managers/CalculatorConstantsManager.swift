@@ -7,44 +7,6 @@
 
 import Foundation
 
-/// How a calculated insulin dose is rounded, as recommended by the diabetes care team.
-/// Rounding happens once, on the final dose: for meals + correction the exact parts are added first.
-enum InsulinRoundingRule: Int, CaseIterable {
-    case halfUnit = 0
-    case wholeUnit = 1
-
-    var title: String {
-        switch self {
-        case .halfUnit: return "CalculatorOnboarding.RoundingRule.halfUnit".localized()
-        case .wholeUnit: return "CalculatorOnboarding.RoundingRule.wholeUnit".localized()
-        }
-    }
-
-    var subtitle: String {
-        switch self {
-        case .halfUnit: return "CalculatorOnboarding.RoundingRule.halfUnit.subtitle".localized()
-        case .wholeUnit: return "CalculatorOnboarding.RoundingRule.wholeUnit.subtitle".localized()
-        }
-    }
-
-    /// Steps per unit of insulin
-    private var stepsPerUnit: Int {
-        switch self {
-        case .halfUnit: return 2
-        case .wholeUnit: return 1
-        }
-    }
-
-    /// Rounds `numerator / denominator` units to the nearest step, halfway rounding up.
-    /// Whole unit: .5 and up rounds up. Half unit: up to .24 rounds down, .25–.74 goes to .5, .75 and up rounds up.
-    /// Integer math keeps the boundaries exact, so a dose of exactly 10.25 isn't read as 10.2499.
-    func round(numerator: Int, denominator: Int) -> Float {
-        guard denominator > 0 else { return 0 }
-        let steps = (2 * stepsPerUnit * numerator + denominator) / (2 * denominator)
-        return Float(steps) / Float(stepsPerUnit)
-    }
-}
-
 class CalculatorConstantsManager {
     static let shared = CalculatorConstantsManager()
     

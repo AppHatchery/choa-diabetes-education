@@ -145,6 +145,7 @@
 		B4DBE8812F10FCF20075C7F3 /* hope_on_call_standing.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */; };
 		B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8822F11024E0075C7F3 /* arrow_right.png */; };
 		B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */; };
+		6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C7DD3E33478A292930400 /* InsulinDose.swift */; };
 		B4E144352E9C383C009A5589 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144342E9C383C009A5589 /* NotificationHandler.swift */; };
 		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
 		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
@@ -477,6 +478,7 @@
 		B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hope_on_call_standing.png; sourceTree = "<group>"; };
 		B4DBE8822F11024E0075C7F3 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPersistence.swift; sourceTree = "<group>"; };
+		081C7DD3E33478A292930400 /* InsulinDose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinDose.swift; sourceTree = "<group>"; };
 		B4E144342E9C383C009A5589 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
 		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
@@ -749,6 +751,7 @@
 			children = (
 				B4E144342E9C383C009A5589 /* NotificationHandler.swift */,
 				B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */,
+				081C7DD3E33478A292930400 /* InsulinDose.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1667,6 +1670,7 @@
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */,
 				B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */,
+				6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
