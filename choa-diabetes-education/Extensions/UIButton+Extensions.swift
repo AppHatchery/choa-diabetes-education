@@ -13,6 +13,28 @@ extension UIButton {
 	/// Every button in the app uses this corner radius
 	static let standardCornerRadius: CGFloat = 12
 
+	/// Green "Exit ✕" text button. Replaces the whole configuration rather than patching the storyboard's,
+	/// whose white foreground otherwise wins over colors set through the older title and image setters.
+	func applyExitStyle() {
+		var config = UIButton.Configuration.plain()
+		config.title = "Exit"
+		config.image = UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(scale: .small))
+		config.imagePlacement = .trailing
+		config.imagePadding = 8
+		config.baseForegroundColor = .choaGreenColor
+		config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+			var out = incoming
+			out.font = .nunitoBold20
+			return out
+		}
+
+		setAttributedTitle(nil, for: .normal)
+		configuration = config
+		backgroundColor = .clear
+		tintColor = .choaGreenColor
+		layer.cornerRadius = UIButton.standardCornerRadius
+	}
+
 	/// Rounds the button and, for configured buttons, the background the configuration draws.
 	/// That background ignores the layer's radius and defaults to a capsule on iOS 26.
 	func applyStandardCornerRadius() {

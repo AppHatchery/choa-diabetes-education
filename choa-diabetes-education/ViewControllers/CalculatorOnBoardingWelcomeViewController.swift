@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Lottie
 
 class CalculatorOnBoardingWelcomeViewController: UIViewController {
     @IBOutlet weak var nextButton: PrimaryButton!
     @IBOutlet weak var skipButton: UIButton!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var buttonsStackView: UIStackView!
+
     var insulinForHighBloodSugarBoolean = false
     var insulinForFoodBoolean = false
     
@@ -28,8 +31,57 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+            applyHalloweenTheme()
+        }
+    }
+
+    /// Spooky background behind a see-through nav bar, with Halloween Will (speech bubble included in the image)
+    private func applyHalloweenTheme() {
+        let backgroundImageView = UIImageView(image: UIImage(named: "halloween_bg_1"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        // Shows through the image's transparent rounded corners on tall screens
+        view.backgroundColor = .diabetesBasicsColor050
+
+        // Leaves fall over the background but behind Will and the buttons
+        let fallingLeavesView = LottieAnimationView(name: "falling-leaves")
+        fallingLeavesView.contentMode = .scaleAspectFill
+        fallingLeavesView.loopMode = .playOnce
+        fallingLeavesView.backgroundBehavior = .pauseAndRestore
+        fallingLeavesView.isUserInteractionEnabled = false
+        fallingLeavesView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Do any additional setup after loading the view.
+        view.insertSubview(fallingLeavesView, aboveSubview: buttonsStackView)
+        
+        NSLayoutConstraint.activate([
+            fallingLeavesView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingLeavesView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingLeavesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingLeavesView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        fallingLeavesView.play()
+
+        // Scoped to this screen so the rest of the stack keeps its white bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+
+        willImageView.image = UIImage(named: "halloween_will_three_quick_questions")
+        // The Halloween Will is taller than the regular one, so let it shrink rather than run into the buttons on small screens
+        willImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        willImageView.bottomAnchor.constraint(lessThanOrEqualTo: buttonsStackView.topAnchor, constant: -16).isActive = true
     }
     
     private func setupNavigationBar() {
@@ -65,31 +117,32 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
         
+        // Each calculator styles itself from these flags in viewDidLoad, which pushing triggers,
+        // so they're set before the push
         if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == false {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
                 destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
                 destinationVC.insulinForFoodBoolean = insulinForFoodBoolean
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         } else if insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-
                 destinationVC.insulinForFoodBoolean = false
                 destinationVC.insulinForHighBloodSugarBoolean = true
                 destinationVC.highBloodSugarOnly = true
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         } else if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == true {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
                 destinationVC.insulinForFoodBoolean = true
                 destinationVC.insulinForHighBloodSugarBoolean = true
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         }
     }

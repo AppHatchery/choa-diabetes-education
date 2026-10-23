@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import Pendo
 
 class CalculatorBViewController: UIViewController, UITextFieldDelegate, CalculatorEditDelegate {
@@ -17,6 +18,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var correctionFactorField: UITextField!
     @IBOutlet weak var correctionFactorLine: UIView!
     @IBOutlet weak var correctionFactorLabel: UILabel!
+    @IBOutlet weak var correctionFactorInfoButton: UIButton!
+    @IBOutlet weak var targetBloodSugarInfoButton: UIButton!
     @IBOutlet weak var bloodSugarLine: UIView!
     @IBOutlet weak var bloodSugarLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
@@ -28,7 +31,11 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var step2Label: UILabel!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+
+    // Full-screen Halloween overlay; it ignores touches so the fields stay usable
+    private let batFlyby = LottieAnimationView(name: "bats-flyby")
+
     let infoPopup = InfoPopUpViewController()
     
     var totalCarbs: Int = 0
@@ -42,7 +49,19 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     var highBloodSugarOnly = false
     
     private var isUserEditingFields = false
-    
+    private var isShowingBelowTargetWarning = false
+
+    /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
+    private var fieldsWithMissingValueError = Set<UITextField>()
+    private var defaultLineColors = [UIView: UIColor]()
+
+    /// Uses the fields' live text so it's accurate mid-edit
+    private var isBloodSugarBelowTarget: Bool {
+        let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
+        let currentTargetValue = Int(targetBloodSugarField.text ?? "") ?? 0
+        return currentBloodSugarValue > 0 && currentTargetValue > 0 && currentBloodSugarValue < currentTargetValue
+    }
+
     private let constantsManager = CalculatorConstantsManager.shared
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -65,11 +84,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
+        applyTheme()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
+
+        setupBatFlyby()
+
         var config = UIButton.Configuration.plain()
         config.title = "Edit"
         config.image = UIImage(named: "edit_pencil")
@@ -116,7 +141,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         bloodSugarLine.layer.cornerRadius = 3
         targetBloodSugarLine.layer.cornerRadius = 3
         correctionFactorLine.layer.cornerRadius = 3
-                
+
+        for line in [bloodSugarLine, targetBloodSugarLine, correctionFactorLine] {
+            if let line, let color = line.backgroundColor {
+                defaultLineColors[line] = color
+            }
+        }
+
         resultsView.isHidden = true
         
         if highBloodSugarOnly == false {
@@ -130,18 +161,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             step2Label.isHidden = true
 
-            nextButton
-                .setTitleWithStyle(
-                    "Exit",
-                    font: .nunitoBold20,
-                    color: .choaGreenColor
-                )
-            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
-            nextButton.backgroundColor = .clear
-            nextButton.configuration?.baseForegroundColor = .choaGreenColor
-            nextButton.tintColor = .choaGreenColor
-            nextButton.layer.cornerRadius = 12
+            nextButton.applyExitStyle()
         }
         
         calculatorDidUpdateConstants()
@@ -160,6 +180,44 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     
     @objc private func editButtonTapped() {
         performSegue(withIdentifier: "calculatorBToEditSegue", sender: nil)
+    }
+
+    // Swap in the Halloween Will and spiders when the theme is enabled in Remote Config
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        let imageName = isHalloween ? "halloween_will_insulin" : "will_calculator"
+        willImageView.image = UIImage(named: imageName)
+
+        batFlyby.isHidden = !isHalloween
+        if isHalloween {
+            batFlyby.play()
+        } else {
+            batFlyby.stop()
+        }
+    }
+
+    private func setupBatFlyby() {
+        batFlyby.contentMode = .scaleAspectFill
+        batFlyby.loopMode = .loop
+        batFlyby.backgroundBehavior = .pauseAndRestore
+        batFlyby.isUserInteractionEnabled = false
+        batFlyby.translatesAutoresizingMaskIntoConstraints = false
+
+        // contentView starts below the nav bar, so the bats don't fly behind it
+        contentView.addSubview(batFlyby)
+        // Draw above every other subview, even ones added or brought to the front later
+        batFlyby.layer.zPosition = 1
+
+        // The animation is taller than the content view for its width, so pinning both edges let aspect fill
+        // center it and crop the bats off the top. Matching its aspect ratio from the top keeps the flyby in view.
+        let animationSize = batFlyby.animation?.size ?? CGSize(width: 1, height: 1)
+
+        NSLayoutConstraint.activate([
+            batFlyby.topAnchor.constraint(equalTo: contentView.topAnchor),
+            batFlyby.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            batFlyby.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            batFlyby.heightAnchor.constraint(equalTo: batFlyby.widthAnchor, multiplier: animationSize.height / animationSize.width)
+        ])
     }
     
     private func loadStoredConstants() {
@@ -184,10 +242,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             correctionFactorField.text = String(constants.correctionFactor)
         }
 
-        // Recalculate if we have enough info
-        if totalCarbs > 0 && carbRatio > 0 {
-            calculateFoodInsulin()
-        }
+        // Recalculate with whatever is filled in; it hides the result if anything is missing
+        calculateFoodInsulin()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -201,12 +257,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         case 0:
             bloodSugar = Int(textField.text ?? "0") ?? 0
             print(bloodSugar)
-            if bloodSugar < constantsManager.targetBloodSugar && bloodSugar != 0 {
-                bloodSugarField.textColor = UIColor.orangeTextColor
-                insulinForHighBloodSugar.textColor = .orangeTextColor
-                bloodSugarLine.backgroundColor = .orangeTextColor
-                bloodSugarLabel.textColor = .orangeTextColor
-            } else if bloodSugar < targetBloodSugar && bloodSugar != 0 {
+            if isBloodSugarBelowTarget {
+                isShowingBelowTargetWarning = true
                 bloodSugarField.textColor = UIColor.orangeTextColor
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 bloodSugarLine.backgroundColor = .orangeTextColor
@@ -234,7 +286,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             print("none of these")
         }
         
-        errorMessage.isHidden = true
+        hideErrorMessage()
+        updateMissingValueError(for: textField)
         //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
         //            nextButton.isEnabled = true
         //        } else {
@@ -244,6 +297,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         updateNextButtonState()
     }
     
+    /// The error label wraps to fit its message, so clear the text too or a hidden
+    /// multi-line message would still hold its height
+    private func hideErrorMessage() {
+        errorMessage.isHidden = true
+        errorMessage.text = nil
+    }
+
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
         if state {
             errorLine.backgroundColor = UIColor.red
@@ -337,14 +397,78 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             bloodSugar = Int(sender.text ?? "") ?? 0
         } else if sender == targetBloodSugarField {
             targetBloodSugar = Int(sender.text ?? "") ?? 0
+        } else if sender == correctionFactorField {
+            correctionFactor = Int(sender.text ?? "") ?? 0
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
         updateNextButtonState()
-        
-        if totalCarbs > 0 && carbRatio > 0 {
+        updateMissingValueError(for: sender)
+
+        if isShowingBelowTargetWarning && !isBloodSugarBelowTarget {
+            clearBelowTargetWarning()
+        } else if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
         }
+    }
+
+    private func missingValueErrorParts(for field: UITextField) -> (line: UIView, label: UILabel, normalLabelColor: UIColor, message: String)? {
+        switch field {
+        case bloodSugarField:
+            return (bloodSugarLine, bloodSugarLabel, .primaryBlue, "Calculator.BloodSugar.Number.Error".localized())
+        case targetBloodSugarField:
+            return (targetBloodSugarLine, targetBloodSugarLabel, .black, "Calculator.BloodSugar.Target.Error".localized())
+        case correctionFactorField:
+            return (correctionFactorLine, correctionFactorLabel, .black, "Calculator.BloodSugar.CF.Error".localized())
+        default:
+            return nil
+        }
+    }
+
+    private func showMissingValueError(for field: UITextField) {
+        guard let parts = missingValueErrorParts(for: field) else { return }
+        fieldsWithMissingValueError.insert(field)
+        toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        syncInfoIcons()
+    }
+
+    /// Clears a flagged field's error once it has a value, and brings it back if the value is deleted
+    private func updateMissingValueError(for field: UITextField) {
+        guard fieldsWithMissingValueError.contains(field),
+              let parts = missingValueErrorParts(for: field) else { return }
+
+        if (Int(field.text ?? "") ?? 0) > 0 {
+            parts.line.backgroundColor = defaultLineColors[parts.line]
+            parts.label.textColor = parts.normalLabelColor
+            if errorMessage.text == parts.message {
+                hideErrorMessage()
+            }
+        } else {
+            toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        }
+        syncInfoIcons()
+    }
+
+    /// Info icons sit beside their labels, so they follow the labels into and out of the error state
+    private func syncInfoIcons() {
+        correctionFactorInfoButton.tintColor = correctionFactorLabel.textColor
+        targetBloodSugarInfoButton.tintColor = targetBloodSugarLabel.textColor
+    }
+
+    /// Back to the normal state once blood sugar is no longer below target,
+    /// e.g. the target is lowered or blood sugar is raised mid-edit
+    private func clearBelowTargetWarning() {
+        isShowingBelowTargetWarning = false
+
+        bloodSugarField.textColor = .primaryBlue
+        bloodSugarLine.backgroundColor = .primaryBlue
+        bloodSugarLabel.textColor = .primaryBlue
+        insulinForHighBloodSugar.font = .nunitoBold32
+        insulinForHighBloodSugar.textColor = .primaryBlue
+
+        // Drop the warning text; recalculating shows the real dose if every field is filled
+        resultsView.isHidden = true
+        calculateFoodInsulin()
     }
     
     @IBAction func nextButton(_ sender: UIButton){
@@ -356,13 +480,13 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
             } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
                 // CarbRatio is not there
-                toggleError(state: true, errorLine: correctionFactorLine, fieldLabel: correctionFactorLabel, errorMessageText: "Calculator.BloodSugar.CF.Error".localized())
+                showMissingValueError(for: correctionFactorField)
             } else if (bloodSugar != 0 && correctionFactor != 0) {
                 // Target BG is not there
-                toggleError(state: true, errorLine: targetBloodSugarLine, fieldLabel: targetBloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Target.Error".localized())
+                showMissingValueError(for: targetBloodSugarField)
             } else if (targetBloodSugar != 0 && correctionFactor != 0) {
                 // BG is not there
-                toggleError(state: true, errorLine: bloodSugarLine, fieldLabel: bloodSugarLabel, errorMessageText: "Calculator.BloodSugar.Number.Error".localized())
+                showMissingValueError(for: bloodSugarField)
             } else {
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
                 errorMessage.isHidden = false
@@ -481,8 +605,25 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     func calculatorDidUpdateConstants() {
         loadStoredConstants()
     }
+
+    /// Saved values or the rounding rule changed, e.g. on the edit screen: refill empty fields
+    /// and redo the result so it's rounded with the new rule
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        // Loading saved values recalculates on its own; with none saved, recalculate with what's typed in
+        if constantsManager.hasStoredConstants {
+            loadStoredConstants()
+        } else {
+            calculateFoodInsulin()
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Checked first: the guard below returns for every destination but Calculator C
+        if let editViewController = segue.destination as? CalculatorEditViewController {
+            editViewController.delegate = self
+        }
+
         guard let calculatorCViewController = segue.destination as? CalculatorCViewController else { return }
         calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
         calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
@@ -492,10 +633,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculatorCViewController.bloodSugar = bloodSugar
         calculatorCViewController.targetBloodSugar = targetBloodSugar
         calculatorCViewController.correctionFactor = correctionFactor
-        
-        if let editViewController = segue.destination as? CalculatorEditViewController {
-            editViewController.delegate = self
-        }
     }
     
     @objc func dismissKeyboard() {
@@ -503,17 +640,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         self.view.endEditing(true)
         updateSeeResultAccessoryIfNeeded()
         calculateFoodInsulin()
-    }
-    
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
     }
     
     func calculateFoodInsulin() {
@@ -548,6 +674,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         // If current blood sugar is below target, show warning and do not calculate
         if currentBloodSugar > 0 && currentTargetBloodSugar > 0 && currentBloodSugar < currentTargetBloodSugar {
             // Show results container with warning state
+            isShowingBelowTargetWarning = true
             UIView.animate(withDuration: 0.2) {
                 self.resultsView.isHidden = false
             }
@@ -570,18 +697,14 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 
             if insulinForHighBloodSugarBoolean && currentBloodSugar >= currentTargetBloodSugar {
-                let exactBloodInsulin = Float(currentBloodSugar - currentTargetBloodSugar) / Float(currentCorrectionFactor)
+                let bloodInsulin = InsulinDose.correction(bloodSugar: currentBloodSugar, targetBloodSugar: currentTargetBloodSugar, correctionFactor: currentCorrectionFactor)
 
                 bloodSugarLine.backgroundColor = .primaryBlue
                 bloodSugarLabel.textColor = .primaryBlue
                 bloodSugarField.textColor = .primaryBlue
 
                 // For meals + correction, only the combined total is rounded (on CalculatorC)
-                if insulinForFoodBoolean {
-                    insulinForHighBloodSugar.text = "\(exactBloodInsulin.preciseString) units"
-                } else {
-                    insulinForHighBloodSugar.text = "\(roundDownToNearestHalf(value: exactBloodInsulin).cleanString) units"
-                }
+                insulinForHighBloodSugar.text = bloodInsulin.displayText(rounded: !insulinForFoodBoolean, using: constantsManager.roundingRule)
                 insulinForHighBloodSugar.font = .nunitoBold32
                 insulinForHighBloodSugar.textColor = .primaryBlue
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar": currentBloodSugar, "target_blood_sugar": currentTargetBloodSugar, "correction_factor": currentCorrectionFactor])

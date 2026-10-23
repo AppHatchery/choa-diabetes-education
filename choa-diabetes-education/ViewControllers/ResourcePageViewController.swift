@@ -15,7 +15,10 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
     /// Title shown in the navigation bar
     var pageTitle = ""
     var fontSize = 100
-    
+    /// Nav bar color for a page whose html opens with a header in this same color,
+    /// so the bar and header read as one block; nil keeps the plain white bar
+    var headerColor: UIColor?
+
     private var webView: WKWebView!
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -24,12 +27,12 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
         let appearance = UINavigationBarAppearance()
         
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .whiteColor
+        appearance.backgroundColor = headerColor ?? .whiteColor
         appearance.shadowColor = .clear
-        
+
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = headerColor == nil ? .black : .white
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -51,12 +54,33 @@ class ResourcePageViewController: UIViewController, WKUIDelegate, WKNavigationDe
         navigationItem.rightBarButtonItem = rightButton
         
         let config = WKWebViewConfiguration()
-        
+
+        // Lets a page swap in its Halloween art with `.halloween` css, tagged before it first renders
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+            config.userContentController.addUserScript(WKUserScript(
+                source: "document.documentElement.classList.add('halloween');",
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true
+            ))
+        }
+
         webView = WKWebView(frame: .zero, configuration: config)
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        
+
+        // Pulling down past the header shows the header color and pulling up past the end shows white,
+        // so each overscroll matches the edge of the page it's next to
+        if let headerColor {
+            webView.underPageBackgroundColor = .whiteColor
+
+            // Sits just above the page's content and scrolls with it, filling the gap a pull-down opens
+            let topOverscrollView = UIView(frame: CGRect(x: 0, y: -1000, width: view.bounds.width, height: 1000))
+            topOverscrollView.backgroundColor = headerColor
+            topOverscrollView.autoresizingMask = .flexibleWidth
+            webView.scrollView.insertSubview(topOverscrollView, at: 0)
+        }
+
         setupUI()
         
         if let htmlURL = Bundle.main.url(forResource: contentURL, withExtension: "html") {

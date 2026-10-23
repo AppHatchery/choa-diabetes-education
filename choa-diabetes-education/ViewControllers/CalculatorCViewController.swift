@@ -15,7 +15,14 @@ class CalculatorCViewController: UIViewController {
     @IBOutlet weak var insulinForBloodSugar: UILabel!
     @IBOutlet weak var totalInsulin: UILabel!
     @IBOutlet weak var animationView: LottieAnimationView!
-    
+
+    @IBOutlet weak var heroView: UIView!
+    @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var resultsCardView: UIView!
+    @IBOutlet weak var newCalculationButton: UIButton!
+    @IBOutlet weak var heroTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heroHeightConstraint: NSLayoutConstraint!
+
     var totalCarbs: Int = 0
     var bloodSugar: Int = 0
     var targetBloodSugar: Int = 0
@@ -41,9 +48,60 @@ class CalculatorCViewController: UIViewController {
         
         animationView.loopMode = .loop
         animationView.play()
-        
+
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+            applyHalloweenTheme()
+        }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Calculated here rather than in viewDidLoad so it also picks up a rounding rule changed while off screen
         calculateInsulin()
-        // Do any additional setup after loading the view.
+    }
+
+    /// Redoes the total with the saved rounding rule (whole unit unless the user chose half unit)
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        calculateInsulin()
+    }
+
+    /// Spooky background behind a see-through nav bar, a bigger Halloween Will
+    /// standing on the results card, and a translucent card.
+    private func applyHalloweenTheme() {
+        let backgroundImageView = UIImageView(image: UIImage(named: "halloween_bg_1"))
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        // Shows through the image's transparent rounded corners on tall screens
+        view.backgroundColor = .diabetesBasicsColor050
+
+        // Scoped to this screen so the rest of the stack keeps its white bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+
+        // Will replaces the confetti and grows into the top spacing, keeping the card where it was
+        animationView.stop()
+        animationView.isHidden = true
+        heroView.backgroundColor = .clear
+        heroHeightConstraint.constant += heroTopConstraint.constant
+        heroTopConstraint.constant = 0
+        willImageView.image = UIImage(named: "halloween_will_calculator_cropped")
+        willImageView.contentMode = .scaleAspectFit
+
+        resultsCardView.layer.cornerRadius = 12
+        newCalculationButton.backgroundColor = .clear
     }
     
     func calculateInsulin() {
@@ -51,56 +109,33 @@ class CalculatorCViewController: UIViewController {
         
         // For meals + correction, round only the total; each part is shown unrounded.
         let roundsOnlyTotal = insulinForFoodBoolean && insulinForHighBloodSugarBoolean
+        let roundingRule = constantsManager.roundingRule
 
-        // Each dose is kept as an exact fraction (numerator / denominator) so the sum isn't
-        // affected by floating-point error before it's rounded.
-        var food = (numerator: 0, denominator: 1)
-        var blood = (numerator: 0, denominator: 1)
+        // Each dose is kept as an exact fraction so the sum isn't affected by floating-point error before it's rounded
+        var food = InsulinDose.zero
+        var blood = InsulinDose.zero
 
         // Insulin for food
         if insulinForFoodBoolean && carbRatio > 0 {
-            food = (totalCarbs, carbRatio)
-            let exactFoodInsulin = Float(food.numerator) / Float(food.denominator)
-            insulinForFood.text = (roundsOnlyTotal ? exactFoodInsulin.preciseString : roundDownToNearestHalf(value: exactFoodInsulin).cleanString) + " units"
+            food = .food(totalCarbs: totalCarbs, carbRatio: carbRatio)
+            insulinForFood.text = food.displayText(rounded: !roundsOnlyTotal, using: roundingRule)
         } else {
             insulinForFood.text = "0"
         }
 
         // Insulin for blood sugar - use the same value for both condition and calculation
         if (insulinForHighBloodSugarBoolean && bloodSugar > 0 && targetBloodSugarValue > 0 && bloodSugar >= targetBloodSugarValue && correctionFactor > 0){
-            blood = (bloodSugar - targetBloodSugarValue, correctionFactor)
-            let exactBloodInsulin = Float(blood.numerator) / Float(blood.denominator)
-            insulinForBloodSugar.text = (roundsOnlyTotal ? exactBloodInsulin.preciseString : roundDownToNearestHalf(value: exactBloodInsulin).cleanString) + " units"
+            blood = .correction(bloodSugar: bloodSugar, targetBloodSugar: targetBloodSugarValue, correctionFactor: correctionFactor)
+            insulinForBloodSugar.text = blood.displayText(rounded: !roundsOnlyTotal, using: roundingRule)
         } else {
             insulinForBloodSugar.text = "0"
         }
 
-        // Total insulin
-        let total: Float
-        if roundsOnlyTotal {
-            // food + blood = (a/b + c/d) = (a·d + c·b) / (b·d); round to the nearest whole unit (.5 rounds up)
-            let numerator = food.numerator * blood.denominator + blood.numerator * food.denominator
-            let denominator = food.denominator * blood.denominator
-            total = Float((2 * numerator + denominator) / (2 * denominator))
-        } else {
-            let foodInsulin = roundDownToNearestHalf(value: Float(food.numerator) / Float(food.denominator))
-            let bloodInsulin = roundDownToNearestHalf(value: Float(blood.numerator) / Float(blood.denominator))
-            total = (foodInsulin + bloodInsulin).rounded()
-        }
-        totalInsulin.text = "\(total.cleanString) units"
+        // Total insulin: the exact parts are added first and only the sum is rounded, using the saved rounding rule.
+        // With only one part, the other is zero and this is just that part.
+        totalInsulin.text = (food + blood).displayText(rounded: true, using: roundingRule)
         
         PendoManager.shared().track("Calculator_results", properties: ["total":totalInsulin.text ?? "-","for_food":insulinForFood.text ?? "-","for_hbs":insulinForBloodSugar.text ?? "-"])
-    }
-    
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
     }
     
     @IBAction func newCalculation(_ sender: UIButton){

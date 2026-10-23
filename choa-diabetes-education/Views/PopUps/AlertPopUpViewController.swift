@@ -5,8 +5,8 @@
 
 import UIKit
 
-/// A custom alert shown over a blurred background with a filled primary
-/// action and a text-only secondary action.
+/// A custom alert shown as a card over the dimmed current screen, with a filled
+/// primary action and a text-only secondary action.
 class AlertPopUpViewController: UIViewController {
 
     private let titleText: String
@@ -19,8 +19,12 @@ class AlertPopUpViewController: UIViewController {
     var onPrimaryAction: (() -> Void)?
     var onSecondaryAction: (() -> Void)?
 
-    private let blurView = UIVisualEffectView(effect: nil)
+    /// Dims the presenting screen so it stays visible behind the card
+    private let dimmingView = UIView()
     private let cardView = UIView()
+
+    /// Keeps the card a pop-up size on wide screens instead of stretching edge to edge
+    private static let maxCardWidth: CGFloat = 400
 
     init(title: String,
          message: String,
@@ -35,8 +39,8 @@ class AlertPopUpViewController: UIViewController {
         self.tintColor = tintColor
         self.cardColor = cardColor
         super.init(nibName: nil, bundle: nil)
+        // Keep the presenting screen underneath; the dim and pop-in are animated here instead of by UIKit
         self.modalPresentationStyle = .overFullScreen
-        self.modalTransitionStyle = .crossDissolve
     }
 
     required init?(coder: NSCoder) {
@@ -46,34 +50,46 @@ class AlertPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        setupBlurView()
+        setupDimmingView()
         setupCardView()
+
+        // Start hidden and slightly shrunk, then pop in once presented
+        dimmingView.alpha = 0
+        cardView.alpha = 0
+        cardView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIView.animate(withDuration: 0.25) {
-            self.blurView.effect = UIBlurEffect(style: .light)
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.5) {
+            self.dimmingView.alpha = 1
+            self.cardView.alpha = 1
+            self.cardView.transform = .identity
         }
     }
 
     // MARK: - Layout
 
-    private func setupBlurView() {
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(blurView)
+    private func setupDimmingView() {
+        dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        dimmingView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(dimmingView)
 
         NSLayoutConstraint.activate([
-            blurView.topAnchor.constraint(equalTo: view.topAnchor),
-            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            dimmingView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            dimmingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 
     private func setupCardView() {
         cardView.backgroundColor = cardColor
-        cardView.layer.cornerRadius = 12
+        cardView.layer.cornerRadius = 16
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowOpacity = 0.2
+        cardView.layer.shadowRadius = 16
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
         cardView.translatesAutoresizingMaskIntoConstraints = false
         // Keep VoiceOver focus inside the alert while it's showing
         cardView.accessibilityViewIsModal = true
@@ -127,9 +143,15 @@ class AlertPopUpViewController: UIViewController {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(mainStack)
 
+        // Fills the width minus margins on phones, but never wider than the max on larger screens
+        let preferredWidth = cardView.widthAnchor.constraint(equalToConstant: Self.maxCardWidth)
+        preferredWidth.priority = .defaultHigh
+
         NSLayoutConstraint.activate([
-            cardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            cardView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardView.leadingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            cardView.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            preferredWidth,
             cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             cardView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             cardView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -157,14 +179,17 @@ class AlertPopUpViewController: UIViewController {
     // MARK: - Presentation
 
     func appear(sender: UIViewController) {
-        sender.present(self, animated: true)
+        sender.present(self, animated: false)
     }
 
     private func hide(completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2) {
-            self.blurView.effect = nil
-        }
-        dismiss(animated: true, completion: completion)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.dimmingView.alpha = 0
+            self.cardView.alpha = 0
+            self.cardView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }, completion: { _ in
+            self.dismiss(animated: false, completion: completion)
+        })
     }
 
     // MARK: - Actions

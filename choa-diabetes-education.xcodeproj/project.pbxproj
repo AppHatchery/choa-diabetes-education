@@ -18,6 +18,8 @@
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
 		8EBD52242A8DE3EE00237C49 /* AboutTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */; };
 		8EBD52262A8DE3F200237C49 /* AboutTeam.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EBD52252A8DE3F200237C49 /* AboutTeam.xib */; };
+		A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */; };
+		A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */; };
 		AA0000012E09F00000000001 /* MedicalReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */; };
 		B40A28D62E3CB433004F217F /* UrineKetoneLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */; };
 		B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */; };
@@ -143,6 +145,7 @@
 		B4DBE8812F10FCF20075C7F3 /* hope_on_call_standing.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */; };
 		B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8822F11024E0075C7F3 /* arrow_right.png */; };
 		B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */; };
+		6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C7DD3E33478A292930400 /* InsulinDose.swift */; };
 		B4E144352E9C383C009A5589 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144342E9C383C009A5589 /* NotificationHandler.swift */; };
 		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
 		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
@@ -166,6 +169,14 @@
 		CF01A1B2000000000000F105 /* low_carb in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F106 /* low_carb */; };
 		CF01A1B2000000000000F107 /* snack_recipes in Resources */ = {isa = PBXBuildFile; fileRef = CF01A1B2000000000000F108 /* snack_recipes */; };
 		CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */; };
+		CF0A90D3308A7231001D1906 /* bats-flyby-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */; };
+		CF0A90D4308A7231001D1906 /* spider-drop-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90D1308A7231001D1906 /* spider-drop-sm.json */; };
+		CF0A90D5308A7231001D1906 /* falling-leaves-sm.json in Resources */ = {isa = PBXBuildFile; fileRef = CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */; };
+		CF0A9123308A88C8001D1906 /* HalloweenAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */; };
+		CF129C1D3088BDAD00E241C4 /* halloween_launch.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */; };
+		CF129C233088D26100E241C4 /* bat-flyby.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C223088D26100E241C4 /* bat-flyby.json */; };
+		CF129C253088D96500E241C4 /* falling-leaves.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C243088D96500E241C4 /* falling-leaves.json */; };
+		CF129C273088F3A900E241C4 /* ghost-drift.json in Resources */ = {isa = PBXBuildFile; fileRef = CF129C263088F3A900E241C4 /* ghost-drift.json */; };
 		CF14089E303F85550002FD8A /* KnowYourCarbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */; };
 		CF1408A0303F97560002FD8A /* KnowYourCarbsResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */; };
 		CF1408DA304052AD0002FD8A /* yogurt.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408A3304052AD0002FD8A /* yogurt.png */; };
@@ -219,19 +230,22 @@
 		CF14090A304052AD0002FD8A /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1408C4304052AD0002FD8A /* bread.png */; };
 		CF44788F306D18E2007D2494 /* AlertPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */; };
 		CF6C043730612AA2000C7BC7 /* AppOnboardingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */; };
+		CF77AA46308619A800094233 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF77AA45308619A800094233 /* RemoteConfigManager.swift */; };
 		CF827914306161D500B81D25 /* AppOnboardingWelcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */; };
 		CF9CABC0304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */; };
 		CF9CABC1304ED7E8008BFD19 /* low_carb_snacks.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */; };
 		CF9CABC2304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html in Resources */ = {isa = PBXBuildFile; fileRef = CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */; };
 		CF9CABC4304EDCD3008BFD19 /* ResourcePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */; };
+		CFAE4336308B6237002AF2B6 /* falling-stars.json in Resources */ = {isa = PBXBuildFile; fileRef = CFAE4335308B6237002AF2B6 /* falling-stars.json */; };
+		CFAE4338308B663E002AF2B6 /* spider-drop.json in Resources */ = {isa = PBXBuildFile; fileRef = CFAE4337308B663E002AF2B6 /* spider-drop.json */; };
+		CFAE433A308B6CF7002AF2B6 /* bats-flyby.json in Resources */ = {isa = PBXBuildFile; fileRef = CFAE4339308B6CF7002AF2B6 /* bats-flyby.json */; };
+		CFAE433C308B72A5002AF2B6 /* falling-leaves-longer.json in Resources */ = {isa = PBXBuildFile; fileRef = CFAE433B308B72A5002AF2B6 /* falling-leaves-longer.json */; };
 		CFB0B73C30611419003B8FB4 /* AppOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */; };
 		CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */; };
 		CFCFD05830767A2B0067FBBB /* PerformFingerStickTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */; };
 		CFCFD05C30767A980067FBBB /* PerformFingerStickTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */; };
 		CFCFD05F307680C80067FBBB /* LowBloodSugarSymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */; };
 		CFCFD060307680C80067FBBB /* LowBloodSugarSymptomsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */; };
-		A1B2C3D43080000100000003 /* ThreeOptionQueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */; };
-		A1B2C3D43080000100000004 /* ThreeOptionQueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */; };
 		D42A53782964DC8C0031D395 /* CalculatorAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */; };
 		D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A53792964DC990031D395 /* CalculatorBViewController.swift */; };
 		D42A537C2964DCAB0031D395 /* CalculatorCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */; };
@@ -283,6 +297,7 @@
 		D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */ = {isa = PBXBuildFile; fileRef = D492A89929088C9A00B98CA3 /* Irish_Grover */; };
 		D492A89C29088CA700B98CA3 /* Acme in Resources */ = {isa = PBXBuildFile; fileRef = D492A89B29088CA700B98CA3 /* Acme */; };
 		D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */; };
+		D4A5116A2982F6F70049A8D8 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */; };
 		D4C39B2A28B7D9D7003CCA14 /* uikit.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2828B7D9D7003CCA14 /* uikit.css */; };
 		D4C39B2B28B7D9D7003CCA14 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2928B7D9D7003CCA14 /* styles.css */; };
 		D4C39B2E28B7D9F6003CCA14 /* uikit-icons.js in Resources */ = {isa = PBXBuildFile; fileRef = D4C39B2C28B7D9F6003CCA14 /* uikit-icons.js */; };
@@ -338,6 +353,8 @@
 		8EBD52232A8DE3EE00237C49 /* AboutTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTeam.swift; sourceTree = "<group>"; };
 		8EBD52252A8DE3F200237C49 /* AboutTeam.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTeam.xib; sourceTree = "<group>"; };
 		945E823908D07BE6545031D5 /* AppOnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingManager.swift; sourceTree = "<group>"; };
+		A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionQueView.swift; sourceTree = "<group>"; };
+		A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeOptionQueView.xib; sourceTree = "<group>"; };
 		AA0000012E09F00000000002 /* MedicalReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReferencesViewController.swift; sourceTree = "<group>"; };
 		B40A28D52E3CB433004F217F /* UrineKetoneLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrineKetoneLevelView.swift; sourceTree = "<group>"; };
 		B40A28D72E3CB448004F217F /* UrineKetoneLevelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UrineKetoneLevelView.xib; sourceTree = "<group>"; };
@@ -461,6 +478,7 @@
 		B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hope_on_call_standing.png; sourceTree = "<group>"; };
 		B4DBE8822F11024E0075C7F3 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPersistence.swift; sourceTree = "<group>"; };
+		081C7DD3E33478A292930400 /* InsulinDose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinDose.swift; sourceTree = "<group>"; };
 		B4E144342E9C383C009A5589 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
 		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };
@@ -483,6 +501,14 @@
 		CF01A1B2000000000000F106 /* low_carb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = low_carb; sourceTree = "<group>"; };
 		CF01A1B2000000000000F108 /* snack_recipes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snack_recipes; sourceTree = "<group>"; };
 		CF0922E8304F2B5F0052EF88 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bats-flyby-sm.json"; sourceTree = "<group>"; };
+		CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves-sm.json"; sourceTree = "<group>"; };
+		CF0A90D1308A7231001D1906 /* spider-drop-sm.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop-sm.json"; sourceTree = "<group>"; };
+		CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = HalloweenAppIcon.icon; sourceTree = "<group>"; };
+		CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = halloween_launch.mp4; sourceTree = "<group>"; };
+		CF129C223088D26100E241C4 /* bat-flyby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bat-flyby.json"; sourceTree = "<group>"; };
+		CF129C243088D96500E241C4 /* falling-leaves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves.json"; sourceTree = "<group>"; };
+		CF129C263088F3A900E241C4 /* ghost-drift.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ghost-drift.json"; sourceTree = "<group>"; };
 		CF14089D303F85550002FD8A /* KnowYourCarbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsViewController.swift; sourceTree = "<group>"; };
 		CF14089F303F97560002FD8A /* KnowYourCarbsResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowYourCarbsResultViewController.swift; sourceTree = "<group>"; };
 		CF1408A1304052AD0002FD8A /* flavored_milk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flavored_milk.png; sourceTree = "<group>"; };
@@ -536,19 +562,22 @@
 		CF1408D8304052AD0002FD8A /* pies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pies.png; sourceTree = "<group>"; };
 		CF44788E306D18E2007D2494 /* AlertPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopUpViewController.swift; sourceTree = "<group>"; };
 		CF6C043630612AA2000C7BC7 /* AppOnboardingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestion.swift; sourceTree = "<group>"; };
+		CF77AA45308619A800094233 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		CF827913306161D500B81D25 /* AppOnboardingWelcomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingWelcomViewController.swift; sourceTree = "<group>"; };
 		CF9CABBD304ED7E8008BFD19 /* foods_that_dont_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_dont_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBE304ED7E8008BFD19 /* foods_that_raise_blood_sugar.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = foods_that_raise_blood_sugar.html; sourceTree = "<group>"; };
 		CF9CABBF304ED7E8008BFD19 /* low_carb_snacks.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = low_carb_snacks.html; sourceTree = "<group>"; };
 		CF9CABC3304EDCD3008BFD19 /* ResourcePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcePageViewController.swift; sourceTree = "<group>"; };
+		CFAE4335308B6237002AF2B6 /* falling-stars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-stars.json"; sourceTree = "<group>"; };
+		CFAE4337308B663E002AF2B6 /* spider-drop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "spider-drop.json"; sourceTree = "<group>"; };
+		CFAE4339308B6CF7002AF2B6 /* bats-flyby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bats-flyby.json"; sourceTree = "<group>"; };
+		CFAE433B308B72A5002AF2B6 /* falling-leaves-longer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "falling-leaves-longer.json"; sourceTree = "<group>"; };
 		CFB0B73B30611419003B8FB4 /* AppOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingViewController.swift; sourceTree = "<group>"; };
 		CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppOnboarding.storyboard; sourceTree = "<group>"; };
 		CFCFD05730767A2B0067FBBB /* PerformFingerStickTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PerformFingerStickTestView.xib; sourceTree = "<group>"; };
 		CFCFD05B30767A980067FBBB /* PerformFingerStickTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformFingerStickTestView.swift; sourceTree = "<group>"; };
 		CFCFD05D307680C80067FBBB /* LowBloodSugarSymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowBloodSugarSymptomsView.swift; sourceTree = "<group>"; };
 		CFCFD05E307680C80067FBBB /* LowBloodSugarSymptomsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowBloodSugarSymptomsView.xib; sourceTree = "<group>"; };
-		A1B2C3D43080000100000001 /* ThreeOptionQueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeOptionQueView.swift; sourceTree = "<group>"; };
-		A1B2C3D43080000100000002 /* ThreeOptionQueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeOptionQueView.xib; sourceTree = "<group>"; };
 		D42A53772964DC8C0031D395 /* CalculatorAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAViewController.swift; sourceTree = "<group>"; };
 		D42A53792964DC990031D395 /* CalculatorBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorBViewController.swift; sourceTree = "<group>"; };
 		D42A537B2964DCAB0031D395 /* CalculatorCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCViewController.swift; sourceTree = "<group>"; };
@@ -655,6 +684,7 @@
 			files = (
 				B40B5DA82F3BA68F0028CCB0 /* Pendo in Frameworks */,
 				D4A511682982F6F70049A8D8 /* FirebaseCrashlytics in Frameworks */,
+				D4A5116A2982F6F70049A8D8 /* FirebaseRemoteConfig in Frameworks */,
 				B4DA9DC82E98F82900C415CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +713,7 @@
 				3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */,
 				EAB8730B7063CCF87D7028DB /* CustomFoodsManager.swift */,
 				FDC8E52C2A20567F006FDFF0 /* QuestionnaireManager.swift */,
+				CF77AA45308619A800094233 /* RemoteConfigManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -690,7 +721,17 @@
 		B48F8E6B2E98F18000D29F1B /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				CF129C223088D26100E241C4 /* bat-flyby.json */,
+				CFAE4339308B6CF7002AF2B6 /* bats-flyby.json */,
+				CF0A90CE308A7231001D1906 /* bats-flyby-sm.json */,
+				CFAE433B308B72A5002AF2B6 /* falling-leaves-longer.json */,
+				CF0A90CF308A7231001D1906 /* falling-leaves-sm.json */,
+				CFAE4335308B6237002AF2B6 /* falling-stars.json */,
+				CF0A90D1308A7231001D1906 /* spider-drop-sm.json */,
 				B48F8E6C2E98F1C700D29F1B /* confetti.json */,
+				CF129C243088D96500E241C4 /* falling-leaves.json */,
+				CF129C263088F3A900E241C4 /* ghost-drift.json */,
+				CFAE4337308B663E002AF2B6 /* spider-drop.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -710,8 +751,17 @@
 			children = (
 				B4E144342E9C383C009A5589 /* NotificationHandler.swift */,
 				B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */,
+				081C7DD3E33478A292930400 /* InsulinDose.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CF129C1B3088BD9600E241C4 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				CF129C1C3088BDAD00E241C4 /* halloween_launch.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 		CF1408A5304052AD0002FD8A /* dairy */ = {
@@ -999,6 +1049,7 @@
 				D48D890B289C0095001A61E2 /* plists */,
 				D48D8908289C006D001A61E2 /* Views */,
 				D48D8907289C0063001A61E2 /* ViewControllers */,
+				CF0A9122308A88C8001D1906 /* HalloweenAppIcon.icon */,
 				CFB0B73D30611502003B8FB4 /* AppOnboarding.storyboard */,
 				D48D88F6289C0043001A61E2 /* Main.storyboard */,
 				B40A72C82E0DC48F00416D59 /* GetHelp.storyboard */,
@@ -1133,6 +1184,7 @@
 		D48D890C289C027E001A61E2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CF129C1B3088BD9600E241C4 /* Videos */,
 				B48F8E6B2E98F18000D29F1B /* Animations */,
 				D48167F228AD38E9003B14A3 /* font */,
 				D48167E128AD361A003B14A3 /* js */,
@@ -1253,6 +1305,7 @@
 			name = "choa-diabetes-education";
 			packageProductDependencies = (
 				D4A511672982F6F70049A8D8 /* FirebaseCrashlytics */,
+				D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */,
 				B4DA9DC72E98F82900C415CE /* Lottie */,
 				B40B5DA72F3BA68F0028CCB0 /* Pendo */,
 			);
@@ -1312,6 +1365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DBE82B2F1001850075C7F3 /* insulin_bottle.png in Resources */,
+				CF0A9123308A88C8001D1906 /* HalloweenAppIcon.icon in Resources */,
 				B4DBE82C2F1001850075C7F3 /* warning.png in Resources */,
 				B4DBE82D2F1001850075C7F3 /* calendar.png in Resources */,
 				B4DBE8332F1002FB0075C7F3 /* 1_3_3_injection_sites.html in Resources */,
@@ -1331,6 +1385,7 @@
 				B4DBE8142F0FDB7C0075C7F3 /* glucose_meter.png in Resources */,
 				B4DBE8152F0FDB7C0075C7F3 /* will_lancing_placement.png in Resources */,
 				B4DBE8162F0FDB7C0075C7F3 /* will_throwing_away.png in Resources */,
+				CFAE4338308B663E002AF2B6 /* spider-drop.json in Resources */,
 				B4DBE83B2F1023DD0075C7F3 /* 1_5_1_managing_ketones.html in Resources */,
 				B4DBE8172F0FDB7C0075C7F3 /* will_glucose_test.png in Resources */,
 				B4DBE8182F0FDB7C0075C7F3 /* will_lancing_prick.png in Resources */,
@@ -1347,6 +1402,7 @@
 				B4DBE8212F0FFD000075C7F3 /* long_acting_insulin.png in Resources */,
 				B4DBE81D2F0FDB7C0075C7F3 /* will_test_strip.png in Resources */,
 				D42FA8FF29916B81009C51C3 /* AboutApp.xib in Resources */,
+				CFAE4336308B6237002AF2B6 /* falling-stars.json in Resources */,
 				CFB0B73E30611502003B8FB4 /* AppOnboarding.storyboard in Resources */,
 				B4DBE8312F1002AF0075C7F3 /* insulin_injection_sites.png in Resources */,
 				8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */,
@@ -1354,6 +1410,9 @@
 				B4DBE8712F10F3150075C7F3 /* hope_chubby_cheeks.png in Resources */,
 				B4DBE8722F10F3150075C7F3 /* hope_on_call.png in Resources */,
 				B4DBE8732F10F3150075C7F3 /* will_drinking_soda.png in Resources */,
+				CF0A90D3308A7231001D1906 /* bats-flyby-sm.json in Resources */,
+				CF0A90D4308A7231001D1906 /* spider-drop-sm.json in Resources */,
+				CF0A90D5308A7231001D1906 /* falling-leaves-sm.json in Resources */,
 				B4DBE8742F10F3150075C7F3 /* will_nutrition_food.png in Resources */,
 				B4DBE8752F10F3150075C7F3 /* will_taking_pill.png in Resources */,
 				D4C39B3928B7E5F1003CCA14 /* QuizAnswerTableViewCell.xib in Resources */,
@@ -1411,6 +1470,7 @@
 				D481679928ABBCDE003B14A3 /* OrientationHeader.xib in Resources */,
 				B40A28D82E3CB448004F217F /* UrineKetoneLevelView.xib in Resources */,
 				D4D48E8D28D10FAB00820FD4 /* FoodDiary.xib in Resources */,
+				CF129C1D3088BDAD00E241C4 /* halloween_launch.mp4 in Resources */,
 				B4B8E9772E6EB09000C377D1 /* RecheckKetoneLevelView.xib in Resources */,
 				D48167A928ABE747003B14A3 /* AgendaView.xib in Resources */,
 				B4F6ABFF2E5A23F20037D323 /* FinalStepWithReminderView.xib in Resources */,
@@ -1440,11 +1500,13 @@
 				B4DBE8352F100F290075C7F3 /* 1_4_1_with_pen.html in Resources */,
 				B49BDE6D2E16CE4500A09DA5 /* FiveOptionsView.xib in Resources */,
 				D492A89A29088C9A00B98CA3 /* Irish_Grover in Resources */,
+				CFAE433C308B72A5002AF2B6 /* falling-leaves-longer.json in Resources */,
 				B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */,
 				B4AB10DA2F0EDC3D00F74329 /* hope_steroids.png in Resources */,
 				D4EB10CC2A0D7FC100CD5292 /* GoogleService-Info.plist in Resources */,
 				B4DBE85D2F105DE20075C7F3 /* will_calculator_standing.png in Resources */,
 				B4DBE8252F0FFEEB0075C7F3 /* 1_3_2_storage_of_insulin.html in Resources */,
+				CF129C273088F3A900E241C4 /* ghost-drift.json in Resources */,
 				B4B788D42E27A78600BC296C /* TwoOptionsFollowUpQuestionView.xib in Resources */,
 				B4AB10B72F0E932B00F74329 /* 1_1_3_type_2_diabetes.html in Resources */,
 				B4AB10C62F0E971F00F74329 /* hope_nausea_and_vomiting.png in Resources */,
@@ -1455,6 +1517,7 @@
 				B4AB10D82F0EDC2A00F74329 /* hope_stress.png in Resources */,
 				B4DBE8692F10EC6F0075C7F3 /* 2_3_3_how_to_calculate_insulin_dosages.html in Resources */,
 				FDC8E5472A2A771F006FDFF0 /* MultipleOptionsView.xib in Resources */,
+				CF129C233088D26100E241C4 /* bat-flyby.json in Resources */,
 				CF1408DA304052AD0002FD8A /* yogurt.png in Resources */,
 				CF1408DB304052AD0002FD8A /* syrup.png in Resources */,
 				CF1408DC304052AD0002FD8A /* pineapple.png in Resources */,
@@ -1473,6 +1536,7 @@
 				CF1408E9304052AD0002FD8A /* corn.png in Resources */,
 				CF1408EA304052AD0002FD8A /* olives.png in Resources */,
 				CF1408EB304052AD0002FD8A /* pasta.png in Resources */,
+				CF129C253088D96500E241C4 /* falling-leaves.json in Resources */,
 				CF0922E9304F2B5F0052EF88 /* Nunito-SemiBold.ttf in Resources */,
 				CF1408EC304052AD0002FD8A /* cereal.png in Resources */,
 				CF1408ED304052AD0002FD8A /* cheese.png in Resources */,
@@ -1486,6 +1550,7 @@
 				CF1408F5304052AD0002FD8A /* oil.png in Resources */,
 				CF1408F6304052AD0002FD8A /* beef.png in Resources */,
 				CF1408F7304052AD0002FD8A /* mayonnaise.png in Resources */,
+				CFAE433A308B6CF7002AF2B6 /* bats-flyby.json in Resources */,
 				CF1408F8304052AD0002FD8A /* cream_cheese.png in Resources */,
 				CF1408F9304052AD0002FD8A /* salad_dressing.png in Resources */,
 				CF1408FA304052AD0002FD8A /* candy.png in Resources */,
@@ -1605,6 +1670,7 @@
 				D481679728ABBCCC003B14A3 /* OrientationHeader.swift in Sources */,
 				B48409BF2E4C728C009171DA /* RoundedButtonWithImage.swift in Sources */,
 				B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */,
+				6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */,
 				D48167B128ABF15D003B14A3 /* QuotesViewController.swift in Sources */,
 				D42A537E2964DE5A0031D395 /* CalculatorHomeViewController.swift in Sources */,
 				D48167C528ACFB40003B14A3 /* Content.swift in Sources */,
@@ -1612,6 +1678,7 @@
 				D48D8924289C214F001A61E2 /* HandbookViewController.swift in Sources */,
 				D48167B328ABF5FE003B14A3 /* QuotesFooter.swift in Sources */,
 				B4B788D22E27A4C100BC296C /* TwoOptionsFollowUpQuestionView.swift in Sources */,
+				CF77AA46308619A800094233 /* RemoteConfigManager.swift in Sources */,
 				B41C738B2E55E8F600CC4213 /* AboutKetoneMeasurementsViewController.swift in Sources */,
 				D42A537A2964DC990031D395 /* CalculatorBViewController.swift in Sources */,
 				FDC8E52D2A20567F006FDFF0 /* QuestionnaireManager.swift in Sources */,
@@ -1824,6 +1891,7 @@
 		D48D8905289C0045001A61E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = HalloweenAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1862,6 +1930,7 @@
 		D48D8906289C0045001A61E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = HalloweenAppIcon;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1961,6 +2030,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		D4A511692982F6F70049A8D8 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A511642982F6F70049A8D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

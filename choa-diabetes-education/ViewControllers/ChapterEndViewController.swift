@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ChapterEndViewController: UIViewController {
     
@@ -55,7 +56,9 @@ class ChapterEndViewController: UIViewController {
     var nextChapter = ""
     var nextChapterURL = ""
     var quizIndex = 0
-    
+
+    private var isShowingHalloweenBackground = false
+
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
@@ -75,7 +78,12 @@ class ChapterEndViewController: UIViewController {
             appearance.backgroundColor = .diabetesSelfManagementColor
             mainView.backgroundColor = .diabetesSelfManagementColor
         }
-        
+
+        // Let the Halloween artwork show through the main view
+        if isShowingHalloweenBackground {
+            mainView.backgroundColor = .clear
+        }
+
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
@@ -183,9 +191,87 @@ class ChapterEndViewController: UIViewController {
         // Persist completion for this chapter (idempotent)
         if let idx = currentChapterIndex {
             CompletionStore.markCompleted(section: contentIndex, index: idx)
+
+            if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+                applyHalloweenBackground(chapterIndex: idx)
+            }
         }
-        
+
         updateStarsUI()
+    }
+
+    /// The Halloween artwork has the congrats message, text bubble and character drawn in,
+    /// so it fills the screen behind a see-through nav bar and stands in for those views
+    private func applyHalloweenBackground(chapterIndex: Int) {
+        let imageName: String
+        switch contentIndex {
+        case 0: imageName = "halloween_chapter_complete_basics_\(min(chapterIndex, 4) + 1)"
+        case 1: imageName = "halloween_chapter_complete_nutrition_\(min(chapterIndex, 2) + 1)"
+        case 2: imageName = "halloween_chapter_complete_self_management_\(min(chapterIndex, 1) + 1)"
+        default: return
+        }
+        guard let image = UIImage(named: imageName) else { return }
+
+        let backgroundImageView = UIImageView(image: image)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.isAccessibilityElement = true
+        backgroundImageView.accessibilityLabel = congratsLabel.text
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        // The stars card stops at the safe area, so continue its white down through the home indicator area
+        let bottomFillView = UIView()
+        bottomFillView.backgroundColor = bottomStarsView.backgroundColor
+        bottomFillView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(bottomFillView, aboveSubview: backgroundImageView)
+        NSLayoutConstraint.activate([
+            bottomFillView.topAnchor.constraint(equalTo: bottomStarsView.centerYAnchor),
+            bottomFillView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomFillView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomFillView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        // Faded rather than hidden so they keep holding the stars card in place
+        for drawnInView in [congratsLabel, textBubbleImage, hopeOrWillImage] as [UIView] {
+            drawnInView.alpha = 0
+            drawnInView.accessibilityElementsHidden = true
+        }
+
+        // Leaves (stars for self management) fall over the whole screen, stars card and buttons included, without blocking taps
+        let fallingAnimationName = contentIndex == 2 ? "falling-stars" : "falling-leaves"
+        let fallingView = LottieAnimationView(name: fallingAnimationName)
+        fallingView.contentMode = .scaleAspectFill
+        fallingView.loopMode = .playOnce
+        fallingView.backgroundBehavior = .pauseAndRestore
+        fallingView.isUserInteractionEnabled = false
+        fallingView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(fallingView)
+
+        NSLayoutConstraint.activate([
+            fallingView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        fallingView.play()
+
+        // Scoped to this screen so the rest of the stack keeps its colored bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+
+        isShowingHalloweenBackground = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,6 +9,12 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
     case carbRatio = 0
     case targetBloodSugar = 1
     case correctionFactor = 2
+    case roundingRule = 3
+
+    /// Every question but the rounding rule is answered by typing a number
+    var isNumeric: Bool {
+        self != .roundingRule
+    }
     
     var title: String {
         switch self {
@@ -18,6 +24,8 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
             return "CalculatorOnboarding.TargetBloodSugar.title".localized()
         case .correctionFactor:
             return "CalculatorOnboarding.CorrectionFactor.title".localized()
+        case .roundingRule:
+            return "CalculatorOnboarding.RoundingRule.title".localized()
         }
     }
     
@@ -27,7 +35,7 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
             return "g/unit"
         case .targetBloodSugar:
             return "mg/dL"
-        case .correctionFactor:
+        case .correctionFactor, .roundingRule:
             return ""
         }
     }
@@ -40,9 +48,25 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
             return "will_target_blood_sugar_question"
         case .correctionFactor:
             return "will_correction_factor_question"
+        case .roundingRule:
+            return "will_dose_rounded_question"
         }
     }
-    
+
+    var halloweenImageName: String {
+        switch self {
+        case .carbRatio:
+            return "halloween_will_carb_ratio_question"
+        case .targetBloodSugar:
+            return "halloween_will_target_blood_sugar_question"
+        case .correctionFactor:
+            return "halloween_will_correction_factor_question"
+        case .roundingRule:
+            // No Halloween artwork for this question yet
+            return "will_dose_rounded_question"
+        }
+    }
+
     var next: CalculatorOnboardingQuestion? {
         return CalculatorOnboardingQuestion(rawValue: self.rawValue + 1)
     }
@@ -52,6 +76,7 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
         case .carbRatio: return nil
         case .targetBloodSugar: return .carbRatio
         case .correctionFactor: return .targetBloodSugar
+        case .roundingRule: return .correctionFactor
         }
     }
 }

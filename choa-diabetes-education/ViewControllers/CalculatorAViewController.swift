@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import Pendo
 
 protocol CalculatorResetDelegate: AnyObject {
@@ -17,9 +18,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var totalCarbsField: UITextField!
     @IBOutlet weak var carbLine: UIView!
     @IBOutlet weak var carbLabel: UILabel!
+    @IBOutlet weak var totalCarbsInfoButton: UIButton!
     @IBOutlet weak var carbRatioField: UITextField!
     @IBOutlet weak var carbRatioLine: UIView!
     @IBOutlet weak var carbRatioLabel: UILabel!
+    @IBOutlet weak var carbRatioInfoButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet weak var contentView: UIView!
@@ -28,7 +31,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFoodTitleLabel: UILabel!
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
-    
+    @IBOutlet weak var willImageView: UIImageView!
+
+    // Full-screen Halloween overlay; it ignores touches so the fields stay usable
+    private let spiderDropView = LottieAnimationView(name: "spider-drop")
+
     var totalCarbs: Int = 0
     var carbRatio: Int = 0
     var insulinForHighBloodSugarBoolean = false
@@ -37,7 +44,11 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     let infoPopup = InfoPopUpViewController()
     
     private let constantsManager = CalculatorConstantsManager.shared
-    
+
+    /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
+    private var fieldsWithMissingValueError = Set<UITextField>()
+    private var defaultLineColors = [UIView: UIColor]()
+
     weak var resetDelegate: CalculatorResetDelegate?
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -58,11 +69,17 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
+        applyTheme()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
+
+        setupSpiderDropView()
+
         navigationController?.navigationBar.tintColor = .black
         
         var config = UIButton.Configuration.plain()
@@ -102,7 +119,13 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         carbLine.layer.cornerRadius = 3
         carbRatioLine.layer.cornerRadius = 3
-        
+
+        for line in [carbLine, carbRatioLine] {
+            if let line, let color = line.backgroundColor {
+                defaultLineColors[line] = color
+            }
+        }
+
         resultsView.isHidden = true
         
         if mealsAndHighSugar {
@@ -116,18 +139,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             step1Label.isHidden = true
 
-            nextButton
-                .setTitleWithStyle(
-                    "Exit",
-                    font: .nunitoBold20,
-                    color: .choaGreenColor
-                )
-            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
-            nextButton.backgroundColor = .clear
-            nextButton.configuration?.baseForegroundColor = .choaGreenColor
-            nextButton.tintColor = .choaGreenColor
-            nextButton.layer.cornerRadius = 12
+            nextButton.applyExitStyle()
         }
         
         calculatorDidUpdateConstants()
@@ -144,10 +156,14 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         
         carbRatioLine.backgroundColor = .errorRedColor
         carbRatioLabel.textColor = .contentBlackColor
+        carbLine.backgroundColor = defaultLineColors[carbLine] ?? .primaryBlue
+        carbLabel.textColor = .primaryBlue
         totalCarbsField.textColor = .black
         
         resultsView.isHidden = true
-        errorMessage.isHidden = true
+        fieldsWithMissingValueError.removeAll()
+        hideErrorMessage()
+        syncInfoIcons()
     }
     
     deinit {
@@ -158,6 +174,47 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @objc private func editButtonTapped() {
         // Handle edit action
         performSegue(withIdentifier: "calculatorAToEditSegue", sender: nil)
+    }
+
+    // Swap in the Halloween Will and spiders when the theme is enabled in Remote Config
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        let imageName = isHalloween ? "halloween_will_fork" : "will_food"
+        willImageView.image = UIImage(named: imageName)
+
+        spiderDropView.isHidden = !isHalloween
+        if isHalloween {
+            spiderDropView.play()
+        } else {
+            spiderDropView.stop()
+        }
+    }
+
+    private func setupSpiderDropView() {
+        spiderDropView.contentMode = .scaleAspectFill
+        spiderDropView.loopMode = .loop
+        spiderDropView.backgroundBehavior = .pauseAndRestore
+        spiderDropView.isUserInteractionEnabled = false
+        spiderDropView.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(spiderDropView)
+        // Draw above every other subview, even ones added or brought to the front later
+        spiderDropView.layer.zPosition = 1
+
+        // The animation is taller than the content view for its width, so pinning both edges let aspect fill
+        // center it and crop the spiders off the top. Matching its aspect ratio from the top keeps the drop in view.
+        let animationSize = spiderDropView.animation?.size ?? CGSize(width: 1, height: 1)
+
+        NSLayoutConstraint.activate([
+            spiderDropView.topAnchor
+                .constraint(equalTo: contentView.topAnchor, constant: 0),
+            spiderDropView.leadingAnchor
+                .constraint(equalTo: contentView.leadingAnchor),
+            spiderDropView.trailingAnchor
+                .constraint(equalTo: contentView.trailingAnchor),
+            spiderDropView.heightAnchor
+                .constraint(equalTo: spiderDropView.widthAnchor, multiplier: animationSize.height / animationSize.width)
+        ])
     }
     
     private func loadStoredConstants() {
@@ -196,11 +253,60 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             print("none of these")
         }
         
-        errorMessage.isHidden = true
+        hideErrorMessage()
+        updateMissingValueError(for: textField)
         updateSeeResultAccessoryIfNeeded()
         //        toggleNextButton()
     }
-    
+
+    /// The error label wraps to fit its message, so clear the text too or a hidden
+    /// multi-line message would still hold its height
+    private func hideErrorMessage() {
+        errorMessage.isHidden = true
+        errorMessage.text = nil
+    }
+
+    private func missingValueErrorParts(for field: UITextField) -> (line: UIView, label: UILabel, normalLabelColor: UIColor, message: String)? {
+        switch field {
+        case totalCarbsField:
+            return (carbLine, carbLabel, .primaryBlue, "Calculator.Carbs.Number.Error".localized())
+        case carbRatioField:
+            return (carbRatioLine, carbRatioLabel, .black, "Calculator.Carbs.Ratio.Error".localized())
+        default:
+            return nil
+        }
+    }
+
+    private func showMissingValueError(for field: UITextField) {
+        guard let parts = missingValueErrorParts(for: field) else { return }
+        fieldsWithMissingValueError.insert(field)
+        toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        syncInfoIcons()
+    }
+
+    /// Clears a flagged field's error once it has a value, and brings it back if the value is deleted
+    private func updateMissingValueError(for field: UITextField) {
+        guard fieldsWithMissingValueError.contains(field),
+              let parts = missingValueErrorParts(for: field) else { return }
+
+        if (Int(field.text ?? "") ?? 0) > 0 {
+            parts.line.backgroundColor = defaultLineColors[parts.line]
+            parts.label.textColor = parts.normalLabelColor
+            if errorMessage.text == parts.message {
+                hideErrorMessage()
+            }
+        } else {
+            toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
+        }
+        syncInfoIcons()
+    }
+
+    /// Info icons sit beside their labels, so they follow the labels into and out of the error state
+    private func syncInfoIcons() {
+        totalCarbsInfoButton.tintColor = carbLabel.textColor
+        carbRatioInfoButton.tintColor = carbRatioLabel.textColor
+    }
+
     func toggleError(state:Bool,errorLine: UIView, fieldLabel: UILabel, errorMessageText: String){
         if state {
             errorLine.backgroundColor = UIColor.red
@@ -275,17 +381,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         calculateFoodInsulin()
     }
     
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
-    }
-    
     func calculateFoodInsulin() {
         let currentTotalCarbs = totalCarbs
         var currentCarbRatio = carbRatio
@@ -307,14 +402,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
             }
 
             if insulinForFoodBoolean {
-                let exactFoodInsulin = Float(currentTotalCarbs) / Float(currentCarbRatio)
+                let foodInsulin = InsulinDose.food(totalCarbs: currentTotalCarbs, carbRatio: currentCarbRatio)
 
                 // For meals + correction, only the combined total is rounded (on CalculatorC)
-                if insulinForHighBloodSugarBoolean {
-                    insulinForFood.text = "\(exactFoodInsulin.preciseString) units"
-                } else {
-                    insulinForFood.text = "\(roundDownToNearestHalf(value: exactFoodInsulin).cleanString) units"
-                }
+                insulinForFood.text = foodInsulin.displayText(rounded: !insulinForHighBloodSugarBoolean, using: constantsManager.roundingRule)
                 PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs": currentTotalCarbs, "ratio": currentCarbRatio])
             }
 
@@ -389,7 +480,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
-        
+        updateMissingValueError(for: sender)
+
         if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
         }
@@ -409,10 +501,10 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                 }
             } else if (totalCarbs > 0){
                 // CarbRatio is not there
-                toggleError(state: true, errorLine: carbRatioLine, fieldLabel: carbRatioLabel, errorMessageText: "Calculator.Carbs.Ratio.Error".localized())
+                showMissingValueError(for: carbRatioField)
             } else if (carbRatio > 0){
                 // Carbs are not there
-                toggleError(state: true, errorLine: carbLine, fieldLabel: carbLabel, errorMessageText: "Calculator.Carbs.Number.Error".localized())
+                showMissingValueError(for: totalCarbsField)
             } else {
                 // Nothing is there
                 errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
@@ -481,6 +573,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     
     func calculatorDidUpdateConstants() {
         loadStoredConstants()
+    }
+
+    /// Saved values or the rounding rule changed, e.g. on the edit screen: refill the carb ratio
+    /// and redo the result so it's rounded with the new rule
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        // Loading a saved carb ratio recalculates on its own; without one, recalculate with what's typed in
+        if constantsManager.carbRatio > 0 {
+            loadStoredConstants()
+        } else {
+            calculateFoodInsulin()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
