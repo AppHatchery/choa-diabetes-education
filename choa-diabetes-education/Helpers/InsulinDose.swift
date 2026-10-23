@@ -79,9 +79,10 @@ struct InsulinDose {
         return Float(steps) / Float(rule.stepsPerUnit)
     }
 
-    /// "2.34 units" for a part that's rounded later as part of a total, otherwise the rounded "2.5 units"
+    /// "2.34 units" for a part that's rounded later as part of a total, otherwise the rounded "2.5 units".
+    /// Exactly one reads "1 unit"; everything else, 0 and 1.5 included, stays plural.
     func displayText(rounded: Bool, using rule: InsulinRoundingRule) -> String {
         let units = rounded ? roundedUnits(using: rule).cleanString : exactUnits.preciseString
-        return "\(units) units"
+        return "\(units) \(units == "1" ? "unit" : "units")"
     }
 }

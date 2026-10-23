@@ -53,8 +53,19 @@ class CalculatorCViewController: UIViewController {
             applyHalloweenTheme()
         }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Calculated here rather than in viewDidLoad so it also picks up a rounding rule changed while off screen
         calculateInsulin()
-        // Do any additional setup after loading the view.
+    }
+
+    /// Redoes the total with the saved rounding rule (whole unit unless the user chose half unit)
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        calculateInsulin()
     }
 
     /// Spooky background behind a see-through nav bar, a bigger Halloween Will

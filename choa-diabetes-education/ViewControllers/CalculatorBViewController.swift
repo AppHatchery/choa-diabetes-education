@@ -91,6 +91,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupBatFlyby()
 
@@ -160,18 +161,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             step2Label.isHidden = true
 
-            nextButton
-                .setTitleWithStyle(
-                    "Exit",
-                    font: .nunitoBold20,
-                    color: .choaGreenColor
-                )
-            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
-            nextButton.backgroundColor = .clear
-            nextButton.configuration?.baseForegroundColor = .choaGreenColor
-            nextButton.tintColor = .choaGreenColor
-            nextButton.layer.cornerRadius = 12
+            nextButton.applyExitStyle()
         }
         
         calculatorDidUpdateConstants()
@@ -252,10 +242,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             correctionFactorField.text = String(constants.correctionFactor)
         }
 
-        // Recalculate if we have enough info
-        if totalCarbs > 0 && carbRatio > 0 {
-            calculateFoodInsulin()
-        }
+        // Recalculate with whatever is filled in; it hides the result if anything is missing
+        calculateFoodInsulin()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -617,8 +605,25 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     func calculatorDidUpdateConstants() {
         loadStoredConstants()
     }
+
+    /// Saved values or the rounding rule changed, e.g. on the edit screen: refill empty fields
+    /// and redo the result so it's rounded with the new rule
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        // Loading saved values recalculates on its own; with none saved, recalculate with what's typed in
+        if constantsManager.hasStoredConstants {
+            loadStoredConstants()
+        } else {
+            calculateFoodInsulin()
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Checked first: the guard below returns for every destination but Calculator C
+        if let editViewController = segue.destination as? CalculatorEditViewController {
+            editViewController.delegate = self
+        }
+
         guard let calculatorCViewController = segue.destination as? CalculatorCViewController else { return }
         calculatorCViewController.insulinForFoodBoolean = insulinForFoodBoolean
         calculatorCViewController.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
@@ -628,10 +633,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculatorCViewController.bloodSugar = bloodSugar
         calculatorCViewController.targetBloodSugar = targetBloodSugar
         calculatorCViewController.correctionFactor = correctionFactor
-        
-        if let editViewController = segue.destination as? CalculatorEditViewController {
-            editViewController.delegate = self
-        }
     }
     
     @objc func dismissKeyboard() {

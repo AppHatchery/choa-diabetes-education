@@ -362,7 +362,7 @@ class CalculatorOnBoardingViewController: UIViewController {
             }
             
             // Save to CalculatorConstantsManager
-            let roundingRule = collectedValues[.roundingRule].flatMap(InsulinRoundingRule.init(rawValue:)) ?? .halfUnit
+            let roundingRule = collectedValues[.roundingRule].flatMap(InsulinRoundingRule.init(rawValue:)) ?? .wholeUnit
 
             constantsManager.saveConstants(
                 carbRatio: carbRatio,

@@ -117,31 +117,32 @@ class CalculatorOnBoardingWelcomeViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Calculator", bundle: nil)
         
+        // Each calculator styles itself from these flags in viewDidLoad, which pushing triggers,
+        // so they're set before the push
         if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == false {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
                 destinationVC.insulinForHighBloodSugarBoolean = insulinForHighBloodSugarBoolean
                 destinationVC.insulinForFoodBoolean = insulinForFoodBoolean
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         } else if insulinForFoodBoolean == false && insulinForHighBloodSugarBoolean == true {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForHighSugarCalculator") as? CalculatorBViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-
                 destinationVC.insulinForFoodBoolean = false
                 destinationVC.insulinForHighBloodSugarBoolean = true
                 destinationVC.highBloodSugarOnly = true
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         } else if insulinForFoodBoolean == true && insulinForHighBloodSugarBoolean == true {
             
             if let destinationVC = storyboard.instantiateViewController(withIdentifier: "insulinForFoodCalculator") as? CalculatorAViewController {
                 destinationVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(destinationVC, animated: true)
                 destinationVC.insulinForFoodBoolean = true
                 destinationVC.insulinForHighBloodSugarBoolean = true
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         }
     }

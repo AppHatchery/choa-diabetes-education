@@ -76,6 +76,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupSpiderDropView()
 
@@ -138,18 +139,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         } else {
             step1Label.isHidden = true
 
-            nextButton
-                .setTitleWithStyle(
-                    "Exit",
-                    font: .nunitoBold20,
-                    color: .choaGreenColor
-                )
-            nextButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-            nextButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
-            nextButton.backgroundColor = .clear
-            nextButton.configuration?.baseForegroundColor = .choaGreenColor
-            nextButton.tintColor = .choaGreenColor
-            nextButton.layer.cornerRadius = 12
+            nextButton.applyExitStyle()
         }
         
         calculatorDidUpdateConstants()
@@ -583,6 +573,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     
     func calculatorDidUpdateConstants() {
         loadStoredConstants()
+    }
+
+    /// Saved values or the rounding rule changed, e.g. on the edit screen: refill the carb ratio
+    /// and redo the result so it's rounded with the new rule
+    @objc private func constantsDidChange() {
+        guard isViewLoaded else { return }
+        // Loading a saved carb ratio recalculates on its own; without one, recalculate with what's typed in
+        if constantsManager.carbRatio > 0 {
+            loadStoredConstants()
+        } else {
+            calculateFoodInsulin()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

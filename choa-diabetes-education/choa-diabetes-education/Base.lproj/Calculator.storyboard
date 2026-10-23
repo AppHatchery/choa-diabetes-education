@@ -17,11 +17,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -813,7 +813,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-vC-PR4" userLabel="Navigation Stack View">
                                                 <rect key="frame" x="0.0" y="187" width="335" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vus-au-82B">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
                                                         <color key="backgroundColor" name="choaGreenColor"/>
                                                         <constraints>
@@ -2125,8 +2125,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hEr-41-Qe8"/>
-        <segue reference="Ipa-CJ-Loq"/>
+        <segue reference="coK-uS-kQN"/>
+        <segue reference="aTD-Ou-0iR"/>
         <segue reference="v97-e6-biO"/>
         <segue reference="sKM-go-Es6"/>
     </inferredMetricsTieBreakers>
