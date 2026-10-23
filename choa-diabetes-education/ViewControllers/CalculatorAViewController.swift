@@ -34,7 +34,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var willImageView: UIImageView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
-    private let spiderDropView = LottieAnimationView(name: "spider-drop-sm")
+    private let spiderDropView = LottieAnimationView(name: "spider-drop")
 
     var totalCarbs: Int = 0
     var carbRatio: Int = 0
@@ -209,12 +209,18 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
 
         view.addSubview(spiderDropView)
 
-        NSLayoutConstraint.activate([
-            spiderDropView.topAnchor.constraint(equalTo: view.topAnchor),
+        NSLayoutConstraint.activate(
+[
+            spiderDropView.topAnchor
+                .constraint(
+                    equalTo: view.safeAreaLayoutGuide.topAnchor,
+                    constant: 20
+                ),
             spiderDropView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             spiderDropView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             spiderDropView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        ]
+)
     }
     
     private func loadStoredConstants() {
@@ -381,17 +387,6 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         calculateFoodInsulin()
     }
     
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
-    }
-    
     func calculateFoodInsulin() {
         let currentTotalCarbs = totalCarbs
         var currentCarbRatio = carbRatio
@@ -419,7 +414,8 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
                 if insulinForHighBloodSugarBoolean {
                     insulinForFood.text = "\(exactFoodInsulin.preciseString) units"
                 } else {
-                    insulinForFood.text = "\(roundDownToNearestHalf(value: exactFoodInsulin).cleanString) units"
+                    let roundedFoodInsulin = constantsManager.roundingRule.round(numerator: currentTotalCarbs, denominator: currentCarbRatio)
+                    insulinForFood.text = "\(roundedFoodInsulin.cleanString) units"
                 }
                 PendoManager.shared().track("Calculate_insulin_for_food", properties: ["carbs": currentTotalCarbs, "ratio": currentCarbRatio])
             }

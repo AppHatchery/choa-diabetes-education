@@ -17,6 +17,9 @@ class CalculatorEditViewController: UIViewController {
     @IBOutlet weak var correctionRatio: UITextField!
     
     @IBOutlet var editTextFields: [UITextField]!
+
+    /// Half unit / whole unit radio buttons; each button's tag is its `InsulinRoundingRule` raw value
+    @IBOutlet var roundingRuleButtons: [UIButton]!
     
     @IBOutlet weak var saveButton: PrimaryButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -28,6 +31,8 @@ class CalculatorEditViewController: UIViewController {
     weak var delegate: CalculatorEditDelegate?
     
     private var originalViewHeight: CGFloat = 0
+
+    private var selectedRoundingRule: InsulinRoundingRule = .halfUnit
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +95,29 @@ class CalculatorEditViewController: UIViewController {
         containerView.layer.cornerRadius = 8
     }
         
+    @IBAction func roundingRuleButtonTapped(_ sender: UIButton) {
+        guard let rule = InsulinRoundingRule(rawValue: sender.tag) else { return }
+        selectedRoundingRule = rule
+        updateRoundingRuleButtons()
+    }
+
+    private func updateRoundingRuleButtons() {
+        let symbolConfig = UIImage.SymbolConfiguration(scale: .medium)
+        
+        for button in roundingRuleButtons {
+            let isSelected = button.tag == selectedRoundingRule.rawValue
+            button.configuration?.image = UIImage(systemName: isSelected ? "largecircle.fill.circle" : "circle", withConfiguration: symbolConfig)
+            button.configuration?.imageColorTransformer = UIConfigurationColorTransformer { _ in
+                isSelected ? .choaGreenColor : .black
+            }
+            button.accessibilityTraits = isSelected ? [.button, .selected] : .button
+        }
+    }
+        
     private func loadStoredConstants() {
+        selectedRoundingRule = constantsManager.roundingRule
+        updateRoundingRuleButtons()
+
         if constantsManager.hasStoredConstants {
             let constants = constantsManager.getConstants()
             
@@ -163,7 +190,8 @@ class CalculatorEditViewController: UIViewController {
         constantsManager.saveConstants(
             carbRatio: carbRatio,
             targetBloodSugar: targetBloodSugar,
-            correctionFactor: correctionFactor
+            correctionFactor: correctionFactor,
+            roundingRule: selectedRoundingRule
         )
         
         // Notify delegate before popping
@@ -195,6 +223,11 @@ class CalculatorEditViewController: UIViewController {
     @IBAction func showCorrectionFactorInfo(_ sender: Any) {
         infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
                          , details: "PopupInfo.CorrectionFactor.text".localized())
+    }
+    
+    @IBAction func showRoundingRuleInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.RoundingRule.title".localized()
+                         , details: "PopupInfo.RoundingRule.text".localized())
     }
     
     private func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {

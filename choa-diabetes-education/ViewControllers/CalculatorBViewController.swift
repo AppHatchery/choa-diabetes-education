@@ -34,7 +34,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var willImageView: UIImageView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
-    private let batFlyby = LottieAnimationView(name: "bats-flyby-sm")
+    private let batFlyby = LottieAnimationView(name: "bats-flyby")
 
     let infoPopup = InfoPopUpViewController()
     
@@ -635,17 +635,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculateFoodInsulin()
     }
     
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
-    }
-    
     func calculateFoodInsulin() {
         let currentBloodSugar = bloodSugar
         var currentTargetBloodSugar = targetBloodSugar
@@ -711,7 +700,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 if insulinForFoodBoolean {
                     insulinForHighBloodSugar.text = "\(exactBloodInsulin.preciseString) units"
                 } else {
-                    insulinForHighBloodSugar.text = "\(roundDownToNearestHalf(value: exactBloodInsulin).cleanString) units"
+                    let roundedBloodInsulin = constantsManager.roundingRule.round(numerator: currentBloodSugar - currentTargetBloodSugar, denominator: currentCorrectionFactor)
+                    insulinForHighBloodSugar.text = "\(roundedBloodInsulin.cleanString) units"
                 }
                 insulinForHighBloodSugar.font = .nunitoBold32
                 insulinForHighBloodSugar.textColor = .primaryBlue

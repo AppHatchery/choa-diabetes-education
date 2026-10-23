@@ -49,6 +49,10 @@ class CalculatorOnBoardingViewController: UIViewController {
     /// content background — under the iOS 26 design especially — which paints over
     /// `backgroundColor`, so the styling sits on a view behind it instead.
     private weak var textFieldBackgroundView: UIView?
+
+    /// Half / whole unit choices, shown in place of the text field on the rounding rule question
+    private var roundingRuleButtons: [InsulinRoundingRule: UIButton] = [:]
+    private var selectedRoundingRule: InsulinRoundingRule?
     
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
@@ -63,6 +67,7 @@ class CalculatorOnBoardingViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setupTextField()
+        setupRoundingRuleOptions()
         setupUI()
         setupGhostDrift()
         updateQuestionTextFieldState()
@@ -210,10 +215,80 @@ class CalculatorOnBoardingViewController: UIViewController {
             questionImage.image = UIImage(named: isHalloween ? currentQuestion.halloweenImageName : currentQuestion.imageName)
             
             // Load previously entered value if exists
-            if let savedValue = collectedValues[currentQuestion] {
+            if currentQuestion.isNumeric, let savedValue = collectedValues[currentQuestion] {
                 questionTextField.text = String(savedValue)
             } else {
                 questionTextField.text = ""
+            }
+        }
+        
+        /// Two side-by-side choices over the text field's spot; the field itself is hidden for this question
+        private func setupRoundingRuleOptions() {
+            guard currentQuestion == .roundingRule, let container = questionTextField.superview else { return }
+
+            questionTextField.isHidden = true
+            textFieldBackgroundView?.isHidden = true
+
+            let optionsStackView = UIStackView()
+            optionsStackView.axis = .horizontal
+            optionsStackView.distribution = .fillEqually
+            optionsStackView.spacing = 8
+            optionsStackView.translatesAutoresizingMaskIntoConstraints = false
+
+            for rule in InsulinRoundingRule.allCases {
+                var config = UIButton.Configuration.plain()
+                config.title = rule.title
+                config.subtitle = rule.subtitle
+                config.titleAlignment = .center
+                config.titlePadding = 2
+                config.baseForegroundColor = .black
+                config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+                config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                    var out = incoming
+                    out.font = .nunitoMedium18
+                    return out
+                }
+                config.subtitleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                    var out = incoming
+                    out.font = .nunito13
+                    return out
+                }
+
+                let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+                    self?.selectRoundingRule(rule)
+                })
+                button.layer.cornerRadius = 8
+                button.layer.borderWidth = 1
+                optionsStackView.addArrangedSubview(button)
+                roundingRuleButtons[rule] = button
+            }
+
+            container.addSubview(optionsStackView)
+
+            NSLayoutConstraint.activate([
+                optionsStackView.topAnchor.constraint(equalTo: questionTextField.topAnchor),
+                optionsStackView.leadingAnchor.constraint(equalTo: questionTextField.leadingAnchor),
+                optionsStackView.trailingAnchor.constraint(equalTo: questionTextField.trailingAnchor)
+            ])
+
+            // Coming back to this question keeps the earlier choice
+            selectedRoundingRule = collectedValues[.roundingRule].flatMap(InsulinRoundingRule.init(rawValue:))
+            updateRoundingRuleButtons()
+        }
+
+        private func selectRoundingRule(_ rule: InsulinRoundingRule) {
+            selectedRoundingRule = rule
+            updateRoundingRuleButtons()
+            updateNextButtonState()
+        }
+
+        /// Same look as the text field: flat grey until chosen, then white-green inside a green outline
+        private func updateRoundingRuleButtons() {
+            for (rule, button) in roundingRuleButtons {
+                let isSelected = rule == selectedRoundingRule
+                button.backgroundColor = isSelected ? .green050 : .textFieldBackgroundColor
+                button.layer.borderColor = (isSelected ? UIColor.choaGreenColor : UIColor.borderGrayColor).cgColor
+                button.accessibilityTraits = isSelected ? [.button, .selected] : .button
             }
         }
         
@@ -241,24 +316,25 @@ class CalculatorOnBoardingViewController: UIViewController {
         }
         
         private func updateNextButtonState() {
-            let text = questionTextField.text ?? ""
-            let value = Int(text) ?? 0
-            
-            let isValid = value > 0
+            let isValid: Bool
+            if currentQuestion.isNumeric {
+                isValid = (Int(questionTextField.text ?? "") ?? 0) > 0
+            } else {
+                isValid = selectedRoundingRule != nil
+            }
             nextButton.isEnabled = isValid
             nextButton.alpha = isValid ? 1.0 : 0.5
         }
         
         @IBAction func nextButtonTapped(_ sender: Any) {
-            guard let text = questionTextField.text,
-                  let value = Int(text),
-                  value > 0 else {
-                
-                return
+            // Save the current value; the rounding rule is kept as its raw value
+            if currentQuestion.isNumeric {
+                guard let value = Int(questionTextField.text ?? ""), value > 0 else { return }
+                collectedValues[currentQuestion] = value
+            } else {
+                guard let selectedRoundingRule else { return }
+                collectedValues[currentQuestion] = selectedRoundingRule.rawValue
             }
-            
-            // Save the current value
-            collectedValues[currentQuestion] = value
             
             // Check if there's a next question
             if let nextQuestion = currentQuestion.next {
@@ -286,10 +362,13 @@ class CalculatorOnBoardingViewController: UIViewController {
             }
             
             // Save to CalculatorConstantsManager
+            let roundingRule = collectedValues[.roundingRule].flatMap(InsulinRoundingRule.init(rawValue:)) ?? .halfUnit
+
             constantsManager.saveConstants(
                 carbRatio: carbRatio,
                 targetBloodSugar: targetBloodSugar,
-                correctionFactor: correctionFactor
+                correctionFactor: correctionFactor,
+                roundingRule: roundingRule
             )
             
             // Navigate to the appropriate calculator

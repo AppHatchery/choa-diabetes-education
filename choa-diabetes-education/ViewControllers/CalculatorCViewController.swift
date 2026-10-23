@@ -98,6 +98,7 @@ class CalculatorCViewController: UIViewController {
         
         // For meals + correction, round only the total; each part is shown unrounded.
         let roundsOnlyTotal = insulinForFoodBoolean && insulinForHighBloodSugarBoolean
+        let roundingRule = constantsManager.roundingRule
 
         // Each dose is kept as an exact fraction (numerator / denominator) so the sum isn't
         // affected by floating-point error before it's rounded.
@@ -108,7 +109,7 @@ class CalculatorCViewController: UIViewController {
         if insulinForFoodBoolean && carbRatio > 0 {
             food = (totalCarbs, carbRatio)
             let exactFoodInsulin = Float(food.numerator) / Float(food.denominator)
-            insulinForFood.text = (roundsOnlyTotal ? exactFoodInsulin.preciseString : roundDownToNearestHalf(value: exactFoodInsulin).cleanString) + " units"
+            insulinForFood.text = (roundsOnlyTotal ? exactFoodInsulin.preciseString : roundingRule.round(numerator: food.numerator, denominator: food.denominator).cleanString) + " units"
         } else {
             insulinForFood.text = "0"
         }
@@ -117,37 +118,19 @@ class CalculatorCViewController: UIViewController {
         if (insulinForHighBloodSugarBoolean && bloodSugar > 0 && targetBloodSugarValue > 0 && bloodSugar >= targetBloodSugarValue && correctionFactor > 0){
             blood = (bloodSugar - targetBloodSugarValue, correctionFactor)
             let exactBloodInsulin = Float(blood.numerator) / Float(blood.denominator)
-            insulinForBloodSugar.text = (roundsOnlyTotal ? exactBloodInsulin.preciseString : roundDownToNearestHalf(value: exactBloodInsulin).cleanString) + " units"
+            insulinForBloodSugar.text = (roundsOnlyTotal ? exactBloodInsulin.preciseString : roundingRule.round(numerator: blood.numerator, denominator: blood.denominator).cleanString) + " units"
         } else {
             insulinForBloodSugar.text = "0"
         }
 
-        // Total insulin
-        let total: Float
-        if roundsOnlyTotal {
-            // food + blood = (a/b + c/d) = (a·d + c·b) / (b·d); round to the nearest whole unit (.5 rounds up)
-            let numerator = food.numerator * blood.denominator + blood.numerator * food.denominator
-            let denominator = food.denominator * blood.denominator
-            total = Float((2 * numerator + denominator) / (2 * denominator))
-        } else {
-            let foodInsulin = roundDownToNearestHalf(value: Float(food.numerator) / Float(food.denominator))
-            let bloodInsulin = roundDownToNearestHalf(value: Float(blood.numerator) / Float(blood.denominator))
-            total = (foodInsulin + bloodInsulin).rounded()
-        }
+        // Total insulin: the exact parts are added first and only the sum is rounded, using the saved rounding rule.
+        // food + blood = (a/b + c/d) = (a·d + c·b) / (b·d). With only one part, the other is 0 and this is just that part.
+        let numerator = food.numerator * blood.denominator + blood.numerator * food.denominator
+        let denominator = food.denominator * blood.denominator
+        let total = roundingRule.round(numerator: numerator, denominator: denominator)
         totalInsulin.text = "\(total.cleanString) units"
         
         PendoManager.shared().track("Calculator_results", properties: ["total":totalInsulin.text ?? "-","for_food":insulinForFood.text ?? "-","for_hbs":insulinForBloodSugar.text ?? "-"])
-    }
-    
-    func roundDownToNearestHalf(value: Float) -> Float {
-        let integerPart = floor(value)
-        let decimalPart = value - integerPart
-
-        if decimalPart >= 0.5 {
-            return integerPart + 0.5
-        } else {
-            return integerPart
-        }
     }
     
     @IBAction func newCalculation(_ sender: UIButton){
