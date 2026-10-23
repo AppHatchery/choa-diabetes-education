@@ -278,22 +278,34 @@ class HomeViewController: UIViewController {
     /// Jack-o'-lantern in the top right that replays the Halloween intro; only shown with the Halloween theme
     private func setupJackOLanternButton() {
         var config = UIButton.Configuration.plain()
-        config.image = UIImage(named: "jackolantern")?.withRenderingMode(.alwaysOriginal)
+        // The artwork is 42 x 46 pt, too tall for the bar. A configured button draws its image at the image's
+        // own size, so the image is scaled down here instead of constraining the button: iOS 26 sizes bar
+        // items itself (at least 44 x 36 pt) and any fixed size on the button conflicts with that.
+        config.image = UIImage(named: "jackolantern")
+            .map { Self.scaledToFit($0, in: CGSize(width: 44, height: 46)) }?
+            .withRenderingMode(.alwaysOriginal)
         config.contentInsets = .zero
 
         let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
             self?.didTapJackOLantern()
         })
-        button.imageView?.contentMode = .scaleAspectFit
         button.accessibilityLabel = "Play Halloween intro"
-        button.translatesAutoresizingMaskIntoConstraints = false
-        // The artwork is 42 x 46 pt, too tall for the bar, so it's scaled down to fit
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 30),
-            button.heightAnchor.constraint(equalToConstant: 33)
-        ])
 
-        jackOLanternBarButtonItem = UIBarButtonItem(customView: button)
+        let barButtonItem = UIBarButtonItem(customView: button)
+        if #available(iOS 26.0, *) {
+            // Just the pumpkin, without the Liquid Glass capsule iOS 26 puts behind bar items
+            barButtonItem.hidesSharedBackground = true
+        }
+        jackOLanternBarButtonItem = barButtonItem
+    }
+
+    /// Redraws the image at the largest size that fits `bounds` without changing its shape
+    private static func scaledToFit(_ image: UIImage, in bounds: CGSize) -> UIImage {
+        let scale = min(bounds.width / image.size.width, bounds.height / image.size.height, 1)
+        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: size))
+        }
     }
 
     private func didTapJackOLantern() {
