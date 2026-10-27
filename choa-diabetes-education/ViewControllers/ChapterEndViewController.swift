@@ -200,24 +200,23 @@ class ChapterEndViewController: UIViewController {
         updateStarsUI()
     }
 
-    /// The Halloween artwork has the congrats message, text bubble and character drawn in,
-    /// so it fills the screen behind a see-through nav bar and stands in for those views
+    /// The section's Halloween scene fills the screen behind a see-through nav bar, and the
+    /// character art (which has the text bubble drawn in) takes the place of the bubble and character views
     private func applyHalloweenBackground(chapterIndex: Int) {
-        let imageName: String
+        let characterName: String
         switch contentIndex {
-        case 0: imageName = "halloween_chapter_complete_basics_\(min(chapterIndex, 4) + 1)"
-        case 1: imageName = "halloween_chapter_complete_nutrition_\(min(chapterIndex, 2) + 1)"
-        case 2: imageName = "halloween_chapter_complete_self_management_\(min(chapterIndex, 1) + 1)"
+        case 0: characterName = "halloween_chapter_complete_basics_\(min(chapterIndex, 4) + 1)_character"
+        case 1: characterName = "halloween_chapter_complete_nutrition_\(min(chapterIndex, 2) + 1)_character"
+        case 2: characterName = "halloween_chapter_complete_self_management_\(min(chapterIndex, 1) + 1)_character"
         default: return
         }
-        guard let image = UIImage(named: imageName) else { return }
+        guard let backgroundImage = UIImage(named: "halloween_chapter_complete_\(contentIndex + 1)"),
+              let characterImage = UIImage(named: characterName) else { return }
 
-        let backgroundImageView = UIImageView(image: image)
+        let backgroundImageView = UIImageView(image: backgroundImage)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.isAccessibilityElement = true
-        backgroundImageView.accessibilityLabel = congratsLabel.text
         view.insertSubview(backgroundImageView, at: 0)
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -238,11 +237,25 @@ class ChapterEndViewController: UIViewController {
             bottomFillView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        // Faded rather than hidden so they keep holding the stars card in place
-        for drawnInView in [congratsLabel, textBubbleImage, hopeOrWillImage] as [UIView] {
-            drawnInView.alpha = 0
-            drawnInView.accessibilityElementsHidden = true
-        }
+        // The character art carries its own bubble, so the bubble view collapses out of the images stack
+        textBubbleImage.isHidden = true
+        hopeOrWillImage.image = characterImage
+
+        // Size the art from its width like the regular bubble and character, and let it shrink
+        // rather than push the congrats label up under the nav bar on shorter screens
+        hopeOrWillImage.constraints
+            .filter { $0.firstAttribute == .height && $0.relation == .equal }
+            .forEach { $0.isActive = false }
+        hopeOrWillImage.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        let aspectConstraint = hopeOrWillImage.heightAnchor.constraint(
+            equalTo: hopeOrWillImage.widthAnchor,
+            multiplier: characterImage.size.height / characterImage.size.width
+        )
+        aspectConstraint.priority = .defaultHigh - 1
+        NSLayoutConstraint.activate([
+            aspectConstraint,
+            congratsLabel.topAnchor.constraint(greaterThanOrEqualTo: mainView.topAnchor, constant: 16)
+        ])
 
         // Leaves (stars for self management) fall over the whole screen, stars card and buttons included, without blocking taps
         let fallingAnimationName = contentIndex == 2 ? "falling-stars" : "falling-leaves"

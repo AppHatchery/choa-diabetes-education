@@ -62,8 +62,7 @@ enum CalculatorOnboardingQuestion: Int, CaseIterable {
         case .correctionFactor:
             return "halloween_will_correction_factor_question"
         case .roundingRule:
-            // No Halloween artwork for this question yet
-            return "will_dose_rounded_question"
+            return "halloween_will_dose_rounded_question"
         }
     }
 

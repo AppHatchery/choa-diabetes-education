@@ -13,6 +13,7 @@
 		42137A97A0209F653D3CFBAE /* AppOnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E823908D07BE6545031D5 /* AppOnboardingManager.swift */; };
 		44673226CD6D39FE16FC6448 /* AppOnboardingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */; };
 		6E9FCD56EF55DFE1F36301B6 /* CarbFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4874DFD9938A35B88B1B333 /* CarbFoodTableViewCell.swift */; };
+		6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C7DD3E33478A292930400 /* InsulinDose.swift */; };
 		85F09AB567EFB1D08D9EEBB8 /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */; };
 		8EAF82C12A467EAE0035919B /* FourOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EAF82C02A467EAE0035919B /* FourOptionsView.xib */; };
 		8EAF82C32A467EBC0035919B /* FourOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF82C22A467EBC0035919B /* FourOptionsView.swift */; };
@@ -145,7 +146,6 @@
 		B4DBE8812F10FCF20075C7F3 /* hope_on_call_standing.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */; };
 		B4DBE8832F11024E0075C7F3 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B4DBE8822F11024E0075C7F3 /* arrow_right.png */; };
 		B4E144332E9C2CB2009A5589 /* ReminderPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */; };
-		6FCED1FD0E82D715CA92B06B /* InsulinDose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C7DD3E33478A292930400 /* InsulinDose.swift */; };
 		B4E144352E9C383C009A5589 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E144342E9C383C009A5589 /* NotificationHandler.swift */; };
 		B4F6ABF92E59DE700037D323 /* FinalStepWithDescView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */; };
 		B4F6ABFB2E59DE820037D323 /* FinalStepWithDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */; };
@@ -344,6 +344,7 @@
 
 /* Begin PBXFileReference section */
 		004BFB855C82FFD621C109FB /* TopRoundedRectangle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TopRoundedRectangle.swift; sourceTree = "<group>"; };
+		081C7DD3E33478A292930400 /* InsulinDose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinDose.swift; sourceTree = "<group>"; };
 		32177309C92E9E42757C30B4 /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
 		3CC82AE0C4D9D5AC1D86AD12 /* CarbsCalculatorManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarbsCalculatorManager.swift; sourceTree = "<group>"; };
 		43307C88F909EC36FD572790 /* AppOnboardingQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingQuestionView.swift; sourceTree = "<group>"; };
@@ -478,7 +479,6 @@
 		B4DBE8802F10FCF20075C7F3 /* hope_on_call_standing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hope_on_call_standing.png; sourceTree = "<group>"; };
 		B4DBE8822F11024E0075C7F3 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		B4E144322E9C2CB2009A5589 /* ReminderPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderPersistence.swift; sourceTree = "<group>"; };
-		081C7DD3E33478A292930400 /* InsulinDose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinDose.swift; sourceTree = "<group>"; };
 		B4E144342E9C383C009A5589 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		B4F6ABF82E59DE700037D323 /* FinalStepWithDescView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepWithDescView.swift; sourceTree = "<group>"; };
 		B4F6ABFA2E59DE820037D323 /* FinalStepWithDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalStepWithDescView.xib; sourceTree = "<group>"; };

@@ -213,7 +213,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         let animationSize = batFlyby.animation?.size ?? CGSize(width: 1, height: 1)
 
         NSLayoutConstraint.activate([
-            batFlyby.topAnchor.constraint(equalTo: contentView.topAnchor),
+            // Nudged up so the bats sit a little higher over the header
+            batFlyby.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -24),
             batFlyby.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             batFlyby.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             batFlyby.heightAnchor.constraint(equalTo: batFlyby.widthAnchor, multiplier: animationSize.height / animationSize.width)
