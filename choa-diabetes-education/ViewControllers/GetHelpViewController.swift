@@ -337,7 +337,17 @@ class GetHelpViewController: UIViewController {
 
 		navigationController?.navigationBar.standardAppearance = appearance
 		navigationController?.navigationBar.scrollEdgeAppearance = appearance
-		navigationController?.navigationBar.tintColor = tintColor
+		navigationController?.navigationBar.tintColor = barTintColor(for: tintColor)
+	}
+
+	/// Liquid Glass picks a legible color for untinted bar buttons on iOS 26+, so screens with the
+	/// close button leave the tint to the system there, except on coloured bars, which stay white;
+	/// earlier versions keep this screen's colour
+	private func barTintColor(for tintColor: UIColor) -> UIColor? {
+		if #available(iOS 26.0, *), navigationItem.rightBarButtonItem != nil, tintColor != .white {
+			return nil
+		}
+		return tintColor
 	}
 
 	private func resetBackgroundColor() {

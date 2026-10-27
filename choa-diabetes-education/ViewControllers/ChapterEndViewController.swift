@@ -59,6 +59,14 @@ class ChapterEndViewController: UIViewController {
 
     private var isShowingHalloweenBackground = false
 
+    /// Liquid Glass picks a legible color for untinted bar buttons on iOS 26+; earlier versions keep white on the colored bar
+    private var barTintColor: UIColor? {
+        if #available(iOS 26.0, *) {
+            return nil
+        }
+        return .white
+    }
+
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
@@ -88,7 +96,7 @@ class ChapterEndViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -98,9 +106,10 @@ class ChapterEndViewController: UIViewController {
         // Track current chapter index for completion persistence
         var currentChapterIndex: Int? = nil
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
+        navigationItem.rightBarButtonItem?.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
-        
+
         bottomStarsView.layer.cornerRadius = 20
         bottomStarsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
@@ -290,7 +299,7 @@ class ChapterEndViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
         
         // Hide next button if the end of the section
