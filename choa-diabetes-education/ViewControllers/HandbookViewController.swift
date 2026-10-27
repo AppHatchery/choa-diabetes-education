@@ -40,16 +40,22 @@ class HandbookViewController: UIViewController, UITableViewDelegate, UITableView
         appearance.configureWithOpaqueBackground()
         appearance.shadowColor = UIColor.clear
         
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+
         if chapterName == "Home.SectionOne.Subtitle".localized() {
             appearance.backgroundColor = .diabetesBasicsColor
+            // The regular image comes from the storyboard
+            if isHalloween {
+                sectionImage.image = UIImage(named: "halloween_hope_pen")
+            }
         } else if chapterName == "Home.SectionTwo.Subtitle".localized() {
             appearance.backgroundColor = .nutritionAndCarbColor
             view.backgroundColor = .nutritionAndCarbColor
-            sectionImage.image = UIImage(named: "will_nutrition")
+            sectionImage.image = UIImage(named: isHalloween ? "halloween_will_calculator_cropped" : "will_nutrition")
         } else {
             appearance.backgroundColor = .diabetesSelfManagementColor
             view.backgroundColor = .diabetesSelfManagementColor
-            sectionImage.image = UIImage(named: "hope_clock")
+            sectionImage.image = UIImage(named: isHalloween ? "halloween_hope_confused" : "hope_clock")
         }
         
         navigationController?.navigationBar.standardAppearance = appearance
