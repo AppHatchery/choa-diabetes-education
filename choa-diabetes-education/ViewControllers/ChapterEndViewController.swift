@@ -425,8 +425,13 @@ private extension ChapterEndViewController {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        // The stack view's leading/trailing insets and .fillEqually distribution
+        // determine each star's width, so a required 40pt width would conflict.
+        // Keep it as a preference; aspect-fit + fixed height keeps the star 40x40.
+        let widthConstraint = imageView.widthAnchor.constraint(equalToConstant: 40)
+        widthConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 40),
+            widthConstraint,
             imageView.heightAnchor.constraint(equalToConstant: 40)
         ])
         return imageView
