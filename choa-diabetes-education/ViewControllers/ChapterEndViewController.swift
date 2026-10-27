@@ -219,7 +219,9 @@ class ChapterEndViewController: UIViewController {
         case 2: characterName = "halloween_chapter_complete_self_management_\(min(chapterIndex, 1) + 1)_character"
         default: return
         }
-        guard let backgroundImage = UIImage(named: "halloween_chapter_complete_\(contentIndex + 1)"),
+        // Chapters with their own scene use it, and the rest fall back to their section's scene
+        let sectionBackgroundName = "halloween_chapter_complete_\(contentIndex + 1)"
+        guard let backgroundImage = UIImage(named: "\(sectionBackgroundName)_\(chapterIndex + 1)") ?? UIImage(named: sectionBackgroundName),
               let characterImage = UIImage(named: characterName) else { return }
 
         let backgroundImageView = UIImageView(image: backgroundImage)
