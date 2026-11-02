@@ -26,9 +26,9 @@ final class RemoteConfigManager {
     private var configUpdateListener: ConfigUpdateListenerRegistration?
 
     /// The last known `halloweenTheme` value, persisted so it's available before the first fetch completes.
-    /// On by default until Remote Config says otherwise; this is also the in-app default handed to Remote Config.
+    /// Off by default until Remote Config says otherwise; this is also the in-app default handed to Remote Config.
     private(set) var isHalloweenThemeEnabled: Bool {
-        get { UserDefaults.standard.object(forKey: Keys.halloweenTheme) as? Bool ?? true }
+        get { UserDefaults.standard.object(forKey: Keys.halloweenTheme) as? Bool ?? false }
         set { UserDefaults.standard.set(newValue, forKey: Keys.halloweenTheme) }
     }
 

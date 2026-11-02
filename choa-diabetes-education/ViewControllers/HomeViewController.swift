@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     var chapterName = ""
     var chapterSubName = ""
     
-    let halloweenMessage = true
+    let halloweenMessage = false
 
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false

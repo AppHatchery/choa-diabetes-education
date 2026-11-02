@@ -13,8 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    /// Temporarily off so every launch goes straight to the main app; set back to true to bring onboarding back
-    private let isAppOnboardingEnabled = false
+    /// Set to false to skip onboarding so every launch goes straight to the main app
+    private let isAppOnboardingEnabled = true
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
