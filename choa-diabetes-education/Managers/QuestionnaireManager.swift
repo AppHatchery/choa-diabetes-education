@@ -133,6 +133,9 @@ struct GetHelpSession: Codable {
     var secondBloodKetoneValue: BloodKetoneLevel?
     var yesOver2hours = false
     var skipFirstReminder = false
+    /// Set when the blood sugar recheck compares against a reading other than the usual 180/150 mg/dL.
+    /// Readings at or above it follow the high path.
+    var bloodSugarRecheckHighThreshold: Int?
     var activeReminderId: String?
     var reminderScheduledTime: Date?
 
@@ -566,12 +569,18 @@ extension QuestionnaireManager {
         }
     }
 
-    /// Blood sugar recheck entered as a reading. iLet Pump users compare against 180 mg/dL, everyone else 150 mg/dL.
-    /// At or over the threshold follows the old "Yes" path, under it follows the old "No" path.
+    /// Blood sugar recheck entered as a reading. iLet Pump users compare against 180 mg/dL, everyone else 150 mg/dL,
+    /// unless the question was created with its own threshold (300 mg/dL for pump users after low ketones).
+    /// Over the threshold follows the old "Yes" path, under it follows the old "No" path.
     func triggerBloodSugarRecheckReadingActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
-        let threshold = iLetPump ? 180 : 150
+        let isAbove: Bool
+        if let highThreshold = session.bloodSugarRecheckHighThreshold {
+            isAbove = bloodSugar >= highThreshold
+        } else {
+            isAbove = bloodSugar > (iLetPump ? 180 : 150)
+        }
 
-        if bloodSugar > threshold {
+        if isAbove {
             triggerBloodSugarRecheckAboveActionFlow(currentQuestion)
         } else {
             triggerBloodSugarRecheckBelowActionFlow(currentQuestion)
@@ -838,13 +847,9 @@ extension QuestionnaireManager {
 		case .negative, .zeroPointFive:
 			if bloodSugarOver300 && currentTestType == .pump {
                 
-                let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckPump.title".localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
+                // Pump users answered "over 300 mg/dL" first, so the reading is compared against 300 mg/dL
+                let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createBloodSugarRecheckQuestion(highThreshold: 300)
+
                 actionsDelegate?.showNextQuestion(createQue)
 			}	else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
@@ -895,31 +900,15 @@ extension QuestionnaireManager {
         
         switch urineLevel {
         case .negative:
-            // Negative ketones - continue care
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Continue regular care (first visit after 2 ketone checks)")
-                    triggerContinueActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerContinueWithDescriptionActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Skipped First Reminder")
-                    print("   → Recheck blood sugar")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                }
-            }
+            // Negative ketones after 90 mins - continue care without asking for blood sugar again
+            triggerILetNegativeRecheckActionFlow(currentQuestion, hadHighKetones: hasHighFirstKetone || hasHighSecondKetone)
             
         case .zeroPointFive, .onePointFive, .four:
             // Moderate ketones
             
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    showFinalStage(stage: .reminder, calculation: nil)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -939,7 +928,7 @@ extension QuestionnaireManager {
             
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    showFinalStage(stage: .reminder, calculation: nil)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -964,13 +953,9 @@ extension QuestionnaireManager {
 				// Low urine OR low blood
 		case .low:
 			if bloodSugarOver300 && currentTestType == .pump {
-                let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createYesOrNoQuestion(
-                    questionId: .bloodSugarRecheck,
-                    question: "Calculator.Que.BloodSugarRecheckPump.title".localized(),
-                    description: nil,
-                    showDescriptionAtBottom: false
-                )
-                
+                // Pump users answered "over 300 mg/dL" first, so the reading is compared against 300 mg/dL
+                let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createBloodSugarRecheckQuestion(highThreshold: 300)
+
                 actionsDelegate?.showNextQuestion(createQue)
 			} else {
 				showFinalStage(stage: .continueRegularCare, calculation: nil)
@@ -1020,25 +1005,8 @@ extension QuestionnaireManager {
         
         switch bloodLevel {
         case .low:
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Continue regular care (first visit after 2 ketone checks)")
-                    triggerContinueActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerContinueWithDescriptionActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Skipped First Reminder")
-                    print("   → Continue regular care (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerContinueWithDescriptionActionFlow(currentQuestion)
-                }
-            }
+            // Low ketones after 90 mins - continue care without asking for blood sugar again
+            triggerILetNegativeRecheckActionFlow(currentQuestion, hadHighKetones: hasHighFirstKetone || hasHighSecondKetone)
             
         case .moderate:
             // Moderate ketones
@@ -1046,7 +1014,7 @@ extension QuestionnaireManager {
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    showFinalStage(stage: .reminder, calculation: nil)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -1066,7 +1034,7 @@ extension QuestionnaireManager {
             if skippedFirst == false {
                 if visitCount == 1 && ketoneCheckVisitCount == 2 {
                     print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    showFinalStage(stage: .reminder, calculation: nil)
+                    triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
                     triggerBloodSugarRecheckActionFlow(currentQuestion)
                 } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
@@ -1083,6 +1051,17 @@ extension QuestionnaireManager {
         }
     }
     
+    /// iLet ketone recheck came back negative/low. Shows the continue care screen, with the extra
+    /// guidance when an earlier check had high ketones.
+    private func triggerILetNegativeRecheckActionFlow(_ currentQuestion: Questionnaire, hadHighKetones: Bool) {
+        print("   → Continue regular care (negative/low ketones on recheck)")
+        if hadHighKetones {
+            triggerContinueWithDescriptionActionFlow(currentQuestion)
+        } else {
+            triggerContinueActionFlow(currentQuestion)
+        }
+    }
+
     func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
         print("🧪 Initial Urine Ketone Check - Level: \(level)")
         
@@ -1308,8 +1287,9 @@ extension QuestionnaireManager {
     /// Routes the answer to the blood sugar reading question. Relies on
     /// `bloodSugarOver300` and `bloodSugarOver300For3Hours` being saved first.
     func triggerBloodSugarReadingActionFlow(_ currentQuestion: Questionnaire) {
-        // Any reading of 300 or higher (with a duration selected) goes straight to the ketone check
-        if bloodSugarOver300 {
+        // Only readings over 300 for 3 hours or more (90 mins for iLet Pump) go to the ketone check,
+        // shorter durations and lower readings ask about other symptoms first
+        if bloodSugarOver300For3Hours {
             triggerKetoneMeasuringTypeActionFlow(currentQuestion)
         } else {
             triggerOtherSymptomsActionFlow(currentQuestion)
@@ -1608,7 +1588,10 @@ extension QuestionnaireManager {
     }
 
     /// Asks for the blood sugar reading on recheck. Unlike the first check, there is no duration follow-up.
-    func createBloodSugarRecheckQuestion() -> Questionnaire {
+    /// - Parameter highThreshold: Readings at or above this follow the high path. Defaults to the usual 180/150 mg/dL check.
+    func createBloodSugarRecheckQuestion(highThreshold: Int? = nil) -> Questionnaire {
+        session.bloodSugarRecheckHighThreshold = highThreshold
+
         let quesObj = Questionnaire()
         quesObj.questionId = OpenEndedWithMultipleInputQuestionId.bloodSugarRecheck.id
         quesObj.questionType = .openEndedWithMultipleInput(.bloodSugarRecheck)

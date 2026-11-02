@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(currentVersion, forKey: appVersionKey)
         
         FirebaseApp.configure()
+        RemoteConfigManager.shared.start()
 
         return true
     }

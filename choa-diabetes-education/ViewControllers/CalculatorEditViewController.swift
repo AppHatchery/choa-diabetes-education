@@ -17,6 +17,9 @@ class CalculatorEditViewController: UIViewController {
     @IBOutlet weak var correctionRatio: UITextField!
     
     @IBOutlet var editTextFields: [UITextField]!
+
+    /// Half unit / whole unit radio buttons; each button's tag is its `InsulinRoundingRule` raw value
+    @IBOutlet var roundingRuleButtons: [UIButton]!
     
     @IBOutlet weak var saveButton: PrimaryButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -28,6 +31,8 @@ class CalculatorEditViewController: UIViewController {
     weak var delegate: CalculatorEditDelegate?
     
     private var originalViewHeight: CGFloat = 0
+
+    private var selectedRoundingRule: InsulinRoundingRule = .wholeUnit
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,25 +95,55 @@ class CalculatorEditViewController: UIViewController {
         containerView.layer.cornerRadius = 8
     }
         
-    private func loadStoredConstants() {
-        if constantsManager.hasStoredConstants {
-            let constants = constantsManager.getConstants()
-            
-            carbRatioField.text = constants.carbRatio > 0 ? String(constants.carbRatio) : ""
-            targetBloodSugarField.text = constants.targetBloodSugar > 0 ? String(constants.targetBloodSugar) : ""
-            correctionRatio.text = constants.correctionFactor > 0 ? String(constants.correctionFactor) : ""
+    @IBAction func roundingRuleButtonTapped(_ sender: UIButton) {
+        guard let rule = InsulinRoundingRule(rawValue: sender.tag) else { return }
+        selectedRoundingRule = rule
+        updateRoundingRuleButtons()
+    }
+
+    private func updateRoundingRuleButtons() {
+        let symbolConfig = UIImage.SymbolConfiguration(scale: .medium)
+        
+        for button in roundingRuleButtons {
+            let isSelected = button.tag == selectedRoundingRule.rawValue
+            button.configuration?.image = UIImage(systemName: isSelected ? "largecircle.fill.circle" : "circle", withConfiguration: symbolConfig)
+            button.configuration?.imageColorTransformer = UIConfigurationColorTransformer { _ in
+                isSelected ? .choaGreenColor : .black
+            }
+            button.accessibilityTraits = isSelected ? [.button, .selected] : .button
         }
     }
         
+    private func loadStoredConstants() {
+        selectedRoundingRule = constantsManager.roundingRule
+        updateRoundingRuleButtons()
+
+        // Each field is filled on its own, since any of them can be saved without the others
+        let constants = constantsManager.getConstants()
+
+        carbRatioField.text = constants.carbRatio > 0 ? String(constants.carbRatio) : ""
+        targetBloodSugarField.text = constants.targetBloodSugar > 0 ? String(constants.targetBloodSugar) : ""
+        correctionRatio.text = constants.correctionFactor > 0 ? String(constants.correctionFactor) : ""
+    }
+
+    /// An empty field is fine and saves as "not set"; a filled one must be a whole number above 0.
+    /// Returns nil for a filled field that isn't valid.
+    private func enteredValue(in textField: UITextField) -> Int?? {
+        let text = (textField.text ?? "").trimmingCharacters(in: .whitespaces)
+        guard !text.isEmpty else { return .some(nil) }
+        guard let value = Int(text), value > 0 else { return nil }
+        return value
+    }
+
+    private var allEnteredValuesValid: Bool {
+        [carbRatioField, targetBloodSugarField, correctionRatio].allSatisfy { enteredValue(in: $0) != nil }
+    }
+        
     private func updateSaveButtonState() {
-        let carbRatio = Float(carbRatioField.text ?? "") ?? 0
-        let targetBloodSugar = Float(targetBloodSugarField.text ?? "") ?? 0
-        let correctionFactor = Float(correctionRatio.text ?? "") ?? 0
-        
-        let allFieldsValid = carbRatio > 0 && targetBloodSugar > 0 && correctionFactor > 0
-        
-        saveButton.isEnabled = allFieldsValid
-        saveButton.alpha = allFieldsValid ? 1.0 : 0.5
+        let isValid = allEnteredValuesValid
+
+        saveButton.isEnabled = isValid
+        saveButton.alpha = isValid ? 1.0 : 0.5
     }
     
         // MARK: - UITextFieldDelegate
@@ -141,29 +176,19 @@ class CalculatorEditViewController: UIViewController {
     }
         
     @IBAction func saveConstantsTap(_ sender: Any) {
-        guard let carbRatioText = carbRatioField.text, !carbRatioText.isEmpty,
-              let targetBloodSugarText = targetBloodSugarField.text, !targetBloodSugarText.isEmpty,
-              let correctionFactorText = correctionRatio.text, !correctionFactorText.isEmpty else {
-            
-            // Show error alert
-            showAlert(title: "Missing Information", message: "Please fill in all fields before saving.")
+        guard let carbRatio = enteredValue(in: carbRatioField),
+              let targetBloodSugar = enteredValue(in: targetBloodSugarField),
+              let correctionFactor = enteredValue(in: correctionRatio) else {
+            showAlert(title: "Invalid Values", message: "Please enter whole numbers above 0, or leave a field empty.")
             return
         }
         
-        let carbRatio = Int(carbRatioText) ?? 0
-        let targetBloodSugar = Int(targetBloodSugarText) ?? 0
-        let correctionFactor = Int(correctionFactorText) ?? 0
-        
-        guard carbRatio > 0 && targetBloodSugar > 0 && correctionFactor > 0 else {
-            showAlert(title: "Invalid Values", message: "Please enter valid positive numbers for all fields.")
-            return
-        }
-        
-        // Save constants
+        // Empty fields save as 0, which every calculator treats as "not set" and asks for instead
         constantsManager.saveConstants(
-            carbRatio: carbRatio,
-            targetBloodSugar: targetBloodSugar,
-            correctionFactor: correctionFactor
+            carbRatio: carbRatio ?? 0,
+            targetBloodSugar: targetBloodSugar ?? 0,
+            correctionFactor: correctionFactor ?? 0,
+            roundingRule: selectedRoundingRule
         )
         
         // Notify delegate before popping
@@ -195,6 +220,11 @@ class CalculatorEditViewController: UIViewController {
     @IBAction func showCorrectionFactorInfo(_ sender: Any) {
         infoPopup.appear(sender: self, title: "PopupInfo.CorrectionFactor.title".localized()
                          , details: "PopupInfo.CorrectionFactor.text".localized())
+    }
+    
+    @IBAction func showRoundingRuleInfo(_ sender: Any) {
+        infoPopup.appear(sender: self, title: "PopupInfo.RoundingRule.title".localized()
+                         , details: "PopupInfo.RoundingRule.text".localized())
     }
     
     private func showAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {

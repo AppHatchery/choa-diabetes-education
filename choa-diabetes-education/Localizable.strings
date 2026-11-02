@@ -112,6 +112,10 @@
 "Calculator.LowBloodSugarAlert.message" = "That's too low to be a high blood sugar. It might be hypoglycemia instead.";
 "Calculator.LowBloodSugarAlert.primaryAction" = "Choose a different symptom";
 "Calculator.LowBloodSugarAlert.secondaryAction" = "Continue with hyperglycemia";
+"Calculator.HighBloodSugarAlert.title" = "Blood sugar is above %d";
+"Calculator.HighBloodSugarAlert.message" = "That's too high to be a low blood sugar. It might be hyperglycemia or a sick day instead.";
+"Calculator.HighBloodSugarAlert.primaryAction" = "Back to issue selection";
+"Calculator.HighBloodSugarAlert.secondaryAction" = "Continue with hypoglycemia";
 
 "Calculator.Que.BloodSugarRecheck.title" = "Is blood sugar higher than 150mg/dL?";
 
@@ -269,6 +273,14 @@ If your correction factor is 50 mg/dL and your blood sugar is 200 with a target 
 
 You calculate (200 - 100) ÷ 50 = 2, so take 2 units of insulin.";
 
+"PopupInfo.RoundingRule.title" = "Rounding Rule";
+"PopupInfo.RoundingRule.text" = "This determines how your calculated insulin dose is rounded.
+
+•  Half unit: Rounds to the nearest 0.5 unit (e.g., 2.3 → 2.5 units).
+•  Whole unit: Rounds to the nearest 1 unit (e.g., 2.3 → 2 units).
+
+Choose the option recommended by your diabetes care team and supported by your insulin delivery device.";
+
 "PopupInfo.CarbRatio.title" = "Carb Ratio";
 "PopupInfo.CarbRatio.text" = "Is the amount of carbohydrates that 1 unit of insulin can cover.
 
@@ -300,6 +312,11 @@ You’d calculate 60 ÷ 15 = 4, so take 4 units of insulin to cover the meal.";
 "CalculatorOnboarding.CarbRatio.title" = "What’s your carb ratio?";
 "CalculatorOnboarding.TargetBloodSugar.title" = "What's your target blood sugar?";
 "CalculatorOnboarding.CorrectionFactor.title" = "What's correction factor?";
+"CalculatorOnboarding.RoundingRule.title" = "How should insulin be rounded?";
+"CalculatorOnboarding.RoundingRule.halfUnit" = "Half unit";
+"CalculatorOnboarding.RoundingRule.halfUnit.subtitle" = "0.5 unit steps";
+"CalculatorOnboarding.RoundingRule.wholeUnit" = "Whole unit";
+"CalculatorOnboarding.RoundingRule.wholeUnit.subtitle" = "1 unit steps";
 
 "AppOnboarding.UserRole.title" = "Who's using this app?";
 "AppOnboarding.UserRole.subtitle" = "Choose the option that best describes you.";
