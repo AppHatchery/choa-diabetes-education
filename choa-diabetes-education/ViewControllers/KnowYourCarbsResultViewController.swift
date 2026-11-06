@@ -37,10 +37,9 @@ class KnowYourCarbsResultViewController: UIViewController {
         Int(carbRatioField.text ?? "") ?? 0
     }
 
-    private var insulinUnits: Double {
-        guard carbRatio > 0 else { return 0 }
-        let raw = Double(calculator.totalCarbs) / Double(carbRatio)
-        return (raw * 2).rounded(.down) / 2
+    /// Food is the only step here, so it's the final dose and is rounded with the saved rounding rule
+    private var insulinForFood: InsulinDose {
+        .food(totalCarbs: calculator.totalCarbs, carbRatio: carbRatio)
     }
 
     override func viewDidLoad() {
@@ -417,9 +416,11 @@ class KnowYourCarbsResultViewController: UIViewController {
 
     private func refreshValues() {
         totalCarbsLabel.text = "\(calculator.totalCarbs)"
-        // `insulinUnits` already guards against a zero ratio, but "0 units"
+        // `InsulinDose.food` already guards against a zero ratio, but "0 units"
         // reads as a real answer — show a dash until there is a ratio to divide by.
-        insulinUnitsLabel.text = carbRatio > 0 ? "\(insulinUnits.cleanCarbString) units" : "— units"
+        insulinUnitsLabel.text = carbRatio > 0
+            ? insulinForFood.displayText(rounded: true, using: CalculatorConstantsManager.shared.roundingRule)
+            : "— units"
     }
 
     // MARK: - Actions
@@ -559,12 +560,6 @@ private enum CarbsInfoTopic {
         case .carbRatio: return "PopupInfo.CarbRatio.text".localized()
         case .insulinForFood: return "PopupInfo.InsulinForFood.text".localized()
         }
-    }
-}
-
-private extension Double {
-    var cleanCarbString: String {
-        truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.1f", self)
     }
 }
 

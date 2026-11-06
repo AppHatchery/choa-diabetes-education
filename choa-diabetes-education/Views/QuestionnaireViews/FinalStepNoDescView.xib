@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -28,23 +27,23 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="HFm-0v-zWr">
-                    <rect key="frame" x="20" y="40" width="353" height="812"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HFm-0v-zWr">
+                    <rect key="frame" x="20" y="60" width="353" height="790"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRD-A1-AHg">
-                            <rect key="frame" x="0.0" y="0.0" width="353" height="242"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Continue regular diabetes medical management plan (DMMP)." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRD-A1-AHg">
+                            <rect key="frame" x="0.0" y="0.0" width="353" height="175"/>
                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="32"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3s-7P-VZf" userLabel="Radio Gradient View">
-                            <rect key="frame" x="0.0" y="278" width="353" height="450"/>
+                        <view contentMode="scaleToFill" verticalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="K3s-7P-VZf" userLabel="Radio Gradient View">
+                            <rect key="frame" x="0.0" y="175" width="353" height="567"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Ua4-Ot-rkW">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="450"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="567"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_normal_care" translatesAutoresizingMaskIntoConstraints="NO" id="ZtV-bU-eB5">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="450"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="567"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,7 +51,7 @@
                                 <constraint firstAttribute="bottom" secondItem="Ua4-Ot-rkW" secondAttribute="bottom" id="0lN-W5-GGp"/>
                                 <constraint firstItem="Ua4-Ot-rkW" firstAttribute="top" secondItem="K3s-7P-VZf" secondAttribute="top" id="9Gj-iv-s9N"/>
                                 <constraint firstItem="Ua4-Ot-rkW" firstAttribute="leading" secondItem="K3s-7P-VZf" secondAttribute="leading" id="NTF-78-b3G"/>
-                                <constraint firstAttribute="height" constant="450" id="deP-Hi-FCD"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="336" id="deP-Hi-FCD"/>
                                 <constraint firstItem="ZtV-bU-eB5" firstAttribute="top" secondItem="K3s-7P-VZf" secondAttribute="top" id="gCI-1c-NDq"/>
                                 <constraint firstItem="ZtV-bU-eB5" firstAttribute="leading" secondItem="K3s-7P-VZf" secondAttribute="leading" id="gg7-gK-Soe"/>
                                 <constraint firstAttribute="bottom" secondItem="ZtV-bU-eB5" secondAttribute="bottom" id="kSy-7B-G4V"/>
@@ -61,7 +60,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-yt-N2K">
-                            <rect key="frame" x="0.0" y="764" width="353" height="48"/>
+                            <rect key="frame" x="0.0" y="742" width="353" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="ynE-BU-Fwu"/>
                             </constraints>
@@ -83,18 +82,18 @@
             <color key="backgroundColor" name="secondaryMeadowGreen300"/>
             <constraints>
                 <constraint firstItem="Q44-JH-esr" firstAttribute="trailing" secondItem="HFm-0v-zWr" secondAttribute="trailing" constant="20" id="Kxb-tz-B9I"/>
-                <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="HFm-0v-zWr" secondAttribute="bottom" id="peM-jm-Pju"/>
+                <constraint firstItem="Q44-JH-esr" firstAttribute="bottom" secondItem="HFm-0v-zWr" secondAttribute="bottom" constant="2" id="peM-jm-Pju"/>
                 <constraint firstItem="HFm-0v-zWr" firstAttribute="leading" secondItem="Q44-JH-esr" secondAttribute="leading" constant="20" id="pm4-7O-Owt"/>
-                <constraint firstItem="HFm-0v-zWr" firstAttribute="top" secondItem="Q44-JH-esr" secondAttribute="top" constant="20" id="uqH-FJ-EI5"/>
+                <constraint firstItem="HFm-0v-zWr" firstAttribute="top" secondItem="Q44-JH-esr" secondAttribute="top" constant="40" id="uqH-FJ-EI5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="226.71755725190837" y="41.549295774647888"/>
+            <point key="canvasLocation" x="226.40000000000001" y="41.379310344827587"/>
         </view>
     </objects>
     <resources>
         <image name="hope_normal_care" width="275.33334350585938" height="400.33334350585938"/>
         <image name="radio_gradient" width="1206" height="1554"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="118"/>
         <namedColor name="secondaryMeadowGreen300">
             <color red="0.44705882352941179" green="0.74901960784313726" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

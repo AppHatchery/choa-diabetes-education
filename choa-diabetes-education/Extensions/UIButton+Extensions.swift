@@ -7,8 +7,80 @@
 
 import Foundation
 import UIKit
+import ObjectiveC
 
 extension UIButton {
+	/// Every button in the app uses this corner radius
+	static let standardCornerRadius: CGFloat = 12
+
+	/// Green "Exit ✕" text button. Replaces the whole configuration rather than patching the storyboard's,
+	/// whose white foreground otherwise wins over colors set through the older title and image setters.
+	func applyExitStyle() {
+		var config = UIButton.Configuration.plain()
+		config.title = "Exit"
+		config.image = UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(scale: .small))
+		config.imagePlacement = .trailing
+		config.imagePadding = 8
+		config.baseForegroundColor = .choaGreenColor
+		config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+			var out = incoming
+			out.font = .nunitoBold20
+			return out
+		}
+
+		setAttributedTitle(nil, for: .normal)
+		configuration = config
+		backgroundColor = .clear
+		tintColor = .choaGreenColor
+		layer.cornerRadius = UIButton.standardCornerRadius
+	}
+
+	/// Rounds the button and, for configured buttons, the background the configuration draws.
+	/// That background ignores the layer's radius and defaults to a capsule on iOS 26.
+	func applyStandardCornerRadius() {
+		applyCornerRadius(UIButton.standardCornerRadius)
+
+		guard var configuration,
+			  configuration.cornerStyle != .fixed || configuration.background.cornerRadius != UIButton.standardCornerRadius else { return }
+		configuration.cornerStyle = .fixed
+		configuration.background.cornerRadius = UIButton.standardCornerRadius
+		self.configuration = configuration
+	}
+
+	/// Applies the standard corner radius to every app button as it's shown, including ones from xibs and storyboards.
+	/// Call once at launch.
+	static func enforceStandardCornerRadius() {
+		_ = swizzleDidMoveToWindow
+	}
+
+	// Runs once, however many times enforceStandardCornerRadius is called
+	private static let swizzleDidMoveToWindow: Void = {
+		let originalSelector = #selector(didMoveToWindow)
+		let replacementSelector = #selector(standardCornerRadius_didMoveToWindow)
+		guard let original = class_getInstanceMethod(UIButton.self, originalSelector),
+			  let replacement = class_getInstanceMethod(UIButton.self, replacementSelector) else { return }
+
+		// UIButton may inherit didMoveToWindow from UIView. Add it to UIButton first so the swap
+		// only affects buttons, not every view in the app.
+		let didAddMethod = class_addMethod(UIButton.self, originalSelector, method_getImplementation(replacement), method_getTypeEncoding(replacement))
+		if didAddMethod {
+			class_replaceMethod(UIButton.self, replacementSelector, method_getImplementation(original), method_getTypeEncoding(original))
+		} else {
+			method_exchangeImplementations(original, replacement)
+		}
+	}()
+
+	@objc private func standardCornerRadius_didMoveToWindow() {
+		// Calls the original didMoveToWindow, since the implementations are swapped
+		standardCornerRadius_didMoveToWindow()
+
+		// Only the app's own buttons, so system controls like the search bar's Cancel button keep their native shape
+		let buttonClass: AnyClass = type(of: self)
+		guard window != nil,
+			  buttonClass == UIButton.self || Bundle(for: buttonClass) == Bundle.main else { return }
+		applyStandardCornerRadius()
+	}
+
 	enum ImagePlacement {
 		case left, right
 	}

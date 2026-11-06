@@ -274,12 +274,14 @@ tr > td:nth-last-child(2) {
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
+/* Cards in a row share a height, with the carbs line pinned to the bottom */
 .recipe-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   overflow: hidden;
@@ -293,21 +295,26 @@ tr > td:nth-last-child(2) {
 
 .recipe-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 13 / 10;
   object-fit: cover;
   display: block;
 }
 
 .recipe-card-body {
-  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 12px 12px;
 }
 
 .recipe-card-title {
-  font-family: NunitoBold, Roboto, sans-serif;
+  font-family: NunitoRegular, Roboto, sans-serif;
   font-size: 16px;
   line-height: 22px;
   color: #000000;
-  margin: 0 0 8px;
+  margin: 0;
 }
 
 .recipe-card-meta {

@@ -9,6 +9,9 @@
 - [Project Structure](#project-structure)
   - [Directory Layout](#directory-layout)
   - [Relevant Files](#relevant-files)
+- [App Onboarding](#app-onboarding)
+  - [Question Graph](#question-graph)
+  - [How Answers Are Used](#how-answers-are-used)
 - [Sick Day / Get Help Flow](#sick-day--get-help-flow)
   - [How the Flow Is Built](#how-the-flow-is-built)
   - [State and Persistence](#state-and-persistence)
@@ -17,6 +20,12 @@
   - [Reminders and Notifications](#reminders-and-notifications)
   - [Back Navigation, Counters, and Resets](#back-navigation-counters-and-resets)
   - [Screen Theming](#screen-theming)
+- [Low Blood Sugar (Hypoglycemia) Flow](#low-blood-sugar-hypoglycemia-flow)
+  - [Hypo Walkthrough](#hypo-walkthrough)
+  - [Treat, Wait 15 Minutes, Recheck](#treat-wait-15-minutes-recheck)
+  - [Severe Low: Who Sees What](#severe-low-who-sees-what)
+  - [Hypo Screens](#hypo-screens)
+- [Emergency Call Routing (CHOA vs. Care Team)](#emergency-call-routing-choa-vs-care-team)
 - [How To: Extend the Questionnaire](#how-to-extend-the-questionnaire)
   - [Add a New Question (Existing Type)](#add-a-new-question-existing-type)
   - [Add a New Question Type](#add-a-new-question-type)
@@ -24,6 +33,8 @@
 - [Calculator Flows](#calculator-flows)
   - [Know Your Carbs](#know-your-carbs)
   - [Meal and High-Blood-Sugar Calculators](#meal-and-high-blood-sugar-calculators)
+  - [Calculator Keyboard and Editing](#calculator-keyboard-and-editing)
+- [App-Wide UI Conventions](#app-wide-ui-conventions)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 - [Contact](#contact)
@@ -46,7 +57,9 @@ The application is actively being used in an observational study at Children's H
 - Resources for new onset patients
 - Calculator guidance for insulin for food, high blood sugar, or both
 - A **Know Your Carbs** food catalogue and carb-counting flow
+- A first-launch **App Onboarding** questionnaire (role, CHOA status, care location or school, diabetes type, age, time since diagnosis) whose answers personalise the Get Help flows
 - A guided **Sick Day / Get Help** triage questionnaire with ketone tracking and recheck reminders
+- A **Low Blood Sugar (Hypoglycemia)** flow with age-based thresholds, 15g/8g carb treatment, 15-minute recheck reminders, and escalation (glucagon for school nurses, a call to CHOA or the family's own care team for everyone else)
 
 ## Project Structure
 
@@ -61,17 +74,19 @@ choa-diabetes-education/                     # repo root
 └── choa-diabetes-education/                 # app target
     ├── Delegates/                           # AppDelegate, SceneDelegate
     ├── Models/                              # Questionnaire graph, question/answer enums, carb + content models
-    ├── Managers/                            # Singletons: reminders, carb totals, custom foods, calculator constants
+    ├── Managers/                            # Singletons: Get Help questionnaire, app onboarding, reminders, carb totals, custom foods, calculator constants
     ├── Helpers/                             # Reminder persistence + notification-tap routing
     ├── ViewControllers/                     # One class per screen
     ├── Views/
-    │   ├── QuestionnaireViews/              # Every Sick Day / Get Help screen body (XIB-backed UIViews)
+    │   ├── AppOnboardingQuestionView.swift  # The single, data-driven onboarding question screen
+    │   ├── QuestionnaireViews/              # Every Get Help screen body, Sick Day and Hypo (XIB-backed UIViews)
     │   └── PopUps/                          # InfoPopUpViewController
     ├── CustomComponents/                    # PrimaryButton, RoundedButton, RoundedButtonWithImage
     ├── Extensions/                          # UIColor/UIFont/UILabel/UIView helpers, external URLs
     ├── Base.lproj/                          # Main.storyboard, LaunchScreen, Orientation~
     ├── choa-diabetes-education/Base.lproj/  # Calculator.storyboard, Orientation.storyboard
-    ├── GetHelp.storyboard                   # The Sick Day / Get Help scene
+    ├── AppOnboarding.storyboard             # Launch storyboard: onboarding welcome + question scenes
+    ├── GetHelp.storyboard                   # The Get Help scene (Sick Day + Hypo) and the ketone info sheet
     ├── Assets/                              # Asset catalogue, fonts, Lottie animations, 32 HTML chapter pages + css/js
     ├── Localizable.strings                  # All user-facing copy
     ├── plists/GoogleService-Info.plist
@@ -82,25 +97,84 @@ choa-diabetes-education/                     # repo root
 
 | Area | File | Role |
 | --- | --- | --- |
-| Entry | `ViewControllers/HomeViewController.swift` | Home screen; launches Get Help, the calculators, Know Your Carbs, and the education sections. Also restores an in-progress reminder on launch. |
-| Sick Day | `ViewControllers/GetHelpViewController.swift` | The single view controller used for **every** step of the Sick Day flow. |
-| Sick Day | `GetHelp.storyboard` | Scene holding all step views plus the ketone-measurement info sheet. |
-| Sick Day | `Models/QuestionnaireManager.swift` | Singleton that owns the answers, the routing rules, and the ketone/visit persistence. |
-| Sick Day | `Models/Questionnaire.swift`, `Models/QuestionType.swift` | The question object passed between screens and the enums for every question id / answer. |
-| Sick Day | `Views/QuestionnaireViews/*` | The step bodies (see [Supporting Subviews](#supporting-subviews)). |
-| Reminders | `Managers/ReminderManager.swift` | Schedules local notifications and drives countdowns. |
-| Reminders | `Helpers/ReminderPersistence.swift` | Encodes the reminder + questionnaire state to `UserDefaults` so it survives app restarts. |
-| Reminders | `Helpers/NotificationHandler.swift` | Routes a notification tap back into the ketone recheck screen. |
+| Launch | `Delegates/SceneDelegate.swift` | The scene launches from `AppOnboarding.storyboard`; once onboarding is complete it swaps the root to `Main.storyboard`. |
+| Onboarding | `ViewControllers/AppOnboardingWelcomViewController.swift`, `ViewControllers/AppOnboardingViewController.swift`, `Views/AppOnboardingQuestionView.swift` | Welcome screen, the one reusable question screen (pushed once per question), and its data-driven body. |
+| Onboarding | `Models/AppOnboardingQuestion.swift` | Every onboarding question, its options/fields, and the `next` / `previous` branching. |
+| Onboarding | `Managers/AppOnboardingManager.swift` | Stores the answers and exposes the derived values the rest of the app reads (`isSchoolNurse`, `isChoaPatient`, `age`, `lowBloodSugarThreshold`). |
+| Entry | `ViewControllers/HomeViewController.swift` | Home screen; launches Get Help, the calculators, Know Your Carbs, and the education sections. Also finishes a pending notification tap or restores an in-progress reminder when it appears. |
+| Get Help | `ViewControllers/GetHelpViewController.swift` | The single view controller used for **every** step of the Sick Day and Hypo flows. |
+| Get Help | `GetHelp.storyboard` | Scene holding all step views plus the ketone-measurement info sheet. |
+| Get Help | `Managers/QuestionnaireManager.swift` | Singleton that owns the `GetHelpSession` (answers, ketone readings, visit counts), the routing rules for both flows, and session persistence. |
+| Get Help | `Models/Questionnaire.swift`, `Models/QuestionType.swift` | The question object passed between screens and the enums for every question id / answer / outcome (`FinalQuestionId`). |
+| Get Help | `Views/QuestionnaireViews/*` | The step bodies (see [Supporting Subviews](#supporting-subviews) and [Hypo Screens](#hypo-screens)). |
+| Reminders | `Managers/ReminderManager.swift` | Schedules local notifications (2 h, 90 min, 15 min), tags them with `userInfo`, and drives countdowns. |
+| Reminders | `Helpers/ReminderPersistence.swift` | Saves the reminder id, time, page and a copy of the whole `GetHelpSession` so a relaunch can reopen the reminder page. |
+| Reminders | `Helpers/NotificationHandler.swift` | Routes a notification tap to the right recheck screen (ketones, iLet, or low blood sugar), carrying visit counts across the new stack. |
 | Carbs | `ViewControllers/KnowYourCarbsViewController.swift`, `KnowYourCarbsResultViewController.swift`, `AddFoodItemViewController.swift` | The carb catalogue, its results screen, and custom-food entry. |
 | Carbs | `Managers/CarbsCalculatorManager.swift`, `Managers/CustomFoodsManager.swift`, `Models/CarbFood.swift` | Selected servings/total, user-added foods, and the food model. |
 | Calculators | `ViewControllers/Calculator*ViewController.swift`, `Managers/CalculatorConstantsManager.swift` | Insulin calculators and the stored clinician constants. |
 | Education | `ViewControllers/ChapterViewController.swift`, `Models/Content.swift`, `Assets/pages/*.html` | Handbook chapters rendered in `WKWebView`, plus the quizzes. |
 
+## App Onboarding
+
+On first launch the app opens on `AppOnboarding.storyboard` instead of Home. A welcome screen (`AppOnboardingWelcomViewController`, **Get Started**) leads into a short questionnaire. `SceneDelegate` checks `AppOnboardingManager.shared.hasCompletedOnboarding` on every launch and goes straight to `Main.storyboard` once it is set.
+
+`AppOnboardingViewController` is one reusable screen. Each instance shows one `AppOnboardingQuestion` and is pushed for the next question, so the system Back button walks the history. The body, `AppOnboardingQuestionView`, builds itself from the question's `type`:
+
+| Type | Rendering | Next enabled when |
+| --- | --- | --- |
+| `.singleSelect([AppOnboardingOption])` | Tappable option rows (optionally with an image) | An option is selected |
+| `.openEndedInput(placeholder:)` | One text field | The field is not blank |
+| `.openEndedMultipleInput([AppOnboardingInputField])` | A labelled text field per entry | Every field is filled in |
+
+Answers are collected in an `[AppOnboardingQuestion: AppOnboardingAnswer]` dictionary passed from screen to screen. `AppOnboardingAnswer` is `.selection(Int)`, `.text(String)`, or `.multipleText([String])`, with a custom `Codable` implementation. The first screen pre-fills from `AppOnboardingManager.shared.answers` if any are saved.
+
+When the last question is answered, `finishOnboarding()`:
+
+1. Walks the graph again from `.userRole`, following the saved answers, and keeps **only the answers on the path actually taken** (`answersOnTakenPath()`). Answers from a branch the user backed out of are dropped. For example, an age typed in before switching the role to school nurse is not saved.
+2. Saves them with `AppOnboardingManager.saveAnswers(_:)`, which also sets `hasCompletedOnboarding`.
+3. Cross-fades the window's root view controller to `Main.storyboard`.
+
+### Question Graph
+
+Branching lives in `AppOnboardingQuestion.next(selectedOptionId:)`. `previous(previousSelectedOptionId:)` mirrors it.
+
+```mermaid
+flowchart TD
+    A["Who's using this app?<br/>userRole"] -->|I have diabetes /<br/>Parent or caregiver| B["Are you a CHOA patient or caregiver?<br/>isChoaPatient"]
+    A -->|I'm a school nurse| S["Which school do you work at?<br/>whichSchool: name, state, ZIP"]
+    S --> END([Finish])
+    B -->|Yes, I receive care at CHOA| C["Which CHOA do you get care from?<br/>whichChoa: Arthur M. Blank / Scottish Rite / Hughes Spalding"]
+    B -->|No, I receive care somewhere else| D["Tell us where you get care.<br/>whereYouGetCare: hospital, county, state"]
+    C --> E["What type of diabetes?<br/>diabetesType: Type 1 / Type 2 / Not sure"]
+    D --> E
+    E --> F["How old is the person with diabetes?<br/>age (free text)"]
+    F --> G["When was the person diagnosed?<br/>diagnosisTime: 7 ranges"]
+    G --> END
+```
+
+School nurses are never asked the CHOA, diabetes-type, age, or diagnosis questions.
+
+> The `whichSchool` placeholders in `Localizable.strings` are shifted: the State field says *"Enter county"* and the ZIP field says *"Enter state"*. Fix this in the strings file, not the model.
+
+### How Answers Are Used
+
+`AppOnboardingManager` (stored in `UserDefaults` under `app_onboarding_answers` and `app_onboarding_has_completed_onboarding`) exposes derived values that the Get Help flows read directly:
+
+| Property | Derived from | Used for |
+| --- | --- | --- |
+| `isSchoolNurse` | `userRole == 2` | Severe hypo branch: school nurses are told to give glucagon, then call the care team. |
+| `isChoaPatient` | `isChoaPatient`: option 0 → `true`, option 1 → `false`. `nil` when never asked (school nurses) or unanswered. | Every emergency call screen. `false` swaps the CHOA emergency line for *"Call your care team or doctor"* (see [Emergency Call Routing](#emergency-call-routing-choa-vs-care-team)). |
+| `age` | `age` text, parsed as a whole number | `lowBloodSugarThreshold`. |
+| `lowBloodSugarThreshold` | `age ≤ 5` → **80 mg/dL**, otherwise (or unknown age) → **70 mg/dL** | The hypo reading/recheck cut-off, and the low-reading alert on the Sick Day blood-sugar question. |
+
+`clear()` removes both keys, which shows onboarding again on the next launch.
+
 ## Sick Day / Get Help Flow
 
-The Sick Day flow is the **Get Help** questionnaire on the Home screen. It triages a sick child through symptoms, insulin-delivery method, blood sugar, and ketone levels, and ends on one of five outcome screens — from "continue regular care" to "call 911".
+**Get Help** on the Home screen opens a questionnaire that starts with *"What's the issue?"*. **Sick Day** and **High Blood Sugar** go into the Sick Day flow described here. **Low Blood Sugar** goes into the [Hypoglycemia flow](#low-blood-sugar-hypoglycemia-flow). **Not Sure** goes to the emergency call screen. The Sick Day flow triages a sick child through symptoms, insulin-delivery method, blood sugar, and ketone levels. It ends on one of several outcome screens, from "continue regular care" to "call 911".
 
-Everything below is driven by `GetHelpViewController.swift` and `QuestionnaireManager.swift`.
+Both flows are driven by `GetHelpViewController.swift` and `QuestionnaireManager.swift` and share the machinery below.
 
 ### How the Flow Is Built
 
@@ -112,15 +186,17 @@ Everything below is driven by `GetHelpViewController.swift` and `QuestionnaireMa
 ```mermaid
 flowchart TD
     A["Home → Get Help"] --> B["What's the issue?<br/>FourOptionsView"]
-    B -->|Low blood sugar / Not sure| E1["FinalStepCallChoaEmergencyView"]
+    B -->|Not sure| E1["FinalStepCallChoaEmergencyView<br/>(CHOA line, or care team if not CHOA)"]
+    B -->|Low blood sugar| HY["Hypoglycemia flow<br/>(see its own section)"]
     B -->|Sick Day / High blood sugar| C["Are any of these symptoms present?<br/>FiveOptionsView"]
     C -->|Trouble breathing, confused,<br/>lethargic, repeated vomiting| E2["FirstEmergencyView<br/>(call 911)"]
     C -->|None of the above| D["How is insulin taken?<br/>TwoOptionsView"]
-    D --> F["Is blood sugar over 300 mg/dL?<br/>YesOrNoQueView + follow-up"]
-    F -->|Not high, or not high long enough| G["Other symptoms?<br/>FourOptionsView"]
+    D --> F["What's the blood sugar reading?<br/>OpenEndedQueView (+ duration if ≥ 300)"]
+    F -->|Below threshold| LA["Low reading alert<br/>(go back, or continue to ketones)"]
+    F -->|Under 300| G["Other symptoms?<br/>FourOptionsView"]
     G -->|None of the above| E3["FinalStepNoDescView<br/>(continue regular care)"]
     G -->|Nausea / abdominal pain / vomiting| H
-    F -->|Over 300 for 3 hrs / 90 mins| H["How were ketones measured?<br/>TwoOptionsView + ketone picker"]
+    F -->|300 or higher| H["How were ketones measured?<br/>TwoOptionsView + ketone picker"]
     H --> I["FinalStepWithReminderView<br/>(home management + reminder)"]
     H --> J["Is blood sugar still high?<br/>YesOrNoQueView"]
     H --> E4["FinalStepCallChoaView"]
@@ -134,25 +210,32 @@ flowchart TD
 
 ### State and Persistence
 
-`QuestionnaireManager.instance` is the single source of truth for the run. `HomeViewController` calls `QuestionnaireManager.resetInstance()` before starting a new flow, and the X button in the nav bar resets it again on exit.
+`QuestionnaireManager.instance` is the single source of truth for the run. Everything recorded during one Get Help run lives in one `Codable` value, `GetHelpSession`, held in `manager.session`. Its `didSet` writes the whole session to `UserDefaults` under `getHelpSession` on every change, and `init` loads it back. A backgrounded or relaunched app therefore resumes with the same answers. The old per-field keys (`persistedUrineKetoneLevel`, `firstUrineKetoneValue`, `reminderPageVisitCount`, `ketoneVisitCount`, …) are removed on launch by `removeLegacyKeys()`.
 
-In memory:
+The instance is long-lived, because views and view controllers keep a reference to it. So it is never replaced: `HomeViewController` calls `manager.reset()` before starting a new run, and the nav bar's X button calls it again on exit. Both replace `session` with a fresh `GetHelpSession()`. The manager still exposes the old property names (`currentTestType`, `iLetPump`, `urineKetones`, …) as accessors over `session`, so routing code reads and writes them as before.
 
-| Property | Meaning |
+| `GetHelpSession` field | Meaning |
 | --- | --- |
-| `currentTestType` | `.insulinShots` or `.pump` |
+| `testType` | `.insulinShots` or `.pump` |
 | `iLetPump` | Whether the pump is an iLet (changes every timing threshold and much of the routing) |
-| `currentMeasuringMethod` | `.urineKetone` or `.bloodKetone`; switching methods clears the other method's stored value |
-| `bloodSugarOver300` / `bloodSugarOver300For3Hours` | Answers to the blood-sugar question and its follow-up |
-| `yesOver2hours` | The wait period has elapsed (2 hrs, or 90 mins on iLet) |
-| `skipFirstReminder` | The first reminder was skipped, or was never offered because ketones were already elevated |
+| `cgm` | Sick Day: unused by current routing. Hypo: CGM vs. meter, overwritten for pump users by *"Does the pump show CGM readings?"* (drives the 8g treatment) |
+| `measuringMethod` | `.urineKetone` or `.bloodKetone`; switching methods clears the other method's stored value |
+| `bloodSugar` | Last reading entered (Sick Day or Hypo) |
+| `bloodSugarOver300` / `bloodSugarOver300For3Hours` | Reading was ≥ 300, and for long enough (90 min iLet / 3 h otherwise) |
+| `urineKetones` / `bloodKetones` | The current ketone reading |
+| `first…KetoneValue` / `second…KetoneValue` | First and second readings, compared in the iLet branches |
+| `yesOver2hours` | The wait period has elapsed (2 h, or 90 min on iLet) |
+| `skipFirstReminder` | The first reminder was skipped, or never offered because ketones were already elevated |
+| `activeReminderId` / `reminderScheduledTime` | The pending reminder, if any |
+| `visitCounts` | `VisitCounts`: `reminderPages` (iLet only), `ketoneChecks`, `lowBloodSugarTreatments` |
+| `visitCountsBeforeStack` | Counts from screens no longer on the navigation stack (see below) |
 
-Persisted in `UserDefaults` (so a backgrounded or relaunched app can resume mid-flow):
+**Visit counts are derived, not incremented.** Every time a `GetHelpViewController` appears (push, pop, or a cancelled swipe back), it calls `updateVisitCounts(for: questionPath)`. That recomputes `visitCounts = visitCountsBeforeStack + counts(in: stack)`:
 
-- `persistedUrineKetoneLevel` / `persistedBloodKetoneLevel` — the current reading, reloaded by `loadPersistedKetoneState()` in `viewWillAppear`.
-- `firstUrineKetoneValue` / `firstBloodKetoneValue` and `secondUrineKetoneValue` / `secondBloodKetoneValue` — the first and second readings, compared against each other in the iLet branches.
-- `reminderPageVisitCount` and `ketoneVisitCount` — how many times the reminder page and the ketone-check pages have been reached. These two counters, together with `skipFirstReminder`, decide nearly every iLet branch.
-- `activeReminderState` — the encoded `ReminderPersistence.ReminderState`.
+- `.twoOptions(.measuringType)` and `.recheckKetoneLevel` each count one ketone check.
+- `.reminder` counts one low blood sugar treatment if its id is a hypo treatment stage (`FinalQuestionId.isLowBloodSugarTreatment`). Otherwise it counts one iLet reminder page, and only when `iLetPump` is set.
+
+`visitCountsBeforeStack` covers the cases where the stack is thrown away but the history must survive: a notification tap pops to Home and pushes a fresh recheck screen, or a relaunch reopens the reminder page. `carryVisitCountsPastStack()`, `carryLowBloodSugarTreatments(atLeast:)`, `carryILetVisitCounts(…)`, `prepareToReshowReminderPage(_:)` and `restoreSession(_:reshowing:)` keep the counts correct in those cases (see [Reminders and Notifications](#reminders-and-notifications)). `VisitCounts` decodes missing keys as 0, so sessions saved by older builds still load.
 
 `printCurrentKetoneState()` dumps all of this to the console; the flow is instrumented with emoji-prefixed logs throughout (`📊` counters, `🧪` ketones, `🔔` notifications).
 
@@ -160,10 +243,11 @@ Persisted in `UserDefaults` (so a backgrounded or relaunched app can resume mid-
 
 **1. Entry — "What's the issue?"** (`FourOptionsView`, `questionId: childIssue`)
 
-`HomeViewController.tappedGetHelpButton` resets the manager and builds the first question. Options:
+`HomeViewController.tappedGetHelpButton` calls `QuestionnaireManager.instance.reset()` and builds the first question. Options:
 
 - **Sick Day** or **High Blood Sugar** → `triggerDKAWorkFlow` → symptom check.
-- **Low Blood Sugar** or **Not Sure What's Wrong** → `triggerCallChoaEmergencyActionFlow` → `FinalStepCallChoaEmergencyView`.
+- **Low Blood Sugar** → `triggerHypoglycemiaFlow` → the [Hypoglycemia flow](#low-blood-sugar-hypoglycemia-flow).
+- **Not Sure What's Wrong** → `triggerCallChoaEmergencyActionFlow` → `FinalStepCallChoaEmergencyView` (CHOA line, or the care-team version for non-CHOA users).
 
 **2. Red-flag symptoms — "Are any of these symptoms present?"** (`FiveOptionsView`, `questionId: childHasAnySymptoms`)
 
@@ -176,11 +260,13 @@ Trouble breathing, confused, lethargic, or repeated vomiting → `triggerFirstEm
 
 Next saves the test type and calls `triggerTestActionFlow`, which goes to the blood-sugar question for both methods.
 
-**4. "Is blood sugar over 300 mg/dL?"** (`YesOrNoQueView`, `questionId: bloodSugarCheck`)
+**4. "What's the blood sugar reading?"** (`OpenEndedQueView`, `questionType: .openEndedWithMultipleInput(.bloodSugarCheck)`)
 
-- **Yes** sets `bloodSugarOver300` and embeds a `YesOrNoFollowUpView`: *"Has the blood sugar been over 300 mg/dL for 3hrs or more?"* — or *"…for 90 mins or more?"* when `iLetPump` is set.
-- Yes + follow-up **Yes** → `triggerKetoneMeasuringTypeActionFlow` (straight to ketones).
-- Yes + follow-up **No**, or **No** → `triggerOtherSymptomsActionFlow`.
+The family types the reading in mg/dL. The keyboard is raised automatically once the push finishes.
+
+- **300 or higher** also asks how long it has been above 300 (`HighBloodSugarDuration`: 30 min, 1 h, 1 h 30, 2 h, 2 h 30, 3 h, more than 3 h). `didSelectNextAction(currentQuestion:bloodSugar:durationOver300:)` sets `bloodSugarOver300`. It sets `bloodSugarOver300For3Hours` when the duration reaches the threshold: 90 minutes on iLet, 3 hours otherwise. Any reading of 300 or higher then goes to `triggerKetoneMeasuringTypeActionFlow`.
+- **Under 300** → `triggerOtherSymptomsActionFlow`.
+- **Below `lowBloodSugarThreshold`** (70 mg/dL, or 80 for age ≤ 5 from onboarding) shows an alert, *"Blood sugar is below N"*. **Choose a different symptom** pops back to *"What's the issue?"*. **Continue with hyperglycemia** clears the over-300 flags and continues to the ketone question. On the later blood-sugar recheck it continues down the below-threshold recheck path instead.
 
 **5. "Are any of these symptoms present?" (second list)** (`FourOptionsView`, `questionId: otherSymptom`)
 
@@ -188,7 +274,7 @@ Nausea, abdominal pain, or vomiting → ketone measurement. **None of the above*
 
 **6. "How were ketones measured?"** (`TwoOptionsView`, `questionId: measuringType`)
 
-Selecting **Urine Ketone Level** or **Blood Ketone Level** embeds the matching picker (`UrineKetoneLevelView` with six levels, `BloodKetoneLevelView` with three) *inside* this screen; the reading and the Next button are part of the same step. A *"Learn how to measure ketones"* link opens `AboutKetoneMeasurementsViewController` as a sheet. Next increments `ketoneVisitCount`, saves the level, and routes:
+Selecting **Urine Ketone Level** or **Blood Ketone Level** embeds the matching picker (`UrineKetoneLevelView` with six levels, `BloodKetoneLevelView` with three) *inside* this screen; the reading and the Next button are part of the same step. A *"Learn how to measure ketones"* link opens `AboutKetoneMeasurementsViewController` as a sheet. Next saves the level and routes (the screen itself counts as the first ketone check):
 
 - **iLet** → `triggerUrineKetoneForILetActionFlow` / `triggerBloodKetoneForILetActionFlow`. These also store the reading as the *first* ketone value and set `skipFirstReminder` — `false` for negative/low readings (the reminder page is shown), `true` for moderate and high readings.
 - **Everything else** → `triggerUrineKetoneLevelActionFlow` / `triggerBloodKetoneLevelActionFlow`:
@@ -203,7 +289,7 @@ The steps shown depend on the delivery method (see the subview table). Three way
 - When the countdown reaches zero the card reads *"Time to check"* and the button becomes **Start Test**.
 - **Yes, Over 2hrs** / **Yes, Over 90 mins** advances immediately.
 
-All three advance through `didSelectYesOverAction(_:)` on the controller with `yesOver2hours` set. For non-iLet users that always means `triggerRecheckKetonesActionFlow`. For iLet users the controller evaluates an ordered set of conditions over `skipFirstReminder`, `reminderPageVisitCount`, and `ketoneVisitCount`:
+All three advance through `didSelectYesOverAction(_:)` on the controller with `yesOver2hours` set. For non-iLet users that always means `triggerRecheckKetonesActionFlow`. For iLet users the controller evaluates an ordered set of conditions over `skipFirstReminder` and the visit counts (`getReminderPageVisitCount()`, `getKetoneVisitCount()`):
 
 | # | Condition | Next screen |
 | --- | --- | --- |
@@ -217,15 +303,20 @@ All three advance through `didSelectYesOverAction(_:)` on the controller with `y
 
 **8. "Check ketone level" recheck** (`RecheckKetoneLevelView`, `questionType: .recheckKetoneLevel`)
 
-Entering this screen sets `yesOver2hours` and increments `ketoneVisitCount`. It pre-selects whichever measurement method was used before, embeds that picker, and offers a *"Switch to Blood/Urine Ketone"* toggle that swaps the picker and clears the pending selection. Next routes to `triggerRecheckUrineKetoneActionFlow` / `triggerRecheckBloodKetoneActionFlow`, or their `…ForILet…` variants, which compare the new reading against the first one and the visit counters to choose between continuing care, another reminder, a blood-sugar recheck, and calling CHOA.
+Entering this screen sets `yesOver2hours`; being on the stack counts as another ketone check. It pre-selects whichever measurement method was used before, embeds that picker, and offers a *"Switch to Blood/Urine Ketone"* toggle that swaps the picker and clears the pending selection. Next routes to `triggerRecheckUrineKetoneActionFlow` / `triggerRecheckBloodKetoneActionFlow`, or their `…ForILet…` variants, which compare the new reading against the first one and the visit counters to choose between continuing care, another reminder, a blood-sugar recheck, and calling CHOA.
 
-**9. Blood-sugar recheck** (`YesOrNoQueView`, `questionId: bloodSugarRecheck`)
+**9. Blood-sugar recheck** (`OpenEndedQueView`, `.openEndedWithMultipleInput(.bloodSugarRecheck)`; or `YesOrNoQueView`, `.yesOrNo(.bloodSugarRecheck)`)
 
-The threshold in the question depends on the setup: *higher than 180 mg/dL* for iLet, *300 mg/dL or higher* for a pump after a low reading, otherwise *higher than 150 mg/dL*. For non-iLet users **Yes** → `FinalStepCallChoaView`, and **No** → continue regular care when a pump user has waited out the interval with low ketones, otherwise `FinalStepCallChoaEmergencyView`. For iLet users both answers run the visit-count table in `triggerYesActionFlow` / `triggerNoActionFlow`.
+Most rechecks ask for the reading itself (`createBloodSugarRecheckQuestion`). `triggerBloodSugarRecheckReadingActionFlow` compares it with **180 mg/dL** for iLet and **150 mg/dL** for everyone else. Over the threshold follows the "above" path, otherwise the "below" path. The ketone-recheck branches for a pump after a low reading still use the yes/no form, *"300 mg/dL or higher"*. Both forms end in the same two routines:
+
+- **Above** (`triggerBloodSugarRecheckAboveActionFlow`): non-iLet → `FinalStepCallChoaView`. iLet → the visit-count table (another reminder, another ketone recheck, or the emergency call screen).
+- **Below** (`triggerBloodSugarRecheckBelowActionFlow`): continue regular care when a pump user has waited out the interval with low ketones, otherwise the emergency call screen. iLet runs its own visit-count table.
+
+A reading below `lowBloodSugarThreshold` on the recheck shows the same low-reading alert as step 4. `QuestionType.isBloodSugarRecheck` matches both forms, so the back-navigation rules treat them the same.
 
 **10. Outcome screens**
 
-`FirstEmergencyView` (911), `FinalStepCallChoaEmergencyView` (call the care team), `FinalStepCallChoaView` (managed at home with call instructions), `FinalStepNoDescView` (continue regular care), and `FinalStepWithDescView` (continue regular care with extra hydration / iLet guidance). The nav bar's close button is removed on all of them; Exit or Done returns to Home.
+`FirstEmergencyView` (911), `FinalStepCallChoaEmergencyView` (call the CHOA emergency line, or the family's own care team for non-CHOA users; see [Emergency Call Routing](#emergency-call-routing-choa-vs-care-team)), `FinalStepCallChoaView` (managed at home with call instructions), `FinalStepNoDescView` (continue regular care), and `FinalStepWithDescView` (continue regular care with extra hydration / iLet guidance). The nav bar's close button is removed on all of them; Exit or Done returns to Home.
 
 ### Supporting Subviews
 
@@ -237,10 +328,10 @@ All of these live in `Views/QuestionnaireViews/` and are XIB-backed `UIView`s lo
 | --- | --- | --- |
 | `FourOptionsView` | `.fourOptions` | Four image + label option cards with a dimmed Next until one is picked. Serves both *"What's the issue?"* and the second symptom list; the `questionId` chooses the artwork and which `FourOptionsAnswer` is emitted. |
 | `FiveOptionsView` | `.fiveOptions` | Same card pattern with five options, for the red-flag symptom check. |
-| `TwoOptionsView` | `.twoOptions` | Two option cards plus a `followUpQuestionStackView` that hosts a follow-up view. For `testType` the follow-up is the iLet yes/no; for `measuringType` it is the urine or blood ketone picker (with the ketone artwork and the *"Learn how to measure ketones"* link). Next stays at 30% opacity until the follow-up is answered, and for `measuringType` it also increments `ketoneVisitCount`. |
+| `TwoOptionsView` | `.twoOptions` | Two option cards plus a `followUpQuestionStackView` that hosts a follow-up view. For `testType` the follow-up is the iLet yes/no; for `measuringType` it is the urine or blood ketone picker (with the ketone artwork and the *"Learn how to measure ketones"* link). Next stays at 30% opacity until the follow-up is answered. In the Hypo flow it also serves *"How was blood sugar checked?"* (meter / CGM) and the low-sugar *"How is insulin taken?"*, whose pump follow-up asks *"Does the insulin pump display show CGM readings?"*. |
 | `YesOrNoQueView` | `.yesOrNo` | Yes/No pair with an optional embedded `YesOrNoFollowUpView`. Used for the blood-sugar question (where Yes reveals the duration follow-up) and the blood-sugar recheck (where either answer enables Next immediately). |
 | `RecheckKetoneLevelView` | `.recheckKetoneLevel` | The second ketone reading. Hosts the urine or blood picker in `ketoneMeasuringTypeStackView`, pre-selected from `currentMeasuringMethod`, with a *"Switch to…"* toggle and the *"Learn how…"* link. Next only fires while `yesOver2hours` is true. |
-| `FinalStepWithReminderView` | `.reminder` | The home-management screen and the reminder engine. `setupCommonUI` then one of `setupForInsulinShots` / `setupForPump` / `setupForPumpWithIlet` builds the step list. The iLet variant runs a six-path decision tree over ketone level, `skipFirstReminder`, and `reminderPageVisitCount` to decide whether to tell the family to **confirm** the pump site, **change** it, or **disconnect** the pump and dose with a pen. Owns the countdown timer, the Remind Me / Skip / Start Test button states, and the `ReminderManagerDelegate` callbacks. |
+| `FinalStepWithReminderView` | `.reminder` | The home-management screen and the reminder engine. `setupCommonUI` then one of `setupForInsulinShots` / `setupForPump` / `setupForPumpWithIlet` builds the step list. The iLet variant runs a six-path decision tree over ketone level, `skipFirstReminder`, and the iLet reminder-page count to decide whether to tell the family to **confirm** the pump site, **change** it, or **disconnect** the pump and dose with a pen. Owns the countdown timer, the Remind Me / Skip / Start Test button states, and the `ReminderManagerDelegate` callbacks. The Hypo flow reuses it for the 15g/8g treatment page (see [Hypo Screens](#hypo-screens)). |
 | `FirstEmergencyView` | `.firstEmergency` | Red outcome screen. *"Seek Immediate Medical Attention"*, a rounded call-instructions card, a **Call 911** button (`tel://911`), and Exit. |
 | `FinalStepCallChoaView` | `.callChoa` | Home-management outcome with numbered steps. Shows `injectionStackView` for pen users and `insulinPumpStackView` for pump users; `setupPumpRecheck()` collapses the later steps and rewrites the first two to *"Change pump site"* / *"Recheck blood sugar"* when the family has already waited out the interval with low ketones. Body copy is built with `setText(_:boldPhrases:)`. |
 | `FinalStepCallChoaEmergencyView` | `.callChoaEmergency` | Orange outcome screen with a **Call CHOA** button (`tel://+404-785-5437`) and Exit. |
@@ -256,33 +347,185 @@ All of these live in `Views/QuestionnaireViews/` and are XIB-backed `UIView`s lo
 | `BloodKetoneLevelView` | `TwoOptionsView`, `RecheckKetoneLevelView` | The same pattern with three levels — low (<0.6), moderate (0.6–1.5), large (>1.5) — reported through `BloodKetoneLevelDelegate`. |
 | `AboutKetoneMeasurementsViewController` | Presented as a sheet | Explains urine vs. blood ketone measurement. Opened by `didSelectLearnHowAction()` from `TwoOptionsView` or `RecheckKetoneLevelView`, presented at an 85% custom detent. |
 
-> `FinalStepView`, `OpenEndedQueView`, and `MultipleOptionsView` are still wired into `GetHelp.storyboard` and `GetHelpViewController`, but no branch reaches them from the current entry point — they belong to the older blood-sugar-entry calculator path, whose first question is commented out in `HomeViewController`.
+| `OpenEndedQueView` | `.openEndedWithMultipleInput` | Numeric blood-sugar entry (mg/dL) that raises the keyboard once pushed. For the first Sick Day reading it adds the *time above 300* picker when the reading is ≥ 300. Below `lowBloodSugarThreshold` it calls `didEnterLowBloodSugar` instead of Next (Sick Day only; the Hypo reading `.lowBloodSugarCheck` has no alert and no duration). |
+
+> `FinalStepView` and `MultipleOptionsView` are still wired into `GetHelp.storyboard` and `GetHelpViewController` and belong to the older correction-factor calculator path (blood sugar + correction factor → ketones → "Small/Large/Shot" results). Their result copy hard-codes the CHOA number `404-785-5437`, so check the CHOA rule before reconnecting them.
 
 ### Reminders and Notifications
 
-`ReminderManager.shared` wraps `UNUserNotificationCenter`. It requests permission when a reminder view is created, schedules one-shot `UNTimeIntervalNotificationTrigger` notifications (`scheduleTwoHourReminder()` = 7200s, `schedule90MinuteReminder()` = 5400s; `scheduleTestReminder()` = 30s exists for testing), and runs a per-identifier `Timer` that drives `countdownUpdate` / `countdownFinished` delegate callbacks. It also serves as the `UNUserNotificationCenterDelegate`, so notifications appear in the foreground.
+`ReminderManager.shared` wraps `UNUserNotificationCenter`. `AppDelegate` sets it as the notification-center delegate at launch, so notifications also show as banners while the app is in the foreground. It requests permission when a reminder view is created and schedules one-shot `UNTimeIntervalNotificationTrigger` notifications. It also runs a per-identifier `Timer` that drives the `countdownUpdate` / `countdownFinished` delegate callbacks.
 
-`ReminderPersistence` saves the reminder id, scheduled time, and a snapshot of the questionnaire (test type, measuring method, ketone levels, blood-sugar flags, iLet, `yesOver2hours`, reminder visit count) as JSON in `UserDefaults`, and expires itself once the scheduled time passes. Two entry points read it back:
+| Method | Used by | Interval constant | `userInfo` carried |
+| --- | --- | --- | --- |
+| `scheduleTwoHourReminder()` | Sick Day, non-iLet | `twoHourDuration` = 7200 s | none |
+| `schedule90MinuteReminder(questionId:reminderPageVisits:ketoneCheckVisits:)` | Sick Day, iLet | `oneHour30Duration` = 5400 s | `iLetReminderQuestionId`, `reminderPageVisits`, `ketoneCheckVisits` |
+| `schedule15MinuteReminder(lowBloodSugarTreatments:)` | Hypo treatment page | `fifteenMinuteDuration` = 900 s | `isLowBloodSugarRecheck = true`, `lowBloodSugarTreatments` |
 
-- `HomeViewController.checkAndRestoreActiveReminder()` runs once per launch and, if a reminder is still pending, restores the manager state and pushes straight back to the reminder page.
-- `NotificationHandler.shared.handleNotificationTap(identifier:)` pops to root and pushes the **ketone recheck** screen. It is called from `ReminderManager`'s notification-response handler, which also posts a `ReminderNotificationTapped` `NotificationCenter` message so a reminder view that is already on screen can flip itself to the "Time to check" state instead of duplicating navigation.
+The `userInfo` lets a tap rebuild the right screen even after the app was killed and the session or stack is gone. Without it, a relaunch could restart the hypo treatment count, keep treating instead of escalating, or send iLet users round the ketone recheck forever.
+
+**Tapping a notification.** `ReminderManager.userNotificationCenter(_:didReceive:…)` clears the badge, reads the `userInfo`, posts `ReminderNotificationTapped` (so a reminder page that is already on screen flips to "Time to check"), and calls `NotificationHandler.shared.handleNotificationTap(identifier:isLowBloodSugarRecheck:lowBloodSugarTreatments:iLetReminder:)`. The handler then:
+
+1. **Waits for Home if needed.** If there is no window yet, or the root navigation stack doesn't start with `HomeViewController` (cold launch, or the user is still in onboarding), the tap is stored as `pendingTap`. `HomeViewController.viewDidAppear` calls `handlePendingTap()` first and skips the reminder restore, so the tap wins.
+2. **Decides the kind.** A hypo reminder is identified by `isLowBloodSugarRecheck`, or, for notifications scheduled before that flag existed, by a hypo treatment page on the current stack.
+3. **Carries history past the stack.** It calls `carryVisitCountsPastStack()`. For a hypo reminder it calls `carryLowBloodSugarTreatments(atLeast:)` with the count from the notification. For an iLet reminder it calls `carryILetVisitCounts(atLeastReminderPages:ketoneChecks:)`.
+4. **Clears the persisted reminder** so Home won't also reopen the reminder page, then pops to root.
+5. **Pushes the next screen:**
+   - Hypo → the *"Is there vomiting or loss of consciousness?"* recheck (`createLowBloodSugarRecheckQuestion()`).
+   - iLet → re-pushes the iLet reminder page it was set from (`prepareToReshowReminderPage`) and immediately runs `didSelectYesOverAction`, exactly like tapping **Start Test** after the countdown. The iLet visit-count table therefore picks the next step, and Back returns to the reminder page.
+   - Everything else → the ketone recheck screen (`createRecheckKetoneStage`).
+
+**Relaunch with a reminder still pending.** `ReminderPersistence` stores a `ReminderState` (reminder id, scheduled time, the reminder page's `questionId`, and a full copy of the `GetHelpSession`) under `activeReminderState`. It discards the state once the scheduled time has passed. `HomeViewController.checkAndRestoreActiveReminder()` runs once per launch. If a reminder is still pending, `navigateToReminderPage(from:state:)` calls `manager.restoreSession(_:reshowing:)`, restores the countdown in `ReminderManager`, and pushes the reminder page back, whether it is a Sick Day or a hypo treatment page. The page id decides which.
 
 `FinalStepWithReminderView` reconciles all three sources on appearance: persisted state first, then an in-memory `ReminderManager` countdown (the case where the user simply navigated back), then the default "Remind Me" state. Leaving the screen invalidates the countdown timer via `cleanup()`.
 
 ### Back Navigation, Counters, and Resets
 
-Because every step is a stack entry, going back has to undo the counters that drove the routing. `GetHelpViewController.viewWillDisappear` inspects the screen being popped *and* the screen underneath it:
+Because every step is a stack entry, Back has to leave the session consistent with the screens that remain. Visit counts take care of themselves: they are recomputed from the stack every time a screen appears (see [State and Persistence](#state-and-persistence)), so popping a reminder page, ketone recheck, or hypo treatment page drops it from the count automatically. Ketone *readings* are not derived, so `GetHelpViewController.viewWillDisappear` checks the screen being popped and the one underneath. `shouldResetKetoneProgress(poppingTo:)` calls `manager.resetKetoneProgress()` when:
 
-- Popping the reminder page back to the blood-sugar recheck or the ketone recheck decrements `reminderPageVisitCount`.
-- Popping the ketone recheck back to the reminder page or the blood-sugar recheck decrements `ketoneVisitCount` but deliberately preserves the ketone readings.
-- Popping back to the insulin-method question (`.twoOptions(.testType)`) or the measurement-type question from anywhere performs a full reset: `yesOver2hours` cleared, both counters zeroed, and all ketone values cleared.
-- Popping out of the flow to `HomeViewController` clears everything.
+- popping the reminder page back to any `.twoOptions` question,
+- popping a ketone recheck or a blood-sugar recheck back to the measurement-type question, or
+- popping anything back to the insulin-method question (`.twoOptions(.testType)`).
 
-Visit counts are incremented in `viewDidAppear`, and only for pushes (`hasAppearedFromPush`), so returning to a screen with Back does not double-count. The nav bar's X button (`didSelectExitAction`) clears the ketone data, resets both counters, calls `QuestionnaireManager.resetInstance()`, and pops to root; the Done button on the call-CHOA screen (`didSelectGotItAction`) clears the persisted reminder state and pops back to Home.
+`resetKetoneProgress()` clears `yesOver2hours`, the current/first/second ketone readings, and both `visitCounts` and `visitCountsBeforeStack`.
+
+The nav bar's X button and the Exit button on outcome screens both go through `didSelectExitAction`, which calls `manager.reset()` and pops to root. The Done button (`didSelectGotItAction`) also clears the persisted reminder state before popping back to Home.
 
 ### Screen Theming
 
-`updateBackgroundColorForFinalStep(questionId:)` sets both the view background and a matching `UINavigationBarAppearance` (including back-button tint) for outcome screens: red for the emergency screen, orange for call-CHOA-emergency, green for continue-regular-care, white elsewhere. `resetBackgroundColor()` restores the white/black default when the screen is popped, and the close button is removed from the nav bar on every outcome screen.
+`updateBackgroundColorForFinalStep(questionId:)` sets both the view background and a matching `UINavigationBarAppearance` (including back-button tint) for outcome screens: red for the 911 screen; orange for the emergency call screen (CHOA or care team), *Perform a finger stick test*, and *Give glucagon*; green for *Continue regular care* and *Continue DMMP*; white elsewhere. `resetBackgroundColor()` restores the white/black default when the screen is popped, and the close button is removed from the nav bar on every outcome screen.
+
+## Low Blood Sugar (Hypoglycemia) Flow
+
+Choosing **Low Blood Sugar** on *"What's the issue?"* starts the hypo flow. It runs on the same `GetHelpViewController` / `QuestionnaireManager` machinery as Sick Day: one pushed screen per step, the shared `GetHelpSession`, and the same reminder engine. The routing lives in the `triggerHypoglycemiaFlow` … `triggerGiveGlucagonNextActionFlow` block near the top of the `QuestionnaireManager` extension.
+
+The threshold for "low" comes from onboarding: `AppOnboardingManager.shared.lowBloodSugarThreshold` is **80 mg/dL** for children aged 5 or under and **70 mg/dL** otherwise, including when the age is unknown.
+
+```mermaid
+flowchart TD
+    A["What's the issue?<br/>Low Blood Sugar"] --> B["How was blood sugar checked?<br/>TwoOptionsView: meter / CGM"]
+    B -->|Blood glucose meter| R["What's the blood sugar reading?<br/>OpenEndedQueView (.lowBloodSugarCheck)"]
+    B -->|CGM| FS["Perform a finger stick blood glucose test.<br/>PerformFingerStickTestView"]
+    FS -->|Next| R
+    R -->|≥ threshold| SY["Are any of these low blood sugar symptoms present?<br/>LowBloodSugarSymptomsView"]
+    SY -->|Symptoms| EM["Emergency call screen<br/>(CHOA line / care team)"]
+    SY -->|None of the above| DMMP["Continue regular DMMP<br/>FinalStepNoDescView (green)"]
+    R -->|< threshold| TT["How is insulin taken?<br/>TwoOptionsView: injection-pen / pump<br/>+ pump: does it show CGM readings?"]
+    TT --> TX["Treat low blood sugar (15g or 8g)<br/>FinalStepWithReminderView + 15-min reminder"]
+    TX -->|Start Test / Skip / notification tap| RC["Is there vomiting or loss of consciousness?<br/>ThreeOptionQueView"]
+    RC -->|Neither + reading ≥ threshold| OK["Continue regular diabetes care<br/>FinalStepNoDescView (green)"]
+    RC -->|Neither + still low,<br/>fewer than 4 treatments| TX
+    RC -->|Vomiting / Loss of consciousness /<br/>still low after 4 treatments| SEV{"Severe low"}
+    SEV -->|School nurse| GL["Give glucagon as directed in the DMMP<br/>PerformFingerStickTestView (.giveGlucagon)"]
+    GL -->|Next| CT["Call your care team or doctor<br/>for further instructions"]
+    SEV -->|Everyone else| EM
+```
+
+### Hypo Walkthrough
+
+**1. "How was blood sugar checked?"** (`TwoOptionsView`, `.twoOptions(.bloodSugarCheckMethod)`)
+
+**Blood glucose meter** or **CGM** → `triggerBloodSugarCheckMethodActionFlow`.
+
+- **Meter**: saves `cgm = false` and goes straight to the reading.
+- **CGM**: saves `cgm = true` and shows *"Perform a finger stick blood glucose test."* (`.performFingerStickTest`), because a CGM low has to be confirmed with a meter. Its Next (`didSelectFingerStickNextAction`) goes to the reading.
+
+**2. "What's the blood sugar reading?"** (`OpenEndedQueView`, `.openEndedWithMultipleInput(.lowBloodSugarCheck)`)
+
+Unlike the Sick Day reading, there is no time-above-300 follow-up and no low-reading alert. `triggerLowBloodSugarReadingResultActionFlow` stores `bloodSugar` and branches on the threshold:
+
+- **At or above the threshold** (including readings over 300) → *"Are any of these low blood sugar symptoms present?"* (`.lowBloodSugarSymptoms`). It lists shakiness, fast heartbeat, sweating, dizziness, anxiety, hunger, blurry vision, fatigue, headache, and irritability, with one button for having symptoms and one for **None of the above**.
+  - Symptoms → `triggerCallChoaEmergencyActionFlow` (CHOA line, or care team for non-CHOA users).
+  - None → *"Continue regular diabetes medical management plan (DMMP)."* (`.continueDMMP`, green).
+- **Below the threshold** → *"How is insulin taken?"* (`.twoOptions(.lowBloodSugarTestType)`).
+
+**3. "How is insulin taken?"** (`TwoOptionsView`, `.twoOptions(.lowBloodSugarTestType)`)
+
+**Injection / Insulin Pen** enables Next immediately. **Insulin Pump** embeds a `YesOrNoFollowUpView`, *"Does the insulin pump display show CGM readings?"*, and Next stays dimmed until it is answered. `triggerLowBloodSugarTestTypeActionFlow` saves the test type and, for pumps, overwrites `cgm` with the follow-up answer, then shows the first treatment.
+
+### Treat, Wait 15 Minutes, Recheck
+
+**4. Treatment page** (`FinalStepWithReminderView`, `.reminder(.treatLowBloodSugar15g / .treatLowBloodSugar8g)`)
+
+`showLowBloodSugarTreatment()` picks the dose:
+
+| Condition | Stage | Instruction |
+| --- | --- | --- |
+| Pump **and** the pump shows CGM readings **and** blood sugar > 50 mg/dL | `.treatLowBloodSugar8g` | *Give 8g of fast-acting carbohydrate*: 2 oz (60 mL) juice or 2 glucose tablets |
+| Anything else | `.treatLowBloodSugar15g` | *Give 15g of fast-acting carbohydrate*: 4 oz (120 mL) juice or 4 glucose tablets |
+
+A pump that shows CGM readings is already cutting back insulin, so it only needs 8g, unless the reading is 50 or lower.
+
+`FinalStepWithReminderView` detects a hypo stage (`FinalQuestionId.isLowBloodSugarTreatment`) and switches to `setupForLowBloodSugar`: the Sick Day step lists and the *Yes, over 2hrs* block are hidden, and the reminder card reads *"Next check in 15 mins"*. The buttons behave as on the Sick Day reminder page, with three differences:
+
+- **Remind Me** schedules `schedule15MinuteReminder(lowBloodSugarTreatments:)`, passing the current treatment count, and starts the countdown.
+- **Skip This Reminder** cancels it and moves on. Unlike Sick Day, skipping does **not** set `skipFirstReminder` or `yesOver2hours`, because those only drive ketone routing.
+- When the countdown ends the button becomes **Start Test**.
+
+All three paths, plus tapping the notification, call `didSelectYesOverAction`. For a hypo stage that goes straight to `triggerLowBloodSugarRecheckActionFlow`.
+
+**5. "Is there vomiting or loss of consciousness?"** (`ThreeOptionQueView`, `.threeOptions(.vomitingOrLossOfConsciousness)`)
+
+The screen shows two picture cards (**Vomiting**, **Loss of consciousness**) and a full-width **Neither** option. Picking **Neither** reveals *"What's the blood sugar reading?"*, and Next needs that reading. The view shrinks for the keyboard so Next stays visible. It emits a `LowBloodSugarRecheckAnswer` (`.vomiting`, `.lossOfConsciousness`, or `.neither(bloodSugar)`) to `triggerLowBloodSugarRecheckAnswerActionFlow`:
+
+| Answer | Next |
+| --- | --- |
+| Vomiting or Loss of consciousness | Severe low: carbs by mouth aren't safe |
+| Neither, reading ≥ threshold | *Continue regular diabetes care* (`.continueRegularCare`, green) |
+| Neither, still low, and **4** treatment pages already on the stack (`maxLowBloodSugarTreatments`) | Severe low |
+| Neither, still low, fewer than 4 treatments | Another treatment page (step 4), with the 15g/8g choice re-evaluated against the new reading |
+
+The treatment count is `visitCounts.lowBloodSugarTreatments`. It is derived from the treatment pages on the navigation stack, so going Back from a treatment page un-counts it. The count also travels in the 15-minute notification's `userInfo`. A tap after the app was killed, which pops the stack, still escalates on time instead of starting the count over (`carryLowBloodSugarTreatments(atLeast:)`).
+
+### Severe Low: Who Sees What
+
+`triggerSevereLowBloodSugarActionFlow` branches on the onboarding role:
+
+| User (from onboarding) | Screens |
+| --- | --- |
+| **School nurse** (`isSchoolNurse`) | *"Give glucagon as directed in the diabetes medical management plan (DMMP)."* (`.giveGlucagon`, orange, **Next**) → *"Call your care team or doctor for further instructions"* (`.callCareTeam`: no phone number, no call button, Exit only) |
+| **CHOA patient / caregiver** (`isChoaPatient == true`) | *"Call CHOA Emergency 404-785-5437 for further instructions"* with **Call CHOA emergency line** and Exit |
+| **Not a CHOA patient** (`isChoaPatient == false`) | *"Call your care team or doctor for further instructions"*, Exit only |
+| CHOA question unanswered (`isChoaPatient == nil`) | CHOA emergency line (the default) |
+
+The glucagon screen reuses `PerformFingerStickTestView`: same orange layout, different title and image (`will_drugs`). Its Next is routed by `didSelectFingerStickNextAction`, which checks for `.giveGlucagon` and calls `triggerGiveGlucagonNextActionFlow` → `.callCareTeam`.
+
+### Hypo Screens
+
+| View | Question type | Role in the hypo flow |
+| --- | --- | --- |
+| `TwoOptionsView` | `.twoOptions(.bloodSugarCheckMethod)`, `.twoOptions(.lowBloodSugarTestType)` | Meter vs. CGM; injection-pen vs. pump, with the pump's *"shows CGM readings?"* follow-up. |
+| `PerformFingerStickTestView` | `.performFingerStickTest`, `.giveGlucagon` | Orange instruction screen with an illustration and Next. Shows *"Perform a finger stick blood glucose test."* by default (from the XIB), or the glucagon instruction from `finalStep.title`. |
+| `OpenEndedQueView` | `.openEndedWithMultipleInput(.lowBloodSugarCheck)` | The first hypo reading. |
+| `LowBloodSugarSymptomsView` | `.lowBloodSugarSymptoms` | Symptom illustrations with *symptoms present* / *None of the above* buttons; no Next. |
+| `FinalStepWithReminderView` | `.reminder(.treatLowBloodSugar15g / 8g)` | Treatment instructions + 15-minute reminder. |
+| `ThreeOptionQueView` | `.threeOptions(.vomitingOrLossOfConsciousness)` | Two picture options + **Neither**, which reveals the reading field. |
+| `FinalStepCallChoaEmergencyView` | `.callChoaEmergency(.callChoaEmergency / .callCareTeam)` | The CHOA emergency line, or the care-team variant (title from `finalStep.title`, number and call button hidden). |
+| `FinalStepNoDescView` | `.finalStepNoDesc(.continueDMMP / .continueRegularCare)` | Green endings. |
+
+`FinalQuestionId` gained `performFingerStickTest`, `treatLowBloodSugar15g`, `treatLowBloodSugar8g`, `continueDMMP`, `giveGlucagon`, and `callCareTeam`. `isLowBloodSugarTreatment` is true for the two treatment stages and is what the reminder page, the visit counter, and `NotificationHandler` key off. The copy lives under `GetHelp.Que.BloodSugarCheckMethod.*`, `GetHelp.Que.LowBloodSugarSymptoms.*`, `GetHelp.Que.VomitingOrLossOfConsciousness.*`, `Calculator.Que.PumpShowsCGM.title`, `Final.TreatLowBloodSugar*`, `Final.ReminderNextCheck*LowBloodSugar.text`, `Final.GiveGlucagon.title`, and `Final.CallCareTeam.title`.
+
+## Emergency Call Routing (CHOA vs. Care Team)
+
+Every route to the emergency call screen in both flows goes through one function, `QuestionnaireManager.triggerCallChoaEmergencyActionFlow`. These routes are *Not sure* on the first question, hypo symptoms, severe hypo (non-nurses), and the Sick Day ketone and blood-sugar recheck escalations. The function applies the onboarding answer:
+
+```swift
+func triggerCallChoaEmergencyActionFlow(_ currentQuestion: Questionnaire) {
+    if AppOnboardingManager.shared.isChoaPatient == false {
+        showFinalStage(stage: .callCareTeam, calculation: nil)
+    } else {
+        showFinalStage(stage: .callChoaEmergency, calculation: nil)
+    }
+}
+```
+
+**A user who said they get care outside CHOA never sees the CHOA number or call button.** They see *"Call your care team or doctor for further instructions"* with Exit only. Always route new emergency endings through this function rather than calling `showFinalStage(stage: .callChoaEmergency, …)` directly.
+
+Both stages render `FinalStepCallChoaEmergencyView`. `setupView` sets the title, phone-number label, and **Call CHOA emergency line** button (`tel://+404-785-5437`) explicitly on every setup: `.callCareTeam` uses `finalStep.title` and hides the number and button, and `.callChoaEmergency` shows *"Call CHOA Emergency"* with both visible. The *"for further instructions"* line below the title is always shown.
+
+Known gaps:
+
+- **School nurses** are never asked the CHOA question (`isChoaPatient == nil`). Outside the severe-hypo glucagon path, for example Sick Day escalations, hypo symptoms, or *Not sure*, they currently get the CHOA emergency line.
+- The legacy correction-factor results (`Calculator.Final.Small/Large1/Large2/Shot.description`) hard-code *"☎️ 404-785-5437"* in their copy and do not apply this rule. See the note under [Supporting Subviews](#supporting-subviews).
 
 ## How To: Extend the Questionnaire
 
@@ -291,7 +534,7 @@ Three recipes, each with one worked example. The first adds a screen using machi
 Recall the four moving parts, because each recipe touches the same ones:
 
 1. **`Models/QuestionType.swift`** — the enums: which question types exist, which question ids exist inside each type, and which answers each type can produce.
-2. **`Models/QuestionnaireManager.swift`** — factories (`create…Question`) that build a `Questionnaire`, and triggers (`trigger…ActionFlow`) that decide what comes next and hand it to `actionsDelegate?.showNextQuestion(_:)`.
+2. **`Managers/QuestionnaireManager.swift`** — factories (`create…Question`) that build a `Questionnaire`, and triggers (`trigger…ActionFlow`) that decide what comes next and hand it to `actionsDelegate?.showNextQuestion(_:)`.
 3. **`Views/QuestionnaireViews/…`** — the screen body and its delegate protocol.
 4. **`ViewControllers/GetHelpViewController.swift`** + **`GetHelp.storyboard`** — the outlet, the `hideAllViews()`/`setupViews()` pair, and the delegate implementation that forwards answers back to the manager.
 
@@ -386,7 +629,7 @@ case YesOrNoQuestionId.fluidsCheck.id:
 
 If the new question instead needed a second question on the same screen, this is where you would add it — follow the `bloodSugarCheck` case, which clears `followUpQuestionStackView`, adds a `YesOrNoFollowUpView`, pins its leading/trailing edges, sets itself as the delegate, and keeps Next dimmed until `followUpAnswer != 0`. A follow-up also means using the `selectedAnswer:followUpAnswer:` delegate method instead of `userSelectedType:`, and giving `YesOrNoFollowUpView.setupView` a case for the new id so it knows what to ask.
 
-**Step 7 — Check the back-navigation rules.** If the new screen sits inside the reminder/ketone loop, add it to the pop handling in `viewWillDisappear` so the visit counters stay correct. A screen outside that loop — like this one — needs nothing.
+**Step 7 — Check the counters and back-navigation rules.** Visit counts are derived from the stack, so a new screen only needs attention if routing should count it. In that case, add its type to `visitCounts(in:)` in `QuestionnaireManager`. If backing out past it should discard ketone readings, add it to `shouldResetKetoneProgress(poppingTo:)` in `GetHelpViewController`. A screen outside the reminder/ketone loop, like this one, needs neither. If the new ending is an emergency call, route it through `triggerCallChoaEmergencyActionFlow` so non-CHOA users get their care team instead (see [Emergency Call Routing](#emergency-call-routing-choa-vs-care-team)).
 
 ### Add a New Question Type
 
@@ -654,11 +897,11 @@ The delegate is connected in `viewDidLoad` (`questionnaireManager.actionsDelegat
 showFinalStage(stage: .callChoaEmergency, calculation: nil)
 ```
 
-**3. As a flow entry point.** A new entry (a new Home tile, a deep link) builds the first question itself and instantiates the controller directly — note the `QuestionnaireManager.resetInstance()` before it, which clears the previous run's answers and counters:
+**3. As a flow entry point.** A new entry (a new Home tile, a deep link) builds the first question itself and instantiates the controller directly — note the `manager.reset()` before it, which clears the previous run's answers and counters:
 
 ```swift
 let manager = QuestionnaireManager.instance
-QuestionnaireManager.resetInstance()
+manager.reset()
 
 let firstQues = manager.createFourCustomOptionsQuestion(
     questionId: FourOptionsQuestionId.childIssue,
@@ -720,7 +963,24 @@ On first use, the selected path opens calculator onboarding. The onboarding coll
 
 Values must be positive integers. When complete, they are stored locally and the user is taken to the calculator path they originally selected. The onboarding welcome screen also offers **Skip**, which goes directly to that selected calculator. Saved constants, or a prior onboarding completion, allow later calculator launches to bypass onboarding. Users can edit the carb ratio from the Know Your Carbs results screen.
 
+### Calculator Keyboard and Editing
+
+Both calculators (`CalculatorAViewController` for food or food + high blood sugar, `CalculatorBViewController` for high blood sugar only) use number-pad fields with a **Calculate** keyboard accessory that dismisses the keyboard and shows the result:
+
+- **iOS 26 and later**: a system `UIToolbar` with a `.prominent` *Calculate* bar button item (CHOA green, flexible space before it), so it renders with the system Liquid Glass style.
+- **Earlier iOS**: the original 44 pt grey bar with a green *Calculate* `UIButton` on the right.
+
+The same accessory instance is shared by every field on the screen: total carbs and carb ratio in A; blood sugar, target, and correction factor in B. `updateSeeResultAccessoryIfNeeded()` removes it from all of those fields, including correction factor, when the screen leaves result mode.
+
+**Field values are kept when editing starts.** Tapping a field no longer clears it. Calculator A's `textFieldDidBeginEditing` blanking was removed. Calculator B no longer blanks the target and correction-factor fields on focus or restores the stored constant when nothing was typed. Users edit the value in place, and constants from calculator onboarding stay visible.
+
 > **Clinical note:** Calculator values and results support—not replace—the care plan and instructions provided by the child’s diabetes team.
+
+## App-Wide UI Conventions
+
+- **Button corner radius.** Every app button gets a 12 pt radius (`UIButton.standardCornerRadius`). `AppDelegate` calls `UIButton.enforceStandardCornerRadius()` at launch. That swizzles `didMoveToWindow` on `UIButton` only, and applies `applyStandardCornerRadius()` to buttons from the app's own bundle (plain `UIButton` or app subclasses). For `UIButton.Configuration` buttons it also sets a `.fixed` corner style, which iOS 26 would otherwise draw as a capsule. System controls such as the search bar's Cancel button keep their native shape. Don't hard-code other radii on buttons; use the constant (Home's insulin buttons already do).
+- **Questionnaire typography** uses the Nunito font family (`UIFont+Extensions`).
+- **Know Your Carbs navigation bar.** It is only re-shown on appear/disappear when scrolling actually hid it (`showNavigationBarIfHidden`). Calling `setNavigationBarHidden(false)` mid push/pop on a visible bar drops the back button.
 
 ## Acknowledgements
 

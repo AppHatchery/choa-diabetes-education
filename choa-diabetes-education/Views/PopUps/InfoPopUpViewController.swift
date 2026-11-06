@@ -75,6 +75,8 @@ class InfoPopUpViewController: UIViewController {
                 self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["correction factor", "1 unit of insulin","blood sugar", "200 mg/dL","target","100 mg/dL","(200-100) ÷ 50 = 2 units of insulin", "Example"])
             case "PopupInfo.CarbRatio.title".localized():
                 self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["amount of carbohydrates that 1 unit of insulin", "Example", "1 unit of insulin per 10 grams", "50 ÷ 10 = 5 units"])
+            case "PopupInfo.RoundingRule.title".localized():
+                self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["Half unit:", "Whole unit:"])
             case "PopupInfo.TargetBloodSugar.title".localized():
                 self.popupDetails.setText( self.popupDetailsText, boldPhrases: ["optimal blood sugar level", "Example"])
             case "PopupInfo.TotalCarbs.title".localized():

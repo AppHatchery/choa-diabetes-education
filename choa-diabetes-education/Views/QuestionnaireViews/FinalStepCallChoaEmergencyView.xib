@@ -19,9 +19,11 @@
                 <outlet property="callChoaButton" destination="HOr-Ab-Y69" id="9Vh-ya-3da"/>
                 <outlet property="callDetailsView" destination="PCn-uG-Krt" id="bfF-q2-ws2"/>
                 <outlet property="callInstructionsView" destination="PCn-uG-Krt" id="mC6-Uh-MR7"/>
+                <outlet property="callTitleLabel" destination="70u-Da-vCa" id="cTl-cT-c01"/>
                 <outlet property="contentView" destination="e7o-fC-reN" id="Nm1-Gc-dLv"/>
                 <outlet property="doneButton" destination="6do-CM-QoM" id="q3b-lw-vrS"/>
                 <outlet property="mainStackView" destination="Mdc-Sy-D1V" id="1XD-Lg-q8m"/>
+                <outlet property="phoneNumberLabel" destination="Qzy-aN-Y9x" id="pNl-cT-c02"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -94,7 +96,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6s6-sh-9ST" userLabel="Button Stack View">
                                                     <rect key="frame" x="0.0" y="134" width="353" height="106"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-Ab-Y69" customClass="PrimaryButton" customModule="choa_diabetes_education" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-Ab-Y69">
                                                             <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
                                                             <color key="backgroundColor" name="primaryBlue"/>
                                                             <constraints>

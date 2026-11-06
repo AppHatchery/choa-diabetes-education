@@ -78,7 +78,7 @@ class YesOrNoFollowUpView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 		self.currentQuestion = currentQuestion
 
-		questionLabel.font = .nunitoMedium
+        questionLabel.font = .nunitoSemiBold18
 		questionLabel.numberOfLines = 0
 		questionLabel.textColor = .headingGreenColor
 
@@ -90,6 +90,12 @@ class YesOrNoFollowUpView: UIView {
 
 		case TwoOptionsQuestionId.testType.id:
 			questionLabel.text = "Calculator.Que.IletPump.title".localized()
+
+			yesButton.titleLabel?.text = "Yes".localized()
+			noButton.titleLabel?.text = "No".localized()
+
+		case TwoOptionsQuestionId.lowBloodSugarTestType.id:
+			questionLabel.text = "Calculator.Que.PumpShowsCGM.title".localized()
 
 			yesButton.titleLabel?.text = "Yes".localized()
 			noButton.titleLabel?.text = "No".localized()

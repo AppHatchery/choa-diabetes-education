@@ -3,16 +3,83 @@
   <head>
     <meta charset="utf-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-    <meta content="dark light" name="color-scheme" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Title</title>
+    <meta content="light" name="color-scheme" />
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+    <title>Snack recipes</title>
     <link rel="stylesheet" href="uikit.css" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Top half matches the header and the native nav bar above it, which ResourcePageViewController
+         tints the same orange; bottom half matches the white panel */
+      html {
+        background: linear-gradient(#f58220 50%, #ffffff 50%);
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      .recipes-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 180px;
+        padding: 0 20px;
+<!--        background: radial-gradient(circle at 85% 70%, #f9a65a 0%, rgba(245, 130, 32, 0) 55%), #f58220;-->
+        overflow: hidden;
+      }
+
+      .recipes-header h1 {
+        position: relative;
+        z-index: 1;
+        max-width: 55%;
+        margin: 0;
+        font-family: NunitoRegular, Roboto, sans-serif !important;
+        font-size: 28px;
+        line-height: 36px;
+        color: #ffffff;
+      }
+
+      /* Will stands on the panel's top edge */
+      .recipes-header-will {
+        position: absolute;
+        right: 16px;
+        bottom: 0;
+        height: 172px;
+        width: auto;
+      }
+
+      /* The Halloween Will only shows while the app's Halloween theme is on */
+      .recipes-header-will.halloween,
+      .halloween .recipes-header-will.regular {
+        display: none;
+      }
+
+      .halloween .recipes-header-will.halloween {
+        display: block;
+      }
+
+      .recipes-panel {
+        position: relative;
+        min-height: calc(100vh - 180px);
+        margin-top: -1px;
+        padding: 24px 20px 32px;
+        background: #ffffff;
+        border-radius: 20px 20px 0 0;
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
-    <div class="uk-container">
-      <h3>Snack recipes</h3>
+    <header class="recipes-header">
+      <h1>Snack recipes</h1>
+      <img class="recipes-header-will regular" src="snack_recipes/will_food.png" alt="" />
+      <img class="recipes-header-will halloween" src="snack_recipes/halloween_will_fork.png" alt="" />
+    </header>
 
+    <main class="recipes-panel">
       <div class="recipe-grid">
         <a class="recipe-card" href="egg_frittata_muffins.html">
           <img src="snack_recipes/egg_frittata_muffins.png" alt="Egg frittata muffins" />
@@ -43,7 +110,7 @@
           </div>
         </a>
       </div>
-    </div>
+    </main>
   </body>
   <script src="uikit.js"></script>
 </html>

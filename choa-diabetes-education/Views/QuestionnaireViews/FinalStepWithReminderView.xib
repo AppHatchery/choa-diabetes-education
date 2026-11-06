@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -31,6 +30,8 @@
                 <outlet property="hopeImage" destination="9V5-nP-Gy8" id="eB4-YP-lHy"/>
                 <outlet property="hydrationExampleInfoTextView" destination="6dN-9x-gkd" id="enF-tn-sqF"/>
                 <outlet property="hydrationInfoStackView" destination="RjE-5L-D4F" id="9Ii-yT-Mgw"/>
+                <outlet property="hydrationTitleLabel" destination="pUe-Dk-Icc" id="hTl-Lb-0a1"/>
+                <outlet property="over2HoursStackView" destination="cff-7E-G1M" id="o2H-Sv-0a1"/>
                 <outlet property="rearrangeableStackView" destination="vpb-oV-3ek" id="ceh-3k-ZY9"/>
                 <outlet property="reminderButton" destination="eJE-eD-Qs5" id="g2N-zy-Gc9"/>
                 <outlet property="reminderContainerView" destination="OKG-UU-IT1" id="lyN-Ii-yQ8"/>
@@ -305,7 +306,7 @@
         <image name="injection_insulin_pen" width="153" height="153"/>
         <image name="insulin_pump" width="153" height="153"/>
         <image name="leftArrow" width="20" height="20"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="118"/>
         <namedColor name="choaGreenColor">
             <color red="0.0" green="0.66299998760223389" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
