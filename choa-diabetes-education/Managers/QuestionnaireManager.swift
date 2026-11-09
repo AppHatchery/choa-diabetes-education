@@ -281,7 +281,7 @@ extension QuestionnaireManager {
     func triggerLowBloodSugarReadingResultActionFlow(_ currentQuestion: Questionnaire, bloodSugar: Int) {
         self.bloodSugar = bloodSugar
 
-        if bloodSugar > AppOnboardingManager.shared.lowBloodSugarThreshold {
+        if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
             let quesObj = Questionnaire()
             // questionId is read on every screen, so it must be set even though this question has only one id
             quesObj.questionId = 1
@@ -351,7 +351,7 @@ extension QuestionnaireManager {
         case .neither(let bloodSugar):
             self.bloodSugar = bloodSugar
 
-            if bloodSugar > AppOnboardingManager.shared.lowBloodSugarThreshold {
+            if bloodSugar >= AppOnboardingManager.shared.lowBloodSugarThreshold {
                 showFinalStage(stage: .continueRegularCare, calculation: nil)
             } else if getLowBloodSugarTreatmentCount() >= Self.maxLowBloodSugarTreatments {
                 triggerSevereLowBloodSugarActionFlow(currentQuestion)

@@ -631,7 +631,8 @@ extension GetHelpViewController: YesOrNoQueViewProtocol, TwoOptionsViewProtocol,
 			// A low reading can't have been over 300, so clear those flags before moving on
 			self.questionnaireManager.saveBloodSugarOver300(false)
 			self.questionnaireManager.saveBloodSugarOver300For3Hours(false)
-			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
+            self.questionnaireManager.triggerOtherSymptomsActionFlow(currentQuestion)
+//			self.questionnaireManager.triggerKetoneMeasuringTypeActionFlow(currentQuestion)
 		}
 		alert.appear(sender: self)
 	}
