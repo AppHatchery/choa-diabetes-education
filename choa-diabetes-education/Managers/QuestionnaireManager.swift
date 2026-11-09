@@ -320,7 +320,7 @@ extension QuestionnaireManager {
     }
 
     /// After treating for 4 rounds, a reading that's still low is escalated instead of treated again
-    private static let maxLowBloodSugarTreatments = 4
+    static let maxLowBloodSugarTreatments = 4
 
     /// Asked 15 minutes after treating low blood sugar
     func triggerLowBloodSugarRecheckActionFlow(_ currentQuestion: Questionnaire) {

@@ -31,14 +31,16 @@ extension UILabel
 	}
 
 	func setText(_ fullText: String, boldPhrases: [String], fontSize: CGFloat = 16) {
-		let attributedText = NSMutableAttributedString(string: fullText,
-													   attributes: [.font: UIFont.systemFont(ofSize: fontSize)])
+		let attributedText = NSMutableAttributedString(
+string: fullText,
+attributes: [.font: UIFont.nunito16]
+        )
 
 		for phrase in boldPhrases {
 			if let range = fullText.range(of: phrase) {
 				let nsRange = NSRange(range, in: fullText)
 				attributedText.addAttribute(.font,
-											value: UIFont.boldSystemFont(ofSize: fontSize),
+                                            value: UIFont.nunitoBold16,
 											range: nsRange)
 			}
 		}

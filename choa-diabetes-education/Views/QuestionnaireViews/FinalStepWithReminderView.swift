@@ -253,12 +253,18 @@ class FinalStepWithReminderView: UIView {
         hydrationTitleLabel.text = isSmallerTreatment
             ? "Final.TreatLowBloodSugar8g.carbs.title".localized()
             : "Final.TreatLowBloodSugar15g.carbs.title".localized()
-        hydrationExampleInfoTextView.setText(
-            isSmallerTreatment
-                ? "Final.TreatLowBloodSugar8g.carbs.examples".localized()
-                : "Final.TreatLowBloodSugar15g.carbs.examples".localized(),
-            boldPhrases: []
-        )
+        // The last treatment before a still-low recheck escalates says what to do next instead of listing carb examples.
+        // The count doesn't include this page yet: it's recounted once the page appears.
+        let treatmentNumber = questionnaireManager.getLowBloodSugarTreatmentCount() + 1
+        let isLastTreatment = treatmentNumber >= QuestionnaireManager.maxLowBloodSugarTreatments
+        let carbsTextKey = switch (isSmallerTreatment, isLastTreatment) {
+        case (true, true): "Final.TreatLowBloodSugar8g.lastTreatment"
+        case (false, true): "Final.TreatLowBloodSugar15g.lastTreatment"
+        case (true, false): "Final.TreatLowBloodSugar8g.carbs.examples"
+        case (false, false): "Final.TreatLowBloodSugar15g.carbs.examples"
+        }
+        
+        hydrationExampleInfoTextView.setText(carbsTextKey.localized(), boldPhrases: [])
 
         reminderNextCheckLabel.text = "Final.ReminderNextCheckLowBloodSugar.text".localized()
         setNextCheckDescription()

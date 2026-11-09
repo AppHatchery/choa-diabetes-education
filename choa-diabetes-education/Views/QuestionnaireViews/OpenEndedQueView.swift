@@ -43,6 +43,7 @@ class OpenEndedQueView: UIView {
     @IBOutlet weak var followUpQuestionView: UIView!
     @IBOutlet weak var followUpQuestionLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var lowBloodGlucoseThresholdInfoView: UIView!
 
     @IBOutlet weak var questionLabel: UILabel!
 
@@ -148,6 +149,10 @@ class OpenEndedQueView: UIView {
 
         hasSelectedDuration = false
         followUpQuestionView.isHidden = true
+
+        // Hidden for children 5 and under
+        let age = AppOnboardingManager.shared.age
+        lowBloodGlucoseThresholdInfoView.isHidden = age.map { $0 <= 5 } ?? false
 
         updateNextButtonState()
 
