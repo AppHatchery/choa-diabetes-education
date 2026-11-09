@@ -32,6 +32,10 @@ class ResourcesViewController: UIViewController {
     // Stacks holding each theme's cards; only one theme's stacks are visible at a time
     @IBOutlet var regularStacks: [UIStackView]!
     @IBOutlet var halloweenStacks: [UIStackView]!
+    
+    @IBOutlet weak var communitiesStackView: UIStackView!
+    @IBOutlet var communities: [UIView]!
+    
 
     // Halloween overlay that stays put while the cards scroll; it ignores touches so the cards stay tappable
     private let batFlyby = LottieAnimationView(name: "bats-flyby")
@@ -75,6 +79,10 @@ class ResourcesViewController: UIViewController {
         diabetesSelfManagementView.layer.cornerRadius = 24
         
         foodAndNutritionGridItems.forEach {
+            $0.layer.cornerRadius = 12
+        }
+        
+        communities.forEach {
             $0.layer.cornerRadius = 12
         }
         
@@ -180,6 +188,28 @@ class ResourcesViewController: UIViewController {
             card.view.isUserInteractionEnabled = true
             card.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: card.selector))
         }
+
+        communities.forEach { community in
+            community.isUserInteractionEnabled = true
+            community.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCommunityCard(_:))))
+        }
+    }
+
+    /// Opens the community's website in Safari. Each card's tag is set in the storyboard,
+    /// since an outlet collection's order isn't guaranteed.
+    @objc private func didTapCommunityCard(_ sender: UITapGestureRecognizer) {
+        let url: URL? = switch sender.view?.tag {
+        case 0: URLs.strong4life
+        case 1: URLs.jdrf
+        case 2: URLs.campkudzu
+        default: nil
+        }
+
+        guard let url else {
+            print("No URL for community card with tag \(String(describing: sender.view?.tag))")
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     @objc private func didTapLowCarbSnacksCard() {

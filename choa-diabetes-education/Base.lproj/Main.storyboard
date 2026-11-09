@@ -25,11 +25,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
-        <array key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="NunitoRegular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -949,10 +949,10 @@
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxE-fH-2Uv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1674.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2073"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-Ot-8WR">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="1654.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="2053"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="odf-6R-wow" userLabel="Basics Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="966"/>
@@ -1373,6 +1373,142 @@ Self-Management</string>
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qUg-Qs-J3c" userLabel="Communities Stack View">
+                                                        <rect key="frame" x="0.0" y="1674.5" width="335" height="378.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Communities" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4K-jr-LFS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="27.5"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
+                                                                <color key="textColor" name="primaryBlue"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ekc-NZ-9OF">
+                                                                <rect key="frame" x="0.0" y="39.5" width="335" height="339"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFR-k2-eeJ" userLabel="Strong4Life Community View">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="105"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uVe-Xh-KYo">
+                                                                                <rect key="frame" x="10" y="10" width="315" height="85"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="communityStrong4Life" translatesAutoresizingMaskIntoConstraints="NO" id="uwd-k7-aps">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="85"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="100" id="m8w-d9-rLI"/>
+                                                                                        </constraints>
+                                                                                    </imageView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wXA-eR-mKn">
+                                                                                        <rect key="frame" x="110" y="0.0" width="205" height="85"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strong4Life" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE3-nj-uXs">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="27.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
+                                                                                                <color key="textColor" name="primaryBlue"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit for organization serving children and teens living with T1D" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-Bp-v6X">
+                                                                                                <rect key="frame" x="0.0" y="27.5" width="205" height="57.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                                <nil key="textColor"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="blue050"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="uVe-Xh-KYo" secondAttribute="bottom" constant="10" id="Ae3-db-3ml"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="uVe-Xh-KYo" secondAttribute="trailing" constant="10" id="CvX-mC-SpJ"/>
+                                                                            <constraint firstItem="uVe-Xh-KYo" firstAttribute="top" secondItem="jFR-k2-eeJ" secondAttribute="top" constant="10" id="Kmk-Sw-6hE"/>
+                                                                            <constraint firstItem="uVe-Xh-KYo" firstAttribute="leading" secondItem="jFR-k2-eeJ" secondAttribute="leading" constant="10" id="jDl-vI-eXW"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhG-FH-s89" userLabel="JDRF Community View">
+                                                                        <rect key="frame" x="0.0" y="117" width="335" height="105"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nzm-Sx-znr">
+                                                                                <rect key="frame" x="10" y="10" width="315" height="85"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="communityJDRF" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-UT-Vmy">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="85"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="100" id="vof-4y-gb2"/>
+                                                                                        </constraints>
+                                                                                    </imageView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pl7-ug-08S">
+                                                                                        <rect key="frame" x="110" y="0.0" width="205" height="85"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JRDF" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud1-FN-75u">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="27.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
+                                                                                                <color key="textColor" name="primaryBlue"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit for organization serving children and teens living with T1D" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J03-Qq-vYj">
+                                                                                                <rect key="frame" x="0.0" y="27.5" width="205" height="57.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                                <nil key="textColor"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="blue050"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="nzm-Sx-znr" firstAttribute="top" secondItem="bhG-FH-s89" secondAttribute="top" constant="10" id="7iG-Nw-hi7"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="nzm-Sx-znr" secondAttribute="trailing" constant="10" id="I1l-WQ-bKV"/>
+                                                                            <constraint firstItem="nzm-Sx-znr" firstAttribute="leading" secondItem="bhG-FH-s89" secondAttribute="leading" constant="10" id="sgS-th-MIN"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="nzm-Sx-znr" secondAttribute="bottom" constant="10" id="zOR-Qj-tX7"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-uI-wWM" userLabel="Camp Kudzu Community View">
+                                                                        <rect key="frame" x="0.0" y="234" width="335" height="105"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ErT-Tb-ncu">
+                                                                                <rect key="frame" x="10" y="10" width="315" height="85"/>
+                                                                                <subviews>
+                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="communityCampKudzu" translatesAutoresizingMaskIntoConstraints="NO" id="vA6-Ii-VdO">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="85"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="100" id="FYC-px-cN3"/>
+                                                                                        </constraints>
+                                                                                    </imageView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t5r-tB-Ohf">
+                                                                                        <rect key="frame" x="110" y="0.0" width="205" height="85"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camp Kudzu" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id8-De-sDm">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="205" height="27.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="20"/>
+                                                                                                <color key="textColor" name="primaryBlue"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A nonprofit for organization serving children and teens living with T1D" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3w-V0-g90">
+                                                                                                <rect key="frame" x="0.0" y="27.5" width="205" height="57.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                                                                                <nil key="textColor"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" name="blue050"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="ErT-Tb-ncu" secondAttribute="bottom" constant="10" id="0Xb-GK-KJq"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="ErT-Tb-ncu" secondAttribute="trailing" constant="10" id="S6D-Ua-zAd"/>
+                                                                            <constraint firstItem="ErT-Tb-ncu" firstAttribute="leading" secondItem="uuG-uI-wWM" secondAttribute="leading" constant="10" id="TeM-al-Rge"/>
+                                                                            <constraint firstItem="ErT-Tb-ncu" firstAttribute="top" secondItem="uuG-uI-wWM" secondAttribute="top" constant="10" id="xiC-1x-kux"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -1406,6 +1542,7 @@ Self-Management</string>
                     <tabBarItem key="tabBarItem" title="Resources" image="resourcesOutline" id="enw-pg-Cjr"/>
                     <navigationItem key="navigationItem" id="5bf-Dt-aTV"/>
                     <connections>
+                        <outlet property="communitiesStackView" destination="qUg-Qs-J3c" id="OoA-dY-06V"/>
                         <outlet property="diabetesBasicsView" destination="nEc-P8-bn4" id="Q0F-qX-Hlc"/>
                         <outlet property="diabetesSelfManagementView" destination="Kjh-6Z-EOK" id="Cgp-A5-d0f"/>
                         <outlet property="doesntRaiseBloodSugarView" destination="I2X-7z-IX6" id="LP2-kh-qwk"/>
@@ -1428,6 +1565,9 @@ Self-Management</string>
                         <outletCollection property="foodAndNutritionGridItems" destination="1OU-A0-mEe" collectionClass="NSMutableArray" id="jxG-7F-I2I"/>
                         <outletCollection property="foodAndNutritionGridItems" destination="FK6-nE-Dei" collectionClass="NSMutableArray" id="Usx-MV-Bck"/>
                         <outletCollection property="foodAndNutritionGridItems" destination="I2X-7z-IX6" collectionClass="NSMutableArray" id="bd2-TJ-P1j"/>
+                        <outletCollection property="communities" destination="jFR-k2-eeJ" collectionClass="NSMutableArray" id="evS-T2-sen"/>
+                        <outletCollection property="communities" destination="bhG-FH-s89" collectionClass="NSMutableArray" id="o5n-dT-UZz"/>
+                        <outletCollection property="communities" destination="uuG-uI-wWM" collectionClass="NSMutableArray" id="52a-Ue-OjN"/>
                         <segue destination="r9r-Zx-0xw" kind="show" identifier="SegueToHandbook" id="ted-C5-uD1"/>
                     </connections>
                 </viewController>
@@ -2829,13 +2969,16 @@ Self-Management</string>
         <segue reference="3yE-9v-cRW"/>
         <segue reference="Y7U-dD-p04"/>
         <segue reference="crK-tC-FpQ"/>
-        <segue reference="bnL-Lw-gUg"/>
+        <segue reference="ted-C5-uD1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="99"/>
         <image name="book.fill" catalog="system" width="128" height="98"/>
         <image name="chevron.right" catalog="system" width="93" height="128"/>
         <image name="close_black" width="28" height="28"/>
+        <image name="communityCampKudzu" width="100" height="49.333332061767578"/>
+        <image name="communityJDRF" width="100" height="44"/>
+        <image name="communityStrong4Life" width="100" height="46"/>
         <image name="diabetes_basics_text_bubble_1" width="308" height="103"/>
         <image name="directions-icon" width="150" height="138"/>
         <image name="halloween_banner_diabetes_basics" width="362" height="150"/>
@@ -4007,6 +4150,9 @@ ZQ
         <image name="will_sliding" width="154" height="153"/>
         <namedColor name="backgroundColor">
             <color red="0.91764705882352937" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="blue050">
+            <color red="0.94901960784313721" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="blue100">
             <color red="0.90196078431372551" green="0.93725490196078431" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
