@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZSC-5o-30c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25408" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZSC-5o-30c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25407"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,11 +25,11 @@
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
         </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+        </array>
         <array key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
-        </array>
-        <array key="NunitoRegular.ttf">
-            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -1733,13 +1733,13 @@ Self-Management</string>
                                 <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01N-wh-4QW">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1568.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1578.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="S0m-QU-P4O">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1568.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1578.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Rg1-Tp-Stk" userLabel="Regular Top Stack">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="434"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-qE-a7M" userLabel="Insulin Calculator Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
@@ -1884,37 +1884,37 @@ Self-Management</string>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pha-na-mCD" userLabel="Get Help Main View">
-                                                                <rect key="frame" x="0.0" y="258" width="375" height="176"/>
+                                                                <rect key="frame" x="0.0" y="258" width="375" height="186"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-qi-WLr" userLabel="Get Help View">
-                                                                        <rect key="frame" x="16" y="0.0" width="343" height="176"/>
+                                                                        <rect key="frame" x="16" y="0.0" width="343" height="186"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-ax-rrc">
-                                                                                <rect key="frame" x="16" y="16" width="327" height="160"/>
+                                                                                <rect key="frame" x="16" y="16" width="327" height="170"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unsure about an urgent  health concern?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMd-yk-LbY">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="39"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Unsure about an urgent  health concern?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMd-yk-LbY">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="55"/>
                                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="20"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNH-LZ-Sh2">
-                                                                                        <rect key="frame" x="0.0" y="39" width="327" height="121"/>
+                                                                                        <rect key="frame" x="0.0" y="55" width="327" height="115"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-Jq-Twz">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="121"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="115"/>
                                                                                                 <subviews>
-                                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-w2-juJ">
-                                                                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="105"/>
+                                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uWS-w2-juJ">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="99"/>
                                                                                                         <subviews>
-                                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Get guidance on what to do next" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-2E-5At">
-                                                                                                                <rect key="frame" x="0.0" y="0.0" width="169" height="60"/>
+                                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Get guidance on what to do next" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-2E-5At">
+                                                                                                                <rect key="frame" x="0.0" y="0.0" width="169" height="46"/>
                                                                                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                                 <nil key="highlightedColor"/>
                                                                                                             </label>
                                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xL-XH-zFX">
-                                                                                                                <rect key="frame" x="0.0" y="60" width="127.5" height="45"/>
+                                                                                                                <rect key="frame" x="0.0" y="54" width="127.5" height="45"/>
                                                                                                                 <color key="backgroundColor" name="whiteColor"/>
                                                                                                                 <constraints>
                                                                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="127.67" id="3Fa-z1-sI6"/>
@@ -1946,9 +1946,9 @@ Self-Management</string>
                                                                                                 </constraints>
                                                                                             </view>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hope_panic_call" translatesAutoresizingMaskIntoConstraints="NO" id="6Av-nn-Oit">
-                                                                                                <rect key="frame" x="184" y="0.0" width="143" height="121"/>
+                                                                                                <rect key="frame" x="184" y="0.0" width="143" height="115"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="121" id="YjL-vu-XUN"/>
+                                                                                                    <constraint firstAttribute="height" priority="750" constant="121" id="YjL-vu-XUN"/>
                                                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="143" id="ame-Hu-Cvj"/>
                                                                                                 </constraints>
                                                                                             </imageView>
@@ -1972,13 +1972,13 @@ Self-Management</string>
                                                                     <constraint firstAttribute="bottom" secondItem="Hy1-qi-WLr" secondAttribute="bottom" id="NNn-V1-dpN"/>
                                                                     <constraint firstItem="Hy1-qi-WLr" firstAttribute="top" secondItem="pha-na-mCD" secondAttribute="top" id="UPV-s8-hG4"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Hy1-qi-WLr" secondAttribute="trailing" constant="16" id="UQ9-5e-BlR"/>
-                                                                    <constraint firstAttribute="height" constant="176" id="y54-iN-chp"/>
+                                                                    <constraint firstAttribute="height" constant="186" id="y54-iN-chp"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Hw1-Tp-Stk" userLabel="Halloween Top Stack">
-                                                        <rect key="frame" x="0.0" y="458" width="375" height="441"/>
+                                                        <rect key="frame" x="0.0" y="468" width="375" height="441"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1P-1p-VtN" userLabel="Halloween Insulin Calculator Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -2115,7 +2115,7 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ae9-bK-9Za" userLabel="Educational Resources View">
-                                                        <rect key="frame" x="0.0" y="923" width="375" height="224"/>
+                                                        <rect key="frame" x="0.0" y="933" width="375" height="224"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QeR-Ku-EZy">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2357,7 +2357,7 @@ Self-Management</string>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Rg2-Bt-Stk" userLabel="Regular Bottom Stack">
-                                                        <rect key="frame" x="0.0" y="1171" width="375" height="173"/>
+                                                        <rect key="frame" x="0.0" y="1181" width="375" height="173"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db0-ii-KXm" userLabel="Know Your Carbs Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
@@ -2452,7 +2452,7 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Hw2-Bt-Stk" userLabel="Halloween Bottom Stack">
-                                                        <rect key="frame" x="0.0" y="1368" width="375" height="148.5"/>
+                                                        <rect key="frame" x="0.0" y="1378" width="375" height="148.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBf-UA-rEL" userLabel="Halloween Know Your Carbs Main View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="148.5"/>
@@ -2488,7 +2488,7 @@ Self-Management</string>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a73-kv-LBs" userLabel="Medical References View">
-                                                        <rect key="frame" x="0.0" y="1540.5" width="375" height="28"/>
+                                                        <rect key="frame" x="0.0" y="1550.5" width="375" height="28"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tl-RK-WaE">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="28"/>
@@ -2829,7 +2829,7 @@ Self-Management</string>
         <segue reference="3yE-9v-cRW"/>
         <segue reference="Y7U-dD-p04"/>
         <segue reference="crK-tC-FpQ"/>
-        <segue reference="ted-C5-uD1"/>
+        <segue reference="bnL-Lw-gUg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="99"/>
