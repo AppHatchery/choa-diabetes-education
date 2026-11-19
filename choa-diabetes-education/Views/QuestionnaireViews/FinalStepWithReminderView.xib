@@ -69,7 +69,7 @@
                                             <color key="textColor" name="primaryBlue"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d23-fR-Zxm" userLabel="Confirm Change Disconnect Stack View">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d23-fR-Zxm" userLabel="Confirm Change Disconnect Stack View">
                                             <rect key="frame" x="0.0" y="70.666666666666671" width="353" height="60.000000000000014"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insulin_pump" translatesAutoresizingMaskIntoConstraints="NO" id="mcN-tC-mwc">
@@ -87,7 +87,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-3P-FBu" userLabel="Give Recommended Dose Stack View">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-3P-FBu" userLabel="Give Recommended Dose Stack View">
                                             <rect key="frame" x="0.0" y="146.66666666666666" width="353" height="60"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="injection_insulin_pen" translatesAutoresizingMaskIntoConstraints="NO" id="Uqw-Q5-Bsp">

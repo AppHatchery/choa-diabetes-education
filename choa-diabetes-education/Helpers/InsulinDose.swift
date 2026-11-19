@@ -50,10 +50,19 @@ struct InsulinDose {
         return InsulinDose(numerator: totalCarbs, denominator: carbRatio)
     }
 
+    /// No correction is given at or below this blood sugar, whatever the target
+    static let noCorrectionMaxBloodSugar = 150
+
+    /// Per the care team: no correction when blood sugar is 150 mg/dL or lower, or at or below target.
+    /// e.g. 140 with a target of 100 → none, 180 with a target of 180 → none, 180 with a target of 100 → corrected.
+    static func needsCorrection(bloodSugar: Int, targetBloodSugar: Int) -> Bool {
+        bloodSugar > noCorrectionMaxBloodSugar && bloodSugar > targetBloodSugar
+    }
+
     /// Insulin for high blood sugar: (blood sugar − target) ÷ correction factor.
-    /// None is needed when blood sugar is at or below target.
+    /// None is needed when `needsCorrection` is false.
     static func correction(bloodSugar: Int, targetBloodSugar: Int, correctionFactor: Int) -> InsulinDose {
-        guard correctionFactor > 0, bloodSugar > targetBloodSugar else { return .zero }
+        guard correctionFactor > 0, needsCorrection(bloodSugar: bloodSugar, targetBloodSugar: targetBloodSugar) else { return .zero }
         return InsulinDose(numerator: bloodSugar - targetBloodSugar, denominator: correctionFactor)
     }
 

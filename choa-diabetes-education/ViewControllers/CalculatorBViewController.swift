@@ -697,7 +697,18 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 self.resultsView.isHidden = false
             }
 
-            if insulinForHighBloodSugarBoolean && currentBloodSugar >= currentTargetBloodSugar {
+            if insulinForHighBloodSugarBoolean && !InsulinDose.needsCorrection(bloodSugar: currentBloodSugar, targetBloodSugar: currentTargetBloodSugar) {
+                // 150 mg/dL or lower (and not below target, handled above): no correction, so say why instead of "0 units"
+                bloodSugarLine.backgroundColor = .primaryBlue
+                bloodSugarLabel.textColor = .primaryBlue
+                bloodSugarField.textColor = .primaryBlue
+
+                insulinForHighBloodSugar.text = "Calculator.BloodSugar.WithinTarget.text".localized()
+                insulinForHighBloodSugar.font = .nunitoBold18
+                insulinForHighBloodSugar.textColor = .orangeTextColor
+                insulinForHighBloodSugar.numberOfLines = 0
+                updateNextButtonState()
+            } else if insulinForHighBloodSugarBoolean {
                 let bloodInsulin = InsulinDose.correction(bloodSugar: currentBloodSugar, targetBloodSugar: currentTargetBloodSugar, correctionFactor: currentCorrectionFactor)
 
                 bloodSugarLine.backgroundColor = .primaryBlue
@@ -708,6 +719,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.text = bloodInsulin.displayText(rounded: !insulinForFoodBoolean, using: constantsManager.roundingRule)
                 insulinForHighBloodSugar.font = .nunitoBold32
                 insulinForHighBloodSugar.textColor = .primaryBlue
+                insulinForHighBloodSugar.numberOfLines = 0
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar": currentBloodSugar, "target_blood_sugar": currentTargetBloodSugar, "correction_factor": currentCorrectionFactor])
                 updateNextButtonState()
             }

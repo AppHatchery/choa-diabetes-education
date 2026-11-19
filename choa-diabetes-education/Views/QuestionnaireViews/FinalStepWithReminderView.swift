@@ -226,6 +226,9 @@ class FinalStepWithReminderView: UIView {
             ? "Yes, Over 90 mins"
             : "Yes, Over 2hrs"
         yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .nunitoBold20)
+        // Wraps rather than truncating on narrow screens or with larger text sizes
+        yesOver2hoursButton.titleLabel?.numberOfLines = 0
+        yesOver2hoursButton.titleLabel?.lineBreakMode = .byWordWrapping
 
         giveRecommendedDoseLabel.setText(
             "Final.GiveRecommendedDose.text".localized(),
