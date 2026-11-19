@@ -50,6 +50,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     private var defaultLineColors = [UIView: UIColor]()
 
     weak var resetDelegate: CalculatorResetDelegate?
+
+    /// Total Carbs is focused once, when the screen first opens, so coming back from step 2 doesn't pop the keyboard up again
+    private var hasFocusedFirstField = false
     
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(true)
@@ -70,6 +73,16 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
         applyTheme()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Total Carbs is the first thing to fill in, so the keyboard is ready for it
+        if !hasFocusedFirstField {
+            hasFocusedFirstField = true
+            totalCarbsField.becomeFirstResponder()
+        }
     }
 
     override func viewDidLoad() {
@@ -164,6 +177,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         fieldsWithMissingValueError.removeAll()
         hideErrorMessage()
         syncInfoIcons()
+
+        // A new calculation starts from Total Carbs again
+        hasFocusedFirstField = false
     }
     
     deinit {

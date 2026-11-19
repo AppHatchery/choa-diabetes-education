@@ -49,6 +49,8 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     var highBloodSugarOnly = false
     
     private var isUserEditingFields = false
+    /// Current Blood Sugar is focused once, when the screen first opens, so coming back from the results doesn't pop the keyboard up again
+    private var hasFocusedFirstField = false
     private var isShowingBelowTargetWarning = false
 
     /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
@@ -85,6 +87,17 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         super.viewWillAppear(animated)
         calculatorDidUpdateConstants()
         applyTheme()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Current Blood Sugar is the first thing to fill in, so the keyboard is ready for it.
+        // Saved target and correction factor were already filled in before the screen appeared.
+        if !hasFocusedFirstField {
+            hasFocusedFirstField = true
+            bloodSugarField.becomeFirstResponder()
+        }
     }
 
     override func viewDidLoad() {
