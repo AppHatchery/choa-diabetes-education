@@ -35,6 +35,8 @@ class AppOnboardingQuestionView: UIView {
 
     private var question: AppOnboardingQuestion = .userRole
     private var textFields: [UITextField] = []
+    /// What each of `textFields` holds, in the same order
+    private var textFieldKinds: [AppOnboardingInputKind] = []
     private var selectedOptionId: Int?
 
     // The storyboard's prototype rows, captured before they're cloned/removed so
@@ -79,6 +81,7 @@ class AppOnboardingQuestionView: UIView {
         clearStackView(selectStackView)
         clearStackView(openEndedStackView)
         textFields = []
+        textFieldKinds = []
         selectedOptionId = answer?.selectedOptionId
 
         switch question.type {
@@ -103,6 +106,7 @@ class AppOnboardingQuestionView: UIView {
             }
             openEndedStackView.addArrangedSubview(row)
             textFields = [textField]
+            textFieldKinds = [kind]
 
         case .openEndedMultipleInput(let fields):
             selectStackView.isHidden = true
@@ -122,6 +126,7 @@ class AppOnboardingQuestionView: UIView {
                     textField.text = values[index]
                 }
                 textFields.append(textField)
+                textFieldKinds.append(field.kind)
                 openEndedStackView.addArrangedSubview(row)
             }
 
@@ -278,14 +283,32 @@ class AppOnboardingQuestionView: UIView {
         switch question.type {
         case .singleSelect:
             isValid = selectedOptionId != nil
-        case .openEndedInput:
-            isValid = !(textFields.first?.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty
-        case .openEndedMultipleInput:
-            isValid = textFields.allSatisfy { !($0.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty }
+        case .openEndedInput, .openEndedMultipleInput:
+            isValid = zip(textFields, textFieldKinds).allSatisfy { isValidEntry($0.text ?? "", for: $1) }
         }
 
         nextButton.isEnabled = isValid
         nextButton.alpha = isValid ? 1.0 : 0.5
+    }
+
+    /// Every field must be filled in. Age must also be a whole number, since the hypoglycemia threshold is read from it.
+    private func isValidEntry(_ text: String, for kind: AppOnboardingInputKind) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty else { return false }
+
+        if kind == .age {
+            return Int(trimmed) != nil
+        }
+        return true
+    }
+
+    /// Age and ZIP code fields only take digits. The number pad can't type anything else, but pasted text can.
+    private static func maxDigits(for kind: AppOnboardingInputKind) -> Int? {
+        switch kind {
+        case .age: return 3
+        case .postalCode: return 5
+        case .name, .county, .state: return nil
+        }
     }
 
     @objc private func dismissKeyboard() {
@@ -299,6 +322,17 @@ class AppOnboardingQuestionView: UIView {
 }
 
 extension AppOnboardingQuestionView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let index = textFields.firstIndex(of: textField),
+              let maxDigits = Self.maxDigits(for: textFieldKinds[index]) else { return true }
+
+        let currentText = textField.text ?? ""
+        guard let textRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: textRange, with: string)
+
+        return updatedText.count <= maxDigits && updatedText.allSatisfy { $0.isASCII && $0.isNumber }
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let index = textFields.firstIndex(of: textField), index < textFields.count - 1 {
             textFields[index + 1].becomeFirstResponder()

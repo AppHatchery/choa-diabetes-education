@@ -29,8 +29,6 @@ class CalculatorEditViewController: UIViewController {
     private let constantsManager = CalculatorConstantsManager.shared
     
     weak var delegate: CalculatorEditDelegate?
-    
-    private var originalViewHeight: CGFloat = 0
 
     private var selectedRoundingRule: InsulinRoundingRule = .wholeUnit
     
@@ -51,11 +49,26 @@ class CalculatorEditViewController: UIViewController {
         
         setupTrailingText()
         loadStoredConstants()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        originalViewHeight = view.frame.height
+        pinButtonsAboveKeyboard()
+    }
+
+    /// Swaps the storyboard's safe-area bottom constraint on the Save/Cancel stack for the keyboard layout guide,
+    /// which sits at the safe area while the keyboard is hidden and rides on top of it while it's shown.
+    /// The scroll view is pinned to the stack's top, so it shrinks to match and every field stays reachable,
+    /// while the view itself keeps its full size (resizing its frame left the window's black background showing).
+    private func pinButtonsAboveKeyboard() {
+        let safeAreaBottomConstraint = view.constraints.first { constraint in
+            guard constraint.firstItem === view.safeAreaLayoutGuide, constraint.firstAttribute == .bottom,
+                  constraint.secondAttribute == .bottom, let buttonsView = constraint.secondItem as? UIView else { return false }
+            return saveButton.isDescendant(of: buttonsView)
+        }
+        guard let safeAreaBottomConstraint, let buttonsView = safeAreaBottomConstraint.secondItem as? UIView else { return }
+
+        safeAreaBottomConstraint.isActive = false
+        view.keyboardLayoutGuide.topAnchor.constraint(
+            equalTo: buttonsView.bottomAnchor,
+            constant: safeAreaBottomConstraint.constant
+        ).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -237,61 +250,6 @@ class CalculatorEditViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
-              let window = view.window else { return }
-
-        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
-        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
-
-        // Convert keyboard frame to view's coordinate space
-        let keyboardFrameInView = view.convert(keyboardFrameEnd, from: window.screen.coordinateSpace)
-        let intersection = view.bounds.intersection(keyboardFrameInView)
-        let overlapHeight = intersection.height
-
-        if originalViewHeight == 0 { originalViewHeight = view.frame.height }
-
-        if overlapHeight > 0 {
-            var newFrame = view.frame
-            newFrame.size.height = max(originalViewHeight - overlapHeight, 0)
-            UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
-                self.view.frame = newFrame
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
-    }
-
-    @objc private func keyboardWillHide(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else {
-            if originalViewHeight > 0 {
-                var restored = view.frame
-                restored.size.height = originalViewHeight
-                view.frame = restored
-            }
-            return
-        }
-        
-        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.25
-        let curveRaw = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-        let curve = UIView.AnimationOptions(rawValue: curveRaw << 16)
-
-        if originalViewHeight > 0 {
-            var restored = view.frame
-            restored.size.height = originalViewHeight
-            UIView.animate(withDuration: duration, delay: 0, options: [curve, .beginFromCurrentState], animations: {
-                self.view.frame = restored
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
     /*
     // MARK: - Navigation
 

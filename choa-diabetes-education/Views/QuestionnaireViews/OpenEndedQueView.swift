@@ -150,9 +150,11 @@ class OpenEndedQueView: UIView {
         hasSelectedDuration = false
         followUpQuestionView.isHidden = true
 
-        // Hidden for children 5 and under
-        let age = AppOnboardingManager.shared.age
-        lowBloodGlucoseThresholdInfoView.isHidden = age.map { $0 <= 5 } ?? false
+        // Only shown for children 5 and under, whose low threshold is 80 mg/dL. Hidden when no age was entered in onboarding.
+        let isFiveOrUnder = AppOnboardingManager.shared.age.map { $0 <= 5 } ?? false
+        
+        lowBloodGlucoseThresholdInfoView.isHidden = !isFiveOrUnder
+        lowBloodGlucoseThresholdInfoView.layer.cornerRadius = 12
 
         updateNextButtonState()
 
