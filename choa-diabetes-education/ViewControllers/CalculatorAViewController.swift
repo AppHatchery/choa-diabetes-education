@@ -33,6 +33,9 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var fieldsStackView: UIStackView!
+    /// The result card, error message and Next/Exit button, fixed at the bottom of the screen
+    @IBOutlet weak var bottomStackView: UIStackView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
     private let spiderDropView = LottieAnimationView(name: "spider-drop")
@@ -93,6 +96,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupSpiderDropView()
+        embedInKeyboardAwareScrollView(contentView, lastScrollingView: fieldsStackView, pinnedToBottom: bottomStackView)
         extendBackgroundToScreenEdges(of: headerView)
 
         navigationController?.navigationBar.tintColor = .black

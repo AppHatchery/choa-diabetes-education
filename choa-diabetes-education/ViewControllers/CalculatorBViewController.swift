@@ -33,6 +33,9 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var step2Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var fieldsStackView: UIStackView!
+    /// The result card, error message and Next/Exit button, fixed at the bottom of the screen
+    @IBOutlet weak var bottomStackView: UIStackView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
     private let batFlyby = LottieAnimationView(name: "bats-flyby")
@@ -108,6 +111,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupBatFlyby()
+        embedInKeyboardAwareScrollView(contentView, lastScrollingView: fieldsStackView, pinnedToBottom: bottomStackView)
         extendBackgroundToScreenEdges(of: headerView)
 
         var config = UIButton.Configuration.plain()
