@@ -825,8 +825,12 @@ extension QuestionnaireManager {
                 triggerCallChoaEmergencyActionFlow(currentQuestion)
             }
         case .disconnect:
-            // The protocol only draws the over-180 branch here. Either way the ketone recheck decides the outcome.
-            triggerRecheckKetonesActionFlow(currentQuestion)
+            // After disconnecting, over 180 goes on to the ketone recheck; 180 or lower calls CHOA straight away
+            if isOver180 {
+                triggerRecheckKetonesActionFlow(currentQuestion)
+            } else {
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
         }
     }
 
