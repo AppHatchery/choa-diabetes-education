@@ -1400,6 +1400,12 @@ extension QuestionnaireManager {
         session.visitCountsBeforeStack = session.visitCountsBeforeStack - visitCounts(in: [question])
     }
 
+    /// Puts back the session saved with a reminder that has already gone off, before continuing to its recheck.
+    /// Exiting Get Help clears the live session but keeps the reminder, so the copy saved with it is the one to use.
+    func restoreSessionForRecheck(_ restored: GetHelpSession) {
+        session = restored
+    }
+
     /// Restores a session saved with a reminder and re-shows that reminder page on a fresh stack.
     /// The saved counts already include the reminder page, so it's taken back out of the carried
     /// counts; the page is counted again from the stack once it appears.

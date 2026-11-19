@@ -58,6 +58,22 @@ class ReminderPersistence {
         }
     }
     
+    /// How long after a reminder goes off its flow is still picked up when the app is opened without tapping the
+    /// notification. Older than this, the family has most likely moved on, so the reminder is dropped instead.
+    static let maxOverdueInterval: TimeInterval = 12 * 60 * 60
+
+    /// A reminder whose time has passed without its notification being tapped, recent enough to continue from.
+    /// Leaves the state saved; continuing from it clears it.
+    static func loadOverdueReminderState() -> ReminderState? {
+        guard let data = UserDefaults.standard.data(forKey: reminderStateKey),
+              let state = try? JSONDecoder().decode(ReminderState.self, from: data) else {
+            return nil
+        }
+
+        let overdueBy = Date().timeIntervalSince(state.scheduledTime)
+        return overdueBy >= 0 && overdueBy <= maxOverdueInterval ? state : nil
+    }
+
     /// Clear the saved reminder state
     static func clearReminderState() {
         UserDefaults.standard.removeObject(forKey: reminderStateKey)

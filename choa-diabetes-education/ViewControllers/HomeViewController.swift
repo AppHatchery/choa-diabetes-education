@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -577,6 +578,13 @@ extension HomeViewController {
         // Only check once per app launch to avoid repeated navigation
         guard !hasCheckedForReminder else { return }
         hasCheckedForReminder = true
+
+        // The reminder went off while the app was closed and the app was opened without tapping the notification:
+        // continue to its recheck as the notification would, rather than dropping where the protocol was up to
+        if let overdueState = ReminderPersistence.loadOverdueReminderState() {
+            resumeOverdueReminder(overdueState)
+            return
+        }
         
         // Check if there's a saved reminder state
         guard let reminderState = ReminderPersistence.loadReminderState() else {
@@ -599,6 +607,32 @@ extension HomeViewController {
         }
     }
     
+    /// Continues an overdue reminder the same way as tapping its notification: the low blood sugar recheck
+    /// (keeping the treatment count), the iLet recheck for the stage it was on, or the ketone recheck.
+    private func resumeOverdueReminder(_ state: ReminderPersistence.ReminderState) {
+        // The notification is now handled here, so tapping it later shouldn't run the recheck a second time
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [state.reminderId])
+
+        let session = state.session
+        QuestionnaireManager.instance.restoreSessionForRecheck(session)
+
+        let isLowBloodSugarRecheck = FinalQuestionId(id: state.questionId).isLowBloodSugarTreatment
+        let iLetReminder = !isLowBloodSugarRecheck && session.iLetPump
+            ? NotificationHandler.ILetReminder(
+                questionId: state.questionId,
+                iLetStage: session.iLetStage,
+                ketoneSeverity: session.ketoneSeverity
+            )
+            : nil
+
+        NotificationHandler.shared.handleNotificationTap(
+            identifier: state.reminderId,
+            isLowBloodSugarRecheck: isLowBloodSugarRecheck,
+            lowBloodSugarTreatments: isLowBloodSugarRecheck ? session.visitCounts.lowBloodSugarTreatments : nil,
+            iLetReminder: iLetReminder
+        )
+    }
+
     // Add this property to HomeViewController to track if we've checked
     private static var hasCheckedForReminder = false
     private var hasCheckedForReminder: Bool {
