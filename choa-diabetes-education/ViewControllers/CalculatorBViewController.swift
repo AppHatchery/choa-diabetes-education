@@ -32,6 +32,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var step2Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var headerView: UIView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
     private let batFlyby = LottieAnimationView(name: "bats-flyby")
@@ -107,6 +108,7 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupBatFlyby()
+        extendBackgroundToScreenEdges(of: headerView)
 
         var config = UIButton.Configuration.plain()
         config.title = "Edit"

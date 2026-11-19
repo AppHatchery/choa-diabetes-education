@@ -107,3 +107,23 @@ extension UIView {
         }
 }
 
+extension UIViewController {
+
+    /// Paints `band`'s background colour across the whole width of the screen behind it.
+    /// Content is capped to a centred column on wide screens (an unfolded iPhone Duo), so a coloured
+    /// header pinned to the safe area would otherwise stop short and leave white margins either side.
+    func extendBackgroundToScreenEdges(of band: UIView) {
+        let fill = UIView()
+        fill.backgroundColor = band.backgroundColor
+        fill.isUserInteractionEnabled = false
+        fill.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(fill, at: 0)
+
+        NSLayoutConstraint.activate([
+            fill.topAnchor.constraint(equalTo: band.topAnchor),
+            fill.bottomAnchor.constraint(equalTo: band.bottomAnchor),
+            fill.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fill.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+}

@@ -32,6 +32,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
     @IBOutlet weak var insulinForFood: UILabel!
     @IBOutlet weak var step1Label: UILabel!
     @IBOutlet weak var willImageView: UIImageView!
+    @IBOutlet weak var headerView: UIView!
 
     // Full-screen Halloween overlay; it ignores touches so the fields stay usable
     private let spiderDropView = LottieAnimationView(name: "spider-drop")
@@ -92,6 +93,7 @@ class CalculatorAViewController: UIViewController, UITextFieldDelegate, Calculat
         NotificationCenter.default.addObserver(self, selector: #selector(constantsDidChange), name: .calculatorConstantsDidChange, object: nil)
 
         setupSpiderDropView()
+        extendBackgroundToScreenEdges(of: headerView)
 
         navigationController?.navigationBar.tintColor = .black
         

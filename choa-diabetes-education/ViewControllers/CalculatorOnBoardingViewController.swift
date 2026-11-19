@@ -10,6 +10,7 @@ import Lottie
 
 class CalculatorOnBoardingViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var questionImage: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionTextField: UITextField!
@@ -66,6 +67,7 @@ class CalculatorOnBoardingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
+        extendBackgroundToScreenEdges(of: upperView)
         setupTextField()
         setupRoundingRuleOptions()
         setupUI()

@@ -475,7 +475,8 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
                     identifier: identifier,
                     isLowBloodSugarRecheck: isLowBloodSugarRecheck,
                     lowBloodSugarTreatments: lowBloodSugarTreatments,
-                    iLetReminder: iLetReminder
+                    iLetReminder: iLetReminder,
+                    in: response.targetScene as? UIWindowScene
                 )
             }
 

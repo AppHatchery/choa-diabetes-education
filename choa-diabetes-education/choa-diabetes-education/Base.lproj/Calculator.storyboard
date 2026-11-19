@@ -469,6 +469,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerView" destination="dKf-Ah-0U7" id="Hd1-Ex-Tnd"/>
                         <outlet property="carbLabel" destination="rdn-jQ-VZ4" id="Qj0-9T-wgq"/>
                         <outlet property="carbLine" destination="aLl-fr-CoT" id="OZO-xv-JGx"/>
                         <outlet property="carbRatioField" destination="0Xu-sr-bAo" id="8BG-u6-eue"/>
@@ -871,6 +872,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gyH-1L-U53"/>
                     <connections>
+                        <outlet property="headerView" destination="kHh-vj-nCP" id="Hd2-Ex-Tnd"/>
                         <outlet property="bloodSugarField" destination="bTa-hb-Glq" id="19y-dx-18e"/>
                         <outlet property="bloodSugarLabel" destination="OGr-Ab-4uo" id="uTu-gy-XqY"/>
                         <outlet property="bloodSugarLine" destination="ZJI-IW-mMV" id="LHz-yX-5QN"/>
@@ -2110,6 +2112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xKR-sL-aFm"/>
                     <connections>
+                        <outlet property="upperView" destination="oW0-4J-NbR" id="Hd3-Ex-Tnd"/>
                         <outlet property="bottomView" destination="PhD-3p-9Qa" id="U0D-9d-41Z"/>
                         <outlet property="ghostDriftView" destination="dH1-93-Jzl" id="GhD-Lt-0a1"/>
                         <outlet property="nextButton" destination="5qN-bs-iCD" id="dHo-4E-ISZ"/>

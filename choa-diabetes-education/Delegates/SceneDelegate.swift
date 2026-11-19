@@ -21,7 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = scene as? UIWindowScene else { return }
+
+        // Swap the storyboard's window for one that caps how wide the content gets on a wide screen
+        let contentWidthWindow = ContentWidthWindow(windowScene: windowScene)
+        contentWidthWindow.rootViewController = window?.rootViewController
+        window?.rootViewController = nil
+        window?.isHidden = true
+        window = contentWidthWindow
+        contentWidthWindow.makeKeyAndVisible()
 
         // The scene launches from the AppOnboarding storyboard; skip straight to
         // the main app once the user has already been through onboarding.
@@ -111,6 +119,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+}
+
+/// Keeps every screen's content to at most `maxContentWidth` points wide, centred, as on an unfolded iPhone Duo.
+/// It widens the root view controller's left and right safe area, so content pinned to the safe area narrows
+/// while backgrounds and bars pinned to the edges still fill the screen. Narrower screens are left alone.
+final class ContentWidthWindow: UIWindow {
+
+    static let maxContentWidth: CGFloat = 640
+
+    override var rootViewController: UIViewController? {
+        didSet {
+            oldValue?.additionalSafeAreaInsets.left = 0
+            oldValue?.additionalSafeAreaInsets.right = 0
+            setNeedsLayout()
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let rootViewController else { return }
+
+        // The window's own insets are the screen's; the root's extra insets don't feed back into them
+        let availableWidth = bounds.width - safeAreaInsets.left - safeAreaInsets.right
+        let sideInset = max(0, (availableWidth - Self.maxContentWidth) / 2).rounded(.down)
+
+        var insets = rootViewController.additionalSafeAreaInsets
+        guard insets.left != sideInset || insets.right != sideInset else { return }
+        insets.left = sideInset
+        insets.right = sideInset
+        rootViewController.additionalSafeAreaInsets = insets
+    }
 }
 
 /// Full-screen video laid over the window that fades away to reveal the app when it finishes.

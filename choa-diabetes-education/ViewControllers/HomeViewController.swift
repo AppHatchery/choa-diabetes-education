@@ -197,7 +197,7 @@ class HomeViewController: UIViewController {
 
         // A notification tapped while the app was closed opens its recheck screen instead of the reminder page
         if NotificationHandler.shared.hasPendingTap {
-            NotificationHandler.shared.handlePendingTap()
+            NotificationHandler.shared.handlePendingTap(in: view.window?.windowScene)
             return
         }
 
@@ -629,7 +629,8 @@ extension HomeViewController {
             identifier: state.reminderId,
             isLowBloodSugarRecheck: isLowBloodSugarRecheck,
             lowBloodSugarTreatments: isLowBloodSugarRecheck ? session.visitCounts.lowBloodSugarTreatments : nil,
-            iLetReminder: iLetReminder
+            iLetReminder: iLetReminder,
+            in: view.window?.windowScene
         )
     }
 

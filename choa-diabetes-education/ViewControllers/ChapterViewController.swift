@@ -300,13 +300,12 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
     
     @IBAction func openSearch(_ sender: UIButton){
-        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
-        let sceneDelegate = windowScene.delegate as! SceneDelegate
-        
-        if let window = sceneDelegate.window
+        if let window = view.window
         {
             if searchView == nil {
                 searchView = SearchView( frame: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 180), delegate: self, searchPage: contentURL)
+                // Follow the window when it changes size, as when an iPhone Duo is unfolded
+                searchView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
                 
                 window.addSubview( searchView )
                 

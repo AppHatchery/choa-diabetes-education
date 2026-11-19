@@ -35,18 +35,19 @@ class NotificationHandler {
     ///   - isLowBloodSugarRecheck: Whether the notification was the 15-minute low blood sugar recheck
     ///   - lowBloodSugarTreatments: Treatments given when the recheck was scheduled
     ///   - iLetReminder: Set when the notification was the iLet 90-minute reminder
-    func handleNotificationTap(identifier: String, isLowBloodSugarRecheck: Bool, lowBloodSugarTreatments: Int? = nil, iLetReminder: ILetReminder? = nil) {
+    ///   - scene: The scene to open the reminder page in; when it isn't connected yet the tap waits for Home
+    func handleNotificationTap(identifier: String, isLowBloodSugarRecheck: Bool, lowBloodSugarTreatments: Int? = nil, iLetReminder: ILetReminder? = nil, in scene: UIWindowScene?) {
         let tap = Tap(isLowBloodSugarRecheck: isLowBloodSugarRecheck, lowBloodSugarTreatments: lowBloodSugarTreatments, iLetReminder: iLetReminder)
         DispatchQueue.main.async {
-            self.navigateToReminderPage(for: tap)
+            self.navigateToReminderPage(for: tap, in: scene)
         }
     }
 
     /// Called once Home appears, to finish a tap that came in while the app was still launching
-    func handlePendingTap() {
+    func handlePendingTap(in scene: UIWindowScene?) {
         guard let tap = pendingTap else { return }
         pendingTap = nil
-        navigateToReminderPage(for: tap)
+        navigateToReminderPage(for: tap, in: scene)
     }
 
     /// Whether a tap is waiting for Home, so Home doesn't also reopen the reminder page
@@ -54,12 +55,12 @@ class NotificationHandler {
         pendingTap != nil
     }
     
-    private func navigateToReminderPage(for tap: Tap) {
+    private func navigateToReminderPage(for tap: Tap, in scene: UIWindowScene?) {
         print("🧭 Starting navigation to reminder page")
         
         // Get the key window
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first(where: { $0.isKeyWindow }) ?? windowScene.windows.first,
+        guard let windowScene = scene,
+              let window = windowScene.keyWindow ?? windowScene.windows.first,
               let rootViewController = window.rootViewController else {
             print("⏳ No window yet, handling the tap once Home appears")
             pendingTap = tap
