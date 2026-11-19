@@ -302,8 +302,10 @@ extension QuestionnaireManager {
 
     /// Treats with 15g of carbs, or 8g for pumps showing CGM readings. Those pumps are already cutting back insulin,
     /// so they only need 8g unless blood sugar is 50 mg/dL or lower. Pump users' `cgm` is whether the pump shows CGM readings.
+    /// The 8g option is only for the first treatment: every re-treatment after a recheck is 15g, per the protocol.
     private func showLowBloodSugarTreatment() {
-        let needsSmallerTreatment = currentTestType == .pump && cgm && bloodSugar > 50
+        let isFirstTreatment = getLowBloodSugarTreatmentCount() == 0
+        let needsSmallerTreatment = isFirstTreatment && currentTestType == .pump && cgm && bloodSugar > 50
         print("Low blood sugar treatment \(getLowBloodSugarTreatmentCount() + 1), 8g treatment: \(needsSmallerTreatment)")
 
         showFinalStage(stage: needsSmallerTreatment ? .treatLowBloodSugar8g : .treatLowBloodSugar15g, calculation: nil)
@@ -654,9 +656,11 @@ extension QuestionnaireManager {
 		switch urineLevel {
 				// Negative/Trace
 		case .negative, .zeroPointFive:
-			if bloodSugarOver300 && currentTestType == .pump {
+			// Pump users with low ketones are always asked whether blood sugar is 300 or higher, even if the first
+			// reading was lower: 300 or more means changing the pump site, under 300 means regular care
+			if currentTestType == .pump {
                 
-                // Pump users answered "over 300 mg/dL" first, so the reading is compared against 300 mg/dL
+                // The reading is compared against 300 mg/dL (180 mg/dL for iLet Pump)
                 let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createBloodSugarRecheckQuestion(highThreshold: 300)
 
                 actionsDelegate?.showNextQuestion(createQue)
@@ -688,8 +692,10 @@ extension QuestionnaireManager {
 		switch bloodLevel {
 				// Low urine OR low blood
 		case .low:
-			if bloodSugarOver300 && currentTestType == .pump {
-                // Pump users answered "over 300 mg/dL" first, so the reading is compared against 300 mg/dL
+			// Pump users with low ketones are always asked whether blood sugar is 300 or higher, even if the first
+			// reading was lower: 300 or more means changing the pump site, under 300 means regular care
+			if currentTestType == .pump {
+                // The reading is compared against 300 mg/dL (180 mg/dL for iLet Pump)
                 let createQue = iLetPump ? createBloodSugarRecheckQuestion() : createBloodSugarRecheckQuestion(highThreshold: 300)
 
                 actionsDelegate?.showNextQuestion(createQue)
