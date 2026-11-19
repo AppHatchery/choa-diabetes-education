@@ -14,11 +14,12 @@ class NotificationHandler {
     
     private init() {}
 
-    /// The iLet reminder page a 90-minute reminder was set from, and its visit counts at the time
+    /// The iLet reminder page a 90-minute reminder was set from, and the iLet stage and ketone result at the time.
+    /// The stage is missing for reminders scheduled before it was recorded.
     struct ILetReminder {
         let questionId: Int
-        let reminderPageVisits: Int
-        let ketoneCheckVisits: Int
+        let iLetStage: ILetStage?
+        let ketoneSeverity: KetoneSeverity?
     }
 
     private struct Tap {
@@ -97,10 +98,11 @@ class NotificationHandler {
         if isLowBloodSugarReminder, let treatments = tap.lowBloodSugarTreatments {
             QuestionnaireManager.instance.carryLowBloodSugarTreatments(atLeast: treatments)
         }
-        if !isLowBloodSugarReminder, let iLetReminder = tap.iLetReminder {
-            QuestionnaireManager.instance.carryILetVisitCounts(
-                atLeastReminderPages: iLetReminder.reminderPageVisits,
-                ketoneChecks: iLetReminder.ketoneCheckVisits
+        // The notification also carries the iLet stage, so the recheck continues from the right steps
+        // even if the saved session didn't survive the app being closed
+        if !isLowBloodSugarReminder, let iLetReminder = tap.iLetReminder, let stage = iLetReminder.iLetStage {
+            QuestionnaireManager.instance.restoreILetSnapshot(
+                ILetSnapshot(stage: stage, ketoneSeverity: iLetReminder.ketoneSeverity)
             )
         }
 
@@ -117,9 +119,8 @@ class NotificationHandler {
                 return
             }
 
-            // iLet picks the next step from the reminder visits, ketone levels and whether the first reminder
-            // was skipped, which is how it eventually moves on to a blood sugar recheck instead of rechecking
-            // ketones forever. So it goes through the same routing as tapping Start Test on the reminder page.
+            // iLet picks the next step from the stage the reminder page was on (after disconnecting the pump it
+            // checks blood sugar before ketones), so it goes through the same routing as tapping Start Test there.
             if !isLowBloodSugarReminder, let iLetReminder = tap.iLetReminder {
                 self.continueFromILetReminderPage(questionId: iLetReminder.questionId, on: navController)
                 return
@@ -163,6 +164,8 @@ class NotificationHandler {
             title: "You can manage this at home by following these steps:"
         )
         manager.prepareToReshowReminderPage(reminderQuestion)
+        // Set now rather than when the page appears: it's covered by the recheck before it ever shows
+        reminderQuestion.iLetSnapshot = manager.iLetSnapshot
 
         let reminderVC = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(
             identifier: String(describing: GetHelpViewController.self),

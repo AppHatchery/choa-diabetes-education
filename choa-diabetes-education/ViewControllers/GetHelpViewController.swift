@@ -74,6 +74,15 @@ class GetHelpViewController: UIViewController {
         // showing takes it over, including a screen uncovered by popping back to it
         questionnaireManager.actionsDelegate = self
 
+        // Put the iLet protocol back where it was when this screen was first shown, so going back and
+        // answering differently is decided from this screen's point in the flow. Screens pushed outside
+        // showNextQuestion (reopened from a reminder) take the current state the first time they appear.
+        if let snapshot = questionObj.iLetSnapshot {
+            questionnaireManager.restoreILetSnapshot(snapshot)
+        } else {
+            questionObj.iLetSnapshot = questionnaireManager.iLetSnapshot
+        }
+
         questionnaireManager.printCurrentKetoneState()
     }
 
@@ -709,15 +718,6 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
         }
     }
     
-    private func performIf(_ condition: Bool, message: String, action: () -> Void) -> Bool {
-        if condition {
-            print("   → \(message)")
-            action()
-            return true
-        }
-        return false
-    }
-    
     func didSelectYesOverAction(_ question: Questionnaire) {
         let q = questionnaireManager
 
@@ -728,121 +728,42 @@ extension GetHelpViewController: FinalStepViewProtocol, FinalStepNoDescViewProto
             return
         }
 
-        let iLetPump = q.iLetPump
-        let reminderPageVisitCount = q.getReminderPageVisitCount()
-        let ketoneCheckPageVisitCount = q.getKetoneVisitCount()
-        let skippedFirst = q.skipFirstReminder
-        
-        let hasModerateUrine = [.zeroPointFive, .onePointFive, .four].contains(q.urineKetones)
-        let hasModerateBlood = q.bloodKetones == .moderate
-        let hasHighUrine = [.eight, .sixteen].contains(q.urineKetones)
-        let hasHighBlood = q.bloodKetones == .large
-        
-        guard iLetPump else {
+        if q.iLetPump {
+            q.triggerILetRecheckAfterReminderActionFlow(question)
+        } else {
             print("   → Non-iLet flow: Recheck ketones")
-            q.triggerRecheckKetonesActionFlow(question)
-            return
-        }
-        
-        print("""
-        🧩 DEBUG (iLetPump flow)
-        skippedFirst = \(skippedFirst)
-        reminderPageVisitCount = \(reminderPageVisitCount)
-        urineKetones = \(String(describing: q.urineKetones))
-        bloodKetones = \(String(describing: q.bloodKetones))
-        """)
-        
-        let matched =
-        performIf(skippedFirst && reminderPageVisitCount >= 2 && (hasHighUrine || hasHighBlood),
-                  message: "Condition 1 matched: High ketones + skipped first + visit ≥ 2 → Blood sugar recheck") {
-            q.triggerBloodSugarRecheckActionFlow(question)
-        } ||
-        performIf(skippedFirst && reminderPageVisitCount == 1 && (hasHighUrine || hasHighBlood),
-                  message: "Condition 2 matched: High ketones + skipped first + visit = 1 → Blood sugar recheck") {
-            q.triggerRecheckKetonesActionFlow(question)
-        } ||
-        performIf(skippedFirst && reminderPageVisitCount >= 2 && (hasModerateUrine || hasModerateBlood),
-                  message: "Condition 3 matched: Moderate ketones + skipped first + visit ≥ 2 → Blood sugar recheck") {
-            q.triggerBloodSugarRecheckActionFlow(question)
-        } ||
-        performIf(skippedFirst && reminderPageVisitCount == 1 && (hasModerateUrine || hasModerateBlood),
-                  message: "Condition 4 matched: Moderate ketones + skipped first + visit = 1 → Recheck ketones") {
-            q.triggerRecheckKetonesActionFlow(question)
-        } ||
-        performIf(!skippedFirst && reminderPageVisitCount > 2 && (hasHighUrine || hasHighBlood || hasModerateUrine || hasModerateBlood),
-                  message: "Condition 5 matched: Any ketones + did not skip + visit > 2 → Blood sugar recheck") {
-            q.triggerBloodSugarRecheckActionFlow(question)
-        } ||
-        performIf(
-            !skippedFirst && (reminderPageVisitCount == 1 || reminderPageVisitCount == 2) && (
-                ketoneCheckPageVisitCount == 1 || ketoneCheckPageVisitCount == 2),
-                  message: "Condition 6 matched: Did not skip + reminder visit 1 or 2 + ketoneCheck visit 1 or 2 → Recheck ketones") {
-            q.triggerRecheckKetonesActionFlow(question)
-        }
-
-        if !matched {
-            print("⚠️ WARNING: No condition matched! Using fallback.")
             q.triggerRecheckKetonesActionFlow(question)
         }
     }
 
 		// Recheck Ketone Level Functions
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: SixOptionsAnswer) {
-
 		print("Selected Answer: \(selectedAnswer)")
-        let iLetPump = self.questionnaireManager.iLetPump
-        let reminderPageVisitCount = self.questionnaireManager
-                .getReminderPageVisitCount()
-        let skippedFirst = self.questionnaireManager.skipFirstReminder
-        
-        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
-        
-        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
-        
-        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
-        
-        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
 
 		switch selectedAnswer {
-            
 		case .UrineKetoneLevel(let level):
 			self.questionnaireManager.saveUrineKetoneLevel(level: level)
-            
-            if iLetPump {
-                self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
-            } else {
-                self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
-            }
+
+			if questionnaireManager.iLetPump {
+				self.questionnaireManager.triggerRecheckUrineKetoneForILetActionFlow(currentQuestion, urineLevel: level)
+			} else {
+				self.questionnaireManager.triggerRecheckUrineKetoneActionFlow(currentQuestion, urineLevel: level)
+			}
 		}
 	}
 
 	func didSelectNextAction(currentQuestion: Questionnaire, selectedAnswer: ThreeOptionsAnswer) {
-        
-        let iLetPump = self.questionnaireManager.iLetPump
-        let reminderPageVisitCount = self.questionnaireManager
-                .getReminderPageVisitCount()
-        let skippedFirst = self.questionnaireManager.skipFirstReminder
-        
-        let hasModerateUrineKetones = self.questionnaireManager.urineKetones == .zeroPointFive || self.questionnaireManager.urineKetones == .onePointFive || self.questionnaireManager.urineKetones == .four
-        
-        let hasModerateBloodKetones = self.questionnaireManager.bloodKetones == .moderate
-        
-        let hasHighUrineKetones = self.questionnaireManager.urineKetones == .eight || self.questionnaireManager.urineKetones == .sixteen
-        
-        let hasHighBloodKetones = self.questionnaireManager.bloodKetones == .large
-
 		print("Selected Answer: \(selectedAnswer)")
 
 		switch selectedAnswer {
 		case .BloodKetoneLevel(let level):
 			self.questionnaireManager.saveBloodKetoneLevel(level: level)
-            
-            if iLetPump {
-                self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
-            } else {
-                self.questionnaireManager
-                    .triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
-            }
+
+			if questionnaireManager.iLetPump {
+				self.questionnaireManager.triggerRecheckBloodKetoneForILetActionFlow(currentQuestion, bloodLevel: level)
+			} else {
+				self.questionnaireManager.triggerRecheckBloodKetoneActionFlow(currentQuestion, bloodLevel: level)
+			}
 		}
 	}
 }
@@ -876,6 +797,9 @@ extension GetHelpViewController: QuestionnaireActionsProtocol {
         let getHelpViewController = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(identifier: String(describing: GetHelpViewController.self)) { [weak self] creator in
             GetHelpViewController(navVC: self?.navigationController ?? self!.navVC, currentQuestion: question, coder: creator)
         }
+
+        // Remember where the iLet protocol was when this screen was shown, for back navigation
+        question.iLetSnapshot = questionnaireManager.iLetSnapshot
 
         self.navVC.pushViewController(getHelpViewController, animated: true)
     }

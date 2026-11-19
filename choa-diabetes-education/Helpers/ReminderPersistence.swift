@@ -80,6 +80,7 @@ class ReminderPersistence {
         
         // Restore questionnaire state
         manager.restoreSession(state.session, reshowing: question)
+        question.iLetSnapshot = manager.iLetSnapshot
         
         // Restore the reminder in ReminderManager
         ReminderManager.shared.restoreReminderFromPersistence()

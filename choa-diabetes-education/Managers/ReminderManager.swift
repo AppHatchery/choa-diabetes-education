@@ -32,10 +32,10 @@ class ReminderManager: NSObject {
 	static let lowBloodSugarRecheckKey = "isLowBloodSugarRecheck"
 	/// How many times low blood sugar had been treated when the recheck was scheduled
 	static let lowBloodSugarTreatmentsKey = "lowBloodSugarTreatments"
-	/// The iLet reminder page the 90-minute reminder was set from, and its visit counts at the time
+	/// The iLet reminder page the 90-minute reminder was set from, and the iLet stage and ketone result at the time
 	static let iLetReminderQuestionIdKey = "iLetReminderQuestionId"
-	static let reminderPageVisitsKey = "reminderPageVisits"
-	static let ketoneCheckVisitsKey = "ketoneCheckVisits"
+	static let iLetStageKey = "iLetStage"
+	static let ketoneSeverityKey = "ketoneSeverity"
 
 	private let notificationCenter = UNUserNotificationCenter.current()
 	private var countdownTimers: [String: Timer] = [:]
@@ -151,8 +151,8 @@ class ReminderManager: NSObject {
 		///   - body: Notification body
 		///   - enableCountdown: Whether to start a countdown timer for this reminder
 		///   - questionId: The iLet reminder page the reminder is set from
-		///   - reminderPageVisits: Reminder pages visited so far
-		///   - ketoneCheckVisits: Ketone checks so far
+		///   - iLetStage: Which iLet home-care steps the reminder page showed
+		///   - ketoneSeverity: The latest ketone result
 		/// - Returns: The identifier of the scheduled reminder
 	@discardableResult
 	func schedule90MinuteReminder(
@@ -160,19 +160,23 @@ class ReminderManager: NSObject {
 		body: String = "Time to test your blood sugar and ketones.",
 		enableCountdown: Bool = true,
 		questionId: Int,
-		reminderPageVisits: Int,
-		ketoneCheckVisits: Int
+		iLetStage: ILetStage,
+		ketoneSeverity: KetoneSeverity?
 	) -> String {
+        var userInfo: [AnyHashable: Any] = [
+            Self.iLetReminderQuestionIdKey: questionId,
+            Self.iLetStageKey: iLetStage.rawValue
+        ]
+        if let ketoneSeverity {
+            userInfo[Self.ketoneSeverityKey] = ketoneSeverity.rawValue
+        }
+
         return scheduleReminder(
             in: oneHour30Duration,
             title: title,
             body: body,
             enableCountdown: enableCountdown,
-            userInfo: [
-                Self.iLetReminderQuestionIdKey: questionId,
-                Self.reminderPageVisitsKey: reminderPageVisits,
-                Self.ketoneCheckVisitsKey: ketoneCheckVisits
-            ]
+            userInfo: userInfo
         ) // 90 minutes = 5400 seconds
 	}
 
@@ -439,8 +443,8 @@ extension ReminderManager: UNUserNotificationCenterDelegate {
             let iLetReminder = (userInfo[Self.iLetReminderQuestionIdKey] as? Int).map { questionId in
                 NotificationHandler.ILetReminder(
                     questionId: questionId,
-                    reminderPageVisits: userInfo[Self.reminderPageVisitsKey] as? Int ?? 0,
-                    ketoneCheckVisits: userInfo[Self.ketoneCheckVisitsKey] as? Int ?? 0
+                    iLetStage: (userInfo[Self.iLetStageKey] as? String).flatMap(ILetStage.init(rawValue:)),
+                    ketoneSeverity: (userInfo[Self.ketoneSeverityKey] as? String).flatMap(KetoneSeverity.init(rawValue:))
                 )
             }
 

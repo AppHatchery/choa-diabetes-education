@@ -321,67 +321,13 @@ class FinalStepWithReminderView: UIView {
 
     // MARK: - Pump + iLet
     private func setupForPumpWithIlet() {
-        let visitCount = questionnaireManager.getReminderPageVisitCount()
-        let skippedFirst = questionnaireManager.skipFirstReminder
-        
-        print("🏥 Setting up iLet pump view")
-        print("   - Visit count: \(visitCount)")
-        print("   - Skipped first reminder: \(skippedFirst)")
-        print("   - Blood ketones: \(String(describing: questionnaireManager.bloodKetones))")
-        print("   - Urine ketones: \(String(describing: questionnaireManager.urineKetones))")
+        print("🏥 Setting up iLet pump view for stage: \(questionnaireManager.iLetStage)")
         
         confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
         
-        // Ketone level checks
-        let hasModerateUrineKetones = questionnaireManager.urineKetones == .zeroPointFive ||
-        questionnaireManager.urineKetones == .onePointFive ||
-        questionnaireManager.urineKetones == .four
-        
-        let hasHighUrineKetones = questionnaireManager.urineKetones == .eight ||
-        questionnaireManager.urineKetones == .sixteen
-        
-        let hasModerateBloodKetones = questionnaireManager.bloodKetones == .moderate
-        let hasHighBloodKetones = questionnaireManager.bloodKetones == .large
-        
-        let hasAnyElevatedKetones = hasModerateUrineKetones || hasHighUrineKetones ||
-                                    hasModerateBloodKetones || hasHighBloodKetones
-        
-        // Decision tree for what action to show
-        var shouldDisconnect = false
-        var shouldChangeSite = false
-        
-        // CRITICAL: Check more specific conditions FIRST (higher visit counts before lower)
-        
-        if !skippedFirst && visitCount >= 2 && hasAnyElevatedKetones {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 1: DISCONNECT (didn't skip + visit ≥2 + elevated ketones)")
-        } else if skippedFirst && (hasHighUrineKetones || hasHighBloodKetones) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 2: DISCONNECT (skipped first + high ketones)")
-        } else if skippedFirst && visitCount >= 1 && (
-            hasModerateUrineKetones || hasModerateBloodKetones
-        ) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-        } else if skippedFirst && (hasModerateUrineKetones || hasModerateBloodKetones) {
-            shouldDisconnect = false
-            shouldChangeSite = true
-            print("   → Path 3: CHANGE SITE (skipped first + moderate ketones)")
-        } else if !skippedFirst && visitCount >= 1 && (hasHighUrineKetones || hasHighBloodKetones) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 4: DISCONNECT (visit ≥1 + high ketones)")
-        } else if !skippedFirst && visitCount >= 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
-            shouldDisconnect = false
-            shouldChangeSite = true
-            print("   → Path 5: CHANGE SITE (visit ≥1 + moderate ketones)")
-        } else {
-            shouldDisconnect = false
-            shouldChangeSite = false
-            print("   → Path 6: CONFIRM SECURE (default/negative ketones)")
-        }
+        // The manager picks the stage from the ketone result and blood sugar before showing this page
+        let shouldDisconnect = questionnaireManager.iLetStage == .disconnect
+        let shouldChangeSite = questionnaireManager.iLetStage == .changeSite
         
         // Apply the decision
         if shouldDisconnect {
@@ -430,15 +376,6 @@ class FinalStepWithReminderView: UIView {
         hopeImage.isHidden = true
     }
     
-    func refreshUIForVisitCount() {
-        guard questionnaireManager.iLetPump else { return }
-        
-        let visitCount = questionnaireManager.getReminderPageVisitCount()
-        print("🔄 Refreshing UI for visit count: \(visitCount)")
-        
-        setupForPumpWithIlet()
-    }
-
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
 		rearrangeableStackView.removeArrangedSubview(reminderContainerView)
@@ -632,13 +569,9 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-            // Skipping only changes the ketone recheck logic in the high blood sugar flow
-            if lowBloodSugarStage == nil {
-                if questionnaireManager.iLetPump {
-                    questionnaireManager.saveYesOver2hours(true)
-                }
-
-                questionnaireManager.skipFirstReminder(true)
+            // Skipping moves on to the recheck, the same as "Yes, over 90 mins"
+            if lowBloodSugarStage == nil && questionnaireManager.iLetPump {
+                questionnaireManager.saveYesOver2hours(true)
             }
             
             // Pendo: Track when user skips an existing reminder before it elapses
@@ -704,8 +637,8 @@ class FinalStepWithReminderView: UIView {
                 duration = oneHour30Duration
                 newReminderId = ReminderManager.shared.schedule90MinuteReminder(
                     questionId: currentQuestion.questionId,
-                    reminderPageVisits: questionnaireManager.getReminderPageVisitCount(),
-                    ketoneCheckVisits: questionnaireManager.getKetoneVisitCount()
+                    iLetStage: questionnaireManager.iLetStage,
+                    ketoneSeverity: questionnaireManager.ketoneSeverity
                 )
             } else {
                 duration = twoHourDuration

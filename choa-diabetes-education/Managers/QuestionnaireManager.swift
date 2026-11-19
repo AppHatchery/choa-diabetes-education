@@ -50,7 +50,6 @@ protocol QuestionnaireManagerProvider: AnyObject {
     func saveBloodKetoneLevel(level: BloodKetoneLevel)
     func saveCalculationType(_ calculationType: CalculationType)
 	func saveYesOver2hours(_ over2hours: Bool)
-    var skipFirstReminder: Bool { get }
     var currentMethod: CalculationType { get set }
 	func triggerNoSymptomsActionFlow(_ currentQuestion: Questionnaire, childSymptom: ChildSymptom)
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel)
@@ -74,30 +73,27 @@ protocol QuestionnaireManagerProvider: AnyObject {
 	func getActiveReminderId() -> String?
     
         // Visit counts, derived from the questions on the navigation stack
-    func getReminderPageVisitCount() -> Int
-    func getKetoneVisitCount() -> Int
     func updateVisitCounts(for path: [Questionnaire])
+
+        // iLet protocol state
+    var iLetStage: ILetStage { get }
+    var ketoneSeverity: KetoneSeverity? { get }
+    var iLetSnapshot: ILetSnapshot { get }
+    func restoreILetSnapshot(_ snapshot: ILetSnapshot)
+    func triggerILetRecheckAfterReminderActionFlow(_ currentQuestion: Questionnaire)
 }
 
-/// How many times the user has reached the screens the ketone routing branches on.
+/// How many times the user has reached the screens the low blood sugar routing branches on.
 struct VisitCounts: Codable {
-    /// iLet Pump reminder pages (other flows don't branch on reminder visits)
-    var reminderPages = 0
-    /// Ketone measurements: the first one on the measuring type question, plus each recheck
-    var ketoneChecks = 0
     /// Low blood sugar treatment pages (15g or 8g of carbs)
     var lowBloodSugarTreatments = 0
 
     static func + (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
-        VisitCounts(reminderPages: lhs.reminderPages + rhs.reminderPages,
-                    ketoneChecks: lhs.ketoneChecks + rhs.ketoneChecks,
-                    lowBloodSugarTreatments: lhs.lowBloodSugarTreatments + rhs.lowBloodSugarTreatments)
+        VisitCounts(lowBloodSugarTreatments: lhs.lowBloodSugarTreatments + rhs.lowBloodSugarTreatments)
     }
 
     static func - (lhs: VisitCounts, rhs: VisitCounts) -> VisitCounts {
-        VisitCounts(reminderPages: max(lhs.reminderPages - rhs.reminderPages, 0),
-                    ketoneChecks: max(lhs.ketoneChecks - rhs.ketoneChecks, 0),
-                    lowBloodSugarTreatments: max(lhs.lowBloodSugarTreatments - rhs.lowBloodSugarTreatments, 0))
+        VisitCounts(lowBloodSugarTreatments: max(lhs.lowBloodSugarTreatments - rhs.lowBloodSugarTreatments, 0))
     }
 }
 
@@ -105,8 +101,6 @@ extension VisitCounts {
     /// Sessions saved before a count was added are missing its key, so missing counts start at 0
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reminderPages = try container.decodeIfPresent(Int.self, forKey: .reminderPages) ?? 0
-        ketoneChecks = try container.decodeIfPresent(Int.self, forKey: .ketoneChecks) ?? 0
         lowBloodSugarTreatments = try container.decodeIfPresent(Int.self, forKey: .lowBloodSugarTreatments) ?? 0
     }
 }
@@ -127,12 +121,11 @@ struct GetHelpSession: Codable {
     var ketones: KetonesMeasurements?
     var urineKetones: UrineKetoneLevel?
     var bloodKetones: BloodKetoneLevel?
-    var firstUrineKetoneValue: UrineKetoneLevel?
-    var firstBloodKetoneValue: BloodKetoneLevel?
-    var secondUrineKetoneValue: UrineKetoneLevel?
-    var secondBloodKetoneValue: BloodKetoneLevel?
     var yesOver2hours = false
-    var skipFirstReminder = false
+    /// Which iLet home-care steps the family is on. Optional so sessions saved before it existed still decode.
+    var iLetStage: ILetStage?
+    /// Latest ketone result, used when the iLet blood sugar recheck decides which steps to show
+    var ketoneSeverity: KetoneSeverity?
     /// Set when the blood sugar recheck compares against a reading other than the usual 180/150 mg/dL.
     /// Readings at or above it follow the high path.
     var bloodSugarRecheckHighThreshold: Int?
@@ -177,12 +170,9 @@ class QuestionnaireManager: QuestionnaireManagerProvider  {
     private(set) var ketones: KetonesMeasurements? { get { session.ketones } set { session.ketones = newValue } }
 	private(set) var urineKetones: UrineKetoneLevel? { get { session.urineKetones } set { session.urineKetones = newValue } }
 	private(set) var bloodKetones: BloodKetoneLevel? { get { session.bloodKetones } set { session.bloodKetones = newValue } }
-    private(set) var firstUrineKetoneValue: UrineKetoneLevel? { get { session.firstUrineKetoneValue } set { session.firstUrineKetoneValue = newValue } }
-    private(set) var firstBloodKetoneValue: BloodKetoneLevel? { get { session.firstBloodKetoneValue } set { session.firstBloodKetoneValue = newValue } }
-    private(set) var secondUrineKetoneValue: UrineKetoneLevel? { get { session.secondUrineKetoneValue } set { session.secondUrineKetoneValue = newValue } }
-    private(set) var secondBloodKetoneValue: BloodKetoneLevel? { get { session.secondBloodKetoneValue } set { session.secondBloodKetoneValue = newValue } }
 	private(set) var yesOver2hours: Bool { get { session.yesOver2hours } set { session.yesOver2hours = newValue } }
-    private(set) var skipFirstReminder: Bool { get { session.skipFirstReminder } set { session.skipFirstReminder = newValue } }
+    private(set) var iLetStage: ILetStage { get { session.iLetStage ?? .none } set { session.iLetStage = newValue } }
+    private(set) var ketoneSeverity: KetoneSeverity? { get { session.ketoneSeverity } set { session.ketoneSeverity = newValue } }
 
 	private(set) var activeReminderId: String? { get { session.activeReminderId } set { session.activeReminderId = newValue } }
 	private(set) var reminderScheduledTime: Date? { get { session.reminderScheduledTime } set { session.reminderScheduledTime = newValue } }
@@ -466,101 +456,19 @@ extension QuestionnaireManager {
     }
     
     /// Blood sugar recheck answered above the threshold (180 mg/dL for iLet Pump, otherwise 150 mg/dL,
-    /// or "300 mg/dL or higher" for the pump yes/no question).
+    /// or the question's own threshold, such as 300 mg/dL for pump users after low ketones).
     private func triggerBloodSugarRecheckAboveActionFlow(_ currentQuestion: Questionnaire) {
         if iLetPump {
-            let visitCount = getReminderPageVisitCount()
-            let ketoneCheckVisitCount = getKetoneVisitCount()
-            let skippedFirst = skipFirstReminder
-            
-            let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
-            (secondBloodKetoneValue == .large)
-            
-            let hasModerateFirstKetones = (firstUrineKetoneValue == .zeroPointFive || firstUrineKetoneValue == .onePointFive || firstUrineKetoneValue == .four) ||
-            (firstBloodKetoneValue == .moderate)
-            
-            print("🔍 Blood sugar recheck - Yes (≥180)")
-            print("   - Reminder page visit count: \(visitCount)")
-            print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
-            print("   - Skipped first: \(skippedFirst)")
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
-                    triggerRecheckKetonesActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 0 && ketoneCheckVisitCount == 1 {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else if visitCount == 1 && ketoneCheckVisitCount == 1 {
-                    triggerRecheckKetonesActionFlow(currentQuestion)
-                }  else if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 2 {
-                    triggerRecheckKetonesActionFlow(currentQuestion)
-                }
-            }
+            handleILetBloodSugarRecheck(currentQuestion, isOver180: true)
         } else {
             triggerCallChoaActionFlow(currentQuestion)
         }
     }
 
-    /// Blood sugar recheck answered below the threshold.
+    /// Blood sugar recheck answered at or below the threshold.
     private func triggerBloodSugarRecheckBelowActionFlow(_ currentQuestion: Questionnaire) {
         if iLetPump {
-            let visitCount = getReminderPageVisitCount()
-            let ketoneCheckVisitCount = getKetoneVisitCount()
-            let skippedFirst = skipFirstReminder
-            
-            let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
-            (firstBloodKetoneValue == .large)
-            
-            let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
-            (secondBloodKetoneValue == .large)
-            
-            print("🔍 Blood sugar recheck - NO (≤180)")
-            print("   - Reminder page visit count: \(visitCount)")
-            print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
-            print("   - Skipped first: \(skippedFirst)")
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    triggerContinueActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    if urineKetones == .negative || bloodKetones == .low {
-                        if hasHighSecondKetone {
-                            triggerContinueWithDescriptionActionFlow(currentQuestion)
-                        } else {
-                            triggerContinueActionFlow(currentQuestion)
-                        }
-                    } else {
-                        triggerCallChoaEmergencyActionFlow(currentQuestion)
-                    }
-                } else if visitCount == 3 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 0 && ketoneCheckVisitCount == 1 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                } else if visitCount == 1 && ketoneCheckVisitCount == 1 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                } else if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    if urineKetones == .negative || bloodKetones == .low {
-                        if hasHighFirstKetone {
-                            triggerContinueWithDescriptionActionFlow(currentQuestion)
-                        } else {
-                            triggerContinueActionFlow(currentQuestion)
-                        }
-                    } else {
-                        triggerCallChoaEmergencyActionFlow(currentQuestion)
-                    }
-                } else if visitCount == 2 && ketoneCheckVisitCount == 2 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            }
+            handleILetBloodSugarRecheck(currentQuestion, isOver180: false)
         } else if currentTestType == .pump && yesOver2hours && (
             urineKetones == .negative || urineKetones == .zeroPointFive || bloodKetones == .low) {
             triggerContinueActionFlow(currentQuestion)
@@ -635,10 +543,6 @@ extension QuestionnaireManager {
 		self.yesOver2hours = over2hours
 	}
     
-    func skipFirstReminder(_ skipFirstReminder: Bool) {
-        self.skipFirstReminder = skipFirstReminder
-    }
-
     func saveData(bloodSugar: Int, correctionFactor: Int) {
         self.bloodSugar = bloodSugar
         self.correctionFactor = correctionFactor
@@ -658,30 +562,6 @@ extension QuestionnaireManager {
         print("🗑️ Cleared blood ketones (switched to urine)")
     }
     
-    // Save first urine ketone value
-    func saveFirstUrineKetoneValue(_ level: UrineKetoneLevel) {
-        self.firstUrineKetoneValue = level
-        print("💾 Saved FIRST urine ketone value: \(level) (id: \(level.id))")
-    }
-
-    // Save first blood ketone value
-    func saveFirstBloodKetoneValue(_ level: BloodKetoneLevel) {
-        self.firstBloodKetoneValue = level
-        print("💾 Saved FIRST blood ketone value: \(level) (id: \(level.id))")
-    }
-    
-    // Save second urine ketone value
-    func saveSecondUrineKetoneValue(_ level: UrineKetoneLevel) {
-        self.secondUrineKetoneValue = level
-        print("💾 Saved SECOND urine ketone value: \(level) (id: \(level.id))")
-    }
-
-    // Save first blood ketone value
-    func saveSecondBloodKetoneValue(_ level: BloodKetoneLevel) {
-        self.secondBloodKetoneValue = level
-        print("💾 Saved SECOND blood ketone value: \(level) (id: \(level.id))")
-    }
-    
     func clearUrineKetoneLevel() {
         self.urineKetones = nil
         print("🗑️ Cleared urine ketone level")
@@ -698,72 +578,6 @@ extension QuestionnaireManager {
         self.bloodKetones = nil
         print("🗑️ Cleared blood ketone level")
     }
-    
-    // MARK: Check/Get First Ketone Value If High or Moderate
-    
-    func hasHighFirstUrineKetones() -> Bool {
-        guard let level = firstUrineKetoneValue else { return false }
-        switch level {
-        case .eight, .sixteen:
-            return true
-        case .zeroPointFive, .onePointFive, .four, .negative:
-            return false
-        }
-    }
-    
-    // Check if we have moderate/high first urine ketones (0.5, 1.5, 4.0, 8.0, 16.0)
-    func hasModerateFirstUrineKetones() -> Bool {
-        guard let level = firstUrineKetoneValue else { return false }
-        switch level {
-        case .zeroPointFive, .onePointFive, .four, .negative:
-            return true
-        case .eight, .sixteen:
-            return false
-        }
-    }
-    
-    // Check if we have moderate/high first urine ketones (0.5, 1.5, 4.0, 8.0, 16.0)
-    func hasModerateOrHighFirstUrineKetones() -> Bool {
-        guard let level = firstUrineKetoneValue else { return false }
-        switch level {
-        case .zeroPointFive, .onePointFive, .four, .eight, .sixteen:
-            return true
-        case .negative:
-            return false
-        }
-    }
-    
-    func hasHighFirstBloodKetones() -> Bool {
-        guard let level = firstBloodKetoneValue else { return false }
-        switch level {
-        case .large:
-            return true
-        case .low, .moderate:
-            return false
-        }
-    }
-    
-    func hasModerateFirstBloodKetones() -> Bool {
-        guard let level = firstBloodKetoneValue else { return false }
-        switch level {
-        case .moderate:
-            return true
-        case .low, .large:
-            return false
-        }
-    }
-
-    // Check if we have moderate/high first blood ketones (moderate, large)
-    func hasModerateOrHighFirstBloodKetones() -> Bool {
-        guard let level = firstBloodKetoneValue else { return false }
-        switch level {
-        case .moderate, .large:
-            return true
-        case .low:
-            return false
-        }
-    }
-    
     
     // MARK: - Helper to check which ketone type is active
         
@@ -792,14 +606,9 @@ extension QuestionnaireManager {
            - Active Ketone Type: \(activeType?.description ?? "None")
            - Urine Ketones: \(String(describing: urineKetones))
            - Blood Ketones: \(String(describing: bloodKetones))
-           - First Urine Ketone: \(String(describing: firstUrineKetoneValue))
-           - First Blood Ketone: \(String(describing: firstBloodKetoneValue))
-           - Second Urine Ketone: \(String(describing: secondUrineKetoneValue))
-           - Second Blood Ketone: \(String(describing: secondBloodKetoneValue))
            - iLetPump: \(iLetPump)
-           - skipFirstReminder: \(skipFirstReminder)
-           - Reminder Visit Count: \(getReminderPageVisitCount())
-           - Ketone Visit Count: \(getKetoneVisitCount())
+           - iLet stage: \(iLetStage)
+           - Ketone severity: \(String(describing: ketoneSeverity))
         """)
     }
 
@@ -872,79 +681,6 @@ extension QuestionnaireManager {
 		}
 	}
     
-    func triggerRecheckUrineKetoneForILetActionFlow(
-        _ currentQuestion: Questionnaire,
-        urineLevel: UrineKetoneLevel
-    ) {
-        let visitCount = getReminderPageVisitCount()
-        let ketoneCheckVisitCount = getKetoneVisitCount()
-        let skippedFirst = skipFirstReminder
-        
-        if ketoneCheckVisitCount == 2 {
-            saveSecondUrineKetoneValue(urineLevel)
-        }
-        
-        let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
-        (firstBloodKetoneValue == .large)
-        
-        let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
-        (secondBloodKetoneValue == .large)
-        
-        print("🧪 Recheck Urine Ketone")
-        print("   - Visit count: \(visitCount)")
-        print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
-        print("   - Skipped first: \(skippedFirst)")
-        print("   - Level: \(urineLevel)")
-        print("   - First ketone value: \(String(describing: firstUrineKetoneValue))")
-        print("   - Second ketone value: \(String(describing: secondUrineKetoneValue))")
-        
-        switch urineLevel {
-        case .negative:
-            // Negative ketones after 90 mins - continue care without asking for blood sugar again
-            triggerILetNegativeRecheckActionFlow(currentQuestion, hadHighKetones: hasHighFirstKetone || hasHighSecondKetone)
-            
-        case .zeroPointFive, .onePointFive, .four:
-            // Moderate ketones
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            }
-            
-        case .eight, .sixteen:
-            // High ketones
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            }
-        }
-    }
-    
 	func triggerRecheckBloodKetoneActionFlow(
 		_ currentQuestion: Questionnaire,
 		bloodLevel: BloodKetoneLevel,
@@ -977,136 +713,131 @@ extension QuestionnaireManager {
 		}
 	}
     
-    func triggerRecheckBloodKetoneForILetActionFlow(
-        _ currentQuestion: Questionnaire,
-        bloodLevel: BloodKetoneLevel
-    ) {
-        let visitCount = getReminderPageVisitCount()
-        let ketoneCheckVisitCount = getKetoneVisitCount()
-        let skippedFirst = skipFirstReminder
-        
-        if ketoneCheckVisitCount == 2 {
-            saveSecondBloodKetoneValue(bloodLevel)
-        }
-        
-        let hasHighFirstKetone = (firstUrineKetoneValue == .eight || firstUrineKetoneValue == .sixteen) ||
-        (firstBloodKetoneValue == .large)
-        
-        let hasHighSecondKetone = (secondUrineKetoneValue == .eight || secondUrineKetoneValue == .sixteen) ||
-        (secondBloodKetoneValue == .large)
-        
-        print("🩸 Recheck Blood Ketone")
-        print("   - Visit count: \(visitCount)")
-        print("   - Ketone check visit count: \(ketoneCheckVisitCount)")
-        print("   - Skipped first: \(skippedFirst)")
-        print("   - Level: \(bloodLevel)")
-        print("   - First ketone value: \(String(describing: firstBloodKetoneValue))")
-        print("   - Second ketone value: \(String(describing: secondBloodKetoneValue))")
-        
-        switch bloodLevel {
-        case .low:
-            // Low ketones after 90 mins - continue care without asking for blood sugar again
-            triggerILetNegativeRecheckActionFlow(currentQuestion, hadHighKetones: hasHighFirstKetone || hasHighSecondKetone)
-            
-        case .moderate:
-            // Moderate ketones
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            }
-        case .large:
-            // High ketones
-            
-            if skippedFirst == false {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 3 && ketoneCheckVisitCount == 4 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            } else {
-                if visitCount == 1 && ketoneCheckVisitCount == 2 {
-                    print("   → Recheck blood sugar (first visit after 2 ketone checks)")
-                    triggerBloodSugarRecheckActionFlow(currentQuestion)
-                } else if visitCount == 2 && ketoneCheckVisitCount == 3 {
-                    triggerCallChoaEmergencyActionFlow(currentQuestion)
-                }
-            }
-        }
+    // MARK: - iLet Pump protocol
+    //
+    // Follows the "High Blood Sugar-iLet" protocol flowchart. Each 90-minute recheck is decided by `iLetStage`
+    // (which home-care steps the family is on) and the latest ketone result, not by how many screens were visited.
+
+    /// First ketone check (urine) for iLet Pump users.
+    func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
+        saveUrineKetoneLevel(level: level)
+        handleFirstILetKetoneCheck(currentQuestion, severity: KetoneSeverity(urine: level))
     }
-    
-    /// iLet ketone recheck came back negative/low. Shows the continue care screen, with the extra
-    /// guidance when an earlier check had high ketones.
-    private func triggerILetNegativeRecheckActionFlow(_ currentQuestion: Questionnaire, hadHighKetones: Bool) {
-        print("   → Continue regular care (negative/low ketones on recheck)")
-        if hadHighKetones {
-            triggerContinueWithDescriptionActionFlow(currentQuestion)
+
+    /// First ketone check (blood) for iLet Pump users.
+    func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
+        saveBloodKetoneLevel(level: level)
+        handleFirstILetKetoneCheck(currentQuestion, severity: KetoneSeverity(blood: level))
+    }
+
+    /// Ketone recheck (urine) after a 90-minute wait.
+    func triggerRecheckUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, urineLevel: UrineKetoneLevel) {
+        saveUrineKetoneLevel(level: urineLevel)
+        handleILetKetoneRecheck(currentQuestion, severity: KetoneSeverity(urine: urineLevel))
+    }
+
+    /// Ketone recheck (blood) after a 90-minute wait.
+    func triggerRecheckBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, bloodLevel: BloodKetoneLevel) {
+        saveBloodKetoneLevel(level: bloodLevel)
+        handleILetKetoneRecheck(currentQuestion, severity: KetoneSeverity(blood: bloodLevel))
+    }
+
+    /// "Yes, over 90 mins", skipping the reminder, or tapping the 90-minute notification on the iLet steps page.
+    /// After disconnecting the pump the protocol checks blood sugar first; every other stage rechecks ketones first.
+    func triggerILetRecheckAfterReminderActionFlow(_ currentQuestion: Questionnaire) {
+        if iLetStage == .disconnect {
+            triggerBloodSugarRecheckActionFlow(currentQuestion)
         } else {
-            triggerContinueActionFlow(currentQuestion)
+            triggerRecheckKetonesActionFlow(currentQuestion)
         }
     }
 
-    func triggerUrineKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
-        print("🧪 Initial Urine Ketone Check - Level: \(level)")
-        
-        saveFirstUrineKetoneValue(level)
-        saveUrineKetoneLevel(level: level)
-        
-        let hasModerateKetones = (urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four) || (bloodKetones == .moderate)
-        
-        let hasHighKetones = (urineKetones == .eight || urineKetones == .sixteen) ||
-        (bloodKetones == .large)
-        
-        switch level {
-        case .negative:
-            skipFirstReminder(false)
-            print("   → Show reminder (negative ketones)")
-            showFinalStage(stage: .reminder, calculation: nil)
-            
-        case .zeroPointFive, .onePointFive, .four:
-            skipFirstReminder(true)
-            print("   → Skip reminder (moderate ketones)")
+    var iLetSnapshot: ILetSnapshot {
+        ILetSnapshot(stage: iLetStage, ketoneSeverity: ketoneSeverity)
+    }
+
+    func restoreILetSnapshot(_ snapshot: ILetSnapshot) {
+        var updated = session
+        updated.iLetStage = snapshot.stage
+        updated.ketoneSeverity = snapshot.ketoneSeverity
+        session = updated
+    }
+
+    private func handleFirstILetKetoneCheck(_ currentQuestion: Questionnaire, severity: KetoneSeverity) {
+        iLetStage = .none
+        ketoneSeverity = severity
+
+        switch severity {
+        case .low:
+            showILetSteps(.secureSteps)
+        case .moderate, .high:
             if bloodSugarOver300 {
-                if hasModerateKetones {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                }
+                // Already known to be over 180, so go straight to the steps for this ketone level
+                showILetStepsForElevatedKetones()
             } else {
-                let createQue = createBloodSugarRecheckQuestion()
-                actionsDelegate?.showNextQuestion(createQue)
-            }
-            
-        case .eight, .sixteen:
-            skipFirstReminder(true)
-            print("   → Skip reminder (high ketones)")
-            if bloodSugarOver300 {
-                if hasModerateKetones {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                }
-            } else {
-                let createQue = createBloodSugarRecheckQuestion()
-                actionsDelegate?.showNextQuestion(createQue)
+                triggerBloodSugarRecheckActionFlow(currentQuestion)
             }
         }
+    }
+
+    private func handleILetKetoneRecheck(_ currentQuestion: Questionnaire, severity: KetoneSeverity) {
+        ketoneSeverity = severity
+
+        switch iLetStage {
+        case .disconnect:
+            // Blood sugar was already rechecked, so ketones decide between reconnecting and calling CHOA
+            if severity == .low {
+                triggerContinueWithDescriptionActionFlow(currentQuestion)
+            } else {
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
+        case .none, .secureSteps, .changeSite:
+            if severity == .low {
+                triggerContinueActionFlow(currentQuestion)
+            } else {
+                triggerBloodSugarRecheckActionFlow(currentQuestion)
+            }
+        }
+    }
+
+    /// `isOver180` is false for a reading of exactly 180 mg/dL.
+    private func handleILetBloodSugarRecheck(_ currentQuestion: Questionnaire, isOver180: Bool) {
+        switch iLetStage {
+        case .none:
+            // First ketones were moderate or high
+            if isOver180 {
+                showILetStepsForElevatedKetones()
+            } else {
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
+        case .secureSteps:
+            // Ketones came up after the first 90 minutes
+            if isOver180 {
+                showILetStepsForElevatedKetones()
+            } else {
+                triggerContinueActionFlow(currentQuestion)
+            }
+        case .changeSite:
+            // Ketones still elevated after changing the site
+            if isOver180 {
+                showILetSteps(.disconnect)
+            } else {
+                triggerCallChoaEmergencyActionFlow(currentQuestion)
+            }
+        case .disconnect:
+            // The protocol only draws the over-180 branch here. Either way the ketone recheck decides the outcome.
+            triggerRecheckKetonesActionFlow(currentQuestion)
+        }
+    }
+
+    private func showILetStepsForElevatedKetones() {
+        // Fall back to the more cautious steps if the ketone result is somehow missing
+        showILetSteps(ketoneSeverity == .moderate ? .changeSite : .disconnect)
+    }
+
+    private func showILetSteps(_ stage: ILetStage) {
+        iLetStage = stage
+        showFinalStage(stage: .reminder, calculation: nil)
     }
 
 	func triggerUrineKetoneLevelActionFlow(_ currentQuestion: Questionnaire, level: UrineKetoneLevel) {
@@ -1165,72 +896,6 @@ extension QuestionnaireManager {
             }
 		}
 	}
-    
-    func triggerBloodKetoneForILetActionFlow(_ currentQuestion: Questionnaire, level: BloodKetoneLevel) {
-        print("🩸 Initial Blood Ketone Check - Level: \(level)")
-        
-        if firstBloodKetoneValue == nil {
-            saveFirstBloodKetoneValue(level)
-        }
-        saveBloodKetoneLevel(level: level)
-        
-        let hasModerateKetones = (urineKetones == .zeroPointFive || urineKetones == .onePointFive || urineKetones == .four) ||
-        (bloodKetones == .moderate)
-        
-        let hasHighKetones = (urineKetones == .eight || urineKetones == .sixteen) ||
-        (bloodKetones == .large)
-        
-        switch level {
-        case .low:
-            skipFirstReminder(false)
-            print("   → Show reminder (low ketones)")
-            showFinalStage(stage: .reminder, calculation: nil)
-            
-        case .moderate:
-            skipFirstReminder(true)
-            print("   → Skip reminder (moderate ketones)")
-            if bloodSugarOver300 {
-                if hasModerateKetones {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                }
-            } else {
-                if bloodSugarOver300 {
-                    if hasModerateKetones {
-                        showFinalStage(stage: .reminder, calculation: nil)
-                    } else {
-                        showFinalStage(stage: .reminder, calculation: nil)
-                    }
-                } else {
-                    let createQue = createBloodSugarRecheckQuestion()
-                    actionsDelegate?.showNextQuestion(createQue)
-                }
-            }
-            
-        case .large:
-            skipFirstReminder(true)
-            print("   → Skip reminder (high ketones)")
-            if bloodSugarOver300 {
-                if hasModerateKetones {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                } else {
-                    showFinalStage(stage: .reminder, calculation: nil)
-                }
-            } else {
-                if bloodSugarOver300 {
-                    if hasModerateKetones {
-                        showFinalStage(stage: .reminder, calculation: nil)
-                    } else {
-                        showFinalStage(stage: .reminder, calculation: nil)
-                    }
-                } else {
-                    let createQue = createBloodSugarRecheckQuestion()
-                    actionsDelegate?.showNextQuestion(createQue)
-                }
-            }
-        }
-    }
     
     func triggerTestActionFlow(_ currentQuestion: Questionnaire) {
 		if currentTestType == .insulinShots {
@@ -1317,11 +982,7 @@ extension QuestionnaireManager {
 	}
 
 	func triggerRecheckKetonesActionFlow(_ currentQuestion: Questionnaire) {
-        if (iLetPump && skipFirstReminder && getReminderPageVisitCount() == 1)  {
-            showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
-        } else {
-            showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
-        }
+		showFinalStage(stage: .recheckKetoneLevel, calculation: nil)
 	}
     
     func triggerNextDoseActionFlow() {
@@ -1670,18 +1331,16 @@ extension QuestionnaireManager {
         return (round(value*10)/10.0)
     }
 
-    /// Clears everything recorded since ketones were first measured: the current, first and
-    /// second ketone readings, the over-2-hours flag and the visit counts.
+    /// Clears everything recorded since ketones were first measured: the ketone readings,
+    /// the iLet stage, the over-2-hours flag and the visit counts.
     /// Used when the user backs out to (or before) the question where the ketone check starts.
     func resetKetoneProgress() {
         var updated = session
         updated.yesOver2hours = false
         updated.urineKetones = nil
         updated.bloodKetones = nil
-        updated.firstUrineKetoneValue = nil
-        updated.firstBloodKetoneValue = nil
-        updated.secondUrineKetoneValue = nil
-        updated.secondBloodKetoneValue = nil
+        updated.iLetStage = nil
+        updated.ketoneSeverity = nil
         updated.visitCounts = VisitCounts()
         updated.visitCountsBeforeStack = VisitCounts()
         session = updated
@@ -1700,14 +1359,6 @@ extension QuestionnaireManager {
 extension QuestionnaireManager {
     
     // MARK: - Visit Counts
-
-    func getReminderPageVisitCount() -> Int {
-        session.visitCounts.reminderPages
-    }
-
-    func getKetoneVisitCount() -> Int {
-        session.visitCounts.ketoneChecks
-    }
 
     func getLowBloodSugarTreatmentCount() -> Int {
         session.visitCounts.lowBloodSugarTreatments
@@ -1731,17 +1382,6 @@ extension QuestionnaireManager {
         guard session.visitCountsBeforeStack.lowBloodSugarTreatments < treatments else { return }
         session.visitCountsBeforeStack.lowBloodSugarTreatments = treatments
         session.visitCounts.lowBloodSugarTreatments = max(session.visitCounts.lowBloodSugarTreatments, treatments)
-    }
-
-    /// Makes sure iLet reminder pages and ketone checks from before a 90-minute reminder still count once
-    /// it's tapped, even if the saved session didn't survive the app being closed. Call after `carryVisitCountsPastStack()`.
-    func carryILetVisitCounts(atLeastReminderPages reminderPages: Int, ketoneChecks: Int) {
-        var updated = session
-        updated.visitCountsBeforeStack.reminderPages = max(updated.visitCountsBeforeStack.reminderPages, reminderPages)
-        updated.visitCountsBeforeStack.ketoneChecks = max(updated.visitCountsBeforeStack.ketoneChecks, ketoneChecks)
-        updated.visitCounts.reminderPages = max(updated.visitCounts.reminderPages, reminderPages)
-        updated.visitCounts.ketoneChecks = max(updated.visitCounts.ketoneChecks, ketoneChecks)
-        session = updated
     }
 
     /// The carried counts already include the reminder page being put back on the stack,
@@ -1768,17 +1408,8 @@ extension QuestionnaireManager {
         for question in path {
             guard let questionType = question.questionType else { continue }
 
-            switch questionType {
-            case .twoOptions(.measuringType), .recheckKetoneLevel:
-                counts.ketoneChecks += 1
-            case .reminder:
-                if FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
-                    counts.lowBloodSugarTreatments += 1
-                } else if iLetPump {
-                    counts.reminderPages += 1
-                }
-            default:
-                break
+            if case .reminder = questionType, FinalQuestionId(id: question.questionId).isLowBloodSugarTreatment {
+                counts.lowBloodSugarTreatments += 1
             }
         }
 
