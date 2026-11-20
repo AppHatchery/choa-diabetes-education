@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ChapterEndViewController: UIViewController {
     
@@ -55,7 +56,17 @@ class ChapterEndViewController: UIViewController {
     var nextChapter = ""
     var nextChapterURL = ""
     var quizIndex = 0
-    
+
+    private var isShowingHalloweenBackground = false
+
+    /// Liquid Glass picks a legible color for untinted bar buttons on iOS 26+; earlier versions keep white on the colored bar
+    private var barTintColor: UIColor? {
+        if #available(iOS 26.0, *) {
+            return nil
+        }
+        return .white
+    }
+
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
@@ -75,12 +86,17 @@ class ChapterEndViewController: UIViewController {
             appearance.backgroundColor = .diabetesSelfManagementColor
             mainView.backgroundColor = .diabetesSelfManagementColor
         }
-        
+
+        // Let the Halloween artwork show through the main view
+        if isShowingHalloweenBackground {
+            mainView.backgroundColor = .clear
+        }
+
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -90,9 +106,10 @@ class ChapterEndViewController: UIViewController {
         // Track current chapter index for completion persistence
         var currentChapterIndex: Int? = nil
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
+        navigationItem.rightBarButtonItem?.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
-        
+
         bottomStarsView.layer.cornerRadius = 20
         bottomStarsView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
@@ -183,15 +200,108 @@ class ChapterEndViewController: UIViewController {
         // Persist completion for this chapter (idempotent)
         if let idx = currentChapterIndex {
             CompletionStore.markCompleted(section: contentIndex, index: idx)
+
+            if RemoteConfigManager.shared.isHalloweenThemeEnabled {
+                applyHalloweenBackground(chapterIndex: idx)
+            }
         }
-        
+
         updateStarsUI()
+    }
+
+    /// The section's Halloween scene fills the screen behind a see-through nav bar, and the
+    /// character art (which has the text bubble drawn in) takes the place of the bubble and character views
+    private func applyHalloweenBackground(chapterIndex: Int) {
+        let characterName: String
+        switch contentIndex {
+        case 0: characterName = "halloween_chapter_complete_basics_\(min(chapterIndex, 4) + 1)_character"
+        case 1: characterName = "halloween_chapter_complete_nutrition_\(min(chapterIndex, 2) + 1)_character"
+        case 2: characterName = "halloween_chapter_complete_self_management_\(min(chapterIndex, 1) + 1)_character"
+        default: return
+        }
+        // Chapters with their own scene use it, and the rest fall back to their section's scene
+        let sectionBackgroundName = "halloween_chapter_complete_\(contentIndex + 1)"
+        guard let backgroundImage = UIImage(named: "\(sectionBackgroundName)_\(chapterIndex + 1)") ?? UIImage(named: sectionBackgroundName),
+              let characterImage = UIImage(named: characterName) else { return }
+
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        // The stars card stops at the safe area, so continue its white down through the home indicator area
+        let bottomFillView = UIView()
+        bottomFillView.backgroundColor = bottomStarsView.backgroundColor
+        bottomFillView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(bottomFillView, aboveSubview: backgroundImageView)
+        NSLayoutConstraint.activate([
+            bottomFillView.topAnchor.constraint(equalTo: bottomStarsView.centerYAnchor),
+            bottomFillView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomFillView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomFillView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        // The character art carries its own bubble, so the bubble view collapses out of the images stack
+        textBubbleImage.isHidden = true
+        hopeOrWillImage.image = characterImage
+
+        // Size the art from its width like the regular bubble and character, and let it shrink
+        // rather than push the congrats label up under the nav bar on shorter screens
+        hopeOrWillImage.constraints
+            .filter { $0.firstAttribute == .height && $0.relation == .equal }
+            .forEach { $0.isActive = false }
+        hopeOrWillImage.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        let aspectConstraint = hopeOrWillImage.heightAnchor.constraint(
+            equalTo: hopeOrWillImage.widthAnchor,
+            multiplier: characterImage.size.height / characterImage.size.width
+        )
+        aspectConstraint.priority = .defaultHigh - 1
+        NSLayoutConstraint.activate([
+            aspectConstraint,
+            congratsLabel.topAnchor.constraint(greaterThanOrEqualTo: mainView.topAnchor, constant: 16)
+        ])
+
+        // Leaves (stars for self management) fall over the whole screen, stars card and buttons included, without blocking taps
+        let fallingAnimationName = contentIndex == 2 ? "falling-stars" : "falling-leaves"
+        let fallingView = LottieAnimationView(name: fallingAnimationName)
+        fallingView.contentMode = .scaleAspectFill
+        fallingView.loopMode = .playOnce
+        fallingView.backgroundBehavior = .pauseAndRestore
+        fallingView.isUserInteractionEnabled = false
+        fallingView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(fallingView)
+
+        NSLayoutConstraint.activate([
+            fallingView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        fallingView.play()
+
+        // Scoped to this screen so the rest of the stack keeps its colored bar
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+
+        isShowingHalloweenBackground = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = barTintColor
         navigationItem.backButtonDisplayMode = .minimal
         
         // Hide next button if the end of the section
@@ -339,8 +449,13 @@ private extension ChapterEndViewController {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        // The stack view's leading/trailing insets and .fillEqually distribution
+        // determine each star's width, so a required 40pt width would conflict.
+        // Keep it as a preference; aspect-fit + fixed height keeps the star 40x40.
+        let widthConstraint = imageView.widthAnchor.constraint(equalToConstant: 40)
+        widthConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 40),
+            widthConstraint,
             imageView.heightAnchor.constraint(equalToConstant: 40)
         ])
         return imageView

@@ -73,7 +73,7 @@ class BloodKetoneLevelView: UIView {
 		// Reset button states
 		for button in ketoneLevelButtons {
 			button.alpha = 0.5
-            button.layer.cornerRadius = 0
+            button.applyStandardCornerRadius()
 		}
 		
 		selected = 0

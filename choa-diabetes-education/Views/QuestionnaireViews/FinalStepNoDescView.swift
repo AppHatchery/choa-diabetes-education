@@ -44,7 +44,8 @@ class FinalStepNoDescView: UIView {
 	func setupView(currentQuestion: Questionnaire) {
 
 		self.currentQuestion = currentQuestion
-        titleLabel.font = .nunitoSemiBold32
+		// The hypoglycemia DMMP title is longer, so it uses a smaller font
+		titleLabel.font = currentQuestion.questionId == FinalQuestionId.continueDMMP.id ? .nunitoSemiBold24 : .nunitoSemiBold32
 		titleLabel.numberOfLines = 0
 		titleLabel.textColor = .white
 		titleLabel.text = currentQuestion.finalStep?.title
