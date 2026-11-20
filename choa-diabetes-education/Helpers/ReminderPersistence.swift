@@ -74,6 +74,16 @@ class ReminderPersistence {
         return overdueBy >= 0 && overdueBy <= maxOverdueInterval ? state : nil
     }
 
+    /// The saved state for one reminder, however long ago it went off
+    static func loadReminderState(id reminderId: String) -> ReminderState? {
+        guard let data = UserDefaults.standard.data(forKey: reminderStateKey),
+              let state = try? JSONDecoder().decode(ReminderState.self, from: data),
+              state.reminderId == reminderId else {
+            return nil
+        }
+        return state
+    }
+
     /// Clear the saved reminder state
     static func clearReminderState() {
         UserDefaults.standard.removeObject(forKey: reminderStateKey)

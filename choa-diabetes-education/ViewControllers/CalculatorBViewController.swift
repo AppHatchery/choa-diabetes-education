@@ -57,10 +57,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
     private var hasFocusedFirstField = false
     private var isShowingBelowTargetWarning = false
 
-    /// Fields flagged as missing by the Next button; their error tracks the field's text from then on
-    private var fieldsWithMissingValueError = Set<UITextField>()
-    private var defaultLineColors = [UIView: UIColor]()
-
     /// Uses the fields' live text so it's accurate mid-edit
     private var isBloodSugarBelowTarget: Bool {
         let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
@@ -161,12 +157,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         targetBloodSugarLine.layer.cornerRadius = 3
         correctionFactorLine.layer.cornerRadius = 3
 
-        for line in [bloodSugarLine, targetBloodSugarLine, correctionFactorLine] {
-            if let line, let color = line.backgroundColor {
-                defaultLineColors[line] = color
-            }
-        }
-
         resultsView.isHidden = true
         
         if highBloodSugarOnly == false {
@@ -186,7 +176,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         calculatorDidUpdateConstants()
         setupTappableInfoButtons()
         updateSeeResultAccessoryIfNeeded()
-        updateNextButtonState()
     }
     
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
@@ -307,14 +296,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         
         hideErrorMessage()
-        updateMissingValueError(for: textField)
         //        if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0) {
         //            nextButton.isEnabled = true
         //        } else {
         //            nextButton.isEnabled = false
         //        }
         updateSeeResultAccessoryIfNeeded()
-        updateNextButtonState()
     }
     
     /// The error label wraps to fit its message, so clear the text too or a hidden
@@ -402,15 +389,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
     }
     
-    private func updateNextButtonState() {
-        // Disable Next if both values are present and blood sugar is below target
-        let currentBloodSugarValue = Int(bloodSugarField.text ?? "") ?? 0
-        let currentTargetValue = Int(targetBloodSugarField.text ?? "") ?? 0
-        let shouldDisable = currentBloodSugarValue > 0 && currentTargetValue > 0 && currentBloodSugarValue < currentTargetValue
-        nextButton.isEnabled = !shouldDisable
-        nextButton.alpha = shouldDisable ? 0.5 : 1.0
-    }
-    
     @objc private func textFieldsDidChange(_ sender: UITextField) {
         // Update backing values in real time
         if sender == bloodSugarField {
@@ -422,57 +400,12 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         }
         // Reflect UI/accessory state as user types
         updateSeeResultAccessoryIfNeeded()
-        updateNextButtonState()
-        updateMissingValueError(for: sender)
 
         if isShowingBelowTargetWarning && !isBloodSugarBelowTarget {
             clearBelowTargetWarning()
         } else if totalCarbs > 0 && carbRatio > 0 {
             calculateFoodInsulin()
         }
-    }
-
-    private func missingValueErrorParts(for field: UITextField) -> (line: UIView, label: UILabel, normalLabelColor: UIColor, message: String)? {
-        switch field {
-        case bloodSugarField:
-            return (bloodSugarLine, bloodSugarLabel, .primaryBlue, "Calculator.BloodSugar.Number.Error".localized())
-        case targetBloodSugarField:
-            return (targetBloodSugarLine, targetBloodSugarLabel, .black, "Calculator.BloodSugar.Target.Error".localized())
-        case correctionFactorField:
-            return (correctionFactorLine, correctionFactorLabel, .black, "Calculator.BloodSugar.CF.Error".localized())
-        default:
-            return nil
-        }
-    }
-
-    private func showMissingValueError(for field: UITextField) {
-        guard let parts = missingValueErrorParts(for: field) else { return }
-        fieldsWithMissingValueError.insert(field)
-        toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
-        syncInfoIcons()
-    }
-
-    /// Clears a flagged field's error once it has a value, and brings it back if the value is deleted
-    private func updateMissingValueError(for field: UITextField) {
-        guard fieldsWithMissingValueError.contains(field),
-              let parts = missingValueErrorParts(for: field) else { return }
-
-        if (Int(field.text ?? "") ?? 0) > 0 {
-            parts.line.backgroundColor = defaultLineColors[parts.line]
-            parts.label.textColor = parts.normalLabelColor
-            if errorMessage.text == parts.message {
-                hideErrorMessage()
-            }
-        } else {
-            toggleError(state: true, errorLine: parts.line, fieldLabel: parts.label, errorMessageText: parts.message)
-        }
-        syncInfoIcons()
-    }
-
-    /// Info icons sit beside their labels, so they follow the labels into and out of the error state
-    private func syncInfoIcons() {
-        correctionFactorInfoButton.tintColor = correctionFactorLabel.textColor
-        targetBloodSugarInfoButton.tintColor = targetBloodSugarLabel.textColor
     }
 
     /// Back to the normal state once blood sugar is no longer below target,
@@ -495,22 +428,9 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
         self.view.endEditing(true)
         
         if highBloodSugarOnly == false {
-            if (bloodSugar != 0 && targetBloodSugar != 0 && correctionFactor != 0){
-                // Go to next page
-                performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
-            } else if (bloodSugar != 0 && targetBloodSugar != 0 ) {
-                // CarbRatio is not there
-                showMissingValueError(for: correctionFactorField)
-            } else if (bloodSugar != 0 && correctionFactor != 0) {
-                // Target BG is not there
-                showMissingValueError(for: targetBloodSugarField)
-            } else if (targetBloodSugar != 0 && correctionFactor != 0) {
-                // BG is not there
-                showMissingValueError(for: bloodSugarField)
-            } else {
-                errorMessage.text = "Calculator.Carbs.MissingInfo.Error".localized()
-                errorMessage.isHidden = false
-            }
+            // Always continue to the total, even with no correction calculated here (fields left empty,
+            // or blood sugar at or below target). The total screen shows the correction as 0 in that case.
+            performSegue(withIdentifier: "SegueToCalculatorCViewController", sender: nil)
         } else {
             if let viewControllers = self.navigationController?.viewControllers {
                 for vc in viewControllers {
@@ -706,7 +626,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
             bloodSugarLabel.textColor = .orangeTextColor
             bloodSugarField.textColor = .orangeTextColor
             updateSeeResultAccessoryIfNeeded()
-            updateNextButtonState()
             return
         }
         
@@ -726,7 +645,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.font = .nunitoBold18
                 insulinForHighBloodSugar.textColor = .orangeTextColor
                 insulinForHighBloodSugar.numberOfLines = 0
-                updateNextButtonState()
             } else if insulinForHighBloodSugarBoolean {
                 let bloodInsulin = InsulinDose.correction(bloodSugar: currentBloodSugar, targetBloodSugar: currentTargetBloodSugar, correctionFactor: currentCorrectionFactor)
 
@@ -740,7 +658,6 @@ class CalculatorBViewController: UIViewController, UITextFieldDelegate, Calculat
                 insulinForHighBloodSugar.textColor = .primaryBlue
                 insulinForHighBloodSugar.numberOfLines = 0
                 PendoManager.shared().track("Calculate_insulin_for_hbs", properties: ["blood_sugar": currentBloodSugar, "target_blood_sugar": currentTargetBloodSugar, "correction_factor": currentCorrectionFactor])
-                updateNextButtonState()
             }
         } else {
             resultsView.isHidden = true

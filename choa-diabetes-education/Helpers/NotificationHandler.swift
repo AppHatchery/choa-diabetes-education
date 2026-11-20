@@ -23,6 +23,7 @@ class NotificationHandler {
     }
 
     private struct Tap {
+        let identifier: String
         let isLowBloodSugarRecheck: Bool
         let lowBloodSugarTreatments: Int?
         let iLetReminder: ILetReminder?
@@ -37,7 +38,7 @@ class NotificationHandler {
     ///   - iLetReminder: Set when the notification was the iLet 90-minute reminder
     ///   - scene: The scene to open the reminder page in; when it isn't connected yet the tap waits for Home
     func handleNotificationTap(identifier: String, isLowBloodSugarRecheck: Bool, lowBloodSugarTreatments: Int? = nil, iLetReminder: ILetReminder? = nil, in scene: UIWindowScene?) {
-        let tap = Tap(isLowBloodSugarRecheck: isLowBloodSugarRecheck, lowBloodSugarTreatments: lowBloodSugarTreatments, iLetReminder: iLetReminder)
+        let tap = Tap(identifier: identifier, isLowBloodSugarRecheck: isLowBloodSugarRecheck, lowBloodSugarTreatments: lowBloodSugarTreatments, iLetReminder: iLetReminder)
         DispatchQueue.main.async {
             self.navigateToReminderPage(for: tap, in: scene)
         }
@@ -89,6 +90,12 @@ class NotificationHandler {
         let isLowBloodSugarReminder = tap.isLowBloodSugarRecheck || navController.viewControllers.contains { controller in
             guard let questionId = (controller as? GetHelpViewController)?.questionObj.questionId else { return false }
             return FinalQuestionId(id: questionId).isLowBloodSugarTreatment
+        }
+
+        // Exiting Get Help after setting the reminder (e.g. to look around the app) clears the live session,
+        // so go back to the copy saved with the reminder: the answers and the low blood sugar dose it was set with
+        if let savedState = ReminderPersistence.loadReminderState(id: tap.identifier) {
+            QuestionnaireManager.instance.restoreSessionForRecheck(savedState.session)
         }
 
         // The screens about to be popped hold the visit history the recheck routing depends on

@@ -129,6 +129,9 @@ struct GetHelpSession: Codable {
     /// Set when the blood sugar recheck compares against a reading other than the usual 180/150 mg/dL.
     /// Readings at or above it follow the high path.
     var bloodSugarRecheckHighThreshold: Int?
+    /// Whether the first low blood sugar treatment was 8g; every re-treatment after it uses the same amount.
+    /// Optional so sessions saved before it existed still decode.
+    var lowBloodSugarTreatsWith8g: Bool?
     var activeReminderId: String?
     var reminderScheduledTime: Date?
 
@@ -302,10 +305,16 @@ extension QuestionnaireManager {
 
     /// Treats with 15g of carbs, or 8g for pumps showing CGM readings. Those pumps are already cutting back insulin,
     /// so they only need 8g unless blood sugar is 50 mg/dL or lower. Pump users' `cgm` is whether the pump shows CGM readings.
-    /// The 8g option is only for the first treatment: every re-treatment after a recheck is 15g, per the protocol.
+    /// The amount is decided on the first treatment, and every re-treatment after a recheck keeps it.
     private func showLowBloodSugarTreatment() {
-        let isFirstTreatment = getLowBloodSugarTreatmentCount() == 0
-        let needsSmallerTreatment = isFirstTreatment && currentTestType == .pump && cgm && bloodSugar > 50
+        let needsSmallerTreatment: Bool
+        if getLowBloodSugarTreatmentCount() == 0 || session.lowBloodSugarTreatsWith8g == nil {
+            // First treatment (or going back to it): decide from the answers and remember it for the rechecks
+            needsSmallerTreatment = currentTestType == .pump && cgm && bloodSugar > 50
+            session.lowBloodSugarTreatsWith8g = needsSmallerTreatment
+        } else {
+            needsSmallerTreatment = session.lowBloodSugarTreatsWith8g ?? false
+        }
         print("Low blood sugar treatment \(getLowBloodSugarTreatmentCount() + 1), 8g treatment: \(needsSmallerTreatment)")
 
         showFinalStage(stage: needsSmallerTreatment ? .treatLowBloodSugar8g : .treatLowBloodSugar15g, calculation: nil)
