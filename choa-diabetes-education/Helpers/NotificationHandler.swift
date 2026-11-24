@@ -51,12 +51,18 @@ class NotificationHandler {
         navigateToReminderPage(for: tap, in: scene)
     }
 
-    /// Whether a tap is waiting for Home, so Home doesn't also reopen the reminder page
+    /// Set when a notification tap launched the app. iOS can deliver the tap after Home has already appeared,
+    /// so until it arrives Home mustn't resume the overdue reminder itself, or the recheck opens twice.
+    var isAwaitingLaunchTap = false
+
+    /// Whether a tap is waiting for Home (or still on its way), so Home doesn't also reopen the reminder page
     var hasPendingTap: Bool {
-        pendingTap != nil
+        pendingTap != nil || isAwaitingLaunchTap
     }
-    
+
     private func navigateToReminderPage(for tap: Tap, in scene: UIWindowScene?) {
+        isAwaitingLaunchTap = false
+
         print("🧭 Starting navigation to reminder page")
         
         // Get the key window

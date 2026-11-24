@@ -23,6 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = scene as? UIWindowScene else { return }
 
+        // The tap opens the reminder's recheck when it's delivered, so Home shouldn't resume the reminder as well
+        if connectionOptions.notificationResponse != nil {
+            NotificationHandler.shared.isAwaitingLaunchTap = true
+        }
+
         // Swap the storyboard's window for one that caps how wide the content gets on a wide screen
         let contentWidthWindow = ContentWidthWindow(windowScene: windowScene)
         contentWidthWindow.rootViewController = window?.rootViewController
