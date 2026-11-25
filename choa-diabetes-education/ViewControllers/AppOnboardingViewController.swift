@@ -57,6 +57,7 @@ class AppOnboardingViewController: UIViewController {
 
     private func finishOnboarding() {
         AppOnboardingManager.shared.saveAnswers(answersOnTakenPath())
+        AppOnboardingManager.shared.trackOnboarding()
 
         guard let window = view.window else { return }
 
