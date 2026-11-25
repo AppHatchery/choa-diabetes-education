@@ -541,7 +541,7 @@ private final class CarbCategorySectionHeader: UITableViewHeaderFooterView {
 private final class CategoryChipsView: UIView {
     /// These categories are reachable from the table view and search, but are
     /// too dense (or niche) to be worth their own chip.
-    private static let hiddenTitles: Set<String> = ["Combination Foods", "Condiments"]
+    private static let hiddenTitles: Set<String> = ["Combination Foods"]
 
     private static let palette: [UIColor] = [
         UIColor(red: 0.98, green: 0.92, blue: 0.96, alpha: 1),

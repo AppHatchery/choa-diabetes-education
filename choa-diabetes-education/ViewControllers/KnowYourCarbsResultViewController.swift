@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Pendo
 
 class KnowYourCarbsResultViewController: UIViewController {
 
@@ -26,6 +27,10 @@ class KnowYourCarbsResultViewController: UIViewController {
     private let insulinUnitsLabel = UILabel()
 
     private var showBreakdown = true
+
+    /// The carbs and ratio last sent to analytics, so a dose is tracked once
+    /// rather than on every keystroke or each time the screen reappears.
+    private var lastTrackedCalculation: (carbs: Int, ratio: Int)?
 
     private var cardBottomConstraint: NSLayoutConstraint!
     private weak var activeField: UITextField?
@@ -71,6 +76,8 @@ class KnowYourCarbsResultViewController: UIViewController {
         // derived from a guess.
         if (carbRatioField.text ?? "").isEmpty {
             carbRatioField.becomeFirstResponder()
+        } else {
+            trackCalculationIfNeeded()
         }
     }
 
@@ -139,6 +146,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         additionalCarbsField.text = calculator.additionalCarbs > 0 ? "\(calculator.additionalCarbs)" : ""
         additionalCarbsField.addTarget(self, action: #selector(additionalCarbsChanged), for: .editingChanged)
         additionalCarbsField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
+        additionalCarbsField.addTarget(self, action: #selector(trackCalculationIfNeeded), for: .editingDidEnd)
 
         let unit = UILabel()
         unit.text = "g"
@@ -275,6 +283,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         carbRatioField.placeholder = "0"
         carbRatioField.addTarget(self, action: #selector(carbRatioChanged), for: .editingChanged)
         carbRatioField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
+        carbRatioField.addTarget(self, action: #selector(trackCalculationIfNeeded), for: .editingDidEnd)
 
         let ratioColumn = makeColumn(
             valueView: carbRatioField,
@@ -421,6 +430,21 @@ class KnowYourCarbsResultViewController: UIViewController {
         insulinUnitsLabel.text = carbRatio > 0
             ? insulinForFood.displayText(rounded: true, using: CalculatorConstantsManager.shared.roundingRule)
             : "— units"
+    }
+
+    /// Sent once the user has settled on a value (editing ended, or the screen
+    /// opened with a saved ratio), mirroring CalculatorA's insulin-for-food event.
+    @objc private func trackCalculationIfNeeded() {
+        let carbs = calculator.totalCarbs
+        let ratio = carbRatio
+        guard carbs > 0, ratio > 0 else { return }
+        if let last = lastTrackedCalculation, last.carbs == carbs, last.ratio == ratio { return }
+        lastTrackedCalculation = (carbs, ratio)
+
+        // Matches the Android event name and payload.
+        PendoManager.shared().track("KnowYourCarbs", properties: [
+            "InsulinForFood": insulinForFood.roundedUnits(using: CalculatorConstantsManager.shared.roundingRule)
+        ])
     }
 
     // MARK: - Actions
