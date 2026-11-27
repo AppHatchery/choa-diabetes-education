@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Lottie
+import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -17,6 +19,23 @@ class HomeViewController: UIViewController {
 	@IBOutlet var mealsButton: UIButton!
 	@IBOutlet var highSugarButton: UIButton!
     @IBOutlet var insulinButtons: [UIButton]!
+
+	@IBOutlet var halloweenMealsAndHighSugarButton: UIButton!
+	@IBOutlet var halloweenMealsButton: UIButton!
+	@IBOutlet var halloweenHighSugarButton: UIButton!
+
+    @IBOutlet weak var halloweenGetHelpView: UIView!
+    @IBOutlet weak var halloweenDiabetesBasicsResourceCard: UIView!
+    @IBOutlet weak var halloweenNutritionResourceCard: UIView!
+    @IBOutlet weak var halloweenDiabetesSelfManagementResourceCard: UIView!
+    @IBOutlet weak var halloweenKnowYourCarbsView: UIView!
+
+    // Falling leaves overlay drawn above the cards; it ignores touches so the cards stay tappable
+    private let fallingLeavesView = LottieAnimationView(name: "falling-leaves-longer")
+
+    // Stacks holding each theme's cards; only one theme's stacks are visible at a time
+    @IBOutlet var regularStacks: [UIStackView]!
+    @IBOutlet var halloweenStacks: [UIStackView]!
 
 	@IBOutlet var getHelpView: UIView!
     @IBOutlet weak var getHelpViewImage: UIImageView!
@@ -41,7 +60,7 @@ class HomeViewController: UIViewController {
     var chapterName = ""
     var chapterSubName = ""
     
-    let halloweenMessage = true
+    let halloweenMessage = false
 
 	var insulinForHighBloodSugar = false
 	var insulinForFood = false
@@ -49,8 +68,15 @@ class HomeViewController: UIViewController {
     
     private let constantsManager = CalculatorConstantsManager.shared
 
+    private var jackOLanternBarButtonItem: UIBarButtonItem?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupFallingLeavesView()
+        setupJackOLanternButton()
+        applyTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
         
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
@@ -89,6 +115,8 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
 
 		insulinCalculatorView.layer.cornerRadius = 12
+		// The aspect-fill background image would otherwise paint over the rounded corners
+		insulinCalculatorView.clipsToBounds = true
 		mealsAndHighSugarButton.applyCornerRadius(12)
 
 		mealsButton.applyCornerRadius(12)
@@ -98,7 +126,18 @@ class HomeViewController: UIViewController {
 		highSugarButton.applyCornerRadius(12)
 		highSugarButton.layer.borderWidth = 1
 		highSugarButton.layer.borderColor = UIColor.white.cgColor
-        
+
+		// Halloween insulin calculator buttons match the regular card's styling
+		halloweenMealsAndHighSugarButton.applyCornerRadius(12)
+
+		halloweenMealsButton.applyCornerRadius(12)
+		halloweenMealsButton.layer.borderWidth = 1
+		halloweenMealsButton.layer.borderColor = UIColor.white.cgColor
+
+		halloweenHighSugarButton.applyCornerRadius(12)
+		halloweenHighSugarButton.layer.borderWidth = 1
+		halloweenHighSugarButton.layer.borderColor = UIColor.white.cgColor
+
 		getHelpView.layer.cornerRadius = 12
         getHelpView.clipsToBounds = true
         getHelpViewImage.clipsToBounds = true
@@ -155,6 +194,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // A notification tapped while the app was closed opens its recheck screen instead of the reminder page
+        if NotificationHandler.shared.hasPendingTap {
+            NotificationHandler.shared.handlePendingTap(in: view.window?.windowScene)
+            return
+        }
+
         checkAndRestoreActiveReminder()
     }
     
@@ -170,7 +216,7 @@ class HomeViewController: UIViewController {
         
         for button in insulinButtons {
             
-            insulinButtonsConfig.background.cornerRadius = 8
+            insulinButtonsConfig.background.cornerRadius = UIButton.standardCornerRadius
             insulinButtonsConfig.background.strokeWidth = 1
             insulinButtonsConfig.background.strokeColor = .whiteColor
             
@@ -196,6 +242,78 @@ class HomeViewController: UIViewController {
 //        getHelpButton.configuration = getHelpButtonConfig
     }
 
+    // Show the Halloween or regular stacks based on the Remote Config theme
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        regularStacks.forEach { $0.isHidden = isHalloween }
+        halloweenStacks.forEach { $0.isHidden = !isHalloween }
+
+        navigationItem.rightBarButtonItem = isHalloween ? jackOLanternBarButtonItem : nil
+
+        fallingLeavesView.isHidden = !isHalloween
+        if isHalloween {
+            fallingLeavesView.play()
+        } else {
+            fallingLeavesView.stop()
+        }
+    }
+
+    /// Full-screen overlay above everything else, shown only for the Halloween theme
+    private func setupFallingLeavesView() {
+        fallingLeavesView.contentMode = .scaleAspectFill
+        fallingLeavesView.loopMode = .playOnce
+        fallingLeavesView.backgroundBehavior = .pauseAndRestore
+        fallingLeavesView.isUserInteractionEnabled = false
+        fallingLeavesView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(fallingLeavesView)
+
+        NSLayoutConstraint.activate([
+            fallingLeavesView.topAnchor.constraint(equalTo: view.topAnchor),
+            fallingLeavesView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            fallingLeavesView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            fallingLeavesView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    /// Jack-o'-lantern in the top right that replays the Halloween intro; only shown with the Halloween theme
+    private func setupJackOLanternButton() {
+        var config = UIButton.Configuration.plain()
+        // The artwork is 42 x 46 pt, too tall for the bar. A configured button draws its image at the image's
+        // own size, so the image is scaled down here instead of constraining the button: iOS 26 sizes bar
+        // items itself (at least 44 x 36 pt) and any fixed size on the button conflicts with that.
+        config.image = UIImage(named: "jackolantern")
+            .map { Self.scaledToFit($0, in: CGSize(width: 44, height: 46)) }?
+            .withRenderingMode(.alwaysOriginal)
+        config.contentInsets = .zero
+
+        let button = UIButton(configuration: config, primaryAction: UIAction { [weak self] _ in
+            self?.didTapJackOLantern()
+        })
+        button.accessibilityLabel = "Play Halloween intro"
+
+        let barButtonItem = UIBarButtonItem(customView: button)
+        if #available(iOS 26.0, *) {
+            // Just the pumpkin, without the Liquid Glass capsule iOS 26 puts behind bar items
+            barButtonItem.hidesSharedBackground = true
+        }
+        jackOLanternBarButtonItem = barButtonItem
+    }
+
+    /// Redraws the image at the largest size that fits `bounds` without changing its shape
+    private static func scaledToFit(_ image: UIImage, in bounds: CGSize) -> UIImage {
+        let scale = min(bounds.width / image.size.width, bounds.height / image.size.height, 1)
+        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+
+    private func didTapJackOLantern() {
+        guard let window = view.window else { return }
+        LaunchVideoView.playHalloweenLaunch(in: window, fadesIn: true)
+    }
+
     private func addTapRecognizersToResourceCards() {
         // Ensure the views can receive touches
         educationalResourcesLabel.isUserInteractionEnabled = true
@@ -216,6 +334,19 @@ class HomeViewController: UIViewController {
 
         let managementTap = UITapGestureRecognizer(target: self, action: #selector(didTapManagementCard))
         diabetesSelfManagementResourceCard.addGestureRecognizer(managementTap)
+
+        // Halloween cards route to the same handlers as their regular counterparts
+        let halloweenCards: [(UIView, Selector)] = [
+            (halloweenGetHelpView, #selector(didTapGetHelpView)),
+            (halloweenDiabetesBasicsResourceCard, #selector(didTapDiabetesBasicsCard)),
+            (halloweenNutritionResourceCard, #selector(didTapNutritionCard)),
+            (halloweenDiabetesSelfManagementResourceCard, #selector(didTapManagementCard)),
+            (halloweenKnowYourCarbsView, #selector(didTapKnowYourCarbsView))
+        ]
+        for (card, action) in halloweenCards {
+            card.isUserInteractionEnabled = true
+            card.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -249,10 +380,10 @@ class HomeViewController: UIViewController {
         chapterName = ContentChapter().sectionTitles[sender.tag]
         chapterSubName = ContentChapter().sectionSubtitles[sender.tag]
         
-        // Halloween Style
+        // Halloween Style, only on Halloween itself and only while the Remote Config theme is on
         var dateComponents: DateComponents
         dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date())
-        if dateComponents.month == 10 && dateComponents.day == 31 {
+        if RemoteConfigManager.shared.isHalloweenThemeEnabled && dateComponents.month == 10 && dateComponents.day == 31 {
             let scared = UIAlertAction(title: "I'm scared", style: .default) { _ in
                 self.performSegue(withIdentifier: "SegueToContentListViewController", sender: nil )
             }
@@ -414,7 +545,7 @@ class HomeViewController: UIViewController {
 		let manager = QuestionnaireManager.instance
 			//		let firstQues = manager.createYesOrNoQuestion(questionId: .severeDistress, question: "Calculator.Que.SevereDistress.title".localized(), description: "Calculator.Que.SevereDistress.description".localized(), showDescriptionAtBottom: false)
         
-        QuestionnaireManager.resetInstance()
+        manager.reset()
 
 		let firstQues = manager.createFourCustomOptionsQuestion(
 			questionId: FourOptionsQuestionId.childIssue,
@@ -447,6 +578,13 @@ extension HomeViewController {
         // Only check once per app launch to avoid repeated navigation
         guard !hasCheckedForReminder else { return }
         hasCheckedForReminder = true
+
+        // The reminder went off while the app was closed and the app was opened without tapping the notification:
+        // continue to its recheck as the notification would, rather than dropping where the protocol was up to
+        if let overdueState = ReminderPersistence.loadOverdueReminderState() {
+            resumeOverdueReminder(overdueState)
+            return
+        }
         
         // Check if there's a saved reminder state
         guard let reminderState = ReminderPersistence.loadReminderState() else {
@@ -469,6 +607,33 @@ extension HomeViewController {
         }
     }
     
+    /// Continues an overdue reminder the same way as tapping its notification: the low blood sugar recheck
+    /// (keeping the treatment count), the iLet recheck for the stage it was on, or the ketone recheck.
+    private func resumeOverdueReminder(_ state: ReminderPersistence.ReminderState) {
+        // The notification is now handled here, so tapping it later shouldn't run the recheck a second time
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [state.reminderId])
+
+        let session = state.session
+        QuestionnaireManager.instance.restoreSessionForRecheck(session)
+
+        let isLowBloodSugarRecheck = FinalQuestionId(id: state.questionId).isLowBloodSugarTreatment
+        let iLetReminder = !isLowBloodSugarRecheck && session.iLetPump
+            ? NotificationHandler.ILetReminder(
+                questionId: state.questionId,
+                iLetStage: session.iLetStage,
+                ketoneSeverity: session.ketoneSeverity
+            )
+            : nil
+
+        NotificationHandler.shared.handleNotificationTap(
+            identifier: state.reminderId,
+            isLowBloodSugarRecheck: isLowBloodSugarRecheck,
+            lowBloodSugarTreatments: isLowBloodSugarRecheck ? session.visitCounts.lowBloodSugarTreatments : nil,
+            iLetReminder: iLetReminder,
+            in: view.window?.windowScene
+        )
+    }
+
     // Add this property to HomeViewController to track if we've checked
     private static var hasCheckedForReminder = false
     private var hasCheckedForReminder: Bool {

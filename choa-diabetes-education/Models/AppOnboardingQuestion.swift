@@ -9,7 +9,7 @@ import Foundation
 
 enum AppOnboardingQuestionType: Equatable {
     case singleSelect([AppOnboardingOption])
-    case openEndedInput(placeholder: String)
+    case openEndedInput(placeholder: String, kind: AppOnboardingInputKind)
     case openEndedMultipleInput([AppOnboardingInputField])
 }
 
@@ -22,6 +22,17 @@ struct AppOnboardingOption: Equatable {
 struct AppOnboardingInputField: Equatable {
     let label: String
     let placeholder: String
+    let kind: AppOnboardingInputKind
+}
+
+/// What an open-ended field holds, which decides the keyboard and autofill it gets.
+enum AppOnboardingInputKind: Equatable {
+    /// A proper name, such as a hospital or school
+    case name
+    case county
+    case state
+    case postalCode
+    case age
 }
 
 enum AppOnboardingAnswer: Equatable, Codable {
@@ -131,15 +142,15 @@ enum AppOnboardingQuestion: String, CaseIterable, Codable {
             ])
         case .whereYouGetCare:
             return .openEndedMultipleInput([
-                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.hospitalLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.hospitalPlaceholder".localized()),
-                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.countyLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.countyPlaceholder".localized()),
-                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.stateLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.statePlaceholder".localized())
+                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.hospitalLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.hospitalPlaceholder".localized(), kind: .name),
+                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.countyLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.countyPlaceholder".localized(), kind: .county),
+                AppOnboardingInputField(label: "AppOnboarding.WhereYouGetCare.stateLabel".localized(), placeholder: "AppOnboarding.WhereYouGetCare.statePlaceholder".localized(), kind: .state)
             ])
         case .whichSchool:
             return .openEndedMultipleInput([
-                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.nameLabel".localized(), placeholder: "AppOnboarding.WhichSchool.namePlaceholder".localized()),
-                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.stateLabel".localized(), placeholder: "AppOnboarding.WhichSchool.statePlaceholder".localized()),
-                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.zipLabel".localized(), placeholder: "AppOnboarding.WhichSchool.zipPlaceholder".localized())
+                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.nameLabel".localized(), placeholder: "AppOnboarding.WhichSchool.namePlaceholder".localized(), kind: .name),
+                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.stateLabel".localized(), placeholder: "AppOnboarding.WhichSchool.statePlaceholder".localized(), kind: .state),
+                AppOnboardingInputField(label: "AppOnboarding.WhichSchool.zipLabel".localized(), placeholder: "AppOnboarding.WhichSchool.zipPlaceholder".localized(), kind: .postalCode)
             ])
         case .diabetesType:
             return .singleSelect([
@@ -148,7 +159,7 @@ enum AppOnboardingQuestion: String, CaseIterable, Codable {
                 AppOnboardingOption(id: 2, title: "AppOnboarding.DiabetesType.option3".localized(), imageName: nil)
             ])
         case .age:
-            return .openEndedInput(placeholder: "AppOnboarding.Age.placeholder".localized())
+            return .openEndedInput(placeholder: "AppOnboarding.Age.placeholder".localized(), kind: .age)
         case .diagnosisTime:
             return .singleSelect([
                 AppOnboardingOption(id: 0, title: "AppOnboarding.DiagnosisTime.option1".localized(), imageName: nil),

@@ -35,6 +35,8 @@ class AppOnboardingQuestionView: UIView {
 
     private var question: AppOnboardingQuestion = .userRole
     private var textFields: [UITextField] = []
+    /// What each of `textFields` holds, in the same order
+    private var textFieldKinds: [AppOnboardingInputKind] = []
     private var selectedOptionId: Int?
 
     // The storyboard's prototype rows, captured before they're cloned/removed so
@@ -47,6 +49,22 @@ class AppOnboardingQuestionView: UIView {
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         addGestureRecognizer(tapGesture)
+
+        pinNextButtonAboveKeyboard()
+    }
+
+    /// Swaps the storyboard's safe-area bottom constraint for the keyboard layout guide, which sits
+    /// at the safe area while the keyboard is hidden and rides on top of it while it's shown.
+    /// The scroll view is pinned to the button's top, so it shrinks to match and the fields stay reachable.
+    private func pinNextButtonAboveKeyboard() {
+        let safeAreaBottomConstraint = constraints.first {
+            $0.firstItem === safeAreaLayoutGuide && $0.firstAttribute == .bottom &&
+            $0.secondItem === nextButton && $0.secondAttribute == .bottom
+        }
+        let spacing = safeAreaBottomConstraint?.constant ?? 10
+        safeAreaBottomConstraint?.isActive = false
+
+        keyboardLayoutGuide.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: spacing).isActive = true
     }
 
     func configure(with question: AppOnboardingQuestion, answer: AppOnboardingAnswer?) {
@@ -63,6 +81,7 @@ class AppOnboardingQuestionView: UIView {
         clearStackView(selectStackView)
         clearStackView(openEndedStackView)
         textFields = []
+        textFieldKinds = []
         selectedOptionId = answer?.selectedOptionId
 
         switch question.type {
@@ -76,17 +95,18 @@ class AppOnboardingQuestionView: UIView {
                 selectStackView.addArrangedSubview(row)
             }
 
-        case .openEndedInput(let placeholder):
+        case .openEndedInput(let placeholder, let kind):
             selectStackView.isHidden = true
             openEndedStackView.isHidden = false
 
             guard let row = cloneTemplate(openEndedOptionTemplateData) else { break }
-            let textField = configureField(row, label: nil, placeholder: placeholder)
+            let textField = configureField(row, label: nil, placeholder: placeholder, kind: kind)
             if case .text(let value)? = answer {
                 textField.text = value
             }
             openEndedStackView.addArrangedSubview(row)
             textFields = [textField]
+            textFieldKinds = [kind]
 
         case .openEndedMultipleInput(let fields):
             selectStackView.isHidden = true
@@ -101,12 +121,18 @@ class AppOnboardingQuestionView: UIView {
 
             for (index, field) in fields.enumerated() {
                 guard let row = cloneTemplate(openEndedOptionTemplateData) else { continue }
-                let textField = configureField(row, label: field.label, placeholder: field.placeholder)
+                let textField = configureField(row, label: field.label, placeholder: field.placeholder, kind: field.kind)
                 if index < values.count {
                     textField.text = values[index]
                 }
                 textFields.append(textField)
+                textFieldKinds.append(field.kind)
                 openEndedStackView.addArrangedSubview(row)
+            }
+
+            // Return moves on to the next field, and the last one dismisses the keyboard
+            for (index, textField) in textFields.enumerated() {
+                textField.returnKeyType = index < textFields.count - 1 ? .next : .done
             }
         }
 
@@ -166,7 +192,7 @@ class AppOnboardingQuestionView: UIView {
     }
 
     @discardableResult
-    private func configureField(_ row: UIView, label: String?, placeholder: String) -> UITextField {
+    private func configureField(_ row: UIView, label: String?, placeholder: String, kind: AppOnboardingInputKind) -> UITextField {
         if let labelView = row.firstSubview(ofType: UILabel.self) {
             labelView.text = label
             labelView.isHidden = label == nil
@@ -174,6 +200,7 @@ class AppOnboardingQuestionView: UIView {
 
         let textField = row.firstSubview(ofType: UITextField.self) ?? UITextField()
         textField.placeholder = placeholder
+        applyKeyboard(for: kind, to: textField)
         textField.delegate = self
         textField.removeTarget(nil, action: nil, for: .editingChanged)
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -188,6 +215,36 @@ class AppOnboardingQuestionView: UIView {
         }
 
         return textField
+    }
+
+    /// Cloned rows keep whatever traits the previous question gave them, so every trait is set here
+    private func applyKeyboard(for kind: AppOnboardingInputKind, to textField: UITextField) {
+        textField.returnKeyType = .done
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
+
+        switch kind {
+        case .name:
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .words
+            textField.textContentType = .organizationName
+        case .county:
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .words
+            textField.textContentType = nil
+        case .state:
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .words
+            textField.textContentType = .addressState
+        case .postalCode:
+            textField.keyboardType = .numberPad
+            textField.autocapitalizationType = .none
+            textField.textContentType = .postalCode
+        case .age:
+            textField.keyboardType = .numberPad
+            textField.autocapitalizationType = .none
+            textField.textContentType = nil
+        }
     }
 
     // MARK: - Selection & input handling
@@ -226,14 +283,32 @@ class AppOnboardingQuestionView: UIView {
         switch question.type {
         case .singleSelect:
             isValid = selectedOptionId != nil
-        case .openEndedInput:
-            isValid = !(textFields.first?.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty
-        case .openEndedMultipleInput:
-            isValid = textFields.allSatisfy { !($0.text ?? "").trimmingCharacters(in: .whitespaces).isEmpty }
+        case .openEndedInput, .openEndedMultipleInput:
+            isValid = zip(textFields, textFieldKinds).allSatisfy { isValidEntry($0.text ?? "", for: $1) }
         }
 
         nextButton.isEnabled = isValid
         nextButton.alpha = isValid ? 1.0 : 0.5
+    }
+
+    /// Every field must be filled in. Age must also be a whole number, since the hypoglycemia threshold is read from it.
+    private func isValidEntry(_ text: String, for kind: AppOnboardingInputKind) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty else { return false }
+
+        if kind == .age {
+            return Int(trimmed) != nil
+        }
+        return true
+    }
+
+    /// Age and ZIP code fields only take digits. The number pad can't type anything else, but pasted text can.
+    private static func maxDigits(for kind: AppOnboardingInputKind) -> Int? {
+        switch kind {
+        case .age: return 3
+        case .postalCode: return 5
+        case .name, .county, .state: return nil
+        }
     }
 
     @objc private func dismissKeyboard() {
@@ -247,8 +322,23 @@ class AppOnboardingQuestionView: UIView {
 }
 
 extension AppOnboardingQuestionView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let index = textFields.firstIndex(of: textField),
+              let maxDigits = Self.maxDigits(for: textFieldKinds[index]) else { return true }
+
+        let currentText = textField.text ?? ""
+        guard let textRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: textRange, with: string)
+
+        return updatedText.count <= maxDigits && updatedText.allSatisfy { $0.isASCII && $0.isNumber }
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if let index = textFields.firstIndex(of: textField), index < textFields.count - 1 {
+            textFields[index + 1].becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
 }

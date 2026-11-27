@@ -13,20 +13,64 @@ class NotificationHandler {
     static let shared = NotificationHandler()
     
     private init() {}
+
+    /// The iLet reminder page a 90-minute reminder was set from, and the iLet stage and ketone result at the time.
+    /// The stage is missing for reminders scheduled before it was recorded.
+    struct ILetReminder {
+        let questionId: Int
+        let iLetStage: ILetStage?
+        let ketoneSeverity: KetoneSeverity?
+    }
+
+    private struct Tap {
+        let identifier: String
+        let isLowBloodSugarRecheck: Bool
+        let lowBloodSugarTreatments: Int?
+        let iLetReminder: ILetReminder?
+    }
+
+    /// A tap that arrived before Home was on screen, as when the notification launches a closed app
+    private var pendingTap: Tap?
     
-    func handleNotificationTap(identifier: String) {
+    /// - Parameters:
+    ///   - isLowBloodSugarRecheck: Whether the notification was the 15-minute low blood sugar recheck
+    ///   - lowBloodSugarTreatments: Treatments given when the recheck was scheduled
+    ///   - iLetReminder: Set when the notification was the iLet 90-minute reminder
+    ///   - scene: The scene to open the reminder page in; when it isn't connected yet the tap waits for Home
+    func handleNotificationTap(identifier: String, isLowBloodSugarRecheck: Bool, lowBloodSugarTreatments: Int? = nil, iLetReminder: ILetReminder? = nil, in scene: UIWindowScene?) {
+        let tap = Tap(identifier: identifier, isLowBloodSugarRecheck: isLowBloodSugarRecheck, lowBloodSugarTreatments: lowBloodSugarTreatments, iLetReminder: iLetReminder)
         DispatchQueue.main.async {
-            self.navigateToReminderPage()
+            self.navigateToReminderPage(for: tap, in: scene)
         }
     }
-    
-    private func navigateToReminderPage() {
+
+    /// Called once Home appears, to finish a tap that came in while the app was still launching
+    func handlePendingTap(in scene: UIWindowScene?) {
+        guard let tap = pendingTap else { return }
+        pendingTap = nil
+        navigateToReminderPage(for: tap, in: scene)
+    }
+
+    /// Set when a notification tap launched the app. iOS can deliver the tap after Home has already appeared,
+    /// so until it arrives Home mustn't resume the overdue reminder itself, or the recheck opens twice.
+    var isAwaitingLaunchTap = false
+
+    /// Whether a tap is waiting for Home (or still on its way), so Home doesn't also reopen the reminder page
+    var hasPendingTap: Bool {
+        pendingTap != nil || isAwaitingLaunchTap
+    }
+
+    private func navigateToReminderPage(for tap: Tap, in scene: UIWindowScene?) {
+        isAwaitingLaunchTap = false
+
         print("🧭 Starting navigation to reminder page")
         
         // Get the key window
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first(where: { $0.isKeyWindow }) ?? windowScene.windows.first,
+        guard let windowScene = scene,
+              let window = windowScene.keyWindow ?? windowScene.windows.first,
               let rootViewController = window.rootViewController else {
+            print("⏳ No window yet, handling the tap once Home appears")
+            pendingTap = tap
             return
         }
                 
@@ -39,11 +83,46 @@ class NotificationHandler {
             navigationController = navController
         }
         
-        guard let navController = navigationController else {
-            print("❌ Could not find navigation controller")
+        // Home is the root of the navigation stack. Before it's there (still launching, or still onboarding), wait for it.
+        guard let navController = navigationController, navController.viewControllers.first is HomeViewController else {
+            print("⏳ Home isn't showing yet, handling the tap once it appears")
+            pendingTap = tap
             return
         }
                 
+        // Low blood sugar reminders recheck for vomiting, loss of consciousness and the reading, rather than ketones.
+        // The notification says which kind it is, since the treatment screen is gone if the app was relaunched.
+        // Reminders scheduled before notifications carried that fall back to looking for the treatment screen.
+        let isLowBloodSugarReminder = tap.isLowBloodSugarRecheck || navController.viewControllers.contains { controller in
+            guard let questionId = (controller as? GetHelpViewController)?.questionObj.questionId else { return false }
+            return FinalQuestionId(id: questionId).isLowBloodSugarTreatment
+        }
+
+        // Exiting Get Help after setting the reminder (e.g. to look around the app) clears the live session,
+        // so go back to the copy saved with the reminder: the answers and the low blood sugar dose it was set with
+        if let savedState = ReminderPersistence.loadReminderState(id: tap.identifier) {
+            QuestionnaireManager.instance.restoreSessionForRecheck(savedState.session)
+        }
+
+        // The screens about to be popped hold the visit history the recheck routing depends on
+        QuestionnaireManager.instance.carryVisitCountsPastStack()
+
+        // The notification also carries the treatment count, so a relaunch can't start the count over
+        // and keep treating instead of escalating
+        if isLowBloodSugarReminder, let treatments = tap.lowBloodSugarTreatments {
+            QuestionnaireManager.instance.carryLowBloodSugarTreatments(atLeast: treatments)
+        }
+        // The notification also carries the iLet stage, so the recheck continues from the right steps
+        // even if the saved session didn't survive the app being closed
+        if !isLowBloodSugarReminder, let iLetReminder = tap.iLetReminder, let stage = iLetReminder.iLetStage {
+            QuestionnaireManager.instance.restoreILetSnapshot(
+                ILetSnapshot(stage: stage, ketoneSeverity: iLetReminder.ketoneSeverity)
+            )
+        }
+
+        // The reminder has gone off, so Home shouldn't reopen its page
+        ReminderPersistence.clearReminderState()
+        
         // Pop to root
         navController.popToRootViewController(animated: false)
         
@@ -53,14 +132,22 @@ class NotificationHandler {
             guard navController.viewControllers.first is HomeViewController else {
                 return
             }
-            
+
+            // iLet picks the next step from the stage the reminder page was on (after disconnecting the pump it
+            // checks blood sugar before ketones), so it goes through the same routing as tapping Start Test there.
+            if !isLowBloodSugarReminder, let iLetReminder = tap.iLetReminder {
+                self.continueFromILetReminderPage(questionId: iLetReminder.questionId, on: navController)
+                return
+            }
             
             // Create the reminder question
             let manager = QuestionnaireManager.instance
-            let reminderQuestion = manager.createRecheckKetoneStage(
-                questionId: FinalQuestionId.recheckKetoneLevel.id,
-                title: "GetHelp.Que.CheckChildsKetoneLevel.title".localized()
-            )
+            let reminderQuestion = isLowBloodSugarReminder
+                ? manager.createLowBloodSugarRecheckQuestion()
+                : manager.createRecheckKetoneStage(
+                    questionId: FinalQuestionId.recheckKetoneLevel.id,
+                    title: "GetHelp.Que.CheckChildsKetoneLevel.title".localized()
+                )
                         
             // Create GetHelpViewController using the storyboard instantiation method
             let storyboard = UIStoryboard(name: "GetHelp", bundle: nil)
@@ -80,5 +167,31 @@ class NotificationHandler {
             print("✅ Created GetHelpViewController, pushing...")
             navController.pushViewController(getHelpVC, animated: true)
         }
+    }
+
+    /// Puts the iLet reminder page back on the stack and continues from it as if its countdown had
+    /// finished and Start Test was tapped, so backing out returns to it just like the Skip path.
+    private func continueFromILetReminderPage(questionId: Int, on navController: UINavigationController) {
+        let manager = QuestionnaireManager.instance
+        let reminderQuestion = manager.createFinalStageWithReminder(
+            questionId: questionId,
+            title: "You can manage this at home by following these steps:"
+        )
+        manager.prepareToReshowReminderPage(reminderQuestion)
+        // Set now rather than when the page appears: it's covered by the recheck before it ever shows
+        reminderQuestion.iLetSnapshot = manager.iLetSnapshot
+
+        let reminderVC = UIStoryboard(name: "GetHelp", bundle: nil).instantiateViewController(
+            identifier: String(describing: GetHelpViewController.self),
+            creator: { coder in
+                GetHelpViewController(navVC: navController, currentQuestion: reminderQuestion, coder: coder)
+            }
+        )
+        navController.pushViewController(reminderVC, animated: false)
+
+        // What the reminder page does when Start Test is tapped after the countdown
+        manager.saveYesOver2hours(true)
+        manager.actionsDelegate = reminderVC
+        reminderVC.didSelectYesOverAction(reminderQuestion)
     }
 }

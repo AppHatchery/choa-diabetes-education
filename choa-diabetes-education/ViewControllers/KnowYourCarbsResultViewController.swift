@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Pendo
 
 class KnowYourCarbsResultViewController: UIViewController {
 
@@ -27,6 +28,10 @@ class KnowYourCarbsResultViewController: UIViewController {
 
     private var showBreakdown = true
 
+    /// The carbs and ratio last sent to analytics, so a dose is tracked once
+    /// rather than on every keystroke or each time the screen reappears.
+    private var lastTrackedCalculation: (carbs: Int, ratio: Int)?
+
     private var cardBottomConstraint: NSLayoutConstraint!
     private weak var activeField: UITextField?
 
@@ -37,10 +42,9 @@ class KnowYourCarbsResultViewController: UIViewController {
         Int(carbRatioField.text ?? "") ?? 0
     }
 
-    private var insulinUnits: Double {
-        guard carbRatio > 0 else { return 0 }
-        let raw = Double(calculator.totalCarbs) / Double(carbRatio)
-        return (raw * 2).rounded(.down) / 2
+    /// Food is the only step here, so it's the final dose and is rounded with the saved rounding rule
+    private var insulinForFood: InsulinDose {
+        .food(totalCarbs: calculator.totalCarbs, carbRatio: carbRatio)
     }
 
     override func viewDidLoad() {
@@ -72,6 +76,8 @@ class KnowYourCarbsResultViewController: UIViewController {
         // derived from a guess.
         if (carbRatioField.text ?? "").isEmpty {
             carbRatioField.becomeFirstResponder()
+        } else {
+            trackCalculationIfNeeded()
         }
     }
 
@@ -140,6 +146,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         additionalCarbsField.text = calculator.additionalCarbs > 0 ? "\(calculator.additionalCarbs)" : ""
         additionalCarbsField.addTarget(self, action: #selector(additionalCarbsChanged), for: .editingChanged)
         additionalCarbsField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
+        additionalCarbsField.addTarget(self, action: #selector(trackCalculationIfNeeded), for: .editingDidEnd)
 
         let unit = UILabel()
         unit.text = "g"
@@ -276,6 +283,7 @@ class KnowYourCarbsResultViewController: UIViewController {
         carbRatioField.placeholder = "0"
         carbRatioField.addTarget(self, action: #selector(carbRatioChanged), for: .editingChanged)
         carbRatioField.addTarget(self, action: #selector(fieldBeganEditing), for: .editingDidBegin)
+        carbRatioField.addTarget(self, action: #selector(trackCalculationIfNeeded), for: .editingDidEnd)
 
         let ratioColumn = makeColumn(
             valueView: carbRatioField,
@@ -417,9 +425,26 @@ class KnowYourCarbsResultViewController: UIViewController {
 
     private func refreshValues() {
         totalCarbsLabel.text = "\(calculator.totalCarbs)"
-        // `insulinUnits` already guards against a zero ratio, but "0 units"
+        // `InsulinDose.food` already guards against a zero ratio, but "0 units"
         // reads as a real answer — show a dash until there is a ratio to divide by.
-        insulinUnitsLabel.text = carbRatio > 0 ? "\(insulinUnits.cleanCarbString) units" : "— units"
+        insulinUnitsLabel.text = carbRatio > 0
+            ? insulinForFood.displayText(rounded: true, using: CalculatorConstantsManager.shared.roundingRule)
+            : "— units"
+    }
+
+    /// Sent once the user has settled on a value (editing ended, or the screen
+    /// opened with a saved ratio), mirroring CalculatorA's insulin-for-food event.
+    @objc private func trackCalculationIfNeeded() {
+        let carbs = calculator.totalCarbs
+        let ratio = carbRatio
+        guard carbs > 0, ratio > 0 else { return }
+        if let last = lastTrackedCalculation, last.carbs == carbs, last.ratio == ratio { return }
+        lastTrackedCalculation = (carbs, ratio)
+
+        // Matches the Android event name and payload.
+        PendoManager.shared().track("KnowYourCarbs", properties: [
+            "InsulinForFood": insulinForFood.roundedUnits(using: CalculatorConstantsManager.shared.roundingRule)
+        ])
     }
 
     // MARK: - Actions
@@ -559,12 +584,6 @@ private enum CarbsInfoTopic {
         case .carbRatio: return "PopupInfo.CarbRatio.text".localized()
         case .insulinForFood: return "PopupInfo.InsulinForFood.text".localized()
         }
-    }
-}
-
-private extension Double {
-    var cleanCarbString: String {
-        truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.1f", self)
     }
 }
 

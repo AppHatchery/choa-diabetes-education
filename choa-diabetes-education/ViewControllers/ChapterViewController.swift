@@ -252,7 +252,7 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
             nextButton = UIButton()
             nextButton.frame = CGRect(x: self.view.frame.width/2-70, y: chapterContentHeight-90, width: 140, height: 48)
             nextButton.backgroundColor = UIColor.choaGreenColor
-            nextButton.layer.cornerRadius = nextButton.frame.height/2
+            nextButton.applyStandardCornerRadius()
             nextButton.setTitle("Done", for: .normal)
             nextButton.setTitleColor(UIColor.white, for: .normal)
             nextButton.addTarget(self, action: #selector(goForward), for: .touchDown)
@@ -300,13 +300,12 @@ class ChapterViewController: UIViewController, WKUIDelegate, WKNavigationDelegat
     }
     
     @IBAction func openSearch(_ sender: UIButton){
-        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
-        let sceneDelegate = windowScene.delegate as! SceneDelegate
-        
-        if let window = sceneDelegate.window
+        if let window = view.window
         {
             if searchView == nil {
                 searchView = SearchView( frame: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 180), delegate: self, searchPage: contentURL)
+                // Follow the window when it changes size, as when an iPhone Duo is unfolded
+                searchView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
                 
                 window.addSubview( searchView )
                 

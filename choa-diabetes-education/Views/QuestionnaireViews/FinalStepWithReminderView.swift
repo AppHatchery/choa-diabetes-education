@@ -33,6 +33,8 @@ class FinalStepWithReminderView: UIView {
 	@IBOutlet var hopeImage: UIImageView!
 
 	@IBOutlet var hydrationInfoStackView: UIStackView!
+	@IBOutlet var hydrationTitleLabel: UILabel!
+	@IBOutlet var over2HoursStackView: UIStackView!
 	@IBOutlet var rearrangeableStackView: UIStackView!
 
 	@IBOutlet var reminderContainerView: UIView!
@@ -66,6 +68,13 @@ class FinalStepWithReminderView: UIView {
 	private var countdownFinished: Bool = false
     
     private var isObservingNotifications = false
+
+	/// The low blood sugar flow reuses this page to treat with 15g or 8g of carbs and recheck in 15 minutes
+	private var lowBloodSugarStage: FinalQuestionId? {
+		guard let questionId = currentQuestion?.questionId else { return nil }
+		let stage = FinalQuestionId(id: questionId)
+		return stage.isLowBloodSugarTreatment ? stage : nil
+	}
 
 	override func didMoveToWindow() {
 		super.didMoveToWindow()
@@ -137,14 +146,18 @@ class FinalStepWithReminderView: UIView {
         self.currentQuestion = currentQuestion
         setupCommonUI(currentQuestion: currentQuestion)
 
-        switch questionnaireManager.currentTestType {
-        case .insulinShots:
-            setupForInsulinShots()
-        case .pump:
-            if questionnaireManager.iLetPump {
-                setupForPumpWithIlet()
-            } else {
-                setupForPump()
+        if let lowBloodSugarStage {
+            setupForLowBloodSugar(stage: lowBloodSugarStage)
+        } else {
+            switch questionnaireManager.currentTestType {
+            case .insulinShots:
+                setupForInsulinShots()
+            case .pump:
+                if questionnaireManager.iLetPump {
+                    setupForPumpWithIlet()
+                } else {
+                    setupForPump()
+                }
             }
         }
 
@@ -190,9 +203,16 @@ class FinalStepWithReminderView: UIView {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .natural
 
-        titleLabel.text = questionnaireManager.currentTestType == .insulinShots
-            ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
-            : currentQuestion.finalStep?.title
+        if let lowBloodSugarStage {
+            // Taken from the stage so the title survives restoring a reminder after an app restart
+            titleLabel.text = lowBloodSugarStage == .treatLowBloodSugar8g
+                ? "Final.TreatLowBloodSugar8g.title".localized()
+                : "Final.TreatLowBloodSugar15g.title".localized()
+        } else {
+            titleLabel.text = questionnaireManager.currentTestType == .insulinShots
+                ? "Calculator.Final.ContinueRegularCare.title".localized().capitalizedFirstLetter
+                : currentQuestion.finalStep?.title
+        }
 
         reminderView.layer.cornerRadius = 12
         reminderButton.layer.cornerRadius = 12
@@ -206,6 +226,9 @@ class FinalStepWithReminderView: UIView {
             ? "Yes, Over 90 mins"
             : "Yes, Over 2hrs"
         yesOver2hoursButton.setTitleWithStyle(yesOverText, font: .nunitoBold20)
+        // Wraps rather than truncating on narrow screens or with larger text sizes
+        yesOver2hoursButton.titleLabel?.numberOfLines = 0
+        yesOver2hoursButton.titleLabel?.lineBreakMode = .byWordWrapping
 
         giveRecommendedDoseLabel.setText(
             "Final.GiveRecommendedDose.text".localized(),
@@ -218,6 +241,47 @@ class FinalStepWithReminderView: UIView {
         )
         
         doneButton.isHidden = true
+    }
+
+    // MARK: - Low Blood Sugar
+    private func setupForLowBloodSugar(stage: FinalQuestionId) {
+        confirmChangeDisconnectStackView.isHidden = true
+        giveRecommendedDoseStackView.isHidden = true
+        over2HoursStackView.isHidden = true
+
+        hopeImage.image = UIImage(named: "will_drugs")
+        hopeImage.isHidden = false
+
+        let isSmallerTreatment = stage == .treatLowBloodSugar8g
+        hydrationTitleLabel.text = isSmallerTreatment
+            ? "Final.TreatLowBloodSugar8g.carbs.title".localized()
+            : "Final.TreatLowBloodSugar15g.carbs.title".localized()
+        // The last treatment before a still-low recheck escalates says what to do next instead of listing carb examples.
+        // The count doesn't include this page yet: it's recounted once the page appears.
+        let treatmentNumber = questionnaireManager.getLowBloodSugarTreatmentCount() + 1
+        let isLastTreatment = treatmentNumber >= QuestionnaireManager.maxLowBloodSugarTreatments
+        let carbsTextKey = switch (isSmallerTreatment, isLastTreatment) {
+        case (true, true): "Final.TreatLowBloodSugar8g.lastTreatment"
+        case (false, true): "Final.TreatLowBloodSugar15g.lastTreatment"
+        case (true, false): "Final.TreatLowBloodSugar8g.carbs.examples"
+        case (false, false): "Final.TreatLowBloodSugar15g.carbs.examples"
+        }
+        
+        hydrationExampleInfoTextView.setText(carbsTextKey.localized(), boldPhrases: [])
+
+        reminderNextCheckLabel.text = "Final.ReminderNextCheckLowBloodSugar.text".localized()
+        setNextCheckDescription()
+    }
+
+    /// The "you'll need to check…" text under the next check title, for whichever flow this page is in
+    private func setNextCheckDescription() {
+        if lowBloodSugarStage != nil {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionLowBloodSugar.text".localized(), boldPhrases: ["blood sugar", "15 mins"])
+        } else if questionnaireManager.iLetPump {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
+        } else {
+            reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
+        }
     }
 
     // MARK: - Insulin Shots
@@ -260,67 +324,13 @@ class FinalStepWithReminderView: UIView {
 
     // MARK: - Pump + iLet
     private func setupForPumpWithIlet() {
-        let visitCount = questionnaireManager.getReminderPageVisitCount()
-        let skippedFirst = questionnaireManager.skipFirstReminder
-        
-        print("🏥 Setting up iLet pump view")
-        print("   - Visit count: \(visitCount)")
-        print("   - Skipped first reminder: \(skippedFirst)")
-        print("   - Blood ketones: \(String(describing: questionnaireManager.bloodKetones))")
-        print("   - Urine ketones: \(String(describing: questionnaireManager.urineKetones))")
+        print("🏥 Setting up iLet pump view for stage: \(questionnaireManager.iLetStage)")
         
         confirmChangeDisconnectImage.image = UIImage(named: "ilet_pump")
         
-        // Ketone level checks
-        let hasModerateUrineKetones = questionnaireManager.urineKetones == .zeroPointFive ||
-        questionnaireManager.urineKetones == .onePointFive ||
-        questionnaireManager.urineKetones == .four
-        
-        let hasHighUrineKetones = questionnaireManager.urineKetones == .eight ||
-        questionnaireManager.urineKetones == .sixteen
-        
-        let hasModerateBloodKetones = questionnaireManager.bloodKetones == .moderate
-        let hasHighBloodKetones = questionnaireManager.bloodKetones == .large
-        
-        let hasAnyElevatedKetones = hasModerateUrineKetones || hasHighUrineKetones ||
-                                    hasModerateBloodKetones || hasHighBloodKetones
-        
-        // Decision tree for what action to show
-        var shouldDisconnect = false
-        var shouldChangeSite = false
-        
-        // CRITICAL: Check more specific conditions FIRST (higher visit counts before lower)
-        
-        if !skippedFirst && visitCount >= 2 && hasAnyElevatedKetones {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 1: DISCONNECT (didn't skip + visit ≥2 + elevated ketones)")
-        } else if skippedFirst && (hasHighUrineKetones || hasHighBloodKetones) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 2: DISCONNECT (skipped first + high ketones)")
-        } else if skippedFirst && visitCount >= 1 && (
-            hasModerateUrineKetones || hasModerateBloodKetones
-        ) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-        } else if skippedFirst && (hasModerateUrineKetones || hasModerateBloodKetones) {
-            shouldDisconnect = false
-            shouldChangeSite = true
-            print("   → Path 3: CHANGE SITE (skipped first + moderate ketones)")
-        } else if !skippedFirst && visitCount >= 1 && (hasHighUrineKetones || hasHighBloodKetones) {
-            shouldDisconnect = true
-            shouldChangeSite = false
-            print("   → Path 4: DISCONNECT (visit ≥1 + high ketones)")
-        } else if !skippedFirst && visitCount >= 1 && (hasModerateUrineKetones || hasModerateBloodKetones) {
-            shouldDisconnect = false
-            shouldChangeSite = true
-            print("   → Path 5: CHANGE SITE (visit ≥1 + moderate ketones)")
-        } else {
-            shouldDisconnect = false
-            shouldChangeSite = false
-            print("   → Path 6: CONFIRM SECURE (default/negative ketones)")
-        }
+        // The manager picks the stage from the ketone result and blood sugar before showing this page
+        let shouldDisconnect = questionnaireManager.iLetStage == .disconnect
+        let shouldChangeSite = questionnaireManager.iLetStage == .changeSite
         
         // Apply the decision
         if shouldDisconnect {
@@ -343,12 +353,16 @@ class FinalStepWithReminderView: UIView {
             giveRecommendedDoseStackView.isHidden = true
             print("   ✅ Action: CHANGE PUMP SITE")
         } else {
-            // Default: confirm pump is secure (low/negative ketones)
+            // Default: confirm pump is secure and give the correction dose through it (low/negative ketones)
             confirmChangeDisconnectLabel.setText(
                 "Final.ConfirmPumpIsSecure.text".localized(),
                 boldPhrases: ["pump site is securely connected"]
             )
-            giveRecommendedDoseStackView.isHidden = true
+            giveRecommendedDoseStackView.isHidden = false
+            giveRecommendedDoseLabel.setText(
+                "Final.GiveRecommendedDose.text".localized(),
+                boldPhrases: ["correction dose through", "pump site"]
+            )
             print("   ✅ Action: CONFIRM PUMP SECURE")
         }
         
@@ -365,15 +379,6 @@ class FinalStepWithReminderView: UIView {
         hopeImage.isHidden = true
     }
     
-    func refreshUIForVisitCount() {
-        guard questionnaireManager.iLetPump else { return }
-        
-        let visitCount = questionnaireManager.getReminderPageVisitCount()
-        print("🔄 Refreshing UI for visit count: \(visitCount)")
-        
-        setupForPumpWithIlet()
-    }
-
 	func flipHydrationAndReminder() {
 		rearrangeableStackView.removeArrangedSubview(hydrationInfoStackView)
 		rearrangeableStackView.removeArrangedSubview(reminderContainerView)
@@ -402,15 +407,8 @@ class FinalStepWithReminderView: UIView {
 			reminderNextCheckDescriptionLabel.textColor = .black
 			reminderNextCheckDescriptionLabel.font = .nunitoBold20
 		} else {
-			if questionnaireManager.iLetPump {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-
-				reminderNextCheckDescriptionLabel.textColor = .black
-			} else {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-
-				reminderNextCheckDescriptionLabel.textColor = .black
-			}
+			setNextCheckDescription()
+			reminderNextCheckDescriptionLabel.textColor = .black
 		}
 	}
 
@@ -574,11 +572,10 @@ class FinalStepWithReminderView: UIView {
 	@IBAction func remindMeButtonTapped(_ sender: UIButton) {
 			// If reminder already exists, cancel it
 		if let existingId = currentReminderId {
-            if questionnaireManager.iLetPump {
+            // Skipping moves on to the recheck, the same as "Yes, over 90 mins"
+            if lowBloodSugarStage == nil && questionnaireManager.iLetPump {
                 questionnaireManager.saveYesOver2hours(true)
             }
-            
-            questionnaireManager.skipFirstReminder(true)
             
             // Pendo: Track when user skips an existing reminder before it elapses
             PendoManager.shared().track(
@@ -613,29 +610,45 @@ class FinalStepWithReminderView: UIView {
 			countdownFinished = false
 
 			reminderView.backgroundColor = .veryLightBlue
-			reminderNextCheckLabel.text = "Final.ReminderNextCheck.text".localized()
+			reminderNextCheckLabel.text = lowBloodSugarStage != nil
+				? "Final.ReminderNextCheckLowBloodSugar.text".localized()
+				: "Final.ReminderNextCheck.text".localized()
 			reminderNextCheckLabel.isHidden = false
 
 			reminderNextCheckDescriptionLabel.font = .systemFont(ofSize: 14)
 			reminderNextCheckDescriptionLabel.textColor = .black
 
-			if questionnaireManager.iLetPump {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescriptionForIlet.text".localized(), boldPhrases: ["blood sugar", "ketones", "90 mins"])
-			} else {
-				reminderNextCheckDescriptionLabel.setText("Final.ReminderNextCheckDescription.text".localized(), boldPhrases: ["blood sugar", "ketones", "2 hours"])
-			}
+			setNextCheckDescription()
 
-			questionnaireManager.saveYesOver2hours(true)
+			if lowBloodSugarStage == nil {
+				questionnaireManager.saveYesOver2hours(true)
+			}
 			delegate?.didSelectYesOverAction(
 				currentQuestion)
             
             ReminderPersistence.clearReminderState()
 		} else {
-            let duration: TimeInterval = questionnaireManager.iLetPump ? oneHour30Duration : twoHourDuration
+            let duration: TimeInterval
+            let newReminderId: String
+
+            if lowBloodSugarStage != nil {
+                duration = fifteenMinuteDuration
+                newReminderId = ReminderManager.shared.schedule15MinuteReminder(
+                    lowBloodSugarTreatments: questionnaireManager.getLowBloodSugarTreatmentCount()
+                )
+            } else if questionnaireManager.iLetPump {
+                duration = oneHour30Duration
+                newReminderId = ReminderManager.shared.schedule90MinuteReminder(
+                    questionId: currentQuestion.questionId,
+                    iLetStage: questionnaireManager.iLetStage,
+                    ketoneSeverity: questionnaireManager.ketoneSeverity
+                )
+            } else {
+                duration = twoHourDuration
+                newReminderId = ReminderManager.shared.scheduleTwoHourReminder()
+            }
 
 			let scheduledTime = Date().addingTimeInterval(duration)
-
-            let newReminderId = questionnaireManager.iLetPump ? ReminderManager.shared.schedule90MinuteReminder() : ReminderManager.shared.scheduleTwoHourReminder()
 
 			currentReminderId = newReminderId
 

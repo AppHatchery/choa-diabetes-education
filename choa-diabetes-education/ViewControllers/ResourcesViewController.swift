@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ResourcesViewController: UIViewController {
     @IBOutlet weak var diabetesBasicsView: UIView!
@@ -18,7 +19,27 @@ class ResourcesViewController: UIViewController {
     @IBOutlet weak var snackRecipesView: UIView!
     @IBOutlet weak var raisesBloodSugarView: UIView!
     @IBOutlet weak var doesntRaiseBloodSugarView: UIView!
+
+    @IBOutlet weak var halloweenDiabetesBasicsView: UIView!
+    @IBOutlet weak var halloweenNutritionAndCarbCountingView: UIView!
+    @IBOutlet weak var halloweenDiabetesSelfManagementView: UIView!
+
+    @IBOutlet weak var halloweenLowCarbSnacksView: UIView!
+    @IBOutlet weak var halloweenSnackRecipesView: UIView!
+    @IBOutlet weak var halloweenRaisesBloodSugarView: UIView!
+    @IBOutlet weak var halloweenDoesntRaiseBloodSugarView: UIView!
+
+    // Stacks holding each theme's cards; only one theme's stacks are visible at a time
+    @IBOutlet var regularStacks: [UIStackView]!
+    @IBOutlet var halloweenStacks: [UIStackView]!
     
+    @IBOutlet weak var communitiesStackView: UIStackView!
+    @IBOutlet var communities: [UIView]!
+    
+
+    // Halloween overlay that stays put while the cards scroll; it ignores touches so the cards stay tappable
+    private let batFlyby = LottieAnimationView(name: "bats-flyby")
+
         
     var chapterContent = 0
     var quizContent = 0
@@ -27,7 +48,16 @@ class ResourcesViewController: UIViewController {
     
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        
+
+        // A resource page may have tinted the bar to match its header, so put back the white bar on return
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .whiteColor
+        appearance.shadowColor = .clear
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -39,7 +69,11 @@ class ResourcesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        setupBatFlyby()
+        applyTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(applyTheme), name: .halloweenThemeDidChange, object: nil)
+
         diabetesBasicsView.layer.cornerRadius = 24
         nutritionAndCarbCountingView.layer.cornerRadius = 24
         diabetesSelfManagementView.layer.cornerRadius = 24
@@ -48,9 +82,50 @@ class ResourcesViewController: UIViewController {
             $0.layer.cornerRadius = 12
         }
         
+        communities.forEach {
+            $0.layer.cornerRadius = 12
+        }
+        
         addTapRecognizersToResourceCards()
     }
-    
+
+    // Show the Halloween or regular stacks based on the Remote Config theme
+    @objc private func applyTheme() {
+        let isHalloween = RemoteConfigManager.shared.isHalloweenThemeEnabled
+        regularStacks.forEach { $0.isHidden = isHalloween }
+        halloweenStacks.forEach { $0.isHidden = !isHalloween }
+
+        batFlyby.isHidden = !isHalloween
+        if isHalloween {
+            batFlyby.play()
+        } else {
+            batFlyby.stop()
+        }
+    }
+
+    private func setupBatFlyby() {
+        batFlyby.contentMode = .scaleAspectFill
+        batFlyby.loopMode = .loop
+        batFlyby.backgroundBehavior = .pauseAndRestore
+        batFlyby.isUserInteractionEnabled = false
+        batFlyby.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(batFlyby)
+        // Draw above every other subview, even ones added or brought to the front later
+        batFlyby.layer.zPosition = 1
+
+        // Sized to the animation's aspect ratio from the top, so aspect fill doesn't crop the bats off the top
+        let animationSize = batFlyby.animation?.size ?? CGSize(width: 1, height: 1)
+
+        NSLayoutConstraint.activate([
+            // Starts below the nav bar so the bats don't fly behind it
+            batFlyby.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            batFlyby.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            batFlyby.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            batFlyby.heightAnchor.constraint(equalTo: batFlyby.widthAnchor, multiplier: animationSize.height / animationSize.width)
+        ])
+    }
+
     @objc private func didTapDiabetesBasicsCard() {
         chapterContent = ContentChapter().sectionOne.count
         quizContent = ContentChapter().sectionOne.count
@@ -94,17 +169,47 @@ class ResourcesViewController: UIViewController {
     }
     
     private func addTapRecognizersToFoodAndNutritionCards() {
+        // Halloween cards route to the same handlers as their regular counterparts
         let cards: [(view: UIView, selector: Selector)] = [
             (lowCarbSnacksView, #selector(didTapLowCarbSnacksCard)),
             (snackRecipesView, #selector(didTapSnackRecipesCard)),
             (raisesBloodSugarView, #selector(didTapRaisesBloodSugarCard)),
-            (doesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard))
+            (doesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard)),
+            (halloweenDiabetesBasicsView, #selector(didTapDiabetesBasicsCard)),
+            (halloweenNutritionAndCarbCountingView, #selector(didTapNutritionCard)),
+            (halloweenDiabetesSelfManagementView, #selector(didTapManagementCard)),
+            (halloweenLowCarbSnacksView, #selector(didTapLowCarbSnacksCard)),
+            (halloweenSnackRecipesView, #selector(didTapSnackRecipesCard)),
+            (halloweenRaisesBloodSugarView, #selector(didTapRaisesBloodSugarCard)),
+            (halloweenDoesntRaiseBloodSugarView, #selector(didTapDoesntRaiseBloodSugarCard))
         ]
         
         cards.forEach { card in
             card.view.isUserInteractionEnabled = true
             card.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: card.selector))
         }
+
+        communities.forEach { community in
+            community.isUserInteractionEnabled = true
+            community.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCommunityCard(_:))))
+        }
+    }
+
+    /// Opens the community's website in Safari. Each card's tag is set in the storyboard,
+    /// since an outlet collection's order isn't guaranteed.
+    @objc private func didTapCommunityCard(_ sender: UITapGestureRecognizer) {
+        let url: URL? = switch sender.view?.tag {
+        case 0: URLs.strong4life
+        case 1: URLs.jdrf
+        case 2: URLs.campkudzu
+        default: nil
+        }
+
+        guard let url else {
+            print("No URL for community card with tag \(String(describing: sender.view?.tag))")
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     @objc private func didTapLowCarbSnacksCard() {
@@ -112,7 +217,7 @@ class ResourcesViewController: UIViewController {
     }
     
     @objc private func didTapSnackRecipesCard() {
-        openResourcePage(named: "snack_recipes", title: "Snack recipes")
+        openResourcePage(named: "snack_recipes", title: "Snack recipes", headerColor: .nutritionAndCarbColor)
     }
     
     @objc private func didTapRaisesBloodSugarCard() {
@@ -124,7 +229,7 @@ class ResourcesViewController: UIViewController {
     }
     
     /// Pushes a webview showing the bundled html page, the same way chapter content is displayed
-    private func openResourcePage(named fileName: String, title: String) {
+    private func openResourcePage(named fileName: String, title: String, headerColor: UIColor? = nil) {
         guard Bundle.main.url(forResource: fileName, withExtension: "html") != nil else {
             print("Missing resource page: \(fileName).html")
             return
@@ -133,6 +238,7 @@ class ResourcesViewController: UIViewController {
         let resourcePageViewController = ResourcePageViewController()
         resourcePageViewController.contentURL = fileName
         resourcePageViewController.pageTitle = title
+        resourcePageViewController.headerColor = headerColor
         resourcePageViewController.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(resourcePageViewController, animated: true)
